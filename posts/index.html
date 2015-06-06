@@ -1,0 +1,10 @@
+---
+layout: default
+title: Posts
+menu: true
+date: 2015-01-02
+---
+{% include _tags.html %}
+{% for post in site.posts %}
+  {% include _post.html post=post %}
+{% endfor %}
