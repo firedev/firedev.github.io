@@ -1,0 +1,4 @@
+<div class="mb4 center">{% for tag in site.tags %}
+  {% capture xtag %}{{ tag | first }}{% endcapture %}
+  {% include _tag.html tag=xtag %}
+{% endfor %}</div>

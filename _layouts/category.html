@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<article class="post" itemscope itemtype="http://schema.org/Article">
+    <div itemprop="articleBody">{{ content }}</div>
+    <meta itemprop="genre" content="{{ page.category }}">
+
+    <h2>{{ page.category | capitalize}}</h2>
+
+    <div class="posts">
+      {% for post in site.categories[page.category] %}
+        {% include _post.html post=post %}
+      {% endfor %}
+    </div>
+</article>

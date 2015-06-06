@@ -3,3 +3,9 @@ layout: default
 ---
 
 {% include me.html %}
+{% for post in site.posts %}
+  {% include _post.html post=post %}
+{% endfor %}
+{% for project in site.collections.projects %}
+  {% include _project.html post=project %}
+{% endfor %}

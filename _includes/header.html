@@ -1,9 +1,8 @@
 <header class="site-header">
-  <div class="container px2 mb2">
+  <div class="container px2 mt2 mb2">
     <div class="clearfix mxn2">
-
       <div class="sm-col sm-col-3 px2">
-        <h1 class="logo">
+        <h1 class="logo m0">
           <a href="/">
             <div class="fire">
               fire
@@ -17,16 +16,26 @@
           </a>
         </h1>
       </div>
-      <div class="sm-col sm-col-8 px2">
-        <div class="mt4">
-          <a class="button button-transparent" href="http://firedevcom.tumblr.com">Blog</a>
-          {% for page in site.pages %}
-          {% if page.title %}
-          <a class="button button-transparent" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-          {% endif %}
-          {% endfor %}
-
+      <div class="sm-col sm-col-9 px2">
+        <div class="mxn2 mt2">
+          <a class="right button button-transparent silver" href="{{ "/feed.xml" | prepend: site.baseurl }}">
+            <i class="fa fa-rss"></i>
+            RSS
+          </a>
+          <h3>
+            <!-- <a class="button button-transparent" href="http://firedevcom.tumblr.com">Blog</a> -->
+            {% for page in site.pages order:descending %}
+            {% if page.menu %}
+            <a class="button button-transparent" href="{{ page.url | prepend: site.baseurl }}">
+              {{ page.title }}
+            </a>
+            {% endif %}
+            {% endfor %}
+          </h3>
         </div>
-      </div>
+      </p>
+
     </div>
+  </div>
+</div>
 </header>
