@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Hello, Jekyll!</title>
+  <meta name="description" content="After unsuccessful attempts at blogging relying on 3rd party platforms likePosterous, Tumblr, Droplr and whatnot here is my new stab at delivering ideasto th...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://firedev.github.io/posts/hello-jekyll/">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.github.io/feed.xml" />
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="container px2 mt2 mb2">
+    <div class="clearfix mxn2">
+      <div class="sm-col sm-col-3 px2">
+        <h1 class="logo m0">
+          <a href="/">
+            <div class="fire">
+              fire
+            </div>
+            <div class="dev">
+              dev
+            </div>
+            <div class="com">
+              .com
+            </div>
+          </a>
+        </h1>
+      </div>
+      <div class="sm-col sm-col-9 px2">
+        <div class="mxn2 mt2">
+          <a class="right button button-transparent silver" href="/feed.xml">
+            <i class="fa fa-rss"></i>
+            RSS
+          </a>
+          <h3>
+            <!-- <a class="button button-transparent" href="http://firedevcom.tumblr.com">Blog</a> -->
+            
+            
+            
+            
+            
+            
+            <a class="button button-transparent" href="/posts/index.html">
+              Posts
+            </a>
+            
+            
+            
+            <a class="button button-transparent" href="/about/">
+              About
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </h3>
+        </div>
+      </p>
+
+    </div>
+  </div>
+</div>
+</header>
+
+
+    <div class="container px2 mb4">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Hello, Jekyll!</h1>
+    <p class="post-meta">Jun 6, 2015</p>
+  </header>
+
+  <article class="mb3">
+    <p>After unsuccessful attempts at blogging relying on 3rd party platforms like
+Posterous, Tumblr, Droplr and whatnot here is my new stab at delivering ideas
+to the world. Fully autonomous this time. Surprisingly there are not that many
+options available for blogging…</p>
+
+<p>Why not Wordpress? I never really liked it, between these options and plugins
+there seem to be little left to the actual content creation.
+So this weekend I have decided to finally get back to blogging.</p>
+
+<p>I don’t have much time having two kinds and being a freelancer. I don’t want to
+mess with bloated Wordpress themes, plugins and exploits. Making my own blog on
+Ruby on Rails sounds tempting but I better concentrate on other things in life.</p>
+
+<p>Also forcing markdown on users in projects lately I wanted to write in markdown.
+And the options that came to mind were Jekyll which I wanted to try for a long
+time and Middleman. However Jekyll had less options and less of everything so it
+sounded like a nice fit for a weekend project. And here it is.</p>
+
+<h2 id="partials-in-jekyll">Partials in Jekyll</h2>
+<p>One of the tricky part was rendering of posts. In rails I would throw in a partial.
+Since there are no partials in Jekyll I had to use includes.</p>
+
+<p>This is what I have in my <code>posts</code> and <code>index</code> pages:</p>
+
+<div class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span>post<span class="w"> </span>in<span class="w"> </span>site.posts<span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>_post.html<span class="w"> </span><span class="na">post</span><span class="o">=</span>post<span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
+
+<p>And the actual <code>_post.html</code> include uses <code>include.post</code> variable:</p>
+
+<div class="highlight"><pre><code class="language-liquid" data-lang="liquid">&lt;h2&gt;
+    &lt;a href=&quot;<span class="p">{{</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="p">}}</span>&quot;&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">excerpt</span><span class="w"> </span><span class="p">}}</span>&lt;p&gt;</code></pre></div>
+
+<p>This is something I would do in Rails. Everything seems pretty sweet so far.
+The only issue is that I have to write HTML again which seems as a step back
+after years of using Slim.</p>
+
+<p>Hosting the new static site at
+<a href="http://firedev.github.io">firedev.github.io</a>, courtesy of Github.
+Finally I can sleep at nights knowing that
+<a href="http://www.theverge.com/2013/4/30/4281780/posterous-is-shutting-down-tomorrow-here-are-the-best-alternatives">whatever</a>
+<a href="http://www.engadget.com/2014/01/03/droplr-rapid-file-sharing-service-goes-pay-only">crazy</a>
+<a href="http://www.businessinsider.com/medium-budget-cuts-and-restructuring-2015-6">idea</a>
+the companies
+I’ve trusted my content to are going to get it won’t affect me.</p>
+
+  </article>
+
+  
+  <a href="/jekyll/" class="button bg-orange white"> Jekyll </a>
+
+  
+  <a href="/liquid/" class="button bg-orange white"> Liquid </a>
+
+  
+</div>
+
+    </div>
+
+    <footer>
+    <div class="container px2 mt4 mb4 center">
+        With <i class="fa fa-heart red"></i>
+        <a href="http://firedev.com"><strong>firedev.com</strong></a>
+    </div>
+
+<script src="/js/firedev.js"></script>
+<script>
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+
+    try {
+    var pageTracker = _gat._getTracker("UA-747161-4");
+    pageTracker._trackPageview();
+    } catch (err) {}
+</script>
+
+</footer>
+
+
+  </body>
+
+</html>
