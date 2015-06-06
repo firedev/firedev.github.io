@@ -16,9 +16,10 @@ Why not Wordpress? I never really liked it, between these options and plugins
 there seem to be little left to the actual content creation.
 So this weekend I have decided to finally get back to blogging.
 
-I don't have much time having two kinds and being a freelancer. I don't want to
-mess with bloated Wordpress themes, plugins and exploits. Making my own blog on
-Ruby on Rails sounds tempting but I better concentrate on other things in life.
+Having two kids and being a freelancer I don't have much time to fight technology.
+I don't want to mess with bloated Wordpress themes, plugins and exploits.
+Making my own blog on Ruby on Rails sounds tempting but I better concentrate
+on other things in life.
 
 Also forcing markdown on users in projects lately I wanted to write in markdown.
 And the options that came to mind were Jekyll which I wanted to try for a long
