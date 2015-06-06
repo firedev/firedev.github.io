@@ -24,10 +24,14 @@
           </a>
           <h3>
             <!-- <a class="button button-transparent" href="http://firedevcom.tumblr.com">Blog</a> -->
-            {% for page in site.pages order:descending %}
-            {% if page.menu %}
-            <a class="button button-transparent" href="{{ page.url | prepend: site.baseurl }}">
-              {{ page.title }}
+            {% for menu in site.pages order:descending %}
+            {% if menu.menu %}
+              {% if page.url == menu.url %}
+              <a class="button bg-orange white" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
+              {% else %}
+              <a class="button button-transparent" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
+              {% endif %}
+              {{ menu.title }}
             </a>
             {% endif %}
             {% endfor %}
