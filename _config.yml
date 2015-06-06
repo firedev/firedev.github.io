@@ -10,3 +10,6 @@ github_username:  firedev
 
 # Build settings
 markdown: kramdown
+exclude:
+  - "bower_components"
+  - "bower.json"
