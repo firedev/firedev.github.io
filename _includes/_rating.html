@@ -1,0 +1,15 @@
+<div class="right ml4 mb4 rounded border center">
+  <div class="bg-darken-1 px1">
+    <small>
+    {% case include.rating %}
+    {% when 4.5 %}
+    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
+    {% endcase %}
+    </small>
+  </div>
+  <div class="h1">{{include.rating}}</div>
+  {% case include.rating %}
+  {% when 4.5 %}
+  <b>Good</b>
+  {% endcase %}
+</div>
