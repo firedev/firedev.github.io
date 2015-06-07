@@ -2,13 +2,15 @@
 layout: default
 ---
 {% include _rating.html rating=page.rating %}
-<article class="mb3">
-  {{ content }}
-</article>
+<div class="mb3">
+  <article class="mb3">
+    {{ content }}
+  </article>
 
-{% for tag in page.tags %}
-{% include _tag.html tag=tag %}
-{% endfor %}
+  {% for tag in page.tags %}
+  {% include _tag.html tag=tag %}
+  {% endfor %}
+</div>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
 /* * * CONFIGURATION VARIABLES * * */
