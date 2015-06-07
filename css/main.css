@@ -2639,6 +2639,9 @@ input[type=range] {
 .hljs-chunk {
   color: #ddd; }
 
+* {
+  background: center center no-repeat; }
+
 body {
   color: #667477; }
 
@@ -2679,3 +2682,9 @@ a i.fa {
   margin-bottom: 4rem; }
 .projects .sm-col-3 {
   text-align: center; }
+
+.main-image {
+  height: 15rem;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat; }
