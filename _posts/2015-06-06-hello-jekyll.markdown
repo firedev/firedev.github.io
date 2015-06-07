@@ -6,6 +6,9 @@ category: posts
 tags:
   - jekyll
   - liquid
+image: logos/jekyll.png
+background_size: contain
+background_color: '#333'
 ---
 After unsuccessful attempts at blogging relying on 3rd party platforms like
 Posterous, Tumblr, Droplr and whatnot here is my new stab at delivering ideas
