@@ -1,14 +1,21 @@
 <div class="clearfix mxn2 mb2">
   <div class="sm-col sm-col-3 px2">
-    <div class="rounded" style="
-    height: 10em;
+    <div class="rounded mb1" style="
+    padding-top: 71.555%;
     background-image: url(/images/{{post.image}});
-    background-size: {{ post.background_size }};
+    {% if post.background_size == 'initial' %}
+      background-size: contain;
+      background-position: center center;
+    {% else %}
+      background-size: {% if post.background_size %}{{ post.background-size }}{% else %}cover{% endif %};
+      background-position: top center;
+    {% endif %}
     background-color: {{ post.background_color }};
     "></div>
   </div>
 
   <div class="sm-col sm-col-9 px2">
+    {% include _rating.html rating=post.rating %}
     <time>{{ include.post.date | date_to_string }}</time>
     <h2 class="mt1 mb1">
       <a href="{{ include.post.url }}">{{ include.post.title }}</a>

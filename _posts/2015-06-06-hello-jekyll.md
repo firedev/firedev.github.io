@@ -1,13 +1,12 @@
 ---
 layout: post
 title:  "Hello, Jekyll!"
-date:   2015-06-06 14:50:02
 category: posts
 tags:
   - jekyll
   - liquid
 image: logos/jekyll.png
-background_size: contain
+background_size: initial
 background_color: '#333'
 ---
 After unsuccessful attempts at blogging relying on 3rd party platforms like
