@@ -83,6 +83,8 @@
             
             
             
+            
+            
           </h3>
         </div>
       </p>
@@ -93,23 +95,34 @@
 </header>
 
     
-<div class="main-image" style="
+<div class="main-image mb3" style="
 background-image: url(/images/logos/jekyll.png);
-background-size: contain;
+background-size: initial;
 background-color: #333;
+background-position: ;
 ">
+<div class="container px2">
+  <header>
+    <p>Jun 6, 2015</p>
+    <h1 class="mt0">Hello, Jekyll!</h1>
+  </header>
+</div>
 </div>
 
 
     <div class="container px2 mb4">
-        <div class="post">
-  <header class="post-header">
-    <h1 class="post-title">Hello, Jekyll!</h1>
-    <p class="post-meta">Jun 6, 2015</p>
-  </header>
+        <div class="right ml4 mb4 rounded border center">
+  <div class="bg-darken-1 px1">
+    <small>
+    
+    </small>
+  </div>
+  <div class="h1"></div>
+  
+</div>
 
-  <article class="mb3">
-    <p>After unsuccessful attempts at blogging relying on 3rd party platforms like
+<article class="mb3">
+  <p>After unsuccessful attempts at blogging relying on 3rd party platforms like
 Posterous, Tumblr, Droplr and whatnot here is my new stab at delivering ideas
 to the world. Fully autonomous this time. Surprisingly there are not that many
 options available for blogging…</p>
@@ -158,16 +171,27 @@ Finally I can sleep at nights knowing that
 the companies
 I’ve trusted my content to are going to get it won’t affect me.</p>
 
-  </article>
+</article>
 
-  
-  <a href="/jekyll/" class="button bg-orange white"> Jekyll </a>
 
-  
-  <a href="/liquid/" class="button bg-orange white"> Liquid </a>
+<a href="/jekyll/" class="button bg-orange white"> Jekyll </a>
 
-  
-</div>
+
+<a href="/liquid/" class="button bg-orange white"> Liquid </a>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'firedevcom';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
 
     </div>
 
@@ -176,8 +200,10 @@ I’ve trusted my content to are going to get it won’t affect me.</p>
         With <i class="fa fa-heart red"></i>
         <a href="http://firedev.com"><strong>firedev.com</strong></a>
     </div>
+</footer>
 
-<script src="/js/firedev.js"></script>
+    <script src="/js/firedev.js"></script>
+
 <script>
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -187,9 +213,6 @@ I’ve trusted my content to are going to get it won’t affect me.</p>
     pageTracker._trackPageview();
     } catch (err) {}
 </script>
-
-</footer>
-
 
   </body>
 

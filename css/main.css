@@ -2684,7 +2684,21 @@ a i.fa {
   text-align: center; }
 
 .main-image {
-  height: 15rem;
+  height: 20rem;
   background-position: center center;
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  position: relative; }
+  .main-image:after {
+    content: "";
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+  .main-image header {
+    position: absolute;
+    z-index: 1;
+    color: white;
+    bottom: 1em; }
