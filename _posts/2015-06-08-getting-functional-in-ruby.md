@@ -267,6 +267,6 @@ $ ag -io --nonumber --nofilename "#([\da-f]{3}|[\da-f]{6})\b" [path] | ./colors.
 {% endhighlight %}
 
 It makes sense to sort palettes by hue or lightness or saturation, this is simply
-a matter of changing a method name in `.map(&:hue)`.
-
-This was enough for my needs and I just wanted to document the approach.
+a matter of changing a method name in `.map(&:hue)`. Maybe some command-line switches
+would be appropriate here as well but this was enough for my needs and I just
+wanted to document the approach.
