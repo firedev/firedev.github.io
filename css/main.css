@@ -3,9 +3,7 @@
  */
 .highlight pre {
   background: #f3f3f3;
-  padding: 1rem;
-  margin-left: -1rem;
-  marign-right: -1rem; }
+  padding: 1rem; }
 .highlight .c {
   color: #998;
   font-style: italic; }
@@ -2695,16 +2693,10 @@ a i.fa {
   background-size: cover;
   background-repeat: no-repeat;
   position: relative; }
-  .main-image:after {
-    content: "";
-    background: rgba(0, 0, 0, 0.2);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0; }
-  .main-image header {
-    position: absolute;
+  .main-image + .container {
+    position: relative;
     z-index: 1;
-    color: white;
-    bottom: 1em; }
+    margin-top: -9rem; }
+    .main-image + .container > header:first-child {
+      background: rgba(0, 0, 0, 0.5);
+      color: white; }
