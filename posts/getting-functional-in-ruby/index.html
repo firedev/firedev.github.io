@@ -165,7 +165,7 @@ through <code>sort --uniq -f</code> to remove the duplicates ignoring the case a
 <p>Wow that’s a large number. The problem is, right now <code>#fff</code> and <code>#ffffff</code>
 are treated as different colors. But I guess this is something we can fix in Ruby.</p>
 
-<p>Here is what we are trying to do:</p>
+<p>Here is what we are going to do:</p>
 
 <h3 id="with-the-given-list-of-colors">With the given list of colors</h3>
 <ol>
@@ -233,9 +233,9 @@ if you add <code>__END__</code> to your program. Here is an excerpt from the Rub
 
 <h2 id="lets-get-to-business">Let’s get to business</h2>
 
-<p>For this project I would use the <a href="https://github.com/jordanstephens/paleta">Paleta</a> gem.
+<p>For this project I will use <a href="https://github.com/jordanstephens/paleta">Paleta</a> gem.
 We have the colors loaded into the <code>DATA</code> enumerator. The only thing that’s left is to
-create some lambdas.</p>
+create some lambdas accoding to the plan.</p>
 
 <h3 id="convert-colors-to-full-hex">1. Convert colors to full hex</h3>
 <p>That is easy, feed the color to Paleta and back in full hex. The only thing we need to add
