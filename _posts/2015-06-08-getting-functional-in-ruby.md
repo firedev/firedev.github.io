@@ -52,7 +52,7 @@ $ ag -io --nonumber --nofilename "#([\da-f]{3}|[\da-f]{6})\b" | sort --uniq | wc
 Wow that's a large number. The problem is, right now `#fff` and `#ffffff`
 are treated as different colors. But I guess this is something we can fix in Ruby.
 
-Here is what we are trying to do:
+Here is what we are going to do:
 
 ### With the given list of colors
 1. Convert colors to full hex
@@ -133,9 +133,9 @@ __END__
 
 ##Let's get to business
 
-For this project I would use the [Paleta](https://github.com/jordanstephens/paleta) gem.
+For this project I will use [Paleta](https://github.com/jordanstephens/paleta) gem.
 We have the colors loaded into the `DATA` enumerator. The only thing that's left is to
-create some lambdas.
+create some lambdas accoding to the plan.
 
 ### 1. Convert colors to full hex
 That is easy, feed the color to Paleta and back in full hex. The only thing we need to add
