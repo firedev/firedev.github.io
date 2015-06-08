@@ -353,9 +353,9 @@ you can use for processing your files or projects:</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ag -io --nonumber --nofilename <span class="s2">&quot;#([\da-f]{3}|[\da-f]{6})\b&quot;</span> <span class="o">[</span>path<span class="o">]</span> <span class="p">|</span> ./colors.rb</code></pre></div>
 
 <p>It makes sense to sort palettes by hue or lightness or saturation, this is simply
-a matter of changing a method name in <code>.map(&amp;:hue)</code>.</p>
-
-<p>This was enough for my needs and I just wanted to document the approach.</p>
+a matter of changing a method name in <code>.map(&amp;:hue)</code>. Maybe some command-line switches
+would be appropriate here as well but this was enough for my needs and I just
+wanted to document the approach.</p>
 
   </article>
 
