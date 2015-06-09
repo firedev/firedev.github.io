@@ -149,7 +149,20 @@ On branch master
 Your branch is up-to-date with <span class="s1">&#39;origin/master&#39;</span>.
 nothing to commit, working directory clean</code></pre></div>
 
-<p>Done! Phew, at least this was easy.</p>
+<p>Done! Phew, at least this was easy, was it? Another option is to simply truncate it:</p>
+
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>cat &gt;&gt; ~/.gitignore
+.ruby-version
+^C
+rbenv: version <span class="sb">`</span>2.1.5<span class="s1">&#39; is not installed</span>
+<span class="s1">$ cat &gt; .ruby-version</span>
+<span class="s1">^C</span>
+<span class="s1">$ git status</span>
+<span class="s1">On branch master</span>
+<span class="s1">Your branch is up-to-date with &#39;</span>origin/master<span class="err">&#39;</span>.
+nothing to commit, working directory clean</code></pre></div>
+
+<p>And as always be careful with git, don’t mess things up.</p>
 
   </article>
 
