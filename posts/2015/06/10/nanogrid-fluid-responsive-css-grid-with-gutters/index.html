@@ -124,7 +124,8 @@ background-position: ;
 I have decided to build on top of their shoulders. Welcome the nanogrid.</p>
 
 <h3 id="ungrid">Ungrid</h3>
-<p>Ungrid is a nifty grid that packs everything in less than a hundred bytes by using tables:</p>
+<p>Ungrid is a nifty grid that packs everything in less than a hundred bytes by
+using <code>display: table</code> trick:</p>
 
 <div class="highlight"><pre><code class="language-css" data-lang="css"><span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">30em</span><span class="o">)</span> <span class="p">{</span>
     <span class="nc">.row</span> <span class="p">{</span> <span class="k">width</span><span class="o">:</span> <span class="m">100%</span><span class="p">;</span> <span class="k">display</span><span class="o">:</span> <span class="n">table</span><span class="p">;</span> <span class="k">table-layout</span><span class="o">:</span> <span class="k">fixed</span><span class="p">;</span> <span class="p">}</span>
