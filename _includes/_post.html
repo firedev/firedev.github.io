@@ -7,8 +7,7 @@
       background-size: contain;
       background-position: center center;
     {% else %}
-      background-size: {% if post.background_size %}{{ post.background-size }}{% else %}cover{% endif %};
-      background-position: top center;
+      background-size: {% if post.background_size %}{{ post.background_size }}{% else %}cover{% endif %};
     {% endif %}
     background-color: {{ post.background_color }};
     "></div>
@@ -20,6 +19,6 @@
     <h2 class="mt1 mb1">
       <a href="{{ include.post.url }}">{{ include.post.title }}</a>
     </h2>
-    <p>{{ include.post.excerpt }}<p>
+    <p>{{ include.post.excerpt | markdownify | strip_html }}<p>
   </div>
 </div>

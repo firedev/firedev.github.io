@@ -1,5 +1,6 @@
 # Site settings
 title: firedev.com
+author: firedev
 email: nick@firedev.com
 description: > # this means to ignore newlines until "baseurl:"
   Building the internet one site at a time
@@ -9,7 +10,7 @@ twitter_username: firedev
 github_username:  firedev
 
 # Build settings
-permalink: /:categories/:title/
+permalink: pretty
 markdown: kramdown
 exclude:
   - "bower_components"
