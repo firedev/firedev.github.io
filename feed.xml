@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.github.io/</link>
     <atom:link href="http://firedev.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 11 Jun 2015 07:25:16 +0700</pubDate>
-    <lastBuildDate>Thu, 11 Jun 2015 07:25:16 +0700</lastBuildDate>
+    <pubDate>Thu, 11 Jun 2015 07:27:43 +0700</pubDate>
+    <lastBuildDate>Thu, 11 Jun 2015 07:27:43 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -103,8 +103,6 @@ container or &lt;code&gt;body&lt;/code&gt; padding.&lt;/p&gt;
         <guid isPermaLink="true">http://firedev.github.io/posts/2015/06/10/nanogrid-fluid-responsive-css-grid-with-gutters/</guid>
         
         <category>CSS</category>
-        
-        <category>nanogrid</category>
         
         
         <category>posts</category>
