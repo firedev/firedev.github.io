@@ -2679,16 +2679,13 @@ a {
     color: #667477;
     margin-left: -0.75rem; }
 
-a i.fa {
-  margin-right: 0.5em; }
-
 .projects .clearfix {
   margin-bottom: 4rem; }
 .projects .sm-col-3 {
   text-align: center; }
 
 .main-image {
-  height: 20rem;
+  height: 30rem;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
