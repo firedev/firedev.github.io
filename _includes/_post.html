@@ -1,6 +1,7 @@
 <div class="clearfix mxn2 mb2">
   <div class="sm-col sm-col-3 px2">
-    <div class="rounded mb1" style="
+    <a href="{{ include.post.url }}">
+      <div class="rounded mb1" style="
     padding-top: 71.555%;
     background-image: url(/images/{{post.image}});
     {% if post.background_size == 'initial' %}
@@ -11,6 +12,7 @@
     {% endif %}
     background-color: {{ post.background_color }};
     "></div>
+    </a>
   </div>
 
   <div class="sm-col sm-col-9 px2">
@@ -19,6 +21,6 @@
     <h2 class="mt1 mb1">
       <a href="{{ include.post.url }}">{{ include.post.title }}</a>
     </h2>
-    <p>{{ include.post.excerpt | markdownify | strip_html }}<p>
+    <p>{{ include.post.excerpt | markdownify | strip_html }}</p>
   </div>
 </div>

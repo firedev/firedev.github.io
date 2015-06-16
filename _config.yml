@@ -10,7 +10,7 @@ twitter_username: firedev
 github_username:  firedev
 
 # Build settings
-permalink: pretty
+permalink: /:categories/:year/:title/
 markdown: kramdown
 exclude:
   - "bower_components"

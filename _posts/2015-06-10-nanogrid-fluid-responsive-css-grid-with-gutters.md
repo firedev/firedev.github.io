@@ -2,14 +2,15 @@
 layout: post
 title:  "nanogrid: Fluid responsive CSS grid with gutters"
 category: posts
-tags: CSS nanogrid
+tags: CSS
 image: nanogrid.png
 ---
 Inspired by [Ungrid](https://github.com/chrisnager/ungrid/) and [BASSCSS](https://github.com/basscss/basscss/)
 I have decided to build on top of their shoulders. Welcome the nanogrid.
 
 ### Ungrid
-Ungrid is a nifty grid that packs everything in less than a hundred bytes by using tables:
+Ungrid is a nifty grid that packs everything in less than a hundred bytes by
+using `display: table` trick:
 {% highlight css %}
 @media (min-width: 30em) {
     .row { width: 100%; display: table; table-layout: fixed; }
