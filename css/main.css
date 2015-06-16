@@ -1,8 +1,13 @@
 /**
  * Syntax highlighting styles
  */
+.highlight pre, p code {
+  background: #f3f3f3; }
+
+p code {
+  padding: 0.25rem; }
+
 .highlight pre {
-  background: #f3f3f3;
   padding: 1rem; }
 .highlight .c {
   color: #998;
@@ -2656,8 +2661,7 @@ body {
   color: #667477; }
 
 p code {
-  color: #4e595c;
-  font-weight: bold; }
+  color: #4e595c; }
 
 a {
   color: #ff6600; }
