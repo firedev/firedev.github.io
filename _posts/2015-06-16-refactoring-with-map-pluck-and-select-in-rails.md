@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Refactoring using map, pluck and select in Ruby on Rails"
+title:  "Refactoring with map, pluck and select in Ruby on Rails"
 category: posts
 tags:
   - Rails
