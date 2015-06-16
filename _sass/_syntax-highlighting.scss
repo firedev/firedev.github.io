@@ -1,13 +1,13 @@
 /**
  * Syntax highlighting styles
  */
+.highlight pre, p code {
+    background: #f3f3f3;
+}
+p code { padding: 0.25rem; }
 .highlight {
-    pre {
-      background: #f3f3f3;
-      padding: 1rem;
-    }
     // @extend %vertical-rhythm;
-
+    pre    { padding: 1rem; }
     .c     { color: #998; font-style: italic } // Comment
     .err   { color: #a61717; background-color: #e3d2d2 } // Error
     .k     { font-weight: bold } // Keyword
