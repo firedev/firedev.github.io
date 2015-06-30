@@ -11,7 +11,8 @@ github_username:  firedev
 
 # Build settings
 permalink: /:categories/:year/:title/
-markdown: kramdown
+# markdown: kramdown
+markdown: redcarpet
 exclude:
   - "bower_components"
   - "bower.json"
