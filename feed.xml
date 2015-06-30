@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.github.io/</link>
     <atom:link href="http://firedev.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 30 Jun 2015 10:45:53 +0700</pubDate>
-    <lastBuildDate>Tue, 30 Jun 2015 10:45:53 +0700</lastBuildDate>
+    <pubDate>Tue, 30 Jun 2015 10:53:13 +0700</pubDate>
+    <lastBuildDate>Tue, 30 Jun 2015 10:53:13 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -41,8 +41,8 @@ versions at the same time or check if the file exists.&lt;/p&gt;
 create all possible versions or create some inventive schemes with conditional
 versioning thanks to Carrierwave abilities.&lt;/p&gt;
 
-&lt;p&gt;But in fact there is a better way. Lazily create only the versions that are actually
-being used. Since I am lazy I like everything lazy.&lt;/p&gt;
+&lt;p&gt;But in fact there is a better way. Lazily create only the versions that are
+actually being used just-in-time when the request comes.&lt;/p&gt;
 
 &lt;h2&gt;Hammer time&lt;/h2&gt;
 
@@ -79,7 +79,7 @@ created until we say so:&lt;/p&gt;
     &lt;span class=&quot;vi&quot;&gt;@now&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;In &lt;code&gt;Image&lt;/code&gt; class we are going to add a new method to actually create a version.
+&lt;p&gt;In the &lt;code&gt;Image&lt;/code&gt; class we are going to add a method that actually creates a version.
 All it does - sets &lt;code&gt;@now&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; and then calls &lt;code&gt;recreate_versions!&lt;/code&gt; for a
 given &lt;code&gt;version&lt;/code&gt;. Lazy, not crazy, we don&amp;#39;t want to create anything
 uncontrollably.&lt;/p&gt;
@@ -89,8 +89,9 @@ uncontrollably.&lt;/p&gt;
     &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recreate_versions!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I am using almost the out of the box uploader path with inflector that makes sure
-you don&amp;#39;t get too many images in one folder by breaking a path like this:&lt;/p&gt;
+&lt;p&gt;I am using almost the out of the box uploader with the small addition.
+Here is an inflector that breaks long id strings so you don&amp;#39;t end up with too
+many images in one folder.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# lib/inflector.rb&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Inflector&lt;/span&gt;
@@ -129,9 +130,9 @@ you don&amp;#39;t get too many images in one folder by breaking a path like this
     &lt;span class=&quot;s2&quot;&gt;&amp;quot;uploads/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;underscore&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Inflector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Let&amp;#39;s write a routing test that makes sure the requests are landing right at our
-&lt;code&gt;MissingController&lt;/code&gt;. Missing like in the missing image. Let&amp;#39;s try a couple of routes
-with and without inflected paths, just to be sure:&lt;/p&gt;
+&lt;p&gt;Let&amp;#39;s write a routing test to make sure requests are landing right at our
+&lt;code&gt;MissingController&lt;/code&gt;. Missing like &amp;quot;image is missing&amp;quot;. And test a couple of routes
+with and without inflected paths just to be sure:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# spec/routing/missing_spec.rb&lt;/span&gt;
 
 &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;rails_helper&amp;#39;&lt;/span&gt;
@@ -258,10 +259,10 @@ so you can see any sign that the image is deleted. Then we are changing the &lt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The nice part is that you can delete the whole uploads folder and
-versions will be recreated. Or you can change formats on-the-fly, you don&amp;#39;t need
-to worry about that anymore. Also broken files will be automatically deleted,
-basically you don&amp;#39;t need to worry about images anymore.&lt;/p&gt;
+&lt;p&gt;Now you have fast upload, delayed image creation and the nice part is that you
+can delete the whole &lt;code&gt;uploads&lt;/code&gt; folder. Versions will be re-created.
+You can change formats on-the-fly when design changes. Broken files will be
+automatically deleted as well. Basically you don&amp;#39;t need to worry about images anymore.&lt;/p&gt;
 
 &lt;p&gt;This is pretty much the complete implementation taken out of one of the projects I
 am working on. Please let me know if that helped you. Thanks.&lt;/p&gt;

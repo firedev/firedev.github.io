@@ -155,8 +155,8 @@ versions at the same time or check if the file exists.</p>
 create all possible versions or create some inventive schemes with conditional
 versioning thanks to Carrierwave abilities.</p>
 
-<p>But in fact there is a better way. Lazily create only the versions that are actually
-being used. Since I am lazy I like everything lazy.</p>
+<p>But in fact there is a better way. Lazily create only the versions that are
+actually being used just-in-time when the request comes.</p>
 
 <h2>Hammer time</h2>
 
@@ -193,7 +193,7 @@ created until we say so:</p>
     <span class="vi">@now</span>
   <span class="k">end</span>
 </code></pre></div>
-<p>In <code>Image</code> class we are going to add a new method to actually create a version.
+<p>In the <code>Image</code> class we are going to add a method that actually creates a version.
 All it does - sets <code>@now</code> to <code>true</code> and then calls <code>recreate_versions!</code> for a
 given <code>version</code>. Lazy, not crazy, we don&#39;t want to create anything
 uncontrollably.</p>
@@ -203,8 +203,9 @@ uncontrollably.</p>
     <span class="n">file</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">recreate_versions!</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
   <span class="k">end</span>
 </code></pre></div>
-<p>I am using almost the out of the box uploader path with inflector that makes sure
-you don&#39;t get too many images in one folder by breaking a path like this:</p>
+<p>I am using almost the out of the box uploader with the small addition.
+Here is an inflector that breaks long id strings so you don&#39;t end up with too
+many images in one folder.</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># lib/inflector.rb</span>
 
 <span class="k">module</span> <span class="nn">Inflector</span>
@@ -243,9 +244,9 @@ you don&#39;t get too many images in one folder by breaking a path like this:</p
     <span class="s2">&quot;uploads/</span><span class="si">#{</span><span class="n">model</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">underscore</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="no">Inflector</span><span class="o">.</span><span class="n">call</span> <span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span>
   <span class="k">end</span>
 </code></pre></div>
-<p>Let&#39;s write a routing test that makes sure the requests are landing right at our
-<code>MissingController</code>. Missing like in the missing image. Let&#39;s try a couple of routes
-with and without inflected paths, just to be sure:</p>
+<p>Let&#39;s write a routing test to make sure requests are landing right at our
+<code>MissingController</code>. Missing like &quot;image is missing&quot;. And test a couple of routes
+with and without inflected paths just to be sure:</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/routing/missing_spec.rb</span>
 
 <span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
@@ -372,10 +373,10 @@ so you can see any sign that the image is deleted. Then we are changing the <cod
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div>
-<p>The nice part is that you can delete the whole uploads folder and
-versions will be recreated. Or you can change formats on-the-fly, you don&#39;t need
-to worry about that anymore. Also broken files will be automatically deleted,
-basically you don&#39;t need to worry about images anymore.</p>
+<p>Now you have fast upload, delayed image creation and the nice part is that you
+can delete the whole <code>uploads</code> folder. Versions will be re-created.
+You can change formats on-the-fly when design changes. Broken files will be
+automatically deleted as well. Basically you don&#39;t need to worry about images anymore.</p>
 
 <p>This is pretty much the complete implementation taken out of one of the projects I
 am working on. Please let me know if that helped you. Thanks.</p>
