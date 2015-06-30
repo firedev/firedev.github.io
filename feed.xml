@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.github.io/</link>
     <atom:link href="http://firedev.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 30 Jun 2015 14:11:34 +0700</pubDate>
-    <lastBuildDate>Tue, 30 Jun 2015 14:11:34 +0700</lastBuildDate>
+    <pubDate>Tue, 30 Jun 2015 14:44:55 +0700</pubDate>
+    <lastBuildDate>Tue, 30 Jun 2015 14:44:55 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -231,7 +231,7 @@ location @backend {
 get rid of them automatically. Via some augmentation of our &lt;code&gt;MissingController&lt;/code&gt;
 we can do that now.&lt;/p&gt;
 
-&lt;p&gt;I also suggest to add some default &amp;quot;broken&amp;quot; image to
+&lt;p&gt;I would suggest to add some default &amp;quot;broken&amp;quot; image to
 &lt;code&gt;/assets/images/layout/missing_image.png&lt;/code&gt;
 so you can see any sign that the image is deleted. Then we are changing the &lt;code&gt;show&lt;/code&gt; method:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# app/controller/missing_controller.rb&lt;/span&gt;
@@ -592,7 +592,7 @@ nothing to commit, working directory clean&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     
       <item>
         <title>Getting functional in Ruby</title>
-        <description>&lt;p&gt;Lately I am working on an old code base. That also means working with the old CSS.
+        <description>&lt;p&gt;Lately I am working on an old code base and that means working with the old CSS.
 One of the techniques to use when refactoring CSS is to replace colors with variables.
 But first you need to find and catalogue all the colors in the project.&lt;/p&gt;
 
@@ -786,7 +786,7 @@ warning about Rmagic.&lt;/p&gt;
 &lt;h2&gt;Command-line reader&lt;/h2&gt;
 
 &lt;p&gt;Okay that is nice but let&amp;#39;s improve it a bit. First of all lets get rid of the static DATA
-so we could use it right from the command line. That also will allow us to get right of &lt;code&gt;sort&lt;/code&gt;.
+so we could use it right from the command line. That allows us to get right of &lt;code&gt;sort&lt;/code&gt;.
 Simply change &lt;code&gt;DATA&lt;/code&gt; to &lt;code&gt;ARGF&lt;/code&gt; and remove the &lt;code&gt;__END__&lt;/code&gt; part.&lt;/p&gt;
 
 &lt;p&gt;Then lets open the resulting file right away.&lt;/p&gt;
@@ -925,7 +925,7 @@ I don&amp;#39;t want to mess with bloated Wordpress themes, plugins and exploits
 Making my own blog on Ruby on Rails sounds tempting but I better concentrate
 on other things in life.&lt;/p&gt;
 
-&lt;p&gt;Also forcing markdown on users in projects lately I wanted to write in markdown.
+&lt;p&gt;Forcing markdown on users in projects lately I wanted to write in markdown.
 And the options that came to mind were Jekyll which I wanted to try for a long
 time and Middleman. However Jekyll had less options and less of everything so it
 sounded like a nice fit for a weekend project. And here it is.&lt;/p&gt;

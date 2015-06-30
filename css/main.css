@@ -2667,12 +2667,13 @@ a {
   color: #ff6600; }
 
 .logo {
-  font-size: 3rem; }
+  white-space: nowrap;
+  font-size: 5.5rem; }
   .logo .fire,
   .logo .dev,
   .logo .com {
     display: inline;
-    letter-spacing: -3px; }
+    letter-spacing: -8px; }
   .logo .com {
     display: none; }
   .logo .fire {

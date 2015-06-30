@@ -40,7 +40,7 @@
           </a>
         </h1>
       </div>
-      <div class="sm-col sm-col-9 px2">
+      <div class="sm-col sm-col-9 px2 mt3">
         <div class="mxn2 mt2">
           <a class="right button button-transparent silver" href="/feed.xml">
             <i class="fa fa-rss"></i>
@@ -69,12 +69,6 @@
             </a>
             
             
-            
-              
-              <a class="button button-transparent" href="/about/">
-              
-              About
-            </a>
             
             
             
@@ -345,7 +339,7 @@ location @backend {
 get rid of them automatically. Via some augmentation of our <code>MissingController</code>
 we can do that now.</p>
 
-<p>I also suggest to add some default &quot;broken&quot; image to
+<p>I would suggest to add some default &quot;broken&quot; image to
 <code>/assets/images/layout/missing_image.png</code>
 so you can see any sign that the image is deleted. Then we are changing the <code>show</code> method:</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/controller/missing_controller.rb</span>
