@@ -6,25 +6,295 @@
 </description>
     <link>http://firedev.github.io/</link>
     <atom:link href="http://firedev.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 29 Jun 2015 12:04:34 +0700</pubDate>
-    <lastBuildDate>Mon, 29 Jun 2015 12:04:34 +0700</lastBuildDate>
+    <pubDate>Tue, 30 Jun 2015 10:23:37 +0700</pubDate>
+    <lastBuildDate>Tue, 30 Jun 2015 10:23:37 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Just-in-time delayed image creation with Carrierwave</title>
+        <description>&lt;p&gt;I don&amp;#39;t know about you but I kind of grown to like Carrierwave. Yes, there are
+other uploaders on the block but that&amp;#39;s not the point. Everybody I know are using
+it wrong.&lt;/p&gt;
+
+&lt;p&gt;If you are storing images on your own server I bet you are always concerned about
+versions. Let&amp;#39;s say for an average web site you need at least three versions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Featured: Big cropped wide screen image for heading&lt;/li&gt;
+&lt;li&gt;Default: Smaller image for gallery&lt;/li&gt;
+&lt;li&gt;Thumb: Thumbnail for the list&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are just for the sake of the example but there could be more. And  for
+each image you need only a subset of versions. Only one image per article is
+displayed as a featured image, not every image goes to gallery etc.
+But you create them all anyway, because that&amp;#39;s how it is.&lt;/p&gt;
+
+&lt;h2&gt;Stop&lt;/h2&gt;
+
+&lt;p&gt;You&amp;#39;re doing it wrong. While versions creation is indeed the
+Carrierwave&amp;#39;s responsibility, the decision on which version to create should
+not be made when image is uploaded. And certainly you don&amp;#39;t need to create all
+versions at the same time or check if the file exists.&lt;/p&gt;
+
+&lt;p&gt;Come to think of it, you don&amp;#39;t know upfront what version you might need so you
+create all possible versions or create some inventive schemes with conditional
+versioning thanks to Carrierwave abilities.&lt;/p&gt;
+
+&lt;p&gt;But in fact there is a better way -- create only the versions that are actually being used.
+Here&amp;#39;s how.&lt;/p&gt;
+
+&lt;h2&gt;Hammer time&lt;/h2&gt;
+
+&lt;p&gt;Okay let&amp;#39;s roll our sleeves. The idea is simple. You create the route matching
+the image path. If the asset is missing the request falls through to Rails and
+image is created. Next time the request comes to this url, nginx takes care of
+serving the static asset.&lt;/p&gt;
+
+&lt;p&gt;To start off let&amp;#39;s delay the versions creation until the moment we actually need
+them. Let&amp;#39;s add the &lt;code&gt;now&lt;/code&gt; modifier to uploader and make sure no versions are
+created until we say so:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# app/uploaders/image_uploader.rb&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:now?&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:featured&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:now?&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:thumb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:now?&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;now&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;kp&quot;&gt;protected&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;now?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@now&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In &lt;code&gt;Image&lt;/code&gt; class we are going to add a new method to actually create a version.
+All it does - sets &lt;code&gt;@now&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; and then calls &lt;code&gt;recreate_versions!&lt;/code&gt; for a
+given &lt;code&gt;version&lt;/code&gt;. We don&amp;#39;t want to get crazy and create anything uncontrollably.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# app/models/image.rb&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recreate_versions!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I am using almost the out of the box uploader path with inflector that makes sure
+you don&amp;#39;t get too many images in one folder by breaking a path like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# lib/inflector.rb&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Inflector&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dup&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;times&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;slice!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_s&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# spec/lib/inflector_spec.rb&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;spec_helper&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Inflector&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inflect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;Inflector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;specify&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;10&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;876&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;8/876&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;876&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;8/876&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;1/100&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1_000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;1/0/1000&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10_000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;1/0/0/10000&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100_000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;1/0/0/0/100000&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So here is the &lt;code&gt;store_dir&lt;/code&gt; from &lt;code&gt;image_uploader.rb&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# app/uploaders/image_uploader.rb&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;store_dir&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;uploads/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;underscore&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Inflector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let&amp;#39;s write a routing test that makes sure the requests are landing right at our
+&lt;code&gt;MissingController&lt;/code&gt;. Missing like in the missing image. Let&amp;#39;s try a couple of routes
+with and without inflected paths, just to be sure:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# spec/routing/missing_spec.rb&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;rails_helper&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Routes&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:routing&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Missing Image&amp;#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;specify&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/uploads/image/40/thumb_5f5e5c3b-a665-494c-9c21-be82d49f6451.jpg&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;route_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;missing&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;show&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;klass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;image&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;40&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;thumb&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;5f5e5c3b-a665-494c-9c21-be82d49f6451&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;jpg&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;specify&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/uploads/image/1/0/1003/featured_c3ad3865-93f0-4032-a6fe-5c2ada381456.JPG&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;route_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;missing&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;show&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;klass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;image&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;inflection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;1/0&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;1003&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;featured&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;ss&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;c3ad3865-93f0-4032-a6fe-5c2ada381456&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;JPG&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Okay now it&amp;#39;s time to make a route. Fortunately we can use constraints to make
+matters easier for everybody. Rails doesn&amp;#39;t have to think how to parse it and
+writing rule is really simple:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# config/routes.rb&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# /uploads/block/image/1/default_7fd5acc8-5c06-4dcc-955e-f4fc5f76be01.jpg&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;uploads/:klass/(*inflection)/:id/(:version)_(:file)&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;missing#show&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;constraints&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;klass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/\D*/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# anything but numbers&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/\d*/&lt;/span&gt;       &lt;span class=&quot;c1&quot;&gt;# numbers only&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And the &lt;code&gt;MissingController&lt;/code&gt; itself:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/missing_controller.rb&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MissingController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;PATH_INFO&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create_version&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_version&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create_version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;image&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:klass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;camelize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constantize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;version&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_sym&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;All it does - creates a version according to &lt;code&gt;params&lt;/code&gt; and once image is created
+the same url is being requested again. But this time the created image will be
+served by nginx on top of the Rails app.&lt;/p&gt;
+
+&lt;h2&gt;Nginx&lt;/h2&gt;
+
+&lt;p&gt;If you have any special settings for static files in &lt;code&gt;uploads&lt;/code&gt; folder you might
+want to amend your nginx config for the given site like so:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;; /etc/nginx/sites-available/site
+
+location ^~ /uploads/ {
+    ...
+    try_files $uri @backend;
+}
+
+location @backend {
+      proxy_pass ...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Broken Images&lt;/h2&gt;
+
+&lt;p&gt;Say you have some broken images that can&amp;#39;t be recreated and causing errors. Let&amp;#39;s
+get rid of them automatically. Via simple augmentation of our &lt;code&gt;MissingController&lt;/code&gt;
+we can do that now.&lt;/p&gt;
+
+&lt;p&gt;I also suggest to add some default &amp;quot;broken&amp;quot; image to
+&lt;code&gt;/assets/images/layout/missing_image.png&lt;/code&gt;
+so you can see any sign that the image is deleted. Then we are changing the &lt;code&gt;show&lt;/code&gt; method:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# app/controller/missing_controller.rb&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MissingController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;PATH_INFO&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create_version&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destroy&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;helpers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asset_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;layout/missing_image.png&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_version&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create_version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;image&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:klass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;camelize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constantize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;version&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_sym&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The nice part is that you can delete the whole uploads folder and
+versions will be recreated. Or you can change formats on-the-fly, you don&amp;#39;t need
+to worry about that anymore. Also broken files will be automatically deleted,
+basically you don&amp;#39;t need to worry about images anymore.&lt;/p&gt;
+
+&lt;p&gt;This is pretty much the complete implementation taken out of one of the projects I
+am working on. Please let me know if that helped you. Thanks.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 30 Jun 2015 00:00:00 +0700</pubDate>
+        <link>http://firedev.github.io/posts/2015/just-in-time-image-creation-with-carrierwave/</link>
+        <guid isPermaLink="true">http://firedev.github.io/posts/2015/just-in-time-image-creation-with-carrierwave/</guid>
+        
+        <category>Rails</category>
+        
+        <category>Carrierwave</category>
+        
+        
+        <category>posts</category>
+        
+      </item>
     
       <item>
         <title>Refactoring with map, pluck and select in Ruby on Rails</title>
         <description>&lt;p&gt;If you need to get something out of the database, consider using &lt;code&gt;pluck&lt;/code&gt; to avoid
-creating instances you don’t need.&lt;/p&gt;
+creating instances you don&amp;#39;t need.&lt;/p&gt;
 
 &lt;p&gt;I am working with an old code base at the moment and do a lot of refactoring.
 That provides me with something to think about every day.&lt;/p&gt;
 
 &lt;p&gt;In this particular code base I see a lot of transformation of database objects
 in Ruby, but is that effective?
-Let’s check and see if we can improve anything.&lt;/p&gt;
+Let&amp;#39;s check and see if we can improve anything.&lt;/p&gt;
 
-&lt;h2 id=&quot;experiment&quot;&gt;Experiment&lt;/h2&gt;
+&lt;h2&gt;Experiment&lt;/h2&gt;
 
-&lt;p&gt;Before venturing off let’s create a simple test bench to measure performance:&lt;/p&gt;
+&lt;p&gt;Before venturing off let&amp;#39;s create a simple test bench to measure performance:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;no&quot;&gt;Benchmark&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
@@ -39,12 +309,12 @@ Let’s check and see if we can improve anything.&lt;/p&gt;
 &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stock_movement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;positions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:product_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;220&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;282&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;We see almost no difference, so what’s the point? But performance depends on other factors.&lt;/p&gt;
+&lt;p&gt;We see almost no difference, so what&amp;#39;s the point? But performance depends on other factors.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;stock_movement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;positions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Let’s try it with something more substantial:&lt;/p&gt;
+&lt;p&gt;Let&amp;#39;s try it with something more substantial:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;stock_movement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;positions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;
@@ -54,7 +324,7 @@ Let’s check and see if we can improve anything.&lt;/p&gt;
 &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stock_movement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;positions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pluck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:product_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;349&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;746&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Now, we’re talking, but in fact we’re not.
+&lt;p&gt;Now, we&amp;#39;re talking, but in fact we&amp;#39;re not.
 This code is used once in the controller, and it might be that there is no
 actual performance benefit especially when using small amount of data:&lt;/p&gt;
 
@@ -70,10 +340,11 @@ but when dealing with database I would conside using &lt;code&gt;pluck&lt;/code&
 things depending on its position in &lt;code&gt;ActiveRecord&lt;/code&gt; chain. Plus there are different
 flavors of &lt;code&gt;select&lt;/code&gt; in &lt;code&gt;ActiveRecord::Association::CollectionProxy&lt;/code&gt;, &lt;code&gt;ActiveRecord::QueryMethods&lt;/code&gt; etc.&lt;/p&gt;
 
-&lt;p&gt;Anyway, what you need to know that it might return instanciated object with paritally filled fields. Or a sub-query, but that’s another topic.&lt;/p&gt;
+&lt;p&gt;Anyway, what you need to know that it might return instanciated object with paritally filled fields. Or a sub-query, but that&amp;#39;s another topic.&lt;/p&gt;
 
-&lt;h2 id=&quot;a-better-example&quot;&gt;A better example&lt;/h2&gt;
-&lt;p&gt;So, armed with this knowlegde, let’s find a better specimen.&lt;/p&gt;
+&lt;h2&gt;A better example&lt;/h2&gt;
+
+&lt;p&gt;So, armed with this knowlegde, let&amp;#39;s find a better specimen.&lt;/p&gt;
 
 &lt;p&gt;Here is a good candidate for improvement I stumbled upon in a few places.
 It returns an array of first letters in names in collection to build and alphabetic
@@ -82,7 +353,7 @@ lister later.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;StockProduct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;LEFT(name, 1) as letter&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:letter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;What immediately grabs attention is how database output that ends at &lt;code&gt;.all&lt;/code&gt; being treated in Ruby.
-Let’s look at &lt;code&gt;select&lt;/code&gt; first:&lt;/p&gt;
+Let&amp;#39;s look at &lt;code&gt;select&lt;/code&gt; first:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;StockProduct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;LEFT(name, 1) as letter&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_sql&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;SELECT LEFT(name, 1) as letter FROM `stock_products` &amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -100,9 +371,9 @@ half-filled (or half-empty) objects:&lt;/p&gt;
 &lt;p&gt;Another thing to keep in mind when using &lt;code&gt;pluck&lt;/code&gt; - it returns the array and
 breaks the &lt;code&gt;ActiveRecord&lt;/code&gt; query method chain. And if you need to use the values
 in a subsequent query you might be actually needing &lt;code&gt;select&lt;/code&gt; as it would
-construct a subquery to use. But in our case we don’t need anything else so that’s fine.&lt;/p&gt;
+construct a subquery to use. But in our case we don&amp;#39;t need anything else so that&amp;#39;s fine.&lt;/p&gt;
 
-&lt;p&gt;Let’s compare:&lt;/p&gt;
+&lt;p&gt;Let&amp;#39;s compare:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;StockProduct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pluck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;DISTINCT LEFT(name, 1)&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;926&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;424&lt;/span&gt;
@@ -127,8 +398,9 @@ construct a subquery to use. But in our case we don’t need anything else so th
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;hey-what-about-sorting&quot;&gt;Hey, what about sorting?&lt;/h2&gt;
-&lt;p&gt;Okay, you got me. Yes that is a good question. But let’s think about it first.
+&lt;h2&gt;Hey, what about sorting?&lt;/h2&gt;
+
+&lt;p&gt;Okay, you got me. Yes that is a good question. But let&amp;#39;s think about it first.
 As I output the results in alphabetical order and numbers separated from letters
 that means I have a knowledge of that.&lt;/p&gt;
 
@@ -161,7 +433,8 @@ book ultimately is the point of refactoring.&lt;/p&gt;
         <description>&lt;p&gt;Inspired by &lt;a href=&quot;https://github.com/chrisnager/ungrid/&quot;&gt;Ungrid&lt;/a&gt; and &lt;a href=&quot;https://github.com/basscss/basscss/&quot;&gt;BASSCSS&lt;/a&gt;
 I have decided to build on top of their shoulders. Welcome the nanogrid.&lt;/p&gt;
 
-&lt;h3 id=&quot;ungrid&quot;&gt;Ungrid&lt;/h3&gt;
+&lt;h3&gt;Ungrid&lt;/h3&gt;
+
 &lt;p&gt;Ungrid is a nifty grid that packs everything in less than a hundred bytes by
 using &lt;code&gt;display: table&lt;/code&gt; trick:&lt;/p&gt;
 
@@ -170,20 +443,22 @@ using &lt;code&gt;display: table&lt;/code&gt; trick:&lt;/p&gt;
     &lt;span class=&quot;nc&quot;&gt;.col&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;table-cell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;And it’s quite powerful &lt;a href=&quot;https://github.com/chrisnager/ungrid/&quot;&gt;see the demo&lt;/a&gt; plus
+&lt;p&gt;And it&amp;#39;s quite powerful &lt;a href=&quot;https://github.com/chrisnager/ungrid/&quot;&gt;see the demo&lt;/a&gt; plus
 using &lt;code&gt;display: table&lt;/code&gt; is a nifty trick that solves issues with
 &lt;a href=&quot;http://caniuse.com/#flexbox&quot;&gt;Flexbox&lt;/a&gt;.
 Actually it seems the browsers are getting up to speed with Flexible Box Layout. So
-maybe it’s time to jump on the F-train. But this is a cool experiment anyway.&lt;/p&gt;
+maybe it&amp;#39;s time to jump on the F-train. But this is a cool experiment anyway.&lt;/p&gt;
 
-&lt;h3 id=&quot;basscss&quot;&gt;BASSCSS&lt;/h3&gt;
+&lt;h3&gt;BASSCSS&lt;/h3&gt;
+
 &lt;p&gt;Another sweet concept that offers a bunch of immutable css styles that allow you to
 work by writing everything in HTML. Check &lt;a href=&quot;http://www.basscss.com/&quot;&gt;the examples&lt;/a&gt;.
-It offer a grid of it’s own and the opportunity to combine the best of both worlds
+It offer a grid of it&amp;#39;s own and the opportunity to combine the best of both worlds
 is too good to pass up.&lt;/p&gt;
 
-&lt;h3 id=&quot;nanogrid&quot;&gt;nanogrid&lt;/h3&gt;
-&lt;p&gt;Let’s use SASS for this, as I am most comfortable with it. And add some variables to the mix:&lt;/p&gt;
+&lt;h3&gt;nanogrid&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;#39;s use SASS for this, as I am most comfortable with it. And add some variables to the mix:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sass&quot; data-lang=&quot;sass&quot;&gt;&lt;span class=&quot;na&quot;&gt;$nanogrid-breakpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;em&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;!default&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;nanogrid-breakpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -212,12 +487,12 @@ Using sass &lt;code&gt;@for&lt;/code&gt; we can calculate all the values upfront
   &lt;span class=&quot;nc&quot;&gt;.row&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.col-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;none&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Okay time to add some gutters. The tricky part here is that you can’t simply use
-negative margins as they don’t work well on &lt;code&gt;display: table&lt;/code&gt;. Element only moves to the left.
+&lt;p&gt;Okay time to add some gutters. The tricky part here is that you can&amp;#39;t simply use
+negative margins as they don&amp;#39;t work well on &lt;code&gt;display: table&lt;/code&gt;. Element only moves to the left.
 We could solve it by using some container element as Chris Nager did &lt;a href=&quot;https://codepen.io/chrisnager/pen/arKBu&quot;&gt;here&lt;/a&gt;  But that is not very fun so as I know for fact that all my users are using Chrome I can
 once again resort to the power of calc.&lt;/p&gt;
 
-&lt;p&gt;Let’s also fix the counter effect of floats introduced by BASSCSS grid and add a gutter variable.&lt;/p&gt;
+&lt;p&gt;Let&amp;#39;s also fix the counter effect of floats introduced by BASSCSS grid and add a gutter variable.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sass&quot; data-lang=&quot;sass&quot;&gt;&lt;span class=&quot;na&quot;&gt;$nanogrid-gutter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;rem&lt;/span&gt;
 
@@ -232,12 +507,12 @@ once again resort to the power of calc.&lt;/p&gt;
     &lt;span class=&quot;na&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;table-cell&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$nanogrid-gutter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;This introduces the negative margin on the right so it’s best to be aware of it.&lt;/p&gt;
+&lt;p&gt;This introduces the negative margin on the right so it&amp;#39;s best to be aware of it.&lt;/p&gt;
 
-&lt;h2 id=&quot;good-parts&quot;&gt;Good parts&lt;/h2&gt;
+&lt;h2&gt;Good parts&lt;/h2&gt;
 
-&lt;p&gt;So what’s the point of it? It is small, flexible, the columns are arranged automatically.
-All columns are having equal height and you don’t need clearfix and you can center content vertically.&lt;/p&gt;
+&lt;p&gt;So what&amp;#39;s the point of it? It is small, flexible, the columns are arranged automatically.
+All columns are having equal height and you don&amp;#39;t need clearfix and you can center content vertically.&lt;/p&gt;
 
 &lt;p&gt;There are some nuances though as the negative margin should be negated on the right
 if you are using the grid as the top element on the page. Either with an &lt;code&gt;overflow: hidden&lt;/code&gt;
@@ -258,11 +533,11 @@ container or &lt;code&gt;body&lt;/code&gt; padding.&lt;/p&gt;
     
       <item>
         <title>Git: Ignore deleted files</title>
-        <description>&lt;p&gt;Sometimes working with other people you with you didn’t have some of the files
+        <description>&lt;p&gt;Sometimes working with other people you with you didn&amp;#39;t have some of the files
 in repository because they are getting in the way of your settings. &lt;code&gt;.ruby-version&lt;/code&gt;
 for instance.&lt;/p&gt;
 
-&lt;p&gt;So you check out the repository and what the…&lt;/p&gt;
+&lt;p&gt;So you check out the repository and what the...&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone ...
 ...
@@ -280,7 +555,7 @@ Changes not staged &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; commit:
 
         deleted:    .ruby-version&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;It’s impossible to ignore it by adding to &lt;code&gt;.gitignore&lt;/code&gt; but fortunately in git
+&lt;p&gt;It&amp;#39;s impossible to ignore it by adding to &lt;code&gt;.gitignore&lt;/code&gt; but fortunately in git
 there is an option for everything.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git update-index --assume-unchanged .ruby-version
@@ -302,7 +577,7 @@ On branch master
 Your branch is up-to-date with &lt;span class=&quot;s1&quot;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt;.
 nothing to commit, working directory clean&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;And as always be careful with git, don’t mess things up.&lt;/p&gt;
+&lt;p&gt;And as always be careful with git, don&amp;#39;t mess things up.&lt;/p&gt;
 </description>
         <pubDate>Tue, 09 Jun 2015 00:00:00 +0700</pubDate>
         <link>http://firedev.github.io/posts/2015/git-ignore-deleted-files/</link>
@@ -321,14 +596,14 @@ nothing to commit, working directory clean&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 One of the techniques to use when refactoring CSS is to replace colors with variables.
 But first you need to find and catalogue all the colors in the project.&lt;/p&gt;
 
-&lt;h2 id=&quot;extracting-colors-from-a-project&quot;&gt;Extracting colors from a project&lt;/h2&gt;
+&lt;h2&gt;Extracting colors from a project&lt;/h2&gt;
 
 &lt;p&gt;So lets find all colors used in a project. Regular expression I came up with finds
 a pound sign &lt;code&gt;#&lt;/code&gt; followed by 3 or 6 numbers or letters in the range from &lt;code&gt;a&lt;/code&gt; to &lt;code&gt;f&lt;/code&gt;
 and stops at the word boundary.&lt;/p&gt;
 
 &lt;p&gt;I am using &lt;a href=&quot;https://github.com/ggreer/the_silver_searcher&quot;&gt;The Silver Searcher&lt;/a&gt;.
-The output is too human-readable so let’s throw in some options to dumb it down:&lt;/p&gt;
+The output is too human-readable so let&amp;#39;s throw in some options to dumb it down:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;-i --ignore-case
   Match &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt;-insensitively
@@ -348,32 +623,33 @@ The output is too human-readable so let’s throw in some options to dumb it dow
 --nobreak
   No linebreaks between results in different files&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Thats a bit of a list actually but &lt;code&gt;ag&lt;/code&gt; is fast and easy to use. Let’s pipe the output
+&lt;p&gt;Thats a bit of a list actually but &lt;code&gt;ag&lt;/code&gt; is fast and easy to use. Let&amp;#39;s pipe the output
 through &lt;code&gt;sort --uniq -f&lt;/code&gt; to remove the duplicates ignoring the case and count the lines with &lt;code&gt;wc -l&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ag -io --nonumber --nofilename &lt;span class=&quot;s2&quot;&gt;&amp;quot;#([\da-f]{3}|[\da-f]{6})\b&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort --uniq &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l
 229&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Wow that’s a large number. The problem is, right now &lt;code&gt;#fff&lt;/code&gt; and &lt;code&gt;#ffffff&lt;/code&gt;
+&lt;p&gt;Wow that&amp;#39;s a large number. The problem is, right now &lt;code&gt;#fff&lt;/code&gt; and &lt;code&gt;#ffffff&lt;/code&gt;
 are treated as different colors. But I guess this is something we can fix in Ruby.&lt;/p&gt;
 
 &lt;p&gt;Here is what we are going to do:&lt;/p&gt;
 
-&lt;h3 id=&quot;with-the-given-list-of-colors&quot;&gt;With the given list of colors&lt;/h3&gt;
+&lt;h3&gt;With the given list of colors&lt;/h3&gt;
+
 &lt;ol&gt;
-  &lt;li&gt;Convert colors to full hex&lt;/li&gt;
-  &lt;li&gt;Make the list unique&lt;/li&gt;
-  &lt;li&gt;Order by hue&lt;/li&gt;
-  &lt;li&gt;Print the palette so we can see what is going on&lt;/li&gt;
+&lt;li&gt;Convert colors to full hex&lt;/li&gt;
+&lt;li&gt;Make the list unique&lt;/li&gt;
+&lt;li&gt;Order by hue&lt;/li&gt;
+&lt;li&gt;Print the palette so we can see what is going on&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;functional-background&quot;&gt;Functional Background&lt;/h2&gt;
+&lt;h2&gt;Functional Background&lt;/h2&gt;
 
 &lt;p&gt;After getting some inspiration from
 &lt;a href=&quot;https://www.youtube.com/watch?v=tq5SQ4W3gRI&quot;&gt;Ruby Midwest 2013 Functional Principles for OO Development&lt;/a&gt;
 talk by Jessica Kerr I have decided to go all functional here.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;Enumerable#map&lt;/code&gt; is the single most important method here. Just keep things mappable and you’re fine.
+&lt;p&gt;&lt;code&gt;Enumerable#map&lt;/code&gt; is the single most important method here. Just keep things mappable and you&amp;#39;re fine.
 If you are not sure about it, wrap your arguments in &lt;code&gt;Array()&lt;/code&gt;, use asterisk &lt;code&gt;*&lt;/code&gt; or &lt;code&gt;.to_a&lt;/code&gt; method.
 Just make sure you have Enumerator on input.&lt;/p&gt;
 
@@ -383,17 +659,17 @@ given symbol into a proc that calls the same method on the given object.&lt;/p&g
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:upcase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;B&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;C&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Pretzel &lt;code&gt;&amp;amp;&lt;/code&gt; here simply converts &lt;code&gt;:upcase&lt;/code&gt; to a Proc so it’s basically a syntax sugar.
-The ‘unpacked’ version would look like this:&lt;/p&gt;
+&lt;p&gt;Pretzel &lt;code&gt;&amp;amp;&lt;/code&gt; here simply converts &lt;code&gt;:upcase&lt;/code&gt; to a Proc so it&amp;#39;s basically a syntax sugar.
+The &amp;#39;unpacked&amp;#39; version would look like this:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upcase&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;But I don’t want to chain my lambdas in the ugly way, too bad there is no short syntax
+&lt;p&gt;But I don&amp;#39;t want to chain my lambdas in the ugly way, too bad there is no short syntax
 for lambdas in Ruby. Or is it? Turns out there is. So, given the &lt;code&gt;upper&lt;/code&gt; lambda:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upcase&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Even after replacing &lt;code&gt;call&lt;/code&gt; with &lt;code&gt;.()&lt;/code&gt; it still doesn’t look nice:&lt;/p&gt;
+&lt;p&gt;Even after replacing &lt;code&gt;call&lt;/code&gt; with &lt;code&gt;.()&lt;/code&gt; it still doesn&amp;#39;t look nice:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -402,8 +678,8 @@ for lambdas in Ruby. Or is it? Turns out there is. So, given the &lt;code&gt;upp
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;B&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;C&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Now that’s better, and to me that was the only part missing.
-So let’s store filtered &lt;code&gt;ag&lt;/code&gt; output to the ruby file and start messing around:&lt;/p&gt;
+&lt;p&gt;Now that&amp;#39;s better, and to me that was the only part missing.
+So let&amp;#39;s store filtered &lt;code&gt;ag&lt;/code&gt; output to the ruby file and start messing around:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;io&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nonumber&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nofilename&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;#([\da-f]{3}|[\da-f]{6})&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -423,13 +699,14 @@ if you add &lt;code&gt;__END__&lt;/code&gt; to your program. Here is an excerpt 
 &lt;span class=&quot;cp&quot;&gt;#008000&lt;/span&gt;
 &lt;span class=&quot;cp&quot;&gt;#00A347&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;lets-get-to-business&quot;&gt;Let’s get to business&lt;/h2&gt;
+&lt;h2&gt;Let&amp;#39;s get to business&lt;/h2&gt;
 
 &lt;p&gt;For this project I will use &lt;a href=&quot;https://github.com/jordanstephens/paleta&quot;&gt;Paleta&lt;/a&gt; gem.
-We have the colors loaded into the &lt;code&gt;DATA&lt;/code&gt; enumerator. The only thing that’s left is to
+We have the colors loaded into the &lt;code&gt;DATA&lt;/code&gt; enumerator. The only thing that&amp;#39;s left is to
 create some lambdas accoding to the plan.&lt;/p&gt;
 
-&lt;h3 id=&quot;convert-colors-to-full-hex&quot;&gt;1. Convert colors to full hex&lt;/h3&gt;
+&lt;h3&gt;1. Convert colors to full hex&lt;/h3&gt;
+
 &lt;p&gt;That is easy, feed the color to Paleta and back in full hex. The only thing we need to add
 is &lt;code&gt;chomp&lt;/code&gt; to get rid of the newlines in strings:&lt;/p&gt;
 
@@ -440,7 +717,8 @@ is &lt;code&gt;chomp&lt;/code&gt; to get rid of the newlines in strings:&lt;/p&g
   &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:chomp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_full_hex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;make-the-list-unique&quot;&gt;2. Make the list unique&lt;/h3&gt;
+&lt;h3&gt;2. Make the list unique&lt;/h3&gt;
+
 &lt;p&gt;Simply add &lt;code&gt;.uniq&lt;/code&gt; and finally we can see the real number of unique colors in the project.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DATA&lt;/span&gt;
@@ -454,12 +732,13 @@ is &lt;code&gt;chomp&lt;/code&gt; to get rid of the newlines in strings:&lt;/p&g
 
 &lt;p&gt;What?! Okay, damn it, only a few colors were not unique. White and black I guess.&lt;/p&gt;
 
-&lt;h3 id=&quot;order-by-hue&quot;&gt;3. Order by hue&lt;/h3&gt;
+&lt;h3&gt;3. Order by hue&lt;/h3&gt;
+
 &lt;p&gt;That might sound tricky but Paleta comes to the rescue.
 Paleta provides a &lt;code&gt;.hue&lt;/code&gt; method that we could use to sort colors. But since they are
 strings we need to convert them back to objects.&lt;/p&gt;
 
-&lt;p&gt;That sounds fishy because it is. Let’s use this opportunity and refactor the code slightly.
+&lt;p&gt;That sounds fishy because it is. Let&amp;#39;s use this opportunity and refactor the code slightly.
 We remove &lt;code&gt;.hex&lt;/code&gt; from the &lt;code&gt;to_full_hex&lt;/code&gt; method and rename it. This simple refactoring
 gives us even more freedom:&lt;/p&gt;
 
@@ -480,8 +759,9 @@ gives us even more freedom:&lt;/p&gt;
 &lt;span class=&quot;cp&quot;&gt;  #008000&lt;/span&gt;
 &lt;span class=&quot;cp&quot;&gt;  ...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;print-the-palette-so-we-can-see-what-is-going-on&quot;&gt;4. Print the palette so we can see what is going on&lt;/h3&gt;
-&lt;p&gt;Now let’s devise a human-viewable palette so we could judge the colors.
+&lt;h3&gt;4. Print the palette so we can see what is going on&lt;/h3&gt;
+
+&lt;p&gt;Now let&amp;#39;s devise a human-viewable palette so we could judge the colors.
 Make some nice-looking colored &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;s or something.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;to_div&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -503,8 +783,9 @@ warning about Rmagic.&lt;/p&gt;
   &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;command-line-reader&quot;&gt;Command-line reader&lt;/h2&gt;
-&lt;p&gt;Okay that is nice but let’s improve it a bit. First of all lets get rid of the static DATA
+&lt;h2&gt;Command-line reader&lt;/h2&gt;
+
+&lt;p&gt;Okay that is nice but let&amp;#39;s improve it a bit. First of all lets get rid of the static DATA
 so we could use it right from the command line. That also will allow us to get right of &lt;code&gt;sort&lt;/code&gt;.
 Simply change &lt;code&gt;DATA&lt;/code&gt; to &lt;code&gt;ARGF&lt;/code&gt; and remove the &lt;code&gt;__END__&lt;/code&gt; part.&lt;/p&gt;
 
@@ -537,7 +818,7 @@ Simply change &lt;code&gt;DATA&lt;/code&gt; to &lt;code&gt;ARGF&lt;/code&gt; and
 
 &lt;span class=&quot;sb&quot;&gt;`open colors.html`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Now you can pipe the output from &lt;code&gt;ag&lt;/code&gt; and even sample a single css file if needed. Don’t forget to &lt;code&gt;chmod +x colors.rb&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Now you can pipe the output from &lt;code&gt;ag&lt;/code&gt; and even sample a single css file if needed. Don&amp;#39;t forget to &lt;code&gt;chmod +x colors.rb&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Here is the &lt;a href=&quot;https://gist.github.com/firedev/1b3e03afd9c7fca93207&quot;&gt;final version&lt;/a&gt;
 you can use for processing your files or projects:&lt;/p&gt;
@@ -564,7 +845,7 @@ wanted to document the approach.&lt;/p&gt;
         <title>Chappie – What RoboCop remake should&#39;ve been</title>
         <description>&lt;p&gt;Really enjoyed watching &lt;a href=&quot;http://www.imdb.com/title/tt1823672/&quot;&gt;Chappie (2015)&lt;/a&gt; last
 night.
-It’s the third movie from Neill Blomkamp, the director of &lt;a href=&quot;http://www.imdb.com/title/tt1136608/&quot;&gt;District 9 (2009)&lt;/a&gt;
+It&amp;#39;s the third movie from Neill Blomkamp, the director of &lt;a href=&quot;http://www.imdb.com/title/tt1136608/&quot;&gt;District 9 (2009)&lt;/a&gt;
 and &lt;a href=&quot;http://www.imdb.com/title/tt1535108/&quot;&gt;Elysium (2013)&lt;/a&gt;. RoboCop meets District 9.&lt;/p&gt;
 
 &lt;p&gt;Okay, Elysium could be better, but I got a serious kick out of District 9 and
@@ -575,7 +856,7 @@ robot into the life of crime. Abandoned buildings, crime, poverty and luxury are
 of South Africa. Throw in some police robots and you get the idea.&lt;/p&gt;
 
 &lt;figure class=&quot;right mb4 ml4 sm-col-3&quot;&gt;
-  &lt;img class=&quot;rounded&quot; src=&quot;http://tema.ru/travel/south-africa-2/_MG_2985.jpg&quot; title=&quot;Courtesy of tema.ru&quot; /&gt;
+  &lt;img class=&quot;rounded&quot; src=&quot;http://tema.ru/travel/south-africa-2/_MG_2985.jpg&quot; title=&quot;Courtesy of tema.ru&quot;/&gt;
   &lt;figcaption class=&quot;mt1&quot;&gt;
   The Vodacom building in Johannesburg was already deserted in 2006 and apparently not in a better condition now.
   &lt;/figcaption&gt;
@@ -591,18 +872,18 @@ I could not get my eyes off the screen.&lt;/p&gt;
 – Chappie is going to strike similar chords. Another movie that comes to mind
 and relatively unknown these days is
 &lt;a href=&quot;http://www.imdb.com/title/tt0091949/&quot;&gt;Short Circut (1986)&lt;/a&gt; – I was so impressed
-when I was a kid I’ve watched it seven times in the movies.&lt;/p&gt;
+when I was a kid I&amp;#39;ve watched it seven times in the movies.&lt;/p&gt;
 
-&lt;p&gt;Okay back then they didn’t make Jonny Five or Alex Murphy rob other people and wear bling,
+&lt;p&gt;Okay back then they didn&amp;#39;t make Jonny Five or Alex Murphy rob other people and wear bling,
 so expect a different kind of entertainment here. Gangsta-style with the required plot
 devices preserved: Good robot – check, Big bad robot – check, thugs, gangs – oh yeah.&lt;/p&gt;
 
 &lt;p&gt;Wish I could watch it with kids, but the degree of f-word usage and some graphic
 scenes near the last third of the movie makes it not very family-friendly.
-My wife didn’t like it at all:&lt;/p&gt;
+My wife didn&amp;#39;t like it at all:&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;— I don’t want to watch it, they are being mean to the robot&lt;/p&gt;
+&lt;p&gt;— I don&amp;#39;t want to watch it, they are being mean to the robot&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Too bad the &lt;a href=&quot;http://www.imdb.com/title/tt1234721/&quot;&gt;RoboCop (2015)&lt;/a&gt; remake turned
@@ -615,7 +896,7 @@ kids-friendly even.&lt;/p&gt;
 
 &lt;p&gt;And I am off to seeing District 9 again.&lt;/p&gt;
 
-&lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/cegdR0GiJl4&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/cegdR0GiJl4&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 </description>
         <pubDate>Sun, 07 Jun 2015 00:00:00 +0700</pubDate>
         <link>http://firedev.github.io/posts/2015/chappie-2015/</link>
@@ -633,14 +914,14 @@ kids-friendly even.&lt;/p&gt;
         <description>&lt;p&gt;After unsuccessful attempts at blogging relying on 3rd party platforms like
 Posterous, Tumblr, Droplr and whatnot here is my new stab at delivering ideas
 to the world. Fully autonomous this time. Surprisingly there are not that many
-options available for blogging…&lt;/p&gt;
+options available for blogging...&lt;/p&gt;
 
 &lt;p&gt;Why not Wordpress? I never really liked it, between these options and plugins
 there seem to be little left to the actual content creation.
 So this weekend I have decided to finally get back to blogging.&lt;/p&gt;
 
-&lt;p&gt;Having two kids and being a freelancer I don’t have much time to fight technology.
-I don’t want to mess with bloated Wordpress themes, plugins and exploits.
+&lt;p&gt;Having two kids and being a freelancer I don&amp;#39;t have much time to fight technology.
+I don&amp;#39;t want to mess with bloated Wordpress themes, plugins and exploits.
 Making my own blog on Ruby on Rails sounds tempting but I better concentrate
 on other things in life.&lt;/p&gt;
 
@@ -649,7 +930,8 @@ And the options that came to mind were Jekyll which I wanted to try for a long
 time and Middleman. However Jekyll had less options and less of everything so it
 sounded like a nice fit for a weekend project. And here it is.&lt;/p&gt;
 
-&lt;h2 id=&quot;partials-in-jekyll&quot;&gt;Partials in Jekyll&lt;/h2&gt;
+&lt;h2&gt;Partials in Jekyll&lt;/h2&gt;
+
 &lt;p&gt;One of the tricky part was rendering of posts. In rails I would throw in a partial.
 Since there are no partials in Jekyll I had to use includes.&lt;/p&gt;
 
@@ -677,7 +959,7 @@ Finally I can sleep at nights knowing that
 &lt;a href=&quot;http://www.engadget.com/2014/01/03/droplr-rapid-file-sharing-service-goes-pay-only&quot;&gt;crazy&lt;/a&gt;
 &lt;a href=&quot;http://www.businessinsider.com/medium-budget-cuts-and-restructuring-2015-6&quot;&gt;idea&lt;/a&gt;
 the companies
-I’ve trusted my content to are going to get it won’t affect me.&lt;/p&gt;
+I&amp;#39;ve trusted my content to are going to get it won&amp;#39;t affect me.&lt;/p&gt;
 </description>
         <pubDate>Sat, 06 Jun 2015 00:00:00 +0700</pubDate>
         <link>http://firedev.github.io/posts/2015/hello-jekyll/</link>

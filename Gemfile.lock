@@ -73,6 +73,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll
+  redcarpet
   slim
 
 BUNDLED WITH

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Just-in-time delayed image creation with Carrierwave</title>
+  <meta name="description" content="I don&#39;t know about you but I kind of grown to like Carrierwave. Yes, there areother uploaders on the block but that&#39;s not the point. Everybody I know...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://firedev.github.io/posts/2015/just-in-time-image-creation-with-carrierwave/">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.github.io/feed.xml" />
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="container px2 mt2 mb2">
+    <div class="clearfix mxn2">
+      <div class="sm-col sm-col-3 px2">
+        <h1 class="logo m0">
+          <a href="/">
+            <div class="fire">
+              fire
+            </div>
+            <div class="dev">
+              dev
+            </div>
+            <div class="com">
+              .com
+            </div>
+          </a>
+        </h1>
+      </div>
+      <div class="sm-col sm-col-9 px2">
+        <div class="mxn2 mt2">
+          <a class="right button button-transparent silver" href="/feed.xml">
+            <i class="fa fa-rss"></i>
+            RSS
+          </a>
+          <h3>
+            <!-- <a class="button button-transparent" href="http://firedevcom.tumblr.com">Blog</a> -->
+            
+            
+            
+            
+            
+            
+              
+              <a class="button button-transparent" href="/posts">
+              
+              Posts
+            </a>
+            
+            
+            
+              
+              <a class="button button-transparent" href="/projects">
+              
+              Projects
+            </a>
+            
+            
+            
+              
+              <a class="button button-transparent" href="/about/">
+              
+              About
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </h3>
+        </div>
+      </p>
+
+    </div>
+  </div>
+</div>
+</header>
+
+    
+<div class="main-image mb3" style="
+background-image: url(/images/logos/rails.svg);
+background-size: contain;
+background-color: ;
+background-position: ;
+">
+</div>
+
+
+    <div class="container px2 mb4">
+        <header class="mxn2 p2 rounded-top bg-darkened-1 mb3">
+  <p>Jun 30, 2015</p>
+  <h1 class="m0">Just-in-time delayed image creation with Carrierwave</h1>
+</header>
+
+
+
+<div class="mb3">
+  <article class="mb3">
+    <p>I don&#39;t know about you but I kind of grown to like Carrierwave. Yes, there are
+other uploaders on the block but that&#39;s not the point. Everybody I know are using
+it wrong.</p>
+
+<p>If you are storing images on your own server I bet you are always concerned about
+versions. Let&#39;s say for an average web site you need at least three versions:</p>
+
+<ul>
+<li>Featured: Big cropped wide screen image for heading</li>
+<li>Default: Smaller image for gallery</li>
+<li>Thumb: Thumbnail for the list</li>
+</ul>
+
+<p>These are just for the sake of the example but there could be more. And  for
+each image you need only a subset of versions. Only one image per article is
+displayed as a featured image, not every image goes to gallery etc.
+But you create them all anyway, because that&#39;s how it is.</p>
+
+<h2>Stop</h2>
+
+<p>You&#39;re doing it wrong. While versions creation is indeed the
+Carrierwave&#39;s responsibility, the decision on which version to create should
+not be made when image is uploaded. And certainly you don&#39;t need to create all
+versions at the same time or check if the file exists.</p>
+
+<p>Come to think of it, you don&#39;t know upfront what version you might need so you
+create all possible versions or create some inventive schemes with conditional
+versioning thanks to Carrierwave abilities.</p>
+
+<p>But in fact there is a better way -- create only the versions that are actually being used.
+Here&#39;s how.</p>
+
+<h2>Hammer time</h2>
+
+<p>Okay let&#39;s roll our sleeves. The idea is simple. You create the route matching
+the image path. If the asset is missing the request falls through to Rails and
+image is created. Next time the request comes to this url, nginx takes care of
+serving the static asset.</p>
+
+<p>To start off let&#39;s delay the versions creation until the moment we actually need
+them. Let&#39;s add the <code>now</code> modifier to uploader and make sure no versions are
+created until we say so:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/uploaders/image_uploader.rb</span>
+
+  <span class="n">version</span> <span class="ss">:default</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="ss">:now?</span> <span class="k">do</span>
+    <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+  <span class="k">end</span>
+
+  <span class="n">version</span> <span class="ss">:featured</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="ss">:now?</span> <span class="k">do</span>
+    <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+  <span class="k">end</span>
+
+  <span class="n">version</span> <span class="ss">:thumb</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="ss">:now?</span> <span class="k">do</span>
+    <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">now</span>
+    <span class="vi">@now</span> <span class="o">=</span> <span class="kp">true</span>
+    <span class="nb">self</span>
+  <span class="k">end</span>
+
+  <span class="kp">protected</span>
+
+  <span class="k">def</span> <span class="nf">now?</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+    <span class="vi">@now</span>
+  <span class="k">end</span>
+</code></pre></div>
+<p>In <code>Image</code> class we are going to add a new method to actually create a version.
+All it does - sets <code>@now</code> to <code>true</code> and then calls <code>recreate_versions!</code> for a
+given <code>version</code>. We don&#39;t want to get crazy and create anything uncontrollably.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/models/image.rb</span>
+
+  <span class="k">def</span> <span class="nf">create_version</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">recreate_versions!</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+  <span class="k">end</span>
+</code></pre></div>
+<p>I am using almost the out of the box uploader path with inflector that makes sure
+you don&#39;t get too many images in one folder by breaking a path like this:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># lib/inflector.rb</span>
+
+<span class="k">module</span> <span class="nn">Inflector</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="nb">name</span> <span class="o">=</span> <span class="nb">id</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">dup</span>
+    <span class="p">(</span><span class="nb">name</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="n">path</span> <span class="o">+=</span> <span class="nb">name</span><span class="o">.</span><span class="n">slice!</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="p">}</span>
+    <span class="n">path</span> <span class="o">+=</span> <span class="nb">id</span><span class="o">.</span><span class="n">to_s</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/lib/inflector_spec.rb</span>
+
+<span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">Inflector</span> <span class="k">do</span>
+
+  <span class="k">def</span> <span class="nf">inflect</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="no">Inflector</span><span class="o">.</span><span class="n">call</span> <span class="nb">id</span>
+  <span class="k">end</span>
+
+  <span class="n">specify</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">876</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;8/876&#39;</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="s2">&quot;876&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;8/876&#39;</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;1/100&#39;</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">1_000</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;1/0/1000&#39;</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">10_000</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;1/0/0/10000&#39;</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">100_000</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;1/0/0/0/100000&#39;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+<p>So here is the <code>store_dir</code> from <code>image_uploader.rb</code>:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/uploaders/image_uploader.rb</span>
+
+  <span class="k">def</span> <span class="nf">store_dir</span>
+    <span class="s2">&quot;uploads/</span><span class="si">#{</span><span class="n">model</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">underscore</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="no">Inflector</span><span class="o">.</span><span class="n">call</span> <span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span>
+  <span class="k">end</span>
+</code></pre></div>
+<p>Let&#39;s write a routing test that makes sure the requests are landing right at our
+<code>MissingController</code>. Missing like in the missing image. Let&#39;s try a couple of routes
+with and without inflected paths, just to be sure:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/routing/missing_spec.rb</span>
+
+<span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
+
+<span class="n">describe</span> <span class="s1">&#39;Routes&#39;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="ss">:routing</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="s1">&#39;Missing Image&#39;</span> <span class="k">do</span>
+    <span class="n">specify</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span>
+        <span class="n">get</span> <span class="s1">&#39;/uploads/image/40/thumb_5f5e5c3b-a665-494c-9c21-be82d49f6451.jpg&#39;</span>
+      <span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">route_to</span><span class="p">(</span>
+        <span class="ss">controller</span><span class="p">:</span> <span class="s1">&#39;missing&#39;</span><span class="p">,</span>
+        <span class="ss">action</span><span class="p">:</span> <span class="s1">&#39;show&#39;</span><span class="p">,</span>
+        <span class="ss">klass</span><span class="p">:</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="s1">&#39;40&#39;</span><span class="p">,</span>
+        <span class="ss">version</span><span class="p">:</span> <span class="s1">&#39;thumb&#39;</span><span class="p">,</span>
+        <span class="ss">file</span><span class="p">:</span> <span class="s1">&#39;5f5e5c3b-a665-494c-9c21-be82d49f6451&#39;</span><span class="p">,</span>
+        <span class="nb">format</span><span class="p">:</span> <span class="s1">&#39;jpg&#39;</span>
+      <span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">specify</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span>
+      <span class="n">get</span> <span class="s1">&#39;/uploads/image/1/0/1003/featured_c3ad3865-93f0-4032-a6fe-5c2ada381456.JPG&#39;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">route_to</span><span class="p">(</span>
+      <span class="ss">controller</span><span class="p">:</span> <span class="s1">&#39;missing&#39;</span><span class="p">,</span>
+      <span class="ss">action</span><span class="p">:</span> <span class="s1">&#39;show&#39;</span><span class="p">,</span>
+      <span class="ss">klass</span><span class="p">:</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span>
+      <span class="ss">inflection</span><span class="p">:</span> <span class="s1">&#39;1/0&#39;</span><span class="p">,</span>
+      <span class="nb">id</span><span class="p">:</span> <span class="s1">&#39;1003&#39;</span><span class="p">,</span>
+      <span class="ss">version</span><span class="p">:</span> <span class="s1">&#39;featured&#39;</span><span class="p">,</span>
+      <span class="ss">file</span><span class="p">:</span> <span class="s1">&#39;c3ad3865-93f0-4032-a6fe-5c2ada381456&#39;</span><span class="p">,</span>
+      <span class="nb">format</span><span class="p">:</span> <span class="s1">&#39;JPG&#39;</span>
+    <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Okay now it&#39;s time to make a route. Fortunately we can use constraints to make
+matters easier for everybody. Rails doesn&#39;t have to think how to parse it and
+writing rule is really simple:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># config/routes.rb</span>
+
+<span class="c1"># /uploads/block/image/1/default_7fd5acc8-5c06-4dcc-955e-f4fc5f76be01.jpg</span>
+<span class="n">get</span> <span class="s1">&#39;uploads/:klass/(*inflection)/:id/(:version)_(:file)&#39;</span><span class="p">,</span>
+    <span class="ss">to</span><span class="p">:</span> <span class="s1">&#39;missing#show&#39;</span><span class="p">,</span>
+    <span class="ss">constraints</span><span class="p">:</span> <span class="p">{</span>
+        <span class="ss">klass</span><span class="p">:</span> <span class="sr">/\D*/</span><span class="p">,</span>   <span class="c1"># anything but numbers</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="sr">/\d*/</span>       <span class="c1"># numbers only</span>
+    <span class="p">}</span>
+</code></pre></div>
+<p>And the <code>MissingController</code> itself:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/controllers/missing_controller.rb</span>
+
+<span class="k">class</span> <span class="nc">MissingController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="n">redirect_to</span> <span class="n">env</span><span class="o">[</span><span class="s1">&#39;PATH_INFO&#39;</span><span class="o">]</span> <span class="k">if</span> <span class="n">create_version</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">create_version</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">create_version</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">image</span>
+    <span class="n">params</span><span class="o">[</span><span class="ss">:klass</span><span class="o">].</span><span class="n">camelize</span><span class="o">.</span><span class="n">constantize</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">version</span>
+    <span class="n">params</span><span class="o">[</span><span class="ss">:version</span><span class="o">].</span><span class="n">to_sym</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>All it does - creates a version according to <code>params</code> and once image is created
+the same url is being requested again. But this time the created image will be
+served by nginx on top of the Rails app.</p>
+
+<h2>Nginx</h2>
+
+<p>If you have any special settings for static files in <code>uploads</code> folder you might
+want to amend your nginx config for the given site like so:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">; /etc/nginx/sites-available/site
+
+location ^~ /uploads/ {
+    ...
+    try_files $uri @backend;
+}
+
+location @backend {
+      proxy_pass ...
+}
+</code></pre></div>
+<h2>Broken Images</h2>
+
+<p>Say you have some broken images that can&#39;t be recreated and causing errors. Let&#39;s
+get rid of them automatically. Via simple augmentation of our <code>MissingController</code>
+we can do that now.</p>
+
+<p>I also suggest to add some default &quot;broken&quot; image to
+<code>/assets/images/layout/missing_image.png</code>
+so you can see any sign that the image is deleted. Then we are changing the <code>show</code> method:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/controller/missing_controller.rb</span>
+
+<span class="k">class</span> <span class="nc">MissingController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="n">redirect_to</span> <span class="n">env</span><span class="o">[</span><span class="s1">&#39;PATH_INFO&#39;</span><span class="o">]</span> <span class="k">if</span> <span class="n">create_version</span>
+  <span class="k">rescue</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">destroy</span>
+    <span class="n">redirect_to</span> <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">helpers</span><span class="o">.</span><span class="n">asset_url</span><span class="p">(</span><span class="s1">&#39;layout/missing_image.png&#39;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">create_version</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">create_version</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">image</span>
+    <span class="n">params</span><span class="o">[</span><span class="ss">:klass</span><span class="o">].</span><span class="n">camelize</span><span class="o">.</span><span class="n">constantize</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">version</span>
+    <span class="n">params</span><span class="o">[</span><span class="ss">:version</span><span class="o">].</span><span class="n">to_sym</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>The nice part is that you can delete the whole uploads folder and
+versions will be recreated. Or you can change formats on-the-fly, you don&#39;t need
+to worry about that anymore. Also broken files will be automatically deleted,
+basically you don&#39;t need to worry about images anymore.</p>
+
+<p>This is pretty much the complete implementation taken out of one of the projects I
+am working on. Please let me know if that helped you. Thanks.</p>
+
+  </article>
+
+  
+  <a href="/Rails/" class="button bg-orange white"> Rails </a>
+
+  
+  <a href="/Carrierwave/" class="button bg-orange white"> Carrierwave </a>
+
+  
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'firedevcom';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    </div>
+
+    <footer>
+    <div class="container px2 mt4 mb4 center">
+        With <i class="fa fa-heart red"></i>
+        <a href="http://firedev.com"><strong>firedev.com</strong></a>
+    </div>
+</footer>
+
+    <script src="/js/firedev.js"></script>
+
+<script>
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+
+    try {
+    var pageTracker = _gat._getTracker("UA-747161-4");
+    pageTracker._trackPageview();
+    } catch (err) {}
+</script>
+
+  </body>
+
+</html>

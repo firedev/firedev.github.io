@@ -95,6 +95,8 @@
             
             
             
+            
+            
           </h3>
         </div>
       </p>
@@ -127,7 +129,8 @@ background-position: ;
     <p>Inspired by <a href="https://github.com/chrisnager/ungrid/">Ungrid</a> and <a href="https://github.com/basscss/basscss/">BASSCSS</a>
 I have decided to build on top of their shoulders. Welcome the nanogrid.</p>
 
-<h3 id="ungrid">Ungrid</h3>
+<h3>Ungrid</h3>
+
 <p>Ungrid is a nifty grid that packs everything in less than a hundred bytes by
 using <code>display: table</code> trick:</p>
 
@@ -136,20 +139,22 @@ using <code>display: table</code> trick:</p>
     <span class="nc">.col</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">table-cell</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span></code></pre></div>
 
-<p>And it’s quite powerful <a href="https://github.com/chrisnager/ungrid/">see the demo</a> plus
+<p>And it&#39;s quite powerful <a href="https://github.com/chrisnager/ungrid/">see the demo</a> plus
 using <code>display: table</code> is a nifty trick that solves issues with
 <a href="http://caniuse.com/#flexbox">Flexbox</a>.
 Actually it seems the browsers are getting up to speed with Flexible Box Layout. So
-maybe it’s time to jump on the F-train. But this is a cool experiment anyway.</p>
+maybe it&#39;s time to jump on the F-train. But this is a cool experiment anyway.</p>
 
-<h3 id="basscss">BASSCSS</h3>
+<h3>BASSCSS</h3>
+
 <p>Another sweet concept that offers a bunch of immutable css styles that allow you to
 work by writing everything in HTML. Check <a href="http://www.basscss.com/">the examples</a>.
-It offer a grid of it’s own and the opportunity to combine the best of both worlds
+It offer a grid of it&#39;s own and the opportunity to combine the best of both worlds
 is too good to pass up.</p>
 
-<h3 id="nanogrid">nanogrid</h3>
-<p>Let’s use SASS for this, as I am most comfortable with it. And add some variables to the mix:</p>
+<h3>nanogrid</h3>
+
+<p>Let&#39;s use SASS for this, as I am most comfortable with it. And add some variables to the mix:</p>
 
 <div class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="na">$nanogrid-breakpoint</span><span class="o">:</span> <span class="mi">30</span><span class="kt">em</span> <span class="nv">!default</span>
 <span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">nanogrid-breakpoint</span><span class="o">)</span>
@@ -178,12 +183,12 @@ Using sass <code>@for</code> we can calculate all the values upfront.</p>
   <span class="nc">.row</span> <span class="nc">.col-</span><span class="si">#{</span><span class="nv">$i</span><span class="si">}</span>
     <span class="na">float</span><span class="o">:</span> <span class="no">none</span></code></pre></div>
 
-<p>Okay time to add some gutters. The tricky part here is that you can’t simply use
-negative margins as they don’t work well on <code>display: table</code>. Element only moves to the left.
+<p>Okay time to add some gutters. The tricky part here is that you can&#39;t simply use
+negative margins as they don&#39;t work well on <code>display: table</code>. Element only moves to the left.
 We could solve it by using some container element as Chris Nager did <a href="https://codepen.io/chrisnager/pen/arKBu">here</a>  But that is not very fun so as I know for fact that all my users are using Chrome I can
 once again resort to the power of calc.</p>
 
-<p>Let’s also fix the counter effect of floats introduced by BASSCSS grid and add a gutter variable.</p>
+<p>Let&#39;s also fix the counter effect of floats introduced by BASSCSS grid and add a gutter variable.</p>
 
 <div class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="na">$nanogrid-gutter</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span>
 
@@ -198,12 +203,12 @@ once again resort to the power of calc.</p>
     <span class="na">display</span><span class="o">:</span> <span class="no">table-cell</span>
     <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span> <span class="si">#{</span><span class="nv">$nanogrid-gutter</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span></code></pre></div>
 
-<p>This introduces the negative margin on the right so it’s best to be aware of it.</p>
+<p>This introduces the negative margin on the right so it&#39;s best to be aware of it.</p>
 
-<h2 id="good-parts">Good parts</h2>
+<h2>Good parts</h2>
 
-<p>So what’s the point of it? It is small, flexible, the columns are arranged automatically.
-All columns are having equal height and you don’t need clearfix and you can center content vertically.</p>
+<p>So what&#39;s the point of it? It is small, flexible, the columns are arranged automatically.
+All columns are having equal height and you don&#39;t need clearfix and you can center content vertically.</p>
 
 <p>There are some nuances though as the negative margin should be negated on the right
 if you are using the grid as the top element on the page. Either with an <code>overflow: hidden</code>
