@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Just-in-time delayed image creation with Carrierwave</title>
+  <title>Lazy image creation with Carrierwave</title>
   <meta name="description" content="I don&#39;t know about you but I kind of grown to like Carrierwave. Yes, there areother uploaders on the block but that&#39;s not the point. Everybody I know...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://firedev.github.io/posts/2015/just-in-time-image-creation-with-carrierwave/">
+  <link rel="canonical" href="http://firedev.github.io/posts/2015/lazy-image-creation-with-carrierwave/">
   <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.github.io/feed.xml" />
 
   <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -119,7 +119,7 @@ background-position: ;
     <div class="container px2 mb4">
         <header class="mxn2 p2 rounded-top bg-darkened-1 mb3">
   <p>Jun 30, 2015</p>
-  <h1 class="m0">Just-in-time delayed image creation with Carrierwave</h1>
+  <h1 class="m0">Lazy image creation with Carrierwave</h1>
 </header>
 
 
@@ -155,8 +155,8 @@ versions at the same time or check if the file exists.</p>
 create all possible versions or create some inventive schemes with conditional
 versioning thanks to Carrierwave abilities.</p>
 
-<p>But in fact there is a better way -- create only the versions that are actually being used.
-Here&#39;s how.</p>
+<p>But in fact there is a better way. Lazily create only the versions that are actually
+being used. Since I am lazy I like everything lazy.</p>
 
 <h2>Hammer time</h2>
 

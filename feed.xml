@@ -6,12 +6,12 @@
 </description>
     <link>http://firedev.github.io/</link>
     <atom:link href="http://firedev.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 30 Jun 2015 10:23:37 +0700</pubDate>
-    <lastBuildDate>Tue, 30 Jun 2015 10:23:37 +0700</lastBuildDate>
+    <pubDate>Tue, 30 Jun 2015 10:26:21 +0700</pubDate>
+    <lastBuildDate>Tue, 30 Jun 2015 10:26:21 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
-        <title>Just-in-time delayed image creation with Carrierwave</title>
+        <title>Lazy image creation with Carrierwave</title>
         <description>&lt;p&gt;I don&amp;#39;t know about you but I kind of grown to like Carrierwave. Yes, there are
 other uploaders on the block but that&amp;#39;s not the point. Everybody I know are using
 it wrong.&lt;/p&gt;
@@ -41,8 +41,8 @@ versions at the same time or check if the file exists.&lt;/p&gt;
 create all possible versions or create some inventive schemes with conditional
 versioning thanks to Carrierwave abilities.&lt;/p&gt;
 
-&lt;p&gt;But in fact there is a better way -- create only the versions that are actually being used.
-Here&amp;#39;s how.&lt;/p&gt;
+&lt;p&gt;But in fact there is a better way. Lazily create only the versions that are actually
+being used. Since I am lazy I like everything lazy.&lt;/p&gt;
 
 &lt;h2&gt;Hammer time&lt;/h2&gt;
 
@@ -268,8 +268,8 @@ basically you don&amp;#39;t need to worry about images anymore.&lt;/p&gt;
 am working on. Please let me know if that helped you. Thanks.&lt;/p&gt;
 </description>
         <pubDate>Tue, 30 Jun 2015 00:00:00 +0700</pubDate>
-        <link>http://firedev.github.io/posts/2015/just-in-time-image-creation-with-carrierwave/</link>
-        <guid isPermaLink="true">http://firedev.github.io/posts/2015/just-in-time-image-creation-with-carrierwave/</guid>
+        <link>http://firedev.github.io/posts/2015/lazy-image-creation-with-carrierwave/</link>
+        <guid isPermaLink="true">http://firedev.github.io/posts/2015/lazy-image-creation-with-carrierwave/</guid>
         
         <category>Rails</category>
         
