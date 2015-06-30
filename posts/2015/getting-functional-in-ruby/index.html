@@ -157,7 +157,7 @@ The output is too human-readable so let&#39;s throw in some options to dumb it d
 --nobreak
   No linebreaks between results in different files</code></pre></div>
 
-<p>Thats a bit of a list actually but <code>ag</code> is fast and easy to use. Let&#39;s pipe the output
+<p>Thats a quite a list of options but I like <code>ag</code>. Now let&#39;s pipe the output
 through <code>sort --uniq -f</code> to remove the duplicates ignoring the case and count the lines with <code>wc -l</code>:</p>
 
 <div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ag -io --nonumber --nofilename <span class="s2">&quot;#([\da-f]{3}|[\da-f]{6})\b&quot;</span> <span class="p">|</span> sort --uniq <span class="p">|</span> wc -l
@@ -193,7 +193,7 @@ given symbol into a proc that calls the same method on the given object.</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:upcase</span><span class="p">)</span>
 <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="o">]</span></code></pre></div>
 
-<p>Pretzel <code>&amp;</code> here simply converts <code>:upcase</code> to a Proc so it&#39;s basically a syntax sugar.
+<p>Pretzel <code>&amp;</code> here converts <code>:upcase</code> to a Proc and serves as a syntax sugar.
 The &#39;unpacked&#39; version would look like this:</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">{</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span> <span class="n">str</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span></code></pre></div>
@@ -241,7 +241,7 @@ create some lambdas accoding to the plan.</p>
 
 <h3>1. Convert colors to full hex</h3>
 
-<p>That is easy, feed the color to Paleta and back in full hex. The only thing we need to add
+<p>To do that we are going to feed the color to Paleta and get hex value back. The only thing we need to add
 is <code>chomp</code> to get rid of the newlines in strings:</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;paleta&#39;</span>
@@ -273,7 +273,7 @@ Paleta provides a <code>.hue</code> method that we could use to sort colors. But
 strings we need to convert them back to objects.</p>
 
 <p>That sounds fishy because it is. Let&#39;s use this opportunity and refactor the code slightly.
-We remove <code>.hex</code> from the <code>to_full_hex</code> method and rename it. This simple refactoring
+We remove <code>.hex</code> from the <code>to_full_hex</code> method and rename it. This refactoring
 gives us even more freedom:</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;paleta&#39;</span>

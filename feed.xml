@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.github.io/</link>
     <atom:link href="http://firedev.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 30 Jun 2015 10:53:13 +0700</pubDate>
-    <lastBuildDate>Tue, 30 Jun 2015 10:53:13 +0700</lastBuildDate>
+    <pubDate>Tue, 30 Jun 2015 14:11:34 +0700</pubDate>
+    <lastBuildDate>Tue, 30 Jun 2015 14:11:34 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -46,7 +46,7 @@ actually being used just-in-time when the request comes.&lt;/p&gt;
 
 &lt;h2&gt;Hammer time&lt;/h2&gt;
 
-&lt;p&gt;Okay let&amp;#39;s roll our sleeves. The idea is simple. You create the route matching
+&lt;p&gt;Okay let&amp;#39;s roll our sleeves. The idea is to create the route matching
 the image path. If the asset is missing the request falls through to Rails and
 image is created. Next time the request comes to this url, nginx takes care of
 serving the static asset.&lt;/p&gt;
@@ -172,7 +172,7 @@ with and without inflected paths just to be sure:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Okay now it&amp;#39;s time to make a route. Fortunately we can use constraints to make
 matters easier for everybody. Rails doesn&amp;#39;t have to think how to parse it and
-writing rule is really simple:&lt;/p&gt;
+here is what I came up with:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# config/routes.rb&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# /uploads/block/image/1/default_7fd5acc8-5c06-4dcc-955e-f4fc5f76be01.jpg&lt;/span&gt;
@@ -228,7 +228,7 @@ location @backend {
 &lt;h2&gt;Broken Images&lt;/h2&gt;
 
 &lt;p&gt;Say you have some broken images that can&amp;#39;t be recreated and causing errors. Let&amp;#39;s
-get rid of them automatically. Via simple augmentation of our &lt;code&gt;MissingController&lt;/code&gt;
+get rid of them automatically. Via some augmentation of our &lt;code&gt;MissingController&lt;/code&gt;
 we can do that now.&lt;/p&gt;
 
 &lt;p&gt;I also suggest to add some default &amp;quot;broken&amp;quot; image to
@@ -262,7 +262,7 @@ so you can see any sign that the image is deleted. Then we are changing the &lt;
 &lt;p&gt;Now you have fast upload, delayed image creation and the nice part is that you
 can delete the whole &lt;code&gt;uploads&lt;/code&gt; folder. Versions will be re-created.
 You can change formats on-the-fly when design changes. Broken files will be
-automatically deleted as well. Basically you don&amp;#39;t need to worry about images anymore.&lt;/p&gt;
+automatically deleted as well. In other words -- you don&amp;#39;t need to worry about images.&lt;/p&gt;
 
 &lt;p&gt;This is pretty much the complete implementation taken out of one of the projects I
 am working on. Please let me know if that helped you. Thanks.&lt;/p&gt;
@@ -294,7 +294,7 @@ Let&amp;#39;s check and see if we can improve anything.&lt;/p&gt;
 
 &lt;h2&gt;Experiment&lt;/h2&gt;
 
-&lt;p&gt;Before venturing off let&amp;#39;s create a simple test bench to measure performance:&lt;/p&gt;
+&lt;p&gt;Before venturing off let&amp;#39;s create a test bench to measure performance:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;no&quot;&gt;Benchmark&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
@@ -410,7 +410,7 @@ that means I have a knowledge of that.&lt;/p&gt;
 &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;?0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;?9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first_letters&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;?A&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;?Z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first_letters&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;This simple construct gives me intersection ordered by alphabet and in numerical order if there are any.&lt;/p&gt;
+&lt;p&gt;This construct gives me intersections ordered by alphabet and in numerical order if there are any.&lt;/p&gt;
 
 &lt;p&gt;One thing less to worry about. That frees up some brain capacity what is in my
 book ultimately is the point of refactoring.&lt;/p&gt;
@@ -564,7 +564,7 @@ On branch master
 Your branch is up-to-date with &lt;span class=&quot;s1&quot;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt;.
 nothing to commit, working directory clean&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Done! Phew, at least this was easy, was it? Another option is to simply truncate it:&lt;/p&gt;
+&lt;p&gt;Done! Phew, at least this wasn&amp;#39;t too much typing, was it? Another option is to truncate the file:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cat &amp;gt;&amp;gt; ~/.gitignore
 .ruby-version
@@ -623,7 +623,7 @@ The output is too human-readable so let&amp;#39;s throw in some options to dumb 
 --nobreak
   No linebreaks between results in different files&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Thats a bit of a list actually but &lt;code&gt;ag&lt;/code&gt; is fast and easy to use. Let&amp;#39;s pipe the output
+&lt;p&gt;Thats a quite a list of options but I like &lt;code&gt;ag&lt;/code&gt;. Now let&amp;#39;s pipe the output
 through &lt;code&gt;sort --uniq -f&lt;/code&gt; to remove the duplicates ignoring the case and count the lines with &lt;code&gt;wc -l&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ag -io --nonumber --nofilename &lt;span class=&quot;s2&quot;&gt;&amp;quot;#([\da-f]{3}|[\da-f]{6})\b&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort --uniq &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l
@@ -659,7 +659,7 @@ given symbol into a proc that calls the same method on the given object.&lt;/p&g
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:upcase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;B&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;C&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Pretzel &lt;code&gt;&amp;amp;&lt;/code&gt; here simply converts &lt;code&gt;:upcase&lt;/code&gt; to a Proc so it&amp;#39;s basically a syntax sugar.
+&lt;p&gt;Pretzel &lt;code&gt;&amp;amp;&lt;/code&gt; here converts &lt;code&gt;:upcase&lt;/code&gt; to a Proc and serves as a syntax sugar.
 The &amp;#39;unpacked&amp;#39; version would look like this:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upcase&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -707,7 +707,7 @@ create some lambdas accoding to the plan.&lt;/p&gt;
 
 &lt;h3&gt;1. Convert colors to full hex&lt;/h3&gt;
 
-&lt;p&gt;That is easy, feed the color to Paleta and back in full hex. The only thing we need to add
+&lt;p&gt;To do that we are going to feed the color to Paleta and get hex value back. The only thing we need to add
 is &lt;code&gt;chomp&lt;/code&gt; to get rid of the newlines in strings:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;paleta&amp;#39;&lt;/span&gt;
@@ -739,7 +739,7 @@ Paleta provides a &lt;code&gt;.hue&lt;/code&gt; method that we could use to sort
 strings we need to convert them back to objects.&lt;/p&gt;
 
 &lt;p&gt;That sounds fishy because it is. Let&amp;#39;s use this opportunity and refactor the code slightly.
-We remove &lt;code&gt;.hex&lt;/code&gt; from the &lt;code&gt;to_full_hex&lt;/code&gt; method and rename it. This simple refactoring
+We remove &lt;code&gt;.hex&lt;/code&gt; from the &lt;code&gt;to_full_hex&lt;/code&gt; method and rename it. This refactoring
 gives us even more freedom:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;paleta&amp;#39;&lt;/span&gt;
@@ -862,11 +862,11 @@ of South Africa. Throw in some police robots and you get the idea.&lt;/p&gt;
   &lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;With the addition of Die Antwoord who are playing basically themselves the things
-started to feel simply surreal. Unfortunately apart from the Die Antwoord duo and the
-guy playing Hippo other characters looked like they got in Johannesburg by mistake.
-Enough with being picky though, despite the miscasts and occasional plot holes
-I could not get my eyes off the screen.&lt;/p&gt;
+&lt;p&gt;With the addition of Die Antwoord who are playing a somewhat altered version of
+themselves things started to feel simply surreal. Unfortunately apart from the
+Die Antwoord duo and the guy playing Hippo other characters looked like they
+got in Johannesburg by mistake. Enough with being picky though, despite the
+miscasts and occasional plot holes I could not get my eyes off the screen.&lt;/p&gt;
 
 &lt;p&gt;If you liked the original &lt;a href=&quot;http://www.imdb.com/title/tt0093870/&quot;&gt;RoboCop (1987)&lt;/a&gt;
 – Chappie is going to strike similar chords. Another movie that comes to mind

@@ -160,7 +160,7 @@ actually being used just-in-time when the request comes.</p>
 
 <h2>Hammer time</h2>
 
-<p>Okay let&#39;s roll our sleeves. The idea is simple. You create the route matching
+<p>Okay let&#39;s roll our sleeves. The idea is to create the route matching
 the image path. If the asset is missing the request falls through to Rails and
 image is created. Next time the request comes to this url, nginx takes care of
 serving the static asset.</p>
@@ -286,7 +286,7 @@ with and without inflected paths just to be sure:</p>
 </code></pre></div>
 <p>Okay now it&#39;s time to make a route. Fortunately we can use constraints to make
 matters easier for everybody. Rails doesn&#39;t have to think how to parse it and
-writing rule is really simple:</p>
+here is what I came up with:</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># config/routes.rb</span>
 
 <span class="c1"># /uploads/block/image/1/default_7fd5acc8-5c06-4dcc-955e-f4fc5f76be01.jpg</span>
@@ -342,7 +342,7 @@ location @backend {
 <h2>Broken Images</h2>
 
 <p>Say you have some broken images that can&#39;t be recreated and causing errors. Let&#39;s
-get rid of them automatically. Via simple augmentation of our <code>MissingController</code>
+get rid of them automatically. Via some augmentation of our <code>MissingController</code>
 we can do that now.</p>
 
 <p>I also suggest to add some default &quot;broken&quot; image to
@@ -376,7 +376,7 @@ so you can see any sign that the image is deleted. Then we are changing the <cod
 <p>Now you have fast upload, delayed image creation and the nice part is that you
 can delete the whole <code>uploads</code> folder. Versions will be re-created.
 You can change formats on-the-fly when design changes. Broken files will be
-automatically deleted as well. Basically you don&#39;t need to worry about images anymore.</p>
+automatically deleted as well. In other words -- you don&#39;t need to worry about images.</p>
 
 <p>This is pretty much the complete implementation taken out of one of the projects I
 am working on. Please let me know if that helped you. Thanks.</p>
