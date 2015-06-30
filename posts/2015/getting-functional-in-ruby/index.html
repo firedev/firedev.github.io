@@ -126,7 +126,7 @@ But first you need to find and catalogue all the colors in the project.</p>
 
 <h2>Extracting colors from a project</h2>
 
-<p>So lets find all colors used in a project. Regular expression I came up with finds
+<p>Let&#39;s find all colors used in a project. Regular expression I came up with finds
 a pound sign <code>#</code> followed by 3 or 6 numbers or letters in the range from <code>a</code> to <code>f</code>
 and stops at the word boundary.</p>
 
@@ -193,7 +193,7 @@ The &#39;unpacked&#39; version would look like this:</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">{</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span> <span class="n">str</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span></code></pre></div>
 
 <p>But I don&#39;t want to chain my lambdas in the ugly way, too bad there is no short syntax
-for lambdas in Ruby. Or is it? Turns out there is. So, given the <code>upper</code> lambda:</p>
+for lambdas in Ruby. Or is it? Turns out there is. Given the <code>upper</code> lambda:</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">upper</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="n">a</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span></code></pre></div>
 
@@ -207,7 +207,7 @@ for lambdas in Ruby. Or is it? Turns out there is. So, given the <code>upper</co
 <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="o">]</span></code></pre></div>
 
 <p>Now that&#39;s better, and to me that was the only part missing.
-So let&#39;s store filtered <code>ag</code> output to the ruby file and start messing around:</p>
+Let&#39;s store filtered <code>ag</code> output to the ruby file and start messing around:</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">ag</span> <span class="o">-</span><span class="n">io</span> <span class="o">--</span><span class="n">nonumber</span> <span class="o">--</span><span class="n">nofilename</span> <span class="s2">&quot;#([\da-f]{3}|[\da-f]{6})</span><span class="se">\b</span><span class="s2">&quot;</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">--</span><span class="n">uniq</span> <span class="o">-</span><span class="n">f</span> <span class="o">&gt;</span> <span class="n">colors</span><span class="o">.</span><span class="n">rb</span></code></pre></div>
 
@@ -217,7 +217,7 @@ if you add <code>__END__</code> to your program. Here is an excerpt from the Rub
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">DATA</span> <span class="n">is</span> <span class="n">a</span> <span class="no">File</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">data</span> <span class="n">section</span> <span class="n">of</span> <span class="n">the</span> <span class="n">executed</span> <span class="n">file</span><span class="o">.</span>
 <span class="no">To</span> <span class="n">create</span> <span class="n">a</span> <span class="n">data</span> <span class="n">section</span> <span class="n">use</span> <span class="cp">__END__</span></code></pre></div>
 
-<p>So we can simply use the reset of the executable file as a <code>DATA</code> enumerator. Cool, eh?</p>
+<p>We can simply use the reset of the executable file as a <code>DATA</code> enumerator. Cool, eh?</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># colors.rb</span>
 <span class="nb">puts</span> <span class="no">DATA</span><span class="o">.</span><span class="n">count</span>

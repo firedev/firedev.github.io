@@ -178,11 +178,11 @@ but when dealing with database I would conside using <code>pluck</code>. Or <cod
 things depending on its position in <code>ActiveRecord</code> chain. Plus there are different
 flavors of <code>select</code> in <code>ActiveRecord::Association::CollectionProxy</code>, <code>ActiveRecord::QueryMethods</code> etc.</p>
 
-<p>Anyway, what you need to know that it might return instanciated object with paritally filled fields. Or a sub-query, but that&#39;s another topic.</p>
+<p>What is important to rememeber is that <code>select</code> might return instanciated real-only objects
+with paritally filled attributes. It can also return a sub-query, but that&#39;s another topic.
+Armed with this knowlegde, let&#39;s find a better specimen for refactoring.</p>
 
 <h2>A better example</h2>
-
-<p>So, armed with this knowlegde, let&#39;s find a better specimen.</p>
 
 <p>Here is a good candidate for improvement I stumbled upon in a few places.
 It returns an array of first letters in names in collection to build and alphabetic

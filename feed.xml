@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.github.io/</link>
     <atom:link href="http://firedev.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 30 Jun 2015 14:44:55 +0700</pubDate>
-    <lastBuildDate>Tue, 30 Jun 2015 14:44:55 +0700</lastBuildDate>
+    <pubDate>Tue, 30 Jun 2015 14:50:31 +0700</pubDate>
+    <lastBuildDate>Tue, 30 Jun 2015 14:50:31 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -123,7 +123,7 @@ many images in one folder.&lt;/p&gt;
 
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So here is the &lt;code&gt;store_dir&lt;/code&gt; from &lt;code&gt;image_uploader.rb&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Here is the &lt;code&gt;store_dir&lt;/code&gt; from &lt;code&gt;image_uploader.rb&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# app/uploaders/image_uploader.rb&lt;/span&gt;
 
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;store_dir&lt;/span&gt;
@@ -340,11 +340,11 @@ but when dealing with database I would conside using &lt;code&gt;pluck&lt;/code&
 things depending on its position in &lt;code&gt;ActiveRecord&lt;/code&gt; chain. Plus there are different
 flavors of &lt;code&gt;select&lt;/code&gt; in &lt;code&gt;ActiveRecord::Association::CollectionProxy&lt;/code&gt;, &lt;code&gt;ActiveRecord::QueryMethods&lt;/code&gt; etc.&lt;/p&gt;
 
-&lt;p&gt;Anyway, what you need to know that it might return instanciated object with paritally filled fields. Or a sub-query, but that&amp;#39;s another topic.&lt;/p&gt;
+&lt;p&gt;What is important to rememeber is that &lt;code&gt;select&lt;/code&gt; might return instanciated real-only objects
+with paritally filled attributes. It can also return a sub-query, but that&amp;#39;s another topic.
+Armed with this knowlegde, let&amp;#39;s find a better specimen for refactoring.&lt;/p&gt;
 
 &lt;h2&gt;A better example&lt;/h2&gt;
-
-&lt;p&gt;So, armed with this knowlegde, let&amp;#39;s find a better specimen.&lt;/p&gt;
 
 &lt;p&gt;Here is a good candidate for improvement I stumbled upon in a few places.
 It returns an array of first letters in names in collection to build and alphabetic
@@ -446,8 +446,8 @@ using &lt;code&gt;display: table&lt;/code&gt; trick:&lt;/p&gt;
 &lt;p&gt;And it&amp;#39;s quite powerful &lt;a href=&quot;https://github.com/chrisnager/ungrid/&quot;&gt;see the demo&lt;/a&gt; plus
 using &lt;code&gt;display: table&lt;/code&gt; is a nifty trick that solves issues with
 &lt;a href=&quot;http://caniuse.com/#flexbox&quot;&gt;Flexbox&lt;/a&gt;.
-Actually it seems the browsers are getting up to speed with Flexible Box Layout. So
-maybe it&amp;#39;s time to jump on the F-train. But this is a cool experiment anyway.&lt;/p&gt;
+Actually it seems the browsers are getting up to speed with Flexible Box Layout.
+Even if it&amp;#39;s time to jump on the F-train, this is a cool experiment.&lt;/p&gt;
 
 &lt;h3&gt;BASSCSS&lt;/h3&gt;
 
@@ -511,7 +511,7 @@ once again resort to the power of calc.&lt;/p&gt;
 
 &lt;h2&gt;Good parts&lt;/h2&gt;
 
-&lt;p&gt;So what&amp;#39;s the point of it? It is small, flexible, the columns are arranged automatically.
+&lt;p&gt;What&amp;#39;s the point of it? It is small, flexible, the columns are arranged automatically.
 All columns are having equal height and you don&amp;#39;t need clearfix and you can center content vertically.&lt;/p&gt;
 
 &lt;p&gt;There are some nuances though as the negative margin should be negated on the right
@@ -537,7 +537,7 @@ container or &lt;code&gt;body&lt;/code&gt; padding.&lt;/p&gt;
 in repository because they are getting in the way of your settings. &lt;code&gt;.ruby-version&lt;/code&gt;
 for instance.&lt;/p&gt;
 
-&lt;p&gt;So you check out the repository and what the...&lt;/p&gt;
+&lt;p&gt;You check out the repository and what the...&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone ...
 ...
@@ -598,7 +598,7 @@ But first you need to find and catalogue all the colors in the project.&lt;/p&gt
 
 &lt;h2&gt;Extracting colors from a project&lt;/h2&gt;
 
-&lt;p&gt;So lets find all colors used in a project. Regular expression I came up with finds
+&lt;p&gt;Let&amp;#39;s find all colors used in a project. Regular expression I came up with finds
 a pound sign &lt;code&gt;#&lt;/code&gt; followed by 3 or 6 numbers or letters in the range from &lt;code&gt;a&lt;/code&gt; to &lt;code&gt;f&lt;/code&gt;
 and stops at the word boundary.&lt;/p&gt;
 
@@ -665,7 +665,7 @@ The &amp;#39;unpacked&amp;#39; version would look like this:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upcase&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;But I don&amp;#39;t want to chain my lambdas in the ugly way, too bad there is no short syntax
-for lambdas in Ruby. Or is it? Turns out there is. So, given the &lt;code&gt;upper&lt;/code&gt; lambda:&lt;/p&gt;
+for lambdas in Ruby. Or is it? Turns out there is. Given the &lt;code&gt;upper&lt;/code&gt; lambda:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upcase&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -679,7 +679,7 @@ for lambdas in Ruby. Or is it? Turns out there is. So, given the &lt;code&gt;upp
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;B&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;C&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Now that&amp;#39;s better, and to me that was the only part missing.
-So let&amp;#39;s store filtered &lt;code&gt;ag&lt;/code&gt; output to the ruby file and start messing around:&lt;/p&gt;
+Let&amp;#39;s store filtered &lt;code&gt;ag&lt;/code&gt; output to the ruby file and start messing around:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;io&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nonumber&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nofilename&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;#([\da-f]{3}|[\da-f]{6})&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -689,7 +689,7 @@ if you add &lt;code&gt;__END__&lt;/code&gt; to your program. Here is an excerpt 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;DATA&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;that&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contains&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;executed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
 &lt;span class=&quot;no&quot;&gt;To&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;__END__&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;So we can simply use the reset of the executable file as a &lt;code&gt;DATA&lt;/code&gt; enumerator. Cool, eh?&lt;/p&gt;
+&lt;p&gt;We can simply use the reset of the executable file as a &lt;code&gt;DATA&lt;/code&gt; enumerator. Cool, eh?&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# colors.rb&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DATA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
@@ -918,7 +918,7 @@ options available for blogging...&lt;/p&gt;
 
 &lt;p&gt;Why not Wordpress? I never really liked it, between these options and plugins
 there seem to be little left to the actual content creation.
-So this weekend I have decided to finally get back to blogging.&lt;/p&gt;
+This weekend I have decided to finally get back to blogging.&lt;/p&gt;
 
 &lt;p&gt;Having two kids and being a freelancer I don&amp;#39;t have much time to fight technology.
 I don&amp;#39;t want to mess with bloated Wordpress themes, plugins and exploits.
@@ -927,7 +927,7 @@ on other things in life.&lt;/p&gt;
 
 &lt;p&gt;Forcing markdown on users in projects lately I wanted to write in markdown.
 And the options that came to mind were Jekyll which I wanted to try for a long
-time and Middleman. However Jekyll had less options and less of everything so it
+time and Middleman. Jekyll had less options and less of everything so it
 sounded like a nice fit for a weekend project. And here it is.&lt;/p&gt;
 
 &lt;h2&gt;Partials in Jekyll&lt;/h2&gt;
