@@ -195,7 +195,8 @@ created until we say so:</p>
 </code></pre></div>
 <p>In <code>Image</code> class we are going to add a new method to actually create a version.
 All it does - sets <code>@now</code> to <code>true</code> and then calls <code>recreate_versions!</code> for a
-given <code>version</code>. We don&#39;t want to get crazy and create anything uncontrollably.</p>
+given <code>version</code>. Lazy, not crazy, we don&#39;t want to create anything
+uncontrollably.</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/models/image.rb</span>
 
   <span class="k">def</span> <span class="nf">create_version</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
@@ -227,8 +228,6 @@ you don&#39;t get too many images in one folder by breaking a path like this:</p
   <span class="n">specify</span> <span class="k">do</span>
     <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
     <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
-    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">876</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;8/876&#39;</span><span class="p">)</span>
-    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="s2">&quot;876&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;8/876&#39;</span><span class="p">)</span>
     <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;1/100&#39;</span><span class="p">)</span>
     <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">1_000</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;1/0/1000&#39;</span><span class="p">)</span>
     <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">10_000</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;1/0/0/10000&#39;</span><span class="p">)</span>
