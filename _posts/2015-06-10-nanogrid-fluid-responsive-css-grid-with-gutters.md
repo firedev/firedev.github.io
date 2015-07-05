@@ -20,8 +20,8 @@ using `display: table` trick:
 And it's quite powerful [see the demo](https://github.com/chrisnager/ungrid/) plus
 using `display: table` is a nifty trick that solves issues with
 [Flexbox](http://caniuse.com/#flexbox).
-Actually it seems the browsers are getting up to speed with Flexible Box Layout. So
-maybe it's time to jump on the F-train. But this is a cool experiment anyway.
+Actually it seems the browsers are getting up to speed with Flexible Box Layout.
+Even if it's time to jump on the F-train, this is a cool experiment.
 
 ### BASSCSS
 Another sweet concept that offers a bunch of immutable css styles that allow you to
@@ -88,7 +88,7 @@ This introduces the negative margin on the right so it's best to be aware of it.
 
 ## Good parts
 
-So what's the point of it? It is small, flexible, the columns are arranged automatically.
+What's the point of it? It is small, flexible, the columns are arranged automatically.
 All columns are having equal height and you don't need clearfix and you can center content vertically.
 
 There are some nuances though as the negative margin should be negated on the right

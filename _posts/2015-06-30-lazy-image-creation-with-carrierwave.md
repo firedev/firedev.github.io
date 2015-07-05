@@ -41,7 +41,7 @@ actually being used just-in-time when the request comes.
 
 ## Hammer time
 
-Okay let's roll our sleeves. The idea is simple. You create the route matching
+Okay let's roll our sleeves. The idea is to create the route matching
 the image path. If the asset is missing the request falls through to Rails and
 image is created. Next time the request comes to this url, nginx takes care of
 serving the static asset.
@@ -130,7 +130,7 @@ describe Inflector do
 end
 ```
 
-So here is the `store_dir` from `image_uploader.rb`:
+Here is the `store_dir` from `image_uploader.rb`:
 
 ```ruby
 # app/uploaders/image_uploader.rb
@@ -185,7 +185,7 @@ end
 
 Okay now it's time to make a route. Fortunately we can use constraints to make
 matters easier for everybody. Rails doesn't have to think how to parse it and
-writing rule is really simple:
+here is what I came up with:
 
 ```ruby
 # config/routes.rb
@@ -250,10 +250,10 @@ location @backend {
 ## Broken Images
 
 Say you have some broken images that can't be recreated and causing errors. Let's
-get rid of them automatically. Via simple augmentation of our `MissingController`
+get rid of them automatically. Via some augmentation of our `MissingController`
 we can do that now.
 
-I also suggest to add some default "broken" image to
+I would suggest to add some default "broken" image to
 `/assets/images/layout/missing_image.png`
 so you can see any sign that the image is deleted. Then we are changing the `show` method:
 
@@ -261,9 +261,15 @@ so you can see any sign that the image is deleted. Then we are changing the `sho
 # app/controller/missing_controller.rb
 
 class MissingController < ApplicationController
+
+  EXCEPTIONS = [
+    Errno::ENOENT, # Original Image not found
+    CarrierWave::ProcessingError # Image is broken
+  ]
+
   def show
     redirect_to env['PATH_INFO'] if create_version
-  rescue
+  rescue *EXCEPTIONS
     image.destroy
     redirect_to self.class.helpers.asset_url('layout/missing_image.png')
   end
@@ -287,7 +293,7 @@ end
 Now you have fast upload, delayed image creation and the nice part is that you
 can delete the whole `uploads` folder. Versions will be re-created.
 You can change formats on-the-fly when design changes. Broken files will be
-automatically deleted as well. Basically you don't need to worry about images anymore.
+automatically deleted as well. In other words -- you don't need to worry about images.
 
 This is pretty much the complete implementation taken out of one of the projects I
 am working on. Please let me know if that helped you. Thanks.

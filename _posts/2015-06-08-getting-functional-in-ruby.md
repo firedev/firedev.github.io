@@ -7,19 +7,18 @@ tags:
 image: posts/colors.png
 ---
 
-Lately I am working on an old code base. That also means working with the old CSS.
+Lately I am working on an old code base and that means working with the old CSS.
 One of the techniques to use when refactoring CSS is to replace colors with variables.
 But first you need to find and catalogue all the colors in the project.
 
 ## Extracting colors from a project
 
-So lets find all colors used in a project. Regular expression I came up with finds
+Let's find all colors used in a project. Regular expression I came up with finds
 a pound sign `#` followed by 3 or 6 numbers or letters in the range from `a` to `f`
 and stops at the word boundary.
 
 I am using [The Silver Searcher](https://github.com/ggreer/the_silver_searcher).
 The output is too human-readable so let's throw in some options to dumb it down:
-
 
 {% highlight sh %}
 -i --ignore-case
@@ -41,7 +40,7 @@ The output is too human-readable so let's throw in some options to dumb it down:
   No linebreaks between results in different files
 {% endhighlight %}
 
-Thats a bit of a list actually but `ag` is fast and easy to use. Let's pipe the output
+Thats a quite a list of options but I like `ag`. Now let's pipe the output
 through `sort --uniq -f` to remove the duplicates ignoring the case and count the lines with `wc -l`:
 
 {% highlight sh %}
@@ -78,7 +77,7 @@ given symbol into a proc that calls the same method on the given object.
 => ["A", "B", "C"]
 {% endhighlight %}
 
-Pretzel `&` here simply converts `:upcase` to a Proc so it's basically a syntax sugar.
+Pretzel `&` here converts `:upcase` to a Proc and serves as a syntax sugar.
 The 'unpacked' version would look like this:
 
 {% highlight ruby %}
@@ -86,7 +85,7 @@ The 'unpacked' version would look like this:
 {% endhighlight %}
 
 But I don't want to chain my lambdas in the ugly way, too bad there is no short syntax
-for lambdas in Ruby. Or is it? Turns out there is. So, given the `upper` lambda:
+for lambdas in Ruby. Or is it? Turns out there is. Given the `upper` lambda:
 
 {% highlight ruby %}
 upper = ->(a) { a.upcase }
@@ -106,7 +105,7 @@ But there is a special syntax for lambdas that makes it all sweet:
 {% endhighlight %}
 
 Now that's better, and to me that was the only part missing.
-So let's store filtered `ag` output to the ruby file and start messing around:
+Let's store filtered `ag` output to the ruby file and start messing around:
 
 {% highlight ruby %}
 $ ag -io --nonumber --nofilename "#([\da-f]{3}|[\da-f]{6})\b" | sort --uniq -f > colors.rb
@@ -120,7 +119,7 @@ DATA is a File that contains the data section of the executed file.
 To create a data section use __END__
 {% endhighlight %}
 
-So we can simply use the reset of the executable file as a `DATA` enumerator. Cool, eh?
+We can simply use the reset of the executable file as a `DATA` enumerator. Cool, eh?
 {% highlight ruby %}
 # colors.rb
 puts DATA.count
@@ -138,7 +137,7 @@ We have the colors loaded into the `DATA` enumerator. The only thing that's left
 create some lambdas accoding to the plan.
 
 ### 1. Convert colors to full hex
-That is easy, feed the color to Paleta and back in full hex. The only thing we need to add
+To do that we are going to feed the color to Paleta and get hex value back. The only thing we need to add
 is `chomp` to get rid of the newlines in strings:
 
 {% highlight ruby %}
@@ -171,7 +170,7 @@ Paleta provides a `.hue` method that we could use to sort colors. But since they
 strings we need to convert them back to objects.
 
 That sounds fishy because it is. Let's use this opportunity and refactor the code slightly.
-We remove `.hex` from the `to_full_hex` method and rename it. This simple refactoring
+We remove `.hex` from the `to_full_hex` method and rename it. This refactoring
 gives us even more freedom:
 
 {% highlight ruby %}
@@ -222,7 +221,7 @@ end
 
 ## Command-line reader
 Okay that is nice but let's improve it a bit. First of all lets get rid of the static DATA
-so we could use it right from the command line. That also will allow us to get right of `sort`.
+so we could use it right from the command line. That allows us to get right of `sort`.
 Simply change `DATA` to `ARGF` and remove the `__END__` part.
 
 Then lets open the resulting file right away.

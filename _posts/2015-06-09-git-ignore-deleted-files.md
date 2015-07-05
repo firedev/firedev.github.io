@@ -11,7 +11,7 @@ Sometimes working with other people you with you didn't have some of the files
 in repository because they are getting in the way of your settings. `.ruby-version`
 for instance.
 
-So you check out the repository and what the...
+You check out the repository and what the...
 {% highlight sh %}
 $ git clone ...
 ...
@@ -42,7 +42,7 @@ Your branch is up-to-date with 'origin/master'.
 nothing to commit, working directory clean
 {% endhighlight %}
 
-Done! Phew, at least this was easy, was it? Another option is to simply truncate it:
+Done! Phew, at least this wasn't too much typing, was it? Another option is to truncate the file:
 
 {% highlight sh %}
 $ cat >> ~/.gitignore

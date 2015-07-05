@@ -20,7 +20,7 @@ Let's check and see if we can improve anything.
 
 ## Experiment
 
-Before venturing off let's create a simple test bench to measure performance:
+Before venturing off let's create a test bench to measure performance:
 
 {% highlight ruby %}
 def m(&block)
@@ -75,10 +75,11 @@ but when dealing with database I would conside using `pluck`. Or `select`.
 things depending on its position in `ActiveRecord` chain. Plus there are different
 flavors of `select` in `ActiveRecord::Association::CollectionProxy`, `ActiveRecord::QueryMethods` etc.
 
-Anyway, what you need to know that it might return instanciated object with paritally filled fields. Or a sub-query, but that's another topic.
+What is important to rememeber is that `select` might return instanciated real-only objects
+with paritally filled attributes. It can also return a sub-query, but that's another topic.
+Armed with this knowlegde, let's find a better specimen for refactoring.
 
 ## A better example
-So, armed with this knowlegde, let's find a better specimen.
 
 Here is a good candidate for improvement I stumbled upon in a few places.
 It returns an array of first letters in names in collection to build and alphabetic
@@ -155,7 +156,7 @@ And this knowledge is kept in the view layer. I am simply intersecting arrays li
 (?A..?Z).to_a & first_letters
 {% endhighlight %}
 
-This simple construct gives me intersection ordered by alphabet and in numerical order if there are any.
+This construct gives me intersections ordered by alphabet and in numerical order if there are any.
 
 One thing less to worry about. That frees up some brain capacity what is in my
 book ultimately is the point of refactoring.
