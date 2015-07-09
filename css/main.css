@@ -2695,10 +2695,3 @@ a {
   background-size: cover;
   background-repeat: no-repeat;
   position: relative; }
-  .main-image + .container {
-    position: relative;
-    z-index: 1;
-    margin-top: -9rem; }
-    .main-image + .container > header:first-child {
-      background: rgba(0, 0, 0, 0.5);
-      color: white; }
