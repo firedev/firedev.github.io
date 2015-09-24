@@ -5,7 +5,6 @@ layout: default
   <p>{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
   <h1 class="m0">{{ page.title }}</h1>
 </header>
-
 {% include _rating.html rating=page.rating %}
 <div class="mb3">
   <article class="mb3">
