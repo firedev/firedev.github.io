@@ -30,20 +30,20 @@
             <!-- <a class="button button-transparent" href="http://firedevcom.tumblr.com">Blog</a> -->
             {% for menu in site.pages order:descending %}
             {% if menu.menu %}
-              {% if page.url == menu.url %}
-              <a class="button bg-orange white" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
-              {% else %}
-              <a class="button button-transparent" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
-              {% endif %}
+            {% if page.url == menu.url %}
+            <a class="button bg-orange white" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
               {{ menu.title }}
             </a>
+            {% else %}
+            <a class="button button-transparent" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
+              {{ menu.title }}
+            </a>
+            {% endif %}
             {% endif %}
             {% endfor %}
           </h3>
         </div>
-      </p>
-
+      </div>
     </div>
   </div>
-</div>
 </header>
