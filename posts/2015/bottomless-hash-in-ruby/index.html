@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bottomless Hash in Ruby</title>
+  <meta name="description" content="The other day somebody asked if there is a way to blindly assign nested values toHash in Ruby without creating each key. Something like this:">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://firedev.com/posts/2015/bottomless-hash-in-ruby/">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="container px2 mt2 mb2">
+    <div class="clearfix mxn2">
+      <div class="sm-col sm-col-3 px2">
+        <h1 class="logo m0 relative">
+          <a href="/" id="logo">
+            <div class="hide">
+              <div class="fire">
+                fire
+              </div>
+              <div class="dev">
+                dev
+              </div>
+              <div class="com">
+                .com
+              </div>
+            </div>
+            <img src="/images/logos/firedev.svg" class="absolute bottom-0" />
+            &nbsp;
+          </a>
+        </h1>
+      </div>
+      <div class="sm-col sm-col-9 px2 mt3">
+        <div class="mxn2 mt2">
+          <a class="right button button-transparent silver" href="/feed.xml">
+            <i class="fa fa-rss"></i>
+            RSS
+          </a>
+          <h3>
+            <!-- <a class="button button-transparent" href="http://firedevcom.tumblr.com">Blog</a> -->
+            
+            
+            
+            
+            
+            
+            
+            <a class="button button-transparent" href="/posts">
+              Posts
+            </a>
+            
+            
+            
+            
+            
+            <a class="button button-transparent" href="/projects">
+              Projects
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+    
+<div class="main-image mb3" style="
+background-image: url(/images/logos/ruby.png);
+background-size: contain;
+background-color: ;
+background-position: ;
+">
+</div>
+
+
+    <div class="container px2 mb4">
+        <header class="mxn2 p2 rounded-top bg-darkened-1 mb3">
+  <p>Jul 10, 2015</p>
+  <h1 class="m0">Bottomless Hash in Ruby</h1>
+</header>
+
+
+<div class="mb3">
+  <article class="mb3">
+    <p>The other day somebody asked if there is a way to blindly assign nested values to
+Hash in Ruby without creating each key. Something like this:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">params</span><span class="o">[</span><span class="ss">:world</span><span class="o">][</span><span class="ss">:russia</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:moscow</span>
+<span class="o">=&gt;</span> <span class="ss">NoMethodError</span><span class="p">:</span> <span class="n">undefined</span> <span class="nb">method</span> <span class="sb">`[]=&#39; for nil:NilClass</span>
+</code></pre></div>
+<p>Okay, it doesn&#39;t work like this. Fortunately Hashes in Ruby can be initialized
+with a default value. First thing to try seems quite obvious. Let&#39;s put an
+empty hash as a default value:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">params</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">({})</span>
+<span class="n">params</span><span class="o">[</span><span class="ss">:world</span><span class="o">][</span><span class="ss">:russia</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:moscow</span>
+
+<span class="n">params</span><span class="o">[</span><span class="ss">:world</span><span class="o">]</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:russia</span><span class="o">=&gt;</span><span class="ss">:moscow</span><span class="p">}</span>
+</code></pre></div>
+<p>Seems legit. But let&#39;s dig a little deeper:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">params</span><span class="o">[</span><span class="ss">:world</span><span class="o">][</span><span class="ss">:thailand</span><span class="o">]=</span><span class="ss">:bangkok</span>
+
+<span class="n">params</span>
+<span class="o">=&gt;</span> <span class="p">{}</span>
+</code></pre></div>
+<p>Why is it empty? Let&#39;s add more stuff to it:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">params[:underworld]=:hell
+
+params
+=&gt; {:underworld=&gt;:hell}
+</code></pre></div>
+<p>What is going on? Some wicked magic? Not quite. First the <code>:world</code> key was initialized
+with the same empty Hash that we put as a default value. It is easy to access still,
+since the same Hash is returned when the key is empty. However now all our cities
+are available in both worlds:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">params</span><span class="o">[</span><span class="ss">:world</span><span class="o">][</span><span class="ss">:thailand</span><span class="o">]</span>
+<span class="o">=&gt;</span> <span class="ss">:bangkok</span>
+
+<span class="n">params</span><span class="o">[</span><span class="ss">:underworlds</span><span class="o">][</span><span class="ss">:russia</span><span class="o">]</span>
+<span class="o">=&gt;</span> <span class="ss">:moscow</span>
+</code></pre></div>
+<p>Okay, we got to fix it. To initialize new hash for values we need to pass a block.
+Block accepts two variables - the <code>hash</code> itself and the <code>key</code> it was accessed with.
+Lets just inject new empty hash as a value for the key.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">params</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="nb">hash</span><span class="p">,</span> <span class="n">key</span><span class="o">|</span>
+  <span class="nb">hash</span><span class="o">[</span><span class="n">key</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span>
+<span class="k">end</span>
+
+<span class="n">params</span><span class="o">[</span><span class="ss">:world</span><span class="o">][</span><span class="ss">:thailand</span><span class="o">]=</span><span class="ss">:phuket</span>
+
+<span class="n">params</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:world</span><span class="o">=&gt;</span><span class="p">{</span><span class="ss">:thailand</span><span class="o">=&gt;</span><span class="ss">:phuket</span><span class="p">}}</span>
+</code></pre></div>
+<p>Amazing. Okay but what if we need to add another level?</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">params[:asia][:thailand][:bangkok] = :chao_praya
+=&gt; NoMethodError: undefined method `[]=&#39; for nil:NilClass
+</code></pre></div>
+<p>Oh no, not again. What can we do? Let&#39;s add another layer! So the nested Hash
+could in turn create more hashes:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">params</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">hash0</span><span class="p">,</span> <span class="n">key0</span><span class="o">|</span>
+  <span class="nb">hash</span><span class="o">[</span><span class="n">key0</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">hash1</span><span class="p">,</span> <span class="n">key1</span><span class="o">|</span>
+    <span class="nb">hash</span><span class="o">[</span><span class="n">key1</span><span class="o">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">params</span><span class="o">[</span><span class="ss">:asia</span><span class="o">][</span><span class="ss">:thailand</span><span class="o">][</span><span class="ss">:bangkok</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:chao_praya</span>
+<span class="n">stack</span> <span class="n">level</span> <span class="n">too</span> <span class="n">deep</span> <span class="p">(</span><span class="no">SystemStackError</span><span class="p">)</span>
+</code></pre></div>
+<p>Hmm something isn&#39;t right lets throw some functional programming in the mix and fix
+this once and for all. What we need is a kind of procedure that would return a new
+hash with the same procedure hidden inside waiting for an empty key to come in.</p>
+
+<p>What would the procedure look like? Quite familiar in fact. We just need to
+pack it with <code>&amp;</code> symbol-to-proc pretzel to shove into Hash initializer.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">procedure</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="k">do</span> <span class="o">|</span><span class="nb">hash</span><span class="p">,</span> <span class="n">key</span><span class="o">|</span>
+  <span class="nb">hash</span><span class="o">[</span><span class="n">key</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">procedure</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">procedure</span><span class="p">)</span>
+<span class="n">params</span><span class="o">[</span><span class="ss">:russia</span><span class="o">][</span><span class="ss">:moscow</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:moscow_river</span>
+<span class="n">params</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:russia</span><span class="o">=&gt;</span><span class="p">{</span><span class="ss">:moscow</span><span class="o">=&gt;</span><span class="ss">:moscow_river</span><span class="p">}}</span>
+</code></pre></div>
+<p>Okay, that part is solved, now lets tie it a little tighter so we don&#39;t need to
+create lambda beforehand. Thanks to Ruby brevity the code might be compressed quite
+a bit:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">params = Hash.new(&amp;(p = -&gt; h,k { h[k] = Hash.new(&amp;p) }))
+
+params[:world][:thailand][:bangkok][:bangna]
+params
+=&gt; {:world=&gt;{:thailand=&gt;{:bangkok=&gt;{:bangna=&gt;{}}}}}
+</code></pre></div>
+<p>This is sweet, but what is the practical point of bottomless hash? Interesting
+side-effect is that it never fails you when reading values.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">params[:i][:dont][:know]
+=&gt; {}
+</code></pre></div>
+<p>And the beauty of this is that you can merge any hash with it to produce
+a bottomless version. So you can blindly access the keys:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">unknown</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">key</span><span class="p">:</span> <span class="ss">:value</span> <span class="p">}</span>
+<span class="n">bottomless</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">merge</span> <span class="n">other</span>
+
+<span class="n">bottomless</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span>
+<span class="o">=&gt;</span> <span class="p">{}</span>
+</code></pre></div>
+<p>No matter how long the chain is, bottomless hash won&#39;t raise an error. Okay, it returns
+and empty hash instead of <code>nil</code>, which is truthy. But this can be checked with
+<code>empty?</code> even in plain ruby.</p>
+
+<p>Hope this might get useful when dealing with unknown nested structures from the outside world.</p>
+
+  </article>
+
+  
+  <a href="/Ruby/" class="button bg-orange white"> Ruby </a>
+
+  
+  <a href="/Rails/" class="button bg-orange white"> Rails </a>
+
+  
+  <a href="/Tricks/" class="button bg-orange white"> Tricks </a>
+
+  
+</div>
+<div class="mt4">
+<div class="clearfix mxn2 mb4">
+  <div class="sm-col sm-col-3 px2">
+    <img class="rounded" src="/images/me.jpg" />
+  </div>
+  <div class="sm-col sm-col-6 px2">
+    <h2 class="mt0 h1">
+      Nick Ostrovsky
+    </h2>
+    <p>
+      Full-stack designer.
+      Specializing in crafting components systems tailored to use cases on hand.
+      Carefully stitching together back and front ends for improved user experience.
+    </p>
+    <p>
+      Enjoying beautiful scenery of Phuket, Thailand with <a href="http://molokophuket.com">wife</a> and
+      two daughters.
+    </p>
+  </div>
+  <div class="sm-col sm-col-3 sm-show">
+    <div class="ml2">
+      <a class="p1 px2 white bg-green rounded mb1 inline-block" href="mailto:nick@firedev.com"
+      title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a>
+      <a class="p1 px2 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
+      <a class="p1 px2 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
+      <!--<a class="p1 px2 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
+      <a class="p1 px2 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i> StackOverflow</a>
+      <a class="p1 px2 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Hire Me</a>
+    </div>
+  </div>
+</div>
+
+<div class="rounded bg-darken-1 mb4 py3 clearfix">
+  <div class="mxn2">
+    <div class="sm-col sm-col-3 center sm-show px2">
+      <i class="fa fa-hand-paper-o fa-4x mt3"></i>
+    </div>
+  </div>
+  <div class="sm-col sm-col-9 px2">
+    <h2 class="mt0">Hiring? Check this out</h2>
+    <p>
+      Responsible, self-motivated full-stack designer with more than a decade of experience under the belt.
+      Preaching clean, minimalistic approach with less dependencies.
+    </p>
+    <p>
+      Interested in full-stack Ruby on Rails development with focus on front-end components.
+    </p>
+  </div>
+</div>
+
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'firedevcom';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    </div>
+
+    <footer>
+    <div class="container px2 mt4 mb2 center">
+        With <i class="fa fa-heart red"></i>
+        <a href="http://firedev.com"><strong>firedev.com</strong></a>
+    </div>
+    <div class="container px2 mb4 center">
+        <a class="muted" href="mailto:nick@firedev.com">Email me</a>
+    </div>
+</footer>
+
+    <script src="/js/firedev.js"></script>
+
+<script>
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+
+    try {
+    var pageTracker = _gat._getTracker("UA-747161-4");
+    pageTracker._trackPageview();
+    } catch (err) {}
+</script>
+
+  </body>
+
+</html>
