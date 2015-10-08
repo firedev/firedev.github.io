@@ -233,7 +233,26 @@ a bottomless version. So you can blindly access the keys.</p>
 and empty hash instead of <code>nil</code>, which is truthy. But this can be checked with
 <code>empty?</code> even in plain ruby.</p>
 
-<p>Hope this might get useful when dealing with unknown nested structures from the outside world.</p>
+<p>As it was mentioned in comments we can encapsulated the behaviour into a Class that would
+return an empty BottomLess hash or convert a given hash into a bottomless version:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">BottomlessHash</span> <span class="o">&lt;</span> <span class="no">Hash</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">hash</span> <span class="o">=</span> <span class="p">{})</span>
+    <span class="k">super</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="nb">p</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="n">h</span><span class="p">,</span><span class="n">k</span> <span class="p">{</span> <span class="n">h</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">p</span><span class="p">)</span> <span class="p">}))</span><span class="o">.</span><span class="n">merge!</span> <span class="nb">hash</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">BottomlessHash</span><span class="o">.</span><span class="n">new</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
+<span class="o">=&gt;</span> <span class="p">{}</span>
+
+<span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">existing</span><span class="p">:</span> <span class="p">{</span> <span class="ss">key</span><span class="p">:</span> <span class="ss">:ok</span> <span class="p">}</span> <span class="p">}</span>
+<span class="n">bottomless</span> <span class="o">=</span> <span class="no">BottomlessHash</span><span class="o">.</span><span class="n">new</span> <span class="nb">hash</span>
+<span class="n">bottomless</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
+<span class="o">=&gt;</span> <span class="ss">:ok</span>
+<span class="nb">puts</span> <span class="n">bottomless</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="err"></span>
+<span class="o">=&gt;</span> <span class="p">{}</span>
+</code></pre></div>
+<p>Hope this might get useful for data processing or when dealing with unknown
+nested structures from the outside world.</p>
 
   </article>
 
