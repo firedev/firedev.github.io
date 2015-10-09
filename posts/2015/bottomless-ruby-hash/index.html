@@ -180,15 +180,17 @@ Lets just inject new empty hash as a value for the key.</p>
 <p>Oh no, not again. What can we do? Let&#39;s add another layer! So the nested Hash
 could in turn create more hashes:</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">params</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">hash0</span><span class="p">,</span> <span class="n">key0</span><span class="o">|</span>
-  <span class="nb">hash</span><span class="o">[</span><span class="n">key0</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">hash1</span><span class="p">,</span> <span class="n">key1</span><span class="o">|</span>
-    <span class="nb">hash</span><span class="o">[</span><span class="n">key1</span><span class="o">]</span>
+  <span class="n">hash0</span><span class="o">[</span><span class="n">key0</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">hash1</span><span class="p">,</span> <span class="n">key1</span><span class="o">|</span>
+    <span class="n">hash1</span><span class="o">[</span><span class="n">key1</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="n">params</span><span class="o">[</span><span class="ss">:asia</span><span class="o">][</span><span class="ss">:thailand</span><span class="o">][</span><span class="ss">:bangkok</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:chao_praya</span>
-<span class="n">stack</span> <span class="n">level</span> <span class="n">too</span> <span class="n">deep</span> <span class="p">(</span><span class="no">SystemStackError</span><span class="p">)</span>
+<span class="n">params</span><span class="o">[</span><span class="ss">:asia</span><span class="o">][</span><span class="ss">:thailand</span><span class="o">][</span><span class="ss">:moscow</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:moscow_river</span>
 </code></pre></div>
-<p>Hmm something isn&#39;t right lets throw some functional programming in the mix and fix
+<p>It works! But what if the hash goes deeper?</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">params[:asia][:thailand][:bangkok][:river] = :chao_praya
+</code></pre></div>
+<p>Okay, Let&#39;s throw some functional programming in the mix and fix
 this once and for all. What we need is a kind of procedure that would return a new
 hash with the same procedure hidden inside waiting for an empty key to come in.</p>
 
@@ -204,9 +206,10 @@ pack it with <code>&amp;</code> symbol-to-proc pretzel to shove into Hash initia
 <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:russia</span><span class="o">=&gt;</span><span class="p">{</span><span class="ss">:moscow</span><span class="o">=&gt;</span><span class="ss">:moscow_river</span><span class="p">}}</span>
 </code></pre></div>
 <p>Okay, that part is solved, now lets tie it a little tighter so we don&#39;t need to
-create lambda beforehand. Thanks to Ruby brevity the code might be compressed quite
-a bit.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">params = Hash.new(&amp;(p = -&gt; h,k { h[k] = Hash.new(&amp;p) }))
+create lambda beforehand. Ruby Hash sports <code>default_proc</code> method that can
+be used to access the block hash was initialized with. Thank makes it super sweet,
+thanks for pointing me on that, Pavel.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">params = Hash.new { |h, k| h[k] = Hash.new(&amp;h.default_proc) }
 
 params[:world][:thailand][:bangkok][:bangna]
 params
@@ -230,7 +233,7 @@ and empty hash instead of <code>nil</code>, which is truthy. But this can be che
 <code>empty?</code> even in plain ruby.</p>
 
 <p>As it was mentioned in comments we can encapsulated the behaviour into a Class that would
-return an empty BottomLess hash or convert a given hash into a bottomless version:</p>
+return an empty Bottomless hash or convert a given hash into a bottomless version:</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">BottomlessHash</span> <span class="o">&lt;</span> <span class="no">Hash</span>
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">hash</span> <span class="o">=</span> <span class="p">{})</span>
     <span class="k">super</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="nb">p</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="n">h</span><span class="p">,</span><span class="n">k</span> <span class="p">{</span> <span class="n">h</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">p</span><span class="p">)</span> <span class="p">}))</span><span class="o">.</span><span class="n">merge!</span> <span class="nb">hash</span>
@@ -240,11 +243,13 @@ return an empty BottomLess hash or convert a given hash into a bottomless versio
 <span class="no">BottomlessHash</span><span class="o">.</span><span class="n">new</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
 <span class="o">=&gt;</span> <span class="p">{}</span>
 
+<span class="no">BottomlessHash</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">key?</span> <span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
+
 <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">existing</span><span class="p">:</span> <span class="p">{</span> <span class="ss">key</span><span class="p">:</span> <span class="ss">:ok</span> <span class="p">}</span> <span class="p">}</span>
 <span class="n">bottomless</span> <span class="o">=</span> <span class="no">BottomlessHash</span><span class="o">.</span><span class="n">new</span> <span class="nb">hash</span>
 <span class="n">bottomless</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
 <span class="o">=&gt;</span> <span class="ss">:ok</span>
-<span class="nb">puts</span> <span class="n">bottomless</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="err"></span>
+<span class="nb">puts</span> <span class="n">bottomless</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
 <span class="o">=&gt;</span> <span class="p">{}</span>
 </code></pre></div>
 <p>Hope this might get useful for data processing or when dealing with unknown
