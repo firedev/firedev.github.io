@@ -3,9 +3,7 @@ layout: post
 title:  "Bottomless Ruby Hash"
 category: posts
 tags:
-  - Ruby
-  - Rails
-  - Tricks
+  - ruby
 image: 'posts/bottomless_pit.jpg'
 background_size: cover
 ---
@@ -91,16 +89,20 @@ could in turn create more hashes:
 
 ```ruby
 params = Hash.new do |hash0, key0|
-  hash[key0] = Hash.new do |hash1, key1|
-    hash[key1]
+  hash0[key0] = Hash.new do |hash1, key1|
+    hash1[key1] = Hash.new
   end
 end
 
-params[:asia][:thailand][:bangkok] = :chao_praya
-stack level too deep (SystemStackError)
+params[:asia][:thailand][:moscow] = :moscow_river
+```
+It works! But what if the hash goes deeper?
+
+```
+params[:asia][:thailand][:bangkok][:river] = :chao_praya
 ```
 
-Hmm something isn't right lets throw some functional programming in the mix and fix
+Okay, Let's throw some functional programming in the mix and fix
 this once and for all. What we need is a kind of procedure that would return a new
 hash with the same procedure hidden inside waiting for an empty key to come in.
 
@@ -119,11 +121,12 @@ params
 ```
 
 Okay, that part is solved, now lets tie it a little tighter so we don't need to
-create lambda beforehand. Thanks to Ruby brevity the code might be compressed quite
-a bit.
+create lambda beforehand. Ruby Hash sports `default_proc` method that can
+be used to access the block hash was initialized with. Thank makes it super sweet,
+thanks for pointing me on that, Pavel.
 
 ```
-params = Hash.new(&(p = -> h,k { h[k] = Hash.new(&p) }))
+params = Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
 
 params[:world][:thailand][:bangkok][:bangna]
 params
@@ -153,4 +156,29 @@ No matter how long the chain is, bottomless hash won't raise an error. Okay, it 
 and empty hash instead of `nil`, which is truthy. But this can be checked with
 `empty?` even in plain ruby.
 
-Hope this might get useful when dealing with unknown nested structures from the outside world.
+As it was mentioned in comments we can encapsulated the behaviour into a Class that would
+return an empty Bottomless hash or convert a given hash into a bottomless version:
+
+I could not make it to work with `&.default_proc` so I am using somewhat less
+terse syntax here.
+
+```ruby
+class BottomlessHash < Hash
+  def initialize
+    super &-> h, k { h[k] = self.class.new }
+  end
+end
+
+BottomlessHash.new[:missing][:key]
+=> {}
+
+hash = { existing: { key: :ok } }
+bottomless = BottomlessHash.new hash
+bottomless[:existing][:key]
+=> :ok
+puts bottomless[:missing][:key]
+=> {}
+```
+
+Hope this might get useful for data processing or when dealing with unknown
+nested structures from the outside world.
