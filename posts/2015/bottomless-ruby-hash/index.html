@@ -245,50 +245,50 @@ return an empty Bottomless hash or convert a given hash into a bottomless versio
 <span class="k">end</span>
 </code></pre></div>
 <p>And some tests for the good night sleep:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">describe BottomlessHash do
-  subject { described_class.new }
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">describe</span> <span class="no">BottomlessHash</span> <span class="k">do</span>
+  <span class="n">subject</span> <span class="p">{</span> <span class="n">described_class</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
 
-  it &#39;does not raise on missing key&#39; do
-    expect{ subject[:missing][:key] }.to_not raise_error
-  end
+  <span class="n">it</span> <span class="s1">&#39;does not raise on missing key&#39;</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">{</span> <span class="n">subject</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span> <span class="p">}</span><span class="o">.</span><span class="n">to_not</span> <span class="n">raise_error</span>
+  <span class="k">end</span>
 
-  it &#39;returns an empty value on missing key&#39; do
-    expect(subject[:missing][:key]).to be_empty
-  end
+  <span class="n">it</span> <span class="s1">&#39;returns an empty value on missing key&#39;</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_empty</span>
+  <span class="k">end</span>
 
-  it &#39;stores and returns keys&#39; do
-    subject[:existing][:key] = :value
-    expect(subject[:existing][:key]).to eq :value
-  end
+  <span class="n">it</span> <span class="s1">&#39;stores and returns keys&#39;</span> <span class="k">do</span>
+    <span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:value</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="ss">:value</span>
+  <span class="k">end</span>
 
-  describe &#39;#from_hash&#39; do
-    subject do
-      hash = { existing: { key: { value: :hello } } }
-      described_class.from_hash(hash)
-    end
+  <span class="n">describe</span> <span class="s1">&#39;#from_hash&#39;</span> <span class="k">do</span>
+    <span class="n">subject</span> <span class="k">do</span>
+      <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">existing</span><span class="p">:</span> <span class="p">{</span> <span class="ss">key</span><span class="p">:</span> <span class="p">{</span> <span class="ss">value</span><span class="p">:</span> <span class="ss">:hello</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+      <span class="n">described_class</span><span class="o">.</span><span class="n">from_hash</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+    <span class="k">end</span>
 
-    it &#39;returns old hash values&#39; do
-      expect(subject[:existing][:key][:value]).to eq :hello
-    end
+    <span class="n">it</span> <span class="s1">&#39;returns old hash values&#39;</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="ss">:hello</span>
+    <span class="k">end</span>
 
-    it &#39;provides a bottomless version&#39; do
-      expect(subject[:missing][:key]).to be_empty
-    end
+    <span class="n">it</span> <span class="s1">&#39;provides a bottomless version&#39;</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_empty</span>
+    <span class="k">end</span>
 
-    it &#39;stores and returns new values&#39; do
-      subject[:existing][:key] = :value
-      expect(subject[:existing][:key]).to eq :value
-    end
-  end
-end
+    <span class="n">it</span> <span class="s1">&#39;stores and returns new values&#39;</span> <span class="k">do</span>
+      <span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:value</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="ss">:value</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre></div>
 <p>And an ActiveSupport-like extension for the Hash class so you can call <code>.bottomless</code> on
 any hash in the system. Thanks Patrick!</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">class Hash
-  def bottomless
-    BottomlessHash.from_hash(self)
-  end
-end
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Hash</span>
+  <span class="k">def</span> <span class="nf">bottomless</span>
+    <span class="no">BottomlessHash</span><span class="o">.</span><span class="n">from_hash</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre></div>
 <p>Hope this small experiment might get useful for data processing or when dealing with unknown
 nested structures from the outside world.</p>
