@@ -208,7 +208,7 @@ pack it with <code>&amp;</code> symbol-to-proc pretzel to shove into Hash initia
 <p>Okay, that part is solved, now lets tie it a little tighter so we don&#39;t need to
 create lambda beforehand. Ruby Hash sports <code>default_proc</code> method that can
 be used to access the block hash was initialized with. Thank makes it super sweet,
-thanks for pointing me on that, Pavel.</p>
+thanks Pavel for pointing me on that.</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">params = Hash.new { |h, k| h[k] = Hash.new(&amp;h.default_proc) }
 
 params[:world][:thailand][:bangkok][:bangna]
@@ -235,24 +235,62 @@ and empty hash instead of <code>nil</code>, which is truthy. But this can be che
 <p>As it was mentioned in comments we can encapsulated the behaviour into a Class that would
 return an empty Bottomless hash or convert a given hash into a bottomless version:</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">BottomlessHash</span> <span class="o">&lt;</span> <span class="no">Hash</span>
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">hash</span> <span class="o">=</span> <span class="p">{})</span>
-    <span class="k">super</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="nb">p</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="n">h</span><span class="p">,</span><span class="n">k</span> <span class="p">{</span> <span class="n">h</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">p</span><span class="p">)</span> <span class="p">}))</span><span class="o">.</span><span class="n">merge!</span> <span class="nb">hash</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="k">super</span> <span class="o">&amp;-&gt;</span> <span class="n">h</span><span class="p">,</span> <span class="n">k</span> <span class="p">{</span> <span class="n">h</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">from_hash</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+    <span class="kp">new</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-
-<span class="no">BottomlessHash</span><span class="o">.</span><span class="n">new</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
-<span class="o">=&gt;</span> <span class="p">{}</span>
-
-<span class="no">BottomlessHash</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">key?</span> <span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
-
-<span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">existing</span><span class="p">:</span> <span class="p">{</span> <span class="ss">key</span><span class="p">:</span> <span class="ss">:ok</span> <span class="p">}</span> <span class="p">}</span>
-<span class="n">bottomless</span> <span class="o">=</span> <span class="no">BottomlessHash</span><span class="o">.</span><span class="n">new</span> <span class="nb">hash</span>
-<span class="n">bottomless</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
-<span class="o">=&gt;</span> <span class="ss">:ok</span>
-<span class="nb">puts</span> <span class="n">bottomless</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
-<span class="o">=&gt;</span> <span class="p">{}</span>
 </code></pre></div>
-<p>Hope this might get useful for data processing or when dealing with unknown
+<p>And some tests for the good night sleep:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">describe BottomlessHash do
+  subject { described_class.new }
+
+  it &#39;does not raise on missing key&#39; do
+    expect{ subject[:missing][:key] }.to_not raise_error
+  end
+
+  it &#39;returns an empty value on missing key&#39; do
+    expect(subject[:missing][:key]).to be_empty
+  end
+
+  it &#39;stores and returns keys&#39; do
+    subject[:existing][:key] = :value
+    expect(subject[:existing][:key]).to eq :value
+  end
+
+  describe &#39;#from_hash&#39; do
+    subject do
+      hash = { existing: { key: { value: :hello } } }
+      described_class.from_hash(hash)
+    end
+
+    it &#39;returns old hash values&#39; do
+      expect(subject[:existing][:key][:value]).to eq :hello
+    end
+
+    it &#39;provides a bottomless version&#39; do
+      expect(subject[:missing][:key]).to be_empty
+    end
+
+    it &#39;stores and returns new values&#39; do
+      subject[:existing][:key] = :value
+      expect(subject[:existing][:key]).to eq :value
+    end
+  end
+end
+</code></pre></div>
+<p>And an ActiveSupport-like extension for the Hash class so you can call <code>.bottomless</code> on
+any hash in the system. Thanks Patrick!</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">class Hash
+  def bottomless
+    BottomlessHash.from_hash(self)
+  end
+end
+</code></pre></div>
+<p>Hope this small experiment might get useful for data processing or when dealing with unknown
 nested structures from the outside world.</p>
 
   </article>
