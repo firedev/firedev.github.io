@@ -42,7 +42,7 @@ params
 
 Why is it empty? Let's add more stuff to it.
 
-```
+```ruby
 params[:underworld]=:hell
 
 params
@@ -79,7 +79,7 @@ params
 
 Amazing. Okay but what if we need to add another level?
 
-```
+```ruby
 params[:asia][:thailand][:bangkok] = :chao_praya
 => NoMethodError: undefined method `[]=' for nil:NilClass
 ```
@@ -98,7 +98,7 @@ params[:asia][:thailand][:moscow] = :moscow_river
 ```
 It works! But what if the hash goes deeper?
 
-```
+```ruby
 params[:asia][:thailand][:bangkok][:river] = :chao_praya
 ```
 
@@ -123,9 +123,9 @@ params
 Okay, that part is solved, now lets tie it a little tighter so we don't need to
 create lambda beforehand. Ruby Hash sports `default_proc` method that can
 be used to access the block hash was initialized with. Thank makes it super sweet,
-thanks for pointing me on that, Pavel.
+thanks Pavel for pointing me on that.
 
-```
+```ruby
 params = Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
 
 params[:world][:thailand][:bangkok][:bangna]
@@ -136,7 +136,7 @@ params
 This is sweet, but what is the practical point of bottomless hash? Interesting
 side-effect is that it never fails you when reading values.
 
-```
+```ruy
 params[:i][:dont][:know]
 => {}
 ```
@@ -159,26 +159,100 @@ and empty hash instead of `nil`, which is truthy. But this can be checked with
 As it was mentioned in comments we can encapsulated the behaviour into a Class that would
 return an empty Bottomless hash or convert a given hash into a bottomless version:
 
-I could not make it to work with `&.default_proc` so I am using somewhat less
-terse syntax here.
+```ruby
+class BottomlessHash < Hash
+  def initialize
+    super &-> h, k { h[k] = self.class.new }
+  end
+
+  def self.from_hash(hash)
+    new.merge(hash)
+  end
+end
+```
+
+And some tests for the good night sleep:
 
 ```ruby
 class BottomlessHash < Hash
   def initialize
     super &-> h, k { h[k] = self.class.new }
   end
+
+  def self.from_hash(hash)
+    new.merge(hash)
+  end
 end
 
-BottomlessHash.new[:missing][:key]
-=> {}
+class Hash
+  def bottomless
+    BottomlessHash.from_hash(self)
+  end
+end
 
-hash = { existing: { key: :ok } }
-bottomless = BottomlessHash.new hash
-bottomless[:existing][:key]
-=> :ok
-puts bottomless[:missing][:key]
-=> {}
+describe BottomlessHash do
+  subject { described_class.new }
+
+  it 'does not raise on missing key' do
+    expect do
+      subject[:missing][:key]
+    end.to_not raise_error
+  end
+
+  it 'returns an empty value on missing key' do
+    expect(subject[:missing][:key]).to be_empty
+  end
+
+  it 'stores and returns keys' do
+    subject[:existing][:key] = :value
+    expect(subject[:existing][:key]).to eq :value
+  end
+
+  describe '#from_hash' do
+    let (:hash) do
+      { existing: { key: { value: :hello } } }
+    end
+
+    subject do
+      described_class.from_hash(hash)
+    end
+
+    it 'returns old hash values' do
+      expect(subject[:existing][:key][:value]).to eq :hello
+    end
+
+    it 'provides a bottomless version' do
+      expect(subject[:missing][:key]).to be_empty
+    end
+
+    it 'stores and returns new values' do
+      subject[:existing][:key] = :value
+      expect(subject[:existing][:key]).to eq :value
+    end
+
+    it 'converts nested hashes as well' do
+      expect do
+        subject[:existing][:key][:missing]
+      end.to_not raise_error
+    end
+  end
+end
+
 ```
 
-Hope this might get useful for data processing or when dealing with unknown
+And an ActiveSupport-like extension for the Hash class so you can call `.bottomless` on
+any hash in the system. Thanks Patrick!
+
+```ruby
+class Hash
+  def bottomless
+    BottomlessHash.from_hash(self)
+  end
+end
+```
+
+Hope this small experiment might get useful for data processing or when dealing with unknown
 nested structures from the outside world.
+
+I have put spec and resulting class here:
+[https://gist.github.com/firedev/9de91e245f70c2e963e4](gist.github.com/firedev/9de91e245f70c2e963e4 )
