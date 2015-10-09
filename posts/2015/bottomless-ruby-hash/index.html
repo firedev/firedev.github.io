@@ -187,14 +187,16 @@ could in turn create more hashes:</p>
 
 <span class="n">params</span><span class="o">[</span><span class="ss">:asia</span><span class="o">][</span><span class="ss">:thailand</span><span class="o">][</span><span class="ss">:moscow</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:moscow_river</span>
 </code></pre></div>
-<p>It works! But what if the hash goes deeper?</p>
+<p>It works! But what if the rabbit hole is <em>even</em> deeper?</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">params</span><span class="o">[</span><span class="ss">:asia</span><span class="o">][</span><span class="ss">:thailand</span><span class="o">][</span><span class="ss">:bangkok</span><span class="o">][</span><span class="ss">:river</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:chao_praya</span>
+<span class="o">=&gt;</span> <span class="ss">NoMethodError</span><span class="p">:</span> <span class="n">undefined</span> <span class="nb">method</span> <span class="sb">`[]=&#39; for nil:NilClass</span>
 </code></pre></div>
-<p>Okay, Let&#39;s throw some functional programming in the mix and fix
-this once and for all. What we need is a kind of procedure that would return a new
-hash with the same procedure hidden inside waiting for an empty key to come in.</p>
+<p>Okay, have to solve this once and for all. Let&#39;s throw some functional
+programming in the mix and see where it takes us. What we need is a kind of
+procedure that would return a new hash with the same procedure hidden inside
+waiting for an empty key to come in.</p>
 
-<p>What would the procedure look like? Quite familiar in fact. We just need to
+<p>What would such procedure look like? Quite familiar in fact. We just need to
 pack it with <code>&amp;</code> symbol-to-proc pretzel to shove into Hash initializer.</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">procedure</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="k">do</span> <span class="o">|</span><span class="nb">hash</span><span class="p">,</span> <span class="n">key</span><span class="o">|</span>
   <span class="nb">hash</span><span class="o">[</span><span class="n">key</span><span class="o">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">procedure</span><span class="p">)</span>
