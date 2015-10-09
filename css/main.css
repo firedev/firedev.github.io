@@ -2693,3 +2693,9 @@ a {
   background-size: cover;
   background-repeat: no-repeat;
   position: relative; }
+
+.lh1 {
+  line-height: 1rem; }
+
+.lh25 {
+  line-height: 2.5rem; }
