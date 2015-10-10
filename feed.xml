@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 10 Oct 2015 11:50:57 +0700</pubDate>
-    <lastBuildDate>Sat, 10 Oct 2015 11:50:57 +0700</lastBuildDate>
+    <pubDate>Sat, 10 Oct 2015 11:56:23 +0700</pubDate>
+    <lastBuildDate>Sat, 10 Oct 2015 11:56:23 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -39,8 +39,7 @@ Options:
   -r, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;--retry&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;NUM&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;                  &lt;span class=&quot;c&quot;&gt;# Specify the number of times you wish to attempt network commands&lt;/span&gt;
   -V, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;--verbose&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;--no-verbose&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;    &lt;span class=&quot;c&quot;&gt;# Enable verbose output mode&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Create a skeleton for creating a rubygem using RSpec as a test
-runner.&lt;/p&gt;
+&lt;p&gt;Create a Ruby Gem skeleton with RSpec as a test runner.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ bundle gem bottomless_hash -t=rspec
 Creating gem &amp;#39;bottomless_hash&amp;#39;...
 Do you want to include a code of conduct in gems you generate?
