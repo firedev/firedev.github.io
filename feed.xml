@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 10 Oct 2015 12:06:15 +0700</pubDate>
-    <lastBuildDate>Sat, 10 Oct 2015 12:06:15 +0700</lastBuildDate>
+    <pubDate>Sat, 10 Oct 2015 19:47:31 +0700</pubDate>
+    <lastBuildDate>Sat, 10 Oct 2015 19:47:31 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -355,7 +355,7 @@ bottomless_hash &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1.0&lt;span clas
 &lt;h3&gt;Links&lt;/h3&gt;
 
 &lt;p&gt;&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://firedev.com/posts/2015/bottomless-ruby-hash&quot;&gt;Bottomless Ruby Hash&lt;/a&gt;&lt;br&gt;
-&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://firedev.com/posts/2015/making-bottomless-ruby-hash-gem&quot;&gt;Making Bottomless Ruby Hash Gem&lt;/a&gt;&lt;br&gt;
+&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://firedev.com/posts/2015/making-bottomless-hash-ruby-gem/&quot;&gt;Making Bottomless Hash Ruby Gem&lt;/a&gt;&lt;br&gt;
 &lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Github &lt;a href=&quot;https://github.com/firedev/bottomless_hash&quot;&gt;firedev/bottomless_hash&lt;/a&gt;&lt;br&gt;
 &lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Gist &lt;a href=&quot;https://gist.github.com/firedev/9de91e245f70c2e963e4&quot;&gt;bottomless_hash.rb&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
 </description>
@@ -378,7 +378,7 @@ bottomless_hash &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1.0&lt;span clas
 to Ruby Hash without creating each key. Turns out there is, and it has an
 interesting side-effect. Welcome Bottomless Hash.&lt;/p&gt;
 
-&lt;p&gt;Let&amp;#39;s try assigning throughout a key in plain old Ruby first.&lt;/p&gt;
+&lt;p&gt;Let&amp;#39;s try assigning &amp;#39;through&amp;#39; a key in plain old Ruby first.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:world&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:russia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:moscow&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;NoMethodError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;undefined&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`[]=&amp;#39; for nil:NilClass&lt;/span&gt;
@@ -578,7 +578,7 @@ nested structures from the outside world.&lt;/p&gt;
 &lt;h3&gt;Links&lt;/h3&gt;
 
 &lt;p&gt;&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://firedev.com/posts/2015/bottomless-ruby-hash&quot;&gt;Bottomless Ruby Hash&lt;/a&gt;&lt;br&gt;
-&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://firedev.com/posts/2015/making-bottomless-ruby-hash-gem&quot;&gt;Making Bottomless Ruby Hash Gem&lt;/a&gt;&lt;br&gt;
+&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://firedev.com/posts/2015/making-bottomless-hash-ruby-gem/&quot;&gt;Making Bottomless Hash Ruby Gem&lt;/a&gt;&lt;br&gt;
 &lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Github &lt;a href=&quot;https://github.com/firedev/bottomless_hash&quot;&gt;firedev/bottomless_hash&lt;/a&gt;&lt;br&gt;
 &lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Gist &lt;a href=&quot;https://gist.github.com/firedev/9de91e245f70c2e963e4&quot;&gt;bottomless_hash.rb&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
 </description>
