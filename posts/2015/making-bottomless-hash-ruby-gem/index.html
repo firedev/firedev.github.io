@@ -149,9 +149,10 @@ Options:
       <span class="o">[</span>--no-color<span class="o">]</span>, <span class="o">[</span>--no-no-color<span class="o">]</span>  <span class="c"># Disable colorization in output</span>
   -r, <span class="o">[</span>--retry<span class="o">=</span>NUM<span class="o">]</span>                  <span class="c"># Specify the number of times you wish to attempt network commands</span>
   -V, <span class="o">[</span>--verbose<span class="o">]</span>, <span class="o">[</span>--no-verbose<span class="o">]</span>    <span class="c"># Enable verbose output mode</span>
-
-Creates a skeleton <span class="k">for</span> creating a rubygem
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">$ bundle gem bottomless_hash -t=rspec
+</code></pre></div>
+<p>Create a skeleton for creating a rubygem using RSpec as a test
+runner.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ bundle gem bottomless_hash -t=rspec
 Creating gem &#39;bottomless_hash&#39;...
 Do you want to include a code of conduct in gems you generate?
 Codes of conduct can increase contributions to your project by contributors who prefer collaborative, safe spaces. You can read more about the code of conduct at contributor-covenant.org. Having a code of conduct means agreeing to the responsibility of enforcing it, so be sure that you are prepared to do that. For suggestions about how to enforce codes of conduct, see bit.ly/coc-enforcement. y/(n): y
@@ -339,54 +340,26 @@ the things up quickly.</p>
 <span class="k">end</span>
 </code></pre></div>
 <p>A little bit ugly but okay.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ bundle
-$ rspec
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>bundle
+<span class="nv">$ </span>rspec
 
 BottomlessHash
   has a version number
   does not raise on missing key
   returns an empty value on missing key
   stores and returns keys
-  #from_hash
-    returns old hash values
+  <span class="c">#from_hash</span>
+    returns old <span class="nb">hash </span>values
     provides a bottomless version
     stores and returns new values
     converts nested hashes as well
 
-Finished in 0.00668 seconds (files took 0.12033 seconds to load)
-8 examples, 0 failures
+Finished in 0.00668 seconds <span class="o">(</span>files took 0.12033 seconds to load<span class="o">)</span>
+<span class="m">8</span> examples, <span class="m">0</span> failures
 </code></pre></div>
-<p>Okay that part went fine. Commit and push to Github.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ git status
-On branch master
-Your branch is up-to-date with &#39;origin/master&#39;.
-Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-
-        modified:   bottomless_hash.gemspec
-        modified:   lib/bottomless_hash.rb
-        modified:   lib/bottomless_hash/version.rb
-        modified:   spec/bottomless_hash_spec.rb
-
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
-
-$ git add .
-$ git commit -m &quot;code and specs&quot;
-[master b777f6c] code and specs
- 4 files changed, 67 insertions(+), 13 deletions(-)
-
-$ git push
-Counting objects: 9, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (8/8), done.
-Writing objects: 100% (9/9), 1.40 KiB | 0 bytes/s, done.
-Total 9 (delta 2), reused 0 (delta 0)
-To git@github.com:firedev/bottomless_hash.git
-   09492b9..b777f6c  master -&gt; master
-</code></pre></div>
-<p>It might be a bit too verbose for the purpose of this post, but by
-documenting everything I can use it later.</p>
+<p>Okay that part went fine. Commit and push to Github. It might
+be a bit too verbose for the purpose of this post, but by
+documenting everything so I can use it later.</p>
 
 <p>Let&#39;s add another test to make sure Ruby <code>Hash</code> class gets patched as well.
 This time we would have to require <code>BottomlessHash</code> as <code>spec_helper</code> would
@@ -442,54 +415,54 @@ Finished in 0.00285 seconds <span class="o">(</span>files took 0.09323 seconds t
 <p>After getting an account on <a href="http://rubygems.org">RubyGems</a> it is simple.</p>
 
 <p>First you have to build a gem.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ gem build bottomless_hash.gemspec                                                                                                    1 ↵
-WARNING:  open-ended dependency on rspec (&gt;= 0, development) is not recommended
-  if rspec is semantically versioned, use:
-    add_development_dependency &#39;rspec&#39;, &#39;~&gt; 0&#39;
-WARNING:  See http://guides.rubygems.org/specification-reference/ for help
-  Successfully built RubyGem
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem build bottomless_hash.gemspec                                                                                                    <span class="m">1</span> ↵
+WARNING:  open-ended dependency on rspec <span class="o">(</span>&gt;<span class="o">=</span> 0, development<span class="o">)</span> is not recommended
+  <span class="k">if</span> rspec is semantically versioned, use:
+    add_development_dependency <span class="s1">&#39;rspec&#39;</span>, <span class="s1">&#39;~&gt; 0&#39;</span>
+WARNING:  See http://guides.rubygems.org/specification-reference/ <span class="k">for</span> <span class="nb">help</span>
+<span class="nb">  </span>Successfully built RubyGem
   Name: bottomless_hash
   Version: 0.1.0
   File: bottomless_hash-0.1.0.gem
 </code></pre></div>
 <p>Okay it worked but I&#39;d like to get rid of the warning, so I change the line in
 <code>.gemspec</code> as suggested.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ git diff
-diff --git a/bottomless_hash.gemspec b/bottomless_hash.gemspec
-index b0a7bb7..817054f 100644
---- a/bottomless_hash.gemspec
-+++ b/bottomless_hash.gemspec
-@@ -31,5 +31,5 @@ Gem::Specification.new do |spec|
+<div class="highlight"><pre><code class="language-diff" data-lang="diff">$ git diff
+<span class="gh">diff --git a/bottomless_hash.gemspec b/bottomless_hash.gemspec</span>
+<span class="gh">index b0a7bb7..817054f 100644</span>
+<span class="gd">--- a/bottomless_hash.gemspec</span>
+<span class="gi">+++ b/bottomless_hash.gemspec</span>
+<span class="gu">@@ -31,5 +31,5 @@ Gem::Specification.new do |spec|</span>
 
    spec.add_development_dependency &quot;bundler&quot;, &quot;~&gt; 1.10&quot;
    spec.add_development_dependency &quot;rake&quot;, &quot;~&gt; 10.0&quot;
--  spec.add_development_dependency &quot;rspec&quot;
-+  spec.add_development_dependency &quot;rspec&quot;, &quot;~&gt; 0&quot;
+<span class="gd">-  spec.add_development_dependency &quot;rspec&quot;</span>
+<span class="gi">+  spec.add_development_dependency &quot;rspec&quot;, &quot;~&gt; 0&quot;</span>
  end
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">$ gem build bottomless_hash.gemspec
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem build bottomless_hash.gemspec
   Successfully built RubyGem
   Name: bottomless_hash
   Version: 0.1.0
   File: bottomless_hash-0.1.0.gem
 </code></pre></div>
 <p>Now the gem is built without warnings. And we can push it to RubyGems.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ gem push bottomless_hash-0.1.0.gem
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem push bottomless_hash-0.1.0.gem
 Enter your RubyGems.org credentials.
-Don&#39;t have an account yet? Create one at https://rubygems.org/sign_up
+Don<span class="err">&#39;</span>t have an account yet? Create one at https://rubygems.org/sign_up
    Email:   nick@firedev.com
 Password:
 
 Signed in.
 
 Pushing gem to https://rubygems.org...
-Successfully registered gem: bottomless_hash (0.1.0)
+Successfully registered gem: bottomless_hash <span class="o">(</span>0.1.0<span class="o">)</span>
 </code></pre></div>
 <p>This is it. The gem is published and you can use it right away:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ gem search bottomless_hash
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem search bottomless_hash
 
 *** REMOTE GEMS ***
 
-bottomless_hash (0.1.0)
+bottomless_hash <span class="o">(</span>0.1.0<span class="o">)</span>
 </code></pre></div>
 <h3>Links</h3>
 
