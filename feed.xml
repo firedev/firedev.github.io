@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 10 Oct 2015 11:18:51 +0700</pubDate>
-    <lastBuildDate>Sat, 10 Oct 2015 11:18:51 +0700</lastBuildDate>
+    <pubDate>Sat, 10 Oct 2015 11:39:21 +0700</pubDate>
+    <lastBuildDate>Sat, 10 Oct 2015 11:39:21 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -380,15 +380,20 @@ Successfully registered gem: bottomless_hash (0.1.0)
 
 bottomless_hash (0.1.0)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; Part 1 &lt;a href=&quot;http://firedev.com/posts/2015/bottomless-ruby-hash&quot;&gt;Bottomless Ruby Hash&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Links&lt;/h3&gt;
 
-&lt;p&gt;&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Github &lt;a href=&quot;https://github.com/firedev/bottomless_hash&quot;&gt;firedev/bottomless_hash&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://firedev.com/posts/2015/bottomless-ruby-hash&quot;&gt;Bottomless Ruby Hash&lt;/a&gt;&lt;br&gt;
+&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://firedev.com/posts/2015/making-bottomless-ruby-hash-gem&quot;&gt;Making Bottomless Ruby Hash Gem&lt;/a&gt;&lt;br&gt;
+&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Github &lt;a href=&quot;https://github.com/firedev/bottomless_hash&quot;&gt;firedev/bottomless_hash&lt;/a&gt;&lt;br&gt;
+&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Gist &lt;a href=&quot;https://gist.github.com/firedev/9de91e245f70c2e963e4&quot;&gt;bottomless_hash.rb&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 10 Oct 2015 00:00:00 +0700</pubDate>
         <link>http://firedev.com/posts/2015/making-bottomless-hash-ruby-gem/</link>
         <guid isPermaLink="true">http://firedev.com/posts/2015/making-bottomless-hash-ruby-gem/</guid>
         
         <category>ruby</category>
+        
+        <category>gem</category>
         
         
         <category>posts</category>
@@ -598,12 +603,12 @@ any hash in the system. Thanks Patrick!&lt;/p&gt;
 &lt;p&gt;Hope this little experiment might get useful for data processing or when dealing with unknown
 nested structures from the outside world.&lt;/p&gt;
 
-&lt;p&gt;I have put spec and resulting class here:
-&lt;a href=&quot;gist.github.com/firedev/9de91e245f70c2e963e4&quot;&gt;https://gist.github.com/firedev/9de91e245f70c2e963e4&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Links&lt;/h3&gt;
 
-&lt;p&gt;&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; Part 2 &lt;a href=&quot;http://firedev.com/posts/2015/making-bottomless-hash-ruby-gem&quot;&gt;Making Bottomless Ruby Hash Gem&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Github &lt;a href=&quot;https://github.com/firedev/bottomless_hash&quot;&gt;firedev/bottomless_hash&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://firedev.com/posts/2015/bottomless-ruby-hash&quot;&gt;Bottomless Ruby Hash&lt;/a&gt;&lt;br&gt;
+&lt;i class=&quot;fa fa-file-o&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://firedev.com/posts/2015/making-bottomless-ruby-hash-gem&quot;&gt;Making Bottomless Ruby Hash Gem&lt;/a&gt;&lt;br&gt;
+&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Github &lt;a href=&quot;https://github.com/firedev/bottomless_hash&quot;&gt;firedev/bottomless_hash&lt;/a&gt;&lt;br&gt;
+&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Gist &lt;a href=&quot;https://gist.github.com/firedev/9de91e245f70c2e963e4&quot;&gt;bottomless_hash.rb&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 07 Oct 2015 00:00:00 +0700</pubDate>
         <link>http://firedev.com/posts/2015/bottomless-ruby-hash/</link>
