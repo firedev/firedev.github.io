@@ -10,10 +10,10 @@ image: 'posts/electrical_plumbing_service.jpg'
 background_size: cover
 ---
 
-Watching an excellent talk "Blending Functional and OO Programming in Ruby"
-given by Piotr Solnica on Full Stack Fest 2015 made me think. I have tried
-different ways of organizing my service objects and here is what I came up
-with.
+An excellent talk "Blending Functional and OO Programming in Ruby" given by
+Piotr Solnica on Full Stack Fest 2015 made me think about improving current
+practices. I have tried different ways of organizing my service objects and
+here is what I came up with.
 
 ## Background
 
@@ -80,8 +80,7 @@ $ flog app
 
 ## Service class
 
-This is subjecting by I think 10 is too much. We can break it down in two parts
-like this:
+To me 10 is simply too much. We can break it down in two parts like this:
 
 ```ruby
 class User
@@ -98,8 +97,9 @@ end
 ```
 
 But this is ridiculous. It adds a private method on `User` that is calling god
-know what.  I don't like the 'Thin Controllers, Fat Models' concept. As a
-one-man operation I don't have man-power to deal with 10 feet long models. My motto is:
+knows what. Besides I don't like the 'Thin Controllers, Fat Models' concept. As
+a one-man operation there is simply not enough man-power to deal with 10 feet
+long models. My motto is:
 
 > Thin Everythin'!
 
