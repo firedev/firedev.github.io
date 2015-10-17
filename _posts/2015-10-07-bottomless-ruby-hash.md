@@ -11,7 +11,7 @@ The other day somebody asked if there is a way to blindly assign nested values
 to Ruby Hash without creating each key. Turns out there is, and it has an
 interesting side-effect. Welcome Bottomless Hash.
 
-Let's try assigning throughout a key in plain old Ruby first.
+Let's try assigning 'through' a key in plain old Ruby first.
 
 ```ruby
 params = {}
@@ -96,17 +96,19 @@ end
 
 params[:asia][:thailand][:moscow] = :moscow_river
 ```
-It works! But what if the hash goes deeper?
+It works! But what if the rabbit hole is *even* deeper?
 
 ```ruby
 params[:asia][:thailand][:bangkok][:river] = :chao_praya
+=> NoMethodError: undefined method `[]=' for nil:NilClass
 ```
 
-Okay, Let's throw some functional programming in the mix and fix
-this once and for all. What we need is a kind of procedure that would return a new
-hash with the same procedure hidden inside waiting for an empty key to come in.
+Okay, have to solve this once and for all. Let's throw some functional
+programming in the mix and see where it takes us. What we need is a kind of
+procedure that would return a new hash with the same procedure hidden inside
+waiting for an empty key to come in.
 
-What would the procedure look like? Quite familiar in fact. We just need to
+What would such procedure look like? Quite familiar in fact. We just need to
 pack it with `&` symbol-to-proc pretzel to shove into Hash initializer.
 
 ```ruby
@@ -136,7 +138,7 @@ params
 This is sweet, but what is the practical point of bottomless hash? Interesting
 side-effect is that it never fails you when reading values.
 
-```ruy
+```ruby
 params[:i][:dont][:know]
 => {}
 ```
@@ -251,8 +253,11 @@ class Hash
 end
 ```
 
-Hope this small experiment might get useful for data processing or when dealing with unknown
+Hope this little experiment might get useful for data processing or when dealing with unknown
 nested structures from the outside world.
 
-I have put spec and resulting class here:
-[https://gist.github.com/firedev/9de91e245f70c2e963e4](gist.github.com/firedev/9de91e245f70c2e963e4 )
+### Links
+<i class="fa fa-file-o"></i> [Bottomless Ruby Hash](http://firedev.com/posts/2015/bottomless-ruby-hash)<br>
+<i class="fa fa-file-o"></i> [Making Bottomless Hash Ruby Gem](http://firedev.com/posts/2015/making-bottomless-hash-ruby-gem/)<br>
+<i class="fa fa-github"></i> Github [firedev/bottomless_hash](https://github.com/firedev/bottomless_hash)<br>
+<i class="fa fa-github"></i> Gist [bottomless_hash.rb](https://gist.github.com/firedev/9de91e245f70c2e963e4)<br>
