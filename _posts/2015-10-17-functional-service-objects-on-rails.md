@@ -9,15 +9,15 @@ tags:
 ---
 
 After watching an excellent talk "Blending Functional and OO Programming in
-Ruby", by Piotr Solnica  on Full Stack Fest 2015. I have tried different ways
+Ruby" given by Piotr Solnica on Full Stack Fest 2015. I have tried different ways
 of organizing my service objects and here is what I came up with.
 
 ## Background
 
-The idea is to move from Object Oriented style of objects with state to more
-functional way of doing things when only data is passed within your system.
+The idea is to switch from Object Oriented mentality and stateful objects to more
+functional way of doing things when only data is passed through your system.
 
-I am working on this motivational portal and for the same of example let's pretend
+I am working on this motivational portal and for the sake of example let's pretend
 we have only the following models: `User`, `Motivation`, `Shop`, `Role`.
 
 `Motivation` is some data that defines which `Shop` user has access to and his `Role`
