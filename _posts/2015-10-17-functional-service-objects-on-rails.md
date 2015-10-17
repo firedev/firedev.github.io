@@ -90,9 +90,11 @@ end
 ```
 
 But this is ridiculous. It adds a private method on `User` that is calling god know what.
-I don't like the 'Fat models' concept. As a one-man operation I build and
+I don't like the 'Thin Controllers, Fat Models' concept. As a one-man operation I build and
 support, and I don't have man-power to deal with 10 feet long models. My motto
-is: Thin everything!
+is:
+
+> Thin Everythin'!
 
 I build service objects in a simple way. One public method `call` with occasional
 parameters passed from controller (i.e. variables). Let's extract the query to a
@@ -247,18 +249,22 @@ Average complexity per method is somewhat lower, but the total is even higher.
 
 ## Let's make it stateless
 
-One thing I would like to discuss first. As Sandi Metz says: you can break the rules if you
-have a good reason or your pair lets you. Or something along these lines.
+One thing I would like to discuss first. As Sandi Metz says:
+
+> You can break the rules if you have a good reason or your pair lets you.
+
+Something along these lines at least.
 
 So I claim that I don't need to inject dependenices for other Activerecord classes
 since they are not going to change. Thus I can get rid of `initialize`. Of course
 in more complex screnario this is not the best way to go, but this is a simple
 query object so for the sake of refactoring experiment I think this will pass.
 
-I think the rule of thumb here is similar to what Piotr is suggesting - pass in other
-Services if you are depending on them.
+I think the rule of thumb here is similar to what Piotr is suggesting:
 
-Another thing is CQRS, since I am not changing anything here apart from the inner
+> Initialize with Service Objects you are depending on
+
+Since I am not changing anything here apart from the inner
 state of the object and I am getting rid of the state, I don't need a separate
 method, thus my object shrink back it's API to the `call` method. Which is actually
 an improvement. Since now I can pass everything I need in one method call.
