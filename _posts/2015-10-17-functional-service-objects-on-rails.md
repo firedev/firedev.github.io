@@ -127,10 +127,10 @@ end
 Let's keep the `User` API unchanged so this is a true refactoring:
 
 ```ruby
-# user.rb
-
-def chief_shops_for_month(month)
-  User::ChiefShopsForMonth.new(self).call
+class User
+  def chief_shops_for_month(month)
+    User::ChiefShopsForMonth.new(self).call
+  end
 end
 ```
 Let's see what flog has to say about that:
@@ -227,10 +227,10 @@ flexibility so I don't see a point of not doing it. And finally you can get the
 list of shops for the given month by calling `.shops`.
 
 ```ruby
-# user.rb
-
-def chief_shops_for_month(month)
-  User::ChiefShopsForMonth.new.call(user, month).shops
+class User
+  def chief_shops_for_month(month)
+    User::ChiefShopsForMonth.new.call(user, month).shops
+  end
 end
 ```
 
@@ -298,14 +298,14 @@ is that we don't have to query for shops as this is a Query Object so it only re
 result straight away. And API is effectively shrunk to a single class.
 
 ```ruby
-# user.rb
-
-def chief_shops_for_month(month)
-  User::ChiefShopsForMonth.new.call(user: self, month: month)
+class User
+  def chief_shops_for_month(month)
+    User::ChiefShopsForMonth.new.call(user: self, month: month)
+  end
 end
 ```
 
-Yes you have to call new, but only to instantiate an object. Or you can still
+Yes you have to call `new`, but only to instantiate an object. Or you can still
 inject dependencies for testing. As a side effect we can pass a hash as
 parameter. Piotr suggests to use value object, but right now I think it is
 overkill. And look at this:
