@@ -6,6 +6,8 @@ tags:
   - ruby
   - rails
   - refactoring
+image: 'posts/electrical_plumbing_service.jpg'
+background_size: cover
 ---
 
 After watching an excellent talk "Blending Functional and OO Programming in
@@ -17,13 +19,15 @@ of organizing my service objects and here is what I came up with.
 The idea is to switch from Object Oriented mentality and stateful objects to more
 functional way of doing things when only data is passed through your system.
 
-I am working on this motivational portal and for the sake of example let's pretend
-we have only the following models: `User`, `Motivation`, `Shop`, `Role`.
+I am working on this motivational portal. Let's use a concept from the
+project for the sake of example. The models involved in this example are
+`User`, `Motivation`, `Shop` and `Role`.
 
-`Motivation` is some data that defines which `Shop` user has access to and his `Role`
-in regards to this access. Each month a `User` can be assigned to different `Shops`
-and different `Roles`. Say, an employee this month and shop manager the next month.
-I call such managers "chief" since manager was already taken.
+`Motivation` is some data that defines `Shop` to which `User` has access to in a
+given month and his `Role` in regards to that. Each month a `User` can
+be assigned to different `Shops` and different `Roles`. Say, an employee this
+month and shop manager the next month. I call such managers "chief" since
+manager was already taken.
 
 ## Stuff everything into model
 
@@ -58,7 +62,8 @@ Hmm that starts quite harmless. But let's measure the complexity with flog:
 
 ### Flog
 
-I use [flog](http://ruby.sadi.st/Flog.html) to check complexity of my classes and strive to keep the average under 5:
+I use [flog](http://ruby.sadi.st/Flog.html) to check complexity of my classes
+and strive to keep the average under 5:
 
 ```
 $ flog app
@@ -148,9 +153,9 @@ Okay this is a little bit better. But now let's try the functional-ish way.
 ### The talk
 
 This is the talk [Piotr Solica](http://solnic.eu) gave at Full-stack fest in 2015
-that got me thinking if I am doing everything the right way.
+that got me thinking about a better way of doing things.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rMxurF4oqsc" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rMxurF4oqsc" frameborder="0" allowfullscreen></iframe><br/>
 
 If you don't have time to watch it, the gist of it - don't store state. Just
 pass everything to `call` method instead. That sounded interesting. Rolled up my
