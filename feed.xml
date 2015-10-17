@@ -6,16 +6,16 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 17 Oct 2015 13:23:23 +0700</pubDate>
-    <lastBuildDate>Sat, 17 Oct 2015 13:23:23 +0700</lastBuildDate>
+    <pubDate>Sat, 17 Oct 2015 14:04:31 +0700</pubDate>
+    <lastBuildDate>Sat, 17 Oct 2015 14:04:31 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
         <title>Functional Service Objects on Rails</title>
-        <description>&lt;p&gt;Watching an excellent talk &amp;quot;Blending Functional and OO Programming in Ruby&amp;quot;
-given by Piotr Solnica on Full Stack Fest 2015 made me think. I have tried
-different ways of organizing my service objects and here is what I came up
-with.&lt;/p&gt;
+        <description>&lt;p&gt;An excellent talk &amp;quot;Blending Functional and OO Programming in Ruby&amp;quot; given by
+Piotr Solnica on Full Stack Fest 2015 made me think about improving current
+practices. I have tried different ways of organizing my service objects and
+here is what I came up with.&lt;/p&gt;
 
 &lt;h2&gt;Background&lt;/h2&gt;
 
