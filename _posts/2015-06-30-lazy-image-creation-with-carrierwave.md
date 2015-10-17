@@ -3,10 +3,10 @@ layout: post
 title:  "Lazy image creation with Carrierwave"
 category: posts
 tags:
-  - Rails
-  - Carrierwave
-image: 'logos/rails.svg'
-background_size: contain
+  - rails
+  - carrierwave
+image: 'posts/lazy_cat.jpg'
+background_size: cover
 ---
 
 I don't know about you but I kind of grown to like Carrierwave. Yes, there are

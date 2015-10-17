@@ -10,30 +10,32 @@ image: 'posts/electrical_plumbing_service.jpg'
 background_size: cover
 ---
 
-After watching an excellent talk "Blending Functional and OO Programming in
-Ruby" given by Piotr Solnica on Full Stack Fest 2015. I have tried different ways
-of organizing my service objects and here is what I came up with.
+Watching an excellent talk "Blending Functional and OO Programming in Ruby"
+given by Piotr Solnica on Full Stack Fest 2015 made me think. I have tried
+different ways of organizing my service objects and here is what I came up
+with.
 
 ## Background
 
-The idea is to switch from Object Oriented mentality and stateful objects to more
-functional way of doing things when only data is passed through your system.
+The idea is to switch from Object Oriented mentality and stateful objects to
+more functional way of doing things when only data is passed through your
+system.
 
-I am working on this motivational portal. Let's use a concept from the
-project for the sake of example. The models involved in this example are
-`User`, `Motivation`, `Shop` and `Role`.
+I am working on this motivational portal. Let's use a concept from the project
+for the sake of example. The models involved in this example are `User`,
+`Motivation`, `Shop` and `Role`.
 
-`Motivation` is some data that defines `Shop` to which `User` has access to in a
-given month and his `Role` in regards to that. Each month a `User` can
-be assigned to different `Shops` and different `Roles`. Say, an employee this
+`Motivation` is some data that defines `Shop` to which `User` has access to in
+a given month and his `Role` in regards to that. Each month a `User` can be
+assigned to different `Shops` and different `Roles`. Say, an employee this
 month and shop manager the next month. I call such managers "chief" since
 manager was already taken.
 
 ## Stuff everything into model
 
-For current month we need to get the list of shops user can manage. And to do that
-we have to use multiple tables. The most obvious solution is to stuff everything
-into User model:
+For current month we need to get the list of shops user can manage. And to do
+that we have to use multiple tables. The most obvious solution is to stuff
+everything into User model:
 
 ```ruby
 class User < ActiveRecord::Base
@@ -78,7 +80,8 @@ $ flog app
 
 ## Service class
 
-This is subjecting by I think 10 is too much. We can break it down in two parts like this:
+This is subjecting by I think 10 is too much. We can break it down in two parts
+like this:
 
 ```ruby
 class User
@@ -94,16 +97,15 @@ class User
 end
 ```
 
-But this is ridiculous. It adds a private method on `User` that is calling god know what.
-I don't like the 'Thin Controllers, Fat Models' concept. As a one-man operation I build and
-support, and I don't have man-power to deal with 10 feet long models. My motto
-is:
+But this is ridiculous. It adds a private method on `User` that is calling god
+know what.  I don't like the 'Thin Controllers, Fat Models' concept. As a
+one-man operation I don't have man-power to deal with 10 feet long models. My motto is:
 
 > Thin Everythin'!
 
-I build service objects in a simple way. One public method `call` with occasional
-parameters passed from controller (i.e. variables). Let's extract the query to a
-what my typical service object would look like:
+I build service objects in a simple way. One public method `call` with
+occasional parameters passed from controller (i.e. variables). Let's extract
+the query to a what my typical service object would look like:
 
 ```
 class User
@@ -148,7 +150,8 @@ Let's see what flog has to say about that:
      6.7: User::ChiefShopsForMonth#call    -:10
 ```
 
-Okay this is a little bit better. But now let's try the functional-ish way.
+Okay this is better. Now let's see if we can improve it further and maybe make it
+more functional-ish.
 
 ### The talk
 
@@ -157,13 +160,13 @@ that got me thinking about a better way of doing things.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rMxurF4oqsc" frameborder="0" allowfullscreen></iframe><br/>
 
-If you don't have time to watch it, the gist of it - don't store state. Just
-pass everything to `call` method instead. That sounded interesting. Rolled up my
-sleeves and here we go.
+The gist of it: Don't store state. Just pass everything to `call` method
+instead. That sounded interesting. Rolled up my sleeves and here we go.
 
 ## Refactoring Service object
 
-Let's try with full head-on solution first. I would like to throw everything in the mix:
+Let's try with full head-on solution first. I would like to throw everything in
+the mix:
 
 * Dependency injection
 * Command-query separation
@@ -176,12 +179,13 @@ This is a simple principle that can be boiled down to this:
 
 > Don't modify and request data in the same method call
 
-Or it can be put in another way, return `self` until the very last moment. That allows
-chaining and storing the intermediate results and other interesting things. The
-best examples in the wild I think are Rails scopes and JavaScript. Rails Scopes
-can be chained up to the last moment where you can load the relation into array
-by calling `to_a` on it. JavaScript is basically built on returning `this`.
-If you have ever used a JavaScript library like jQuery you know the power.
+Or it can be put in another way, return `self` until the very last moment. That
+allows chaining and storing the intermediate results and other interesting
+things. The best examples in the wild I think are Rails scopes and JavaScript.
+Rails Scopes can be chained up to the last moment where you can load the
+relation into array by calling `to_a` on it. JavaScript is basically built on
+returning `this`.  If you have ever used a JavaScript library like jQuery you
+know the power.
 
 ```ruby
 class User
@@ -225,11 +229,11 @@ While getting here it became obvious to me that I didn't have to use
 `Motivation` class directly I can make it more intention-revealing, even if it
 adds another dependency.
 
-New structure gains certain tidiness in the upper part. Now `initialize` only does
-dependency-injection for the whole object, `call` sets up the parameters and returns
-`self` for chaining. You don't have to return `self`, but it gives such nice
-flexibility so I don't see a point of not doing it. And finally you can get the
-list of shops for the given month by calling `.shops`.
+New structure gains certain tidiness in the upper part. Now `initialize` only
+does dependency-injection for the whole object, `call` sets up the parameters
+and returns `self` for chaining. You don't have to return `self`, but it gives
+such nice flexibility so I don't see a point of not doing it. And finally you
+can get the list of shops for the given month by calling `.shops`.
 
 ```ruby
 class User
@@ -240,8 +244,9 @@ end
 ```
 
 Things get hairy however after the `private` mark. The state is now here in the
-and there are four attributes instead of two. Flog is not very happy about this either.
-Average complexity per method is somewhat lower, but the total is even higher.
+and there are four attributes instead of two. Flog is not very happy about this
+either.  Average complexity per method is somewhat lower, but the total is even
+higher.
 
 ```
    26.0: flog total
@@ -252,7 +257,7 @@ Average complexity per method is somewhat lower, but the total is even higher.
      5.0: User::ChiefShopsForMonth#none
 ```
 
-## Let's make it stateless
+## Stateless Object
 
 One thing I would like to discuss first. As Sandi Metz says:
 
@@ -260,19 +265,20 @@ One thing I would like to discuss first. As Sandi Metz says:
 
 Something along these lines at least.
 
-So I claim that I don't need to inject dependenices for other Activerecord classes
-since they are not going to change. Thus I can get rid of `initialize`. Of course
-in more complex screnario this is not the best way to go, but this is a simple
-query object so for the sake of refactoring experiment I think this will pass.
+So I claim that I don't need to inject dependenices for other Activerecord
+classes since they are not going to change. Thus I can get rid of `initialize`.
+Of course in more complex screnario this is not the best way to go, but this is
+a simple query object so for the sake of refactoring experiment I think this
+will pass.
 
 I think the rule of thumb here is similar to what Piotr is suggesting:
 
 > Initialize with Service Objects you are depending on
 
-Since I am not changing anything here apart from the inner
-state of the object and I am getting rid of the state, I don't need a separate
-method, thus my object shrink back it's API to the `call` method. Which is actually
-an improvement. Since now I can pass everything I need in one method call.
+Since I am not changing anything here apart from the inner state of the object
+and I am getting rid of the state, I don't need a separate method, thus my
+object shrink back it's API to the `call` method. Which is actually an
+improvement. Since now I can pass everything I need in one method call.
 
 ```
 class User
@@ -295,12 +301,14 @@ class User
 end
 ```
 
-As you can see state is not stored anywhere, okay the dependencies are not injected
-which is a questionable practice, but again I claim in this case this could pass.
+As you can see state is not stored anywhere, okay the dependencies are not
+injected which is a questionable practice, but again I claim in this case this
+could pass.
 
-The invocation is almost the same as with the previous example, the only difference
-is that we don't have to query for shops as this is a Query Object so it only returns
-result straight away. And API is effectively shrunk to a single class.
+The invocation is almost the same as with the previous example, the only
+difference is that we don't have to query for shops as this is a Query Object
+so it only returns result straight away. And API is effectively shrunk to a
+single class.
 
 ```ruby
 class User
@@ -312,8 +320,9 @@ end
 
 Yes you have to call `new`, but only to instantiate an object. Or you can still
 inject dependencies for testing. As a side effect we can pass a hash as
-parameter. Piotr suggests to use value object, but right now I think it is
-overkill. And look at this:
+parameter. Piotr suggests to use value object. I think it is
+overkill here. I could easily pass a params hash if I wanted to, but I am
+afraid it might hurt readability. And now look at this:
 
 ```
     10.4: flog total
@@ -324,9 +333,13 @@ overkill. And look at this:
 ```
 
 The whole class is almost as simple as the original single method in `User`. It
-encapsulates everything it needs and has intention-revealing name and simplest API.
+encapsulates everything it needs. It doesn't pollute models with methods that
+would never be used from other places. And has intention-revealing name and
+simple single-method API.
 
 ## Conclusion
 
 These are just some ideas on how to approach refactoring of fat models and fat
-controllers. Please let me know if you think I could improve anything.
+controllers. Please let me know if you think something could be improved.
+
+Thanks.
