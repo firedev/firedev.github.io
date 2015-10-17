@@ -2666,6 +2666,12 @@ p code {
 a {
   color: #ff6600; }
 
+h1 {
+  font-size: 3rem; }
+
+h2 {
+  font-size: 2rem; }
+
 .logo {
   white-space: nowrap;
   height: 5rem; }
