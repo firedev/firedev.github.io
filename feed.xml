@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 17 Oct 2015 14:04:31 +0700</pubDate>
-    <lastBuildDate>Sat, 17 Oct 2015 14:04:31 +0700</lastBuildDate>
+    <pubDate>Sat, 17 Oct 2015 18:23:16 +0700</pubDate>
+    <lastBuildDate>Sat, 17 Oct 2015 18:23:16 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -24,8 +24,8 @@ more functional way of doing things when only data is passed through your
 system.&lt;/p&gt;
 
 &lt;p&gt;I am working on this motivational portal. Let&amp;#39;s use a concept from the project
-for the sake of example. The models involved in this example are &lt;code&gt;User&lt;/code&gt;,
-&lt;code&gt;Motivation&lt;/code&gt;, &lt;code&gt;Shop&lt;/code&gt; and &lt;code&gt;Role&lt;/code&gt;.&lt;/p&gt;
+for the sake of the example. The models involved in this example are &lt;code&gt;User&lt;/code&gt;,
+  &lt;code&gt;Motivation&lt;/code&gt;, &lt;code&gt;Shop&lt;/code&gt; and &lt;code&gt;Role&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Motivation&lt;/code&gt; is some data that defines &lt;code&gt;Shop&lt;/code&gt; to which &lt;code&gt;User&lt;/code&gt; has access to in
 a given month and his &lt;code&gt;Role&lt;/code&gt; in regards to that. Each month a &lt;code&gt;User&lt;/code&gt; can be
@@ -36,8 +36,9 @@ manager was already taken.&lt;/p&gt;
 &lt;h2&gt;Stuff everything into model&lt;/h2&gt;
 
 &lt;p&gt;For current month we need to get the list of shops user can manage. And to do
-that we have to use multiple tables. The most obvious solution is to stuff
-everything into User model:&lt;/p&gt;
+that we have to use multiple tables as there a certain roles that carry &amp;quot;chief&amp;quot;
+ability. The most obvious solution is to stuff everything into User model.
+So without further ado:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chief_shops_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;shops&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
@@ -49,7 +50,7 @@ everything into User model:&lt;/p&gt;
 &lt;p&gt;Invocation is simple:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;shops&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chief_shops_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Hmm that starts quite harmless. But let&amp;#39;s measure the complexity with flog:&lt;/p&gt;
+&lt;p&gt;Hmm, that starts quite harmless. But what if we measure complexity with flog?&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    10.0: flog total
     10.0: flog/method average
 
@@ -58,7 +59,7 @@ everything into User model:&lt;/p&gt;
 &lt;h3&gt;Flog&lt;/h3&gt;
 
 &lt;p&gt;I use &lt;a href=&quot;http://ruby.sadi.st/Flog.html&quot;&gt;flog&lt;/a&gt; to check complexity of my classes
-and strive to keep the average under 5:&lt;/p&gt;
+and strive to keep the average complexity per method under 5:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ flog app
   1278.9: flog total
      5.0: flog/method average
@@ -70,7 +71,8 @@ and strive to keep the average under 5:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Service class&lt;/h2&gt;
 
-&lt;p&gt;To me 10 is simply too much. We can break it down in two parts like this:&lt;/p&gt;
+&lt;p&gt;To me 10 flog per method is simply too much. We can try to break it down in two
+methods like so:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chief_shops_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;shops&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chief_motivation_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt;
@@ -85,7 +87,7 @@ and strive to keep the average under 5:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;But this is ridiculous. It adds a private method on &lt;code&gt;User&lt;/code&gt; that is calling god
 knows what. Besides I don&amp;#39;t like the &amp;#39;Thin Controllers, Fat Models&amp;#39; concept. As
-a one-man operation there is simply not enough man-power to deal with 10 feet
+a one-man operation there is simply not enough man-power to deal with ten feet
 long models. My motto is:&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -94,55 +96,55 @@ long models. My motto is:&lt;/p&gt;
 
 &lt;p&gt;I build service objects in a simple way. One public method &lt;code&gt;call&lt;/code&gt; with
 occasional parameters passed from controller (i.e. variables). Let&amp;#39;s extract
-the query to a what my typical service object would look like:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class User
-  class ChiefShopsForMonth
-    attr_reader :user
-    attr_reader :month
+the query to a what a typical service object would look like:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ChiefShopsForMonth&lt;/span&gt;
+    &lt;span class=&quot;kp&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;
+    &lt;span class=&quot;kp&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:month&lt;/span&gt;
 
-    def initialize(user)
-      @user = user
-    end
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    def call(month)
-      @month = month
-      user.shops.merge(motivations_this_month_user_was_chief).uniq
-    end
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@month&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shops&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;motivations_this_month_user_was_chief&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    private
+    &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
 
-    def motivations_this_month_user_was_chief
-      user.motivations.for_month(month).where(role_id: Role.chief)
-    end
-  end
-end
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;motivations_this_month_user_was_chief&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;motivations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;role_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chief&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Let&amp;#39;s keep the &lt;code&gt;User&lt;/code&gt; API unchanged so this is a true refactoring:&lt;/p&gt;
+&lt;p&gt;We keep the &lt;code&gt;User&lt;/code&gt; API unchanged so this is a true refactoring:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chief_shops_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ChiefShopsForMonth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Let&amp;#39;s see what flog has to say about that:&lt;/p&gt;
+&lt;p&gt;What &lt;code&gt;flog&lt;/code&gt; has to say about this?&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;   18.5: flog total
      4.6: flog/method average
 
      7.8: User::ChiefShopsForMonth#motivations_this_month_user_was_chief -:17
      6.7: User::ChiefShopsForMonth#call    -:10
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Okay this is better. Now let&amp;#39;s see if we can improve it further and maybe make it
-more functional-ish.&lt;/p&gt;
+&lt;p&gt;Okay, this is better. Now it&amp;#39;s time to see if we can improve further and maybe make
+it more functional-ish.&lt;/p&gt;
 
 &lt;h3&gt;The talk&lt;/h3&gt;
 
-&lt;p&gt;This is the talk &lt;a href=&quot;http://solnic.eu&quot;&gt;Piotr Solica&lt;/a&gt; gave at Full-stack fest in 2015
+&lt;p&gt;This is the talk &lt;a href=&quot;http://solnic.eu&quot;&gt;Piotr Solnica&lt;/a&gt; gave at Full-stack fest in 2015
 that got me thinking about a better way of doing things.&lt;/p&gt;
 
 &lt;p&gt;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/rMxurF4oqsc&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;br/&gt;&lt;/p&gt;
 
 &lt;p&gt;The gist of it: Don&amp;#39;t store state. Just pass everything to &lt;code&gt;call&lt;/code&gt; method
-instead. That sounded interesting. Rolled up my sleeves and here we go.&lt;/p&gt;
+instead. That sounded interesting. Rolled up sleeves and here we go.&lt;/p&gt;
 
 &lt;h2&gt;Refactoring Service object&lt;/h2&gt;
 
@@ -167,13 +169,12 @@ the mix:&lt;/p&gt;
 &lt;p&gt;Or it can be put in another way, return &lt;code&gt;self&lt;/code&gt; until the very last moment. That
 allows chaining and storing the intermediate results and other interesting
 things. The best examples in the wild I think are Rails scopes and JavaScript.
-Rails Scopes can be chained up to the last moment where you can load the
+ActiveRecord Scopes can be chained up to the last moment where you can load the
 relation into array by calling &lt;code&gt;to_a&lt;/code&gt; on it. JavaScript is basically built on
 returning &lt;code&gt;this&lt;/code&gt;.  If you have ever used a JavaScript library like jQuery you
-know the power.&lt;/p&gt;
+know the drill.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ChiefShopsForMonth&lt;/span&gt;
-
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;role&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Role&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;motivation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Motivation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
       &lt;span class=&quot;vi&quot;&gt;@role&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;role&lt;/span&gt;
       &lt;span class=&quot;vi&quot;&gt;@motivation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;motivation&lt;/span&gt;
@@ -212,17 +213,17 @@ know the power.&lt;/p&gt;
 adds another dependency.&lt;/p&gt;
 
 &lt;p&gt;New structure gains certain tidiness in the upper part. Now &lt;code&gt;initialize&lt;/code&gt; only
-does dependency-injection for the whole object, &lt;code&gt;call&lt;/code&gt; sets up the parameters
-and returns &lt;code&gt;self&lt;/code&gt; for chaining. You don&amp;#39;t have to return &lt;code&gt;self&lt;/code&gt;, but it gives
-such nice flexibility so I don&amp;#39;t see a point of not doing it. And finally you
-can get the list of shops for the given month by calling &lt;code&gt;.shops&lt;/code&gt;.&lt;/p&gt;
+does dependency-injection for the whole object. Then &lt;code&gt;call&lt;/code&gt; sets up the
+parameters and returns &lt;code&gt;self&lt;/code&gt; for chaining. You don&amp;#39;t have to return &lt;code&gt;self&lt;/code&gt;,
+but that gives you flexibility so I don&amp;#39;t see a reason not to add it. And
+finally you can get the list of shops for the given month by calling &lt;code&gt;.shops&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chief_shops_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ChiefShopsForMonth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shops&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Things get hairy however after the &lt;code&gt;private&lt;/code&gt; mark. The state is now here in the
+&lt;p&gt;Things get hairy however after the &lt;code&gt;private&lt;/code&gt; mark. The state moved here
 and there are four attributes instead of two. Flog is not very happy about this
 either.  Average complexity per method is somewhat lower, but the total is even
 higher.&lt;/p&gt;
@@ -241,13 +242,13 @@ higher.&lt;/p&gt;
 &lt;p&gt;You can break the rules if you have a good reason or your pair lets you.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Something along these lines at least.&lt;/p&gt;
+&lt;p&gt;well, something along these lines at least.&lt;/p&gt;
 
-&lt;p&gt;So I claim that I don&amp;#39;t need to inject dependenices for other Activerecord
-classes since they are not going to change. Thus I can get rid of &lt;code&gt;initialize&lt;/code&gt;.
-Of course in more complex screnario this is not the best way to go, but this is
-a simple query object so for the sake of refactoring experiment I think this
-will pass.&lt;/p&gt;
+&lt;p&gt;So I claim that I don&amp;#39;t need to inject dependenices for other ActiveRecord
+classes since they are not going to change. And if they will mist likely my
+service will be deleted. Thus I can get rid of &lt;code&gt;initialize&lt;/code&gt;. Of course in more
+complex screnario this is not the best way to go, but this is a simple query
+object so for the sake of refactoring experiment I think this will pass.&lt;/p&gt;
 
 &lt;p&gt;I think the rule of thumb here is similar to what Piotr is suggesting:&lt;/p&gt;
 
@@ -255,37 +256,39 @@ will pass.&lt;/p&gt;
 &lt;p&gt;Initialize with Service Objects you are depending on&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Since I am not changing anything here apart from the inner state of the object
-and I am getting rid of the state, I don&amp;#39;t need a separate method, thus my
-object shrink back it&amp;#39;s API to the &lt;code&gt;call&lt;/code&gt; method. Which is actually an
-improvement. Since now I can pass everything I need in one method call.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class User
-  class ChiefShopsForMonth
+&lt;p&gt;Since I am not changing anything here, apart from the inner state of the object
+and I am getting rid of the state, I don&amp;#39;t need a separate method that returns
+the result. That allows me to shrink object&amp;#39;s API to single &lt;code&gt;call&lt;/code&gt; method.
+Which is actually an improvement. Since now I don&amp;#39;t need to pass &lt;code&gt;user&lt;/code&gt; and
+&lt;code&gt;month&lt;/code&gt; separately and they can go together as parameters in a single method
+call.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ChiefShopsForMonth&lt;/span&gt;
 
-    def call(user:, month:)
-      all_user_shops(user).merge(chief_this_month(month)).uniq
-    end
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;all_user_shops&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chief_this_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    private
+    &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
 
-    def all_user_shops(user)
-      user.shops
-    end
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;all_user_shops&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shops&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    def chief_this_month(month)
-      Motivation.for_month(month).where(role_id: Role.chief)
-    end
-  end
-end
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chief_this_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Motivation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;role_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chief&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;As you can see state is not stored anywhere, okay the dependencies are not
-injected which is a questionable practice, but again I claim in this case this
+&lt;p&gt;As you can see now state is not stored anywhere. Okay dependencies are not
+injected which is a questionable practice. But again I claim in this case this
 could pass.&lt;/p&gt;
 
-&lt;p&gt;The invocation is almost the same as with the previous example, the only
+&lt;p&gt;The invocation is almost the same as with the previous example. The only
 difference is that we don&amp;#39;t have to query for shops as this is a Query Object
 so it only returns result straight away. And API is effectively shrunk to a
-single class.&lt;/p&gt;
+single method.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chief_shops_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ChiefShopsForMonth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -294,9 +297,9 @@ single class.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Yes you have to call &lt;code&gt;new&lt;/code&gt;, but only to instantiate an object. Or you can still
 inject dependencies for testing. As a side effect we can pass a hash as
-parameter. Piotr suggests to use value object. I think it is
-overkill here. I could easily pass a params hash if I wanted to, but I am
-afraid it might hurt readability. And now look at this:&lt;/p&gt;
+parameter. Piotr suggests to use value object. I think it is overkill here. I
+could easily pass a params hash if I wanted to, but I am afraid it might hurt
+readability. And now look at this:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    10.4: flog total
      2.6: flog/method average
 
