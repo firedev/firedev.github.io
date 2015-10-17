@@ -3,10 +3,10 @@ layout: post
 title:  "Refactoring with map, pluck and select in Ruby on Rails"
 category: posts
 tags:
-  - Rails
-  - Refactoring
-image: 'logos/rails.svg'
-background_size: contain
+  - rails
+  - refactoring
+image: 'posts/plucking_prohibited.jpg'
+background_size: cover
 ---
 If you need to get something out of the database, consider using `pluck` to avoid
 creating instances you don't need.
