@@ -16,5 +16,8 @@
   ],
   "dependencies": {
     "basscss": "~6.1.6"
+  },
+  "devDependencies": {
+    "basscss-sass": "~3.0.0"
   }
 }
