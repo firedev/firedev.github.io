@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 01 Nov 2015 23:23:34 +0700</pubDate>
-    <lastBuildDate>Sun, 01 Nov 2015 23:23:34 +0700</lastBuildDate>
+    <pubDate>Sun, 01 Nov 2015 23:38:24 +0700</pubDate>
+    <lastBuildDate>Sun, 01 Nov 2015 23:38:24 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -107,19 +107,20 @@ Window&lt;/code&gt; for the given app.&lt;/p&gt;
 
 &lt;p&gt;To control windows I am using
 &lt;a href=&quot;http://www.irradiatedsoftware.com/sizeup/&quot;&gt;SizeUp&lt;/a&gt;. It allows me to size
-windows to half, quarter, and full-screen. And center windows so I can see a
-little bit on the edges of the screen. There are many like it, but
-this one is the best tool for the job as I can do everything without lifting
-hands from keyboard.&lt;/p&gt;
+windows to half, quarter, and full-screen. I move windows between screens and
+center them so I can see a little bit behind around the edges of the screen.
+There are many like it, but this one is the best tool for the job as I can do
+everything without lifting hands from keyboard.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/ide/size-up.png&quot; alt=&quot;SizeUp Shortcuts&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;I am a bit biased partly because of the involvement in development process (Hi,
-Steve). But mostly because SizeUp gets the shortcuts right out of the box. The
-only thing I am not content with is that up arrow points to the upper right
-corner. I still think it should be the upper left. Apart from that it&amp;#39;s
-practically flawless. The only thing I usually change in setting is 90x90% size
-for the &lt;code&gt;Center Window&lt;/code&gt; shortcut.&lt;/p&gt;
+Steve). But mostly because SizeUp out-of-the box comes with the most settings I
+agree with. The only thing I am not content with is up arrow pointing to the
+upper right corner. I still think it should be the upper left.&lt;/p&gt;
+
+&lt;p&gt;The only setting I change is 90x90% size for the &lt;code&gt;Center Window&lt;/code&gt; and maybe
+disabling &lt;code&gt;Move to Space&lt;/code&gt; shortcuts.&lt;/p&gt;
 
 &lt;p&gt;Check their website for other tiny window management apps that offer slightly
 different ways.&lt;/p&gt;
@@ -139,17 +140,21 @@ indispensable. Without it the Trackpad would be only half as useful.&lt;/p&gt;
 &lt;p&gt;Some apps require special treatment so you would have to add them separately.
 For instance I have &lt;code&gt;Cmd-Shift-[&lt;/code&gt; and &lt;code&gt;Cmd-Shift-]&lt;/code&gt; mapped for Safari.&lt;/p&gt;
 
-&lt;p&gt;It might be a bit tedious and I wish it had Dropbox sync. This is another
-reason why I am using it in conjunction with SizeUp.&lt;/p&gt;
+&lt;p&gt;It might be a bit tedious and I wish it had Dropbox sync. BTT can replace
+SizeUp since it can do almost everything SizeUp does if not all. But entering a
+dozen of shortcuts is not very fun task. This is why I am still using these two
+apps together.&lt;/p&gt;
 
 &lt;p&gt;BetterTouchTool also add window snapping akin to Windows&amp;#39; AeroSnap which is
-pretty nice when you can&amp;#39;t reach the mouse. Usually I am putting windows
-side-by-side. When I had two monitors that were big enough and could be rotated
-vertically I had 4 &amp;quot;virtual&amp;quot; screens.&lt;/p&gt;
+pretty nice when you are feeling too lazy to reach the keyboard.&lt;/p&gt;
 
-&lt;p&gt;None of these apps have Menu or Dock icons enabled.  I am not the most
-organized or efficient person so I hide everything.  To access setting you can
-simply launch an app again.&lt;/p&gt;
+&lt;p&gt;Usually I am putting windows side-by-side on a single screen. When I had two
+monitors that were big enough and could be rotated vertically splitting each in
+two part gave me four almost &amp;quot;virtual&amp;quot; screens.&lt;/p&gt;
+
+&lt;p&gt;None of these apps have Menu or Dock icons enabled. I am not the most organized
+or efficient person so I hide and disable everything to limit distractions and
+have tidier screen. If you need to access setting - launch the app again.&lt;/p&gt;
 
 &lt;h3&gt;EyeFriendly&lt;/h3&gt;
 
