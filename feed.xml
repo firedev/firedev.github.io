@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 01 Nov 2015 23:38:24 +0700</pubDate>
-    <lastBuildDate>Sun, 01 Nov 2015 23:38:24 +0700</lastBuildDate>
+    <pubDate>Sun, 01 Nov 2015 23:41:26 +0700</pubDate>
+    <lastBuildDate>Sun, 01 Nov 2015 23:41:26 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -198,9 +198,12 @@ are the mnemonics&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;Cmd-Opt-Ctrl-0..5&lt;/code&gt; — To rate music in iTunes&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Here is an older version of the &lt;a href=&quot;http://www.packal.org/workflow/app-shortcuts&quot;&gt;App Shortcuts
-Workflow&lt;/a&gt;.
-Space is special because this is also my leader key in Vim and Tmux.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Space&lt;/code&gt; is also my leader key in Vim and &lt;code&gt;Ctrl-Space&lt;/code&gt; controls Tmux.&lt;/p&gt;
+
+&lt;p&gt;Here is a version of the &lt;a href=&quot;http://www.packal.org/workflow/app-shortcuts&quot;&gt;App Shortcuts
+Workflow&lt;/a&gt; that comes preloaded
+with some variants of apps (Sublime/Atom, iTerm/Terminal, Chrome/Safari) you
+can use to build your own system.&lt;/p&gt;
 
 &lt;p&gt;Some other shortcuts are defined inside the apps that use them. I was
 experimenting with double assignments so Alfred launches as app and then the
