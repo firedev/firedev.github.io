@@ -6,9 +6,259 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 19 Oct 2015 07:32:51 +0700</pubDate>
-    <lastBuildDate>Mon, 19 Oct 2015 07:32:51 +0700</lastBuildDate>
+    <pubDate>Sun, 01 Nov 2015 23:08:40 +0700</pubDate>
+    <lastBuildDate>Sun, 01 Nov 2015 23:08:40 +0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Mac as IDE</title>
+        <description>&lt;p&gt;Are you using this editor and that version control app? Think bigger.  Instead
+of jumping between apps or forcing yourself to an IDE. Just use your Mac as a
+system where apps work together for the greater good.&lt;/p&gt;
+
+&lt;p&gt;The main idea is to use your environment as a single entity rather that a
+collection of various application. Let me show you some tricks that help me
+do the job. Basically it boils down to some simple concepts:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Control everything from the keyboard.&lt;/li&gt;
+&lt;li&gt;Limit distractions.&lt;/li&gt;
+&lt;li&gt;Have a system behind the madness.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I control eveything from keyboard: apps, windows. Is it faster and less
+distracting if you don&amp;#39;t have to reach for mouse. And this is something Windows
+got right. Mac forces you to use mouse more often. It&amp;#39;s not that much of a
+problem if you are on Macbook. Trackpad is always within the reach, but still,
+things could be better. Let&amp;#39;s fix them.&lt;/p&gt;
+
+&lt;h2&gt;Keyboard Control&lt;/h2&gt;
+
+&lt;p&gt;First turn &lt;code&gt;Full Keyboard Access&lt;/code&gt; to &lt;code&gt;Full Control&lt;/code&gt; in &lt;code&gt;Keyboard &amp;gt; Shortcuts&lt;/code&gt;
+pane of System Preferences.  Now we can switch between buttons and click
+checkboxes in popup windows from keyboard. Not everybody knows that you can use
+&lt;code&gt;Cmd-First letter of the button in popup&lt;/code&gt; as well. So you can press &lt;code&gt;Cmd-D&lt;/code&gt; to
+choose &lt;code&gt;Don&amp;#39;t Save&lt;/code&gt; in Save Dialog.&lt;/p&gt;
+
+&lt;p&gt;Enable function keys to be used as such. You will have to press &lt;code&gt;Fn&lt;/code&gt; along
+with brightness and volume control but that will allow you easier reach for the
+Menu bar we will hide next.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ide/function-keys.png&quot; alt=&quot;Function Keys&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Hide dock with &lt;code&gt;Cmd-Opt-D&lt;/code&gt; and the menu bar in &lt;code&gt;General &amp;gt; Automatically hide
+and show menu bar&lt;/code&gt;. El Capitan allows us to use almost the whole screen estate
+apart from the tiny bar at the edge of the screen where hidden Dock is located.
+To quickly access Menu or to have a peek at the current time you can use
+&lt;code&gt;Ctrl-F2&lt;/code&gt; or &lt;code&gt;Cmd-?&lt;/code&gt;. The help shortcut &lt;code&gt;Cmd-?&lt;/code&gt; or &lt;code&gt;Cmd-Shift-/&lt;/code&gt; opens help
+menu from which you can search and execute menu items available in the app.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ide/full-keyboard-access.png&quot; alt=&quot;Full Keyboard Access&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Additional shortcut to remember are: &lt;code&gt;Ctrl-F8&lt;/code&gt; to reach application icons in
+Menu if you need them. And, maybe, &lt;code&gt;Ctrl-F7&lt;/code&gt; to toggle keyboard control back on
+if you accidentally disable it.&lt;/p&gt;
+
+&lt;h3&gt;Finder&lt;/h3&gt;
+
+&lt;p&gt;Learn Finder&amp;#39;s &lt;code&gt;Go&lt;/code&gt; menu shortcuts. It will save you a ton of time and if you
+are using &lt;code&gt;Cmd-Shift-G&lt;/code&gt; to switch to a folder you can autocomplete paths using
+&lt;code&gt;Tab&lt;/code&gt;. I use &lt;code&gt;Documents&lt;/code&gt;, &lt;code&gt;Desktop&lt;/code&gt;, &lt;code&gt;Download&lt;/code&gt; and &lt;code&gt;Connect to Server&lt;/code&gt;
+shortcuts all the time.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ide/finder-go.png&quot; alt=&quot;Finder Go Menu&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;Zoom&lt;/h3&gt;
+
+&lt;p&gt;Another semi-hidden option in OS X is full-screen zoom. Enable it in
+&lt;code&gt;Acessibility &amp;gt; Use scroll gesture to zoom&lt;/code&gt;. Leave the keyboard modifier as
+&lt;code&gt;Ctrl&lt;/code&gt; and make sure &lt;code&gt;Zoom Style&lt;/code&gt; is set to &lt;code&gt;Fullscreen Zoom&lt;/code&gt;. Now you can zoom
+in and out by scrolling while holding &lt;code&gt;Ctrl&lt;/code&gt;. This is very useful if you need
+to make sure the pixels are in place or to show something to a person across
+the room.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ide/keyboard-zoom.png&quot; alt=&quot;Keyboard Zoom&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Don&amp;#39;t forget to disable &lt;code&gt;Smooth images&lt;/code&gt; as it blurs the zoomed in image and you can&amp;#39;t
+see individual pixels clearly.&lt;/p&gt;
+
+&lt;h3&gt;Seil and Karabiner&lt;/h3&gt;
+
+&lt;p&gt;I use these two tiny apps from the same developer for additional keyboard tricks.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://pqrs.org/osx/karabiner/&quot;&gt;Karabiner&lt;/a&gt; takes care of switching layouts
+for me. I don&amp;#39;t switch &lt;em&gt;between&lt;/em&gt; layouts, I just press &lt;code&gt;Left Shift&lt;/code&gt; for English and
+&lt;code&gt;Right Shift&lt;/code&gt; for Russian. So before writing code I just hit &lt;code&gt;Left Shift&lt;/code&gt; and I
+am sure I am using English. This is it.&lt;/p&gt;
+
+&lt;p&gt;Being a Vim user I have &lt;code&gt;Caps Lock&lt;/code&gt; mapped to &lt;code&gt;Ctrl&lt;/code&gt; in &lt;code&gt;Keyboard&lt;/code&gt;.
+&lt;a href=&quot;https://pqrs.org/osx/karabiner/seil.html.en&quot;&gt;Seil&lt;/a&gt; adds additional mapping to
+&lt;code&gt;Caps Lock&lt;/code&gt; so it serves both as &lt;code&gt;Ctrl&lt;/code&gt; when held &lt;em&gt;and&lt;/em&gt; as &lt;code&gt;Esc&lt;/code&gt; when hit once.&lt;/p&gt;
+
+&lt;h2&gt;Window Management&lt;/h2&gt;
+
+&lt;p&gt;I don&amp;#39;t minimize apps. I find this annoying. If there is too much clutter I
+simply hide either current app via system shortcut &lt;code&gt;Cmd-H&lt;/code&gt; or hide everything
+else via &lt;code&gt;Cmd-Opt-H&lt;/code&gt; (Hide Others). Some apps might need &lt;code&gt;Cmd-0&lt;/code&gt; to show main window
+after gaining focus back. If anything does not show up you can check in &lt;code&gt;Menu &amp;gt;
+Window&lt;/code&gt; for the given app.&lt;/p&gt;
+
+&lt;h3&gt;SizeUp&lt;/h3&gt;
+
+&lt;p&gt;To control windows I am using
+&lt;a href=&quot;http://www.irradiatedsoftware.com/sizeup/&quot;&gt;SizeUp&lt;/a&gt;. It allows me to size
+windows to half, quarter, and full-screen. And center windows so I can see a
+little bit on the edges of the screen. There are many like it, but
+this one is the best tool for the job as I can do everything without lifting
+hands from keyboard.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ide/size-up.png&quot; alt=&quot;SizeUp Shortcuts&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;I am a bit biased partly because I was involved in development process a little
+bit (Hi, Steve). But also because the shortcuts are right out of the box. The
+only thing I am not content with is that up arrow points to the upper right
+corner. I thought it should be the upper left corner, where Apple logo is.
+Apart from that it&amp;#39;s practically flawless. The only thing I usually change in
+setting is 90x90% size for the &lt;code&gt;Center Window&lt;/code&gt; shortcut.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;#39;t forget to check the website, as they have other tiny apps that help windows
+management in slightly different ways.&lt;/p&gt;
+
+&lt;h3&gt;BetterTouchTool&lt;/h3&gt;
+
+&lt;p&gt;And of course &lt;a href=&quot;http://www.bettertouchtool.net/&quot;&gt;BetterTouchTool&lt;/a&gt;. This app is
+indispensable. Without it the Trackpad would be only half as useful.&lt;/p&gt;
+
+&lt;p&gt;First thing to do is to free three-finger-swipes left and right for BTT. Open
+&lt;code&gt;Trackpad&lt;/code&gt; Preference Pane and change &lt;code&gt;Swipe between full-screen apps&lt;/code&gt; to &lt;code&gt;Swipe with four fingers&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we can put them to good use to switch between tabs for all applications.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ide/btt.png&quot; alt=&quot;BetterTouchTool&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Some apps require special treatment so you would have to add them separately.
+For instance I have &lt;code&gt;Cmd-Shift-[&lt;/code&gt; and &lt;code&gt;Cmd-Shift-]&lt;/code&gt; mapped for Safari.&lt;/p&gt;
+
+&lt;p&gt;It might be a bit tedious and I wish it had Dropbox sync. This is another
+reason why I am using it in conjunction with SizeUp.&lt;/p&gt;
+
+&lt;p&gt;BetterTouchTool also add window snapping akin to Windows&amp;#39; AeroSnap which is
+pretty nice when you can&amp;#39;t reach the mouse. Usually I am putting windows
+side-by-side. When I had two monitors that were big enough and could be rotated
+vertically I had 4 &amp;quot;virtual&amp;quot; screens.&lt;/p&gt;
+
+&lt;p&gt;None of these apps have Menu or Dock icons enabled.  I am not the most
+organized or efficient person so I hide everything.  To access setting you can
+simply launch an app again.&lt;/p&gt;
+
+&lt;h3&gt;EyeFriendly&lt;/h3&gt;
+
+&lt;p&gt;When there is not enough space on a single screen I launch
+&lt;a href=&quot;http://eye-friendly.com/&quot;&gt;EyeFriendly&lt;/a&gt;.  It has only two shortcuts assigned
+that allow me to switch resolutions up and down. This is really useful if I
+need to see what site I am working on looks like in bigger resolution. Or if
+there is not enough space to put two apps side by side comfortably.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ide/eye-friendly.png&quot; alt=&quot;EyeFriendly&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;App Switching&lt;/h2&gt;
+
+&lt;p&gt;As it is the case with keyboard layouts instead of switching &lt;em&gt;between&lt;/em&gt; apps I
+am switching straight &lt;em&gt;into&lt;/em&gt; the app I need. That makes the computer feel as a
+whole. I have identified the apps I use most and assigned shortcuts for them. I
+have tried every Shortcut app imaginable, but only one supported Dropbox sync
+out-of-the box.&lt;/p&gt;
+
+&lt;h3&gt;Alfred&lt;/h3&gt;
+
+&lt;p&gt;For many the trusty butler serves as replacement for Spotlight. And I do occasional
+github searches from it as well. But other than that I find Spotlight pretty
+adequate. &lt;a href=&quot;http://alfredapp.com&quot;&gt;Alfred&lt;/a&gt; has another important functionality
+sadly available only in pricey PowerPack -- Workflows.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ide/alfred.png&quot; alt=&quot;Workflows&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;I have tried different key combos and I think &lt;code&gt;Cmd-Ctrl&lt;/code&gt; works best. So here
+are the mnemonics&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Ctrl-Space&lt;/code&gt; — Finder&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Shift-Space&lt;/code&gt; — &lt;a href=&quot;https://kapeli.com/dash&quot;&gt;Dash&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Ctrl-B&lt;/code&gt; — Browser (Chrome)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Ctrl-G&lt;/code&gt; — Git (&lt;a href=&quot;https://rowanj.github.io/gitx/&quot;&gt;gitx-dev&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Ctrl-O&lt;/code&gt; — &lt;a href=&quot;http://omnigroup.com/&quot;&gt;OmniFocus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Ctrl-T&lt;/code&gt; — Terminal (&lt;a href=&quot;http://iterm2.com/&quot;&gt;iTerm&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Ctrl-Q&lt;/code&gt; — SQL (&lt;a href=&quot;http://www.sequelpro.com/&quot;&gt;Sequel Pro&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Ctrl-Z&lt;/code&gt; — Messages. Kind of like Un-Do, get it?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Opt-Ctrl-0..5&lt;/code&gt; — To rate music in iTunes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is an older version of the &lt;a href=&quot;http://www.packal.org/workflow/app-shortcuts&quot;&gt;App Shortcuts
+Workflow&lt;/a&gt;.
+Space is special because this is also my leader key in Vim and Tmux.&lt;/p&gt;
+
+&lt;p&gt;Some other shortcuts are defined inside the apps that use them. I was
+experimenting with double assignments so Alfred launches as app and then the
+same shortcut activates the app function but it turned out to be not very
+reliable.  So I have some shortcuts defined in the apps that are either
+auto-started like NVAlt or that I use from time to time like Sip or
+ColorSnapper before that:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Ctrl-C&lt;/code&gt; — Color (&lt;a href=&quot;http://www.theolabrothers.com/&quot;&gt;Sip&lt;/a&gt;/&lt;a href=&quot;http://colorsnapper.com/&quot;&gt;ColorSnapper&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Ctrl-L&lt;/code&gt; — Notational veLocity (&lt;a href=&quot;http://brettterpstra.com/projects/nvalt/&quot;&gt;NVAlt&lt;/a&gt;), too bad it&amp;#39;s not updated anymore.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Esc&lt;/code&gt; — iTerm again. This one toggles full screen terminal window.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I have also had mappings for Sublime and Atom, but switched to Vim since and do
+everything in terminal.&lt;/p&gt;
+
+&lt;h2&gt;Bonus&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;#39;s a cool trick that allows me to refresh Chrome without leaving the editor.
+I have another shortcut in Alfred &lt;code&gt;Cmd-Opt-R&lt;/code&gt; (that have a nice system-wide ring to it).
+It launches a simple AppleScript:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;on alfred_script(q)
+  tell application &amp;quot;Google Chrome&amp;quot;
+    reload active tab of (get window 1)
+  end tell
+end alfred_script
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This little piece of code refreshes the current window in Google Chrome so you
+don&amp;#39;t have to switch focus.&lt;/p&gt;
+
+&lt;p&gt;It is especially useful if you have two screens so you can use one for editing
+and refresh browser in another.&lt;/p&gt;
+
+&lt;h2&gt;Conlusion&lt;/h2&gt;
+
+&lt;p&gt;I hope that gives the idea how everything is tied together. I jump from Mail to
+Terminal, &lt;code&gt;git fetch&lt;/code&gt;, edit, jump to GitX, review changes, jump to browser,
+open two apps side-by-side, edit in one window, see changes in another...&lt;/p&gt;
+
+&lt;p&gt;This approach also give you some modularity. If you don&amp;#39;t like GitX, change it
+to SourceTree. Don&amp;#39;t like Sublime, change to Atom. You can replace and fine
+tune individual parts of the system but still be sure when you press
+&lt;code&gt;Cmd-Ctrl-T&lt;/code&gt; you get to the terminal. Be it iTerm or Terminal or I don&amp;#39;t know
+what else.&lt;/p&gt;
+
+&lt;p&gt;So this is the staples of my day-to-day process. Please let me know if you
+found anything useful and share some of your tricks.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 01 Nov 2015 00:00:00 +0700</pubDate>
+        <link>http://firedev.com/posts/2015/mac-as-ide/</link>
+        <guid isPermaLink="true">http://firedev.com/posts/2015/mac-as-ide/</guid>
+        
+        <category>development</category>
+        
+        <category>productivity</category>
+        
+        <category>mac</category>
+        
+        
+        <category>posts</category>
+        
+      </item>
     
       <item>
         <title>Functional Service Objects on Rails</title>
@@ -1815,71 +2065,6 @@ kids-friendly even.&lt;/p&gt;
         <guid isPermaLink="true">http://firedev.com/posts/2015/chappie-2015/</guid>
         
         <category>movies</category>
-        
-        
-        <category>posts</category>
-        
-      </item>
-    
-      <item>
-        <title>Hello, Jekyll!</title>
-        <description>&lt;p&gt;After unsuccessful attempts at blogging relying on 3rd party platforms like
-Posterous, Tumblr, Droplr and whatnot here is my new stab at delivering ideas
-to the world. Fully autonomous this time. Surprisingly there are not that many
-options available for blogging...&lt;/p&gt;
-
-&lt;p&gt;Why not Wordpress? I never really liked it, between these options and plugins
-there seem to be little left to the actual content creation.
-This weekend I have decided to finally get back to blogging.&lt;/p&gt;
-
-&lt;p&gt;Having two kids and being a freelancer I don&amp;#39;t have much time to fight technology.
-I don&amp;#39;t want to mess with bloated Wordpress themes, plugins and exploits.
-Making my own blog on Ruby on Rails sounds tempting but I better concentrate
-on other things in life.&lt;/p&gt;
-
-&lt;p&gt;Forcing markdown on users in projects lately I wanted to write in markdown.
-And the options that came to mind were Jekyll which I wanted to try for a long
-time and Middleman. Jekyll had less options and less of everything so it
-sounded like a nice fit for a weekend project. And here it is.&lt;/p&gt;
-
-&lt;h2&gt;Partials in Jekyll&lt;/h2&gt;
-
-&lt;p&gt;One of the tricky part was rendering of posts. In rails I would throw in a partial.
-Since there are no partials in Jekyll I had to use includes.&lt;/p&gt;
-
-&lt;p&gt;This is what I have in my &lt;code&gt;posts&lt;/code&gt; and &lt;code&gt;index&lt;/code&gt; pages:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;post&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;in&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;site.posts&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;_post.html&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;post&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endfor&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;And the actual &lt;code&gt;_post.html&lt;/code&gt; include uses &lt;code&gt;include.post&lt;/code&gt; variable:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&amp;lt;h2&amp;gt;
-    &amp;lt;a href=&amp;quot;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;&amp;quot;&amp;gt;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;&amp;lt;/a&amp;gt;
-&amp;lt;/h2&amp;gt;
-&amp;lt;p&amp;gt;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;excerpt&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;&amp;lt;p&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This is something I would do in Rails. Everything seems pretty sweet so far.
-The only issue is that I have to write HTML again which seems as a step back
-after years of using Slim.&lt;/p&gt;
-
-&lt;p&gt;Hosting the new static site at
-&lt;a href=&quot;http://firedev.github.io&quot;&gt;firedev.github.io&lt;/a&gt;, courtesy of Github.
-Finally I can sleep at nights knowing that
-&lt;a href=&quot;http://www.theverge.com/2013/4/30/4281780/posterous-is-shutting-down-tomorrow-here-are-the-best-alternatives&quot;&gt;whatever&lt;/a&gt;
-&lt;a href=&quot;http://www.engadget.com/2014/01/03/droplr-rapid-file-sharing-service-goes-pay-only&quot;&gt;crazy&lt;/a&gt;
-&lt;a href=&quot;http://www.businessinsider.com/medium-budget-cuts-and-restructuring-2015-6&quot;&gt;idea&lt;/a&gt;
-the companies
-I&amp;#39;ve trusted my content to are going to get it won&amp;#39;t affect me.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 06 Jun 2015 00:00:00 +0700</pubDate>
-        <link>http://firedev.com/posts/2015/hello-jekyll/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/2015/hello-jekyll/</guid>
-        
-        <category>jekyll</category>
-        
-        <category>liquid</category>
         
         
         <category>posts</category>
