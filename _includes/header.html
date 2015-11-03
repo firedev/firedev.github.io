@@ -22,7 +22,7 @@
       </div>
       <div class="sm-col sm-col-9 px2 mt3">
         <div class="mxn2 mt2">
-          <a class="right button button-transparent silver" href="{{ "/feed.xml" | prepend: site.baseurl }}">
+          <a class="right btn silver" href="{{ "/feed.xml" | prepend: site.baseurl }}">
             <i class="fa fa-rss"></i>
             RSS
           </a>
@@ -31,11 +31,11 @@
             {% for menu in site.pages order:descending %}
             {% if menu.menu %}
             {% if page.url == menu.url %}
-            <a class="button bg-orange white" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
+            <a class="btn bg-orange white" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
               {{ menu.title }}
             </a>
             {% else %}
-            <a class="button button-transparent" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
+            <a class="btn" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
               {{ menu.title }}
             </a>
             {% endif %}

@@ -1,17 +1,12 @@
 .main-image
-  height: 30rem
   background-position: center center
   background-size: cover
   background-repeat: no-repeat
   position: relative
-  // &:after
-  //   content: ''
-  //   background: rgba(black, 0.2)
-  //   position: absolute
-  //   top: 0
-  //   left: 0
-  //   right: 0
-  //   bottom: 0
-    & > header:first-child
-      background: rgba(black, 0.5)
-      color: white
+  padding-top: 42%
+  & > header:first-child
+    background: rgba(black, 0.5)
+    color: white
+  @media (min-width: $large)
+    padding-top: 0
+    height: 30rem

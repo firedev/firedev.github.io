@@ -1,1 +1,5 @@
-<a href="/{{ include.tag | slugize }}/" class="button bg-orange white lh1"> {{ include.tag | capitalize }} </a>
+{% assign xtag = include.tag | first %} {% if xtag == nil %}
+  {% assign xtag = include.tag %}
+{% endif %}
+
+<a href="/{{ xtag | slugize }}/" class="button bg-orange white lh1"> {{ xtag | capitalize }} </a>
