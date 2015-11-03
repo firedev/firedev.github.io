@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% include _tags.html %}
+{% include _tags.html tags=site.tags %}
 {% for post in site.posts %}
   {% include _post.html post=post %}
 {% endfor %}
