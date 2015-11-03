@@ -20,29 +20,28 @@
           </a>
         </h1>
       </div>
-      <div class="sm-col sm-col-9 px2 mt3">
-        <div class="mxn2 mt2">
-          <a class="right btn silver" href="{{ "/feed.xml" | prepend: site.baseurl }}">
+      <nav class="sm-col sm-col-9 px2 mt2 py1">
+        <div class="right mt2 p1 md-show">
+          <a class="btn silver regular" href="{{ "/feed.xml" | prepend: site.baseurl }}">
             <i class="fa fa-rss"></i>
             RSS
           </a>
-          <h3>
-            <!-- <a class="button button-transparent" href="http://firedevcom.tumblr.com">Blog</a> -->
-            {% for menu in site.pages order:descending %}
-            {% if menu.menu %}
-            {% if page.url == menu.url %}
-            <a class="btn bg-orange white" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
-              {{ menu.title }}
-            </a>
-            {% else %}
-            <a class="btn" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
-              {{ menu.title }}
-            </a>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
-          </h3>
         </div>
+        <h3>
+          {% for menu in site.pages order:descending %}
+            {% if menu.menu %}
+              {% if (page.url == menu.url) or ((menu.url == "/posts/index.html") and (page.url == "/index.html")) %}
+                <a class="button bg-orange white" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
+                  {{ menu.title }}
+                </a>
+              {% else %}
+                <a class="btn" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
+                  {{ menu.title }}
+                </a>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </h3>
       </div>
     </div>
   </div>
