@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 04 Nov 2015 12:06:33 +0700</pubDate>
-    <lastBuildDate>Wed, 04 Nov 2015 12:06:33 +0700</lastBuildDate>
+    <pubDate>Wed, 04 Nov 2015 13:30:32 +0700</pubDate>
+    <lastBuildDate>Wed, 04 Nov 2015 13:30:32 +0700</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -309,8 +309,15 @@ SizeUp since it can do almost everything SizeUp does if not all. But entering a
 dozen of shortcuts is not very fun task. This is why I am still using these two
 apps together.&lt;/p&gt;
 
-&lt;p&gt;BetterTouchTool also add window snapping akin to Windows&amp;#39; AeroSnap which is
-pretty nice when you are feeling too lazy to reach the keyboard.&lt;/p&gt;
+&lt;p&gt;Another free and open-source alternative to SizeUp:
+&lt;a href=&quot;https://www.spectacleapp.com/&quot;&gt;Spectacle&lt;/a&gt;. It overrides almost system-wide
+shortcuts &lt;code&gt;Cmd-Opt-Arrows&lt;/code&gt; that are used to switch tabs in most applications.
+So if you are using it with BTT you will have to do some additional
+fine-tuning.&lt;/p&gt;
+
+&lt;p&gt;BetterTouchTool also adds window snapping akin to Windows&amp;#39; AeroSnap which is
+pretty nice when you are feeling too lazy to reach the keyboard. Just drag a
+window to a screen edge or into the corner and it gets resized accordingly.&lt;/p&gt;
 
 &lt;p&gt;Usually I am putting windows side-by-side on a single screen. When I had two
 monitors that were big enough and could be rotated vertically splitting each in
