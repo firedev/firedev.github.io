@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 04 Nov 2015 13:35:38 +0700</pubDate>
-    <lastBuildDate>Wed, 04 Nov 2015 13:35:38 +0700</lastBuildDate>
+    <pubDate>Wed, 04 Nov 2015 13:51:10 +0700</pubDate>
+    <lastBuildDate>Wed, 04 Nov 2015 13:51:10 +0700</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -171,8 +171,8 @@ The other accessories is something for you to decide if you need them or not.&lt
         <description>
           &lt;p&gt;&lt;img src="http://firedev.com/images/posts/ascii-keyboard-controller.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;Are you using this editor and that version control app? Think bigger. Instead
-of jumping between apps or forcing yourself to an IDE use your Mac as a system
-where apps work together for the greater good.&lt;/p&gt;
+of jumping between applications or forcing yourself to an IDE use your Mac as a
+system where apps work together for the greater good.&lt;/p&gt;
 
 &lt;p&gt;The main idea is to use your environment as a single entity rather that a
 collection of various application. Let me show you some tricks that help me
@@ -184,7 +184,7 @@ do the job. Basically it boils down to some simple concepts:&lt;/p&gt;
 &lt;li&gt;Have a system behind the madness.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I control eveything from keyboard: apps, windows. Is it faster and less
+&lt;p&gt;I control everything from keyboard: apps, windows. Is it faster and less
 distracting if you don&amp;#39;t have to reach for mouse. And this is something Windows
 got right. Mac forces you to use mouse more often. It&amp;#39;s not that much of a
 problem if you are on Macbook. Trackpad is always within the reach, but still,
@@ -194,7 +194,7 @@ things could be better. Let&amp;#39;s fix them.&lt;/p&gt;
 
 &lt;p&gt;First turn &lt;code&gt;Full Keyboard Access&lt;/code&gt; to &lt;code&gt;Full Control&lt;/code&gt; in &lt;code&gt;Keyboard &amp;gt; Shortcuts&lt;/code&gt;
 pane of System Preferences.  Now we can switch between buttons and click
-checkboxes in popup windows from keyboard. Not everybody knows that you can use
+checkboxes in pop-up windows from keyboard. Not everybody knows that you can use
 &lt;code&gt;Cmd-First letter of the button in popup&lt;/code&gt; as well. So you can press &lt;code&gt;Cmd-D&lt;/code&gt; to
 choose &lt;code&gt;Don&amp;#39;t Save&lt;/code&gt; in Save Dialog.&lt;/p&gt;
 
@@ -246,9 +246,9 @@ the room.&lt;/p&gt;
 &lt;p&gt;Don&amp;#39;t forget to disable &lt;code&gt;Smooth images&lt;/code&gt; as it blurs the zoomed in image and you can&amp;#39;t
 see individual pixels clearly.&lt;/p&gt;
 
-&lt;h3&gt;Seil and Karabiner&lt;/h3&gt;
+&lt;h3&gt;Karabiner and Seil&lt;/h3&gt;
 
-&lt;p&gt;I use these two tiny apps from the same developer for additional keyboard tricks.&lt;/p&gt;
+&lt;p&gt;I use these two tiny utilities by the same developer for additional keyboard tricks.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://pqrs.org/osx/karabiner/&quot;&gt;Karabiner&lt;/a&gt; takes care of switching layouts
 for me. I don&amp;#39;t switch &lt;em&gt;between&lt;/em&gt; layouts, I just press &lt;code&gt;Left Shift&lt;/code&gt; for English and
@@ -261,11 +261,11 @@ am sure I am using English. This is it.&lt;/p&gt;
 
 &lt;h2&gt;Window Management&lt;/h2&gt;
 
-&lt;p&gt;I don&amp;#39;t minimize apps. I find this annoying. If there is too much clutter I
-simply hide either current app via system shortcut &lt;code&gt;Cmd-H&lt;/code&gt; or hide everything
-else via &lt;code&gt;Cmd-Opt-H&lt;/code&gt; (Hide Others). Some apps might need &lt;code&gt;Cmd-0&lt;/code&gt; to show main window
-after gaining focus back. If anything does not show up you can check in &lt;code&gt;Menu &amp;gt;
-Window&lt;/code&gt; for the given app.&lt;/p&gt;
+&lt;p&gt;I don&amp;#39;t minimize. I find this annoying. If there is too much clutter I simply
+hide either the current app via system shortcut &lt;code&gt;Cmd-H&lt;/code&gt; or hide everything else
+via &lt;code&gt;Cmd-Opt-H&lt;/code&gt; (Hide Others). Some apps might need &lt;code&gt;Cmd-0&lt;/code&gt; to show main window
+after gaining focus again. If anything did not show up you can check in &lt;code&gt;Menu &amp;gt;
+Window&lt;/code&gt; for the &lt;code&gt;Show Main Window&lt;/code&gt; shortcut for the given app.&lt;/p&gt;
 
 &lt;h3&gt;SizeUp&lt;/h3&gt;
 
@@ -348,7 +348,7 @@ out-of-the box.&lt;/p&gt;
 &lt;h3&gt;Alfred&lt;/h3&gt;
 
 &lt;p&gt;For many the trusty butler serves as replacement for Spotlight. And I do occasional
-github searches from it as well. But other than that I find Spotlight pretty
+GitHub searches from it as well. But other than that I find Spotlight pretty
 adequate. &lt;a href=&quot;http://alfredapp.com&quot;&gt;Alfred&lt;/a&gt; has another important functionality
 sadly available only in pricey PowerPack -- Workflows.&lt;/p&gt;
 
@@ -364,10 +364,10 @@ are the mnemonics&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;Cmd-Ctrl-T&lt;/code&gt; — Terminal (&lt;a href=&quot;http://iterm2.com/&quot;&gt;iTerm&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Cmd-Ctrl-Q&lt;/code&gt; — SQL (&lt;a href=&quot;http://www.sequelpro.com/&quot;&gt;Sequel Pro&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Cmd-Ctrl-Z&lt;/code&gt; — Messages. Kind of like Un-Do, get it?&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Cmd-Opt-Ctrl-~..5&lt;/code&gt; — To rate music in iTunes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cmd-Opt-Ctrl-~12345&lt;/code&gt; — To rate music in iTunes&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;And &lt;code&gt;Space&lt;/code&gt; which is much too powerful as it is also my leader key in Vim and
+&lt;p&gt;And &lt;code&gt;Space&lt;/code&gt; which is much too powerful is also my leader key in Vim and
 I control Tmux with &lt;code&gt;Ctrl-Space&lt;/code&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
