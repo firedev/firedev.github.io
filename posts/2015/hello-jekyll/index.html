@@ -68,7 +68,7 @@ options available for blogging...
           
             
               
-                <a class="btn" href="/posts">
+                <a class="btn" href="/posts/">
                   Posts
                 </a>
               
@@ -76,10 +76,14 @@ options available for blogging...
           
             
               
-                <a class="btn" href="/projects">
+                <a class="btn" href="/projects/">
                   Projects
                 </a>
               
+            
+          
+            
+          
             
           
             
@@ -134,13 +138,9 @@ background-position: ;
   <h1 class="m0 mb2">Hello, Jekyll!</h1>
   <div class="mb3 lh25">
  
-  
-
 
 <a href="/jekyll/" class="button bg-orange white lh1"> Jekyll </a>
  
-  
-
 
 <a href="/liquid/" class="button bg-orange white lh1"> Liquid </a>
 
@@ -177,16 +177,16 @@ Since there are no partials in Jekyll I had to use includes.</p>
 
 <p>This is what I have in my <code>posts</code> and <code>index</code> pages:</p>
 
-<div class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span>post<span class="w"> </span>in<span class="w"> </span>site.posts<span class="w"> </span><span class="p">%}</span>
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span>post<span class="w"> </span>in<span class="w"> </span>site.posts<span class="w"> </span><span class="p">%}</span>
   <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>_post.html<span class="w"> </span><span class="na">post</span><span class="o">=</span>post<span class="w"> </span><span class="p">%}</span>
-<span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
+<span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span></code></pre></figure>
 
 <p>And the actual <code>_post.html</code> include uses <code>include.post</code> variable:</p>
 
-<div class="highlight"><pre><code class="language-liquid" data-lang="liquid">&lt;h2&gt;
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid">&lt;h2&gt;
     &lt;a href=&quot;<span class="p">{{</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="p">}}</span>&quot;&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">excerpt</span><span class="w"> </span><span class="p">}}</span>&lt;p&gt;</code></pre></div>
+&lt;p&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">excerpt</span><span class="w"> </span><span class="p">}}</span>&lt;p&gt;</code></pre></figure>
 
 <p>This is something I would do in Rails. Everything seems pretty sweet so far.
 The only issue is that I have to write HTML again which seems as a step back
@@ -205,15 +205,11 @@ I&#39;ve trusted my content to are going to get it won&#39;t affect me.</p>
 
   
    
-  
-
 
 <a href="/jekyll/" class="button bg-orange white lh1"> Jekyll </a>
 
   
    
-  
-
 
 <a href="/liquid/" class="button bg-orange white lh1"> Liquid </a>
 

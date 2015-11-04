@@ -67,7 +67,7 @@ But first you need to find and catalogue all the colors in the project.
           
             
               
-                <a class="btn" href="/posts">
+                <a class="btn" href="/posts/">
                   Posts
                 </a>
               
@@ -75,10 +75,14 @@ But first you need to find and catalogue all the colors in the project.
           
             
               
-                <a class="btn" href="/projects">
+                <a class="btn" href="/projects/">
                   Projects
                 </a>
               
+            
+          
+            
+          
             
           
             
@@ -133,8 +137,6 @@ background-position: ;
   <h1 class="m0 mb2">Getting functional in Ruby</h1>
   <div class="mb3 lh25">
  
-  
-
 
 <a href="/ruby/" class="button bg-orange white lh1"> Ruby </a>
 
@@ -158,7 +160,7 @@ and stops at the word boundary.</p>
 <p>I am using <a href="https://github.com/ggreer/the_silver_searcher">The Silver Searcher</a>.
 The output is too human-readable so let&#39;s throw in some options to dumb it down:</p>
 
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">-i --ignore-case
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh">-i --ignore-case
   Match <span class="k">case</span>-insensitively
 
 -o --only-matching
@@ -174,13 +176,13 @@ The output is too human-readable so let&#39;s throw in some options to dumb it d
   No color
 
 --nobreak
-  No linebreaks between results in different files</code></pre></div>
+  No linebreaks between results in different files</code></pre></figure>
 
 <p>Thats a quite a list of options but I like <code>ag</code>. Now let&#39;s pipe the output
 through <code>sort --uniq -f</code> to remove the duplicates ignoring the case and count the lines with <code>wc -l</code>:</p>
 
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ag -io --nonumber --nofilename <span class="s2">&quot;#([\da-f]{3}|[\da-f]{6})\b&quot;</span> <span class="p">|</span> sort --uniq <span class="p">|</span> wc -l
-229</code></pre></div>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ag -io --nonumber --nofilename <span class="s2">&quot;#([\da-f]{3}|[\da-f]{6})\b&quot;</span> <span class="p">|</span> sort --uniq <span class="p">|</span> wc -l
+229</code></pre></figure>
 
 <p>Wow that&#39;s a large number. The problem is, right now <code>#fff</code> and <code>#ffffff</code>
 are treated as different colors. But I guess this is something we can fix in Ruby.</p>
@@ -209,48 +211,48 @@ Just make sure you have Enumerator on input.</p>
 <p>Most Ruby developers know about the pretzel symbol-to-proc operator that converts a
 given symbol into a proc that calls the same method on the given object.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:upcase</span><span class="p">)</span>
-<span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="o">]</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:upcase</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="o">]</span></code></pre></figure>
 
 <p>Pretzel <code>&amp;</code> here converts <code>:upcase</code> to a Proc and serves as a syntax sugar.
 The &#39;unpacked&#39; version would look like this:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">{</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span> <span class="n">str</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">{</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span> <span class="n">str</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span></code></pre></figure>
 
 <p>But I don&#39;t want to chain my lambdas in the ugly way, too bad there is no short syntax
 for lambdas in Ruby. Or is it? Turns out there is. Given the <code>upper</code> lambda:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">upper</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="n">a</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">upper</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="n">a</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span></code></pre></figure>
 
 <p>Even after replacing <code>call</code> with <code>.()</code> it still doesn&#39;t look nice:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">{</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span> <span class="n">upper</span><span class="o">.</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">{</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span> <span class="n">upper</span><span class="o">.</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">}</span></code></pre></figure>
 
 <p>But there is a special syntax for lambdas that makes it all sweet:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">upper</span><span class="p">)</span>
-<span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="o">]</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sx">%w(a b c)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">upper</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="o">]</span></code></pre></figure>
 
 <p>Now that&#39;s better, and to me that was the only part missing.
 Let&#39;s store filtered <code>ag</code> output to the ruby file and start messing around:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">ag</span> <span class="o">-</span><span class="n">io</span> <span class="o">--</span><span class="n">nonumber</span> <span class="o">--</span><span class="n">nofilename</span> <span class="s2">&quot;#([\da-f]{3}|[\da-f]{6})</span><span class="se">\b</span><span class="s2">&quot;</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">--</span><span class="n">uniq</span> <span class="o">-</span><span class="n">f</span> <span class="o">&gt;</span> <span class="n">colors</span><span class="o">.</span><span class="n">rb</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">ag</span> <span class="o">-</span><span class="n">io</span> <span class="o">--</span><span class="n">nonumber</span> <span class="o">--</span><span class="n">nofilename</span> <span class="s2">&quot;#([\da-f]{3}|[\da-f]{6})</span><span class="se">\b</span><span class="s2">&quot;</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">--</span><span class="n">uniq</span> <span class="o">-</span><span class="n">f</span> <span class="o">&gt;</span> <span class="n">colors</span><span class="o">.</span><span class="n">rb</span></code></pre></figure>
 
 <p>Another less-known feature in Ruby is that you can treat the rest of file as data
 if you add <code>__END__</code> to your program. Here is an excerpt from the Ruby Docs:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">DATA</span> <span class="n">is</span> <span class="n">a</span> <span class="no">File</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">data</span> <span class="n">section</span> <span class="n">of</span> <span class="n">the</span> <span class="n">executed</span> <span class="n">file</span><span class="o">.</span>
-<span class="no">To</span> <span class="n">create</span> <span class="n">a</span> <span class="n">data</span> <span class="n">section</span> <span class="n">use</span> <span class="cp">__END__</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">DATA</span> <span class="n">is</span> <span class="n">a</span> <span class="no">File</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">data</span> <span class="n">section</span> <span class="n">of</span> <span class="n">the</span> <span class="n">executed</span> <span class="n">file</span><span class="o">.</span>
+<span class="no">To</span> <span class="n">create</span> <span class="n">a</span> <span class="n">data</span> <span class="n">section</span> <span class="n">use</span> <span class="cp">__END__</span></code></pre></figure>
 
 <p>We can simply use the reset of the executable file as a <code>DATA</code> enumerator. Cool, eh?</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># colors.rb</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># colors.rb</span>
 <span class="nb">puts</span> <span class="no">DATA</span><span class="o">.</span><span class="n">count</span>
 
 <span class="cp">__END__</span>
 <span class="cp">#000</span>
 <span class="cp">#008000</span>
-<span class="cp">#00A347</span></code></pre></div>
+<span class="cp">#00A347</span></code></pre></figure>
 
 <h2>Let&#39;s get to business</h2>
 
@@ -263,25 +265,25 @@ create some lambdas accoding to the plan.</p>
 <p>To do that we are going to feed the color to Paleta and get hex value back. The only thing we need to add
 is <code>chomp</code> to get rid of the newlines in strings:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;paleta&#39;</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;paleta&#39;</span>
 <span class="n">to_full_hex</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="p">{</span> <span class="no">Paleta</span><span class="o">::</span><span class="no">Color</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:hex</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span> <span class="p">}</span>
 
 <span class="nb">puts</span> <span class="no">DATA</span>
   <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chomp</span><span class="p">)</span>
-  <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_full_hex</span><span class="p">)</span></code></pre></div>
+  <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_full_hex</span><span class="p">)</span></code></pre></figure>
 
 <h3>2. Make the list unique</h3>
 
 <p>Simply add <code>.uniq</code> and finally we can see the real number of unique colors in the project.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="no">DATA</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="no">DATA</span>
   <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chomp</span><span class="p">)</span>
   <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_full_hex</span><span class="p">)</span>
   <span class="o">.</span><span class="n">uniq</span>
   <span class="o">.</span><span class="n">count</span>
 
 <span class="err">$</span> <span class="n">ruby</span> <span class="n">colors</span><span class="o">.</span><span class="n">rb</span>
-<span class="mi">221</span></code></pre></div>
+<span class="mi">221</span></code></pre></figure>
 
 <p>What?! Okay, damn it, only a few colors were not unique. White and black I guess.</p>
 
@@ -295,7 +297,7 @@ strings we need to convert them back to objects.</p>
 We remove <code>.hex</code> from the <code>to_full_hex</code> method and rename it. This refactoring
 gives us even more freedom:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;paleta&#39;</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;paleta&#39;</span>
 
 <span class="n">to_paleta</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="p">{</span> <span class="no">Paleta</span><span class="o">::</span><span class="no">Color</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:hex</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span> <span class="p">}</span>
 
@@ -310,23 +312,23 @@ gives us even more freedom:</p>
   <span class="cp">__END__</span>
 <span class="cp">  #000</span>
 <span class="cp">  #008000</span>
-<span class="cp">  ...</span></code></pre></div>
+<span class="cp">  ...</span></code></pre></figure>
 
 <h3>4. Print the palette so we can see what is going on</h3>
 
 <p>Now let&#39;s devise a human-viewable palette so we could judge the colors.
 Make some nice-looking colored <code>&lt;div&gt;</code>s or something.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">to_div</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">to_div</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
   <span class="s2">&quot;&lt;div style=&#39;width: 5em; height: 3em; display: inline-block; background: </span><span class="si">#{</span><span class="n">str</span><span class="si">}</span><span class="s2">&#39;&gt;</span>
 <span class="s2">  </span><span class="si">#{</span><span class="n">str</span><span class="si">}</span><span class="s2"></span>
 <span class="s2">  &lt;/div&gt;&quot;</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <p>And pipe it to a new file, because at the moment of writing this Paleta generated some
 warning about Rmagic.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;colors.html&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;colors.html&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
   <span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="no">DATA</span>
   <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chomp</span><span class="p">)</span>
   <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_paleta</span><span class="p">)</span>
@@ -334,7 +336,7 @@ warning about Rmagic.</p>
   <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:hex</span><span class="p">)</span>
   <span class="o">.</span><span class="n">uniq</span>
   <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_div</span><span class="p">)</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span></code></pre></figure>
 
 <h2>Command-line reader</h2>
 
@@ -344,7 +346,7 @@ Simply change <code>DATA</code> to <code>ARGF</code> and remove the <code>__END_
 
 <p>Then lets open the resulting file right away.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
 
 <span class="nb">require</span> <span class="s1">&#39;paleta&#39;</span>
 
@@ -369,14 +371,14 @@ Simply change <code>DATA</code> to <code>ARGF</code> and remove the <code>__END_
   <span class="p">)</span>
 <span class="k">end</span>
 
-<span class="sb">`open colors.html`</span></code></pre></div>
+<span class="sb">`open colors.html`</span></code></pre></figure>
 
 <p>Now you can pipe the output from <code>ag</code> and even sample a single css file if needed. Don&#39;t forget to <code>chmod +x colors.rb</code></p>
 
 <p>Here is the <a href="https://gist.github.com/firedev/1b3e03afd9c7fca93207">final version</a>
 you can use for processing your files or projects:</p>
 
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ag -io --nonumber --nofilename <span class="s2">&quot;#([\da-f]{3}|[\da-f]{6})\b&quot;</span> <span class="o">[</span>path<span class="o">]</span> <span class="p">|</span> ./colors.rb</code></pre></div>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ag -io --nonumber --nofilename <span class="s2">&quot;#([\da-f]{3}|[\da-f]{6})\b&quot;</span> <span class="o">[</span>path<span class="o">]</span> <span class="p">|</span> ./colors.rb</code></pre></figure>
 
 <p>It makes sense to sort palettes by hue or lightness or saturation, this is simply
 a matter of changing a method name in <code>.map(&amp;:hue)</code>. Maybe some command-line switches
@@ -387,8 +389,6 @@ wanted to document the approach.</p>
 
   
    
-  
-
 
 <a href="/ruby/" class="button bg-orange white lh1"> Ruby </a>
 
