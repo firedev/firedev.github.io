@@ -12,9 +12,8 @@ layout: default
     {{ content }}
   </article>
 
-  {% for tag in page.tags %}
-  {% include _tag.html tag=tag %}
-  {% endfor %}
+  {% include _tags.html tags=page.tags %}
+
 </div>
 <div class="mt4">
 {% include me.html %}
