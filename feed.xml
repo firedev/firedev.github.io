@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Dec 2015 13:38:46 +0700</pubDate>
-    <lastBuildDate>Tue, 22 Dec 2015 13:38:46 +0700</lastBuildDate>
+    <pubDate>Tue, 22 Dec 2015 13:40:40 +0700</pubDate>
+    <lastBuildDate>Tue, 22 Dec 2015 13:40:40 +0700</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -203,8 +203,8 @@ grunt
 &lt;p&gt;Here&amp;#39;s what you can achieve in 10 minutes time:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://firedev.com/boilerplate/&quot;&gt;Page Mockup&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/firedev/boilerplate/blob/example/slim/index.slim&quot;&gt;Source&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://firedev.com/boilerplate/&quot;&gt;Page Mockup&lt;/a&gt; — Try resizing the window&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/firedev/boilerplate/blob/example/slim/index.slim&quot;&gt;Source&lt;/a&gt; — Typed it up live&lt;/li&gt;
 &lt;/ul&gt;
 
         </description>
