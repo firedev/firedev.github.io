@@ -6,9 +6,220 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 10 Nov 2015 09:26:48 +0700</pubDate>
-    <lastBuildDate>Tue, 10 Nov 2015 09:26:48 +0700</lastBuildDate>
-    <generator>Jekyll v3.0.0</generator>
+    <pubDate>Tue, 22 Dec 2015 13:27:32 +0700</pubDate>
+    <lastBuildDate>Tue, 22 Dec 2015 13:27:32 +0700</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Immutable CSS</title>
+        <description>
+          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/monolith.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;This is extracted from the Github issue created to discuss the approach with my
+team. Please bear with me if I refer to something that wasn&amp;#39;t mentioned in the text.&lt;/p&gt;
+
+&lt;h2&gt;What is Immutable CSS?&lt;/h2&gt;
+
+&lt;p&gt;It&amp;#39;s a set of tiny classes that don&amp;#39;t change. You have a set of predefined
+small classes that you reuse everywhere. They are mostly one-liners with clear
+semantics. And you don&amp;#39;t write new CSS until it&amp;#39;s absolutely needed.&lt;/p&gt;
+
+&lt;p&gt;Lets pretend that we need to build a menu that changes background for each client.
+Consider the following example. The semantics is easy to remember: &lt;code&gt;m&lt;/code&gt; —
+margin, &lt;code&gt;p&lt;/code&gt; — padding.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;div class=&amp;quot;menu mb1 p1&amp;quot;&amp;gt;
+  &amp;lt;img src=&amp;quot;logo.svg&amp;quot;/&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.mb1 { margin-bottom: x } - adds bottom spacing
+.p1 { padding: x } - adds padding
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;1&lt;/code&gt; in class name means &amp;#39;single spacing&amp;#39;. And you don&amp;#39;t use pixels or any
+magic numbers. The spacing is based on the font size.&lt;/p&gt;
+
+&lt;p&gt;There are more utility classes like these and HTML tags are pre-styled so you
+can just use them as is.&lt;/p&gt;
+
+&lt;h2&gt;Sales pitch&lt;/h2&gt;
+
+&lt;p&gt;The claim is that 90% of CSS you don&amp;#39;t have to write at all. And instead of
+having tons of files and selectors one can add a bit more verbose-ish class
+names that are explicitly readable when you open the code.&lt;/p&gt;
+
+&lt;p&gt;After that styling the transparent menu is trivial:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.menu&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#xxx&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;But CSS Modules...?&lt;/h2&gt;
+
+&lt;p&gt;Everybody seem to have high hopes for CSS modules. Let&amp;#39;s clear this up. I am
+not opposed to idea and they are great. However I would argue that CSS modules
+is a file organization concept mostly. As everything is compiled into a big
+pile of CSS in the browser.&lt;/p&gt;
+
+&lt;p&gt;You&amp;#39;re not defining colors and fonts in each module, so they are not &lt;em&gt;that&lt;/em&gt;
+independent. You have some &lt;em&gt;base CSS&lt;/em&gt; anyway.&lt;/p&gt;
+
+&lt;p&gt;So in the case above the Menu CSS Module would contain a single line -
+&lt;code&gt;background-color&lt;/code&gt;. Everything else is build using immutable css classes from
+the BASE.&lt;/p&gt;
+
+&lt;h2&gt;Show me!&lt;/h2&gt;
+
+&lt;p&gt;Sure. Let&amp;#39;s take a random CSS Module from one of the pulls:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.type&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;70%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;composes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;container&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;./../../../../form/input-container.css&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.type__select&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;composes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;./../../../../form/input.css&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Looks like it should power this kind of HTML:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-slim&quot; data-lang=&quot;slim&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.type&lt;/span&gt;
+   &lt;span class=&quot;nt&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.type__select&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So you see this in your code, and to get the idea of what is going on you open
+the module, then you follow the &lt;code&gt;../../..&lt;/code&gt; chain to find out that &lt;code&gt;input-container&lt;/code&gt;
+is something like &lt;code&gt;margin-bottom: 10px&lt;/code&gt; and before you know it — your whole codebase
+looks like this.&lt;/p&gt;
+
+&lt;p&gt;In addition to the scss mess already in place. It&amp;#39;s just a different form of
+SASS &lt;code&gt;extend&lt;/code&gt;. With inheritance, specificity and the like. Just a different
+file format.&lt;/p&gt;
+
+&lt;p&gt;Compare to the following piece of CSS:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Wait, what? No CSS? Yes. You see the basic HTML tags like &lt;code&gt;&amp;lt;select&amp;gt;&lt;/code&gt; don&amp;#39;t need to
+carry any classes. You just pre-style them once. How many variation of
+&lt;code&gt;&amp;lt;select&amp;gt;&lt;/code&gt; or &lt;code&gt;&amp;lt;input&amp;gt;&lt;/code&gt; you need anyway?&lt;/p&gt;
+
+&lt;p&gt;For &lt;code&gt;.type&lt;/code&gt; that seems to be a some form of container I just put &lt;code&gt;.container&lt;/code&gt;
+in HTML. &lt;code&gt;width: 70%&lt;/code&gt; is a magic number. It seems to me that it can be replaced
+with &lt;code&gt;.col-8&lt;/code&gt; given 12-column grid.&lt;/p&gt;
+
+&lt;p&gt;So in HTML it will be something like:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-slim&quot; data-lang=&quot;slim&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.container&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;.col-8&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;select&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And no CSS.&lt;/p&gt;
+
+&lt;h2&gt;So it that another CSS framework?&lt;/h2&gt;
+
+&lt;p&gt;Nope, just a library. As they say - you call the library, framework calls you.
+In fact it&amp;#39;s a set of css modules: &lt;code&gt;whitespace&lt;/code&gt;, &lt;code&gt;grid&lt;/code&gt;, &lt;code&gt;forms&lt;/code&gt;, etc. A dozen
+one-liners each that can be reused everywhere.&lt;/p&gt;
+
+&lt;p&gt;I made a full circle before adopting this technique exclusively. Spending years
+writing CSS, SCSS and now SASS while using Bootstrap, Foundation, various grid
+systems, Neat, Bourbon and what else there is.&lt;/p&gt;
+
+&lt;h2&gt;But how can we use it, we already using Whatever?&lt;/h2&gt;
+
+&lt;p&gt;The approach I preach to have a library of atomic, immutable small classes that
+can be combined for layout purposes. And top it off with smart reset for HTML
+elements. So all inputs, buttons and whatnot looks fine as is.&lt;/p&gt;
+
+&lt;p&gt;You only describe some specific behaviour in CSS you write. The basic styling
+and positioning is done with the base classes.&lt;/p&gt;
+
+&lt;h2&gt;Do we have to change something?&lt;/h2&gt;
+
+&lt;p&gt;Start with adding small one-liners. Here are for example three one-line clases
+for the menu. When you decide you need more you can continue.&lt;/p&gt;
+
+&lt;p&gt;Here is what the HTML could look like (Slim/Jade)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-slim&quot; data-lang=&quot;slim&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.menu&lt;/span&gt;                     | Sets Colors, nothing else. The only class that needs to be defined in CSS
+  &lt;span class=&quot;nc&quot;&gt;.container&lt;/span&gt;              | Sets max-width for the inner container
+    &lt;span class=&quot;nc&quot;&gt;.sm-show.left.mr2&lt;/span&gt;     | Show on small screens and upwards, float left, double spacing to the right
+      &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;na&quot;&gt; src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;logo.png&amp;quot;&lt;/span&gt;
+
+   &lt;span class=&quot;nc&quot;&gt;.dropdown&lt;/span&gt;              | Dropdown wrapper, on hover show .dropdown-hidden
+      &lt;span class=&quot;nc&quot;&gt;.btn&lt;/span&gt; Purchasing     | Button-like look (transparent). Add hover effect that is font-color dependent
+      &lt;span class=&quot;nc&quot;&gt;.dropdown-hidden&lt;/span&gt;    | Container for Submenu
+        &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.btn&lt;/span&gt;             | Submenu itself
+        &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.btn&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So the only CSS one has to write to hydrate the menu with some dynamic style (module or not):&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.menu&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#xxx&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#xxx&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you don&amp;#39;t need anything dynamic, just replace &lt;code&gt;.menu&lt;/code&gt; with &lt;code&gt;.bg-blue.white&lt;/code&gt;.
+And that removes CSS completely.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;.btn&lt;/code&gt; class applies transparent button look by default. It inherits font and
+hover color from text so it works with any kind of stuff.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;button&amp;gt;&lt;/code&gt; HTML tag or &lt;code&gt;.button&lt;/code&gt; class on the other hand is pre-styled as a
+fully-blown button with colored background (it is actually inherited from
+&lt;code&gt;.btn.btn-primary&lt;/code&gt;).&lt;/p&gt;
+
+&lt;h2&gt;What if we don&amp;#39;t like it?&lt;/h2&gt;
+
+&lt;p&gt;This is the best part, each module is like 10-20 lines long. Look at the
+filesizes in the following section.  You can easily replace or recreate parts
+you don&amp;#39;t like. It&amp;#39;s all built from CSS modules by the way.&lt;/p&gt;
+
+&lt;h2&gt;Questions?&lt;/h2&gt;
+
+&lt;p&gt;Since I have adopted this approach I almost stopped writing css and it&amp;#39;s really
+easy to work with the projects now when I don&amp;#39;t have to edit multiple files.
+Another side effect is when you open the view you can &lt;em&gt;read&lt;/em&gt; what it is going
+to &lt;em&gt;look&lt;/em&gt; like. Kind of like in the Matrix movie.&lt;/p&gt;
+
+&lt;p&gt;For example the whole CSS for my &lt;a href=&quot;http://molokphuket.com&quot;&gt;wife&amp;#39;s website&lt;/a&gt; is&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;d love to show more examples, production code or answer questions. Here are some links to digest meanwhile:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://jxnblk.com/gravitons&quot;&gt;Gravitons&lt;/a&gt; — A base set of simple utilities to start with&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://basscss.com&quot;&gt;BASSCSS&lt;/a&gt; — The actual library I am suggestion to use&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://github.com/firedev/basscss-fix&quot;&gt;BASSCSS-FIX&lt;/a&gt; — Some things I wasn&amp;#39;t content with&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://jxnblk.com/rebass&quot;&gt;ReBASS&lt;/a&gt; — BASSCSS-based React componets (&lt;code&gt;Row&lt;/code&gt;, &lt;code&gt;Column&lt;/code&gt;, &lt;code&gt;Button&lt;/code&gt; etc)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://tachyons.io&quot;&gt;Tachyons&lt;/a&gt; — Another tiny library with similar ideas&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://solid.buzzfeed.com&quot;&gt;Solid&lt;/a&gt; — Buzzfeed implementation&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=0aBv8dsZs84&quot;&gt;Styling React Components in JavaScript&lt;/a&gt; — Embedding is disabled but the fun part starts in the second half of the video.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Boilerplate&lt;/h2&gt;
+
+&lt;p&gt;This approach really shines with templating engines that use terse indented syntax. So if
+you are still on the fence but willing to try it and like Slim I made
+boilerplate to demo some of the ideas.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://github.com/firedev/boilerplate&quot;&gt;Slim/SASS/BASS Boilerplate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Usage is simple. You just have to have &lt;code&gt;npm&lt;/code&gt;, &lt;code&gt;bower&lt;/code&gt;, and &lt;code&gt;grunt&lt;/code&gt; installed:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install
+bower install
+grunt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here&amp;#39;s what you can achieve in 10 minutes time:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://firedev.com/boilerplate/&quot;&gt;Page Mockup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/firedev/boilerplate/blob/example/slim/index.slim&quot;&gt;Source&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+        </description>
+        <pubDate>Tue, 22 Dec 2015 00:00:00 +0700</pubDate>
+        <link>http://firedev.com/posts/2015/immutable-css/</link>
+        <guid isPermaLink="true">http://firedev.com/posts/2015/immutable-css/</guid>
+        
+        <category>css</category>
+        
+        <category>react</category>
+        
+        <category>components</category>
+        
+        
+        <category>posts</category>
+        
+      </item>
     
       <item>
         <title>Apple Magic Keyboard, Magic Mouse 2 and Magic Trackpad 2</title>
@@ -1963,260 +2174,6 @@ nothing to commit, working directory clean&lt;/code&gt;&lt;/pre&gt;&lt;/figure&g
         <guid isPermaLink="true">http://firedev.com/posts/2015/git-ignore-deleted-files/</guid>
         
         <category>git</category>
-        
-        
-        <category>posts</category>
-        
-      </item>
-    
-      <item>
-        <title>Getting functional in Ruby</title>
-        <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/colors.png"/&gt;&lt;/p&gt;
-          &lt;p&gt;Lately I am working on an old code base and that means working with the old CSS.
-One of the techniques to use when refactoring CSS is to replace colors with variables.
-But first you need to find and catalogue all the colors in the project.&lt;/p&gt;
-
-&lt;h2&gt;Extracting colors from a project&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;#39;s find all colors used in a project. Regular expression I came up with finds
-a pound sign &lt;code&gt;#&lt;/code&gt; followed by 3 or 6 numbers or letters in the range from &lt;code&gt;a&lt;/code&gt; to &lt;code&gt;f&lt;/code&gt;
-and stops at the word boundary.&lt;/p&gt;
-
-&lt;p&gt;I am using &lt;a href=&quot;https://github.com/ggreer/the_silver_searcher&quot;&gt;The Silver Searcher&lt;/a&gt;.
-The output is too human-readable so let&amp;#39;s throw in some options to dumb it down:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;-i --ignore-case
-  Match &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt;-insensitively
-
--o --only-matching
-  Print only the matching part of the lines
-
---nonumbers
-  No line numbers
-
---nofilename
-  No file names
-
---nocolor
-  No color
-
---nobreak
-  No linebreaks between results in different files&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Thats a quite a list of options but I like &lt;code&gt;ag&lt;/code&gt;. Now let&amp;#39;s pipe the output
-through &lt;code&gt;sort --uniq -f&lt;/code&gt; to remove the duplicates ignoring the case and count the lines with &lt;code&gt;wc -l&lt;/code&gt;:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ag -io --nonumber --nofilename &lt;span class=&quot;s2&quot;&gt;&amp;quot;#([\da-f]{3}|[\da-f]{6})\b&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort --uniq &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; wc -l
-229&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Wow that&amp;#39;s a large number. The problem is, right now &lt;code&gt;#fff&lt;/code&gt; and &lt;code&gt;#ffffff&lt;/code&gt;
-are treated as different colors. But I guess this is something we can fix in Ruby.&lt;/p&gt;
-
-&lt;p&gt;Here is what we are going to do:&lt;/p&gt;
-
-&lt;h3&gt;With the given list of colors&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Convert colors to full hex&lt;/li&gt;
-&lt;li&gt;Make the list unique&lt;/li&gt;
-&lt;li&gt;Order by hue&lt;/li&gt;
-&lt;li&gt;Print the palette so we can see what is going on&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2&gt;Functional Background&lt;/h2&gt;
-
-&lt;p&gt;After getting some inspiration from
-&lt;a href=&quot;https://www.youtube.com/watch?v=tq5SQ4W3gRI&quot;&gt;Ruby Midwest 2013 Functional Principles for OO Development&lt;/a&gt;
-talk by Jessica Kerr I have decided to go all functional here.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Enumerable#map&lt;/code&gt; is the single most important method here. Just keep things mappable and you&amp;#39;re fine.
-If you are not sure about it, wrap your arguments in &lt;code&gt;Array()&lt;/code&gt;, use asterisk &lt;code&gt;*&lt;/code&gt; or &lt;code&gt;.to_a&lt;/code&gt; method.
-Just make sure you have Enumerator on input.&lt;/p&gt;
-
-&lt;p&gt;Most Ruby developers know about the pretzel symbol-to-proc operator that converts a
-given symbol into a proc that calls the same method on the given object.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:upcase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;B&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;C&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Pretzel &lt;code&gt;&amp;amp;&lt;/code&gt; here converts &lt;code&gt;:upcase&lt;/code&gt; to a Proc and serves as a syntax sugar.
-The &amp;#39;unpacked&amp;#39; version would look like this:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upcase&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;But I don&amp;#39;t want to chain my lambdas in the ugly way, too bad there is no short syntax
-for lambdas in Ruby. Or is it? Turns out there is. Given the &lt;code&gt;upper&lt;/code&gt; lambda:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upcase&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Even after replacing &lt;code&gt;call&lt;/code&gt; with &lt;code&gt;.()&lt;/code&gt; it still doesn&amp;#39;t look nice:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;But there is a special syntax for lambdas that makes it all sweet:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sx&quot;&gt;%w(a b c)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;B&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;C&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Now that&amp;#39;s better, and to me that was the only part missing.
-Let&amp;#39;s store filtered &lt;code&gt;ag&lt;/code&gt; output to the ruby file and start messing around:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;io&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nonumber&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nofilename&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;#([\da-f]{3}|[\da-f]{6})&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\b&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Another less-known feature in Ruby is that you can treat the rest of file as data
-if you add &lt;code&gt;__END__&lt;/code&gt; to your program. Here is an excerpt from the Ruby Docs:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;DATA&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;that&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contains&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;executed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;To&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;__END__&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;We can simply use the reset of the executable file as a &lt;code&gt;DATA&lt;/code&gt; enumerator. Cool, eh?&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# colors.rb&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DATA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
-
-&lt;span class=&quot;cp&quot;&gt;__END__&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;#000&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;#008000&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;#00A347&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2&gt;Let&amp;#39;s get to business&lt;/h2&gt;
-
-&lt;p&gt;For this project I will use &lt;a href=&quot;https://github.com/jordanstephens/paleta&quot;&gt;Paleta&lt;/a&gt; gem.
-We have the colors loaded into the &lt;code&gt;DATA&lt;/code&gt; enumerator. The only thing that&amp;#39;s left is to
-create some lambdas accoding to the plan.&lt;/p&gt;
-
-&lt;h3&gt;1. Convert colors to full hex&lt;/h3&gt;
-
-&lt;p&gt;To do that we are going to feed the color to Paleta and get hex value back. The only thing we need to add
-is &lt;code&gt;chomp&lt;/code&gt; to get rid of the newlines in strings:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;paleta&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;to_full_hex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Paleta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hex&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DATA&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:chomp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_full_hex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h3&gt;2. Make the list unique&lt;/h3&gt;
-
-&lt;p&gt;Simply add &lt;code&gt;.uniq&lt;/code&gt; and finally we can see the real number of unique colors in the project.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DATA&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:chomp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_full_hex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
-
-&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt;
-&lt;span class=&quot;mi&quot;&gt;221&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;What?! Okay, damn it, only a few colors were not unique. White and black I guess.&lt;/p&gt;
-
-&lt;h3&gt;3. Order by hue&lt;/h3&gt;
-
-&lt;p&gt;That might sound tricky but Paleta comes to the rescue.
-Paleta provides a &lt;code&gt;.hue&lt;/code&gt; method that we could use to sort colors. But since they are
-strings we need to convert them back to objects.&lt;/p&gt;
-
-&lt;p&gt;That sounds fishy because it is. Let&amp;#39;s use this opportunity and refactor the code slightly.
-We remove &lt;code&gt;.hex&lt;/code&gt; from the &lt;code&gt;to_full_hex&lt;/code&gt; method and rename it. This refactoring
-gives us even more freedom:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;paleta&amp;#39;&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;to_paleta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Paleta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DATA&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:chomp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_paleta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
-
-  &lt;span class=&quot;cp&quot;&gt;__END__&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;  #000&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;  #008000&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;  ...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h3&gt;4. Print the palette so we can see what is going on&lt;/h3&gt;
-
-&lt;p&gt;Now let&amp;#39;s devise a human-viewable palette so we could judge the colors.
-Make some nice-looking colored &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;s or something.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;to_div&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;div style=&amp;#39;width: 5em; height: 3em; display: inline-block; background: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;#39;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;s2&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&lt;/span&gt;
-&lt;span class=&quot;s2&quot;&gt;  &amp;lt;/div&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;And pipe it to a new file, because at the moment of writing this Paleta generated some
-warning about Rmagic.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;colors.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DATA&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:chomp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_paleta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2&gt;Command-line reader&lt;/h2&gt;
-
-&lt;p&gt;Okay that is nice but let&amp;#39;s improve it a bit. First of all lets get rid of the static DATA
-so we could use it right from the command line. That allows us to get right of &lt;code&gt;sort&lt;/code&gt;.
-Simply change &lt;code&gt;DATA&lt;/code&gt; to &lt;code&gt;ARGF&lt;/code&gt; and remove the &lt;code&gt;__END__&lt;/code&gt; part.&lt;/p&gt;
-
-&lt;p&gt;Then lets open the resulting file right away.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env ruby&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;paleta&amp;#39;&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;to_paleta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Paleta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;to_div&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;div style=&amp;#39;font-family: sans-serif; width: 5em; height: 3em; border-radius 0.25em;&lt;/span&gt;
-&lt;span class=&quot;s2&quot;&gt;               line-height: 3em; display: inline-block; margin: 0.25em; text-align: center&lt;/span&gt;
-&lt;span class=&quot;s2&quot;&gt;               background: #&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;#39;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;s2&quot;&gt;  #&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&lt;/span&gt;
-&lt;span class=&quot;s2&quot;&gt;  &amp;lt;/div&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;colors.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;ARGF&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:chomp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_paleta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniq&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;sb&quot;&gt;`open colors.html`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Now you can pipe the output from &lt;code&gt;ag&lt;/code&gt; and even sample a single css file if needed. Don&amp;#39;t forget to &lt;code&gt;chmod +x colors.rb&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Here is the &lt;a href=&quot;https://gist.github.com/firedev/1b3e03afd9c7fca93207&quot;&gt;final version&lt;/a&gt;
-you can use for processing your files or projects:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ag -io --nonumber --nofilename &lt;span class=&quot;s2&quot;&gt;&amp;quot;#([\da-f]{3}|[\da-f]{6})\b&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;path&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ./colors.rb&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;It makes sense to sort palettes by hue or lightness or saturation, this is simply
-a matter of changing a method name in &lt;code&gt;.map(&amp;amp;:hue)&lt;/code&gt;. Maybe some command-line switches
-would be appropriate here as well but this was enough for my needs and I just
-wanted to document the approach.&lt;/p&gt;
-
-        </description>
-        <pubDate>Mon, 08 Jun 2015 00:00:00 +0700</pubDate>
-        <link>http://firedev.com/posts/2015/getting-functional-in-ruby/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/2015/getting-functional-in-ruby/</guid>
-        
-        <category>ruby</category>
         
         
         <category>posts</category>
