@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Dec 2015 13:40:40 +0700</pubDate>
-    <lastBuildDate>Tue, 22 Dec 2015 13:40:40 +0700</lastBuildDate>
+    <pubDate>Sat, 16 Jan 2016 15:28:10 +0700</pubDate>
+    <lastBuildDate>Sat, 16 Jan 2016 15:28:10 +0700</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -110,8 +110,8 @@ with &lt;code&gt;.col-8&lt;/code&gt; given 12-column grid.&lt;/p&gt;
 In fact it&amp;#39;s a set of css modules: &lt;code&gt;whitespace&lt;/code&gt;, &lt;code&gt;grid&lt;/code&gt;, &lt;code&gt;forms&lt;/code&gt;, etc. A dozen
 one-liners each that can be reused everywhere.&lt;/p&gt;
 
-&lt;p&gt;I made a full circle before adopting this technique exclusively. Spending years
-writing CSS, SCSS and now SASS while using Bootstrap, Foundation, various grid
+&lt;p&gt;I made a full circle before adopting this technique exclusively. After working
+with CSS, SCSS and now SASS while using Bootstrap, Foundation, various grid
 systems, Neat, Bourbon and what else there is.&lt;/p&gt;
 
 &lt;h2&gt;But how can we use it, we already using Whatever?&lt;/h2&gt;
@@ -212,7 +212,7 @@ grunt
         <link>http://firedev.com/posts/2015/immutable-css/</link>
         <guid isPermaLink="true">http://firedev.com/posts/2015/immutable-css/</guid>
         
-        <category>css</category>
+        <category>CSS</category>
         
         <category>react</category>
         
