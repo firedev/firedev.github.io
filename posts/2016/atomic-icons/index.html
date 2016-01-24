@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Atomic Icons</title>
+  <meta name="description" content="Once in a while comes a moment when you decide to change icon set you have beenusing. Just a bit of upfront planning goes a long way. Here is a system thattu...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://firedev.com/posts/2016/atomic-icons/">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta property="og:url" content="http://firedev.com/posts/2016/atomic-icons/" />
+  <meta property="og:title" content="Atomic Icons" />
+  <meta property="og:description" content="Once in a while comes a moment when you decide to change icon set you have been
+using. Just a bit of upfront planning goes a long way. Here is a system that
+turns icons into independent components.
+" />
+  <meta property="og:image" content="http://firedev.com/images/posts/atomic-icons.png" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="container px2 mt2 mb2">
+    <div class="clearfix mxn2">
+      <div class="sm-col sm-col-3 px2">
+        <h1 class="logo m0 relative">
+          <a href="/" id="logo">
+            <span class="hide">
+              <span class="fire">
+                fire
+              </span>
+              <span class="dev">
+                dev
+              </span>
+              <span class="com">
+                .com
+              </span>
+            </span>
+            <img src="/images/logos/firedev.svg" alt="firedev.com" class="absolute bottom-0" />
+            &nbsp;
+          </a>
+        </h1>
+      </div>
+      <nav class="sm-col sm-col-9 px2 mt2 py1">
+        <div class="right mt2 p1 md-show">
+          <a class="btn silver regular" href="/feed.xml">
+            <i class="fa fa-rss"></i>
+            RSS
+          </a>
+        </div>
+        <h3>
+          
+            
+          
+            
+              
+                <a class="btn" href="/posts/">
+                  Posts
+                </a>
+              
+            
+          
+            
+              
+                <a class="btn" href="/projects/">
+                  Projects
+                </a>
+              
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+        </h3>
+      </nav>
+    </div>
+  </div>
+</header>
+
+    
+<div class="main-image mb3" style="
+background-image: url(/images/posts/atomic-icons.png);
+background-size: contain;
+background-color: ;
+background-position: ;
+">
+</div>
+
+
+    <div class="container px2 mb4">
+        <header class="mxn2 p2 rounded-top bg-darkened-1 mb3">
+  <p>Jan 24, 2016</p>
+  <h1 class="m0 mb2">Atomic Icons</h1>
+  <div class="mb3 lh25">
+ 
+
+<a href="/CSS/" class="button bg-orange white lh1"> Css </a>
+ 
+
+<a href="/react/" class="button bg-orange white lh1"> React </a>
+ 
+
+<a href="/components/" class="button bg-orange white lh1"> Components </a>
+
+</div>
+
+</header>
+
+
+<div class="mb3">
+  <article class="mb3">
+    <p>Once in a while comes a moment when you decide to change icon set you have been
+using. Just a bit of upfront planning goes a long way. Here is a system that
+turns icons into independent components.</p>
+
+<p>Before we start I need to explain that actual icon implementation doesn&#39;t matter.
+It is not important if you are using PNG, SVG, Icon Fonts or whatever there is.</p>
+
+<p>I personally like Font Awesome because it&#39;s easy to use. Not without drawbacks
+though. While icon fonts just started to be rendered consistently good across
+browsers there is some backlash. Sometimes they might not be rendered correctly
+still and might cause some issues for screen reading software.</p>
+
+<p>A ready to use vector set that looks okay in all resolutions and can be stacked
+is indispensable. But there is another drawback with Font Awesome in
+particular. It was built with 14px font size in mind. These days I tend to
+not change browser defaults. And some sort of 16px base icon font would not
+hurt to get crisp icons.</p>
+
+<p>Having said that, it seems SVG is the way to go at the moment. But enough digression let&#39;s get to
+business.</p>
+
+<h2>Can we have icons without pain?</h2>
+
+<p>I myself tried different approaches before coming to this. And I have endured
+migrations from images to icon fonts, then from one icon font to another, then
+syntax changes in font awesome. HTML, CSS, SASS, SVG, inline SVG, Icon Fonts,
+Custom fonts... You name it.</p>
+
+<p>Each transition did lead me closer to this solution. As I am the only
+maintainer of the things I make I distill everything to the simplest and most
+effective form.</p>
+
+<h2>Atomic Icon</h2>
+
+<p>The gist of the idea is <strong>You get one entry point for icons and do not display then differently</strong>.</p>
+
+<p>You do not use <code>@extend</code> in SASS to inject icons in buttons, you don&#39;t add icon
+classes to <code>span</code> or <code>a</code>. And it always passing through your own implementation.</p>
+
+<p>Let&#39;s start with the Rails app with Font Awesome gem. In this case you&#39;re almost set.
+All you need to do is stick to</p>
+
+<h2><code>&lt;Icon&gt;</code> component</h2>
+
+<p>To combat icon pains I have developed a system that works pretty well. Instead of multiplying icon classes we are introducing the Icon component.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;Icon icon=&#39;remove&#39; /&gt;
+</code></pre></div>
+<p>Output:</p>
+
+<p>❌</p>
+
+<p>This is it. Pure, immutable, <code>1em</code> height icon. Implementation is irrelevant at this point as it can be anything. We can even reuse current fugue icon set.</p>
+
+<h2>Usage in buttons</h2>
+
+<p>As of now I see there are two ways buttons are used. <code>&lt;Button /&gt;</code> and <code>&lt;button&gt;</code>. One is React component, another is actual html button tag. To use them right now you need to pass in <code>className: &quot;reset&quot;</code>.</p>
+
+<p>Compare to this:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;button&gt;
+  &lt;Icon icon=&#39;remove&#39; /&gt;
+  Delete
+&lt;/button&gt;
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;Button icon=&quot;remove&quot;&gt;
+  Delete
+&lt;/Button&gt;
+</code></pre></div>
+<p><img src="https://cloud.githubusercontent.com/assets/115612/11738347/98d1e0d2-a014-11e5-92be-d1c0e60587a5.png" alt="image"></p>
+
+<h2>What&#39;s the point?</h2>
+
+<p>We are getting rid of the obscure CSS. Buttons stay buttons. No margins or anything. Icons are reuseable and aren&#39;t tied to a particular implementation.</p>
+
+<p>And now we can compose:</p>
+
+<h3>📌 Pin</h3>
+
+<h3>💔 Dislike</h3>
+
+<h3>Cloud 💭</h3>
+
+<h2>What&#39;s the catch?</h2>
+
+<p>React does not produce whitespace between tags and icon would be glued to the text. From the experience I have found that this approach works best with three components.</p>
+
+<ul>
+<li><code>&lt;Icon&gt;</code> — icon <em>atom</em>. The minimal representation. It can be <code>&lt;img&gt;</code>, <code>&lt;svg&gt;</code>, <code>i.fa</code></li>
+<li><code>&lt;IconBefore&gt;</code> — icon with right spacing for use in from of the text without spaces.</li>
+<li><code>&lt;IconAfter&gt;</code> — icon with left spacing to be used after text</li>
+</ul>
+
+<p>Thus the <code>&lt;Button&gt;</code> component could be equipped with the
+ additional parameters. <em>Only if needed.</em></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;Button iconBefore=&quot;remove&quot; iconAfter=&quot;cloud&quot;&gt;
+  Remove from
+&lt;/Button&gt;
+</code></pre></div>
+<p><img src="https://cloud.githubusercontent.com/assets/115612/11738334/731e2f26-a014-11e5-873a-c960ae1fb644.png" alt="image"></p>
+
+<h2>Conclusion</h2>
+
+<p>Atomic composable components allow us to abstract from the implementation and move forward without worrying about breaking things up.</p>
+
+<p>We can switch implementation (read icon sets) on the fly without headache.</p>
+
+  </article>
+
+  <div class="mb3 lh25">
+ 
+
+<a href="/CSS/" class="button bg-orange white lh1"> Css </a>
+ 
+
+<a href="/react/" class="button bg-orange white lh1"> React </a>
+ 
+
+<a href="/components/" class="button bg-orange white lh1"> Components </a>
+
+</div>
+
+
+</div>
+<div class="mt4">
+<div class="clearfix mxn2 mb4">
+  <div class="sm-col sm-col-3 px2">
+    <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
+  </div>
+  <div class="sm-col sm-col-6 px2">
+    <h2 class="mt0 h1">
+      Nick Ostrovsky
+    </h2>
+    <p>
+      Full-stack designer. I like to keep things minimal and as simple as possible.
+    </p>
+    <p>
+      Enjoying beautiful scenery of Phuket, Thailand with <a href="http://molokophuket.com">wife</a> and
+      two <a href="http://anya.io">daughters</a>.
+    </p>
+  </div>
+  <div class="sm-col sm-col-3 sm-show">
+    <div class="ml2">
+      <a class="p1 px2 white bg-green rounded mb1 inline-block" href="mailto:nick@firedev.com"
+      title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a>
+      <a class="p1 px2 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
+      <a class="p1 px2 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
+      <!--<a class="p1 px2 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
+      <a class="p1 px2 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i> StackOverflow</a>
+      <a class="p1 px2 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Hire Me</a>
+    </div>
+  </div>
+</div>
+
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'firedevcom';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    </div>
+
+    <footer>
+    <div class="container px2 mt4 mb2 center">
+        With <i class="fa fa-heart red"></i>
+        <a href="http://firedev.com"><strong>firedev.com</strong></a>
+    </div>
+    <div class="container px2 mb4 center">
+        <a class="muted" href="mailto:nick@firedev.com">Email me</a>
+    </div>
+</footer>
+
+    <script src="/js/firedev.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69016906-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+
+</html>
