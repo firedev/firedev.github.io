@@ -54,7 +54,7 @@ And the actual `_post.html` include uses `include.post` variable:
 
 This is something I would do in Rails. Everything seems pretty sweet so far.
 The only issue is that I have to write HTML again which seems as a step back
-after years of using Slim.
+after Slim.
 
 Hosting the new static site at
 [firedev.github.io](http://firedev.github.io), courtesy of Github.

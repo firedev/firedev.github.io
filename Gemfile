@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 gem 'jekyll'
-gem 'slim'
 gem 'redcarpet'
 gem 'pygments.rb'
+gem 'redcarpet'
