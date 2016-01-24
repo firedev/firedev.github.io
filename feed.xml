@@ -6,9 +6,261 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 24 Jan 2016 13:21:49 +0700</pubDate>
-    <lastBuildDate>Sun, 24 Jan 2016 13:21:49 +0700</lastBuildDate>
+    <pubDate>Sun, 24 Jan 2016 14:35:04 +0700</pubDate>
+    <lastBuildDate>Sun, 24 Jan 2016 14:35:04 +0700</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Atomic Icons</title>
+        <description>
+          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/atomic-icons.png"/&gt;&lt;/p&gt;
+          &lt;p&gt;Once in a while comes a moment when you decide to change an icon set you have
+been using. Just a bit of upfront planning goes a long way. Consider a system
+that turns icons into independent components.&lt;/p&gt;
+
+&lt;p&gt;Before we start I need to explain that actual icon implementation doesn&amp;#39;t matter.
+It is not important if you are using PNG, SVG, Icon Fonts or whatever there is.&lt;/p&gt;
+
+&lt;p&gt;I personally like Font Awesome because it&amp;#39;s easy to use. Not without drawbacks
+though. While icon fonts just started to be rendered somewhat consistently
+across browsers there is some backlash against them. Sometimes they might not
+be rendered correctly still and might cause some issues for screen reading
+software.&lt;/p&gt;
+
+&lt;p&gt;A ready to use vector set that looks okay in all resolutions and can be stacked
+is indispensable. But there is another drawback with Font Awesome in
+particular. It was built with 14px font size in mind. These days I tend to
+not change browser defaults. And some sort of 16px base icon font would not
+hurt to get crisp icons.&lt;/p&gt;
+
+&lt;p&gt;Having said that, it seems SVG is the way to go at the moment. But enough digression let&amp;#39;s get to
+business.&lt;/p&gt;
+
+&lt;h2&gt;Can we have icons without pain?&lt;/h2&gt;
+
+&lt;p&gt;I myself tried different approaches before coming to this. And I have endured
+migrations from images to icon fonts, then from one icon font to another, then
+syntax changes in font awesome. HTML, CSS, SASS, SVG, inline SVG, Icon Fonts,
+Custom fonts... You name it.&lt;/p&gt;
+
+&lt;p&gt;Each transition did lead me closer to this solution. As I am the only
+maintainer of the things I make I distill everything to the simplest and most
+effective form.&lt;/p&gt;
+
+&lt;h2&gt;Atomic Icons&lt;/h2&gt;
+
+&lt;p&gt;Atomic composable components allow us to abstract from the implementation and
+move forward without worrying about breaking things up.&lt;/p&gt;
+
+&lt;p&gt;We can switch implementation (read icon sets) on the fly without headache.&lt;/p&gt;
+
+&lt;p&gt;But there is a catch:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;You create one way of displaying icons and stick to it.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You do not use &lt;code&gt;@extend&lt;/code&gt; in SASS to inject icons in buttons, you don&amp;#39;t add icon
+classes to &lt;code&gt;span&lt;/code&gt; or &lt;code&gt;a&lt;/code&gt;. Every icon displayed must be passing through your own
+implementation.&lt;/p&gt;
+
+&lt;p&gt;This claim might sound either trivial or ridiculous depending on your standpoint,
+so let me reinforce it with some examples. I don&amp;#39;t know if you remember Font Awsome
+changing their class naming from &lt;code&gt;icon-*&lt;/code&gt; to &lt;code&gt;fa fa-*&lt;/code&gt;?  Have you had a chance to
+find all the places where you have used some &lt;code&gt;fa-circle&lt;/code&gt; that became &lt;code&gt;fa-circle-o&lt;/code&gt;?
+Or making sure there is no single reference of &lt;code&gt;png&lt;/code&gt; or &lt;code&gt;gif&lt;/code&gt; in the project?&lt;/p&gt;
+
+&lt;h2&gt;History lesson&lt;/h2&gt;
+
+&lt;p&gt;Before we get to the actual solution let&amp;#39;s recap how the mess creeps into
+the system in the first place. Imagine an app with icon buttons:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;button&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;icons/ok.gif&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; Save&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Years pass and it gets obsoluete quickly. You start having dynamic buttons so
+as a simplest solution you&amp;#39;re changing &lt;code&gt;src&lt;/code&gt; attributes. Then one day you&amp;#39;re
+deciding that this is enough mess and move stying to CSS:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ok&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;url(icons/ok.gif)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But then you need to have padding to compensate for the icon size...&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;background-position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;8px&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Oh darn it, we don&amp;#39;t have icons for all buttons. Let&amp;#39;s have a prefix! And switch to SASS:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;k&quot;&gt;@mixin&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;($&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;32px&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;background-position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;8px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;icons&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.gif&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.icon-ok&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ok&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;icon-ok&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Save&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Yey, almost there. Plus now we can reuse the same class for links and stuff.&lt;/p&gt;
+
+&lt;p&gt;Time flies and now you&amp;#39;re forced to do something with this, so you decide to
+change it to icon font.  With power of sass that sounds easy. Using Font
+Squirrel or IcoMoon your compile your own icon font implementation.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;k&quot;&gt;@mixin&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;($&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;CustomFont&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.icon-ok&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ok&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;\#ok;&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The team lead likes the effors and decides that we now need to have all icons done this way.&lt;/p&gt;
+
+&lt;p&gt;But then your team moves to Slim or React and now you have to insert spaces everywhere icons
+starts sticking to text. The CSS grows with more and more intricacies.&lt;/p&gt;
+
+&lt;p&gt;You need to use icons separately too right? So let&amp;#39;s create another rule for &lt;code&gt;button.icon-ok&lt;/code&gt; and
+&lt;code&gt;.icon-ok&lt;/code&gt; standalone. And for other icons. And other tags, because links can be inline.
+And headers, icons looks comically tiny in headers.&lt;/p&gt;
+
+&lt;p&gt;So what can we do?&lt;/p&gt;
+
+&lt;h2&gt;Icon Component&lt;/h2&gt;
+
+&lt;p&gt;To combat icon pains I have developed a system that works pretty well. Instead
+of multiplying icon classes we are introducing the Icon component.&lt;/p&gt;
+
+&lt;p&gt;It does one thing - displays an icon. Font Awesome Rails gem has a &lt;code&gt;fa_icon&lt;/code&gt; helper that does that.
+But we wrap it in our own view helper, icon:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;= icon &amp;#39;remove&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In React that would be something like:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;Icon icon=&amp;#39;remove&amp;#39; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+
+&lt;p&gt;&lt;i class=&quot;fa fa-remove&quot;&gt;&lt;/i&gt;&lt;/p&gt;
+
+&lt;p&gt;This is it. Pure, immutable, &lt;code&gt;1em&lt;/code&gt; width and height icon. Again, implementation is irrelevant.
+It can be anything as long as there is one way to call it.&lt;/p&gt;
+
+&lt;h2&gt;Usage in buttons&lt;/h2&gt;
+
+&lt;p&gt;This simple thing frees our hands immediately. You don&amp;#39;t style buttons anymore.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-erb&quot; data-lang=&quot;erb&quot;&gt;&lt;span class=&quot;x&quot;&gt;&amp;lt;button&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;icon&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;remove&amp;#39;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;  Delete&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;button&gt;&lt;i class=&quot;fa fa-remove&quot;&gt;&lt;/i&gt; Remove&lt;/button&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s see how can we use is in React component instead of &lt;code&gt;className: &amp;quot;remove&amp;quot;&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;button&amp;gt;
+  &amp;lt;Icon icon=&amp;#39;remove&amp;#39; /&amp;gt;
+  Delete
+&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;Button icon=&amp;quot;remove&amp;quot;&amp;gt;
+  Delete
+&amp;lt;/Button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Oh wait, but why they are stuck together:&lt;/p&gt;
+
+&lt;p&gt;&lt;button&gt;&lt;i class=&quot;fa fa-remove&quot;&gt;&lt;/i&gt;Remove&lt;/button&gt;&lt;/p&gt;
+
+&lt;p&gt;Exactly, in some libraries, namely React and Slim, the whitespace is trimmed.
+So instead of beating around the bush with non-breaking spaces and stuff I found
+a simple solution that works. You get a set of three helpers.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;Icon&amp;gt;&lt;/code&gt; — icon &lt;em&gt;atom&lt;/em&gt;. The minimal representation. It can be &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;svg&amp;gt;&lt;/code&gt;, &lt;code&gt;i.fa&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;IconBefore&amp;gt;&lt;/code&gt; — icon with right spacing for use in from of the text without spaces.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;IconAfter&amp;gt;&lt;/code&gt; — icon with left spacing to be used after text&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here are the corresponding &lt;a href=&quot;https://github.com/firedev/basscss-fix/blob/master/app/helpers/icon_helper.rb&quot;&gt;rails helpers&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;IconHelper&lt;/span&gt;
+    &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;FontAwesome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;IconHelper&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;fa_icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;icon_before&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;whatever&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; pr1&amp;quot;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;whatever&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;icon_after&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;whatever&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; pl1&amp;quot;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;whatever&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;While in Slim you do it like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-slim&quot; data-lang=&quot;slim&quot;&gt;&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;icon_before&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;remove&amp;#39;&lt;/span&gt;
+  | Remove from
+  &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;icon_after&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;cloud&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I don&amp;#39;t see a point for additional verbosity in React component so it can be something like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;Button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;icon=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;remove&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;iconAfter=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;cloud&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  Remove from
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Button&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The output should be identical. Note even whitespace:&lt;/p&gt;
+
+&lt;p&gt;&lt;button&gt;&lt;i class=&quot;fa fa-remove pr1&quot;&gt;&lt;/i&gt;Remove from&lt;i class=&quot;fa fa-cloud pl1&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/p&gt;
+
+&lt;p&gt;What&amp;#39;s with &lt;code&gt;pr1&lt;/code&gt; &lt;code&gt;pl1&lt;/code&gt; classes? They are providing &lt;code&gt;padding-left&lt;/code&gt; and &lt;code&gt;padding-right&lt;/code&gt;. Why not &lt;code&gt;margin&lt;/code&gt;?
+Because that produces an unclickable space if you are using an icon inside a link:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://github.com/firedev&quot;&gt;&lt;i class=&quot;fa fa-github pr1&quot;&gt;&lt;/i&gt;Github&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Or app is too old for this&lt;/h2&gt;
+
+&lt;p&gt;If you are in a transitional phase, and have some HTML or Backbone where you
+can&amp;#39;t use helpers or components, replace current icons implementation with
+&lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt; tags that use your own naming scheme in css.&lt;/p&gt;
+
+&lt;p&gt;This change alone will untie your hands and you can do icons inventorisation to
+see which ones you&amp;#39;re actually using.&lt;/p&gt;
+
+&lt;p&gt;Replace whatever you&amp;#39;re using at the moment:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;image-ok&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Save&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;button&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;icons/ok.gif&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Save&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;icon-warning&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;icons/exclamation-mark.gif&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt; File not found&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With something like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;button&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;icon-ok icon-before&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt;Save&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;What&amp;#39;s the point?&lt;/h2&gt;
+
+&lt;p&gt;This approach helps you to get rid of the obscure CSS. Buttons stay buttons and
+decoupled from the presentation. No margins or anything. Icons are reuseable
+and aren&amp;#39;t tied to a particular implementation. So you can experiment with the
+overall look and feel. And the best part is -- now you can compose:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://firedev.com/posts/2015/immutable-css/&quot;&gt;&lt;i class=&quot;fa fa-css3 pr1&quot;&gt;&lt;/i&gt;Immutable CSS&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;http://fontawesome.io/&quot;&gt;&lt;i class=&quot;fa fa-link pr1&quot;&gt;&lt;/i&gt;Font Awesome&lt;/a&gt;&lt;/p&gt;
+
+        </description>
+        <pubDate>Sun, 24 Jan 2016 00:00:00 +0700</pubDate>
+        <link>http://firedev.com/posts/2016/atomic-icons/</link>
+        <guid isPermaLink="true">http://firedev.com/posts/2016/atomic-icons/</guid>
+        
+        <category>CSS</category>
+        
+        <category>react</category>
+        
+        <category>components</category>
+        
+        
+        <category>posts</category>
+        
+      </item>
     
       <item>
         <title>Immutable CSS</title>
@@ -2114,68 +2366,6 @@ container or &lt;code&gt;body&lt;/code&gt; padding.&lt;/p&gt;
         <guid isPermaLink="true">http://firedev.com/posts/2015/nanogrid-fluid-responsive-css-grid-with-gutters/</guid>
         
         <category>CSS</category>
-        
-        
-        <category>posts</category>
-        
-      </item>
-    
-      <item>
-        <title>Git: Ignore deleted files</title>
-        <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/logos/git.png"/&gt;&lt;/p&gt;
-          &lt;p&gt;Sometimes working with other people you with you didn&amp;#39;t have some of the files
-in repository because they are getting in the way of your settings. &lt;code&gt;.ruby-version&lt;/code&gt;
-for instance.&lt;/p&gt;
-
-&lt;p&gt;You check out the repository and what the...&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone ...
-...
-rbenv: version &lt;span class=&quot;s1&quot;&gt;&amp;#39;2.1.5&amp;#39;&lt;/span&gt; is not installed&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Okay you delete the pesky &lt;code&gt;.ruby-version&lt;/code&gt; but now it is there for every commit:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rm .ruby-version
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git status
-On branch master
-Your branch is up-to-date with &lt;span class=&quot;s1&quot;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt;.
-Changes not staged &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; commit:
-  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;use &lt;span class=&quot;s2&quot;&gt;&amp;quot;git add/rm &amp;lt;file&amp;gt;...&amp;quot;&lt;/span&gt; to update what will be committed&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;use &lt;span class=&quot;s2&quot;&gt;&amp;quot;git checkout -- &amp;lt;file&amp;gt;...&amp;quot;&lt;/span&gt; to discard changes in working directory&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-        deleted:    .ruby-version&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;It&amp;#39;s impossible to ignore it by adding to &lt;code&gt;.gitignore&lt;/code&gt; but fortunately in git
-there is an option for everything.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git update-index --assume-unchanged .ruby-version
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git status
-On branch master
-Your branch is up-to-date with &lt;span class=&quot;s1&quot;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt;.
-nothing to commit, working directory clean&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Done! Phew, at least this wasn&amp;#39;t too much typing, was it? Another option is to truncate the file:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cat &amp;gt;&amp;gt; ~/.gitignore
-.ruby-version
-^C
-rbenv: version &lt;span class=&quot;s1&quot;&gt;&amp;#39;2.1.5&amp;#39;&lt;/span&gt; is not installed
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cat &amp;gt; .ruby-version
-^C
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git status
-On branch master
-Your branch is up-to-date with &lt;span class=&quot;s1&quot;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt;.
-nothing to commit, working directory clean&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;And as always be careful with git, don&amp;#39;t mess things up.&lt;/p&gt;
-
-        </description>
-        <pubDate>Tue, 09 Jun 2015 00:00:00 +0700</pubDate>
-        <link>http://firedev.com/posts/2015/git-ignore-deleted-files/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/2015/git-ignore-deleted-files/</guid>
-        
-        <category>git</category>
         
         
         <category>posts</category>
