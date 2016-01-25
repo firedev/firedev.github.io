@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Immutable CSS</title>
-  <meta name="description" content="This is extracted from the Github issue created to discuss the approach with myteam. Please bear with me if I refer to something that wasn&#39;t mentioned in...">
+  <meta name="description" content="This is extracted from the Github issue created to discuss the approach with myteam. Please bear with me if I refer to something that wasn’t mentioned in the...">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://firedev.com/posts/2015/immutable-css/">
@@ -21,7 +21,8 @@
   <meta property="og:url" content="http://firedev.com/posts/2015/immutable-css/" />
   <meta property="og:title" content="Immutable CSS" />
   <meta property="og:description" content="This is extracted from the Github issue created to discuss the approach with my
-team. Please bear with me if I refer to something that wasn&#39;t mentioned in the text.
+team. Please bear with me if I refer to something that wasn’t mentioned in the text.
+
 " />
   <meta property="og:image" content="http://firedev.com/images/posts/monolith.jpg" />
 </head>
@@ -135,7 +136,9 @@ background-position: ;
 
 
     <div class="container px2 mb4">
-        <header class="mxn2 p2 rounded-top bg-darkened-1 mb3">
+        
+
+<header class="mxn2 p2 rounded-top bg-darkened-1 mb3">
   <p>Dec 22, 2015</p>
   <h1 class="m0 mb2">Immutable CSS</h1>
   <div class="mb3 lh25">
@@ -157,81 +160,98 @@ background-position: ;
 <div class="mb3">
   <article class="mb3">
     <p>This is extracted from the Github issue created to discuss the approach with my
-team. Please bear with me if I refer to something that wasn&#39;t mentioned in the text.</p>
+team. Please bear with me if I refer to something that wasn’t mentioned in the text.</p>
 
-<h2>What is Immutable CSS?</h2>
+<h2 id="what-is-immutable-css">What is Immutable CSS?</h2>
 
-<p>It&#39;s a set of tiny classes that don&#39;t change. You have a set of predefined
+<p>It’s a set of tiny classes that don’t change. You have a set of predefined
 small classes that you reuse everywhere. They are mostly one-liners with clear
-semantics. And you don&#39;t write new CSS until it&#39;s absolutely needed.</p>
+semantics. And you don’t write new CSS until it’s absolutely needed.</p>
 
 <p>Lets pretend that we need to build a menu that changes background for each client.
 Consider the following example. The semantics is easy to remember: <code>m</code> —
 margin, <code>p</code> — padding.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;div class=&quot;menu mb1 p1&quot;&gt;
-  &lt;img src=&quot;logo.svg&quot;/&gt;
-&lt;/div&gt;
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">.mb1 { margin-bottom: x } - adds bottom spacing
+
+<p>```</p>
+<div class="menu mb1 p1">
+  <img src="logo.svg" />
+</div>
+<p>```</p>
+
+<p><code>
+.mb1 { margin-bottom: x } - adds bottom spacing
 .p1 { padding: x } - adds padding
-</code></pre></div>
-<p><code>1</code> in class name means &#39;single spacing&#39;. And you don&#39;t use pixels or any
+</code></p>
+
+<p><code>1</code> in class name means ‘single spacing’. And you don’t use pixels or any
 magic numbers. The spacing is based on the font size.</p>
 
 <p>There are more utility classes like these and HTML tags are pre-styled so you
 can just use them as is.</p>
 
-<h2>Sales pitch</h2>
+<h2 id="sales-pitch">Sales pitch</h2>
 
-<p>The claim is that 90% of CSS you don&#39;t have to write at all. And instead of
+<p>The claim is that 90% of CSS you don’t have to write at all. And instead of
 having tons of files and selectors one can add a bit more verbose-ish class
 names that are explicitly readable when you open the code.</p>
 
 <p>After that styling the transparent menu is trivial:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.menu</span> <span class="p">{</span> <span class="k">background-color</span><span class="o">:</span> <span class="m">#xxx</span> <span class="p">}</span>
-</code></pre></div>
-<h2>But CSS Modules...?</h2>
 
-<p>Everybody seem to have high hopes for CSS modules. Let&#39;s clear this up. I am
+<p><code>css
+.menu { background-color: #xxx }
+</code></p>
+
+<h2 id="but-css-modules">But CSS Modules…?</h2>
+
+<p>Everybody seem to have high hopes for CSS modules. Let’s clear this up. I am
 not opposed to idea and they are great. However I would argue that CSS modules
 is a file organization concept mostly. As everything is compiled into a big
 pile of CSS in the browser.</p>
 
-<p>You&#39;re not defining colors and fonts in each module, so they are not <em>that</em>
+<p>You’re not defining colors and fonts in each module, so they are not <em>that</em>
 independent. You have some <em>base CSS</em> anyway.</p>
 
 <p>So in the case above the Menu CSS Module would contain a single line -
 <code>background-color</code>. Everything else is build using immutable css classes from
 the BASE.</p>
 
-<h2>Show me!</h2>
+<h2 id="show-me">Show me!</h2>
 
-<p>Sure. Let&#39;s take a random CSS Module from one of the pulls:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.type</span> <span class="p">{</span>
-  <span class="k">width</span><span class="o">:</span> <span class="m">70%</span><span class="p">;</span>
-  <span class="n">composes</span><span class="o">:</span> <span class="n">m</span><span class="o">-</span><span class="n">input</span><span class="o">-</span><span class="n">container</span> <span class="n">from</span> <span class="s1">&#39;./../../../../form/input-container.css&#39;</span>
-<span class="p">}</span>
+<p>Sure. Let’s take a random CSS Module from one of the pulls:</p>
 
-<span class="nc">.type__select</span> <span class="p">{</span>
-  <span class="n">composes</span><span class="o">:</span> <span class="n">m</span><span class="o">-</span><span class="n">input</span> <span class="n">from</span> <span class="s1">&#39;./../../../../form/input.css&#39;</span>
-<span class="p">}</span>
-</code></pre></div>
+<p>```css
+.type {
+  width: 70%;
+  composes: m-input-container from ‘./../../../../form/input-container.css’
+}</p>
+
+<p>.type__select {
+  composes: m-input from ‘./../../../../form/input.css’
+}
+```</p>
+
 <p>Looks like it should power this kind of HTML:</p>
-<div class="highlight"><pre><code class="language-slim" data-lang="slim"><span class="nc">.type</span>
-   <span class="nt">select</span><span class="nc">.type__select</span>
-</code></pre></div>
+
+<p><code>slim
+.type
+   select.type__select
+</code></p>
+
 <p>So you see this in your code, and to get the idea of what is going on you open
 the module, then you follow the <code>../../..</code> chain to find out that <code>input-container</code>
 is something like <code>margin-bottom: 10px</code> and before you know it — your whole codebase
 looks like this.</p>
 
-<p>In addition to the scss mess already in place. It&#39;s just a different form of
+<p>In addition to the scss mess already in place. It’s just a different form of
 SASS <code>extend</code>. With inheritance, specificity and the like. Just a different
 file format.</p>
 
 <p>Compare to the following piece of CSS:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css">
-</code></pre></div>
-<p>Wait, what? No CSS? Yes. You see the basic HTML tags like <code>&lt;select&gt;</code> don&#39;t need to
+
+<p>```css</p>
+
+<p>```
+Wait, what? No CSS? Yes. You see the basic HTML tags like <code>&lt;select&gt;</code> don’t need to
 carry any classes. You just pre-style them once. How many variation of
 <code>&lt;select&gt;</code> or <code>&lt;input&gt;</code> you need anyway?</p>
 
@@ -240,23 +260,25 @@ in HTML. <code>width: 70%</code> is a magic number. It seems to me that it can b
 with <code>.col-8</code> given 12-column grid.</p>
 
 <p>So in HTML it will be something like:</p>
-<div class="highlight"><pre><code class="language-slim" data-lang="slim"><span class="nc">.container</span>
-  <span class="nc">.col-8</span>
-    <span class="nt">select</span>
-</code></pre></div>
-<p>And no CSS.</p>
 
-<h2>So it that another CSS framework?</h2>
+<p><code>slim
+.container
+  .col-8
+    select
+</code>
+And no CSS.</p>
+
+<h2 id="so-it-that-another-css-framework">So it that another CSS framework?</h2>
 
 <p>Nope, just a library. As they say - you call the library, framework calls you.
-In fact it&#39;s a set of css modules: <code>whitespace</code>, <code>grid</code>, <code>forms</code>, etc. A dozen
+In fact it’s a set of css modules: <code>whitespace</code>, <code>grid</code>, <code>forms</code>, etc. A dozen
 one-liners each that can be reused everywhere.</p>
 
 <p>I made a full circle before adopting this technique exclusively. After working
 with CSS, SCSS and now SASS while using Bootstrap, Foundation, various grid
 systems, Neat, Bourbon and what else there is.</p>
 
-<h2>But how can we use it, we already using Whatever?</h2>
+<h2 id="but-how-can-we-use-it-we-already-using-whatever">But how can we use it, we already using Whatever?</h2>
 
 <p>The approach I preach to have a library of atomic, immutable small classes that
 can be combined for layout purposes. And top it off with smart reset for HTML
@@ -265,30 +287,36 @@ elements. So all inputs, buttons and whatnot looks fine as is.</p>
 <p>You only describe some specific behaviour in CSS you write. The basic styling
 and positioning is done with the base classes.</p>
 
-<h2>Do we have to change something?</h2>
+<h2 id="do-we-have-to-change-something">Do we have to change something?</h2>
 
 <p>Start with adding small one-liners. Here are for example three one-line clases
 for the menu. When you decide you need more you can continue.</p>
 
 <p>Here is what the HTML could look like (Slim/Jade)</p>
-<div class="highlight"><pre><code class="language-slim" data-lang="slim"><span class="nc">.menu</span>                     | Sets Colors, nothing else. The only class that needs to be defined in CSS
-  <span class="nc">.container</span>              | Sets max-width for the inner container
-    <span class="nc">.sm-show.left.mr2</span>     | Show on small screens and upwards, float left, double spacing to the right
-      <span class="nt">img</span><span class="na"> src</span><span class="p">=</span><span class="s2">&quot;logo.png&quot;</span>
 
-   <span class="nc">.dropdown</span>              | Dropdown wrapper, on hover show .dropdown-hidden
-      <span class="nc">.btn</span> Purchasing     | Button-like look (transparent). Add hover effect that is font-color dependent
-      <span class="nc">.dropdown-hidden</span>    | Container for Submenu
-        <span class="nt">a</span><span class="nc">.btn</span>             | Submenu itself
-        <span class="nt">a</span><span class="nc">.btn</span>
-</code></pre></div>
+<p>```slim
+.menu                     | Sets Colors, nothing else. The only class that needs to be defined in CSS
+  .container              | Sets max-width for the inner container
+    .sm-show.left.mr2     | Show on small screens and upwards, float left, double spacing to the right
+      img src=”logo.png”</p>
+
+<p>.dropdown              | Dropdown wrapper, on hover show .dropdown-hidden
+      .btn Purchasing     | Button-like look (transparent). Add hover effect that is font-color dependent
+      .dropdown-hidden    | Container for Submenu
+        a.btn             | Submenu itself
+        a.btn
+```</p>
+
 <p>So the only CSS one has to write to hydrate the menu with some dynamic style (module or not):</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.menu</span> <span class="p">{</span>
-  <span class="k">background-color</span><span class="o">:</span> <span class="m">#xxx</span>
-  <span class="k">color</span><span class="o">:</span> <span class="m">#xxx</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>If you don&#39;t need anything dynamic, just replace <code>.menu</code> with <code>.bg-blue.white</code>.
+
+<p><code>css
+.menu {
+  background-color: #xxx
+  color: #xxx
+}
+</code></p>
+
+<p>If you don’t need anything dynamic, just replace <code>.menu</code> with <code>.bg-blue.white</code>.
 And that removes CSS completely.</p>
 
 <p><code>.btn</code> class applies transparent button look by default. It inherits font and
@@ -298,55 +326,58 @@ hover color from text so it works with any kind of stuff.</p>
 fully-blown button with colored background (it is actually inherited from
 <code>.btn.btn-primary</code>).</p>
 
-<h2>What if we don&#39;t like it?</h2>
+<h2 id="what-if-we-dont-like-it">What if we don’t like it?</h2>
 
 <p>This is the best part, each module is like 10-20 lines long. Look at the
 filesizes in the following section.  You can easily replace or recreate parts
-you don&#39;t like. It&#39;s all built from CSS modules by the way.</p>
+you don’t like. It’s all built from CSS modules by the way.</p>
 
-<h2>Questions?</h2>
+<h2 id="questions">Questions?</h2>
 
-<p>Since I have adopted this approach I almost stopped writing css and it&#39;s really
-easy to work with the projects now when I don&#39;t have to edit multiple files.
+<p>Since I have adopted this approach I almost stopped writing css and it’s really
+easy to work with the projects now when I don’t have to edit multiple files.
 Another side effect is when you open the view you can <em>read</em> what it is going
 to <em>look</em> like. Kind of like in the Matrix movie.</p>
 
-<p>For example the whole CSS for my <a href="http://molokophuket.com">wife&#39;s website</a> is
+<p>For example the whole CSS for my <a href="http://molokophuket.com">wife’s website</a> is
 less then <strong>10Kb</strong> in size. And people think this is Bootstrap.</p>
 
-<p>I&#39;d love to show more examples, production code or answer questions. Here are
+<p>I’d love to show more examples, production code or answer questions. Here are
 some links to digest meanwhile:</p>
 
 <ul>
-<li><a href="http://jxnblk.com/gravitons">Gravitons</a> — A base set of simple utilities to start with</li>
-<li><a href="http://basscss.com">BASSCSS</a> — The actual library I am suggestion to use</li>
-<li><a href="http://github.com/firedev/basscss-fix">BASSCSS-FIX</a> — Some things I wasn&#39;t content with</li>
-<li><a href="http://jxnblk.com/rebass">ReBASS</a> — BASSCSS-based React componets (<code>Row</code>, <code>Column</code>, <code>Button</code> etc)</li>
-<li><a href="http://tachyons.io">Tachyons</a> — Another tiny library with similar ideas</li>
-<li><a href="http://solid.buzzfeed.com">Solid</a> — Buzzfeed implementation</li>
-<li><a href="https://www.youtube.com/watch?v=0aBv8dsZs84">Styling React Components in JavaScript</a> — Embedding is disabled but the fun part starts in the second half of the video.</li>
+  <li><a href="http://jxnblk.com/gravitons">Gravitons</a> — A base set of simple utilities to start with</li>
+  <li><a href="http://basscss.com">BASSCSS</a> — The actual library I am suggestion to use</li>
+  <li><a href="http://github.com/firedev/basscss-fix">BASSCSS-FIX</a> — Some things I wasn’t content with</li>
+  <li><a href="http://jxnblk.com/rebass">ReBASS</a> — BASSCSS-based React componets (<code>Row</code>, <code>Column</code>, <code>Button</code> etc)</li>
+  <li><a href="http://tachyons.io">Tachyons</a> — Another tiny library with similar ideas</li>
+  <li><a href="http://solid.buzzfeed.com">Solid</a> — Buzzfeed implementation</li>
+  <li><a href="https://www.youtube.com/watch?v=0aBv8dsZs84">Styling React Components in JavaScript</a> — Embedding is disabled but the fun part starts in the second half of the video.</li>
 </ul>
 
-<h2>Boilerplate</h2>
+<h2 id="boilerplate">Boilerplate</h2>
 
 <p>This approach really shines with templating engines that use terse indented syntax. So if
 you are still on the fence but willing to try it and like Slim I made
 boilerplate to demo some of the ideas.</p>
 
 <ul>
-<li><a href="http://github.com/firedev/boilerplate">Slim/SASS/BASS Boilerplate</a></li>
+  <li><a href="http://github.com/firedev/boilerplate">Slim/SASS/BASS Boilerplate</a></li>
 </ul>
 
 <p>Usage is simple. You just have to have <code>npm</code>, <code>bower</code>, and <code>grunt</code> installed:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">npm install
+
+<p><code>
+npm install
 bower install
 grunt
-</code></pre></div>
-<p>Here&#39;s what you can achieve in 10 minutes time:</p>
+</code></p>
+
+<p>Here’s what you can achieve in 10 minutes time:</p>
 
 <ul>
-<li><a href="http://firedev.com/boilerplate/">Page Mockup</a> — Try resizing the window</li>
-<li><a href="https://github.com/firedev/boilerplate/blob/example/slim/index.slim">Source</a> — Typed it up live</li>
+  <li><a href="http://firedev.com/boilerplate/">Page Mockup</a> — Try resizing the window</li>
+  <li><a href="https://github.com/firedev/boilerplate/blob/example/slim/index.slim">Source</a> — Typed it up live</li>
 </ul>
 
   </article>

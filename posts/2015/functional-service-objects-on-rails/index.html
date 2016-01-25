@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Functional Service Objects on Rails</title>
-  <meta name="description" content="An excellent talk &quot;Blending Functional and OO Programming in Ruby&quot; given byPiotr Solnica on Full Stack Fest 2015 made me think about improving curr...">
+  <meta name="description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given byPiotr Solnica on Full Stack Fest 2015 made me think about improving currentpractic...">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://firedev.com/posts/2015/functional-service-objects-on-rails/">
@@ -20,10 +20,11 @@
 
   <meta property="og:url" content="http://firedev.com/posts/2015/functional-service-objects-on-rails/" />
   <meta property="og:title" content="Functional Service Objects on Rails" />
-  <meta property="og:description" content="An excellent talk &quot;Blending Functional and OO Programming in Ruby&quot; given by
+  <meta property="og:description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given by
 Piotr Solnica on Full Stack Fest 2015 made me think about improving current
 practices. I have tried different ways of organizing my service objects and
 here is what I came up with.
+
 " />
   <meta property="og:image" content="http://firedev.com/images/posts/electrical_plumbing_service.jpg" />
 </head>
@@ -137,7 +138,9 @@ background-position: ;
 
 
     <div class="container px2 mb4">
-        <header class="mxn2 p2 rounded-top bg-darkened-1 mb3">
+        
+
+<header class="mxn2 p2 rounded-top bg-darkened-1 mb3">
   <p>Oct 17, 2015</p>
   <h1 class="m0 mb2">Functional Service Objects on Rails</h1>
   <div class="mb3 lh25">
@@ -158,158 +161,181 @@ background-position: ;
 
 <div class="mb3">
   <article class="mb3">
-    <p>An excellent talk &quot;Blending Functional and OO Programming in Ruby&quot; given by
+    <p>An excellent talk “Blending Functional and OO Programming in Ruby” given by
 Piotr Solnica on Full Stack Fest 2015 made me think about improving current
 practices. I have tried different ways of organizing my service objects and
 here is what I came up with.</p>
 
-<h2>Background</h2>
+<h2 id="background">Background</h2>
 
 <p>The idea is to switch from Object Oriented mentality and stateful objects to
 more functional way of doing things when only data is passed through your
 system.</p>
 
-<p>I am working on this motivational portal. Let&#39;s use a concept from the project
+<p>I am working on this motivational portal. Let’s use a concept from the project
 for the sake of the example. The models involved in this example are <code>User</code>,
   <code>Motivation</code>, <code>Shop</code> and <code>Role</code>.</p>
 
 <p><code>Motivation</code> is some data that defines <code>Shop</code> to which <code>User</code> has access to in
 a given month and his <code>Role</code> in regards to that. Each month a <code>User</code> can be
 assigned to different <code>Shops</code> and different <code>Roles</code>. Say, an employee this
-month and shop manager the next month. I call such managers &quot;chief&quot; since
+month and shop manager the next month. I call such managers “chief” since
 manager was already taken.</p>
 
-<h2>Stuff everything into model</h2>
+<h2 id="stuff-everything-into-model">Stuff everything into model</h2>
 
 <p>For current month we need to get the list of shops user can manage. And to do
-that we have to use multiple tables as there a certain roles that carry &quot;chief&quot;
+that we have to use multiple tables as there a certain roles that carry “chief”
 ability. The most obvious solution is to stuff everything into User model.
 So without further ado:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-    <span class="n">shops</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
-      <span class="n">motivations</span><span class="o">.</span><span class="n">for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">role_id</span><span class="p">:</span> <span class="no">Role</span><span class="o">.</span><span class="n">chief</span><span class="p">)</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">uniq</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>Invocation is simple:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">shops</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</code></pre></div>
-<p>Hmm, that starts quite harmless. But what if we measure complexity with flog?</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    10.0: flog total
-    10.0: flog/method average
 
-    10.0: User#chief_shops_for_month       -:2
-</code></pre></div>
-<h3>Flog</h3>
+<p><code>ruby
+class User &lt; ActiveRecord::Base
+  def chief_shops_for_month(month)
+    shops.merge(
+      motivations.for_month(month).where(role_id: Role.chief)
+    ).uniq
+  end
+end
+</code></p>
+
+<p>Invocation is simple:</p>
+
+<p><code>ruby
+shops = user.chief_shops_for_month(month)
+</code></p>
+
+<p>Hmm, that starts quite harmless. But what if we measure complexity with flog?</p>
+
+<p>```
+    10.0: flog total
+    10.0: flog/method average</p>
+
+<pre><code>10.0: User#chief_shops_for_month       -:2 ```
+</code></pre>
+
+<h3 id="flog">Flog</h3>
 
 <p>I use <a href="http://ruby.sadi.st/Flog.html">flog</a> to check complexity of my classes
 and strive to keep the average complexity per method under 5:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ flog app
-  1278.9: flog total
-     5.0: flog/method average
 
-    29.7: User#none
-    23.7: TrHelper#tr                      app/helpers/tr_helper.rb:2
-    21.0: Role#none
-    ...
-</code></pre></div>
-<h2>Service class</h2>
+<p>```
+$ flog app
+  1278.9: flog total
+     5.0: flog/method average</p>
+
+<pre><code>29.7: User#none
+23.7: TrHelper#tr                      app/helpers/tr_helper.rb:2
+21.0: Role#none
+... ```
+</code></pre>
+
+<h2 id="service-class">Service class</h2>
 
 <p>To me 10 flog per method is simply too much. We can try to break it down in two
 methods like so:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
-  <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-    <span class="n">shops</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">chief_motivation_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">uniq</span>
-  <span class="k">end</span>
 
-  <span class="kp">private</span>
+<p>```ruby
+class User
+  def chief_shops_for_month(month)
+    shops.merge(chief_motivation_for_month(month).uniq
+  end</p>
 
-  <span class="k">def</span> <span class="nf">chief_motivation_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-    <span class="n">motivations</span><span class="o">.</span><span class="n">for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">role_id</span><span class="p">:</span> <span class="no">Role</span><span class="o">.</span><span class="n">chief</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+<p>private</p>
+
+<p>def chief_motivation_for_month(month)
+    motivations.for_month(month).where(role_id: Role.chief)
+  end
+end
+```</p>
+
 <p>But this is ridiculous. It adds a private method on <code>User</code> that is calling god
-knows what. Besides I don&#39;t like the &#39;Thin Controllers, Fat Models&#39; concept. As
+knows what. Besides I don’t like the ‘Thin Controllers, Fat Models’ concept. As
 a one-man operation there is simply not enough man-power to deal with ten feet
 long models. My motto is:</p>
 
 <blockquote>
-<p>Thin Everythin&#39;!</p>
+  <p>Thin Everythin’!</p>
 </blockquote>
 
 <p>I build service objects in a simple way. One public method <code>call</code> with
-occasional parameters passed from controller (i.e. variables). Let&#39;s extract
+occasional parameters passed from controller (i.e. variables). Let’s extract
 the query to a what a typical service object would look like:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
-  <span class="k">class</span> <span class="nc">ChiefShopsForMonth</span>
-    <span class="kp">attr_reader</span> <span class="ss">:user</span>
-    <span class="kp">attr_reader</span> <span class="ss">:month</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-      <span class="vi">@user</span> <span class="o">=</span> <span class="n">user</span>
-    <span class="k">end</span>
+<p>```ruby
+class User
+  class ChiefShopsForMonth
+    attr_reader :user
+    attr_reader :month</p>
 
-    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-      <span class="vi">@month</span> <span class="o">=</span> <span class="n">month</span>
-      <span class="n">user</span><span class="o">.</span><span class="n">shops</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">motivations_this_month_user_was_chief</span><span class="p">)</span><span class="o">.</span><span class="n">uniq</span>
-    <span class="k">end</span>
+<pre><code>def initialize(user)
+  @user = user
+end
 
-    <span class="kp">private</span>
+def call(month)
+  @month = month
+  user.shops.merge(motivations_this_month_user_was_chief).uniq
+end
 
-    <span class="k">def</span> <span class="nf">motivations_this_month_user_was_chief</span>
-      <span class="n">user</span><span class="o">.</span><span class="n">motivations</span><span class="o">.</span><span class="n">for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">role_id</span><span class="p">:</span> <span class="no">Role</span><span class="o">.</span><span class="n">chief</span><span class="p">)</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+private
+
+def motivations_this_month_user_was_chief
+  user.motivations.for_month(month).where(role_id: Role.chief)
+end   end end ```
+</code></pre>
+
 <p>We keep the <code>User</code> API unchanged so this is a true refactoring:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
-  <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-    <span class="no">User</span><span class="o">::</span><span class="no">ChiefShopsForMonth</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">call</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>What <code>flog</code> has to say about this?</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">   18.5: flog total
-     4.6: flog/method average
 
-     7.8: User::ChiefShopsForMonth#motivations_this_month_user_was_chief -:17
-     6.7: User::ChiefShopsForMonth#call    -:10
-</code></pre></div>
-<p>Okay, this is better. Now it&#39;s time to see if we can improve further and maybe make
+<p><code>ruby
+class User
+  def chief_shops_for_month(month)
+    User::ChiefShopsForMonth.new(self).call
+  end
+end
+</code></p>
+
+<p>What <code>flog</code> has to say about this?</p>
+
+<p>```
+   18.5: flog total
+     4.6: flog/method average</p>
+
+<pre><code> 7.8: User::ChiefShopsForMonth#motivations_this_month_user_was_chief -:17
+ 6.7: User::ChiefShopsForMonth#call    -:10 ```
+</code></pre>
+
+<p>Okay, this is better. Now it’s time to see if we can improve further and maybe make
 it more functional-ish.</p>
 
-<h3>The talk</h3>
+<h3 id="the-talk">The talk</h3>
 
 <p>This is the talk <a href="http://solnic.eu">Piotr Solnica</a> gave at Full-stack fest in 2015
 that got me thinking about a better way of doing things.</p>
 
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/rMxurF4oqsc" frameborder="0" allowfullscreen></iframe><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rMxurF4oqsc" frameborder="0" allowfullscreen=""></iframe>
+<p><br /></p>
 
-<p>The gist of it: Don&#39;t store state. Just pass everything to <code>call</code> method
+<p>The gist of it: Don’t store state. Just pass everything to <code>call</code> method
 instead. That sounded interesting. Rolled up sleeves and here we go.</p>
 
-<h2>Refactoring Service object</h2>
+<h2 id="refactoring-service-object">Refactoring Service object</h2>
 
-<p>Let&#39;s try with full head-on solution first. I would like to throw everything in
+<p>Let’s try with full head-on solution first. I would like to throw everything in
 the mix:</p>
 
 <ul>
-<li>Dependency injection</li>
-<li>Command-query separation</li>
-<li>Keyword arguments (Smalltalk-style)</li>
-<li>Intention-revealing method names</li>
+  <li>Dependency injection</li>
+  <li>Command-query separation</li>
+  <li>Keyword arguments (Smalltalk-style)</li>
+  <li>Intention-revealing method names</li>
 </ul>
 
-<h3>CQS/CQRS Command-Query Responsibility Segregation</h3>
+<h3 id="cqscqrs-command-query-responsibility-segregation">CQS/CQRS Command-Query Responsibility Segregation</h3>
 
 <p>This is a simple principle that can be boiled down to this:</p>
 
 <blockquote>
-<p>Don&#39;t modify and request data in the same method call</p>
+  <p>Don’t modify and request data in the same method call</p>
 </blockquote>
 
 <p>Or it can be put in another way, return <code>self</code> until the very last moment. That
@@ -319,78 +345,85 @@ ActiveRecord Scopes can be chained up to the last moment where you can load the
 relation into array by calling <code>to_a</code> on it. JavaScript is basically built on
 returning <code>this</code>.  If you have ever used a JavaScript library like jQuery you
 know the drill.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
-  <span class="k">class</span> <span class="nc">ChiefShopsForMonth</span>
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">role</span> <span class="o">=</span> <span class="no">Role</span><span class="p">,</span> <span class="n">motivation</span> <span class="o">=</span> <span class="no">Motivation</span><span class="p">)</span>
-      <span class="vi">@role</span> <span class="o">=</span> <span class="n">role</span>
-      <span class="vi">@motivation</span> <span class="o">=</span> <span class="n">motivation</span>
-    <span class="k">end</span>
 
-    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="ss">user</span><span class="p">:,</span> <span class="ss">month</span><span class="p">:)</span>
-      <span class="vi">@user</span> <span class="o">=</span> <span class="n">user</span>
-      <span class="vi">@role</span> <span class="o">=</span> <span class="n">role</span>
-      <span class="nb">self</span>
-    <span class="k">end</span>
+<p>```ruby
+class User
+  class ChiefShopsForMonth
+    def initialize(role = Role, motivation = Motivation)
+      @role = role
+      @motivation = motivation
+    end</p>
 
-    <span class="k">def</span> <span class="nf">shops</span>
-      <span class="n">all_user_shops</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">chief_this_month</span><span class="p">)</span><span class="o">.</span><span class="n">uniq</span>
-    <span class="k">end</span>
+<pre><code>def call(user:, month:)
+  @user = user
+  @role = role
+  self
+end
 
-    <span class="kp">private</span>
+def shops
+  all_user_shops.merge(chief_this_month).uniq
+end
 
-    <span class="kp">attr_reader</span> <span class="ss">:user</span>
-    <span class="kp">attr_reader</span> <span class="ss">:month</span>
-    <span class="kp">attr_reader</span> <span class="ss">:role</span>
-    <span class="kp">attr_reader</span> <span class="ss">:motivation</span>
+private
 
-    <span class="k">def</span> <span class="nf">all_user_shops</span>
-      <span class="n">user</span><span class="o">.</span><span class="n">shops</span>
-    <span class="k">end</span>
+attr_reader :user
+attr_reader :month
+attr_reader :role
+attr_reader :motivation
 
-    <span class="k">def</span> <span class="nf">chief_this_month</span>
-      <span class="n">motivation</span><span class="o">.</span><span class="n">for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">role_id</span><span class="p">:</span> <span class="n">role</span><span class="o">.</span><span class="n">chief</span><span class="p">)</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>While getting here it became obvious to me that I didn&#39;t have to use
+def all_user_shops
+  user.shops
+end
+
+def chief_this_month
+  motivation.for_month(month).where(role_id: role.chief)
+end   end end ```
+</code></pre>
+
+<p>While getting here it became obvious to me that I didn’t have to use
 <code>user.motivation</code> as <code>merge</code> is taking care of this. And I think by relying on
 <code>Motivation</code> class directly I can make it more intention-revealing, even if it
 adds another dependency.</p>
 
 <p>New structure gains certain tidiness in the upper part. Now <code>initialize</code> only
 does dependency-injection for the whole object. Then <code>call</code> sets up the
-parameters and returns <code>self</code> for chaining. You don&#39;t have to return <code>self</code>,
-but that gives you flexibility so I don&#39;t see a reason not to add it. And
+parameters and returns <code>self</code> for chaining. You don’t have to return <code>self</code>,
+but that gives you flexibility so I don’t see a reason not to add it. And
 finally you can get the list of shops for the given month by calling <code>.shops</code>.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
-  <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-    <span class="no">User</span><span class="o">::</span><span class="no">ChiefShopsForMonth</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">shops</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+
+<p><code>ruby
+class User
+  def chief_shops_for_month(month)
+    User::ChiefShopsForMonth.new.call(user, month).shops
+  end
+end
+</code></p>
+
 <p>Things get hairy however after the <code>private</code> mark. The state moved here
 and there are four attributes instead of two. Flog is not very happy about this
 either.  Average complexity per method is somewhat lower, but the total is even
 higher.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">   26.0: flog total
-     4.3: flog/method average
 
-     7.6: User::ChiefShopsForMonth#chief_this_month -:30
-     5.0: User::ChiefShopsForMonth#shops   -:15
-     5.0: User::ChiefShopsForMonth#none
-</code></pre></div>
-<h2>Stateless Object</h2>
+<p>```
+   26.0: flog total
+     4.3: flog/method average</p>
+
+<pre><code> 7.6: User::ChiefShopsForMonth#chief_this_month -:30
+ 5.0: User::ChiefShopsForMonth#shops   -:15
+ 5.0: User::ChiefShopsForMonth#none ```
+</code></pre>
+
+<h2 id="stateless-object">Stateless Object</h2>
 
 <p>One thing I would like to discuss first. As Sandi Metz says:</p>
 
 <blockquote>
-<p>You can break the rules if you have a good reason or your pair lets you.</p>
+  <p>You can break the rules if you have a good reason or your pair lets you.</p>
 </blockquote>
 
 <p>well, something along these lines at least.</p>
 
-<p>So I claim that I don&#39;t need to inject dependenices for other ActiveRecord
+<p>So I claim that I don’t need to inject dependenices for other ActiveRecord
 classes since they are not going to change. And if they will mist likely my
 service will be deleted. Thus I can get rid of <code>initialize</code>. Of course in more
 complex screnario this is not the best way to go, but this is a simple query
@@ -399,65 +432,72 @@ object so for the sake of refactoring experiment I think this will pass.</p>
 <p>I think the rule of thumb here is similar to what Piotr is suggesting:</p>
 
 <blockquote>
-<p>Initialize with Service Objects you are depending on</p>
+  <p>Initialize with Service Objects you are depending on</p>
 </blockquote>
 
 <p>Since I am not changing anything here, apart from the inner state of the object
-and I am getting rid of the state, I don&#39;t need a separate method that returns
-the result. That allows me to shrink object&#39;s API to single <code>call</code> method.
-Which is actually an improvement. Since now I don&#39;t need to pass <code>user</code> and
+and I am getting rid of the state, I don’t need a separate method that returns
+the result. That allows me to shrink object’s API to single <code>call</code> method.
+Which is actually an improvement. Since now I don’t need to pass <code>user</code> and
 <code>month</code> separately and they can go together as parameters in a single method
 call.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
-  <span class="k">class</span> <span class="nc">ChiefShopsForMonth</span>
 
-    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="ss">user</span><span class="p">:,</span> <span class="ss">month</span><span class="p">:)</span>
-      <span class="n">all_user_shops</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">chief_this_month</span><span class="p">(</span><span class="n">month</span><span class="p">))</span><span class="o">.</span><span class="n">uniq</span>
-    <span class="k">end</span>
+<p>```ruby
+class User
+  class ChiefShopsForMonth</p>
 
-    <span class="kp">private</span>
+<pre><code>def call(user:, month:)
+  all_user_shops(user).merge(chief_this_month(month)).uniq
+end
 
-    <span class="k">def</span> <span class="nf">all_user_shops</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-      <span class="n">user</span><span class="o">.</span><span class="n">shops</span>
-    <span class="k">end</span>
+private
 
-    <span class="k">def</span> <span class="nf">chief_this_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-      <span class="no">Motivation</span><span class="o">.</span><span class="n">for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">role_id</span><span class="p">:</span> <span class="no">Role</span><span class="o">.</span><span class="n">chief</span><span class="p">)</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+def all_user_shops(user)
+  user.shops
+end
+
+def chief_this_month(month)
+  Motivation.for_month(month).where(role_id: Role.chief)
+end   end end ```
+</code></pre>
+
 <p>As you can see now state is not stored anywhere. Okay dependencies are not
 injected which is a questionable practice. But again I claim in this case this
 could pass.</p>
 
 <p>The invocation is almost the same as with the previous example. The only
-difference is that we don&#39;t have to query for shops as this is a Query Object
+difference is that we don’t have to query for shops as this is a Query Object
 so it only returns result straight away. And API is effectively shrunk to a
 single method.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
-  <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-    <span class="no">User</span><span class="o">::</span><span class="no">ChiefShopsForMonth</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="ss">user</span><span class="p">:</span> <span class="nb">self</span><span class="p">,</span> <span class="ss">month</span><span class="p">:</span> <span class="n">month</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+
+<p><code>ruby
+class User
+  def chief_shops_for_month(month)
+    User::ChiefShopsForMonth.new.call(user: self, month: month)
+  end
+end
+</code></p>
+
 <p>Yes you have to call <code>new</code>, but only to instantiate an object. Or you can still
 inject dependencies for testing. As a side effect we can pass a hash as
 parameter. Piotr suggests to use value object. I think it is overkill here. I
 could easily pass a params hash if I wanted to, but I am afraid it might hurt
 readability. And now look at this:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    10.4: flog total
-     2.6: flog/method average
 
-     5.0: User::ChiefShopsForMonth#call    -:4
-     3.4: User::ChiefShopsForMonth#chief_this_month -:14
-</code></pre></div>
+<p>```
+    10.4: flog total
+     2.6: flog/method average</p>
+
+<pre><code> 5.0: User::ChiefShopsForMonth#call    -:4
+ 3.4: User::ChiefShopsForMonth#chief_this_month -:14 ```
+</code></pre>
+
 <p>The whole class is almost as simple as the original single method in <code>User</code>. It
-encapsulates everything it needs. It doesn&#39;t pollute models with methods that
+encapsulates everything it needs. It doesn’t pollute models with methods that
 would never be used from other places. And has intention-revealing name and
 simple single-method API.</p>
 
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>These are just some ideas on how to approach refactoring of fat models and fat
 controllers. Please let me know if you think something could be improved.</p>
