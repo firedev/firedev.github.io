@@ -6,92 +6,9 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 05 Feb 2016 09:50:09 +0700</pubDate>
-    <lastBuildDate>Fri, 05 Feb 2016 09:50:09 +0700</lastBuildDate>
+    <pubDate>Fri, 05 Feb 2016 09:56:47 +0700</pubDate>
+    <lastBuildDate>Fri, 05 Feb 2016 09:56:47 +0700</lastBuildDate>
     <generator>Jekyll v3.0.2</generator>
-    
-      <item>
-        <title>Modern Breakpoints</title>
-        <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/break-point.jpg"/&gt;&lt;/p&gt;
-          &lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;&lt;img src=&quot;/images/apple/iphone-vertical.svg&quot; alt=&quot;&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;img src=&quot;/images/apple/iphone6-vertical.svg&quot; alt=&quot;&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;img src=&quot;/images/apple/iphonep-vertical.svg&quot; alt=&quot;&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;img src=&quot;/images/apple/iphone-horizontal.svg&quot; alt=&quot;&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;img src=&quot;/images/apple/iphone6-horizontal.svg&quot; alt=&quot;&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;img src=&quot;/images/apple/iphonep-horizontal.svg&quot; alt=&quot;&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;img src=&quot;/images/apple/ipad-vertical.svg&quot; alt=&quot;&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;img src=&quot;/images/apple/ipad-horizontal.svg&quot; alt=&quot;&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;img src=&quot;/images/apple/ipadpro-vertical.svg&quot; alt=&quot;&quot; /&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;img src=&quot;/images/apple/ipadpro-horizontal.svg&quot; alt=&quot;&quot; /&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;iPhone&lt;/strong&gt; Vertical&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;iPhone 6&lt;/strong&gt; Vertical&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;iPhone +&lt;/strong&gt; Vertical&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;iPhone&lt;/strong&gt; Horizontal&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;iPhone 6&lt;/strong&gt; Horizontal&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;iPhone +&lt;/strong&gt; Horizontal&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;iPad&lt;/strong&gt; Vertical&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;iPad&lt;/strong&gt; Horizontal&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;iPad Pro&lt;/strong&gt; Vertical&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;iPad Pro&lt;/strong&gt; Horizontal&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;320px&lt;/td&gt;
-      &lt;td&gt;375px&lt;/td&gt;
-      &lt;td&gt;414px&lt;/td&gt;
-      &lt;td&gt;568px&lt;/td&gt;
-      &lt;td&gt;667px&lt;/td&gt;
-      &lt;td&gt;736px&lt;/td&gt;
-      &lt;td&gt;768px&lt;/td&gt;
-      &lt;td&gt;1024px&lt;/td&gt;
-      &lt;td&gt;1024px&lt;/td&gt;
-      &lt;td&gt;1366px&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;20rem&lt;/td&gt;
-      &lt;td&gt;23.4375rem&lt;/td&gt;
-      &lt;td&gt;25.875rem&lt;/td&gt;
-      &lt;td&gt;35.5&lt;/td&gt;
-      &lt;td&gt;41.6875rem&lt;/td&gt;
-      &lt;td&gt;46rem&lt;/td&gt;
-      &lt;td&gt;48rem&lt;/td&gt;
-      &lt;td&gt;64rem&lt;/td&gt;
-      &lt;td&gt;64rem&lt;/td&gt;
-      &lt;td&gt;85.375rem&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Sliding sidebar in Safari takes up 320px or 16rem&lt;/p&gt;
-
-&lt;p&gt;iPhone Plus Horizontal becomes 416px or 26rem&lt;/p&gt;
-
-        </description>
-        <pubDate>Mon, 25 Jan 2016 00:00:00 +0700</pubDate>
-        <link>http://firedev.com/posts/2016/modern-breakpoints/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/2016/modern-breakpoints/</guid>
-        
-        <category>CSS</category>
-        
-        <category>react</category>
-        
-        <category>components</category>
-        
-        
-        <category>posts</category>
-        
-      </item>
     
       <item>
         <title>Atomic Icons</title>
@@ -2584,6 +2501,109 @@ book ultimately is the point of refactoring.&lt;/p&gt;
         <category>rails</category>
         
         <category>refactoring</category>
+        
+        
+        <category>posts</category>
+        
+      </item>
+    
+      <item>
+        <title>nanogrid: Fluid responsive CSS grid with gutters</title>
+        <description>
+          &lt;p&gt;&lt;img src="http://firedev.com/images/nanogrid.png"/&gt;&lt;/p&gt;
+          &lt;p&gt;Inspired by &lt;a href=&quot;https://github.com/chrisnager/ungrid/&quot;&gt;Ungrid&lt;/a&gt; and &lt;a href=&quot;https://github.com/basscss/basscss/&quot;&gt;BASSCSS&lt;/a&gt;
+I have decided to build on top of their shoulders. Welcome the nanogrid.&lt;/p&gt;
+
+&lt;h3 id=&quot;ungrid&quot;&gt;Ungrid&lt;/h3&gt;
+&lt;p&gt;Ungrid is a nifty grid that packs everything in less than a hundred bytes by
+using &lt;code&gt;display: table&lt;/code&gt; trick:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;30em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;.row&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;table-layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;.col&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;table-cell&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;And it’s quite powerful &lt;a href=&quot;https://github.com/chrisnager/ungrid/&quot;&gt;see the demo&lt;/a&gt; plus
+using &lt;code&gt;display: table&lt;/code&gt; is a nifty trick that solves issues with
+&lt;a href=&quot;http://caniuse.com/#flexbox&quot;&gt;Flexbox&lt;/a&gt;.
+Actually it seems the browsers are getting up to speed with Flexible Box Layout.
+Even if it’s time to jump on the F-train, this is a cool experiment.&lt;/p&gt;
+
+&lt;h3 id=&quot;basscss&quot;&gt;BASSCSS&lt;/h3&gt;
+&lt;p&gt;Another sweet concept that offers a bunch of immutable css styles that allow you to
+work by writing everything in HTML. Check &lt;a href=&quot;http://www.basscss.com/&quot;&gt;the examples&lt;/a&gt;.
+It offer a grid of it’s own and the opportunity to combine the best of both worlds
+is too good to pass up.&lt;/p&gt;
+
+&lt;h3 id=&quot;nanogrid&quot;&gt;nanogrid&lt;/h3&gt;
+&lt;p&gt;Let’s use SASS for this, as I am most comfortable with it. And add some variables to the mix:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sass&quot; data-lang=&quot;sass&quot;&gt;&lt;span class=&quot;na&quot;&gt;$nanogrid-breakpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;em&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;!default&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;nanogrid-breakpoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;.row&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;%&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;table&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;table-layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;fixed&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;.col&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;table-cell&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Throw in grid classes from BASSCSS
+&lt;a href=&quot;https://github.com/basscss/grid/blob/master/lib/grid.css&quot;&gt;grid module&lt;/a&gt;.
+Using sass &lt;code&gt;@for&lt;/code&gt; we can calculate all the values upfront.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sass&quot; data-lang=&quot;sass&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.col&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;left&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;box-sizing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.col-right&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;right&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;box-sizing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@for&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;through&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;.col-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;.row&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.col-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;none&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Okay time to add some gutters. The tricky part here is that you can’t simply use
+negative margins as they don’t work well on &lt;code&gt;display: table&lt;/code&gt;. Element only moves to the left.
+We could solve it by using some container element as Chris Nager did &lt;a href=&quot;https://codepen.io/chrisnager/pen/arKBu&quot;&gt;here&lt;/a&gt;  But that is not very fun so as I know for fact that all my users are using Chrome I can
+once again resort to the power of calc.&lt;/p&gt;
+
+&lt;p&gt;Let’s also fix the counter effect of floats introduced by BASSCSS grid and add a gutter variable.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sass&quot; data-lang=&quot;sass&quot;&gt;&lt;span class=&quot;na&quot;&gt;$nanogrid-gutter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;rem&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.row&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;table&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;table-layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;fixed&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$nanogrid-gutter&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$nanogrid-gutter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nc&quot;&gt;.col&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;none&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;table-cell&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$nanogrid-gutter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This introduces the negative margin on the right so it’s best to be aware of it.&lt;/p&gt;
+
+&lt;h2 id=&quot;good-parts&quot;&gt;Good parts&lt;/h2&gt;
+
+&lt;p&gt;What’s the point of it? It is small, flexible, the columns are arranged automatically.
+All columns are having equal height and you don’t need clearfix and you can center content vertically.&lt;/p&gt;
+
+&lt;p&gt;There are some nuances though as the negative margin should be negated on the right
+if you are using the grid as the top element on the page. Either with an &lt;code&gt;overflow: hidden&lt;/code&gt;
+container or &lt;code&gt;body&lt;/code&gt; padding.&lt;/p&gt;
+
+&lt;p&gt;I have set up a homepage for it &lt;a href=&quot;http://firedev.github.io/nanogrid&quot;&gt;&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; firedev/nanogrid&lt;/a&gt; so have a look.&lt;/p&gt;
+
+        </description>
+        <pubDate>Wed, 10 Jun 2015 00:00:00 +0700</pubDate>
+        <link>http://firedev.com/posts/2015/nanogrid-fluid-responsive-css-grid-with-gutters/</link>
+        <guid isPermaLink="true">http://firedev.com/posts/2015/nanogrid-fluid-responsive-css-grid-with-gutters/</guid>
+        
+        <category>CSS</category>
         
         
         <category>posts</category>
