@@ -10,7 +10,7 @@
   <meta name="description" content="I am seeing different approaches to breakpoints and responsive design.Most of the time they are over-complicated and only making things worse.So here&#39;s m...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://firedev.com/posts/2016/modern-breakpoints/">
+  <link rel="canonical" href="http://firedev.com/posts/2016/sane-breakpoints/">
   <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
 
   <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -18,7 +18,7 @@
   <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <meta property="og:url" content="http://firedev.com/posts/2016/modern-breakpoints/" />
+  <meta property="og:url" content="http://firedev.com/posts/2016/sane-breakpoints/" />
   <meta property="og:title" content="Sane Breakpoints" />
   <meta property="og:description" content="I am seeing different approaches to breakpoints and responsive design.
 Most of the time they are over-complicated and only making things worse.
@@ -148,7 +148,7 @@ table img { width: 3rem; height 3rem }
 
 
 <header>
-  <p>Feb 1, 2016</p>
+  <p>Feb 16, 2016</p>
   <h1 class="m0 mb2">Sane Breakpoints</h1>
 </header>
 
@@ -200,13 +200,14 @@ there are bad parts. Some things you don&#39;t have to use if you don&#39;t want
 spend the rest of your live debugging the cascade.</p>
 
 <p>All your styles should look like this:</p>
-<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nc">.sm-hide</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="c1">// Hides element on screens bigger than $small breakpoint</span>
+<span class="nc">.sm-hide</span> <span class="p">{</span>
   <span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">small</span><span class="o">)</span> <span class="p">{</span>
     <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="realistic-requirements">Realistic Requirements</h2>
+<h2 id="devices">Devices</h2>
 
 <p>But we can&#39;t use only <code>min-width</code>! We want out site to look best on mobile devices
 We have to use <code>orientation: portrait</code> and <code>landscape</code>! Maybe not. Think what
@@ -222,8 +223,6 @@ requirements could be:</p>
 
 <p>Now we&#39;re talking. Note that it doesn&#39;t mention <strong>landscape</strong> or <strong>portrait</strong>.
 Just introducing a general idea of <strong>smaller</strong> and <strong>larger</strong> screens.</p>
-
-<h2 id="devices">Devices</h2>
 
 <p>Let&#39;s take a look at some common internet-consuming devices. And see where we can
 draw a line between <strong>smaller</strong> and <strong>larger</strong>. This will be our <code>$middle</code> breakpoint.

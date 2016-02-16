@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Git: Ignore deleted files</title>
-  <meta name="description" content="Sometimes working with other people you with you didn’t have some of the filesin repository because they are getting in the way of your settings. .ruby-versi...">
+  <meta name="description" content="Sometimes working with other people you with you didn&#39;t have some of the filesin repository because they are getting in the way of your settings. .ruby-v...">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://firedev.com/posts/2015/git-ignore-deleted-files/">
@@ -20,10 +20,9 @@
 
   <meta property="og:url" content="http://firedev.com/posts/2015/git-ignore-deleted-files/" />
   <meta property="og:title" content="Git: Ignore deleted files" />
-  <meta property="og:description" content="Sometimes working with other people you with you didn’t have some of the files
+  <meta property="og:description" content="Sometimes working with other people you with you didn&#39;t have some of the files
 in repository because they are getting in the way of your settings. .ruby-version
 for instance.
-
 " />
   <meta property="og:image" content="http://firedev.com/images/logos/git.png" />
 </head>
@@ -120,6 +119,8 @@ for instance.
           
             
           
+            
+          
         </h3>
       </nav>
     </div>
@@ -147,11 +148,11 @@ background-position: ;
 
 <div class="mb3">
   <article class="mb3">
-    <p>Sometimes working with other people you with you didn’t have some of the files
+    <p>Sometimes working with other people you with you didn&#39;t have some of the files
 in repository because they are getting in the way of your settings. <code>.ruby-version</code>
 for instance.</p>
 
-<p>You check out the repository and what the…</p>
+<p>You check out the repository and what the...</p>
 
 <figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>git clone ...
 ...
@@ -169,7 +170,7 @@ Changes not staged <span class="k">for</span> commit:
 
         deleted:    .ruby-version</code></pre></figure>
 
-<p>It’s impossible to ignore it by adding to <code>.gitignore</code> but fortunately in git
+<p>It&#39;s impossible to ignore it by adding to <code>.gitignore</code> but fortunately in git
 there is an option for everything.</p>
 
 <figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>git update-index --assume-unchanged .ruby-version
@@ -178,7 +179,7 @@ On branch master
 Your branch is up-to-date with <span class="s1">&#39;origin/master&#39;</span>.
 nothing to commit, working directory clean</code></pre></figure>
 
-<p>Done! Phew, at least this wasn’t too much typing, was it? Another option is to truncate the file:</p>
+<p>Done! Phew, at least this wasn&#39;t too much typing, was it? Another option is to truncate the file:</p>
 
 <figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>cat &gt;&gt; ~/.gitignore
 .ruby-version
@@ -191,7 +192,7 @@ On branch master
 Your branch is up-to-date with <span class="s1">&#39;origin/master&#39;</span>.
 nothing to commit, working directory clean</code></pre></figure>
 
-<p>And as always be careful with git, don’t mess things up.</p>
+<p>And as always be careful with git, don&#39;t mess things up.</p>
 
   </article>
 
@@ -219,17 +220,19 @@ nothing to commit, working directory clean</code></pre></figure>
 
       <div class="sm-col sm-col-8 px2">
         <p>
-        Full-stack designer. I like to keep things minimal and as simple as possible.
+          Full-stack designer. I like to keep things as minimal and as simple as possible.
         </p>
         <p>
-        Started years ago with a Sinclair Spectrum and has moved to user
-        experience and interfaces since. Developed and contributed to projects
-        for major brands such as L'Oreal, JTI and AB InBev among others.
+          Started to program with Sinclair Spectrum and has moved to user
+          experience and interfaces since. Developed and contributed to projects
+          for major brands such as L'Oreal, JTI and AB InBev among others. I am
+          currently working as an independent contractor.
         </p>
         <p>
-        Currently working as an independent contractor. Enjoying beautiful
-        scenery of Phuket, Thailand with <a href="http://molokophuket.com">wife</a> and
-        two <a href="http://anya.io">daughters</a>.
+          I live in Phuket, Thailand and enjoy the beautiful scenery with
+          <a href="http://molokophuket.com">wife</a>
+          and two
+          <a href="http://anya.io">daughters</a>.
         </p>
       </div>
 
