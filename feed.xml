@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Feb 2016 18:39:44 +0700</pubDate>
-    <lastBuildDate>Tue, 16 Feb 2016 18:39:44 +0700</lastBuildDate>
+    <pubDate>Tue, 16 Feb 2016 18:50:54 +0700</pubDate>
+    <lastBuildDate>Tue, 16 Feb 2016 18:50:54 +0700</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
@@ -84,7 +84,7 @@ requirements could be:&lt;/p&gt;
 Just introducing a general idea of &lt;strong&gt;smaller&lt;/strong&gt; and &lt;strong&gt;larger&lt;/strong&gt; screens.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#39;s take a look at some common internet-consuming devices. And see where we can
-draw a line between &lt;strong&gt;smaller&lt;/strong&gt; and &lt;strong&gt;larger&lt;/strong&gt;. This will be our &lt;code&gt;$middle&lt;/code&gt; breakpoint.
+draw a line between &lt;strong&gt;smaller&lt;/strong&gt; and &lt;strong&gt;larger&lt;/strong&gt;.
 Don&amp;#39;t worry if looks a bit Apple-biased, the results are universally applicable.&lt;/p&gt;
 
 &lt;table&gt;&lt;thead&gt;
@@ -171,7 +171,7 @@ Don&amp;#39;t worry if looks a bit Apple-biased, the results are universally app
 
 &lt;h2 id=&quot;middle-ground&quot;&gt;Middle ground&lt;/h2&gt;
 
-&lt;p&gt;When people think about breakpoints they are often imagining them as some
+&lt;p&gt;When people think about breakpoints they often imagining them as some
 magical bullet that can detect if you are using an iPad.&lt;/p&gt;
 
 &lt;p&gt;Note: I am referring only to &lt;code&gt;@media (min-width: $variable)&lt;/code&gt; well-behaved
@@ -190,12 +190,12 @@ this question a lot. The reasoning usually is that it&amp;#39;s hard to remember
 is &lt;code&gt;$middle&lt;/code&gt; or &lt;code&gt;$large&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;First of all the semantic here is meaningless. You can rotate an iPad, they can
-release a new device tomorrow and you will have to rename all your classes and
+release a new device tomorrow, and you will have to rename all your classes and
 what not.  Besides, each breakpoint is a fence between this side and the other
 one.&lt;/p&gt;
 
 &lt;p&gt;So I propose to claim a line between vertical and horizontal iPad orientation
-as a &lt;code&gt;$medium&lt;/code&gt; breakpoint. In most cases this will be a perfect place to start.
+as a &lt;code&gt;$medium&lt;/code&gt; breakpoint. In most cases this is a perfect place to start.
 Everything that is smaller: mobile phones, tablets in portrait, half of the
 screen -- we display content say in a single column.&lt;/p&gt;
 
@@ -211,8 +211,8 @@ your website on his phone he sees the initial styling.&lt;/p&gt;
 &lt;p&gt;Once he rotates the phone - he makes a first jump over the &lt;code&gt;$small&lt;/code&gt; breakpoint
 fence. Everything that is styled with &lt;code&gt;min-width: $small&lt;/code&gt; kicks in.&lt;/p&gt;
 
-&lt;p&gt;This is exactly the same he would see on the iPad in portrait orientation. But
-our users want to see more. So they rotate the iPad (or get an iPad pro) and that
+&lt;p&gt;This is what one would see the on an iPad in portrait orientation. But our
+users want to see more. So they rotate the iPad (or get an iPad pro) and that
 moves them over the &lt;code&gt;$medium&lt;/code&gt; breakpoint.&lt;/p&gt;
 
 &lt;p&gt;The last one, &lt;code&gt;$large&lt;/code&gt; covers everything bigger than an iPad in Landscape. That
@@ -220,10 +220,12 @@ is the computer screen and the iPad Pro.&lt;/p&gt;
 
 &lt;h2 id=&quot;final-results&quot;&gt;Final results&lt;/h2&gt;
 
-&lt;p&gt;Here is what I came up with base on the default &lt;code&gt;16px&lt;/code&gt; body font size. I don&amp;#39;t
+&lt;p&gt;Pixel sizes are provided only for reference. You should stick to rem-based
+sizes. Calculations are based on the default 16px body font size. I don&amp;#39;t
 recommend using pixels. Stick to rem as this is not relative and equals body
 font size. With &lt;code&gt;rem&lt;/code&gt; you can increase font size when needed and the layout
-will adapt. For example, if you need to show something on an HD TV across the room.&lt;/p&gt;
+will adapt. For example, if you need to show something on an HD TV across the
+room.&lt;/p&gt;
 
 &lt;table&gt;&lt;thead&gt;
 &lt;tr&gt;
@@ -265,9 +267,9 @@ will adapt. For example, if you need to show something on an HD TV across the ro
 &lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;
 
-&lt;p&gt;These were chosen after some consideration, but nothing is written in stone
-and you can change them as you see fit for your project. Menu might be not fitting
-in only this much or something breaks.&lt;/p&gt;
+&lt;p&gt;I have chosen these after some consideration, but nothing is written in stone,
+you can change them as you see fit for your project. Them menu might be not
+fitting in only this much or something breaks.&lt;/p&gt;
 
 &lt;p&gt;Anyway here are the breakpoints in SCSS format, I tried to round them up a little bit:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//       $small                  $medium                 $large&lt;/span&gt;

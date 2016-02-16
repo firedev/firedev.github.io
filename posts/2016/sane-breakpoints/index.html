@@ -225,7 +225,7 @@ requirements could be:</p>
 Just introducing a general idea of <strong>smaller</strong> and <strong>larger</strong> screens.</p>
 
 <p>Let&#39;s take a look at some common internet-consuming devices. And see where we can
-draw a line between <strong>smaller</strong> and <strong>larger</strong>. This will be our <code>$middle</code> breakpoint.
+draw a line between <strong>smaller</strong> and <strong>larger</strong>.
 Don&#39;t worry if looks a bit Apple-biased, the results are universally applicable.</p>
 
 <table><thead>
@@ -312,7 +312,7 @@ Don&#39;t worry if looks a bit Apple-biased, the results are universally applica
 
 <h2 id="middle-ground">Middle ground</h2>
 
-<p>When people think about breakpoints they are often imagining them as some
+<p>When people think about breakpoints they often imagining them as some
 magical bullet that can detect if you are using an iPad.</p>
 
 <p>Note: I am referring only to <code>@media (min-width: $variable)</code> well-behaved
@@ -331,12 +331,12 @@ this question a lot. The reasoning usually is that it&#39;s hard to remember wha
 is <code>$middle</code> or <code>$large</code>.</p>
 
 <p>First of all the semantic here is meaningless. You can rotate an iPad, they can
-release a new device tomorrow and you will have to rename all your classes and
+release a new device tomorrow, and you will have to rename all your classes and
 what not.  Besides, each breakpoint is a fence between this side and the other
 one.</p>
 
 <p>So I propose to claim a line between vertical and horizontal iPad orientation
-as a <code>$medium</code> breakpoint. In most cases this will be a perfect place to start.
+as a <code>$medium</code> breakpoint. In most cases this is a perfect place to start.
 Everything that is smaller: mobile phones, tablets in portrait, half of the
 screen -- we display content say in a single column.</p>
 
@@ -352,8 +352,8 @@ your website on his phone he sees the initial styling.</p>
 <p>Once he rotates the phone - he makes a first jump over the <code>$small</code> breakpoint
 fence. Everything that is styled with <code>min-width: $small</code> kicks in.</p>
 
-<p>This is exactly the same he would see on the iPad in portrait orientation. But
-our users want to see more. So they rotate the iPad (or get an iPad pro) and that
+<p>This is what one would see the on an iPad in portrait orientation. But our
+users want to see more. So they rotate the iPad (or get an iPad pro) and that
 moves them over the <code>$medium</code> breakpoint.</p>
 
 <p>The last one, <code>$large</code> covers everything bigger than an iPad in Landscape. That
@@ -361,10 +361,12 @@ is the computer screen and the iPad Pro.</p>
 
 <h2 id="final-results">Final results</h2>
 
-<p>Here is what I came up with base on the default <code>16px</code> body font size. I don&#39;t
+<p>Pixel sizes are provided only for reference. You should stick to rem-based
+sizes. Calculations are based on the default 16px body font size. I don&#39;t
 recommend using pixels. Stick to rem as this is not relative and equals body
 font size. With <code>rem</code> you can increase font size when needed and the layout
-will adapt. For example, if you need to show something on an HD TV across the room.</p>
+will adapt. For example, if you need to show something on an HD TV across the
+room.</p>
 
 <table><thead>
 <tr>
@@ -406,9 +408,9 @@ will adapt. For example, if you need to show something on an HD TV across the ro
 </tr>
 </tbody></table>
 
-<p>These were chosen after some consideration, but nothing is written in stone
-and you can change them as you see fit for your project. Menu might be not fitting
-in only this much or something breaks.</p>
+<p>I have chosen these after some consideration, but nothing is written in stone,
+you can change them as you see fit for your project. Them menu might be not
+fitting in only this much or something breaks.</p>
 
 <p>Anyway here are the breakpoints in SCSS format, I tried to round them up a little bit:</p>
 <div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="c1">//       $small                  $medium                 $large</span>
