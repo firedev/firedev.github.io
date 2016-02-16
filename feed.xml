@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Feb 2016 20:46:02 +0700</pubDate>
-    <lastBuildDate>Tue, 16 Feb 2016 20:46:02 +0700</lastBuildDate>
+    <pubDate>Tue, 16 Feb 2016 20:57:17 +0700</pubDate>
+    <lastBuildDate>Tue, 16 Feb 2016 20:57:17 +0700</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
@@ -97,55 +97,55 @@ Don&amp;#39;t worry if looks a bit Apple-biased, the results are universally app
 &lt;/thead&gt;&lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src=&quot;/images/devices/iphone-vertical.svg&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;iPhone&lt;/strong&gt; Vertical&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;iPhone&lt;/strong&gt; Portrait&lt;/td&gt;
 &lt;td&gt;320px&lt;/td&gt;
 &lt;td&gt;20rem&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src=&quot;/images/devices/iphone6-vertical.svg&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;iPhone 6&lt;/strong&gt; Vertical&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;iPhone 6&lt;/strong&gt; Portrait&lt;/td&gt;
 &lt;td&gt;375px&lt;/td&gt;
 &lt;td&gt;23.4375rem&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src=&quot;/images/devices/iphonep-vertical.svg&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;iPhone 6+&lt;/strong&gt; Vertical&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;iPhone 6+&lt;/strong&gt; Portrait&lt;/td&gt;
 &lt;td&gt;414px&lt;/td&gt;
 &lt;td&gt;25.875rem&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src=&quot;/images/devices/iphone-horizontal.svg&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;iPhone&lt;/strong&gt; Horizontal&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;iPhone&lt;/strong&gt; Landscape&lt;/td&gt;
 &lt;td&gt;568px&lt;/td&gt;
 &lt;td&gt;35.5rem&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src=&quot;/images/devices/iphone6-horizontal.svg&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;iPhone 6&lt;/strong&gt; Horizontal&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;iPhone 6&lt;/strong&gt; Landscape&lt;/td&gt;
 &lt;td&gt;667px&lt;/td&gt;
 &lt;td&gt;41.6875rem&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src=&quot;/images/devices/iphonep-horizontal.svg&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;iPhone 6+&lt;/strong&gt; Horizontal&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;iPhone 6+&lt;/strong&gt; Landscape&lt;/td&gt;
 &lt;td&gt;736px&lt;/td&gt;
 &lt;td&gt;46rem&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src=&quot;/images/devices/ipad-vertical.svg&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;iPad&lt;/strong&gt; Vertical&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;iPad&lt;/strong&gt; Portrait&lt;/td&gt;
 &lt;td&gt;768px&lt;/td&gt;
 &lt;td&gt;48rem&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src=&quot;/images/devices/ipad-horizontal.svg&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;iPad&lt;/strong&gt; Horizontal&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;iPad&lt;/strong&gt; Landscape&lt;/td&gt;
 &lt;td&gt;1024px&lt;/td&gt;
 &lt;td&gt;64rem&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src=&quot;/images/devices/ipadpro-vertical.svg&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;iPad Pro&lt;/strong&gt; Vertical&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;iPad Pro&lt;/strong&gt; Portrait&lt;/td&gt;
 &lt;td&gt;1024px&lt;/td&gt;
 &lt;td&gt;64rem&lt;/td&gt;
 &lt;/tr&gt;
@@ -157,7 +157,7 @@ Don&amp;#39;t worry if looks a bit Apple-biased, the results are universally app
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src=&quot;/images/devices/ipadpro-horizontal.svg&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;iPad Pro&lt;/strong&gt; Horizontal&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;iPad Pro&lt;/strong&gt; Landscape&lt;/td&gt;
 &lt;td&gt;1366px&lt;/td&gt;
 &lt;td&gt;85.375rem&lt;/td&gt;
 &lt;/tr&gt;
