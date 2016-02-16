@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Feb 2016 18:52:01 +0700</pubDate>
-    <lastBuildDate>Tue, 16 Feb 2016 18:52:01 +0700</lastBuildDate>
+    <pubDate>Tue, 16 Feb 2016 20:46:02 +0700</pubDate>
+    <lastBuildDate>Tue, 16 Feb 2016 20:46:02 +0700</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
@@ -289,11 +289,11 @@ found in CSS Frameworks everywhere. Start small, use an
         <link>http://firedev.com/posts/2016/sane-breakpoints/</link>
         <guid isPermaLink="true">http://firedev.com/posts/2016/sane-breakpoints/</guid>
         
-        <category>css</category>
+        <category>CSS</category>
         
-        <category>react</category>
+        <category>breakpoints</category>
         
-        <category>components</category>
+        <category>frontend</category>
         
         
         <category>posts</category>
@@ -549,6 +549,8 @@ overall look and feel. And the best part is -- now you can compose:&lt;/p&gt;
         
         <category>components</category>
         
+        <category>frontend</category>
+        
         
         <category>posts</category>
         
@@ -761,6 +763,10 @@ grunt
         <category>react</category>
         
         <category>components</category>
+        
+        <category>immutable</category>
+        
+        <category>frontend</category>
         
         
         <category>posts</category>
@@ -1533,6 +1539,8 @@ controllers. Please let me know if you think something could be improved.&lt;/p&
         <category>rails</category>
         
         <category>refactoring</category>
+        
+        <category>functional</category>
         
         
         <category>posts</category>
