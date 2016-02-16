@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Feb 2016 18:30:32 +0700</pubDate>
-    <lastBuildDate>Tue, 16 Feb 2016 18:30:32 +0700</lastBuildDate>
+    <pubDate>Tue, 16 Feb 2016 18:34:59 +0700</pubDate>
+    <lastBuildDate>Tue, 16 Feb 2016 18:34:59 +0700</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
@@ -270,7 +270,11 @@ and you can change them as you see fit for your project. Menu might be not fitti
 in only this much or something breaks.&lt;/p&gt;
 
 &lt;p&gt;Anyway here are the breakpoints in SCSS format, I tried to round them up a little bit:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$small&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;35&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 560px&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//       $small                $medium               $large&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Vertical | Horizontal Vertical | Horizontal Vertical | Horizontal&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Phone    | Phone      iPad     | iPad       iPad Pro | iPad Pro&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$small&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;35&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 560px&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$medium&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;55&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 880px&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$large&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;65&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1040px&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
