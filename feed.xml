@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Feb 2016 22:18:45 +0700</pubDate>
-    <lastBuildDate>Tue, 16 Feb 2016 22:18:45 +0700</lastBuildDate>
+    <pubDate>Tue, 16 Feb 2016 22:23:33 +0700</pubDate>
+    <lastBuildDate>Tue, 16 Feb 2016 22:23:33 +0700</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
@@ -192,22 +192,22 @@ Or at the very least we can start with it.  Let&amp;#39;s call it &lt;code&gt;$m
 on the left will be considered a &lt;strong&gt;smaller&lt;/strong&gt; screen and everything on the right
 is a &lt;strong&gt;larger&lt;/strong&gt; screen.&lt;/p&gt;
 
-&lt;p&gt;Why not name them &lt;code&gt;$desktop/$tablet/$mobile&lt;/code&gt;? Isn&amp;#39;t this &lt;em&gt;semantic&lt;/em&gt;? I hear
-this question a lot. The reasoning usually is that it&amp;#39;s hard to remember what
-is &lt;code&gt;$middle&lt;/code&gt; or &lt;code&gt;$large&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;First of all the semantic here is meaningless. You can rotate an iPad, they can
-release a new device tomorrow, and you will have to rename all your classes and
-what not.  Besides, each breakpoint is a fence between this side and the other
-one.&lt;/p&gt;
+&lt;p&gt;Why not name them &lt;code&gt;$desktop&lt;/code&gt;/&lt;code&gt;$tablet&lt;/code&gt;/&lt;code&gt;$mobile&lt;/code&gt;/&lt;code&gt;$whatever&lt;/code&gt;? Isn&amp;#39;t this
+&lt;em&gt;semantic&lt;/em&gt;? I hear this question a lot. The reasoning usually is that it&amp;#39;s hard
+to remember what is &lt;code&gt;$middle&lt;/code&gt; or &lt;code&gt;$large&lt;/code&gt;. First of all the semantics here is
+meaningless. One can rotate an iPad, they can release a new device tomorrow,
+and you will have to rename all your classes and whatnot. Besides, each
+breakpoint is only a fence.&lt;/p&gt;
 
 &lt;p&gt;So I propose to claim a line between vertical and horizontal iPad orientation
-as a &lt;code&gt;$medium&lt;/code&gt; breakpoint. In most cases this is a perfect place to start.
-Everything that is smaller: mobile phones, tablets in portrait, half of the
-screen -- we display content say in a single column.&lt;/p&gt;
+as a &lt;code&gt;$medium&lt;/code&gt; breakpoint. A perfect place to start moving further. By default
+and until we are being viewed from the devices that is larger than &lt;code&gt;$medium&lt;/code&gt;,
+and that includes: mobile phones, tablets in portrait, half of the screen -- we
+display content, say, in a single column.&lt;/p&gt;
 
-&lt;p&gt;Everything that is bigger: iPad in horizontal mode, computer screens, TV, we
-display multiple columns or un-collapse the menu.&lt;/p&gt;
+&lt;p&gt;Once our media query is triggered, for everything that is bigger than
+&lt;code&gt;$medium&lt;/code&gt;: that is for example an iPad in horizontal mode, computer screens,
+TV -- we display multiple columns or un-collapse the menu.&lt;/p&gt;
 
 &lt;h2 id=&quot;other-breakpoints&quot;&gt;Other breakpoints&lt;/h2&gt;
 

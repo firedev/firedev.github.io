@@ -340,22 +340,22 @@ Or at the very least we can start with it.  Let&#39;s call it <code>$medium</cod
 on the left will be considered a <strong>smaller</strong> screen and everything on the right
 is a <strong>larger</strong> screen.</p>
 
-<p>Why not name them <code>$desktop/$tablet/$mobile</code>? Isn&#39;t this <em>semantic</em>? I hear
-this question a lot. The reasoning usually is that it&#39;s hard to remember what
-is <code>$middle</code> or <code>$large</code>.</p>
-
-<p>First of all the semantic here is meaningless. You can rotate an iPad, they can
-release a new device tomorrow, and you will have to rename all your classes and
-what not.  Besides, each breakpoint is a fence between this side and the other
-one.</p>
+<p>Why not name them <code>$desktop</code>/<code>$tablet</code>/<code>$mobile</code>/<code>$whatever</code>? Isn&#39;t this
+<em>semantic</em>? I hear this question a lot. The reasoning usually is that it&#39;s hard
+to remember what is <code>$middle</code> or <code>$large</code>. First of all the semantics here is
+meaningless. One can rotate an iPad, they can release a new device tomorrow,
+and you will have to rename all your classes and whatnot. Besides, each
+breakpoint is only a fence.</p>
 
 <p>So I propose to claim a line between vertical and horizontal iPad orientation
-as a <code>$medium</code> breakpoint. In most cases this is a perfect place to start.
-Everything that is smaller: mobile phones, tablets in portrait, half of the
-screen -- we display content say in a single column.</p>
+as a <code>$medium</code> breakpoint. A perfect place to start moving further. By default
+and until we are being viewed from the devices that is larger than <code>$medium</code>,
+and that includes: mobile phones, tablets in portrait, half of the screen -- we
+display content, say, in a single column.</p>
 
-<p>Everything that is bigger: iPad in horizontal mode, computer screens, TV, we
-display multiple columns or un-collapse the menu.</p>
+<p>Once our media query is triggered, for everything that is bigger than
+<code>$medium</code>: that is for example an iPad in horizontal mode, computer screens,
+TV -- we display multiple columns or un-collapse the menu.</p>
 
 <h2 id="other-breakpoints">Other breakpoints</h2>
 
