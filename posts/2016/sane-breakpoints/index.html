@@ -322,16 +322,23 @@ Don&#39;t worry if looks a bit Apple-biased, the results are universally applica
 <p>When people think about breakpoints they often imagining them as some
 magical bullet that can detect if you are using an iPad.</p>
 
-<p>Note: I am referring only to <code>@media (min-width: $variable)</code> well-behaved
-breakpoints as this are the only ones you should use.</p>
+<p><strong>I am referring only to <code>@media (min-width: $variable)</code> well-behaved
+breakpoints as this are the only ones you should use.</strong></p>
 
 <p>Think of a breakpoint as a fence. Like a fence it has two sides, everything
-that is smaller than the specified width (including it) and everything that
-is higher.</p>
+that is smaller than the specified width and everything that is equal or larger
+than the specified width.</p>
 
+<p>In other words you can think of it as a equals or larger than equasion:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">.menu { folded }
+@media (screen width &gt;= x) {
+  .menu { unfolded }
+}
+</code></pre></div>
 <p>That makes me think that in most cases you could do with a single breakpoint.
-Let&#39;s call it <code>$medium</code>. Everything on the left will be considered a <strong>smaller</strong>
-screen and everything on the right is a <strong>larger</strong> screen.</p>
+Or at the very least we can start with it.  Let&#39;s call it <code>$medium</code>. Everything
+on the left will be considered a <strong>smaller</strong> screen and everything on the right
+is a <strong>larger</strong> screen.</p>
 
 <p>Why not name them <code>$desktop/$tablet/$mobile</code>? Isn&#39;t this <em>semantic</em>? I hear
 this question a lot. The reasoning usually is that it&#39;s hard to remember what

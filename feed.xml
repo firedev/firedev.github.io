@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Feb 2016 21:00:13 +0700</pubDate>
-    <lastBuildDate>Tue, 16 Feb 2016 21:00:13 +0700</lastBuildDate>
+    <pubDate>Tue, 16 Feb 2016 22:17:41 +0700</pubDate>
+    <lastBuildDate>Tue, 16 Feb 2016 22:17:41 +0700</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
@@ -174,16 +174,23 @@ Don&amp;#39;t worry if looks a bit Apple-biased, the results are universally app
 &lt;p&gt;When people think about breakpoints they often imagining them as some
 magical bullet that can detect if you are using an iPad.&lt;/p&gt;
 
-&lt;p&gt;Note: I am referring only to &lt;code&gt;@media (min-width: $variable)&lt;/code&gt; well-behaved
-breakpoints as this are the only ones you should use.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I am referring only to &lt;code&gt;@media (min-width: $variable)&lt;/code&gt; well-behaved
+breakpoints as this are the only ones you should use.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Think of a breakpoint as a fence. Like a fence it has two sides, everything
-that is smaller than the specified width (including it) and everything that
-is higher.&lt;/p&gt;
+that is smaller than the specified width and everything that is equal or larger
+than the specified width.&lt;/p&gt;
 
+&lt;p&gt;In other words you can think of it as a equals or larger than equasion:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.menu { folded }
+@media (screen width &amp;gt;= x) {
+  .menu { unfolded }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;That makes me think that in most cases you could do with a single breakpoint.
-Let&amp;#39;s call it &lt;code&gt;$medium&lt;/code&gt;. Everything on the left will be considered a &lt;strong&gt;smaller&lt;/strong&gt;
-screen and everything on the right is a &lt;strong&gt;larger&lt;/strong&gt; screen.&lt;/p&gt;
+Or at the very least we can start with it.  Let&amp;#39;s call it &lt;code&gt;$medium&lt;/code&gt;. Everything
+on the left will be considered a &lt;strong&gt;smaller&lt;/strong&gt; screen and everything on the right
+is a &lt;strong&gt;larger&lt;/strong&gt; screen.&lt;/p&gt;
 
 &lt;p&gt;Why not name them &lt;code&gt;$desktop/$tablet/$mobile&lt;/code&gt;? Isn&amp;#39;t this &lt;em&gt;semantic&lt;/em&gt;? I hear
 this question a lot. The reasoning usually is that it&amp;#39;s hard to remember what
