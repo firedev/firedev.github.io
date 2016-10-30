@@ -5,7 +5,7 @@ category: posts
 tags:
   - rails
   - carrierwave
-image: 'posts/lazy_cat.jpg'
+image: 'posts/lazy-image-creation-with-carrierwave.jpg'
 background_size: cover
 ---
 

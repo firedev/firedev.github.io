@@ -6,6 +6,7 @@ tags:
   - ruby
   - rails
   - refactoring
+  - functional
 image: 'posts/electrical_plumbing_service.jpg'
 background_size: cover
 ---
