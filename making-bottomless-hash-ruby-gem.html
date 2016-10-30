@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Making Bottomless Hash Ruby Gem</title>
+  <meta name="description" content="After creating Bottomless Hashlast time and writing tests the next logical step is to make a Gem out of it.">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://firedev.com/making-bottomless-hash-ruby-gem">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta property="og:url" content="http://firedev.com/making-bottomless-hash-ruby-gem" />
+  <meta property="og:title" content="Making Bottomless Hash Ruby Gem" />
+  <meta property="og:description" content="After creating Bottomless Hash
+last time and writing tests the next logical step is to make a Gem out of it.
+" />
+  <meta property="og:image" content="http://firedev.com/images/posts/bottomless_pit_gravity_falls.jpg" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="container px2 mt2 mb2">
+    <div class="clearfix mxn2">
+      <div class="sm-col sm-col-3 px2">
+        <h1 class="logo m0 relative">
+          <a href="/" id="logo">
+            <span class="hide">
+              <span class="fire">
+                fire
+              </span>
+              <span class="dev">
+                dev
+              </span>
+              <span class="com">
+                .com
+              </span>
+            </span>
+            <img src="/images/logos/firedev.svg" alt="firedev.com" class="absolute bottom-0" />
+            &nbsp;
+          </a>
+        </h1>
+      </div>
+      <nav class="sm-col sm-col-9 px2 mt2 py1">
+        <div class="right mt2 p1 md-show">
+          <a class="btn silver regular" href="/feed.xml">
+            <i class="fa fa-rss"></i>
+            RSS
+          </a>
+        </div>
+        <h3>
+          
+            
+          
+            
+              
+                <a class="btn" href="/posts/">
+                  Posts
+                </a>
+              
+            
+          
+            
+              
+                <a class="btn" href="/projects/">
+                  Projects
+                </a>
+              
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+        </h3>
+      </nav>
+    </div>
+  </div>
+</header>
+
+    
+<div class="main-image mb3" style="
+background-image: url(/images/posts/bottomless_pit_gravity_falls.jpg);
+background-size: cover;
+background-color: ;
+background-position: ;
+">
+</div>
+
+
+    <div class="container px2 mb4">
+        
+
+<header>
+  <p>Oct 10, 2015</p>
+  <h1 class="m0 mb2">Making Bottomless Hash Ruby Gem</h1>
+</header>
+
+
+<div class="mb3">
+  <article class="mb3">
+    <p>After creating <a href="http://firedev.com/2015/bottomless-ruby-hash">Bottomless Hash</a>
+last time and writing tests the next logical step is to make a Gem out of it.</p>
+
+<h2 id="preparation">Preparation</h2>
+
+<p>First things first. Let&#39;s see if the name is not taken.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ gem search bottomless_hash
+
+*** REMOTE GEMS ***
+</code></pre></div>
+<p>Looks good, now generate a template and an empty git repo to have less typing.
+We&#39;ll use RSpec, since I already have tests written.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>bundle <span class="nb">help </span>gem                                                                                                                                                            <span class="m">127</span> ↵
+Usage:
+  bundle gem GEM <span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+  -b, <span class="o">[</span>--bin<span class="o">]</span>, <span class="o">[</span>--no-bin<span class="o">]</span>            <span class="c"># Generate a binary for your library.</span>
+      <span class="o">[</span>--coc<span class="o">]</span>, <span class="o">[</span>--no-coc<span class="o">]</span>            <span class="c"># Generate a code of conduct file. Set a default with `bundle config gem.coc true`.</span>
+  -e, <span class="o">[</span>--edit<span class="o">=</span>EDITOR<span class="o">]</span>                <span class="c"># Open generated gemspec in the specified editor (defaults to $EDITOR or $BUNDLER_EDITOR)</span>
+      <span class="o">[</span>--ext<span class="o">]</span>, <span class="o">[</span>--no-ext<span class="o">]</span>            <span class="c"># Generate the boilerplate for C extension code</span>
+      <span class="o">[</span>--mit<span class="o">]</span>, <span class="o">[</span>--no-mit<span class="o">]</span>            <span class="c"># Generate an MIT license file. Set a default with `bundle config gem.mit true`.</span>
+  -t, <span class="o">[</span>--test<span class="o">=</span>rspec<span class="o">]</span>                 <span class="c"># Generate a test directory for your library, either rspec or minitest. Set a default with `bundle config gem.test rspec`.</span>
+      <span class="o">[</span>--no-color<span class="o">]</span>, <span class="o">[</span>--no-no-color<span class="o">]</span>  <span class="c"># Disable colorization in output</span>
+  -r, <span class="o">[</span>--retry<span class="o">=</span>NUM<span class="o">]</span>                  <span class="c"># Specify the number of times you wish to attempt network commands</span>
+  -V, <span class="o">[</span>--verbose<span class="o">]</span>, <span class="o">[</span>--no-verbose<span class="o">]</span>    <span class="c"># Enable verbose output mode</span>
+</code></pre></div>
+<p>Create a Ruby Gem skeleton with RSpec as a test runner.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ bundle gem bottomless_hash -t=rspec
+Creating gem &#39;bottomless_hash&#39;...
+Do you want to include a code of conduct in gems you generate?
+Codes of conduct can increase contributions to your project by contributors who prefer collaborative, safe spaces. You can read more about the code of conduct at contributor-covenant.org. Having a code of conduct means agreeing to the responsibility of enforcing it, so be sure that you are prepared to do that. For suggestions about how to enforce codes of conduct, see bit.ly/coc-enforcement. y/(n): y
+Code of conduct enabled in config
+Do you want to license your code permissively under the MIT license?
+This means that any other developer or company will be legally allowed to use your code for free as long as they admit you created it. You can read more about the MIT license at choosealicense.com/licenses/mit. y/(n): y
+MIT License enabled in config
+      create  bottomless_hash/Gemfile
+      create  bottomless_hash/.gitignore
+      create  bottomless_hash/lib/bottomless_hash.rb
+      create  bottomless_hash/lib/bottomless_hash/version.rb
+      create  bottomless_hash/bottomless_hash.gemspec
+      create  bottomless_hash/Rakefile
+      create  bottomless_hash/README.md
+      create  bottomless_hash/bin/console
+      create  bottomless_hash/bin/setup
+      create  bottomless_hash/CODE_OF_CONDUCT.md
+      create  bottomless_hash/LICENSE.txt
+      create  bottomless_hash/.travis.yml
+      create  bottomless_hash/.rspec
+      create  bottomless_hash/spec/spec_helper.rb
+      create  bottomless_hash/spec/bottomless_hash_spec.rb
+Initializing git repo in gems/bottomless_hash
+</code></pre></div>
+<p>I have included all this licences and codes of conduct as some people are
+very sensitive to this and will email you asking if they can change your
+code if you won&#39;t include any of these.</p>
+
+<p>Okay it is quite a handful so I&#39;ll publish it on GitHub.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>git remote add origin git@github.com:firedev/bottomless_hash.git
+<span class="nv">$ </span>git push -u origin master
+Counting objects: 21, <span class="k">done</span>.
+Delta compression using up to <span class="m">4</span> threads.
+Compressing objects: 100% <span class="o">(</span>18/18<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: 100% <span class="o">(</span>21/21<span class="o">)</span>, 4.75 KiB <span class="p">|</span> <span class="m">0</span> bytes/s, <span class="k">done</span>.
+Total <span class="m">21</span> <span class="o">(</span>delta 0<span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta 0<span class="o">)</span>
+To git@github.com:firedev/bottomless_hash.git
+ * <span class="o">[</span>new branch<span class="o">]</span>      master -&gt; master
+ Branch master <span class="nb">set </span>up to track remote branch master from origin.
+</code></pre></div>
+<p>Great now let&#39;s get to business.</p>
+
+<h2 id="filling-up-the-blanks">Filling up the blanks</h2>
+
+<p>There is a bunch of files but for now we just need to fill up
+<code>bottomless_hash.gemspec</code>.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># coding: utf-8</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;../lib&#39;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+<span class="vg">$LOAD_PATH</span><span class="o">.</span><span class="n">unshift</span><span class="p">(</span><span class="n">lib</span><span class="p">)</span> <span class="k">unless</span> <span class="vg">$LOAD_PATH</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">lib</span><span class="p">)</span>
+<span class="nb">require</span> <span class="s1">&#39;bottomless_hash/version&#39;</span>
+
+<span class="no">Gem</span><span class="o">::</span><span class="no">Specification</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">spec</span><span class="o">|</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">name</span>          <span class="o">=</span> <span class="s2">&quot;bottomless_hash&quot;</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">version</span>       <span class="o">=</span> <span class="no">BottomlessHash</span><span class="o">::</span><span class="no">VERSION</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">authors</span>       <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Nick Ostrovsky&quot;</span><span class="o">]</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">email</span>         <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;nick@firedev.com&quot;</span><span class="o">]</span>
+
+  <span class="n">spec</span><span class="o">.</span><span class="n">summary</span>       <span class="o">=</span> <span class="sx">%q{Ruby Hash modified to accept keys blindly}</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">description</span>   <span class="o">=</span> <span class="sx">%q{Is there a way to blindly assign nested values to a</span>
+<span class="sx">                          Ruby hash without creating each key’s hash separately? Yes, but it’s more</span>
+<span class="sx">                          involved than you’d think.}</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">homepage</span>      <span class="o">=</span> <span class="s2">&quot;https://github.com/firedev/bottomless_hash&quot;</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">license</span>       <span class="o">=</span> <span class="s2">&quot;MIT&quot;</span>
+
+  <span class="c1"># Prevent pushing this gem to RubyGems.org by setting &#39;allowed_push_host&#39;, or</span>
+  <span class="c1"># delete this section to allow pushing this gem to any host.</span>
+  <span class="c1"># if spec.respond_to?(:metadata)</span>
+  <span class="c1">#   spec.metadata[&#39;allowed_push_host&#39;] = &quot;TODO: Set to &#39;http://mygemserver.com&#39;&quot;</span>
+  <span class="c1"># else</span>
+  <span class="c1">#   raise &quot;RubyGems 2.0 or newer is required to protect against public gem pushes.&quot;</span>
+  <span class="c1"># end</span>
+
+  <span class="n">spec</span><span class="o">.</span><span class="n">files</span>         <span class="o">=</span> <span class="sb">`git ls-files -z`</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\x0</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reject</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">f</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">%r{^(test|spec|features)/}</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">bindir</span>        <span class="o">=</span> <span class="s2">&quot;exe&quot;</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">executables</span>   <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">%r{^exe/}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="no">File</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">require_paths</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;lib&quot;</span><span class="o">]</span>
+
+  <span class="n">spec</span><span class="o">.</span><span class="n">add_development_dependency</span> <span class="s2">&quot;bundler&quot;</span><span class="p">,</span> <span class="s2">&quot;~&gt; 1.10&quot;</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">add_development_dependency</span> <span class="s2">&quot;rake&quot;</span><span class="p">,</span> <span class="s2">&quot;~&gt; 10.0&quot;</span>
+  <span class="n">spec</span><span class="o">.</span><span class="n">add_development_dependency</span> <span class="s2">&quot;rspec&quot;</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>That&#39;ll do it. I just commented out the part about not letting this gem to be
+pushed to public repos. RSpec development dependency is already injected so I
+guess we are good to go.</p>
+
+<h2 id="add-the-meat-not-the-heat">Add the meat, not the heat</h2>
+
+<p>Now let us add the actual files. If you take a look Ruby gems are following the
+simple structure.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">lib/gem_name.rb
+lib/gem_name/
+lib/gem_name/version.rb
+</code></pre></div>
+<p>The file in lib is required by default, <code>version.rb</code> is a single constant,
+everything else is up to you.</p>
+
+<p>The common way of structuring stuff is to put everything in the <code>lib/gem_name</code>
+and require from <code>lib/gem_name.rb</code> that makes everything a bit tidier. But we have
+nothing to hide so let&#39;s put everything from the
+<a href="https://gist.github.com/firedev/9de91e245f70c2e963e4">GitHub gist</a>
+into <code>lib/bottomless_hash.rb</code></p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># lib/bottomless_hash.rb</span>
+
+<span class="nb">require</span> <span class="s2">&quot;bottomless_hash/version&quot;</span>
+
+<span class="k">class</span> <span class="nc">BottomlessHash</span> <span class="o">&lt;</span> <span class="no">Hash</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="k">super</span> <span class="o">&amp;-&gt;</span> <span class="n">h</span><span class="p">,</span> <span class="n">k</span> <span class="p">{</span> <span class="n">h</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">new</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">from_hash</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+    <span class="kp">new</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Hash</span>
+  <span class="k">def</span> <span class="nf">bottomless</span>
+    <span class="no">BottomlessHash</span><span class="o">.</span><span class="n">from_hash</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>And don&#39;t forget specs.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/bottomless_hash</span>
+<span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">BottomlessHash</span> <span class="k">do</span>
+  <span class="n">it</span> <span class="s1">&#39;has a version number&#39;</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="no">BottomlessHash</span><span class="o">::</span><span class="no">VERSION</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">be</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">&#39;does not raise on missing key&#39;</span> <span class="k">do</span>
+    <span class="n">expect</span> <span class="k">do</span>
+      <span class="n">subject</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
+    <span class="k">end</span><span class="o">.</span><span class="n">to_not</span> <span class="n">raise_error</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">&#39;returns an empty value on missing key&#39;</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_empty</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">&#39;stores and returns keys&#39;</span> <span class="k">do</span>
+    <span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:value</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="ss">:value</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s1">&#39;#from_hash&#39;</span> <span class="k">do</span>
+    <span class="n">let</span> <span class="p">(</span><span class="ss">:hash</span><span class="p">)</span> <span class="k">do</span>
+      <span class="p">{</span> <span class="ss">existing</span><span class="p">:</span> <span class="p">{</span> <span class="ss">key</span><span class="p">:</span> <span class="p">{</span> <span class="ss">value</span><span class="p">:</span> <span class="ss">:hello</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+    <span class="k">end</span>
+
+    <span class="n">subject</span> <span class="k">do</span>
+      <span class="n">described_class</span><span class="o">.</span><span class="n">from_hash</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">&#39;returns old hash values&#39;</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="ss">:hello</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">&#39;provides a bottomless version&#39;</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_empty</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">&#39;stores and returns new values&#39;</span> <span class="k">do</span>
+      <span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:value</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="ss">:value</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">&#39;converts nested hashes as well&#39;</span> <span class="k">do</span>
+      <span class="n">expect</span> <span class="k">do</span>
+        <span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">][</span><span class="ss">:missing</span><span class="o">]</span>
+      <span class="k">end</span><span class="o">.</span><span class="n">to_not</span> <span class="n">raise_error</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Now lets run it. You will see some errors, stemming from the fact that
+<code>version.rb</code> thinks <code>BottomlessHash</code> is a module. We could wrap everything up
+in the module, but I don&#39;t have any good ideas for naming. So let&#39;s just patch
+the things up quickly.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># lib/bottomless_hash/version.rb</span>
+
+<span class="k">class</span> <span class="nc">BottomlessHash</span> <span class="o">&lt;</span> <span class="no">Hash</span>
+  <span class="no">VERSION</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>A little bit ugly but okay.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>bundle
+<span class="nv">$ </span>rspec
+
+BottomlessHash
+  has a version number
+  does not raise on missing key
+  returns an empty value on missing key
+  stores and returns keys
+  <span class="c">#from_hash</span>
+    returns old <span class="nb">hash </span>values
+    provides a bottomless version
+    stores and returns new values
+    converts nested hashes as well
+
+Finished in 0.00668 seconds <span class="o">(</span>files took 0.12033 seconds to load<span class="o">)</span>
+<span class="m">8</span> examples, <span class="m">0</span> failures
+</code></pre></div>
+<p>Okay that part went fine. Commit and push to Github. It might
+be a bit too verbose for the purpose of this post, but by
+documenting everything so I can use it later.</p>
+
+<p>Let&#39;s add another test to make sure Ruby <code>Hash</code> class gets patched as well.
+This time we would have to require <code>BottomlessHash</code> as <code>spec_helper</code> would
+not be able to infer it&#39;s name from the spec file.</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/hash_spec.rb</span>
+
+<span class="n">require_relative</span> <span class="s1">&#39;../lib/bottomless_hash&#39;</span>
+
+<span class="n">describe</span> <span class="no">Hash</span> <span class="k">do</span>
+  <span class="n">subject</span> <span class="k">do</span>
+    <span class="p">{</span>
+      <span class="ss">existing</span><span class="p">:</span> <span class="p">{</span>
+        <span class="ss">key</span><span class="p">:</span> <span class="ss">:hello</span>
+      <span class="p">}</span>
+    <span class="p">}</span><span class="o">.</span><span class="n">bottomless</span>
+  <span class="k">end</span>
+  <span class="n">it</span> <span class="s1">&#39;is a BottomlessHash now&#39;</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_a</span> <span class="no">BottomlessHash</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">&#39;returns values for existing keys&#39;</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:existing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="ss">:hello</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">&#39;bottomlessly stores values&#39;</span> <span class="k">do</span>
+    <span class="n">subject</span><span class="o">[</span><span class="ss">:new</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span> <span class="o">=</span> <span class="ss">:omg</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">[</span><span class="ss">:new</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="ss">:omg</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">&#39;does not raise error on missing keys&#39;</span> <span class="k">do</span>
+    <span class="n">expect</span> <span class="k">do</span>
+      <span class="n">subject</span><span class="o">[</span><span class="ss">:missing</span><span class="o">][</span><span class="ss">:key</span><span class="o">]</span>
+    <span class="k">end</span><span class="o">.</span><span class="n">to_not</span> <span class="n">raise_error</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Another pass and we&#39;re good to go.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>rspec spec/hash_spec.rb
+
+Hash
+  is a BottomlessHash now
+  returns values <span class="k">for</span> existing keys
+  bottomlessly stores values
+  does not raise error on missing keys
+
+Finished in 0.00285 seconds <span class="o">(</span>files took 0.09323 seconds to load<span class="o">)</span>
+<span class="m">4</span> examples, <span class="m">0</span> failures
+</code></pre></div>
+<p>Now let&#39;s add some docs and publish.</p>
+
+<h2 id="publishing">Publishing</h2>
+
+<p>After getting an account on <a href="http://rubygems.org">RubyGems</a> it is simple.</p>
+
+<p>First you have to build a gem.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem build bottomless_hash.gemspec                                                                                                    <span class="m">1</span> ↵
+WARNING:  open-ended dependency on rspec <span class="o">(</span>&gt;<span class="o">=</span> 0, development<span class="o">)</span> is not recommended
+  <span class="k">if</span> rspec is semantically versioned, use:
+    add_development_dependency <span class="s1">&#39;rspec&#39;</span>, <span class="s1">&#39;~&gt; 0&#39;</span>
+WARNING:  See http://guides.rubygems.org/specification-reference/ <span class="k">for</span> <span class="nb">help</span>
+<span class="nb">  </span>Successfully built RubyGem
+  Name: bottomless_hash
+  Version: 0.1.0
+  File: bottomless_hash-0.1.0.gem
+</code></pre></div>
+<p>Okay it worked but I&#39;d like to get rid of the warning, so I change the line in
+<code>.gemspec</code> as suggested.</p>
+<div class="highlight"><pre><code class="language-diff" data-lang="diff">$ git diff
+<span class="gh">diff --git a/bottomless_hash.gemspec b/bottomless_hash.gemspec</span>
+<span class="gh">index b0a7bb7..817054f 100644</span>
+<span class="gd">--- a/bottomless_hash.gemspec</span>
+<span class="gi">+++ b/bottomless_hash.gemspec</span>
+<span class="gu">@@ -31,5 +31,5 @@ Gem::Specification.new do |spec|</span>
+
+   spec.add_development_dependency &quot;bundler&quot;, &quot;~&gt; 1.10&quot;
+   spec.add_development_dependency &quot;rake&quot;, &quot;~&gt; 10.0&quot;
+<span class="gd">-  spec.add_development_dependency &quot;rspec&quot;</span>
+<span class="gi">+  spec.add_development_dependency &quot;rspec&quot;, &quot;~&gt; 0&quot;</span>
+ end
+</code></pre></div><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem build bottomless_hash.gemspec
+  Successfully built RubyGem
+  Name: bottomless_hash
+  Version: 0.1.0
+  File: bottomless_hash-0.1.0.gem
+</code></pre></div>
+<p>Now the gem is built without warnings. And we can push it to RubyGems.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem push bottomless_hash-0.1.0.gem
+Enter your RubyGems.org credentials.
+Don<span class="err">&#39;</span>t have an account yet? Create one at https://rubygems.org/sign_up
+   Email:   nick@firedev.com
+Password:
+
+Signed in.
+
+Pushing gem to https://rubygems.org...
+Successfully registered gem: bottomless_hash <span class="o">(</span>0.1.0<span class="o">)</span>
+</code></pre></div>
+<p>This is it. The gem is published and you can use it right away:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gem search bottomless_hash
+
+*** REMOTE GEMS ***
+
+bottomless_hash <span class="o">(</span>0.1.0<span class="o">)</span>
+</code></pre></div>
+<h3 id="links">Links</h3>
+
+<p><i class="fa fa-file-o"></i> <a href="http://firedev.com/posts/2015/bottomless-ruby-hash">Bottomless Ruby Hash</a><br>
+<i class="fa fa-file-o"></i> <a href="http://firedev.com/posts/2015/making-bottomless-hash-ruby-gem/">Making Bottomless Hash Ruby Gem</a><br>
+<i class="fa fa-github"></i> Github <a href="https://github.com/firedev/bottomless_hash">firedev/bottomless_hash</a><br>
+<i class="fa fa-github"></i> Gist <a href="https://gist.github.com/firedev/9de91e245f70c2e963e4">bottomless_hash.rb</a><br></p>
+
+  </article>
+
+  <div class="mb3 lh25">
+ 
+
+<a href="/ruby/" class="button bg-orange white lh1"> Ruby </a>
+ 
+
+<a href="/gem/" class="button bg-orange white lh1"> Gem </a>
+
+</div>
+
+
+</div>
+<div class="mt4">
+<div class="clearfix mxn2 mb4">
+  <div class="sm-col sm-col-3 px2 mb2">
+    <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
+  </div>
+  <div class="sm-col sm-col-9 px2">
+
+    <h2 class="mt0 h1">
+      Nick Ostrovsky
+    </h2>
+
+    <div class="clearfix mxn2 mb4">
+
+      <div class="sm-col sm-col-8 px2">
+        <p>
+          Full-stack designer. I like to keep things as minimal and as simple as possible.
+        </p>
+        <p>
+          Started to program with Sinclair Spectrum and has moved to user
+          experience and interfaces since. Developed and contributed to projects
+          for major brands such as L'Oreal, JTI and AB InBev among others. I am
+          currently working as an independent contractor.
+        </p>
+        <p>
+          I live in Phuket, Thailand and enjoy the beautiful scenery with
+          <a href="http://molokophuket.com">wife</a>
+          and two
+          <a href="http://anya.io">daughters</a>.
+        </p>
+      </div>
+
+      <div class="sm-col sm-col-4 sm-show">
+        <div class="mtn1 ml2">
+          <!-- <a class="p1 px2 white bg-green rounded mb1 inline-block" href="mailto:nick@firedev.com" -->
+          <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
+          <a class="p1 px2 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
+          <a class="p1 px2 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
+          <!--<a class="p1 px2 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
+          <a class="p1 px2 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i> StackOverflow</a>
+          <a class="p1 px2 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'firedevcom';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    </div>
+
+    <footer>
+    <div class="container px2 mt4 mb2 center">
+        With <i class="fa fa-heart red"></i>
+        <a href="http://firedev.com"><strong>firedev.com</strong></a>
+    </div>
+    <div class="container px2 mb4 center">
+        <a class="muted" href="mailto:nick@firedev.com">Email me</a>
+    </div>
+</footer>
+
+    <script src="/js/firedev.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69016906-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+
+</html>

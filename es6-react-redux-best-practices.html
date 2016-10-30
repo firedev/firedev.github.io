@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ES6: React and Redux Best Practices</title>
+  <meta name="description" content="Here are some of my personal insights from almost a year writing Reactfull-time. I am being asked to share the knowledge so here it is. Everythingis subjecti...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://firedev.com/es6-react-redux-best-practices">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta property="og:url" content="http://firedev.com/es6-react-redux-best-practices" />
+  <meta property="og:title" content="ES6: React and Redux Best Practices" />
+  <meta property="og:description" content="Here are some of my personal insights from almost a year writing React
+full-time. I am being asked to share the knowledge so here it is. Everything
+is subjective, what works for me doesn&#39;t have to work for you.
+" />
+  <meta property="og:image" content="http://firedev.com/images/logos/react.js.svg" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="container px2 mt2 mb2">
+    <div class="clearfix mxn2">
+      <div class="sm-col sm-col-3 px2">
+        <h1 class="logo m0 relative">
+          <a href="/" id="logo">
+            <span class="hide">
+              <span class="fire">
+                fire
+              </span>
+              <span class="dev">
+                dev
+              </span>
+              <span class="com">
+                .com
+              </span>
+            </span>
+            <img src="/images/logos/firedev.svg" alt="firedev.com" class="absolute bottom-0" />
+            &nbsp;
+          </a>
+        </h1>
+      </div>
+      <nav class="sm-col sm-col-9 px2 mt2 py1">
+        <div class="right mt2 p1 md-show">
+          <a class="btn silver regular" href="/feed.xml">
+            <i class="fa fa-rss"></i>
+            RSS
+          </a>
+        </div>
+        <h3>
+          
+            
+          
+            
+              
+                <a class="btn" href="/posts/">
+                  Posts
+                </a>
+              
+            
+          
+            
+              
+                <a class="btn" href="/projects/">
+                  Projects
+                </a>
+              
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+        </h3>
+      </nav>
+    </div>
+  </div>
+</header>
+
+    
+<div class="main-image mb3" style="
+background-image: url(/images/logos/react.js.svg);
+background-size: contain;
+background-color: ;
+background-position: ;
+">
+</div>
+
+
+    <div class="container px2 mb4">
+        
+
+<header>
+  <p>Jul 3, 2016</p>
+  <h1 class="m0 mb2">ES6: React and Redux Best Practices</h1>
+</header>
+
+
+<div class="mb3">
+  <article class="mb3">
+    <p>Here are some of my personal insights from almost a year writing React
+full-time. I am being asked to share the knowledge so here it is. Everything
+is subjective, what works for me doesn&#39;t have to work for you.</p>
+
+<h2 id="use-es6-es7-syntax">Use ES6/ES7 syntax</h2>
+
+<p>If you are still writing JavaScript as it was intended or CoffeeScript -- stop.
+<code>const</code>
+Arrow functions
+Good parts of js</p>
+
+<h2 id="eslint-everything">ESLint everything</h2>
+
+<h2 id="use-objects">Use Objects</h2>
+
+<p>Object.entries</p>
+
+<h2 id="spread-all-the-things">Spread all the things</h2>
+
+<h2 id="crush-kill-destructure">Crush, Kill, Destructure!</h2>
+
+<p>Pass objects and get the keys where needed
+Don&#39;t change names
+Don&#39;t create variables</p>
+
+<h2 id="simple-react">Simple React</h2>
+
+<p>Stateless components
+setState is a code smell
+Don&#39;t pass extra props
+isRequired everything</p>
+
+<h2 id="use-redux">Use Redux</h2>
+
+<p>Or maybe MobX?</p>
+
+<h2 id="less-folders">Less folders</h2>
+
+<h2 id="re-export">Re-export</h2>
+
+<h2 id="test-everything">Test everything</h2>
+
+<p>SkinDeep
+Redux</p>
+
+<h2 id="don-39-t-stop">Don&#39;t stop</h2>
+
+<p>ES7 is around the bend, Webpack 2 is released, GraphQL, Relay...</p>
+
+  </article>
+
+  <div class="mb3 lh25">
+ 
+
+<a href="/React/" class="button bg-orange white lh1"> React </a>
+ 
+
+<a href="/Redux/" class="button bg-orange white lh1"> Redux </a>
+ 
+
+<a href="/Javascript/" class="button bg-orange white lh1"> Javascript </a>
+ 
+
+<a href="/frontend/" class="button bg-orange white lh1"> Frontend </a>
+
+</div>
+
+
+</div>
+<div class="mt4">
+<div class="clearfix mxn2 mb4">
+  <div class="sm-col sm-col-3 px2 mb2">
+    <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
+  </div>
+  <div class="sm-col sm-col-9 px2">
+
+    <h2 class="mt0 h1">
+      Nick Ostrovsky
+    </h2>
+
+    <div class="clearfix mxn2 mb4">
+
+      <div class="sm-col sm-col-8 px2">
+        <p>
+          Full-stack designer. I like to keep things as minimal and as simple as possible.
+        </p>
+        <p>
+          Started to program with Sinclair Spectrum and has moved to user
+          experience and interfaces since. Developed and contributed to projects
+          for major brands such as L'Oreal, JTI and AB InBev among others. I am
+          currently working as an independent contractor.
+        </p>
+        <p>
+          I live in Phuket, Thailand and enjoy the beautiful scenery with
+          <a href="http://molokophuket.com">wife</a>
+          and two
+          <a href="http://anya.io">daughters</a>.
+        </p>
+      </div>
+
+      <div class="sm-col sm-col-4 sm-show">
+        <div class="mtn1 ml2">
+          <!-- <a class="p1 px2 white bg-green rounded mb1 inline-block" href="mailto:nick@firedev.com" -->
+          <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
+          <a class="p1 px2 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
+          <a class="p1 px2 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
+          <!--<a class="p1 px2 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
+          <a class="p1 px2 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i> StackOverflow</a>
+          <a class="p1 px2 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'firedevcom';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    </div>
+
+    <footer>
+    <div class="container px2 mt4 mb2 center">
+        With <i class="fa fa-heart red"></i>
+        <a href="http://firedev.com"><strong>firedev.com</strong></a>
+    </div>
+    <div class="container px2 mb4 center">
+        <a class="muted" href="mailto:nick@firedev.com">Email me</a>
+    </div>
+</footer>
+
+    <script src="/js/firedev.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69016906-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+
+</html>

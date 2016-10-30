@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>nanogrid: Fluid responsive CSS grid with gutters</title>
+  <meta name="description" content="Inspired by Ungrid and BASSCSSI have decided to build on top of their shoulders. Welcome the nanogrid.">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://firedev.com/nanogrid-fluid-responsive-css-grid-with-gutters">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta property="og:url" content="http://firedev.com/nanogrid-fluid-responsive-css-grid-with-gutters" />
+  <meta property="og:title" content="nanogrid: Fluid responsive CSS grid with gutters" />
+  <meta property="og:description" content="Inspired by Ungrid and BASSCSS
+I have decided to build on top of their shoulders. Welcome the nanogrid.
+" />
+  <meta property="og:image" content="http://firedev.com/images/nanogrid.png" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="container px2 mt2 mb2">
+    <div class="clearfix mxn2">
+      <div class="sm-col sm-col-3 px2">
+        <h1 class="logo m0 relative">
+          <a href="/" id="logo">
+            <span class="hide">
+              <span class="fire">
+                fire
+              </span>
+              <span class="dev">
+                dev
+              </span>
+              <span class="com">
+                .com
+              </span>
+            </span>
+            <img src="/images/logos/firedev.svg" alt="firedev.com" class="absolute bottom-0" />
+            &nbsp;
+          </a>
+        </h1>
+      </div>
+      <nav class="sm-col sm-col-9 px2 mt2 py1">
+        <div class="right mt2 p1 md-show">
+          <a class="btn silver regular" href="/feed.xml">
+            <i class="fa fa-rss"></i>
+            RSS
+          </a>
+        </div>
+        <h3>
+          
+            
+          
+            
+              
+                <a class="btn" href="/posts/">
+                  Posts
+                </a>
+              
+            
+          
+            
+              
+                <a class="btn" href="/projects/">
+                  Projects
+                </a>
+              
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+        </h3>
+      </nav>
+    </div>
+  </div>
+</header>
+
+    
+<div class="main-image mb3" style="
+background-image: url(/images/nanogrid.png);
+background-size: ;
+background-color: ;
+background-position: ;
+">
+</div>
+
+
+    <div class="container px2 mb4">
+        
+
+<header>
+  <p>Jun 10, 2015</p>
+  <h1 class="m0 mb2">nanogrid: Fluid responsive CSS grid with gutters</h1>
+</header>
+
+
+<div class="mb3">
+  <article class="mb3">
+    <p>Inspired by <a href="https://github.com/chrisnager/ungrid/">Ungrid</a> and <a href="https://github.com/basscss/basscss/">BASSCSS</a>
+I have decided to build on top of their shoulders. Welcome the nanogrid.</p>
+
+<h3 id="ungrid">Ungrid</h3>
+
+<p>Ungrid is a nifty grid that packs everything in less than a hundred bytes by
+using <code>display: table</code> trick:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">30em</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nc">.row</span> <span class="p">{</span> <span class="k">width</span><span class="o">:</span> <span class="m">100%</span><span class="p">;</span> <span class="k">display</span><span class="o">:</span> <span class="n">table</span><span class="p">;</span> <span class="k">table-layout</span><span class="o">:</span> <span class="k">fixed</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nc">.col</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">table-cell</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>And it&#39;s quite powerful <a href="https://github.com/chrisnager/ungrid/">see the demo</a> plus
+using <code>display: table</code> is a nifty trick that solves issues with
+<a href="http://caniuse.com/#flexbox">Flexbox</a>.
+Actually it seems the browsers are getting up to speed with Flexible Box Layout.
+Even if it&#39;s time to jump on the F-train, this is a cool experiment.</p>
+
+<h3 id="basscss">BASSCSS</h3>
+
+<p>Another sweet concept that offers a bunch of immutable css styles that allow you to
+work by writing everything in HTML. Check <a href="http://www.basscss.com/">the examples</a>.
+It offer a grid of it&#39;s own and the opportunity to combine the best of both worlds
+is too good to pass up.</p>
+
+<h3 id="nanogrid">nanogrid</h3>
+
+<p>Let&#39;s use SASS for this, as I am most comfortable with it. And add some variables to the mix:</p>
+
+<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="na">$nanogrid-breakpoint</span><span class="o">:</span> <span class="mi">30</span><span class="kt">em</span> <span class="nv">!default</span>
+<span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">nanogrid-breakpoint</span><span class="o">)</span>
+  <span class="nc">.row</span>
+    <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span>
+    <span class="na">display</span><span class="o">:</span> <span class="n">table</span>
+    <span class="na">table-layout</span><span class="o">:</span> <span class="no">fixed</span>
+  <span class="nc">.col</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">table-cell</span></code></pre></figure>
+
+<p>Throw in grid classes from BASSCSS
+<a href="https://github.com/basscss/grid/blob/master/lib/grid.css">grid module</a>.
+Using sass <code>@for</code> we can calculate all the values upfront.</p>
+
+<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="nc">.col</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">left</span>
+  <span class="na">box-sizing</span><span class="o">:</span> <span class="no">border</span><span class="o">-</span><span class="n">box</span>
+
+<span class="nc">.col-right</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">right</span>
+  <span class="na">box-sizing</span><span class="o">:</span> <span class="no">border</span><span class="o">-</span><span class="n">box</span>
+
+<span class="k">@for</span> <span class="nv">$i</span> <span class="ow">from</span> <span class="mi">1</span> <span class="ow">through</span> <span class="mi">12</span>
+  <span class="nc">.col-</span><span class="si">#{</span><span class="nv">$i</span><span class="si">}</span>
+    <span class="na">width</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$i</span><span class="o">/</span><span class="mi">12</span> <span class="o">*</span> <span class="mi">100</span><span class="kt">%</span><span class="si">}</span>
+  <span class="nc">.row</span> <span class="nc">.col-</span><span class="si">#{</span><span class="nv">$i</span><span class="si">}</span>
+    <span class="na">float</span><span class="o">:</span> <span class="no">none</span></code></pre></figure>
+
+<p>Okay time to add some gutters. The tricky part here is that you can&#39;t simply use
+negative margins as they don&#39;t work well on <code>display: table</code>. Element only moves to the left.
+We could solve it by using some container element as Chris Nager did <a href="https://codepen.io/chrisnager/pen/arKBu">here</a>  But that is not very fun so as I know for fact that all my users are using Chrome I can
+once again resort to the power of calc.</p>
+
+<p>Let&#39;s also fix the counter effect of floats introduced by BASSCSS grid and add a gutter variable.</p>
+
+<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="na">$nanogrid-gutter</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span>
+
+<span class="nc">.row</span>
+  <span class="na">display</span><span class="o">:</span> <span class="n">table</span>
+  <span class="na">table-layout</span><span class="o">:</span> <span class="no">fixed</span>
+  <span class="na">width</span><span class="o">:</span> <span class="nf">calc</span><span class="p">(</span><span class="mi">100</span><span class="kt">%</span> <span class="o">+</span> <span class="si">#{</span><span class="nv">$nanogrid-gutter</span><span class="si">}</span><span class="p">)</span>
+  <span class="na">margin</span><span class="o">:</span> <span class="mi">0</span> <span class="si">#{</span><span class="o">-</span><span class="nv">$nanogrid-gutter</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span>
+
+  <span class="nc">.col</span>
+    <span class="na">float</span><span class="o">:</span> <span class="no">none</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">table-cell</span>
+    <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span> <span class="si">#{</span><span class="nv">$nanogrid-gutter</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span></code></pre></figure>
+
+<p>This introduces the negative margin on the right so it&#39;s best to be aware of it.</p>
+
+<h2 id="good-parts">Good parts</h2>
+
+<p>What&#39;s the point of it? It is small, flexible, the columns are arranged automatically.
+All columns are having equal height and you don&#39;t need clearfix and you can center content vertically.</p>
+
+<p>There are some nuances though as the negative margin should be negated on the right
+if you are using the grid as the top element on the page. Either with an <code>overflow: hidden</code>
+container or <code>body</code> padding.</p>
+
+<p>I have set up a homepage for it <a href="http://firedev.github.io/nanogrid"><i class="fa fa-github"></i> firedev/nanogrid</a> so have a look.</p>
+
+  </article>
+
+  <div class="mb3 lh25">
+ 
+
+<a href="/CSS/" class="button bg-orange white lh1"> Css </a>
+ 
+
+<a href="/frontend/" class="button bg-orange white lh1"> Frontend </a>
+
+</div>
+
+
+</div>
+<div class="mt4">
+<div class="clearfix mxn2 mb4">
+  <div class="sm-col sm-col-3 px2 mb2">
+    <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
+  </div>
+  <div class="sm-col sm-col-9 px2">
+
+    <h2 class="mt0 h1">
+      Nick Ostrovsky
+    </h2>
+
+    <div class="clearfix mxn2 mb4">
+
+      <div class="sm-col sm-col-8 px2">
+        <p>
+          Full-stack designer. I like to keep things as minimal and as simple as possible.
+        </p>
+        <p>
+          Started to program with Sinclair Spectrum and has moved to user
+          experience and interfaces since. Developed and contributed to projects
+          for major brands such as L'Oreal, JTI and AB InBev among others. I am
+          currently working as an independent contractor.
+        </p>
+        <p>
+          I live in Phuket, Thailand and enjoy the beautiful scenery with
+          <a href="http://molokophuket.com">wife</a>
+          and two
+          <a href="http://anya.io">daughters</a>.
+        </p>
+      </div>
+
+      <div class="sm-col sm-col-4 sm-show">
+        <div class="mtn1 ml2">
+          <!-- <a class="p1 px2 white bg-green rounded mb1 inline-block" href="mailto:nick@firedev.com" -->
+          <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
+          <a class="p1 px2 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
+          <a class="p1 px2 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
+          <!--<a class="p1 px2 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
+          <a class="p1 px2 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i> StackOverflow</a>
+          <a class="p1 px2 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'firedevcom';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    </div>
+
+    <footer>
+    <div class="container px2 mt4 mb2 center">
+        With <i class="fa fa-heart red"></i>
+        <a href="http://firedev.com"><strong>firedev.com</strong></a>
+    </div>
+    <div class="container px2 mb4 center">
+        <a class="muted" href="mailto:nick@firedev.com">Email me</a>
+    </div>
+</footer>
+
+    <script src="/js/firedev.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69016906-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+
+</html>
