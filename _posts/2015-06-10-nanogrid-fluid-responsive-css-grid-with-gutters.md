@@ -2,7 +2,9 @@
 layout: post
 title:  "nanogrid: Fluid responsive CSS grid with gutters"
 category: posts
-tags: CSS
+tags:
+  - CSS
+  - frontend
 image: nanogrid.png
 ---
 Inspired by [Ungrid](https://github.com/chrisnager/ungrid/) and [BASSCSS](https://github.com/basscss/basscss/)

@@ -6,6 +6,8 @@ tags:
   - CSS
   - react
   - components
+  - immutable
+  - frontend
 image: 'posts/monolith.jpg'
 ---
 This is extracted from the Github issue created to discuss the approach with my

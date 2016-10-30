@@ -3,10 +3,10 @@
 ---
 @charset "utf-8";
 $font-family: -apple-system, ".SFNSDisplay-Regular", 'Helvetica Neue', Helvetica, sans-serif !default;
-@import "syntax-highlighting";
 @import "colors";
 @import "../bower_components/basscss-sass/basscss.scss";
 @import "../bower_components/basscss-fix/basscss-fix.sass";
+@import "syntax-highlighting";
 @import "defaults";
 @import "header";
 @import "projects";

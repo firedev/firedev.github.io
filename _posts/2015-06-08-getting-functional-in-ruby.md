@@ -4,6 +4,7 @@ title:  "Getting functional in Ruby"
 category: posts
 tags:
   - ruby
+  - functional
 image: posts/colors.png
 ---
 

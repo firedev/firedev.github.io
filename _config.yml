@@ -10,9 +10,11 @@ twitter_username: firedev
 github_username:  firedev
 
 # Build settings
+# permalink: /:title
 permalink: /:categories/:year/:title/
-# markdown: kramdown
 markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
 exclude:
   - "bower_components"
   - "bower.json"

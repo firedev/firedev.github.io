@@ -28,7 +28,7 @@ This is what it looked like:
 
 ![Magic Keyboard](/images/posts/magic-keyboard.jpg)
 
-Let me put it this way. If you are typing all day on the external keyboard, get up
+Let me put it this way. If you are typing all day, get up
 and get one of these. Skip the rest of the page.
 
 I like Apple Wired Keyboard with the additional numeric pad. Used one with Mac
