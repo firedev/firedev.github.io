@@ -128,6 +128,8 @@ with reality.
           
             
           
+            
+          
         </h3>
       </nav>
     </div>
@@ -155,7 +157,7 @@ table td { vertical-align: middle; }
 
 
 <header>
-  <p>Feb 16, 2016</p>
+  
   <h1 class="m0 mb2">Sane Breakpoints</h1>
 </header>
 
@@ -207,10 +209,10 @@ there are bad parts. Some things you don&#39;t have to use if you don&#39;t want
 spend the rest of your live debugging the cascade.</p>
 
 <p>All your styles should look like this:</p>
-<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="c1">// Hides element on screens bigger than $small breakpoint</span>
+<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span></span><span class="c1">// Hides element on screens bigger than $small breakpoint</span>
 <span class="nc">.sm-hide</span> <span class="p">{</span>
-  <span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">small</span><span class="o">)</span> <span class="p">{</span>
-    <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="k">@media</span> <span class="p">(</span><span class="no">min-width</span><span class="o">:</span> <span class="nv">$small</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">display</span><span class="nd">:</span> <span class="nt">none</span><span class="o">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -330,7 +332,7 @@ that is smaller than the specified width and everything that is equal or larger
 than the specified width.</p>
 
 <p>In other words you can think of it as a equals or larger than equation:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">.menu { folded }
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>.menu { folded }
 @media (screen width &gt;= x) {
   .menu { unfolded }
 }
@@ -418,7 +420,7 @@ you can change them as you see fit for your project. Them menu might be not
 fitting in only this much or something breaks.</p>
 
 <p>Anyway here are the breakpoints in SCSS format, I tried to round them up a little bit:</p>
-<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="c1">//       $small                  $medium                 $large</span>
+<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span></span><span class="c1">//       $small                  $medium                 $large</span>
 <span class="c1">// Portrait | Landscape   Portrait | Landscape   Portrait | Landscape</span>
 <span class="c1">// Phone    | Phone       iPad     | iPad        iPad Pro | iPad Pro</span>
 
@@ -462,19 +464,13 @@ found in CSS Frameworks everywhere. Start small, use an
 
       <div class="sm-col sm-col-8 px2">
         <p>
-          Full-stack designer. I like to keep things as minimal and as simple as possible.
+          Full-stack designer. I like everything minimailitic and simple as possible.
         </p>
         <p>
-          Started to program with Sinclair Spectrum and has moved to user
-          experience and interfaces since. Developed and contributed to projects
-          for major brands such as L'Oreal, JTI and AB InBev among others. I am
-          currently working as an independent contractor.
-        </p>
-        <p>
-          I live in Phuket, Thailand and enjoy the beautiful scenery with
-          <a href="http://molokophuket.com">wife</a>
-          and two
-          <a href="http://anya.io">daughters</a>.
+          Started with Web and Graphics, moved to User Experience and
+          Interfaces, then to Team Lead and CTO. Contributed to projects for
+          major brands such as L'Oreal, JTI and AB InBev among others.
+          Currently working as an independent contractor.
         </p>
       </div>
 

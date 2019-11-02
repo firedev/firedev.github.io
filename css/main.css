@@ -194,21 +194,13 @@ hr {
 
 */
 /* Basscss Color Forms */
-.field, input[type="text"],
-input[type="password"],
-input[type="number"],
-input[type="email"],
-textarea {
+.field, input[type="text"], input[type="password"], input[type="number"], input[type="email"], textarea {
   border-style: solid;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.125);
   border-radius: 3px; }
 
-.field:focus, input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-textarea:focus,
+.field:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="email"]:focus, textarea:focus,
 .field.is-focused,
 input.is-focused[type="text"],
 input.is-focused[type="password"],
@@ -219,11 +211,7 @@ textarea.is-focused {
   border-color: #0074d9;
   box-shadow: 0 0 0 2px color(#0074d9 a(0.5)); }
 
-.field:disabled, input[type="text"]:disabled,
-input[type="password"]:disabled,
-input[type="number"]:disabled,
-input[type="email"]:disabled,
-textarea:disabled,
+.field:disabled, input[type="text"]:disabled, input[type="password"]:disabled, input[type="number"]:disabled, input[type="email"]:disabled, textarea:disabled,
 .field.is-disabled,
 input.is-disabled[type="text"],
 input.is-disabled[type="password"],
@@ -233,11 +221,7 @@ textarea.is-disabled {
   background-color: rgba(0, 0, 0, 0.125);
   opacity: .5; }
 
-.field:read-only:not(select), input[type="text"]:read-only:not(select),
-input[type="password"]:read-only:not(select),
-input[type="number"]:read-only:not(select),
-input[type="email"]:read-only:not(select),
-textarea:read-only:not(select),
+.field:read-only:not(select), input[type="text"]:read-only:not(select), input[type="password"]:read-only:not(select), input[type="number"]:read-only:not(select), input[type="email"]:read-only:not(select), textarea:read-only:not(select),
 .field.is-read-only,
 input.is-read-only[type="text"],
 input.is-read-only[type="password"],
@@ -246,18 +230,10 @@ input.is-read-only[type="email"],
 textarea.is-read-only {
   background-color: rgba(0, 0, 0, 0.125); }
 
-.field.is-success, input.is-success[type="text"],
-input.is-success[type="password"],
-input.is-success[type="number"],
-input.is-success[type="email"],
-textarea.is-success {
+.field.is-success, input.is-success[type="text"], input.is-success[type="password"], input.is-success[type="number"], input.is-success[type="email"], textarea.is-success {
   border-color: #2ecc40; }
 
-.field.is-success:focus, input.is-success[type="text"]:focus,
-input.is-success[type="password"]:focus,
-input.is-success[type="number"]:focus,
-input.is-success[type="email"]:focus,
-textarea.is-success:focus,
+.field.is-success:focus, input.is-success[type="text"]:focus, input.is-success[type="password"]:focus, input.is-success[type="number"]:focus, input.is-success[type="email"]:focus, textarea.is-success:focus,
 .field.is-success.is-focused,
 input.is-success.is-focused[type="text"],
 input.is-success.is-focused[type="password"],
@@ -266,18 +242,10 @@ input.is-success.is-focused[type="email"],
 textarea.is-success.is-focused {
   box-shadow: 0 0 0 2px color(#2ecc40 a(0.5)); }
 
-.field.is-warning, input.is-warning[type="text"],
-input.is-warning[type="password"],
-input.is-warning[type="number"],
-input.is-warning[type="email"],
-textarea.is-warning {
+.field.is-warning, input.is-warning[type="text"], input.is-warning[type="password"], input.is-warning[type="number"], input.is-warning[type="email"], textarea.is-warning {
   border-color: #ffdc00; }
 
-.field.is-warning:focus, input.is-warning[type="text"]:focus,
-input.is-warning[type="password"]:focus,
-input.is-warning[type="number"]:focus,
-input.is-warning[type="email"]:focus,
-textarea.is-warning:focus,
+.field.is-warning:focus, input.is-warning[type="text"]:focus, input.is-warning[type="password"]:focus, input.is-warning[type="number"]:focus, input.is-warning[type="email"]:focus, textarea.is-warning:focus,
 .field.is-warning.is-focused,
 input.is-warning.is-focused[type="text"],
 input.is-warning.is-focused[type="password"],
@@ -286,11 +254,7 @@ input.is-warning.is-focused[type="email"],
 textarea.is-warning.is-focused {
   box-shadow: 0 0 0 2px color(#ffdc00 a(0.5)); }
 
-.field:invalid, input[type="text"]:invalid,
-input[type="password"]:invalid,
-input[type="number"]:invalid,
-input[type="email"]:invalid,
-textarea:invalid,
+.field:invalid, input[type="text"]:invalid, input[type="password"]:invalid, input[type="number"]:invalid, input[type="email"]:invalid, textarea:invalid,
 .field.is-error,
 input.is-error[type="text"],
 input.is-error[type="password"],
@@ -299,11 +263,7 @@ input.is-error[type="email"],
 textarea.is-error {
   border-color: #ff4136; }
 
-.field:invalid:focus, input[type="text"]:invalid:focus,
-input[type="password"]:invalid:focus,
-input[type="number"]:invalid:focus,
-input[type="email"]:invalid:focus,
-textarea:invalid:focus,
+.field:invalid:focus, input[type="text"]:invalid:focus, input[type="password"]:invalid:focus, input[type="number"]:invalid:focus, input[type="email"]:invalid:focus, textarea:invalid:focus,
 .field:invalid.is-focused,
 input[type="text"]:invalid.is-focused,
 input[type="password"]:invalid.is-focused,
@@ -823,37 +783,37 @@ button.is-disabled {
   box-sizing: border-box; }
 
 .col-1 {
-  width: 8.33333%; }
+  width: 8.3333333333%; }
 
 .col-2 {
-  width: 16.66667%; }
+  width: 16.6666666667%; }
 
 .col-3 {
   width: 25%; }
 
 .col-4 {
-  width: 33.33333%; }
+  width: 33.3333333333%; }
 
 .col-5 {
-  width: 41.66667%; }
+  width: 41.6666666667%; }
 
 .col-6 {
   width: 50%; }
 
 .col-7 {
-  width: 58.33333%; }
+  width: 58.3333333333%; }
 
 .col-8 {
-  width: 66.66667%; }
+  width: 66.6666666667%; }
 
 .col-9 {
   width: 75%; }
 
 .col-10 {
-  width: 83.33333%; }
+  width: 83.3333333333%; }
 
 .col-11 {
-  width: 91.66667%; }
+  width: 91.6666666667%; }
 
 .col-12 {
   width: 100%; }
@@ -868,37 +828,37 @@ button.is-disabled {
     box-sizing: border-box; }
 
   .sm-col-1 {
-    width: 8.33333%; }
+    width: 8.3333333333%; }
 
   .sm-col-2 {
-    width: 16.66667%; }
+    width: 16.6666666667%; }
 
   .sm-col-3 {
     width: 25%; }
 
   .sm-col-4 {
-    width: 33.33333%; }
+    width: 33.3333333333%; }
 
   .sm-col-5 {
-    width: 41.66667%; }
+    width: 41.6666666667%; }
 
   .sm-col-6 {
     width: 50%; }
 
   .sm-col-7 {
-    width: 58.33333%; }
+    width: 58.3333333333%; }
 
   .sm-col-8 {
-    width: 66.66667%; }
+    width: 66.6666666667%; }
 
   .sm-col-9 {
     width: 75%; }
 
   .sm-col-10 {
-    width: 83.33333%; }
+    width: 83.3333333333%; }
 
   .sm-col-11 {
-    width: 91.66667%; }
+    width: 91.6666666667%; }
 
   .sm-col-12 {
     width: 100%; } }
@@ -912,37 +872,37 @@ button.is-disabled {
     box-sizing: border-box; }
 
   .md-col-1 {
-    width: 8.33333%; }
+    width: 8.3333333333%; }
 
   .md-col-2 {
-    width: 16.66667%; }
+    width: 16.6666666667%; }
 
   .md-col-3 {
     width: 25%; }
 
   .md-col-4 {
-    width: 33.33333%; }
+    width: 33.3333333333%; }
 
   .md-col-5 {
-    width: 41.66667%; }
+    width: 41.6666666667%; }
 
   .md-col-6 {
     width: 50%; }
 
   .md-col-7 {
-    width: 58.33333%; }
+    width: 58.3333333333%; }
 
   .md-col-8 {
-    width: 66.66667%; }
+    width: 66.6666666667%; }
 
   .md-col-9 {
     width: 75%; }
 
   .md-col-10 {
-    width: 83.33333%; }
+    width: 83.3333333333%; }
 
   .md-col-11 {
-    width: 91.66667%; }
+    width: 91.6666666667%; }
 
   .md-col-12 {
     width: 100%; } }
@@ -956,37 +916,37 @@ button.is-disabled {
     box-sizing: border-box; }
 
   .lg-col-1 {
-    width: 8.33333%; }
+    width: 8.3333333333%; }
 
   .lg-col-2 {
-    width: 16.66667%; }
+    width: 16.6666666667%; }
 
   .lg-col-3 {
     width: 25%; }
 
   .lg-col-4 {
-    width: 33.33333%; }
+    width: 33.3333333333%; }
 
   .lg-col-5 {
-    width: 41.66667%; }
+    width: 41.6666666667%; }
 
   .lg-col-6 {
     width: 50%; }
 
   .lg-col-7 {
-    width: 58.33333%; }
+    width: 58.3333333333%; }
 
   .lg-col-8 {
-    width: 66.66667%; }
+    width: 66.6666666667%; }
 
   .lg-col-9 {
     width: 75%; }
 
   .lg-col-10 {
-    width: 83.33333%; }
+    width: 83.3333333333%; }
 
   .lg-col-11 {
-    width: 91.66667%; }
+    width: 91.6666666667%; }
 
   .lg-col-12 {
     width: 100%; } }
@@ -2312,17 +2272,13 @@ input[type=range] {
 
   .h1-responsive {
     font-size: 3.84rem; } }
-input[type="text"],
-input[type="password"],
-input[type="number"],
-input[type="email"],
-textarea {
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], textarea {
   width: 100%; }
-  .field_with_errors input[type="text"], .field_with_errors
-  input[type="password"], .field_with_errors
-  input[type="number"], .field_with_errors
-  input[type="email"], .field_with_errors
-  textarea {
+  .field_with_errors input[type="text"],
+  .field_with_errors input[type="password"],
+  .field_with_errors input[type="number"],
+  .field_with_errors input[type="email"],
+  .field_with_errors textarea {
     border-color: #ff4136;
     background: rgba(255, 220, 0, 0.5); }
 

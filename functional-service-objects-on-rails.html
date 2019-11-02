@@ -128,6 +128,8 @@ here is what I came up with.
           
             
           
+            
+          
         </h3>
       </nav>
     </div>
@@ -148,7 +150,7 @@ background-position: ;
         
 
 <header>
-  <p>Oct 17, 2015</p>
+  
   <h1 class="m0 mb2">Functional Service Objects on Rails</h1>
 </header>
 
@@ -182,7 +184,7 @@ manager was already taken.</p>
 that we have to use multiple tables as there a certain roles that carry &quot;chief&quot;
 ability. The most obvious solution is to stuff everything into User model.
 So without further ado:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
   <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
     <span class="n">shops</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
       <span class="n">motivations</span><span class="o">.</span><span class="n">for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">role_id</span><span class="p">:</span> <span class="no">Role</span><span class="o">.</span><span class="n">chief</span><span class="p">)</span>
@@ -191,10 +193,10 @@ So without further ado:</p>
 <span class="k">end</span>
 </code></pre></div>
 <p>Invocation is simple:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">shops</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">shops</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
 </code></pre></div>
 <p>Hmm, that starts quite harmless. But what if we measure complexity with flog?</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    10.0: flog total
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>    10.0: flog total
     10.0: flog/method average
 
     10.0: User#chief_shops_for_month       -:2
@@ -203,7 +205,7 @@ So without further ado:</p>
 
 <p>I use <a href="http://ruby.sadi.st/Flog.html">flog</a> to check complexity of my classes
 and strive to keep the average complexity per method under 5:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ flog app
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ flog app
   1278.9: flog total
      5.0: flog/method average
 
@@ -216,7 +218,7 @@ and strive to keep the average complexity per method under 5:</p>
 
 <p>To me 10 flog per method is simply too much. We can try to break it down in two
 methods like so:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">User</span>
   <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
     <span class="n">shops</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">chief_motivation_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">uniq</span>
   <span class="k">end</span>
@@ -240,7 +242,7 @@ long models. My motto is:</p>
 <p>I build service objects in a simple way. One public method <code>call</code> with
 occasional parameters passed from controller (i.e. variables). Let&#39;s extract
 the query to a what a typical service object would look like:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">User</span>
   <span class="k">class</span> <span class="nc">ChiefShopsForMonth</span>
     <span class="kp">attr_reader</span> <span class="ss">:user</span>
     <span class="kp">attr_reader</span> <span class="ss">:month</span>
@@ -263,14 +265,14 @@ the query to a what a typical service object would look like:</p>
 <span class="k">end</span>
 </code></pre></div>
 <p>We keep the <code>User</code> API unchanged so this is a true refactoring:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">User</span>
   <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
     <span class="no">User</span><span class="o">::</span><span class="no">ChiefShopsForMonth</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">call</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div>
 <p>What <code>flog</code> has to say about this?</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">   18.5: flog total
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>   18.5: flog total
      4.6: flog/method average
 
      7.8: User::ChiefShopsForMonth#motivations_this_month_user_was_chief -:17
@@ -316,7 +318,7 @@ ActiveRecord Scopes can be chained up to the last moment where you can load the
 relation into array by calling <code>to_a</code> on it. JavaScript is basically built on
 returning <code>this</code>.  If you have ever used a JavaScript library like jQuery you
 know the drill.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">User</span>
   <span class="k">class</span> <span class="nc">ChiefShopsForMonth</span>
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">role</span> <span class="o">=</span> <span class="no">Role</span><span class="p">,</span> <span class="n">motivation</span> <span class="o">=</span> <span class="no">Motivation</span><span class="p">)</span>
       <span class="vi">@role</span> <span class="o">=</span> <span class="n">role</span>
@@ -360,7 +362,7 @@ does dependency-injection for the whole object. Then <code>call</code> sets up t
 parameters and returns <code>self</code> for chaining. You don&#39;t have to return <code>self</code>,
 but that gives you flexibility so I don&#39;t see a reason not to add it. And
 finally you can get the list of shops for the given month by calling <code>.shops</code>.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">User</span>
   <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
     <span class="no">User</span><span class="o">::</span><span class="no">ChiefShopsForMonth</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">shops</span>
   <span class="k">end</span>
@@ -370,7 +372,7 @@ finally you can get the list of shops for the given month by calling <code>.shop
 and there are four attributes instead of two. Flog is not very happy about this
 either.  Average complexity per method is somewhat lower, but the total is even
 higher.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">   26.0: flog total
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>   26.0: flog total
      4.3: flog/method average
 
      7.6: User::ChiefShopsForMonth#chief_this_month -:30
@@ -405,7 +407,7 @@ the result. That allows me to shrink object&#39;s API to single <code>call</code
 Which is actually an improvement. Since now I don&#39;t need to pass <code>user</code> and
 <code>month</code> separately and they can go together as parameters in a single method
 call.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">User</span>
   <span class="k">class</span> <span class="nc">ChiefShopsForMonth</span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="ss">user</span><span class="p">:,</span> <span class="ss">month</span><span class="p">:)</span>
@@ -432,7 +434,7 @@ could pass.</p>
 difference is that we don&#39;t have to query for shops as this is a Query Object
 so it only returns result straight away. And API is effectively shrunk to a
 single method.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">User</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">User</span>
   <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
     <span class="no">User</span><span class="o">::</span><span class="no">ChiefShopsForMonth</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="ss">user</span><span class="p">:</span> <span class="nb">self</span><span class="p">,</span> <span class="ss">month</span><span class="p">:</span> <span class="n">month</span><span class="p">)</span>
   <span class="k">end</span>
@@ -443,7 +445,7 @@ inject dependencies for testing. As a side effect we can pass a hash as
 parameter. Piotr suggests to use value object. I think it is overkill here. I
 could easily pass a params hash if I wanted to, but I am afraid it might hurt
 readability. And now look at this:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    10.4: flog total
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>    10.4: flog total
      2.6: flog/method average
 
      5.0: User::ChiefShopsForMonth#call    -:4
@@ -496,19 +498,13 @@ controllers. Please let me know if you think something could be improved.</p>
 
       <div class="sm-col sm-col-8 px2">
         <p>
-          Full-stack designer. I like to keep things as minimal and as simple as possible.
+          Full-stack designer. I like everything minimailitic and simple as possible.
         </p>
         <p>
-          Started to program with Sinclair Spectrum and has moved to user
-          experience and interfaces since. Developed and contributed to projects
-          for major brands such as L'Oreal, JTI and AB InBev among others. I am
-          currently working as an independent contractor.
-        </p>
-        <p>
-          I live in Phuket, Thailand and enjoy the beautiful scenery with
-          <a href="http://molokophuket.com">wife</a>
-          and two
-          <a href="http://anya.io">daughters</a>.
+          Started with Web and Graphics, moved to User Experience and
+          Interfaces, then to Team Lead and CTO. Contributed to projects for
+          major brands such as L'Oreal, JTI and AB InBev among others.
+          Currently working as an independent contractor.
         </p>
       </div>
 

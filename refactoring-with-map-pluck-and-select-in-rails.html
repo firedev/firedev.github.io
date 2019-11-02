@@ -126,6 +126,8 @@ creating instances you don&#39;t need.
           
             
           
+            
+          
         </h3>
       </nav>
     </div>
@@ -146,7 +148,7 @@ background-position: ;
         
 
 <header>
-  <p>Jun 16, 2015</p>
+  
   <h1 class="m0 mb2">Refactoring with map, pluck and select in Ruby on Rails</h1>
 </header>
 
@@ -167,7 +169,7 @@ Let&#39;s check and see if we can improve anything.</p>
 
 <p>Before venturing off let&#39;s create a test bench to measure performance:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">m</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">def</span> <span class="nf">m</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
   <span class="no">Benchmark</span><span class="o">.</span><span class="n">ms</span> <span class="k">do</span>
     <span class="mi">100</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="k">yield</span> <span class="p">}</span>
   <span class="k">end</span>
@@ -175,19 +177,19 @@ Let&#39;s check and see if we can improve anything.</p>
 
 <p>And compare <code>pluck</code> with <code>map</code> on this particular piece of code:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">m</span> <span class="p">{</span> <span class="n">stock_movement</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">pluck</span><span class="p">(</span><span class="ss">:product_id</span><span class="p">)</span> <span class="p">}</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">m</span> <span class="p">{</span> <span class="n">stock_movement</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">pluck</span><span class="p">(</span><span class="ss">:product_id</span><span class="p">)</span> <span class="p">}</span>
 <span class="o">=&gt;</span> <span class="mi">265</span><span class="o">.</span><span class="mo">032</span>
 <span class="n">m</span> <span class="p">{</span> <span class="n">stock_movement</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:product_id</span><span class="p">)</span> <span class="p">}</span>
 <span class="o">=&gt;</span> <span class="mi">220</span><span class="o">.</span><span class="mi">282</span></code></pre></figure>
 
 <p>We see almost no difference, so what&#39;s the point? But performance depends on other factors.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">stock_movement</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">count</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">stock_movement</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">count</span>
 <span class="o">=&gt;</span> <span class="mi">1</span></code></pre></figure>
 
 <p>Let&#39;s try it with something more substantial:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">stock_movement</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">count</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">stock_movement</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">count</span>
 <span class="o">=&gt;</span> <span class="mi">400</span>
 <span class="n">m</span> <span class="p">{</span> <span class="n">stock_movement</span><span class="o">.</span><span class="n">positions</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:product_id</span><span class="p">)</span> <span class="p">}</span>
 <span class="o">=&gt;</span> <span class="mi">5647</span><span class="o">.</span><span class="mi">272</span>
@@ -199,7 +201,7 @@ Let&#39;s check and see if we can improve anything.</p>
 This code is used once in the controller, and it might be that there is no
 actual performance benefit especially when using small amount of data:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">m</span> <span class="p">{</span> <span class="vi">@stock_movement_positions</span><span class="o">.</span><span class="n">pluck</span><span class="p">(</span><span class="ss">:product_id</span><span class="p">);</span> <span class="p">}</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">m</span> <span class="p">{</span> <span class="vi">@stock_movement_positions</span><span class="o">.</span><span class="n">pluck</span><span class="p">(</span><span class="ss">:product_id</span><span class="p">);</span> <span class="p">}</span>
 <span class="o">=&gt;</span> <span class="mi">2367</span><span class="o">.</span><span class="mi">685</span>
 <span class="n">m</span> <span class="p">{</span> <span class="vi">@stock_movement_positions</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:product_id</span><span class="p">);</span> <span class="p">}</span>
 <span class="o">=&gt;</span> <span class="mi">367</span><span class="o">.</span><span class="mi">844</span></code></pre></figure>
@@ -221,23 +223,23 @@ Armed with this knowlegde, let&#39;s find a better specimen for refactoring.</p>
 It returns an array of first letters in names in collection to build and alphabetic
 lister later.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">StockProduct</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;LEFT(name, 1) as letter&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:letter</span><span class="p">)</span><span class="o">.</span><span class="n">uniq</span><span class="o">.</span><span class="n">sort</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="no">StockProduct</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;LEFT(name, 1) as letter&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:letter</span><span class="p">)</span><span class="o">.</span><span class="n">uniq</span><span class="o">.</span><span class="n">sort</span></code></pre></figure>
 
 <p>What immediately grabs attention is how database output that ends at <code>.all</code> being treated in Ruby.
 Let&#39;s look at <code>select</code> first:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">StockProduct</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;LEFT(name, 1) as letter&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_sql</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="no">StockProduct</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;LEFT(name, 1) as letter&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_sql</span>
 <span class="o">=&gt;</span> <span class="s2">&quot;SELECT LEFT(name, 1) as letter FROM `stock_products` &quot;</span></code></pre></figure>
 
 <p>The query does not look particulary mean or anything, again, especially if your
 database is not that big. Unfortunately for us <code>select</code> instantiates a bunch of
 half-filled (or half-empty) objects:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;StockProduct &gt;, #&lt;StockProduct &gt;, #&lt;StockProduct &gt;, ...</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="o">=&gt;</span> <span class="o">[</span><span class="c1">#&lt;StockProduct &gt;, #&lt;StockProduct &gt;, #&lt;StockProduct &gt;, ...</span></code></pre></figure>
 
 <p>This is unacceptable, lets rewrite this using <code>pluck</code> instead of <code>select</code>, <code>DISTINCT</code> instead of <code>uniq</code> and throw away the rest:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">StockProduct</span><span class="o">.</span><span class="n">pluck</span><span class="p">(</span><span class="s1">&#39;DISTINCT LEFT(name, 1)&#39;</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="no">StockProduct</span><span class="o">.</span><span class="n">pluck</span><span class="p">(</span><span class="s1">&#39;DISTINCT LEFT(name, 1)&#39;</span><span class="p">)</span></code></pre></figure>
 
 <p>Another thing to keep in mind when using <code>pluck</code> - it returns the array and
 breaks the <code>ActiveRecord</code> query method chain. And if you need to use the values
@@ -246,14 +248,14 @@ construct a subquery to use. But in our case we don&#39;t need anything else so 
 
 <p>Let&#39;s compare:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">m</span> <span class="p">{</span> <span class="no">StockProduct</span><span class="o">.</span><span class="n">pluck</span><span class="p">(</span><span class="s1">&#39;DISTINCT LEFT(name, 1)&#39;</span><span class="p">)</span> <span class="p">}</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">m</span> <span class="p">{</span> <span class="no">StockProduct</span><span class="o">.</span><span class="n">pluck</span><span class="p">(</span><span class="s1">&#39;DISTINCT LEFT(name, 1)&#39;</span><span class="p">)</span> <span class="p">}</span>
 <span class="o">=&gt;</span> <span class="mi">926</span><span class="o">.</span><span class="mi">424</span>
 <span class="n">m</span> <span class="p">{</span> <span class="no">StockProduct</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;LEFT(name, 1) as letter&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:letter</span><span class="p">)</span><span class="o">.</span><span class="n">uniq</span><span class="o">.</span><span class="n">sort</span> <span class="p">}</span>
 <span class="o">=&gt;</span> <span class="mi">28469</span><span class="o">.</span><span class="mo">013</span></code></pre></figure>
 
 <p>Finally, something good comes out of this refactoring. Moving the code to concern:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/models/concerns/search/first_letter.rb</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># app/models/concerns/search/first_letter.rb</span>
 <span class="k">class</span> <span class="nc">Search</span>
   <span class="k">module</span> <span class="nn">FirstLetter</span>
     <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
@@ -277,9 +279,9 @@ that means I have a knowledge of that.</p>
 
 <p>And this knowledge is kept in the view layer. I am simply intersecting arrays like this:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># views/letters/_letters.html.slim</span>
-<span class="p">(</span><span class="sc">?0</span><span class="o">.</span><span class="n">.</span><span class="sc">?9</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="o">&amp;</span> <span class="n">first_letters</span>
-<span class="p">(</span><span class="sc">?A</span><span class="o">.</span><span class="n">.</span><span class="sc">?Z</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="o">&amp;</span> <span class="n">first_letters</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># views/letters/_letters.html.slim</span>
+<span class="p">(</span><span class="sc">?0</span><span class="o">..</span><span class="sc">?9</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="o">&amp;</span> <span class="n">first_letters</span>
+<span class="p">(</span><span class="sc">?A</span><span class="o">..</span><span class="sc">?Z</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span> <span class="o">&amp;</span> <span class="n">first_letters</span></code></pre></figure>
 
 <p>This construct gives me intersections ordered by alphabet and in numerical order if there are any.</p>
 
@@ -315,19 +317,13 @@ book ultimately is the point of refactoring.</p>
 
       <div class="sm-col sm-col-8 px2">
         <p>
-          Full-stack designer. I like to keep things as minimal and as simple as possible.
+          Full-stack designer. I like everything minimailitic and simple as possible.
         </p>
         <p>
-          Started to program with Sinclair Spectrum and has moved to user
-          experience and interfaces since. Developed and contributed to projects
-          for major brands such as L'Oreal, JTI and AB InBev among others. I am
-          currently working as an independent contractor.
-        </p>
-        <p>
-          I live in Phuket, Thailand and enjoy the beautiful scenery with
-          <a href="http://molokophuket.com">wife</a>
-          and two
-          <a href="http://anya.io">daughters</a>.
+          Started with Web and Graphics, moved to User Experience and
+          Interfaces, then to Team Lead and CTO. Contributed to projects for
+          major brands such as L'Oreal, JTI and AB InBev among others.
+          Currently working as an independent contractor.
         </p>
       </div>
 

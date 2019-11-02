@@ -126,6 +126,8 @@ I have decided to build on top of their shoulders. Welcome the nanogrid.
           
             
           
+            
+          
         </h3>
       </nav>
     </div>
@@ -146,7 +148,7 @@ background-position: ;
         
 
 <header>
-  <p>Jun 10, 2015</p>
+  
   <h1 class="m0 mb2">nanogrid: Fluid responsive CSS grid with gutters</h1>
 </header>
 
@@ -161,9 +163,9 @@ I have decided to build on top of their shoulders. Welcome the nanogrid.</p>
 <p>Ungrid is a nifty grid that packs everything in less than a hundred bytes by
 using <code>display: table</code> trick:</p>
 
-<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">30em</span><span class="o">)</span> <span class="p">{</span>
-    <span class="nc">.row</span> <span class="p">{</span> <span class="k">width</span><span class="o">:</span> <span class="m">100%</span><span class="p">;</span> <span class="k">display</span><span class="o">:</span> <span class="n">table</span><span class="p">;</span> <span class="k">table-layout</span><span class="o">:</span> <span class="k">fixed</span><span class="p">;</span> <span class="p">}</span>
-    <span class="nc">.col</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">table-cell</span><span class="p">;</span> <span class="p">}</span>
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">30em</span><span class="o">)</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nc">row</span> <span class="p">{</span> <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="k">display</span><span class="p">:</span> <span class="kc">table</span><span class="p">;</span> <span class="k">table-layout</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">.</span><span class="nc">col</span> <span class="p">{</span> <span class="k">display</span><span class="p">:</span> <span class="kc">table-cell</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
 <p>And it&#39;s quite powerful <a href="https://github.com/chrisnager/ungrid/">see the demo</a> plus
@@ -183,7 +185,7 @@ is too good to pass up.</p>
 
 <p>Let&#39;s use SASS for this, as I am most comfortable with it. And add some variables to the mix:</p>
 
-<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="na">$nanogrid-breakpoint</span><span class="o">:</span> <span class="mi">30</span><span class="kt">em</span> <span class="nv">!default</span>
+<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span></span><span class="na">$nanogrid-breakpoint</span><span class="o">:</span> <span class="mi">30</span><span class="kt">em</span> <span class="nv">!default</span>
 <span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">nanogrid-breakpoint</span><span class="o">)</span>
   <span class="nc">.row</span>
     <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span>
@@ -196,7 +198,7 @@ is too good to pass up.</p>
 <a href="https://github.com/basscss/grid/blob/master/lib/grid.css">grid module</a>.
 Using sass <code>@for</code> we can calculate all the values upfront.</p>
 
-<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="nc">.col</span>
+<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span></span><span class="nc">.col</span>
   <span class="na">float</span><span class="o">:</span> <span class="no">left</span>
   <span class="na">box-sizing</span><span class="o">:</span> <span class="no">border</span><span class="o">-</span><span class="n">box</span>
 
@@ -217,7 +219,7 @@ once again resort to the power of calc.</p>
 
 <p>Let&#39;s also fix the counter effect of floats introduced by BASSCSS grid and add a gutter variable.</p>
 
-<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="na">$nanogrid-gutter</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span>
+<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span></span><span class="na">$nanogrid-gutter</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span>
 
 <span class="nc">.row</span>
   <span class="na">display</span><span class="o">:</span> <span class="n">table</span>
@@ -272,19 +274,13 @@ container or <code>body</code> padding.</p>
 
       <div class="sm-col sm-col-8 px2">
         <p>
-          Full-stack designer. I like to keep things as minimal and as simple as possible.
+          Full-stack designer. I like everything minimailitic and simple as possible.
         </p>
         <p>
-          Started to program with Sinclair Spectrum and has moved to user
-          experience and interfaces since. Developed and contributed to projects
-          for major brands such as L'Oreal, JTI and AB InBev among others. I am
-          currently working as an independent contractor.
-        </p>
-        <p>
-          I live in Phuket, Thailand and enjoy the beautiful scenery with
-          <a href="http://molokophuket.com">wife</a>
-          and two
-          <a href="http://anya.io">daughters</a>.
+          Started with Web and Graphics, moved to User Experience and
+          Interfaces, then to Team Lead and CTO. Contributed to projects for
+          major brands such as L'Oreal, JTI and AB InBev among others.
+          Currently working as an independent contractor.
         </p>
       </div>
 

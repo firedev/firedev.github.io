@@ -126,6 +126,8 @@ team. Please bear with me if I refer to something that wasn&#39;t mentioned in t
           
             
           
+            
+          
         </h3>
       </nav>
     </div>
@@ -146,7 +148,7 @@ background-position: ;
         
 
 <header>
-  <p>Dec 22, 2015</p>
+  
   <h1 class="m0 mb2">Immutable CSS</h1>
 </header>
 
@@ -165,10 +167,10 @@ semantics. And you don&#39;t write new CSS until it&#39;s absolutely needed.</p>
 <p>Lets pretend that we need to build a menu that changes background for each client.
 Consider the following example. The semantics is easy to remember: <code>m</code> —
 margin, <code>p</code> — padding.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;div class=&quot;menu mb1 p1&quot;&gt;
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>&lt;div class=&quot;menu mb1 p1&quot;&gt;
   &lt;img src=&quot;logo.svg&quot;/&gt;
 &lt;/div&gt;
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">.mb1 { margin-bottom: x } - adds bottom spacing
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>.mb1 { margin-bottom: x } - adds bottom spacing
 .p1 { padding: x } - adds padding
 </code></pre></div>
 <p><code>1</code> in class name means &#39;single spacing&#39;. And you don&#39;t use pixels or any
@@ -184,7 +186,7 @@ having tons of files and selectors one can add a bit more verbose-ish class
 names that are explicitly readable when you open the code.</p>
 
 <p>After that styling the transparent menu is trivial:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.menu</span> <span class="p">{</span> <span class="k">background-color</span><span class="o">:</span> <span class="m">#xxx</span> <span class="p">}</span>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="p">.</span><span class="nc">menu</span> <span class="p">{</span> <span class="k">background-color</span><span class="p">:</span> <span class="mh">#xxx</span> <span class="p">}</span>
 </code></pre></div>
 <h2 id="but-css-modules">But CSS Modules...?</h2>
 
@@ -203,17 +205,17 @@ the BASE.</p>
 <h2 id="show-me">Show me!</h2>
 
 <p>Sure. Let&#39;s take a random CSS Module from one of the pulls:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.type</span> <span class="p">{</span>
-  <span class="k">width</span><span class="o">:</span> <span class="m">70%</span><span class="p">;</span>
-  <span class="n">composes</span><span class="o">:</span> <span class="n">m</span><span class="o">-</span><span class="n">input</span><span class="o">-</span><span class="n">container</span> <span class="n">from</span> <span class="s1">&#39;./../../../../form/input-container.css&#39;</span>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="p">.</span><span class="nc">type</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">70</span><span class="kt">%</span><span class="p">;</span>
+  <span class="n">composes</span><span class="p">:</span> <span class="n">m-input-container</span> <span class="n">from</span> <span class="s1">&#39;./../../../../form/input-container.css&#39;</span>
 <span class="p">}</span>
 
-<span class="nc">.type__select</span> <span class="p">{</span>
-  <span class="n">composes</span><span class="o">:</span> <span class="n">m</span><span class="o">-</span><span class="n">input</span> <span class="n">from</span> <span class="s1">&#39;./../../../../form/input.css&#39;</span>
+<span class="p">.</span><span class="nc">type__select</span> <span class="p">{</span>
+  <span class="n">composes</span><span class="p">:</span> <span class="n">m-input</span> <span class="n">from</span> <span class="s1">&#39;./../../../../form/input.css&#39;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Looks like it should power this kind of HTML:</p>
-<div class="highlight"><pre><code class="language-slim" data-lang="slim"><span class="nc">.type</span>
+<div class="highlight"><pre><code class="language-slim" data-lang="slim"><span></span><span class="nc">.type</span>
    <span class="nt">select</span><span class="nc">.type__select</span>
 </code></pre></div>
 <p>So you see this in your code, and to get the idea of what is going on you open
@@ -226,7 +228,7 @@ SASS <code>extend</code>. With inheritance, specificity and the like. Just a dif
 file format.</p>
 
 <p>Compare to the following piece of CSS:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css">
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span>
 </code></pre></div>
 <p>Wait, what? No CSS? Yes. You see the basic HTML tags like <code>&lt;select&gt;</code> don&#39;t need to
 carry any classes. You just pre-style them once. How many variation of
@@ -237,7 +239,7 @@ in HTML. <code>width: 70%</code> is a magic number. It seems to me that it can b
 with <code>.col-8</code> given 12-column grid.</p>
 
 <p>So in HTML it will be something like:</p>
-<div class="highlight"><pre><code class="language-slim" data-lang="slim"><span class="nc">.container</span>
+<div class="highlight"><pre><code class="language-slim" data-lang="slim"><span></span><span class="nc">.container</span>
   <span class="nc">.col-8</span>
     <span class="nt">select</span>
 </code></pre></div>
@@ -268,7 +270,7 @@ and positioning is done with the base classes.</p>
 for the menu. When you decide you need more you can continue.</p>
 
 <p>Here is what the HTML could look like (Slim/Jade)</p>
-<div class="highlight"><pre><code class="language-slim" data-lang="slim"><span class="nc">.menu</span>                     | Sets Colors, nothing else. The only class that needs to be defined in CSS
+<div class="highlight"><pre><code class="language-slim" data-lang="slim"><span></span><span class="nc">.menu</span>                     | Sets Colors, nothing else. The only class that needs to be defined in CSS
   <span class="nc">.container</span>              | Sets max-width for the inner container
     <span class="nc">.sm-show.left.mr2</span>     | Show on small screens and upwards, float left, double spacing to the right
       <span class="nt">img</span><span class="na"> src</span><span class="p">=</span><span class="s2">&quot;logo.png&quot;</span>
@@ -280,9 +282,9 @@ for the menu. When you decide you need more you can continue.</p>
         <span class="nt">a</span><span class="nc">.btn</span>
 </code></pre></div>
 <p>So the only CSS one has to write to hydrate the menu with some dynamic style (module or not):</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.menu</span> <span class="p">{</span>
-  <span class="k">background-color</span><span class="o">:</span> <span class="m">#xxx</span>
-  <span class="k">color</span><span class="o">:</span> <span class="m">#xxx</span>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="p">.</span><span class="nc">menu</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#xxx</span>
+  <span class="kc">color</span><span class="o">:</span> <span class="mh">#xxx</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>If you don&#39;t need anything dynamic, just replace <code>.menu</code> with <code>.bg-blue.white</code>.
@@ -295,7 +297,7 @@ hover color from text so it works with any kind of stuff.</p>
 fully-blown button with colored background (it is actually inherited from
 <code>.btn.btn-primary</code>).</p>
 
-<h2 id="what-if-we-don-39-t-like-it">What if we don&#39;t like it?</h2>
+<h2 id="what-if-we-dont-like-it">What if we don&#39;t like it?</h2>
 
 <p>This is the best part, each module is like 10-20 lines long. Look at the
 filesizes in the following section.  You can easily replace or recreate parts
@@ -335,7 +337,7 @@ boilerplate to demo some of the ideas.</p>
 </ul>
 
 <p>Usage is simple. You just have to have <code>npm</code>, <code>bower</code>, and <code>grunt</code> installed:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">npm install
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>npm install
 bower install
 grunt
 </code></pre></div>
@@ -384,19 +386,13 @@ grunt
 
       <div class="sm-col sm-col-8 px2">
         <p>
-          Full-stack designer. I like to keep things as minimal and as simple as possible.
+          Full-stack designer. I like everything minimailitic and simple as possible.
         </p>
         <p>
-          Started to program with Sinclair Spectrum and has moved to user
-          experience and interfaces since. Developed and contributed to projects
-          for major brands such as L'Oreal, JTI and AB InBev among others. I am
-          currently working as an independent contractor.
-        </p>
-        <p>
-          I live in Phuket, Thailand and enjoy the beautiful scenery with
-          <a href="http://molokophuket.com">wife</a>
-          and two
-          <a href="http://anya.io">daughters</a>.
+          Started with Web and Graphics, moved to User Experience and
+          Interfaces, then to Team Lead and CTO. Contributed to projects for
+          major brands such as L'Oreal, JTI and AB InBev among others.
+          Currently working as an independent contractor.
         </p>
       </div>
 
