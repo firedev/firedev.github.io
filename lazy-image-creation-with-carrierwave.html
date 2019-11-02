@@ -127,6 +127,8 @@ it wrong.
           
             
           
+            
+          
         </h3>
       </nav>
     </div>
@@ -147,7 +149,7 @@ background-position: ;
         
 
 <header>
-  <p>Jun 30, 2015</p>
+  
   <h1 class="m0 mb2">Lazy image creation with Carrierwave</h1>
 </header>
 
@@ -196,18 +198,18 @@ serving the static asset.</p>
 <p>To start off let&#39;s delay the versions creation until the moment we actually need
 them. Let&#39;s add the <code>now</code> modifier to uploader and make sure no versions are
 created until we say so:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/uploaders/image_uploader.rb</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># app/uploaders/image_uploader.rb</span>
 
   <span class="n">version</span> <span class="ss">:default</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="ss">:now?</span> <span class="k">do</span>
-    <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+    <span class="o">...</span>
   <span class="k">end</span>
 
   <span class="n">version</span> <span class="ss">:featured</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="ss">:now?</span> <span class="k">do</span>
-    <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+    <span class="o">...</span>
   <span class="k">end</span>
 
   <span class="n">version</span> <span class="ss">:thumb</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="ss">:now?</span> <span class="k">do</span>
-    <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+    <span class="o">...</span>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">now</span>
@@ -225,7 +227,7 @@ created until we say so:</p>
 All it does - sets <code>@now</code> to <code>true</code> and then calls <code>recreate_versions!</code> for a
 given <code>version</code>. Lazy, not crazy, we don&#39;t want to create anything
 uncontrollably.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/models/image.rb</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># app/models/image.rb</span>
 
   <span class="k">def</span> <span class="nf">create_version</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
     <span class="n">file</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">recreate_versions!</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
@@ -234,7 +236,7 @@ uncontrollably.</p>
 <p>I am using almost the out of the box uploader with the small addition.
 Here is an inflector that breaks long id strings so you don&#39;t end up with too
 many images in one folder.</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># lib/inflector.rb</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># lib/inflector.rb</span>
 
 <span class="k">module</span> <span class="nn">Inflector</span>
   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
@@ -244,7 +246,7 @@ many images in one folder.</p>
     <span class="n">path</span> <span class="o">+=</span> <span class="nb">id</span><span class="o">.</span><span class="n">to_s</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/lib/inflector_spec.rb</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># spec/lib/inflector_spec.rb</span>
 
 <span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
@@ -266,7 +268,7 @@ many images in one folder.</p>
 <span class="k">end</span>
 </code></pre></div>
 <p>Here is the <code>store_dir</code> from <code>image_uploader.rb</code>:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/uploaders/image_uploader.rb</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># app/uploaders/image_uploader.rb</span>
 
   <span class="k">def</span> <span class="nf">store_dir</span>
     <span class="s2">&quot;uploads/</span><span class="si">#{</span><span class="n">model</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">underscore</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="no">Inflector</span><span class="o">.</span><span class="n">call</span> <span class="n">model</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -275,7 +277,7 @@ many images in one folder.</p>
 <p>Let&#39;s write a routing test to make sure requests are landing right at our
 <code>MissingController</code>. Missing like &quot;image is missing&quot;. And test a couple of routes
 with and without inflected paths just to be sure:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/routing/missing_spec.rb</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># spec/routing/missing_spec.rb</span>
 
 <span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
 
@@ -315,7 +317,7 @@ with and without inflected paths just to be sure:</p>
 <p>Okay now it&#39;s time to make a route. Fortunately we can use constraints to make
 matters easier for everybody. Rails doesn&#39;t have to think how to parse it and
 here is what I came up with:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># config/routes.rb</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># config/routes.rb</span>
 
 <span class="c1"># /uploads/block/image/1/default_7fd5acc8-5c06-4dcc-955e-f4fc5f76be01.jpg</span>
 <span class="n">get</span> <span class="s1">&#39;uploads/:klass/(*inflection)/:id/(:version)_(:file)&#39;</span><span class="p">,</span>
@@ -326,7 +328,7 @@ here is what I came up with:</p>
     <span class="p">}</span>
 </code></pre></div>
 <p>And the <code>MissingController</code> itself:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/controllers/missing_controller.rb</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># app/controllers/missing_controller.rb</span>
 
 <span class="k">class</span> <span class="nc">MissingController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">show</span>
@@ -356,7 +358,7 @@ served by nginx on top of the Rails app.</p>
 
 <p>If you have any special settings for static files in <code>uploads</code> folder you might
 want to amend your nginx config for the given site like so:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">; /etc/nginx/sites-available/site
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>; /etc/nginx/sites-available/site
 
 location ^~ /uploads/ {
     ...
@@ -376,7 +378,7 @@ we can do that now.</p>
 <p>I would suggest to add some default &quot;broken&quot; image to
 <code>/assets/images/layout/missing_image.png</code>
 so you can see any sign that the image is deleted. Then we are changing the <code>show</code> method:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/controller/missing_controller.rb</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># app/controller/missing_controller.rb</span>
 
 <span class="k">class</span> <span class="nc">MissingController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
 
@@ -444,19 +446,13 @@ am working on. Please let me know if that helped you. Thanks.</p>
 
       <div class="sm-col sm-col-8 px2">
         <p>
-          Full-stack designer. I like to keep things as minimal and as simple as possible.
+          Full-stack designer. I like everything minimailitic and simple as possible.
         </p>
         <p>
-          Started to program with Sinclair Spectrum and has moved to user
-          experience and interfaces since. Developed and contributed to projects
-          for major brands such as L'Oreal, JTI and AB InBev among others. I am
-          currently working as an independent contractor.
-        </p>
-        <p>
-          I live in Phuket, Thailand and enjoy the beautiful scenery with
-          <a href="http://molokophuket.com">wife</a>
-          and two
-          <a href="http://anya.io">daughters</a>.
+          Started with Web and Graphics, moved to User Experience and
+          Interfaces, then to Team Lead and CTO. Contributed to projects for
+          major brands such as L'Oreal, JTI and AB InBev among others.
+          Currently working as an independent contractor.
         </p>
       </div>
 
