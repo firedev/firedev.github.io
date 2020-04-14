@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/furniture3d/static/css/main.84edba21.chunk.css",
-    "main.js": "/furniture3d/static/js/main.b27d69d5.chunk.js",
-    "main.js.map": "/furniture3d/static/js/main.b27d69d5.chunk.js.map",
+    "main.js": "/furniture3d/static/js/main.80319ff7.chunk.js",
+    "main.js.map": "/furniture3d/static/js/main.80319ff7.chunk.js.map",
     "runtime-main.js": "/furniture3d/static/js/runtime-main.128e1523.js",
     "runtime-main.js.map": "/furniture3d/static/js/runtime-main.128e1523.js.map",
     "static/js/2.1c52bf00.chunk.js": "/furniture3d/static/js/2.1c52bf00.chunk.js",
     "static/js/2.1c52bf00.chunk.js.map": "/furniture3d/static/js/2.1c52bf00.chunk.js.map",
     "index.html": "/furniture3d/index.html",
-    "precache-manifest.0debbd4eed43b03dace5658f11ae9cb8.js": "/furniture3d/precache-manifest.0debbd4eed43b03dace5658f11ae9cb8.js",
+    "precache-manifest.2a1d9855b660eb35c206d3d885b57478.js": "/furniture3d/precache-manifest.2a1d9855b660eb35c206d3d885b57478.js",
     "service-worker.js": "/furniture3d/service-worker.js",
     "static/css/main.84edba21.chunk.css.map": "/furniture3d/static/css/main.84edba21.chunk.css.map",
     "static/js/2.1c52bf00.chunk.js.LICENSE.txt": "/furniture3d/static/js/2.1c52bf00.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.128e1523.js",
     "static/js/2.1c52bf00.chunk.js",
     "static/css/main.84edba21.chunk.css",
-    "static/js/main.b27d69d5.chunk.js"
+    "static/js/main.80319ff7.chunk.js"
   ]
 }
