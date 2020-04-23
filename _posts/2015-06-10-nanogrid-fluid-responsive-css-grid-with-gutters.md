@@ -13,12 +13,12 @@ I have decided to build on top of their shoulders. Welcome the nanogrid.
 ### Ungrid
 Ungrid is a nifty grid that packs everything in less than a hundred bytes by
 using `display: table` trick:
-{% highlight css %}
+```css
 @media (min-width: 30em) {
     .row { width: 100%; display: table; table-layout: fixed; }
     .col { display: table-cell; }
 }
-{% endhighlight %}
+```
 And it's quite powerful [see the demo](https://github.com/chrisnager/ungrid/) plus
 using `display: table` is a nifty trick that solves issues with
 [Flexbox](http://caniuse.com/#flexbox).
@@ -34,7 +34,7 @@ is too good to pass up.
 ### nanogrid
 Let's use SASS for this, as I am most comfortable with it. And add some variables to the mix:
 
-{% highlight sass %}
+```sass
 $nanogrid-breakpoint: 30em !default
 @media (min-width: $nanogrid-breakpoint)
   .row
@@ -43,12 +43,12 @@ $nanogrid-breakpoint: 30em !default
     table-layout: fixed
   .col
     display: table-cell
-{% endhighlight %}
+```
 
 Throw in grid classes from BASSCSS
 [grid module](https://github.com/basscss/grid/blob/master/lib/grid.css).
 Using sass `@for` we can calculate all the values upfront.
-{% highlight sass %}
+```sass
 .col
   float: left
   box-sizing: border-box
@@ -62,7 +62,7 @@ Using sass `@for` we can calculate all the values upfront.
     width: #{$i/12 * 100%}
   .row .col-#{$i}
     float: none
-{% endhighlight %}
+```
 
 Okay time to add some gutters. The tricky part here is that you can't simply use
 negative margins as they don't work well on `display: table`. Element only moves to the left.
@@ -71,7 +71,7 @@ once again resort to the power of calc.
 
 Let's also fix the counter effect of floats introduced by BASSCSS grid and add a gutter variable.
 
-{% highlight sass %}
+```sass
 $nanogrid-gutter: 1rem
 
 .row
@@ -84,7 +84,7 @@ $nanogrid-gutter: 1rem
     float: none
     display: table-cell
     padding: 0 #{$nanogrid-gutter/2}
-{% endhighlight %}
+```
 
 This introduces the negative margin on the right so it's best to be aware of it.
 
