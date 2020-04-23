@@ -128,7 +128,7 @@ the trackpad which I found myself doing from time to time.
 
 Don't get me wrong though. It is great and it's like 1.5 times bigger than the
 old one. To my own surprise I found myself using Trackpad almost exclusively
-[when I get hands off keyboard](http://firedev.com/posts/2015/mac-as-ide/).
+[when I get hands off keyboard](http://firedev.com/posts/mac-as-ide/).
 Don't think I ever reached for the mouse lately at all.
 
 It costs almost as much as the new keyboard AND the new mouse combined.

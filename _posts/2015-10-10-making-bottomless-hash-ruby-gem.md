@@ -402,7 +402,7 @@ bottomless_hash (0.1.0)
 ```
 
 ### Links
-<i class="fa fa-file-o"></i> [Bottomless Ruby Hash](http://firedev.com/posts/2015/bottomless-ruby-hash)<br>
-<i class="fa fa-file-o"></i> [Making Bottomless Hash Ruby Gem](http://firedev.com/posts/2015/making-bottomless-hash-ruby-gem/)<br>
+<i class="fa fa-file-o"></i> [Bottomless Ruby Hash](http://firedev.com/posts/bottomless-ruby-hash)<br>
+<i class="fa fa-file-o"></i> [Making Bottomless Hash Ruby Gem](http://firedev.com/posts/making-bottomless-hash-ruby-gem/)<br>
 <i class="fa fa-github"></i> Github [firedev/bottomless_hash](https://github.com/firedev/bottomless_hash)<br>
 <i class="fa fa-github"></i> Gist [bottomless_hash.rb](https://gist.github.com/firedev/9de91e245f70c2e963e4)<br>

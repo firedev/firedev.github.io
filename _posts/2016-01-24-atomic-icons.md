@@ -284,5 +284,5 @@ decoupled from the presentation. No margins or anything. Icons are reusable
 and aren't tied to a particular implementation. So you can experiment with the
 overall look and feel. And the best part is -- now you can compose:
 
-<a href="http://firedev.com/posts/2015/immutable-css/"><i class="fa fa-css3 pr1"></i>Immutable CSS</a><br>
+<a href="http://firedev.com/posts/immutable-css/"><i class="fa fa-css3 pr1"></i>Immutable CSS</a><br>
 <a href="http://fontawesome.io/"><i class="fa fa-link pr1"></i>Font Awesome</a>

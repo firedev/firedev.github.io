@@ -11,10 +11,7 @@ github_username:  firedev
 
 # Build settings
 # permalink: /:title
-permalink: /:title
-markdown: redcarpet
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
+permalink: /:categories/:title/
 exclude:
   - "bower_components"
   - "bower.json"

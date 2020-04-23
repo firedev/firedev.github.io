@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Hello, Jekyll!"
+title: "Hello, Jekyll!"
 category: posts
 tags:
   - jekyll
@@ -34,23 +34,23 @@ Since there are no partials in Jekyll I had to use includes.
 
 This is what I have in my `posts` and `index` pages:
 
-{% highlight liquid %}
+```liquid
 {% raw %}
 {% for post in site.posts %}
   {% include _post.html post=post %}
 {% endfor %}
 {% endraw %}
-{% endhighlight %}
+```
 
 And the actual `_post.html` include uses `include.post` variable:
-{% highlight liquid %}
+```liquid
 {% raw %}
 <h2>
     <a href="{{ include.post.url }}">{{ include.post.title }}</a>
 </h2>
 <p>{{ include.post.excerpt }}<p>
 {% endraw %}
-{% endhighlight %}
+```
 
 This is something I would do in Rails. Everything seems pretty sweet so far.
 The only issue is that I have to write HTML again which seems as a step back

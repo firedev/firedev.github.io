@@ -3,7 +3,9 @@
  */
 pre, code {
     background: #f3f3f3;
+    font-family: "Iosevka", "SF Mono", "Fira Code", "Source Code Pro", Consolas, monospace;
 }
+pre { padding: 1rem }
 p code { padding: 0.25rem; }
 .highlight {
     // @extend %vertical-rhythm;

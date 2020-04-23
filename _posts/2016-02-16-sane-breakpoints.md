@@ -191,4 +191,4 @@ $large: 65rem; // 1040px
 
 I believe this approach will bring more good than those obscure pixel-based breakpoints
 found in CSS Frameworks everywhere. Start small, use an
-[Immutable CSS](http://firedev.com/posts/2015/immutable-css/) library and have fun.
+[Immutable CSS](http://firedev.com/posts/immutable-css/) library and have fun.
