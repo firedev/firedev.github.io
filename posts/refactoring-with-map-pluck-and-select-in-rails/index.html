@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Refactoring with map, pluck and select in Ruby on Rails</title>
+  <meta name="description" content="If you need to get something out of the database, consider using pluck to avoidcreating instances you don’t need.">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://firedev.com/posts/refactoring-with-map-pluck-and-select-in-rails/">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta property="og:url" content="http://firedev.com/posts/refactoring-with-map-pluck-and-select-in-rails/" />
+  <meta property="og:title" content="Refactoring with map, pluck and select in Ruby on Rails" />
+  <meta property="og:description" content="If you need to get something out of the database, consider using pluck to avoid
+creating instances you don’t need.
+" />
+  <meta property="og:image" content="http://firedev.com/images/posts/plucking_prohibited.jpg" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="container px2 mt2 mb2">
+    <div class="clearfix mxn2">
+      <div class="sm-col sm-col-3 px2">
+        <h1 class="logo m0 relative">
+          <a href="/" id="logo">
+            <span class="hide">
+              <span class="fire">
+                fire
+              </span>
+              <span class="dev">
+                dev
+              </span>
+              <span class="com">
+                .com
+              </span>
+            </span>
+            <img src="/images/logos/firedev.svg" alt="firedev.com" class="absolute bottom-0" />
+            &nbsp;
+          </a>
+        </h1>
+      </div>
+      <nav class="sm-col sm-col-9 px2 mt2 py1">
+        <div class="right mt2 p1 md-show">
+          <a class="btn silver regular" href="/feed.xml">
+            <i class="fa fa-rss"></i>
+            RSS
+          </a>
+        </div>
+        <h3>
+          
+            
+          
+            
+              
+                <a class="btn" href="/posts/">
+                  Posts
+                </a>
+              
+            
+          
+            
+              
+                <a class="btn" href="/projects/">
+                  Projects
+                </a>
+              
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+        </h3>
+      </nav>
+    </div>
+  </div>
+</header>
+
+    
+<div class="main-image mb3" style="
+background-image: url(/images/posts/plucking_prohibited.jpg);
+background-size: cover;
+background-color: ;
+background-position: ;
+">
+</div>
+
+
+    <div class="container px2 mb4">
+        
+
+<header>
+  
+  <h1 class="m0 mb2">Refactoring with map, pluck and select in Ruby on Rails</h1>
+</header>
+
+
+<div class="mb3">
+  <article class="mb3">
+    <p>If you need to get something out of the database, consider using <code>pluck</code> to avoid
+creating instances you don’t need.</p>
+
+<p>I am working with an old code base at the moment and do a lot of refactoring.
+That provides me with something to think about every day.</p>
+
+<p>In this particular code base I see a lot of transformation of database objects
+in Ruby, but is that effective?
+Let’s check and see if we can improve anything.</p>
+
+<h2 id="experiment">Experiment</h2>
+
+<p>Before venturing off let’s create a test bench to measure performance:</p>
+
+<pre><code class="language-ruby">def m(&amp;block)
+  Benchmark.ms do
+    100.times { yield }
+  end
+end
+</code></pre>
+
+<p>And compare <code>pluck</code> with <code>map</code> on this particular piece of code:</p>
+
+<pre><code class="language-ruby">m { stock_movement.positions.pluck(:product_id) }
+=&gt; 265.032
+m { stock_movement.positions.map(&amp;:product_id) }
+=&gt; 220.282
+</code></pre>
+
+<p>We see almost no difference, so what’s the point? But performance depends on other factors.</p>
+
+<pre><code class="language-ruby">stock_movement.positions.count
+=&gt; 1
+</code></pre>
+
+<p>Let’s try it with something more substantial:</p>
+<pre><code class="language-ruby">stock_movement.positions.count
+=&gt; 400
+m { stock_movement.positions.map(&amp;:product_id) }
+=&gt; 5647.272
+
+m { stock_movement.positions.pluck(:product_id) }
+=&gt; 349.746
+</code></pre>
+
+<p>Now, we’re talking, but in fact we’re not.
+This code is used once in the controller, and it might be that there is no
+actual performance benefit especially when using small amount of data:</p>
+
+<pre><code class="language-ruby">m { @stock_movement_positions.pluck(:product_id); }
+=&gt; 2367.685
+m { @stock_movement_positions.map(&amp;:product_id); }
+=&gt; 367.844
+</code></pre>
+
+<p>You have to be especially careful inside of the loops. This is not a rule of the thumb
+but when dealing with database I would conside using <code>pluck</code>. Or <code>select</code>.</p>
+
+<p><code>select</code> is a different beast. Affected by Rails Magic it can act differently
+things depending on its position in <code>ActiveRecord</code> chain. Plus there are different
+flavors of <code>select</code> in <code>ActiveRecord::Association::CollectionProxy</code>, <code>ActiveRecord::QueryMethods</code> etc.</p>
+
+<p>What is important to rememeber is that <code>select</code> might return instanciated real-only objects
+with paritally filled attributes. It can also return a sub-query, but that’s another topic.
+Armed with this knowlegde, let’s find a better specimen for refactoring.</p>
+
+<h2 id="a-better-example">A better example</h2>
+
+<p>Here is a good candidate for improvement I stumbled upon in a few places.
+It returns an array of first letters in names in collection to build and alphabetic
+lister later.</p>
+
+<pre><code class="language-ruby">StockProduct.select('LEFT(name, 1) as letter').group(:name).all.map(&amp;:letter).uniq.sort
+</code></pre>
+
+<p>What immediately grabs attention is how database output that ends at <code>.all</code> being treated in Ruby.
+Let’s look at <code>select</code> first:</p>
+<pre><code class="language-ruby">StockProduct.select('LEFT(name, 1) as letter').to_sql
+=&gt; "SELECT LEFT(name, 1) as letter FROM `stock_products` "
+</code></pre>
+
+<p>The query does not look particulary mean or anything, again, especially if your
+database is not that big. Unfortunately for us <code>select</code> instantiates a bunch of
+half-filled (or half-empty) objects:</p>
+
+<pre><code class="language-ruby">=&gt; [#&lt;StockProduct &gt;, #&lt;StockProduct &gt;, #&lt;StockProduct &gt;, ...
+</code></pre>
+
+<p>This is unacceptable, lets rewrite this using <code>pluck</code> instead of <code>select</code>, <code>DISTINCT</code> instead of <code>uniq</code> and throw away the rest:</p>
+
+<pre><code class="language-ruby">StockProduct.pluck('DISTINCT LEFT(name, 1)')
+</code></pre>
+
+<p>Another thing to keep in mind when using <code>pluck</code> - it returns the array and
+breaks the <code>ActiveRecord</code> query method chain. And if you need to use the values
+in a subsequent query you might be actually needing <code>select</code> as it would
+construct a subquery to use. But in our case we don’t need anything else so that’s fine.</p>
+
+<p>Let’s compare:</p>
+<pre><code class="language-ruby">m { StockProduct.pluck('DISTINCT LEFT(name, 1)') }
+=&gt; 926.424
+m { StockProduct.select('LEFT(name, 1) as letter').group(:name).all.map(&amp;:letter).uniq.sort }
+=&gt; 28469.013
+</code></pre>
+
+<p>Finally, something good comes out of this refactoring. Moving the code to concern:</p>
+
+<pre><code class="language-ruby"># app/models/concerns/search/first_letter.rb
+class Search
+  module FirstLetter
+    extend ActiveSupport::Concern
+    included do
+      scope :by_letter, -&gt; (letter) { where('name LIKE ?', "#{letter}%") }
+    end
+
+    module ClassMethods
+      def first_letters
+        pluck('DISTINCT LEFT(name, 1)')
+      end
+    end
+  end
+end
+</code></pre>
+
+<h2 id="hey-what-about-sorting">Hey, what about sorting?</h2>
+<p>Okay, you got me. Yes that is a good question. But let’s think about it first.
+As I output the results in alphabetical order and numbers separated from letters
+that means I have a knowledge of that.</p>
+
+<p>And this knowledge is kept in the view layer. I am simply intersecting arrays like this:</p>
+
+<pre><code class="language-ruby"># views/letters/_letters.html.slim
+(?0..?9).to_a &amp; first_letters
+(?A..?Z).to_a &amp; first_letters
+</code></pre>
+
+<p>This construct gives me intersections ordered by alphabet and in numerical order if there are any.</p>
+
+<p>One thing less to worry about. That frees up some brain capacity what is in my
+book ultimately is the point of refactoring.</p>
+
+  </article>
+
+  <div class="mb3 lh25">
+ 
+
+<a href="/rails/" class="button bg-orange white lh1"> Rails </a>
+ 
+
+<a href="/refactoring/" class="button bg-orange white lh1"> Refactoring </a>
+
+</div>
+
+
+</div>
+<div class="mt4">
+<div class="clearfix mxn2 mb2">
+  <div class="sm-col sm-col-3 px2 mb2">
+    <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
+  </div>
+  <div class="sm-col sm-col-9 px2">
+
+    <h2 class="mt0 h1">
+      Nick Ostrovsky
+    </h2>
+
+    <div class="clearfix mxn2 mb4">
+
+      <div class="sm-col sm-col-8 px2">
+        <p>
+          Full-stack designer. I like everything minimailitic and simple as possible.
+        </p>
+        <p>
+          Started with Web and Graphics, moved to User Experience and
+          Interfaces, then to Team Lead and CTO. Contributed to projects for
+          major brands such as L'Oreal, JTI and AB InBev among others.
+          Currently working as an independent contractor.
+        </p>
+      </div>
+
+      <div class="sm-col sm-col-4 sm-show">
+        <div class="mtn1 ml2">
+          <!-- <a class="p1 px2 white bg-green rounded mb1 inline-block" href="mailto:nick@firedev.com" -->
+          <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
+          <a class="p1 px2 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
+          <a class="p1 px2 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
+          <!--<a class="p1 px2 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
+          <a class="p1 px2 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i> StackOverflow</a>
+          <a class="p1 px2 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'firedevcom';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    </div>
+
+    <footer>
+    <div class="container px2 mt4 mb2 center">
+        With <i class="fa fa-heart red"></i>
+        <a href="http://firedev.com"><strong>firedev.com</strong></a>
+    </div>
+    <div class="container px2 mb4 center">
+        <a class="muted" href="mailto:nick@firedev.com">Email me</a>
+    </div>
+</footer>
+
+    <script src="/js/firedev.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69016906-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+
+</html>

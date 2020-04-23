@@ -10,7 +10,7 @@
   <meta name="description" content="Once in a while comes a moment when you decide to change an icon set you havebeen using. Just a bit of upfront planning goes a long way. Consider a systemtha...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://firedev.com/atomic-icons">
+  <link rel="canonical" href="http://firedev.com/posts/atomic-icons/">
   <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
 
   <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -18,7 +18,7 @@
   <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <meta property="og:url" content="http://firedev.com/atomic-icons" />
+  <meta property="og:url" content="http://firedev.com/posts/atomic-icons/" />
   <meta property="og:title" content="Atomic Icons" />
   <meta property="og:description" content="Once in a while comes a moment when you decide to change an icon set you have
 been using. Just a bit of upfront planning goes a long way. Consider a system
@@ -160,10 +160,10 @@ background-position: ;
 been using. Just a bit of upfront planning goes a long way. Consider a system
 that turns icons into independent components.</p>
 
-<p>Before we start I need to explain that actual icon implementation doesn&#39;t matter.
+<p>Before we start I need to explain that actual icon implementation doesn’t matter.
 It is not important if you are using PNG, SVG, Icon Fonts or whatever there is.</p>
 
-<p>I personally like Font Awesome because it&#39;s easy to use. Not without drawbacks
+<p>I personally like Font Awesome because it’s easy to use. Not without drawbacks
 though. While icon fonts just started to be rendered somewhat consistently
 across browsers there is some backlash against them. Sometimes they might not
 be rendered correctly still and might cause some issues for screen reading
@@ -175,7 +175,7 @@ particular. It was built with 14px font size in mind. These days I tend to
 not change browser defaults. And some sort of 16px base icon font would not
 hurt to get crisp icons.</p>
 
-<p>Having said that, it seems SVG is the way to go at the moment. But enough digression let&#39;s get to
+<p>Having said that, it seems SVG is the way to go at the moment. But enough digression let’s get to
 business.</p>
 
 <h2 id="can-we-have-icons-without-pain">Can we have icons without pain?</h2>
@@ -183,7 +183,7 @@ business.</p>
 <p>I myself tried different approaches before coming to this. And I have endured
 migrations from images to icon fonts, then from one icon font to another, then
 syntax changes in font awesome. HTML, CSS, SASS, SVG, inline SVG, Icon Fonts,
-Custom fonts... You name it.</p>
+Custom fonts… You name it.</p>
 
 <p>Each transition did lead me closer to this solution. As I am the only
 maintainer of the things I make I distill everything to the simplest and most
@@ -200,72 +200,82 @@ the implementation and move forward without worrying about breaking things up.</
 
 <p><strong>You create one way of displaying icons and stick to it.</strong></p>
 
-<p>You do not use <code>@extend</code> in SASS to inject icons in buttons, you don&#39;t add icon
+<p>You do not use <code>@extend</code> in SASS to inject icons in buttons, you don’t add icon
 classes to <code>span</code> or <code>a</code>. Every icon displayed must be passing through your own
 implementation.</p>
 
 <p>This claim might sound either trivial or ridiculous depending on your standpoint,
-so let me reinforce it with some examples. I don&#39;t know if you remember Font Awesome
+so let me reinforce it with some examples. I don’t know if you remember Font Awesome
 changing their class naming from <code>icon-*</code> to <code>fa fa-*</code>? Or had a chance to
 find all the places where you have used some <code>fa-circle</code> that became <code>fa-circle-o</code>?
 Or spend couple of days making sure there is no single reference of <code>png</code> or
 <code>gif</code> in the project? You need an implementation you can control.</p>
 
 <h2 id="history-lesson">History lesson</h2>
-
-<p>Before we get to the actual solution let&#39;s recap how the mess creeps into
+<p>Before we get to the actual solution let’s recap how the mess creeps into
 the system in the first place. Imagine an app with icon buttons:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;icons/ok.gif&quot;</span><span class="p">&gt;</span> Save<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-</code></pre></div>
-<p>Years pass and it gets obsolete quickly. You start having dynamic buttons so
-as a simplest solution you&#39;re changing <code>src</code> attributes. Then one day you&#39;re
-deciding that this is enough mess and move stying to CSS:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">button</span><span class="p">.</span><span class="nc">ok</span> <span class="p">{</span>
-  <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="sx">icons/ok.gif</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>But then you need to have padding to compensate for the icon size...</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">button</span> <span class="p">{</span>
-  <span class="k">padding-left</span><span class="p">:</span> <span class="mi">32</span><span class="kt">px</span><span class="p">;</span>
-  <span class="k">background-position</span><span class="p">:</span> <span class="mi">8</span><span class="kt">px</span> <span class="kc">center</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Oh darn it, we don&#39;t have icons for all buttons. Let&#39;s have a prefix! And switch to SASS:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="p">@</span><span class="k">mixin</span> <span class="nt">icon</span><span class="o">($</span><span class="nt">icon</span><span class="o">)</span> <span class="p">{</span>
-  <span class="nt">padding-left</span><span class="o">:</span> <span class="nt">32px</span><span class="o">;</span>
-  <span class="nt">background-position</span><span class="o">:</span> <span class="nt">8px</span> <span class="nt">center</span><span class="o">;</span>
-  <span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">icons</span><span class="o">/</span><span class="err">#</span><span class="p">{</span><span class="err">$icon</span><span class="p">}.</span><span class="nc">gif</span><span class="o">)</span>
-<span class="p">}</span>
 
-<span class="p">.</span><span class="nc">icon-ok</span> <span class="p">{</span>
-  <span class="err">@include</span> <span class="err">icon(ok)</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;icon-ok&quot;</span><span class="p">&gt;</span>Save<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-</code></pre></div>
+<pre><code class="language-html">&lt;button&gt;&lt;img src="icons/ok.gif"&gt; Save&lt;/button&gt;
+</code></pre>
+
+<p>Years pass and it gets obsolete quickly. You start having dynamic buttons so
+as a simplest solution you’re changing <code>src</code> attributes. Then one day you’re
+deciding that this is enough mess and move stying to CSS:</p>
+
+<pre><code class="language-css">button.ok {
+  background-image: url(icons/ok.gif)
+}
+</code></pre>
+
+<p>But then you need to have padding to compensate for the icon size…</p>
+
+<pre><code class="language-css">button {
+  padding-left: 32px;
+  background-position: 8px center;
+}
+</code></pre>
+
+<p>Oh darn it, we don’t have icons for all buttons. Let’s have a prefix! And switch to SASS:</p>
+
+<pre><code class="language-css">@mixin icon($icon) {
+  padding-left: 32px;
+  background-position: 8px center;
+  background-image: url(icons/#{$icon}.gif)
+}
+
+.icon-ok {
+  @include icon(ok);
+}
+</code></pre>
+<pre><code class="language-html">&lt;button class="icon-ok"&gt;Save&lt;/button&gt;
+</code></pre>
+
 <p>Yey, almost there. Plus now we can reuse the same class for links and stuff.
 But headers, icons looks comically tiny in headers? So you add bigger images
 and classes for bigger icons and more padding and positioning.</p>
 
-<p>Time flies and now you&#39;re forced to do something with this, so you decide to
+<p>Time flies and now you’re forced to do something with this, so you decide to
 change it to icon font.  With power of sass that sounds easy. Using Font
 Squirrel or IcoMoon your compile your own icon font implementation.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="p">@</span><span class="k">mixin</span> <span class="nt">icon</span><span class="o">($</span><span class="nt">icon</span><span class="o">)</span> <span class="p">{</span>
-  <span class="o">&amp;</span><span class="p">:</span><span class="nd">before</span> <span class="p">{</span>
-    <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;CustomFont&#39;</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
 
-<span class="p">.</span><span class="nc">icon-ok</span> <span class="p">{</span>
-  <span class="err">@include</span> <span class="err">icon(ok)</span><span class="p">;</span>
-  <span class="k">content</span><span class="p">:</span> <span class="s1">&#39;\#ok;&#39;</span>
-<span class="p">}</span>
-</code></pre></div>
+<pre><code class="language-css">@mixin icon($icon) {
+  &amp;:before {
+    font-family: 'CustomFont';
+  }
+}
+
+.icon-ok {
+  @include icon(ok);
+  content: '\#ok;'
+}
+</code></pre>
+
 <p>The team lead likes the effort and decides that we now need to have all icons done this way.</p>
 
 <p>But then your team moves to Slim or React and now you have to insert spaces everywhere icons
 starts sticking to text. The CSS grows with more and more intricacies.</p>
 
-<p>You need to use icons separately too right? So let&#39;s create another rule for <code>button.icon-ok</code> and
+<p>You need to use icons separately too right? So let’s create another rule for <code>button.icon-ok</code> and
 <code>.icon-ok</code> standalone. And for other icons. And other tags, because links are inline.</p>
 
 <p>So what can we do?</p>
@@ -277,11 +287,15 @@ multiplying icon classes we are introducing the Icon component.</p>
 
 <p>It does one thing - displays an icon. Font Awesome Rails gem has a <code>fa_icon</code> helper that does that.
 But we wrap it in our own view helper, icon:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>= icon &#39;remove&#39;
-</code></pre></div>
+
+<pre><code>= icon 'remove'
+</code></pre>
+
 <p>In React that would be something like:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>&lt;Icon icon=&#39;remove&#39; /&gt;
-</code></pre></div>
+
+<pre><code>&lt;Icon icon='remove' /&gt;
+</code></pre>
+
 <p>Output:</p>
 
 <p><i class="fa fa-remove"></i></p>
@@ -291,25 +305,30 @@ It can be anything as long as there is one way to call it.</p>
 
 <h2 id="usage-in-buttons">Usage in buttons</h2>
 
-<p>This simple thing frees our hands immediately. You don&#39;t style buttons anymore.</p>
-<div class="highlight"><pre><code class="language-erb" data-lang="erb"><span></span><span class="x">&lt;button&gt;</span>
-<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">icon</span> <span class="s1">&#39;remove&#39;</span> <span class="cp">%&gt;</span><span class="x"></span>
-<span class="x">  Delete</span>
-<span class="x">&lt;/button&gt;</span>
-</code></pre></div>
-<p><button><i class="fa fa-remove"></i> Remove</button></p>
+<p>This simple thing frees our hands immediately. You don’t style buttons anymore.</p>
 
-<p>Let&#39;s see how can we use is in React component instead of <code>className: &quot;remove&quot;</code>:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>&lt;button&gt;
-  &lt;Icon icon=&#39;remove&#39; /&gt;
+<pre><code class="language-erb">&lt;button&gt;
+  &lt;%= icon 'remove' %&gt;
   Delete
 &lt;/button&gt;
-</code></pre></div>
+</code></pre>
+<p><button><i class="fa fa-remove"></i> Remove</button></p>
+
+<p>Let’s see how can we use is in React component instead of <code>className: "remove"</code>:</p>
+
+<pre><code>&lt;button&gt;
+  &lt;Icon icon='remove' /&gt;
+  Delete
+&lt;/button&gt;
+</code></pre>
+
 <p>or</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>&lt;Button icon=&quot;remove&quot;&gt;
+
+<pre><code>&lt;Button icon="remove"&gt;
   Delete
 &lt;/Button&gt;
-</code></pre></div>
+</code></pre>
+
 <p>Oh wait, but why they are stuck together:</p>
 
 <p><button><i class="fa fa-remove"></i>Remove</button></p>
@@ -319,46 +338,52 @@ So instead of beating around the bush with non-breaking spaces and stuff I found
 a simple solution that works. You get a set of three helpers.</p>
 
 <ul>
-<li><code>&lt;Icon&gt;</code> — icon <em>atom</em>. The minimal representation. It can be <code>&lt;img&gt;</code>, <code>&lt;svg&gt;</code>, <code>i.fa</code></li>
-<li><code>&lt;IconBefore&gt;</code> — icon with right spacing for use in from of the text without spaces.</li>
-<li><code>&lt;IconAfter&gt;</code> — icon with left spacing to be used after text</li>
+  <li><code>&lt;Icon&gt;</code> — icon <em>atom</em>. The minimal representation. It can be <code>&lt;img&gt;</code>, <code>&lt;svg&gt;</code>, <code>i.fa</code></li>
+  <li><code>&lt;IconBefore&gt;</code> — icon with right spacing for use in from of the text without spaces.</li>
+  <li><code>&lt;IconAfter&gt;</code> — icon with left spacing to be used after text</li>
 </ul>
 
 <p>Here are the corresponding <a href="https://github.com/firedev/basscss-fix/blob/master/app/helpers/icon_helper.rb">rails helpers</a>:</p>
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">module</span> <span class="nn">IconHelper</span>
-  <span class="kp">include</span> <span class="no">FontAwesome</span><span class="o">::</span><span class="no">Rails</span><span class="o">::</span><span class="no">IconHelper</span>
 
-  <span class="k">def</span> <span class="nf">icon</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-    <span class="n">fa_icon</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-  <span class="k">end</span>
+<pre><code class="language-ruby">module IconHelper
+  include FontAwesome::Rails::IconHelper
 
-  <span class="k">def</span> <span class="nf">icon_before</span><span class="p">(</span><span class="n">whatever</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="p">{})</span>
-    <span class="n">params</span><span class="o">[</span><span class="ss">:class</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:class</span><span class="o">]</span><span class="si">}</span><span class="s2"> pr1&quot;</span>
-    <span class="n">icon</span><span class="p">(</span><span class="n">whatever</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-  <span class="k">end</span>
+  def icon(*args)
+    fa_icon(*args)
+  end
 
-  <span class="k">def</span> <span class="nf">icon_after</span><span class="p">(</span><span class="n">whatever</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="p">{})</span>
-    <span class="n">params</span><span class="o">[</span><span class="ss">:class</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:class</span><span class="o">]</span><span class="si">}</span><span class="s2"> pl1&quot;</span>
-    <span class="n">icon</span><span class="p">(</span><span class="n">whatever</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+  def icon_before(whatever = nil, params = {})
+    params[:class] = "#{params[:class]} pr1"
+    icon(whatever, params)
+  end
+
+  def icon_after(whatever = nil, params = {})
+    params[:class] = "#{params[:class]} pl1"
+    icon(whatever, params)
+  end
+end
+</code></pre>
+
 <p>While in Slim you do it like this:</p>
-<div class="highlight"><pre><code class="language-slim" data-lang="slim"><span></span><span class="nt">button</span>
-  <span class="p">=</span> <span class="n">icon_before</span> <span class="s1">&#39;remove&#39;</span>
+
+<pre><code class="language-slim">button
+  = icon_before 'remove'
   | Remove from
-  <span class="p">=</span> <span class="n">icon_after</span> <span class="s1">&#39;cloud&#39;</span>
-</code></pre></div>
-<p>I don&#39;t see a point for additional verbosity in React component so it can be something like this:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">Button</span> <span class="na">icon</span><span class="o">=</span><span class="s">&quot;remove&quot;</span> <span class="na">iconAfter</span><span class="o">=</span><span class="s">&quot;cloud&quot;</span><span class="p">&gt;</span>
+  = icon_after 'cloud'
+</code></pre>
+
+<p>I don’t see a point for additional verbosity in React component so it can be something like this:</p>
+
+<pre><code class="language-html">&lt;Button icon="remove" iconAfter="cloud"&gt;
   Remove from
-<span class="p">&lt;/</span><span class="nt">Button</span><span class="p">&gt;</span>
-</code></pre></div>
+&lt;/Button&gt;
+</code></pre>
+
 <p>The output should be identical. Note even whitespace:</p>
 
 <p><button><i class="fa fa-remove pr1"></i>Remove from<i class="fa fa-cloud pl1"></i></button></p>
 
-<p>What&#39;s with <code>pr1</code> <code>pl1</code> classes? They are providing <code>padding-left</code> and <code>padding-right</code>. Why not <code>margin</code>?
+<p>What’s with <code>pr1</code> <code>pl1</code> classes? They are providing <code>padding-left</code> and <code>padding-right</code>. Why not <code>margin</code>?
 Because that produces an unclickable space if you are using an icon inside a link:</p>
 
 <p><a href="http://github.com/firedev"><i class="fa fa-github pr1"></i>Github</a></p>
@@ -366,28 +391,32 @@ Because that produces an unclickable space if you are using an icon inside a lin
 <h2 id="or-app-is-too-old-for-this">Or app is too old for this</h2>
 
 <p>If you are in a transitional phase, and have some HTML or Backbone where you
-can&#39;t use helpers or components, replace current icons implementation with
+can’t use helpers or components, replace current icons implementation with
 <code>&lt;i&gt;</code> tags that use your own naming scheme in css.</p>
 
 <p>This change alone will untie your hands and you can create icons inventor to
-see which ones you&#39;re actually using.</p>
+see which ones you’re actually using.</p>
 
-<p>Replace whatever you&#39;re using at the moment:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;image-ok&quot;</span><span class="p">&gt;</span>Save<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;icons/ok.gif&quot;</span><span class="p">&gt;</span>Save<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;icon-warning&quot;</span><span class="p">&gt;&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;icons/exclamation-mark.gif&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> File not found<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</code></pre></div>
+<p>Replace whatever you’re using at the moment:</p>
+
+<pre><code class="language-html">&lt;button class="image-ok"&gt;Save&lt;/button&gt;
+&lt;button&gt;&lt;img src="icons/ok.gif"&gt;Save&lt;/button&gt;
+&lt;p&gt;&lt;span class="icon-warning"&gt;&lt;img src="icons/exclamation-mark.gif"/&gt;&lt;/span&gt; File not found&lt;/p&gt;
+</code></pre>
+
 <p>With something like this:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;icon-ok icon-before&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span>Save<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-</code></pre></div>
-<h2 id="whats-the-point">What&#39;s the point?</h2>
+
+<pre><code class="language-html">&lt;button&gt;&lt;i class="icon-ok icon-before"&gt;&lt;/i&gt;Save&lt;/button&gt;
+</code></pre>
+
+<h2 id="whats-the-point">What’s the point?</h2>
 
 <p>This approach helps you to get rid of the obscure CSS. Buttons stay buttons and
 decoupled from the presentation. No margins or anything. Icons are reusable
-and aren&#39;t tied to a particular implementation. So you can experiment with the
-overall look and feel. And the best part is -- now you can compose:</p>
+and aren’t tied to a particular implementation. So you can experiment with the
+overall look and feel. And the best part is – now you can compose:</p>
 
-<p><a href="http://firedev.com/posts/2015/immutable-css/"><i class="fa fa-css3 pr1"></i>Immutable CSS</a><br>
+<p><a href="http://firedev.com/posts/immutable-css/"><i class="fa fa-css3 pr1"></i>Immutable CSS</a><br />
 <a href="http://fontawesome.io/"><i class="fa fa-link pr1"></i>Font Awesome</a></p>
 
   </article>
@@ -411,7 +440,7 @@ overall look and feel. And the best part is -- now you can compose:</p>
 
 </div>
 <div class="mt4">
-<div class="clearfix mxn2 mb4">
+<div class="clearfix mxn2 mb2">
   <div class="sm-col sm-col-3 px2 mb2">
     <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
   </div>
