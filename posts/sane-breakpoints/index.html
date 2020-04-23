@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Sane Breakpoints</title>
-  <meta name="description" content="I see different approaches to breakpoints and responsive design.Most of the time they are over-complicated and only making things worse.So here&#39;s mine su...">
+  <meta name="description" content="I see different approaches to breakpoints and responsive design.Most of the time they are over-complicated and only making things worse.So here’s mine sugges...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://firedev.com/sane-breakpoints">
+  <link rel="canonical" href="http://firedev.com/posts/sane-breakpoints/">
   <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
 
   <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -18,11 +18,11 @@
   <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <meta property="og:url" content="http://firedev.com/sane-breakpoints" />
+  <meta property="og:url" content="http://firedev.com/posts/sane-breakpoints/" />
   <meta property="og:title" content="Sane Breakpoints" />
   <meta property="og:description" content="I see different approaches to breakpoints and responsive design.
 Most of the time they are over-complicated and only making things worse.
-So here&#39;s mine suggestion for device breakpoints that are in touch
+So here’s mine suggestion for device breakpoints that are in touch
 with reality.
 " />
   <meta property="og:image" content="http://firedev.com/images/posts/break-point.jpg" />
@@ -166,14 +166,14 @@ table td { vertical-align: middle; }
   <article class="mb3">
     <p>I see different approaches to breakpoints and responsive design.
 Most of the time they are over-complicated and only making things worse.
-So here&#39;s mine suggestion for device breakpoints that are in touch
+So here’s mine suggestion for device breakpoints that are in touch
 with reality.</p>
 
-<p><em>And if my day keeps goin&#39; this way I just might... break somethin&#39; tonight</em></p>
+<p><em>And if my day keeps goin’ this way I just might… break somethin’ tonight</em></p>
 
 <h2 id="responsive-design">Responsive design</h2>
 
-<p>Let&#39;s recap how to we design for different devices. You define some breakpoints -
+<p>Let’s recap how to we design for different devices. You define some breakpoints -
 conditions where your site changes. Then you describe what changes once
 conditions are met. Conditions can be pretty broad, like for example <code>@media print</code>
 that allows you to apply additional styling for printing pages. Or <code>min-width: 1000px</code>
@@ -188,136 +188,140 @@ unmaintainable stylesheets down the line.</p>
 <p>A saner approach is to let some constraints in.</p>
 
 <ol>
-<li>Add <code>&lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot; /&gt;</code> to your HTML</li>
-<li>Define breakpoints for your website and stick to them</li>
-<li>Use only <code>min-width</code> so you are going from smaller to bigger screens</li>
+  <li>Add <code>&lt;meta content="width=device-width, initial-scale=1" name="viewport" /&gt;</code> to your HTML</li>
+  <li>Define breakpoints for your website and stick to them</li>
+  <li>Use only <code>min-width</code> so you are going from smaller to bigger screens</li>
 </ol>
 
 <p>That is pretty much it. There are some tricky parts, though.</p>
 
-<p>Use 1:1 viewport, this is important if you don&#39;t want to pulling your hair out later.
-This way you will always work with something you&#39;re looking at, not a scaled version of
+<p>Use 1:1 viewport, this is important if you don’t want to pulling your hair out later.
+This way you will always work with something you’re looking at, not a scaled version of
 your website.</p>
 
 <p>I guess everybody is using SASS or PostCSS or something that allows you do define
-CSS variables, so I won&#39;t be stopping on defining variables and go straight
-to the next point. Just don&#39;t go overboard, you ain&#39;t going to need it.</p>
+CSS variables, so I won’t be stopping on defining variables and go straight
+to the next point. Just don’t go overboard, you ain’t going to need it.</p>
 
 <p>CSS allows you to use <code>min-width</code>, <code>max-width</code> or both, plus some additional modifiers
 like <code>orientation: portrait</code> and god knows what else. However there are good parts and
-there are bad parts. Some things you don&#39;t have to use if you don&#39;t want to
+there are bad parts. Some things you don’t have to use if you don’t want to
 spend the rest of your live debugging the cascade.</p>
 
 <p>All your styles should look like this:</p>
-<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span></span><span class="c1">// Hides element on screens bigger than $small breakpoint</span>
-<span class="nc">.sm-hide</span> <span class="p">{</span>
-  <span class="k">@media</span> <span class="p">(</span><span class="no">min-width</span><span class="o">:</span> <span class="nv">$small</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nt">display</span><span class="nd">:</span> <span class="nt">none</span><span class="o">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+
+<pre><code class="language-scss">// Hides element on screens bigger than $small breakpoint
+.sm-hide {
+  @media (min-width: $small) {
+    display: none;
+  }
+}
+</code></pre>
 <h2 id="devices">Devices</h2>
 
-<p>But we can&#39;t use only <code>min-width</code>! We want out site to look best on mobile devices
+<p>But we can’t use only <code>min-width</code>! We want out site to look best on mobile devices
 We have to use <code>orientation: portrait</code> and <code>landscape</code>! Maybe not. Think what
 is exactly you are trying to achieve?</p>
 
-<p>Let&#39;s ask our project manager for some specs. Some realistically formulated
+<p>Let’s ask our project manager for some specs. Some realistically formulated
 requirements could be:</p>
 
 <ul>
-<li>Page should take up full width on a smaller screen</li>
-<li>Display sidebar on a larger screen, collapse it on a smaller screen</li>
+  <li>Page should take up full width on a smaller screen</li>
+  <li>Display sidebar on a larger screen, collapse it on a smaller screen</li>
 </ul>
 
-<p>Now we&#39;re talking. Note that it doesn&#39;t mention <strong>landscape</strong> or <strong>portrait</strong>.
+<p>Now we’re talking. Note that it doesn’t mention <strong>landscape</strong> or <strong>portrait</strong>.
 Just introducing a general idea of <strong>smaller</strong> and <strong>larger</strong> screens.</p>
 
-<p>Let&#39;s take a look at some common internet-consuming devices. And see where we can
+<p>Let’s take a look at some common internet-consuming devices. And see where we can
 draw a line between <strong>smaller</strong> and <strong>larger</strong>.
-Don&#39;t worry if looks a bit Apple-biased, the results are universally applicable.</p>
+Don’t worry if looks a bit Apple-biased, the results are universally applicable.</p>
 
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-<th>CSS Width</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td><img src="/images/devices/iphone-vertical.svg" alt=""></td>
-<td><strong>iPhone</strong> Portrait</td>
-<td>320px</td>
-<td>20rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/iphone6-vertical.svg" alt=""></td>
-<td><strong>iPhone 6</strong> Portrait</td>
-<td>375px</td>
-<td>23.4375rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/iphonep-vertical.svg" alt=""></td>
-<td><strong>iPhone 6+</strong> Portrait</td>
-<td>414px</td>
-<td>25.875rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/iphone-horizontal.svg" alt=""></td>
-<td><strong>iPhone</strong> Landscape</td>
-<td>568px</td>
-<td>35.5rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/iphone6-horizontal.svg" alt=""></td>
-<td><strong>iPhone 6</strong> Landscape</td>
-<td>667px</td>
-<td>41.6875rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/iphonep-horizontal.svg" alt=""></td>
-<td><strong>iPhone 6+</strong> Landscape</td>
-<td>736px</td>
-<td>46rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/ipad-vertical.svg" alt=""></td>
-<td><strong>iPad</strong> Portrait</td>
-<td>768px</td>
-<td>48rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/ipad-horizontal.svg" alt=""></td>
-<td><strong>iPad</strong> Landscape</td>
-<td>1024px</td>
-<td>64rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/ipadpro-vertical.svg" alt=""></td>
-<td><strong>iPad Pro</strong> Portrait</td>
-<td>1024px</td>
-<td>64rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/macbookpro.svg" alt=""></td>
-<td><strong>Macbook Pro</strong> 13&quot;</td>
-<td>1280px</td>
-<td>80rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/ipadpro-horizontal.svg" alt=""></td>
-<td><strong>iPad Pro</strong> Landscape</td>
-<td>1366px</td>
-<td>85.375rem</td>
-</tr>
-<tr>
-<td><img src="/images/devices/macbookpro.svg" alt=""></td>
-<td><strong>PC Notebook</strong></td>
-<td>1366px</td>
-<td>85.375rem</td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+      <th>CSS Width</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="/images/devices/iphone-vertical.svg" alt="" /></td>
+      <td><strong>iPhone</strong> Portrait</td>
+      <td>320px</td>
+      <td>20rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/iphone6-vertical.svg" alt="" /></td>
+      <td><strong>iPhone 6</strong> Portrait</td>
+      <td>375px</td>
+      <td>23.4375rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/iphonep-vertical.svg" alt="" /></td>
+      <td><strong>iPhone 6+</strong> Portrait</td>
+      <td>414px</td>
+      <td>25.875rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/iphone-horizontal.svg" alt="" /></td>
+      <td><strong>iPhone</strong> Landscape</td>
+      <td>568px</td>
+      <td>35.5rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/iphone6-horizontal.svg" alt="" /></td>
+      <td><strong>iPhone 6</strong> Landscape</td>
+      <td>667px</td>
+      <td>41.6875rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/iphonep-horizontal.svg" alt="" /></td>
+      <td><strong>iPhone 6+</strong> Landscape</td>
+      <td>736px</td>
+      <td>46rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/ipad-vertical.svg" alt="" /></td>
+      <td><strong>iPad</strong> Portrait</td>
+      <td>768px</td>
+      <td>48rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/ipad-horizontal.svg" alt="" /></td>
+      <td><strong>iPad</strong> Landscape</td>
+      <td>1024px</td>
+      <td>64rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/ipadpro-vertical.svg" alt="" /></td>
+      <td><strong>iPad Pro</strong> Portrait</td>
+      <td>1024px</td>
+      <td>64rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/macbookpro.svg" alt="" /></td>
+      <td><strong>Macbook Pro</strong> 13”</td>
+      <td>1280px</td>
+      <td>80rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/ipadpro-horizontal.svg" alt="" /></td>
+      <td><strong>iPad Pro</strong> Landscape</td>
+      <td>1366px</td>
+      <td>85.375rem</td>
+    </tr>
+    <tr>
+      <td><img src="/images/devices/macbookpro.svg" alt="" /></td>
+      <td><strong>PC Notebook</strong></td>
+      <td>1366px</td>
+      <td>85.375rem</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="middle-ground">Middle ground</h2>
 
@@ -332,18 +336,20 @@ that is smaller than the specified width and everything that is equal or larger
 than the specified width.</p>
 
 <p>In other words you can think of it as a equals or larger than equation:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>.menu { folded }
+
+<pre><code>.menu { folded }
 @media (screen width &gt;= x) {
   .menu { unfolded }
 }
-</code></pre></div>
+</code></pre>
+
 <p>That makes me think that in most cases you could do with a single breakpoint.
-Or at the very least we can start with it.  Let&#39;s call it <code>$medium</code>. Everything
+Or at the very least we can start with it.  Let’s call it <code>$medium</code>. Everything
 on the left will be considered a <strong>smaller</strong> screen and everything on the right
 is a <strong>larger</strong> screen.</p>
 
-<p>Why not name them <code>$desktop</code>/<code>$tablet</code>/<code>$mobile</code>/<code>$whatever</code>? Isn&#39;t this
-<em>semantic</em>? I hear this question a lot. The reasoning usually is that it&#39;s hard
+<p>Why not name them <code>$desktop</code>/<code>$tablet</code>/<code>$mobile</code>/<code>$whatever</code>? Isn’t this
+<em>semantic</em>? I hear this question a lot. The reasoning usually is that it’s hard
 to remember what is <code>$middle</code> or <code>$large</code>. First of all the semantics here is
 meaningless. One can rotate an iPad, they can release a new device tomorrow,
 and you will have to rename all your classes and whatnot. Besides, each
@@ -352,16 +358,16 @@ breakpoint is only a fence.</p>
 <p>So I propose to claim a line between vertical and horizontal iPad orientation
 as a <code>$medium</code> breakpoint. A perfect place to start moving further. By default
 and until we are being viewed from the devices that is larger than <code>$medium</code>,
-and that includes: mobile phones, tablets in portrait, half of the screen -- we
+and that includes: mobile phones, tablets in portrait, half of the screen – we
 display content, say, in a single column.</p>
 
 <p>Once our media query is triggered, for everything that is bigger than
 <code>$medium</code>: that is for example an iPad in horizontal mode, computer screens,
-TV -- we display multiple columns or un-collapse the menu.</p>
+TV – we display multiple columns or un-collapse the menu.</p>
 
 <h2 id="other-breakpoints">Other breakpoints</h2>
 
-<p>Let&#39;s separate the devices on a smaller side of the <code>$medium</code> so we can target
+<p>Let’s separate the devices on a smaller side of the <code>$medium</code> so we can target
 portrait and landscape modes separately. This way when somebody is looking at
 your website on his phone he sees the initial styling.</p>
 
@@ -378,59 +384,64 @@ is the computer screen and the iPad Pro.</p>
 <h2 id="final-results">Final results</h2>
 
 <p>Pixel sizes are provided only for reference. You should stick to rem-based
-sizes. Calculations are based on the default 16px body font size. I don&#39;t
+sizes. Calculations are based on the default 16px body font size. I don’t
 recommend using pixels. Stick to rem as this is not relative and equals body
 font size. With <code>rem</code> you can increase font size when needed and the layout
 will adapt. For example, if you need to show something on an HD TV across the
 room.</p>
 
-<table><thead>
-<tr>
-<th></th>
-<th>$small</th>
-<th></th>
-<th>$medium</th>
-<th></th>
-<th>$large</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Phones Portrait</td>
-<td><strong>35rem</strong></td>
-<td>Phones Landscape</td>
-<td><strong>55rem</strong></td>
-<td>iPad Landscape</td>
-<td><strong>65rem</strong></td>
-<td>iPad Pro Landscape</td>
-</tr>
-<tr>
-<td></td>
-<td><strong>560px</strong></td>
-<td>iPad Portrait</td>
-<td><strong>880px</strong></td>
-<td>iPad Pro Portrait</td>
-<td><strong>1040px</strong></td>
-<td>Notebook / Desktop</td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>$small</th>
+      <th> </th>
+      <th>$medium</th>
+      <th> </th>
+      <th>$large</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Phones Portrait</td>
+      <td><strong>35rem</strong></td>
+      <td>Phones Landscape</td>
+      <td><strong>55rem</strong></td>
+      <td>iPad Landscape</td>
+      <td><strong>65rem</strong></td>
+      <td>iPad Pro Landscape</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><strong>560px</strong></td>
+      <td>iPad Portrait</td>
+      <td><strong>880px</strong></td>
+      <td>iPad Pro Portrait</td>
+      <td><strong>1040px</strong></td>
+      <td>Notebook / Desktop</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>I have chosen these after some consideration, but nothing is written in stone,
 you can change them as you see fit for your project. Them menu might be not
 fitting in only this much or something breaks.</p>
 
 <p>Anyway here are the breakpoints in SCSS format, I tried to round them up a little bit:</p>
-<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span></span><span class="c1">//       $small                  $medium                 $large</span>
-<span class="c1">// Portrait | Landscape   Portrait | Landscape   Portrait | Landscape</span>
-<span class="c1">// Phone    | Phone       iPad     | iPad        iPad Pro | iPad Pro</span>
 
-<span class="nv">$small</span><span class="o">:</span> <span class="mi">35</span><span class="kt">rem</span><span class="p">;</span> <span class="c1">// 560px</span>
-<span class="nv">$medium</span><span class="o">:</span> <span class="mi">55</span><span class="kt">rem</span><span class="p">;</span> <span class="c1">// 880px</span>
-<span class="nv">$large</span><span class="o">:</span> <span class="mi">65</span><span class="kt">rem</span><span class="p">;</span> <span class="c1">// 1040px</span>
-</code></pre></div>
+<pre><code class="language-scss">//       $small                  $medium                 $large
+// Portrait | Landscape   Portrait | Landscape   Portrait | Landscape
+// Phone    | Phone       iPad     | iPad        iPad Pro | iPad Pro
+
+$small: 35rem; // 560px
+$medium: 55rem; // 880px
+$large: 65rem; // 1040px
+</code></pre>
+
 <p>I believe this approach will bring more good than those obscure pixel-based breakpoints
 found in CSS Frameworks everywhere. Start small, use an
-<a href="http://firedev.com/posts/2015/immutable-css/">Immutable CSS</a> library and have fun.</p>
+<a href="http://firedev.com/posts/immutable-css/">Immutable CSS</a> library and have fun.</p>
 
   </article>
 
@@ -450,7 +461,7 @@ found in CSS Frameworks everywhere. Start small, use an
 
 </div>
 <div class="mt4">
-<div class="clearfix mxn2 mb4">
+<div class="clearfix mxn2 mb2">
   <div class="sm-col sm-col-3 px2 mb2">
     <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
   </div>

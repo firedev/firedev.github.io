@@ -1,6 +1,0 @@
-source 'https://rubygems.org'
-gem 'jekyll'
-gem 'kramdown'
-gem 'redcarpet'
-gem 'pygments.rb'
-gem 'rake'
