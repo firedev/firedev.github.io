@@ -4,16 +4,16 @@
     <title>firedev.com</title>
     <description>Building the internet one site at a time
 </description>
-    <link>http://firedev.com/</link>
-    <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 23 Apr 2020 10:01:56 +0300</pubDate>
-    <lastBuildDate>Thu, 23 Apr 2020 10:01:56 +0300</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 23 Apr 2020 10:20:00 +0300</pubDate>
+    <lastBuildDate>Thu, 23 Apr 2020 10:20:00 +0300</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
         <title>Learn SQL</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/"/&gt;&lt;/p&gt;
           &lt;p&gt;This is a compilation of suggestions from HackerNews and Quora on learning SQL.
 I wanted to check some of the links provided in comments but there were too
 many. So here they are to study at your own pace.&lt;/p&gt;
@@ -96,8 +96,8 @@ many. So here they are to study at your own pace.&lt;/p&gt;
 
         </description>
         <pubDate>Wed, 18 Jan 2017 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/learn-sql/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/learn-sql/</guid>
+        <link>http://localhost:4000/posts/learn-sql/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/learn-sql/</guid>
         
         <category>SQL</category>
         
@@ -109,7 +109,7 @@ many. So here they are to study at your own pace.&lt;/p&gt;
       <item>
         <title>Sane Breakpoints</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/break-point.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/break-point.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;I see different approaches to breakpoints and responsive design.
 Most of the time they are over-complicated and only making things worse.
 So here’s mine suggestion for device breakpoints that are in touch
@@ -391,8 +391,8 @@ found in CSS Frameworks everywhere. Start small, use an
 
         </description>
         <pubDate>Tue, 16 Feb 2016 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/sane-breakpoints/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/sane-breakpoints/</guid>
+        <link>http://localhost:4000/posts/sane-breakpoints/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/sane-breakpoints/</guid>
         
         <category>CSS</category>
         
@@ -408,7 +408,7 @@ found in CSS Frameworks everywhere. Start small, use an
       <item>
         <title>Atomic Icons</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/atomic-icons.png"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/atomic-icons.png"/&gt;&lt;/p&gt;
           &lt;p&gt;Once in a while comes a moment when you decide to change an icon set you have
 been using. Just a bit of upfront planning goes a long way. Consider a system
 that turns icons into independent components.&lt;/p&gt;
@@ -674,8 +674,8 @@ overall look and feel. And the best part is – now you can compose:&lt;/p&gt;
 
         </description>
         <pubDate>Sun, 24 Jan 2016 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/atomic-icons/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/atomic-icons/</guid>
+        <link>http://localhost:4000/posts/atomic-icons/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/atomic-icons/</guid>
         
         <category>CSS</category>
         
@@ -693,7 +693,7 @@ overall look and feel. And the best part is – now you can compose:&lt;/p&gt;
       <item>
         <title>Immutable CSS</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/monolith.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/monolith.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;This is extracted from the Github issue created to discuss the approach with my
 team. Please bear with me if I refer to something that wasn’t mentioned in the text.&lt;/p&gt;
 
@@ -907,8 +907,8 @@ grunt
 
         </description>
         <pubDate>Tue, 22 Dec 2015 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/immutable-css/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/immutable-css/</guid>
+        <link>http://localhost:4000/posts/immutable-css/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/immutable-css/</guid>
         
         <category>CSS</category>
         
@@ -928,7 +928,7 @@ grunt
       <item>
         <title>Apple Magic Keyboard, Magic Mouse 2 and Magic Trackpad 2</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/magic-keyboard-mouse-trackpad.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/magic-keyboard-mouse-trackpad.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;Keyboard is great. Mouse is good. Trackpad is okay.&lt;/p&gt;
 
 &lt;p&gt;Now for the longer version. I am living in Thailand and it was really easy to
@@ -1073,8 +1073,8 @@ The other accessories is something for you to decide if you need them or not.&lt
 
         </description>
         <pubDate>Wed, 04 Nov 2015 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</guid>
+        <link>http://localhost:4000/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</guid>
         
         <category>apple</category>
         
@@ -1090,7 +1090,7 @@ The other accessories is something for you to decide if you need them or not.&lt
       <item>
         <title>Mac as IDE: You're using it wrong</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/ascii-keyboard-controller.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/ascii-keyboard-controller.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;Are you using this editor and that version control app? Think bigger. Instead
 of jumping between applications or forcing yourself to an IDE use your Mac as a
 system where apps work together for the greater good.&lt;/p&gt;
@@ -1359,8 +1359,8 @@ found anything useful and share some of your tricks.&lt;/p&gt;
 
         </description>
         <pubDate>Sun, 01 Nov 2015 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/mac-as-ide/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/mac-as-ide/</guid>
+        <link>http://localhost:4000/posts/mac-as-ide/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/mac-as-ide/</guid>
         
         <category>development</category>
         
@@ -1376,7 +1376,7 @@ found anything useful and share some of your tricks.&lt;/p&gt;
       <item>
         <title>Functional Service Objects on Rails</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/electrical_plumbing_service.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/electrical_plumbing_service.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;An excellent talk “Blending Functional and OO Programming in Ruby” given by
 Piotr Solnica on Full Stack Fest 2015 made me think about improving current
 practices. I have tried different ways of organizing my service objects and
@@ -1714,8 +1714,8 @@ controllers. Please let me know if you think something could be improved.&lt;/p&
 
         </description>
         <pubDate>Sat, 17 Oct 2015 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/functional-service-objects-on-rails/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/functional-service-objects-on-rails/</guid>
+        <link>http://localhost:4000/posts/functional-service-objects-on-rails/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/functional-service-objects-on-rails/</guid>
         
         <category>ruby</category>
         
@@ -1733,7 +1733,7 @@ controllers. Please let me know if you think something could be improved.&lt;/p&
       <item>
         <title>Making Bottomless Hash Ruby Gem</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/bottomless_pit_gravity_falls.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/bottomless_pit_gravity_falls.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;After creating &lt;a href=&quot;http://firedev.com/2015/bottomless-ruby-hash&quot;&gt;Bottomless Hash&lt;/a&gt;
 last time and writing tests the next logical step is to make a Gem out of it.&lt;/p&gt;
 
@@ -2117,8 +2117,8 @@ bottomless_hash (0.1.0)
 
         </description>
         <pubDate>Sat, 10 Oct 2015 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/making-bottomless-hash-ruby-gem/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/making-bottomless-hash-ruby-gem/</guid>
+        <link>http://localhost:4000/posts/making-bottomless-hash-ruby-gem/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/making-bottomless-hash-ruby-gem/</guid>
         
         <category>ruby</category>
         
@@ -2132,7 +2132,7 @@ bottomless_hash (0.1.0)
       <item>
         <title>Bottomless Ruby Hash</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/bottomless_pit.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/bottomless_pit.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;The other day somebody asked if there is a way to blindly assign nested values
 to Ruby Hash without creating each key. Turns out there is, and it has an
 interesting side-effect. Welcome Bottomless Hash.&lt;/p&gt;
@@ -2374,8 +2374,8 @@ nested structures from the outside world.&lt;/p&gt;
 
         </description>
         <pubDate>Wed, 07 Oct 2015 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/bottomless-ruby-hash/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/bottomless-ruby-hash/</guid>
+        <link>http://localhost:4000/posts/bottomless-ruby-hash/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/bottomless-ruby-hash/</guid>
         
         <category>ruby</category>
         
@@ -2387,7 +2387,7 @@ nested structures from the outside world.&lt;/p&gt;
       <item>
         <title>Lazy image creation with Carrierwave</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/lazy-image-creation-with-carrierwave.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/lazy-image-creation-with-carrierwave.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;I don’t know about you but I kind of grown to like Carrierwave. Yes, there are
 other uploaders on the block but that’s not the point. Everybody I know are using
 it wrong.&lt;/p&gt;
@@ -2671,8 +2671,8 @@ am working on. Please let me know if that helped you. Thanks.&lt;/p&gt;
 
         </description>
         <pubDate>Tue, 30 Jun 2015 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/lazy-image-creation-with-carrierwave/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/lazy-image-creation-with-carrierwave/</guid>
+        <link>http://localhost:4000/posts/lazy-image-creation-with-carrierwave/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/lazy-image-creation-with-carrierwave/</guid>
         
         <category>rails</category>
         
