@@ -190,7 +190,7 @@ easy to work with the projects now when I don't have to edit multiple files.
 Another side effect is when you open the view you can *read* what it is going
 to *look* like. Kind of like in the Matrix movie.
 
-For example the whole CSS for my [wife's website](http://molokophuket.com) is
+For example the whole CSS for this [agency website](http://molokophuket.com) is
 less then **10Kb** in size. And people think this is Bootstrap.
 
 I'd love to show more examples, production code or answer questions. Here are
