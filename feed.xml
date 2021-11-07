@@ -6,101 +6,541 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 09 May 2020 13:06:12 +0300</pubDate>
-    <lastBuildDate>Sat, 09 May 2020 13:06:12 +0300</lastBuildDate>
+    <pubDate>Sun, 07 Nov 2021 21:33:19 +0300</pubDate>
+    <lastBuildDate>Sun, 07 Nov 2021 21:33:19 +0300</lastBuildDate>
     <generator>Jekyll v4.0.1</generator>
     
       <item>
-        <title>Learn SQL</title>
+        <title>Boring Rails</title>
         <description>
-          &lt;p&gt;&lt;img src="http://firedev.com/images/"/&gt;&lt;/p&gt;
-          &lt;p&gt;This is a compilation of suggestions from HackerNews and Quora on learning SQL.
-I wanted to check some of the links provided in comments but there were too
-many. So here they are to study at your own pace.&lt;/p&gt;
-
-&lt;h2 id=&quot;reading&quot;&gt;Reading&lt;/h2&gt;
+          &lt;p&gt;&lt;img src="http://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://quip.com/2gwZArKuWk7W&quot;&gt;The Best Medium-Hard Data Analyst SQL Interview Questions&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://use-the-index-luke.com&quot;&gt;Use the Index, Luke&lt;/a&gt; - Markus Winand. Online SQL Indeing and Tuning eBook covering different SQL flavors. I believe it’s his book SQL Performance Explained (see &lt;a href=&quot;#Books&quot;&gt;Books&lt;/a&gt;) in the Online form.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://modern-sql.com&quot;&gt;Modern SQL&lt;/a&gt; - Markus Winand. Modern SQL features are explained in simple terms. By Markus Winand, see below.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.postgresql.org/docs/manuals/&quot;&gt;PostreSQL Manual&lt;/a&gt; - The first 100 or so pages (at least up to chapter 7) will give you a good overview.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.postgresguide.com/&quot;&gt;Postres Guide&lt;/a&gt; - Craig Kerstien. Designed as an aid for beginners and experienced users to find specific tips and explore tools available within Postgres.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Relational_algebra&quot;&gt;Wikipedia: Relational algebra&lt;/a&gt; - A family of algebras with a well-founded semantics used for modelling the data stored in relational databases, and defining queries on it.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.joinfu.com/2008/09/slides-from-drunken-query-master-and-joinfu-talks-at-zendcon/&quot;&gt;Slides from Drunken Query Master and Join-fu Talks at ZendCon&lt;/a&gt; - Jay Pipes. Slides from a couple of SQL-related talks.&lt;/li&gt;
+  &lt;li&gt;https://www.youtube.com/watch?v=NbMt4uFIL8c&lt;/li&gt;
+  &lt;li&gt;https://www.youtube.com/watch?v=Mq6MuwLMEUU&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;interactive&quot;&gt;Interactive&lt;/h2&gt;
+&lt;hr /&gt;
+
+&lt;!-- TOC --&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://pgexercises.com&quot;&gt;PGExcercises.com&lt;/a&gt; - PostreSQL questions and answers. You can use your own installation and provided datasets.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.hackerrank.com/domains/sql/select&quot;&gt;HackerRank SQL Challenges&lt;/a&gt; - If you want to brush up your skills&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://community.modeanalytics.com/sql/tutorial/introduction-to-sql/&quot;&gt;The SQL Tutorial for Data Analysis&lt;/a&gt; - Tutorial is meant for aspiring analysts who have used Excel a little bit but have no coding experience.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://sqlbolt.com/&quot;&gt;SQLBolt&lt;/a&gt; - A series of interactive lessons and exercises designed to help you quickly learn SQL right in your browser.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://lagunita.stanford.edu/courses/DB/SQL/SelfPaced/info&quot;&gt;DB’s SQL&lt;/a&gt; - Stanford’s self-paced course.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://lagunita.stanford.edu/courses/Engineering/db/2014_1/about&quot;&gt;Introduction to Databases&lt;/a&gt; - Stanford again. This course covers database design and the use of database management systems for applications. &lt;a href=&quot;https://henrikwarne.com/2011/12/18/introduction-to-databases-on-line-learning-done-well/&quot;&gt;Review&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.codeschool.com/courses/try-sql&quot;&gt;Try SQL&lt;/a&gt; - A free course from CodeSchool.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://schemaverse.com&quot;&gt;Schemaverse&lt;/a&gt; - A space-based strategy game implemented entirely within a PostgreSQL database. Compete against other players using raw SQL commands to command your fleet.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://community.modeanalytics.com/sql/tutorial/introduction-to-sql/&quot;&gt;The SQL Tutorial for Data Analysis&lt;/a&gt; - This tutorial is designed for people who want to answer questions with data.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://sql-ex.com&quot;&gt;SQL EX&lt;/a&gt; - Practical skills of SQL language. Recommended to anyone interested in seeing how certain datasets can require quite a bit of creativity to extract using SQL.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://redtiger.labs.overthewire.org/&quot;&gt;RedTiger’s Hackit&lt;/a&gt; - This hackit is for people who want to test their knowledge in PHP / SQL security. Learn through SQL injections.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.sqlteaching.com&quot;&gt;SQL Teaching&lt;/a&gt; - Teaches you basic SQL in an interactive manner.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#models-hierarchy&quot;&gt;Models Hierarchy&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#state-machines&quot;&gt;State machines&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#repositories&quot;&gt;Repositories&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#presenters&quot;&gt;Presenters&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#forms-validation-and-data-normalization&quot;&gt;Forms Validation and Data Normalization&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#controllers-hierarchy&quot;&gt;Controllers Hierarchy&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#authorization&quot;&gt;Authorization&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#mutators&quot;&gt;Mutators&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#service-layer&quot;&gt;Service Layer&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#dependency-inversion&quot;&gt;Dependency Inversion&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#null-object&quot;&gt;Null Object&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#business-logic&quot;&gt;Business Logic&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#controller-%E2%86%92-business&quot;&gt;Controller → Business&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#return-result&quot;&gt;Return result&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#data-validation&quot;&gt;Data Validation&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#business-%E2%86%92-controller&quot;&gt;Business → Controller&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#business-%E2%86%92-business&quot;&gt;Business → Business&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#testing&quot;&gt;Testing&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#chaining&quot;&gt;Chaining&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#db-%E2%86%92-business&quot;&gt;DB → Business&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#transactions&quot;&gt;Transactions&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;video&quot;&gt;Video&lt;/h2&gt;
+&lt;!-- /TOC --&gt;
+
+&lt;h2 id=&quot;models-hierarchy&quot;&gt;Models Hierarchy&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;models/
+  blog_post/
+    category.rb
+    vote.rb
+  code_review/
+    submission/
+      comment.rb
+    submission.rb
+  company/
+    group/
+      member.rb
+  course/
+    build.rb
+    challenge.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;# app/models/course/challenge.rb
+
+class Course::Challenge &amp;lt; ApplicationRecord
+  validates :exercise
+  belongs_to :exercise, inverse_of: :course_challenge
+  belongs_to :course
+  ...
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;state-machines&quot;&gt;State machines&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/playlist?list=PLImyDqSBQbdm09n4BhGwKhnPrdHgN1-da&quot;&gt;SQL (Intermedia to Advanced)&lt;/a&gt; - Jeffrey James. Online course made for Udemy that got declined by them due to audio quality.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/aasm/aasm&quot;&gt;&lt;code&gt;aasm&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;blogs&quot;&gt;Blogs&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;state_machine :stripe_state, initial: synchronized, namespace: stripe do
+  state :synchronized
+  state :synchronizing
+  state :invalidated
+
+  event :invalidate do
+    transition all: :invalidated
+  end
+
+  event :synchronize do
+    transition invalidated: :synchronized
+  end
+
+  event :mark_as_synchronized do
+    transition synchonizing: :synchronized
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;repositories&quot;&gt;Repositories&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;# app/repositories/lesson_repository.rb
+
+module LessonRepository
+  extend ActiveSupport::Concern
+  include StateMachine
+
+  included do
+    scope :web, -&amp;gt; { approved.joins(:course).merge(Course.web) }
+    scope :with_locale, -&amp;gt;(locale) { joins(:course).where(courses: { locale: locale }) }
+    scope :with_members, -&amp;gt; { joins(&quot;...&quot;) }
+    ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;presenters&quot;&gt;Presenters&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;# app/presenters/user_presenter.rb
+
+module UserPresenter
+  def public_name
+    return full_name if full_name.present?
+    return username if username?
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;forms-validation-and-data-normalization&quot;&gt;Forms Validation and Data Normalization&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.jooq.org&quot;&gt;Java, SQL and JOOQ&lt;/a&gt; - A blog by Lukas Eder, JOOQ author.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://use-the-index-luke.com/blog&quot;&gt;Use the Index, Luke&lt;/a&gt; - Marus Winand. Latest News About SQL Perfomance. &lt;a href=&quot;http://use-the-index-luke.com/blog/2015-02/modern-sql&quot;&gt;Modern SQL in PostreSQL&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.periscopedata.com/blog/&quot;&gt;The High-Performance SQL Blog&lt;/a&gt; - Periscope Data blog. They make nice dashboards out of your data.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.craigkerstiens.com/&quot;&gt;Craig Kerstiens&lt;/a&gt; - Head of the Cloud team in Citus Data. Citus extends Postgres to be a horizontally scalable distributed database. &lt;a href=&quot;https://www.citusdata.com/blog/2016/09/12/fun-with-sql-computing-run-rate-and-growth-with-ctes-and-window-functions/&quot;&gt;Fun with SQL: Computing run rate and month over month growth in Postgres&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://postgresweekly.com/&quot;&gt;Postgres Weekly&lt;/a&gt; - Craig Kerstiens. A free, once–weekly e-mail round-up of PostgreSQL news and articles.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://blog.heapanalytics.com/postgresqls-powerful-new-join-type-lateral/&quot;&gt;PostgreSQL’s Powerful New Join Type: LATERAL&lt;/a&gt; - PostgreSQL 9.3 has a new join type!&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Hexlet/active_form_model&quot;&gt;&lt;code&gt;active_form_model&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;books&quot;&gt;Books&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;# app/forms/user/sign_up_form.rb
+
+class User::SignUpForm &amp;lt; User
+  include ActiveFormModel
+
+  permit :email, :password, :first_name
+
+  validates :password, presence: true, length: { minimum: 8 }
+
+  def email=(email)
+    if email.present?
+      write_attribute(:email, email.downcase)
+    else
+      super
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;controllers-hierarchy&quot;&gt;Controllers Hierarchy&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;controllers/
+  web/
+    projects/
+      members/
+        comments_controller.rb
+    application_controller.rb
+  application_controller.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;# app/controllers/web/projects/members/comments_controller.rb
+
+class Web::Projects::Members::CommentsController &amp;lt; Web::ApplicationController
+  ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;authorization&quot;&gt;Authorization&lt;/h2&gt;
+
+&lt;p&gt;Layer above models&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://sql-performance-explained.com&quot;&gt;SQL Performance Explained&lt;/a&gt; - Markus Winand. SQL Performance Explained: Everything Developers Need to Know about SQL Performance. How to effectively use and leverage the SQL indices. No eBook it seems, paperback / PDF only.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://dataintensive.net&quot;&gt;Data Intensive&lt;/a&gt; - Marin Kleppman. Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems. &lt;a href=&quot;http://shop.oreilly.com/product/0636920032175.do&quot;&gt;O’Reilly&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/9780596008949.do&quot;&gt;The Art of SQL&lt;/a&gt; - Stephane Faroult, Peter Robson. The Art of SQL offers best practices that teach experienced SQL users to focus on strategy rather than specifics.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Joe-Celkos-SQL-Smarties-Fifth/dp/0128007613&quot;&gt;SQL for Smarties&lt;/a&gt; - Joe Celko’s SQL for Smarties: Advanced SQL Programming.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://pragprog.com/book/bksqla/sql-antipatterns&quot;&gt;SQL Antipatterns&lt;/a&gt; - Bill Karwin. SQL Antipatterns: Avoiding the Pitfalls of Database Programming (Pragmatic Programmers)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/PostgreSQL-High-Performance-Gregory-Smith/dp/184951030X&quot;&gt;PostgreSQL 9.0 High Performance&lt;/a&gt; - Gregory Smith. Discusses all the different settings and tweaks you can do in Postgres.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/0636920022343.do&quot;&gt;High Performance MySQL&lt;/a&gt; - Baron Schwartz, Peter Zaitsev, Vadim Tkachenko. High Performance MySQL, 3rd Edition: Optimization, Backups, and Replication. Revised edition of &lt;a href=&quot;http://shop.oreilly.com/product/9780596003067.do&quot;&gt;High Perrfomance MySQL&lt;/a&gt; by Jeremy D. Zawodny, Derek J. Balling.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/PostgreSQL-9-High-Availability-Cookbook/dp/1849516960&quot;&gt;PostgreSQL 9 High Availability Cookbook&lt;/a&gt; - Shaun Thomas. Discusses how do you go from 1 Postgres instance to 1+ instance. Talks about replication, monitoring, cluster management, avoiding downtime etc.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/0636920026907.do&quot;&gt;MySQL High Availability&lt;/a&gt; - Charles Bell, Mats Kindahl, Lars Thalmann. MySQL High Availability: Tools for Building Robust Data Centers. Similar book for MySQL.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://db.cs.berkeley.edu/papers/fntdb07-architecture.pdf&quot;&gt;Architecture of a Database System&lt;/a&gt; - Joseph M. Hellerstein, Michael Stonebraker and James Hamilton. Pretty technical but great write up from researchers from Berkeley, MIT, and Microsoft that could help to get a good mental model of a SQL database. PDF&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Database-Design-Mere-Mortals-Hands-ebook/dp/B00BHEY5C2&quot;&gt;Database Design for Mere Mortals&lt;/a&gt; - Michael Hernandez. Database Design for Mere Mortals: A Hands-On Guide to Relational Database Design. Easy, Commonsense Guide to Database Design.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/varvet/pundit&quot;&gt;&lt;code&gt;pundit&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;datasets&quot;&gt;Datasets&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;# app/policies/resume/answer/comment_policy.rb
+
+class Resume::Answer::CommentPolicy &amp;lt; ApplicationPolicy
+  def edit?
+    author?
+  end
+
+  def destroy?
+    author?
+  end
+
+  def update?
+    author?
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;mutators&quot;&gt;Mutators&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://data.stackexchange.com/stackoverflow/queries&quot;&gt;Stack Exchange Data Explorer&lt;/a&gt; - A fairly good resource for practising queries and for looking at others queries against a relatable dataset.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/public-datasets/&quot;&gt;AWS Public Datasets&lt;/a&gt; - AWS hosts a variety of public datasets that anyone can access for free. There should be more then enough there for you to start playing with “big data” tools and getting familiar with how to store, ETL, and query large datasets.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://pragprog.com/book/bksqla/sql-antipatterns&quot;&gt;Data Is Plural&lt;/a&gt; - Jeremy Singer-Vine. A weekly newsletter of useful/curious datasets.&lt;/li&gt;
+  &lt;li&gt;Callbacks replacement.&lt;/li&gt;
+  &lt;li&gt;Anything more complex than &lt;code&gt;create(params)&lt;/code&gt; goes to mutators.&lt;/li&gt;
+  &lt;li&gt;Nothing except working with entity&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;links&quot;&gt;Links&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;# app/mutators/resume/answer_mutator.rb
+
+module Resume::AnswerMutator
+  def self.create(resume, params, current_user)
+    answer = resume.answers.build params
+    answer.user = current_user
+    resume.user.notifications.create!(kind: :new_answer, resource: answer) if answer.save
+    answer
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;service-layer&quot;&gt;Service Layer&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Window Functions: &lt;a href=&quot;https://www.youtube.com/watch?v=-X3eIyZV728&quot;&gt;row_number over() and partition&lt;/a&gt;, &lt;a href=&quot;https://www.youtube.com/watch?v=iHxJvF0tZOA&quot;&gt;applied to customer value analysis&lt;/a&gt;, &lt;a href=&quot;https://www.youtube.com/watch?v=5f8tF4U70Ic&quot;&gt;applied to time differences&lt;/a&gt;, &lt;a href=&quot;https://blog.jooq.org/2014/08/12/the-difference-between-row_number-rank-and-dense_rank/&quot;&gt;The Difference Between ROW_NUMBER(), RANK(), and DENSE_RANK()&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Hacker News: &lt;a href=&quot;https://news.ycombinator.com/item?id=13417326&quot;&gt;1&lt;/a&gt;, &lt;a href=&quot;https://news.ycombinator.com/item?id=12022953&quot;&gt;2&lt;/a&gt;, &lt;a href=&quot;https://news.ycombinator.com/item?id=6893333&quot;&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Synchronous. Stateless.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/functional-service-objects-on-rails/&quot;&gt;Functional service objects on rails&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;# app/services/user_service.rb
+
+class UserService
+  def self.update_current_tutor(user)
+    UserMutator.assign_tutor!(user)
+    AnalyticsSender.track(:tutor_assigned, user)
+    true
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;class Web::Projects::Members::CommentsController &amp;lt; Web::Projects::Members::ApplicationController
+  before_action :require_email_confirmation!
+
+  def create
+    member = Project::Mmember.find(params[:member_id])
+    authorize member, :create_comment?
+
+    comment = ProjectService.create_comment(member, current_user, permitted_params)
+    if comment.persisted?
+      f(:success)
+    else
+      f(:error)
+    end
+    redirect_to project_member_path(member.project, member)
+  end
+
+  private
+
+  def permitted_params
+    params.require(:project_member_comment).permit(:body)
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;dependency-inversion&quot;&gt;Dependency Inversion&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;No monkey-patching&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dry-rb.org/gems/dry-container/&quot;&gt;dry-rb/dry-container&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;if Rails.env.production?
+  register :active_campaign, -&amp;gt; { ActivecampaignManager.new configus.ac.api.token }
+else
+  register :active_compaign, -&amp;gt; { ActivecampaignManagerStub.new }
+end
+
+if Rails.env.test?
+  register :gitlab_klass, -&amp;gt; { GitlabStub }
+else
+  register :gitlab_klass, -&amp;gt; { Gitlab }
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;class AmplitudeJob &amp;lt; ApplicationJob
+  include Import['amplitude_klass']
+
+  def perform(event_name, event_data, user_data, options)
+    name = EventsMapping.amplitude_names(event_name)
+    data = { }
+    event = AmplitudeAPI::Event.new(data)
+    amplitude_klass.track(event)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;null-object&quot;&gt;Null Object&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;- if signed_in? &amp;amp;&amp;amp; current_user.friends.any?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;class Guest
+  def id; end
+
+  def created_at
+    Time.current
+  end
+
+  def employee
+    nil
+  end
+
+  def authenticate(_password)
+    false
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;def current_user
+  @current_user ||= User.find_by(id: session[:user_id]) || Guest.new
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;business-logic&quot;&gt;Business Logic&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Business-logic kept isolated from implementation details - Services, Interfaces, DB&lt;/li&gt;
+  &lt;li&gt;Inject everything&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Controller → Business&lt;/li&gt;
+  &lt;li&gt;Business → Controller&lt;/li&gt;
+  &lt;li&gt;Business ←→ Business&lt;/li&gt;
+  &lt;li&gt;DB ←→ Business&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;1-controller--business&quot;&gt;1. Controller → Business&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;Operation&lt;/code&gt; is a good pattern-free word&lt;/li&gt;
+  &lt;li&gt;Unified Interface&lt;/li&gt;
+  &lt;li&gt;Railway oriented programming&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;app/
+  controllers/
+    clients_controller.rb
+  operations/
+    clients/
+      confirmations/
+        start.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;def create
+  operation = Clients::Confirmations::Start.new
+  handle_result operation.call(transaction: transaction)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;return-result&quot;&gt;Return result&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Result object&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dry-rb.org/gems/dry-monads/&quot;&gt;&lt;code&gt;dry-rb/dry-monads&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dry-rb.org/gems/dry-monads/1.3/do-notation/&quot;&gt;Do Notation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;class Clients::Confirmations::Start &amp;lt; Operation
+  def call(transaction:)
+    valid = transaction_eligible? transaction
+    return ??? unless valid
+
+    code = generate_code transaction
+    return ??? unless code
+
+    result = send_code code
+    return ??? unless code
+
+    transaction ???
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;class Clients::Confirmations::Start &amp;lt; Operation
+  def call(transaction:)
+    # Success() or Failure(...)
+    yield transaction_eligible? transaction
+    # Success(code) or Failure(...)
+    code = yield generate_code transaction
+    # Success() or Failure(...)
+    yield send_code code
+
+    Success(transaction)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;data-validation&quot;&gt;Data Validation&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Validate user data not domain objects&lt;/li&gt;
+  &lt;li&gt;Always valid objects&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;dry-rb/dry-validation&lt;/code&gt;[https://dry-rb.org/gems/dry-validation/]&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;class Profile &amp;lt; ApplicationRecord
+  validates :name, :birthdate, presence: true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;class ProfileContract &amp;lt; Contract
+  params do
+    required(:name).filled(:string)
+    required(:birthdate).value(:date)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;2-business--controller&quot;&gt;2. Business → Controller&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;def create
+  operation = Clients::Confirmations::Start.new
+  handle_result operation.call(transaction: transaction)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;def handle_result(result)
+  case result
+  when Success() then head(:ok)
+  when Success then respond_with_data(result.value!)
+  when Failure then respond_with_error(result.failure)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;3-business--business&quot;&gt;3. Business → Business&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Dependency injection&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dry-rb.org/gems/dry-initializer&quot;&gt;https://dry-rb/dry-initializer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;module Confirmations
+  class Start &amp;lt; Operation
+    option :generate_code_command,
+      reader: :private,
+      default: -&amp;gt; { ConfirmationCodes::Generate.new }
+
+    def call(transaction:)
+      code = yield generate_code_command.call(source: transaction)
+      ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;testing&quot;&gt;Testing&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;describe Clients::Confirmations::Start do
+  describe &quot;#call&quot; do
+    described_class.new(generate_code_command: generate_code_command).call
+  end
+
+  let(:generate_code_command) { instance_double(ConfirmationCodes::Generate) }
+
+  before do
+    allow(generate_code_command).to receive(:call).with(...).and_return(...)
+  end
+
+  ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;chaining&quot;&gt;Chaining&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Railway oriented programming https://vimeo.com/113707214&lt;/li&gt;
+  &lt;li&gt;Command-Query Segregation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;   steps
+   1   2   3
+---*---*---*------ happy path
+    \   \   \
+------------------ error
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;class Clients::Confirmations::Start &amp;lt; Operation
+  def call(transaction:)
+    # Success() or Failure(...)
+    yield transaction_eligible? transaction
+    code = yield generate_code transaction
+    yield send_code code
+     Success(transaction)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;4-db--business&quot;&gt;4. DB → Business&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Inject repository&lt;/li&gt;
+  &lt;li&gt;Single Responsibility Principles&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;module Confirmations
+  class Generate &amp;lt; Operation
+    option :codes_repo,
+      reader: :private,
+      default: -&amp;gt; { ConfirmationCode }
+
+  private
+
+  def persist_code(code_attributes)
+    codes_repo.create!(code_attributes)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;transactions&quot;&gt;Transactions&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;module Confirmation
+  class Verify &amp;lt; Operation
+    option :repo,
+      reader: :private,
+      default: -&amp;gt; { ApplicationRecord }
+
+    def call(transaction:, confirmation_code:)
+      repo.transaction do
+        yield confirm_code(code)
+        yield confirm_transaction(transaction)
+      end
+    end
+&lt;/code&gt;&lt;/pre&gt;
 
         </description>
-        <pubDate>Wed, 18 Jan 2017 00:00:00 +0300</pubDate>
-        <link>http://firedev.com/posts/learn-sql/</link>
-        <guid isPermaLink="true">http://firedev.com/posts/learn-sql/</guid>
+        <pubDate>Sun, 07 Nov 2021 00:00:00 +0300</pubDate>
+        <link>http://firedev.com/posts/boring-rails/</link>
+        <guid isPermaLink="true">http://firedev.com/posts/boring-rails/</guid>
         
-        <category>SQL</category>
+        <category>ruby</category>
+        
+        <category>rails</category>
+        
+        <category>refactoring</category>
         
         
         <category>posts</category>

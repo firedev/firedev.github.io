@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Boring Rails</title>
+  <meta name="description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://firedev.com/posts/boring-rails/">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta property="og:url" content="http://firedev.com/posts/boring-rails/" />
+  <meta property="og:title" content="Boring Rails" />
+  <meta property="og:description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.
+" />
+  <meta property="og:image" content="http://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+  <div class="container px2 mt2 mb2">
+    <div class="clearfix mxn2">
+      <div class="sm-col sm-col-3 px2">
+        <h1 class="logo m0 relative">
+          <a href="/" id="logo">
+            <span class="hide">
+              <span class="fire">
+                fire
+              </span>
+              <span class="dev">
+                dev
+              </span>
+              <span class="com">
+                .com
+              </span>
+            </span>
+            <img src="/images/logos/firedev.svg" alt="firedev.com" class="absolute bottom-0" />
+            &nbsp;
+          </a>
+        </h1>
+      </div>
+      <nav class="sm-col sm-col-9 px2 mt2 py1">
+        <div class="right mt2 p1 md-show">
+          <a class="btn silver regular" href="/feed.xml">
+            <i class="fa fa-rss"></i>
+            RSS
+          </a>
+        </div>
+        <h3>
+          
+            
+          
+            
+              
+                <a class="btn" href="/posts/">
+                  Posts
+                </a>
+              
+            
+          
+            
+              
+                <a class="btn" href="/projects/">
+                  Projects
+                </a>
+              
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+        </h3>
+      </nav>
+    </div>
+  </div>
+</header>
+
+    
+<div class="main-image mb3" style="
+background-image: url(/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg);
+background-size: cover;
+background-color: ;
+background-position: ;
+">
+</div>
+
+
+    <div class="container px2 mb4">
+        
+
+<header>
+  
+  <h1 class="m0 mb2">Boring Rails</h1>
+</header>
+
+
+<div class="mb3">
+  <article class="mb3">
+    <p>Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.</p>
+
+<ul>
+  <li>https://www.youtube.com/watch?v=NbMt4uFIL8c</li>
+  <li>https://www.youtube.com/watch?v=Mq6MuwLMEUU</li>
+</ul>
+
+<hr />
+
+<!-- TOC -->
+
+<ul>
+  <li><a href="#models-hierarchy">Models Hierarchy</a></li>
+  <li><a href="#state-machines">State machines</a></li>
+  <li><a href="#repositories">Repositories</a></li>
+  <li><a href="#presenters">Presenters</a></li>
+  <li><a href="#forms-validation-and-data-normalization">Forms Validation and Data Normalization</a></li>
+  <li><a href="#controllers-hierarchy">Controllers Hierarchy</a></li>
+  <li><a href="#authorization">Authorization</a></li>
+  <li><a href="#mutators">Mutators</a></li>
+  <li><a href="#service-layer">Service Layer</a></li>
+  <li><a href="#dependency-inversion">Dependency Inversion</a></li>
+  <li><a href="#null-object">Null Object</a></li>
+  <li><a href="#business-logic">Business Logic</a>
+    <ul>
+      <li><a href="#controller-%E2%86%92-business">Controller → Business</a>
+        <ul>
+          <li><a href="#return-result">Return result</a></li>
+          <li><a href="#data-validation">Data Validation</a></li>
+        </ul>
+      </li>
+      <li><a href="#business-%E2%86%92-controller">Business → Controller</a></li>
+      <li><a href="#business-%E2%86%92-business">Business → Business</a>
+        <ul>
+          <li><a href="#testing">Testing</a></li>
+          <li><a href="#chaining">Chaining</a></li>
+        </ul>
+      </li>
+      <li><a href="#db-%E2%86%92-business">DB → Business</a>
+        <ul>
+          <li><a href="#transactions">Transactions</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!-- /TOC -->
+
+<h2 id="models-hierarchy">Models Hierarchy</h2>
+
+<pre><code>models/
+  blog_post/
+    category.rb
+    vote.rb
+  code_review/
+    submission/
+      comment.rb
+    submission.rb
+  company/
+    group/
+      member.rb
+  course/
+    build.rb
+    challenge.rb
+</code></pre>
+
+<pre><code class="language-ruby"># app/models/course/challenge.rb
+
+class Course::Challenge &lt; ApplicationRecord
+  validates :exercise
+  belongs_to :exercise, inverse_of: :course_challenge
+  belongs_to :course
+  ...
+end
+</code></pre>
+
+<h2 id="state-machines">State machines</h2>
+
+<ul>
+  <li><a href="https://github.com/aasm/aasm"><code>aasm</code></a></li>
+</ul>
+
+<pre><code class="language-ruby">state_machine :stripe_state, initial: synchronized, namespace: stripe do
+  state :synchronized
+  state :synchronizing
+  state :invalidated
+
+  event :invalidate do
+    transition all: :invalidated
+  end
+
+  event :synchronize do
+    transition invalidated: :synchronized
+  end
+
+  event :mark_as_synchronized do
+    transition synchonizing: :synchronized
+  end
+end
+</code></pre>
+
+<h2 id="repositories">Repositories</h2>
+
+<pre><code class="language-ruby"># app/repositories/lesson_repository.rb
+
+module LessonRepository
+  extend ActiveSupport::Concern
+  include StateMachine
+
+  included do
+    scope :web, -&gt; { approved.joins(:course).merge(Course.web) }
+    scope :with_locale, -&gt;(locale) { joins(:course).where(courses: { locale: locale }) }
+    scope :with_members, -&gt; { joins("...") }
+    ...
+</code></pre>
+
+<h2 id="presenters">Presenters</h2>
+
+<pre><code class="language-ruby"># app/presenters/user_presenter.rb
+
+module UserPresenter
+  def public_name
+    return full_name if full_name.present?
+    return username if username?
+  end
+</code></pre>
+
+<h2 id="forms-validation-and-data-normalization">Forms Validation and Data Normalization</h2>
+
+<ul>
+  <li><a href="https://github.com/Hexlet/active_form_model"><code>active_form_model</code></a></li>
+</ul>
+
+<pre><code class="language-ruby"># app/forms/user/sign_up_form.rb
+
+class User::SignUpForm &lt; User
+  include ActiveFormModel
+
+  permit :email, :password, :first_name
+
+  validates :password, presence: true, length: { minimum: 8 }
+
+  def email=(email)
+    if email.present?
+      write_attribute(:email, email.downcase)
+    else
+      super
+    end
+  end
+end
+</code></pre>
+
+<h2 id="controllers-hierarchy">Controllers Hierarchy</h2>
+
+<pre><code>controllers/
+  web/
+    projects/
+      members/
+        comments_controller.rb
+    application_controller.rb
+  application_controller.rb
+</code></pre>
+
+<pre><code class="language-ruby"># app/controllers/web/projects/members/comments_controller.rb
+
+class Web::Projects::Members::CommentsController &lt; Web::ApplicationController
+  ...
+</code></pre>
+
+<h2 id="authorization">Authorization</h2>
+
+<p>Layer above models</p>
+
+<ul>
+  <li><a href="https://github.com/varvet/pundit"><code>pundit</code></a></li>
+</ul>
+
+<pre><code class="language-ruby"># app/policies/resume/answer/comment_policy.rb
+
+class Resume::Answer::CommentPolicy &lt; ApplicationPolicy
+  def edit?
+    author?
+  end
+
+  def destroy?
+    author?
+  end
+
+  def update?
+    author?
+  end
+end
+</code></pre>
+
+<h2 id="mutators">Mutators</h2>
+
+<ul>
+  <li>Callbacks replacement.</li>
+  <li>Anything more complex than <code>create(params)</code> goes to mutators.</li>
+  <li>Nothing except working with entity</li>
+</ul>
+
+<pre><code class="language-ruby"># app/mutators/resume/answer_mutator.rb
+
+module Resume::AnswerMutator
+  def self.create(resume, params, current_user)
+    answer = resume.answers.build params
+    answer.user = current_user
+    resume.user.notifications.create!(kind: :new_answer, resource: answer) if answer.save
+    answer
+  end
+end
+</code></pre>
+
+<h2 id="service-layer">Service Layer</h2>
+
+<ul>
+  <li>Synchronous. Stateless.</li>
+  <li><a href="/posts/functional-service-objects-on-rails/">Functional service objects on rails</a></li>
+</ul>
+
+<pre><code class="language-ruby"># app/services/user_service.rb
+
+class UserService
+  def self.update_current_tutor(user)
+    UserMutator.assign_tutor!(user)
+    AnalyticsSender.track(:tutor_assigned, user)
+    true
+  end
+end
+</code></pre>
+<pre><code class="language-ruby">class Web::Projects::Members::CommentsController &lt; Web::Projects::Members::ApplicationController
+  before_action :require_email_confirmation!
+
+  def create
+    member = Project::Mmember.find(params[:member_id])
+    authorize member, :create_comment?
+
+    comment = ProjectService.create_comment(member, current_user, permitted_params)
+    if comment.persisted?
+      f(:success)
+    else
+      f(:error)
+    end
+    redirect_to project_member_path(member.project, member)
+  end
+
+  private
+
+  def permitted_params
+    params.require(:project_member_comment).permit(:body)
+  end
+</code></pre>
+
+<h2 id="dependency-inversion">Dependency Inversion</h2>
+
+<ul>
+  <li>No monkey-patching</li>
+  <li><a href="https://dry-rb.org/gems/dry-container/">dry-rb/dry-container</a></li>
+</ul>
+
+<pre><code class="language-ruby">if Rails.env.production?
+  register :active_campaign, -&gt; { ActivecampaignManager.new configus.ac.api.token }
+else
+  register :active_compaign, -&gt; { ActivecampaignManagerStub.new }
+end
+
+if Rails.env.test?
+  register :gitlab_klass, -&gt; { GitlabStub }
+else
+  register :gitlab_klass, -&gt; { Gitlab }
+end
+</code></pre>
+<pre><code class="language-ruby">class AmplitudeJob &lt; ApplicationJob
+  include Import['amplitude_klass']
+
+  def perform(event_name, event_data, user_data, options)
+    name = EventsMapping.amplitude_names(event_name)
+    data = { }
+    event = AmplitudeAPI::Event.new(data)
+    amplitude_klass.track(event)
+  end
+end
+</code></pre>
+
+<h2 id="null-object">Null Object</h2>
+
+<pre><code class="language-ruby">- if signed_in? &amp;&amp; current_user.friends.any?
+</code></pre>
+<pre><code class="language-ruby">class Guest
+  def id; end
+
+  def created_at
+    Time.current
+  end
+
+  def employee
+    nil
+  end
+
+  def authenticate(_password)
+    false
+  end
+end
+</code></pre>
+<pre><code class="language-ruby">def current_user
+  @current_user ||= User.find_by(id: session[:user_id]) || Guest.new
+end
+</code></pre>
+
+<h2 id="business-logic">Business Logic</h2>
+
+<ul>
+  <li>Business-logic kept isolated from implementation details - Services, Interfaces, DB</li>
+  <li>Inject everything</li>
+</ul>
+
+<ol>
+  <li>Controller → Business</li>
+  <li>Business → Controller</li>
+  <li>Business ←→ Business</li>
+  <li>DB ←→ Business</li>
+</ol>
+
+<h3 id="1-controller--business">1. Controller → Business</h3>
+
+<ul>
+  <li><code>Operation</code> is a good pattern-free word</li>
+  <li>Unified Interface</li>
+  <li>Railway oriented programming</li>
+</ul>
+
+<pre><code>app/
+  controllers/
+    clients_controller.rb
+  operations/
+    clients/
+      confirmations/
+        start.rb
+</code></pre>
+
+<pre><code class="language-ruby">def create
+  operation = Clients::Confirmations::Start.new
+  handle_result operation.call(transaction: transaction)
+end
+</code></pre>
+
+<h4 id="return-result">Return result</h4>
+
+<ul>
+  <li>Result object</li>
+  <li><a href="https://dry-rb.org/gems/dry-monads/"><code>dry-rb/dry-monads</code></a></li>
+  <li><a href="https://dry-rb.org/gems/dry-monads/1.3/do-notation/">Do Notation</a></li>
+</ul>
+
+<pre><code class="language-ruby">class Clients::Confirmations::Start &lt; Operation
+  def call(transaction:)
+    valid = transaction_eligible? transaction
+    return ??? unless valid
+
+    code = generate_code transaction
+    return ??? unless code
+
+    result = send_code code
+    return ??? unless code
+
+    transaction ???
+  end
+end
+</code></pre>
+
+<pre><code class="language-ruby">class Clients::Confirmations::Start &lt; Operation
+  def call(transaction:)
+    # Success() or Failure(...)
+    yield transaction_eligible? transaction
+    # Success(code) or Failure(...)
+    code = yield generate_code transaction
+    # Success() or Failure(...)
+    yield send_code code
+
+    Success(transaction)
+  end
+end
+</code></pre>
+
+<h4 id="data-validation">Data Validation</h4>
+
+<ul>
+  <li>Validate user data not domain objects</li>
+  <li>Always valid objects</li>
+  <li><code>dry-rb/dry-validation</code>[https://dry-rb.org/gems/dry-validation/]</li>
+</ul>
+
+<pre><code class="language-ruby">class Profile &lt; ApplicationRecord
+  validates :name, :birthdate, presence: true
+</code></pre>
+
+<pre><code class="language-ruby">class ProfileContract &lt; Contract
+  params do
+    required(:name).filled(:string)
+    required(:birthdate).value(:date)
+</code></pre>
+
+<h3 id="2-business--controller">2. Business → Controller</h3>
+
+<pre><code class="language-ruby">def create
+  operation = Clients::Confirmations::Start.new
+  handle_result operation.call(transaction: transaction)
+end
+</code></pre>
+
+<pre><code class="language-ruby">def handle_result(result)
+  case result
+  when Success() then head(:ok)
+  when Success then respond_with_data(result.value!)
+  when Failure then respond_with_error(result.failure)
+  end
+end
+</code></pre>
+
+<h3 id="3-business--business">3. Business → Business</h3>
+
+<ul>
+  <li>Dependency injection</li>
+  <li><a href="https://dry-rb.org/gems/dry-initializer">https://dry-rb/dry-initializer</a></li>
+</ul>
+
+<pre><code class="language-ruby">module Confirmations
+  class Start &lt; Operation
+    option :generate_code_command,
+      reader: :private,
+      default: -&gt; { ConfirmationCodes::Generate.new }
+
+    def call(transaction:)
+      code = yield generate_code_command.call(source: transaction)
+      ...
+</code></pre>
+
+<h4 id="testing">Testing</h4>
+
+<pre><code class="language-ruby">describe Clients::Confirmations::Start do
+  describe "#call" do
+    described_class.new(generate_code_command: generate_code_command).call
+  end
+
+  let(:generate_code_command) { instance_double(ConfirmationCodes::Generate) }
+
+  before do
+    allow(generate_code_command).to receive(:call).with(...).and_return(...)
+  end
+
+  ...
+</code></pre>
+
+<h4 id="chaining">Chaining</h4>
+
+<ul>
+  <li>Railway oriented programming https://vimeo.com/113707214</li>
+  <li>Command-Query Segregation</li>
+</ul>
+
+<pre><code>   steps
+   1   2   3
+---*---*---*------ happy path
+    \   \   \
+------------------ error
+</code></pre>
+
+<pre><code class="language-ruby">class Clients::Confirmations::Start &lt; Operation
+  def call(transaction:)
+    # Success() or Failure(...)
+    yield transaction_eligible? transaction
+    code = yield generate_code transaction
+    yield send_code code
+     Success(transaction)
+  end
+end
+</code></pre>
+
+<h3 id="4-db--business">4. DB → Business</h3>
+
+<ul>
+  <li>Inject repository</li>
+  <li>Single Responsibility Principles</li>
+</ul>
+
+<pre><code class="language-ruby">module Confirmations
+  class Generate &lt; Operation
+    option :codes_repo,
+      reader: :private,
+      default: -&gt; { ConfirmationCode }
+
+  private
+
+  def persist_code(code_attributes)
+    codes_repo.create!(code_attributes)
+  end
+end
+</code></pre>
+
+<h4 id="transactions">Transactions</h4>
+
+<pre><code class="language-ruby">module Confirmation
+  class Verify &lt; Operation
+    option :repo,
+      reader: :private,
+      default: -&gt; { ApplicationRecord }
+
+    def call(transaction:, confirmation_code:)
+      repo.transaction do
+        yield confirm_code(code)
+        yield confirm_transaction(transaction)
+      end
+    end
+</code></pre>
+
+  </article>
+
+  <div class="mb3 lh25">
+ 
+
+<a href="/ruby/" class="button bg-orange white lh1"> Ruby </a>
+ 
+
+<a href="/rails/" class="button bg-orange white lh1"> Rails </a>
+ 
+
+<a href="/refactoring/" class="button bg-orange white lh1"> Refactoring </a>
+
+</div>
+
+
+</div>
+<div class="mt4">
+<div class="clearfix mxn2 mb2">
+  <div class="sm-col sm-col-3 px2 mb2">
+    <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
+  </div>
+  <div class="sm-col sm-col-9 px2">
+
+    <h2 class="mt0 h1">
+      Nikolay Ostrovsky
+    </h2>
+
+    <div class="clearfix mxn2 mb4">
+
+      <div class="sm-col sm-col-8 px2">
+        <p>
+          Startup Team Lead. I like everything minimal and as simple as possible.
+        </p>
+        <p>
+          Grew from Web and Graphics through User Experience and
+          Interfaces, Backend and Frontend programming to Team Lead and CTO.
+          Contributed to projects for major brands. L'Oreal,
+          JTI and AB InBev among others.
+        </p>
+      </div>
+
+      <div class="sm-col sm-col-4 sm-show">
+        <div class="mtn1 ml2">
+          <!-- <a class="p1 px2 white bg-green rounded mb1 inline-block" href="mailto:nick@firedev.com" -->
+          <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
+          <a class="p1 px2 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
+          <a class="p1 px2 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
+          <!--<a class="p1 px2 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
+          <a class="p1 px2 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i> StackOverflow</a>
+          <a class="p1 px2 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES * * */
+var disqus_shortname = 'firedevcom';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    </div>
+
+    <footer>
+    <div class="container px2 mt4 mb2 center">
+        With <i class="fa fa-heart red"></i>
+        <a href="http://firedev.com"><strong>firedev.com</strong></a>
+    </div>
+    <div class="container px2 mb4 center">
+        <a class="muted" href="mailto:nick@firedev.com">Email me</a>
+    </div>
+</footer>
+
+    <script src="/js/firedev.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69016906-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+
+</html>
