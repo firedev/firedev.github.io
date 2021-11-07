@@ -161,39 +161,39 @@ But first you need to find and catalogue all the colors in the project.</p>
 <h2 id="extracting-colors-from-a-project">Extracting colors from a project</h2>
 
 <p>Let’s find all colors used in a project. Regular expression I came up with finds
-a pound sign <code>#</code> followed by 3 or 6 numbers or letters in the range from <code>a</code> to <code>f</code>
+a pound sign <code class="highlighter-rouge">#</code> followed by 3 or 6 numbers or letters in the range from <code class="highlighter-rouge">a</code> to <code class="highlighter-rouge">f</code>
 and stops at the word boundary.</p>
 
 <p>I am using <a href="https://github.com/ggreer/the_silver_searcher">The Silver Searcher</a>.
 The output is too human-readable so let’s throw in some options to dumb it down:</p>
 
-<pre><code class="language-sh">-i --ignore-case
-  Match case-insensitively
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-i</span> <span class="nt">--ignore-case</span>
+  Match <span class="k">case</span><span class="nt">-insensitively</span>
 
--o --only-matching
+<span class="nt">-o</span> <span class="nt">--only-matching</span>
   Print only the matching part of the lines
 
---nonumbers
+<span class="nt">--nonumbers</span>
   No line numbers
 
---nofilename
+<span class="nt">--nofilename</span>
   No file names
 
---nocolor
+<span class="nt">--nocolor</span>
   No color
 
---nobreak
-  No linebreaks between results in different files
-</code></pre>
+<span class="nt">--nobreak</span>
+  No linebreaks between results <span class="k">in </span>different files
+</code></pre></div></div>
 
-<p>Thats a quite a list of options but I like <code>ag</code>. Now let’s pipe the output
-through <code>sort --uniq -f</code> to remove the duplicates ignoring the case and count the lines with <code>wc -l</code>:</p>
+<p>Thats a quite a list of options but I like <code class="highlighter-rouge">ag</code>. Now let’s pipe the output
+through <code class="highlighter-rouge">sort --uniq -f</code> to remove the duplicates ignoring the case and count the lines with <code class="highlighter-rouge">wc -l</code>:</p>
 
-<pre><code class="language-sh">$ ag -io --nonumber --nofilename "#([\da-f]{3}|[\da-f]{6})\b" | sort --uniq | wc -l
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ag <span class="nt">-io</span> <span class="nt">--nonumber</span> <span class="nt">--nofilename</span> <span class="s2">"#([</span><span class="se">\d</span><span class="s2">a-f]{3}|[</span><span class="se">\d</span><span class="s2">a-f]{6})</span><span class="se">\b</span><span class="s2">"</span> | <span class="nb">sort</span> <span class="nt">--uniq</span> | <span class="nb">wc</span> <span class="nt">-l</span>
 229
-</code></pre>
+</code></pre></div></div>
 
-<p>Wow that’s a large number. The problem is, right now <code>#fff</code> and <code>#ffffff</code>
+<p>Wow that’s a large number. The problem is, right now <code class="highlighter-rouge">#fff</code> and <code class="highlighter-rouge">#ffffff</code>
 are treated as different colors. But I guess this is something we can fix in Ruby.</p>
 
 <p>Here is what we are going to do:</p>
@@ -212,193 +212,193 @@ are treated as different colors. But I guess this is something we can fix in Rub
 <a href="https://www.youtube.com/watch?v=tq5SQ4W3gRI">Ruby Midwest 2013 Functional Principles for OO Development</a>
 talk by Jessica Kerr I have decided to go all functional here.</p>
 
-<p><code>Enumerable#map</code> is the single most important method here. Just keep things mappable and you’re fine.
-If you are not sure about it, wrap your arguments in <code>Array()</code>, use asterisk <code>*</code> or <code>.to_a</code> method.
+<p><code class="highlighter-rouge">Enumerable#map</code> is the single most important method here. Just keep things mappable and you’re fine.
+If you are not sure about it, wrap your arguments in <code class="highlighter-rouge">Array()</code>, use asterisk <code class="highlighter-rouge">*</code> or <code class="highlighter-rouge">.to_a</code> method.
 Just make sure you have Enumerator on input.</p>
 
 <p>Most Ruby developers know about the pretzel symbol-to-proc operator that converts a
 given symbol into a proc that calls the same method on the given object.</p>
 
-<pre><code class="language-ruby">%w(a b c).map(&amp;:upcase)
-=&gt; ["A", "B", "C"]
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">%w(a b c)</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:upcase</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">]</span>
+</code></pre></div></div>
 
-<p>Pretzel <code>&amp;</code> here converts <code>:upcase</code> to a Proc and serves as a syntax sugar.
+<p>Pretzel <code class="highlighter-rouge">&amp;</code> here converts <code class="highlighter-rouge">:upcase</code> to a Proc and serves as a syntax sugar.
 The ‘unpacked’ version would look like this:</p>
 
-<pre><code class="language-ruby">%w(a b c).map{ |str| str.upcase }
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">%w(a b c)</span><span class="p">.</span><span class="nf">map</span><span class="p">{</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span> <span class="n">str</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}</span>
+</code></pre></div></div>
 
 <p>But I don’t want to chain my lambdas in the ugly way, too bad there is no short syntax
-for lambdas in Ruby. Or is it? Turns out there is. Given the <code>upper</code> lambda:</p>
+for lambdas in Ruby. Or is it? Turns out there is. Given the <code class="highlighter-rouge">upper</code> lambda:</p>
 
-<pre><code class="language-ruby">upper = -&gt;(a) { a.upcase }
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">upper</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="n">a</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}</span>
+</code></pre></div></div>
 
-<p>Even after replacing <code>call</code> with <code>.()</code> it still doesn’t look nice:</p>
+<p>Even after replacing <code class="highlighter-rouge">call</code> with <code class="highlighter-rouge">.()</code> it still doesn’t look nice:</p>
 
-<pre><code class="language-ruby">%w(a b c).map{ |str| upper.(str) }
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">%w(a b c)</span><span class="p">.</span><span class="nf">map</span><span class="p">{</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span> <span class="n">upper</span><span class="o">.</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">}</span>
+</code></pre></div></div>
 
 <p>But there is a special syntax for lambdas that makes it all sweet:</p>
 
-<pre><code class="language-ruby">%w(a b c).map(&amp; upper)
-=&gt; ["A", "B", "C"]
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">%w(a b c)</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">upper</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">]</span>
+</code></pre></div></div>
 
 <p>Now that’s better, and to me that was the only part missing.
-Let’s store filtered <code>ag</code> output to the ruby file and start messing around:</p>
+Let’s store filtered <code class="highlighter-rouge">ag</code> output to the ruby file and start messing around:</p>
 
-<pre><code class="language-ruby">$ ag -io --nonumber --nofilename "#([\da-f]{3}|[\da-f]{6})\b" | sort --uniq -f &gt; colors.rb
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">ag</span> <span class="o">-</span><span class="n">io</span> <span class="o">--</span><span class="n">nonumber</span> <span class="o">--</span><span class="n">nofilename</span> <span class="s2">"#([</span><span class="se">\d</span><span class="s2">a-f]{3}|[</span><span class="se">\d</span><span class="s2">a-f]{6})</span><span class="se">\b</span><span class="s2">"</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">--</span><span class="n">uniq</span> <span class="o">-</span><span class="n">f</span> <span class="o">&gt;</span> <span class="n">colors</span><span class="p">.</span><span class="nf">rb</span>
+</code></pre></div></div>
 
 <p>Another less-known feature in Ruby is that you can treat the rest of file as data
-if you add <code>__END__</code> to your program. Here is an excerpt from the Ruby Docs:</p>
+if you add <code class="highlighter-rouge">__END__</code> to your program. Here is an excerpt from the Ruby Docs:</p>
 
-<pre><code class="language-ruby">DATA is a File that contains the data section of the executed file.
-To create a data section use __END__
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">DATA</span> <span class="n">is</span> <span class="n">a</span> <span class="no">File</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">data</span> <span class="n">section</span> <span class="n">of</span> <span class="n">the</span> <span class="n">executed</span> <span class="n">file</span><span class="o">.</span>
+<span class="no">To</span> <span class="n">create</span> <span class="n">a</span> <span class="n">data</span> <span class="n">section</span> <span class="n">use</span> <span class="cp">__END__
+</span></code></pre></div></div>
 
-<p>We can simply use the reset of the executable file as a <code>DATA</code> enumerator. Cool, eh?</p>
-<pre><code class="language-ruby"># colors.rb
-puts DATA.count
+<p>We can simply use the reset of the executable file as a <code class="highlighter-rouge">DATA</code> enumerator. Cool, eh?</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># colors.rb</span>
+<span class="nb">puts</span> <span class="no">DATA</span><span class="p">.</span><span class="nf">count</span>
 
-__END__
+<span class="cp">__END__
 #000
 #008000
 #00A347
-</code></pre>
+</span></code></pre></div></div>
 
 <p>##Let’s get to business</p>
 
 <p>For this project I will use <a href="https://github.com/jordanstephens/paleta">Paleta</a> gem.
-We have the colors loaded into the <code>DATA</code> enumerator. The only thing that’s left is to
+We have the colors loaded into the <code class="highlighter-rouge">DATA</code> enumerator. The only thing that’s left is to
 create some lambdas accoding to the plan.</p>
 
 <h3 id="1-convert-colors-to-full-hex">1. Convert colors to full hex</h3>
 <p>To do that we are going to feed the color to Paleta and get hex value back. The only thing we need to add
-is <code>chomp</code> to get rid of the newlines in strings:</p>
+is <code class="highlighter-rouge">chomp</code> to get rid of the newlines in strings:</p>
 
-<pre><code class="language-ruby">require 'paleta'
-to_full_hex = -&gt;(color) { Paleta::Color.new(:hex, color).hex }
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'paleta'</span>
+<span class="n">to_full_hex</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="p">{</span> <span class="no">Paleta</span><span class="o">::</span><span class="no">Color</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:hex</span><span class="p">,</span> <span class="n">color</span><span class="p">).</span><span class="nf">hex</span> <span class="p">}</span>
 
-puts DATA
-  .map(&amp;:chomp)
-  .map(&amp; to_full_hex)
-</code></pre>
+<span class="nb">puts</span> <span class="no">DATA</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chomp</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_full_hex</span><span class="p">)</span>
+</code></pre></div></div>
 
 <h3 id="2-make-the-list-unique">2. Make the list unique</h3>
-<p>Simply add <code>.uniq</code> and finally we can see the real number of unique colors in the project.</p>
-<pre><code class="language-ruby">puts DATA
-  .map(&amp;:chomp)
-  .map(&amp; to_full_hex)
-  .uniq
-  .count
+<p>Simply add <code class="highlighter-rouge">.uniq</code> and finally we can see the real number of unique colors in the project.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">puts</span> <span class="no">DATA</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chomp</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_full_hex</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">uniq</span>
+  <span class="p">.</span><span class="nf">count</span>
 
-$ ruby colors.rb
-221
-</code></pre>
+<span class="err">$</span> <span class="n">ruby</span> <span class="n">colors</span><span class="p">.</span><span class="nf">rb</span>
+<span class="mi">221</span>
+</code></pre></div></div>
 
 <p>What?! Okay, damn it, only a few colors were not unique. White and black I guess.</p>
 
 <h3 id="3-order-by-hue">3. Order by hue</h3>
 <p>That might sound tricky but Paleta comes to the rescue.
-Paleta provides a <code>.hue</code> method that we could use to sort colors. But since they are
+Paleta provides a <code class="highlighter-rouge">.hue</code> method that we could use to sort colors. But since they are
 strings we need to convert them back to objects.</p>
 
 <p>That sounds fishy because it is. Let’s use this opportunity and refactor the code slightly.
-We remove <code>.hex</code> from the <code>to_full_hex</code> method and rename it. This refactoring
+We remove <code class="highlighter-rouge">.hex</code> from the <code class="highlighter-rouge">to_full_hex</code> method and rename it. This refactoring
 gives us even more freedom:</p>
 
-<pre><code class="language-ruby">require 'paleta'
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'paleta'</span>
 
-to_paleta = -&gt;(color) { Paleta::Color.new(:hex, color) }
+<span class="n">to_paleta</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="p">{</span> <span class="no">Paleta</span><span class="o">::</span><span class="no">Color</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:hex</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span> <span class="p">}</span>
 
-puts DATA
-  .map(&amp;:chomp)
-  .map(&amp; to_paleta)
-  .sort_by(&amp;:hue)
-  .map(&amp;:hex)
-  .uniq
-  .count
+<span class="nb">puts</span> <span class="no">DATA</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chomp</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_paleta</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">sort_by</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:hue</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:hex</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">uniq</span>
+  <span class="p">.</span><span class="nf">count</span>
 
-  __END__
+  <span class="cp">__END__
   #000
   #008000
   ...
-</code></pre>
+</span></code></pre></div></div>
 
 <h3 id="4-print-the-palette-so-we-can-see-what-is-going-on">4. Print the palette so we can see what is going on</h3>
 <p>Now let’s devise a human-viewable palette so we could judge the colors.
-Make some nice-looking colored <code>&lt;div&gt;</code>s or something.</p>
+Make some nice-looking colored <code class="highlighter-rouge">&lt;div&gt;</code>s or something.</p>
 
-<pre><code class="language-ruby">to_div = -&gt;(str) {
-  "&lt;div style='width: 5em; height: 3em; display: inline-block; background: #{str}'&gt;
-  #{str}
-  &lt;/div&gt;"
-}
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">to_div</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="s2">"&lt;div style='width: 5em; height: 3em; display: inline-block; background: </span><span class="si">#{</span><span class="n">str</span><span class="si">}</span><span class="s2">'&gt;
+  </span><span class="si">#{</span><span class="n">str</span><span class="si">}</span><span class="s2">
+  &lt;/div&gt;"</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>And pipe it to a new file, because at the moment of writing this Paleta generated some
 warning about Rmagic.</p>
 
-<pre><code class="language-ruby">File.open('colors.html', 'w') do |file|
-  file.puts DATA
-  .map(&amp;:chomp)
-  .map(&amp; to_paleta)
-  .sort_by(&amp;:hue)
-  .map(&amp;:hex)
-  .uniq
-  .map(&amp; to_div)
-end
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s1">'colors.html'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="n">file</span><span class="p">.</span><span class="nf">puts</span> <span class="no">DATA</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chomp</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_paleta</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">sort_by</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:hue</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:hex</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">uniq</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_div</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="command-line-reader">Command-line reader</h2>
 <p>Okay that is nice but let’s improve it a bit. First of all lets get rid of the static DATA
-so we could use it right from the command line. That allows us to get right of <code>sort</code>.
-Simply change <code>DATA</code> to <code>ARGF</code> and remove the <code>__END__</code> part.</p>
+so we could use it right from the command line. That allows us to get right of <code class="highlighter-rouge">sort</code>.
+Simply change <code class="highlighter-rouge">DATA</code> to <code class="highlighter-rouge">ARGF</code> and remove the <code class="highlighter-rouge">__END__</code> part.</p>
 
 <p>Then lets open the resulting file right away.</p>
 
-<pre><code class="language-ruby">#!/usr/bin/env ruby
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env ruby</span>
 
-require 'paleta'
+<span class="nb">require</span> <span class="s1">'paleta'</span>
 
-to_paleta = -&gt;(color) { Paleta::Color.new(:hex, color) }
-to_div = -&gt;(str) {
-  "&lt;div style='font-family: sans-serif; width: 5em; height: 3em; border-radius 0.25em;
+<span class="n">to_paleta</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="p">{</span> <span class="no">Paleta</span><span class="o">::</span><span class="no">Color</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:hex</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span> <span class="p">}</span>
+<span class="n">to_div</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="s2">"&lt;div style='font-family: sans-serif; width: 5em; height: 3em; border-radius 0.25em;
                line-height: 3em; display: inline-block; margin: 0.25em; text-align: center
-               background: ##{str}'&gt;
-  ##{str}
-  &lt;/div&gt;"
-}
+               background: #</span><span class="si">#{</span><span class="n">str</span><span class="si">}</span><span class="s2">'&gt;
+  #</span><span class="si">#{</span><span class="n">str</span><span class="si">}</span><span class="s2">
+  &lt;/div&gt;"</span>
+<span class="p">}</span>
 
-File.open('colors.html', 'w') do |file|
-  file.puts(
-    ARGF
-      .map(&amp;:chomp)
-      .map(&amp; to_paleta)
-      .sort_by(&amp;:hue)
-      .map(&amp;:hex)
-      .uniq
-      .map(&amp; to_div)
-  )
-end
+<span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s1">'colors.html'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="n">file</span><span class="p">.</span><span class="nf">puts</span><span class="p">(</span>
+    <span class="no">ARGF</span>
+      <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:chomp</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_paleta</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">sort_by</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:hue</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:hex</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">uniq</span>
+      <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="n">to_div</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="k">end</span>
 
-`open colors.html`
+<span class="sb">`open colors.html`</span>
 
-</code></pre>
+</code></pre></div></div>
 
-<p>Now you can pipe the output from <code>ag</code> and even sample a single css file if needed. Don’t forget to <code>chmod +x colors.rb</code></p>
+<p>Now you can pipe the output from <code class="highlighter-rouge">ag</code> and even sample a single css file if needed. Don’t forget to <code class="highlighter-rouge">chmod +x colors.rb</code></p>
 
 <p>Here is the <a href="https://gist.github.com/firedev/1b3e03afd9c7fca93207">final version</a>
 you can use for processing your files or projects:</p>
 
-<pre><code class="language-sh">$ ag -io --nonumber --nofilename "#([\da-f]{3}|[\da-f]{6})\b" [path] | ./colors.rb
-</code></pre>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ag <span class="nt">-io</span> <span class="nt">--nonumber</span> <span class="nt">--nofilename</span> <span class="s2">"#([</span><span class="se">\d</span><span class="s2">a-f]{3}|[</span><span class="se">\d</span><span class="s2">a-f]{6})</span><span class="se">\b</span><span class="s2">"</span> <span class="o">[</span>path] | ./colors.rb
+</code></pre></div></div>
 
 <p>It makes sense to sort palettes by hue or lightness or saturation, this is simply
-a matter of changing a method name in <code>.map(&amp;:hue)</code>. Maybe some command-line switches
+a matter of changing a method name in <code class="highlighter-rouge">.map(&amp;:hue)</code>. Maybe some command-line switches
 would be appropriate here as well but this was enough for my needs and I just
 wanted to document the approach.</p>
 

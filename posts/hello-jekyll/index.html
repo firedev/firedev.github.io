@@ -178,23 +178,23 @@ sounded like a nice fit for a weekend project. And here it is.</p>
 <p>One of the tricky part was rendering of posts. In rails I would throw in a partial.
 Since there are no partials in Jekyll I had to use includes.</p>
 
-<p>This is what I have in my <code>posts</code> and <code>index</code> pages:</p>
+<p>This is what I have in my <code class="highlighter-rouge">posts</code> and <code class="highlighter-rouge">index</code> pages:</p>
 
-<pre><code class="language-liquid">
-{% for post in site.posts %}
-  {% include _post.html post=post %}
-{% endfor %}
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}</span>
+  <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>_post.html<span class="w"> </span><span class="na">post</span><span class="o">=</span><span class="nv">post</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
 
-</code></pre>
+</code></pre></div></div>
 
-<p>And the actual <code>_post.html</code> include uses <code>include.post</code> variable:</p>
-<pre><code class="language-liquid">
+<p>And the actual <code class="highlighter-rouge">_post.html</code> include uses <code class="highlighter-rouge">include.post</code> variable:</p>
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 &lt;h2&gt;
-    &lt;a href="{{ include.post.url }}"&gt;{{ include.post.title }}&lt;/a&gt;
+    &lt;a href="<span class="p">{{</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="p">}}</span>"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;{{ include.post.excerpt }}&lt;p&gt;
+&lt;p&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">excerpt</span><span class="w"> </span><span class="p">}}</span>&lt;p&gt;
 
-</code></pre>
+</code></pre></div></div>
 
 <p>This is something I would do in Rails. Everything seems pretty sweet so far.
 The only issue is that I have to write HTML again which seems as a step back

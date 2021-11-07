@@ -173,8 +173,8 @@ with reality.</p>
 
 <p>Let’s recap how to we design for different devices. You define some breakpoints -
 conditions where your site changes. Then you describe what changes once
-conditions are met. Conditions can be pretty broad, like for example <code>@media print</code>
-that allows you to apply additional styling for printing pages. Or <code>min-width: 1000px</code>
+conditions are met. Conditions can be pretty broad, like for example <code class="highlighter-rouge">@media print</code>
+that allows you to apply additional styling for printing pages. Or <code class="highlighter-rouge">min-width: 1000px</code>
 that allows you to target only bigger screens.</p>
 
 <p>Sounds easy, right? However the problem with CSS is that it give one too much
@@ -186,9 +186,9 @@ unmaintainable stylesheets down the line.</p>
 <p>A saner approach is to let some constraints in.</p>
 
 <ol>
-  <li>Add <code>&lt;meta content="width=device-width, initial-scale=1" name="viewport" /&gt;</code> to your HTML</li>
+  <li>Add <code class="highlighter-rouge">&lt;meta content="width=device-width, initial-scale=1" name="viewport" /&gt;</code> to your HTML</li>
   <li>Define breakpoints for your website and stick to them</li>
-  <li>Use only <code>min-width</code> so you are going from smaller to bigger screens</li>
+  <li>Use only <code class="highlighter-rouge">min-width</code> so you are going from smaller to bigger screens</li>
 </ol>
 
 <p>That is pretty much it. There are some tricky parts, though.</p>
@@ -201,24 +201,24 @@ your website.</p>
 CSS variables, so I won’t be stopping on defining variables and go straight
 to the next point. Just don’t go overboard, you ain’t going to need it.</p>
 
-<p>CSS allows you to use <code>min-width</code>, <code>max-width</code> or both, plus some additional modifiers
-like <code>orientation: portrait</code> and god knows what else. However there are good parts and
+<p>CSS allows you to use <code class="highlighter-rouge">min-width</code>, <code class="highlighter-rouge">max-width</code> or both, plus some additional modifiers
+like <code class="highlighter-rouge">orientation: portrait</code> and god knows what else. However there are good parts and
 there are bad parts. Some things you don’t have to use if you don’t want to
 spend the rest of your live debugging the cascade.</p>
 
 <p>All your styles should look like this:</p>
 
-<pre><code class="language-scss">// Hides element on screens bigger than $small breakpoint
-.sm-hide {
-  @media (min-width: $small) {
-    display: none;
-  }
-}
-</code></pre>
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Hides element on screens bigger than $small breakpoint</span>
+<span class="nc">.sm-hide</span> <span class="p">{</span>
+  <span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="o">:</span> <span class="nv">$small</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 <h2 id="devices">Devices</h2>
 
-<p>But we can’t use only <code>min-width</code>! We want out site to look best on mobile devices
-We have to use <code>orientation: portrait</code> and <code>landscape</code>! Maybe not. Think what
+<p>But we can’t use only <code class="highlighter-rouge">min-width</code>! We want out site to look best on mobile devices
+We have to use <code class="highlighter-rouge">orientation: portrait</code> and <code class="highlighter-rouge">landscape</code>! Maybe not. Think what
 is exactly you are trying to achieve?</p>
 
 <p>Let’s ask our project manager for some specs. Some realistically formulated
@@ -326,7 +326,7 @@ Don’t worry if looks a bit Apple-biased, the results are universally applicabl
 <p>When people think about breakpoints they often imagining them as some
 magical bullet that can detect if you are using an iPad.</p>
 
-<p><strong>I am referring only to <code>@media (min-width: $variable)</code> well-behaved
+<p><strong>I am referring only to <code class="highlighter-rouge">@media (min-width: $variable)</code> well-behaved
 breakpoints as this are the only ones you should use.</strong></p>
 
 <p>Think of a breakpoint as a fence. Like a fence it has two sides, everything
@@ -335,48 +335,48 @@ than the specified width.</p>
 
 <p>In other words you can think of it as a equals or larger than equation:</p>
 
-<pre><code>.menu { folded }
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.menu { folded }
 @media (screen width &gt;= x) {
   .menu { unfolded }
 }
-</code></pre>
+</code></pre></div></div>
 
 <p>That makes me think that in most cases you could do with a single breakpoint.
-Or at the very least we can start with it.  Let’s call it <code>$medium</code>. Everything
+Or at the very least we can start with it.  Let’s call it <code class="highlighter-rouge">$medium</code>. Everything
 on the left will be considered a <strong>smaller</strong> screen and everything on the right
 is a <strong>larger</strong> screen.</p>
 
-<p>Why not name them <code>$desktop</code>/<code>$tablet</code>/<code>$mobile</code>/<code>$whatever</code>? Isn’t this
+<p>Why not name them <code class="highlighter-rouge">$desktop</code>/<code class="highlighter-rouge">$tablet</code>/<code class="highlighter-rouge">$mobile</code>/<code class="highlighter-rouge">$whatever</code>? Isn’t this
 <em>semantic</em>? I hear this question a lot. The reasoning usually is that it’s hard
-to remember what is <code>$middle</code> or <code>$large</code>. First of all the semantics here is
+to remember what is <code class="highlighter-rouge">$middle</code> or <code class="highlighter-rouge">$large</code>. First of all the semantics here is
 meaningless. One can rotate an iPad, they can release a new device tomorrow,
 and you will have to rename all your classes and whatnot. Besides, each
 breakpoint is only a fence.</p>
 
 <p>So I propose to claim a line between vertical and horizontal iPad orientation
-as a <code>$medium</code> breakpoint. A perfect place to start moving further. By default
-and until we are being viewed from the devices that is larger than <code>$medium</code>,
+as a <code class="highlighter-rouge">$medium</code> breakpoint. A perfect place to start moving further. By default
+and until we are being viewed from the devices that is larger than <code class="highlighter-rouge">$medium</code>,
 and that includes: mobile phones, tablets in portrait, half of the screen – we
 display content, say, in a single column.</p>
 
 <p>Once our media query is triggered, for everything that is bigger than
-<code>$medium</code>: that is for example an iPad in horizontal mode, computer screens,
+<code class="highlighter-rouge">$medium</code>: that is for example an iPad in horizontal mode, computer screens,
 TV – we display multiple columns or un-collapse the menu.</p>
 
 <h2 id="other-breakpoints">Other breakpoints</h2>
 
-<p>Let’s separate the devices on a smaller side of the <code>$medium</code> so we can target
+<p>Let’s separate the devices on a smaller side of the <code class="highlighter-rouge">$medium</code> so we can target
 portrait and landscape modes separately. This way when somebody is looking at
 your website on his phone he sees the initial styling.</p>
 
-<p>Once he rotates the phone - he makes a first jump over the <code>$small</code> breakpoint
-fence. Everything that is styled with <code>min-width: $small</code> kicks in.</p>
+<p>Once he rotates the phone - he makes a first jump over the <code class="highlighter-rouge">$small</code> breakpoint
+fence. Everything that is styled with <code class="highlighter-rouge">min-width: $small</code> kicks in.</p>
 
 <p>This is what one would see the on an iPad in portrait orientation. But our
 users want to see more. So they rotate the iPad (or get an iPad pro) and that
-moves them over the <code>$medium</code> breakpoint.</p>
+moves them over the <code class="highlighter-rouge">$medium</code> breakpoint.</p>
 
-<p>The last one, <code>$large</code> covers everything bigger than an iPad in Landscape. That
+<p>The last one, <code class="highlighter-rouge">$large</code> covers everything bigger than an iPad in Landscape. That
 is the computer screen and the iPad Pro.</p>
 
 <h2 id="final-results">Final results</h2>
@@ -384,7 +384,7 @@ is the computer screen and the iPad Pro.</p>
 <p>Pixel sizes are provided only for reference. You should stick to rem-based
 sizes. Calculations are based on the default 16px body font size. I don’t
 recommend using pixels. Stick to rem as this is not relative and equals body
-font size. With <code>rem</code> you can increase font size when needed and the layout
+font size. With <code class="highlighter-rouge">rem</code> you can increase font size when needed and the layout
 will adapt. For example, if you need to show something on an HD TV across the
 room.</p>
 
@@ -428,14 +428,14 @@ fitting in only this much or something breaks.</p>
 
 <p>Anyway here are the breakpoints in SCSS format, I tried to round them up a little bit:</p>
 
-<pre><code class="language-scss">//       $small                  $medium                 $large
-// Portrait | Landscape   Portrait | Landscape   Portrait | Landscape
-// Phone    | Phone       iPad     | iPad        iPad Pro | iPad Pro
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//       $small                  $medium                 $large</span>
+<span class="c1">// Portrait | Landscape   Portrait | Landscape   Portrait | Landscape</span>
+<span class="c1">// Phone    | Phone       iPad     | iPad        iPad Pro | iPad Pro</span>
 
-$small: 35rem; // 560px
-$medium: 55rem; // 880px
-$large: 65rem; // 1040px
-</code></pre>
+<span class="nv">$small</span><span class="p">:</span> <span class="m">35rem</span><span class="p">;</span> <span class="c1">// 560px</span>
+<span class="nv">$medium</span><span class="p">:</span> <span class="m">55rem</span><span class="p">;</span> <span class="c1">// 880px</span>
+<span class="nv">$large</span><span class="p">:</span> <span class="m">65rem</span><span class="p">;</span> <span class="c1">// 1040px</span>
+</code></pre></div></div>
 
 <p>I believe this approach will bring more good than those obscure pixel-based breakpoints
 found in CSS Frameworks everywhere. Start small, use an

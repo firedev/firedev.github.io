@@ -158,14 +158,14 @@ I have decided to build on top of their shoulders. Welcome the nanogrid.</p>
 
 <h3 id="ungrid">Ungrid</h3>
 <p>Ungrid is a nifty grid that packs everything in less than a hundred bytes by
-using <code>display: table</code> trick:</p>
-<pre><code class="language-css">@media (min-width: 30em) {
-    .row { width: 100%; display: table; table-layout: fixed; }
-    .col { display: table-cell; }
-}
-</code></pre>
+using <code class="highlighter-rouge">display: table</code> trick:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">30em</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nc">.row</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span> <span class="nl">table-layout</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nc">.col</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">table-cell</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 <p>And it’s quite powerful <a href="https://github.com/chrisnager/ungrid/">see the demo</a> plus
-using <code>display: table</code> is a nifty trick that solves issues with
+using <code class="highlighter-rouge">display: table</code> is a nifty trick that solves issues with
 <a href="http://caniuse.com/#flexbox">Flexbox</a>.
 Actually it seems the browsers are getting up to speed with Flexible Box Layout.
 Even if it’s time to jump on the F-train, this is a cool experiment.</p>
@@ -179,54 +179,54 @@ is too good to pass up.</p>
 <h3 id="nanogrid">nanogrid</h3>
 <p>Let’s use SASS for this, as I am most comfortable with it. And add some variables to the mix:</p>
 
-<pre><code class="language-sass">$nanogrid-breakpoint: 30em !default
-@media (min-width: $nanogrid-breakpoint)
-  .row
-    width: 100%
-    display: table
-    table-layout: fixed
-  .col
-    display: table-cell
-</code></pre>
+<div class="language-sass highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$nanogrid-breakpoint</span><span class="p">:</span> <span class="m">30em</span> <span class="o">!</span><span class="nb">default</span>
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="o">:</span> <span class="nv">$nanogrid-breakpoint</span><span class="p">)</span>
+  <span class="nc">.row</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">table</span>
+    <span class="nl">table-layout</span><span class="p">:</span> <span class="nb">fixed</span>
+  <span class="nc">.col</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">table-cell</span>
+</code></pre></div></div>
 
 <p>Throw in grid classes from BASSCSS
 <a href="https://github.com/basscss/grid/blob/master/lib/grid.css">grid module</a>.
-Using sass <code>@for</code> we can calculate all the values upfront.</p>
-<pre><code class="language-sass">.col
-  float: left
-  box-sizing: border-box
+Using sass <code class="highlighter-rouge">@for</code> we can calculate all the values upfront.</p>
+<div class="language-sass highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.col</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span>
+  <span class="nl">box-sizing</span><span class="p">:</span> <span class="n">border-box</span>
 
-.col-right
-  float: right
-  box-sizing: border-box
+<span class="nc">.col-right</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">right</span>
+  <span class="nl">box-sizing</span><span class="p">:</span> <span class="n">border-box</span>
 
-@for $i from 1 through 12
-  .col-#{$i}
-    width: #{$i/12 * 100%}
-  .row .col-#{$i}
-    float: none
-</code></pre>
+<span class="k">@for</span> <span class="nv">$i</span> <span class="ow">from</span> <span class="m">1</span> <span class="ow">through</span> <span class="m">12</span>
+  <span class="nc">.col-</span><span class="si">#{</span><span class="nv">$i</span><span class="si">}</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="si">#{</span><span class="nv">$i</span><span class="o">/</span><span class="m">12</span> <span class="o">*</span> <span class="m">100%</span><span class="si">}</span>
+  <span class="nc">.row</span> <span class="nc">.col-</span><span class="si">#{</span><span class="nv">$i</span><span class="si">}</span>
+    <span class="nl">float</span><span class="p">:</span> <span class="nb">none</span>
+</code></pre></div></div>
 
 <p>Okay time to add some gutters. The tricky part here is that you can’t simply use
-negative margins as they don’t work well on <code>display: table</code>. Element only moves to the left.
+negative margins as they don’t work well on <code class="highlighter-rouge">display: table</code>. Element only moves to the left.
 We could solve it by using some container element as Chris Nager did <a href="https://codepen.io/chrisnager/pen/arKBu">here</a>  But that is not very fun so as I know for fact that all my users are using Chrome I can
 once again resort to the power of calc.</p>
 
 <p>Let’s also fix the counter effect of floats introduced by BASSCSS grid and add a gutter variable.</p>
 
-<pre><code class="language-sass">$nanogrid-gutter: 1rem
+<div class="language-sass highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$nanogrid-gutter</span><span class="p">:</span> <span class="m">1rem</span>
 
-.row
-  display: table
-  table-layout: fixed
-  width: calc(100% + #{$nanogrid-gutter})
-  margin: 0 #{-$nanogrid-gutter/2}
+<span class="nc">.row</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="n">table</span>
+  <span class="nl">table-layout</span><span class="p">:</span> <span class="nb">fixed</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="nf">calc</span><span class="p">(</span><span class="m">100%</span> <span class="o">+</span> <span class="si">#{</span><span class="nv">$nanogrid-gutter</span><span class="si">}</span><span class="p">)</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="si">#{</span><span class="o">-</span><span class="nv">$nanogrid-gutter</span><span class="o">/</span><span class="m">2</span><span class="si">}</span>
 
-  .col
-    float: none
-    display: table-cell
-    padding: 0 #{$nanogrid-gutter/2}
-</code></pre>
+  <span class="nc">.col</span>
+    <span class="nl">float</span><span class="p">:</span> <span class="nb">none</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">table-cell</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span> <span class="si">#{</span><span class="nv">$nanogrid-gutter</span><span class="o">/</span><span class="m">2</span><span class="si">}</span>
+</code></pre></div></div>
 
 <p>This introduces the negative margin on the right so it’s best to be aware of it.</p>
 
@@ -236,8 +236,8 @@ once again resort to the power of calc.</p>
 All columns are having equal height and you don’t need clearfix and you can center content vertically.</p>
 
 <p>There are some nuances though as the negative margin should be negated on the right
-if you are using the grid as the top element on the page. Either with an <code>overflow: hidden</code>
-container or <code>body</code> padding.</p>
+if you are using the grid as the top element on the page. Either with an <code class="highlighter-rouge">overflow: hidden</code>
+container or <code class="highlighter-rouge">body</code> padding.</p>
 
 <p>I have set up a homepage for it <a href="http://firedev.github.io/nanogrid"><i class="fa fa-github"></i> firedev/nanogrid</a> so have a look.</p>
 
