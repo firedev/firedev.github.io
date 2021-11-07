@@ -11,3 +11,5 @@ group :jekyll_plugins do
 end
 gem 'pygments.rb'
 gem 'rake'
+
+gem "rouge", "~> 3.26"

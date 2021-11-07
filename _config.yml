@@ -24,4 +24,4 @@ collections:
 tag_title_prefix: ''
 tag_title_suffix: ''
 tag_dir: ''
-highlighter: pygments
+highlighter: rouge
