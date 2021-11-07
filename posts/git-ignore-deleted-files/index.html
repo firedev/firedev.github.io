@@ -155,50 +155,50 @@ background-position: ;
 <div class="mb3">
   <article class="mb3">
     <p>Sometimes working with other people you with you didn’t have some of the files
-in repository because they are getting in the way of your settings. <code>.ruby-version</code>
+in repository because they are getting in the way of your settings. <code class="highlighter-rouge">.ruby-version</code>
 for instance.</p>
 
 <p>You check out the repository and what the…</p>
-<pre><code class="language-sh">$ git clone ...
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone ...
 ...
-rbenv: version '2.1.5' is not installed
-</code></pre>
+rbenv: version <span class="s1">'2.1.5'</span> is not installed
+</code></pre></div></div>
 
-<p>Okay you delete the pesky <code>.ruby-version</code> but now it is there for every commit:</p>
-<pre><code class="language-sh">$ rm .ruby-version
-$ git status
+<p>Okay you delete the pesky <code class="highlighter-rouge">.ruby-version</code> but now it is there for every commit:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">rm</span> .ruby-version
+<span class="nv">$ </span>git status
 On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add/rm &lt;file&gt;..." to update what will be committed)
-  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+Your branch is up-to-date with <span class="s1">'origin/master'</span><span class="nb">.</span>
+Changes not staged <span class="k">for </span>commit:
+  <span class="o">(</span>use <span class="s2">"git add/rm &lt;file&gt;..."</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="k">in </span>working directory<span class="o">)</span>
 
         deleted:    .ruby-version
-</code></pre>
+</code></pre></div></div>
 
-<p>It’s impossible to ignore it by adding to <code>.gitignore</code> but fortunately in git
+<p>It’s impossible to ignore it by adding to <code class="highlighter-rouge">.gitignore</code> but fortunately in git
 there is an option for everything.</p>
 
-<pre><code class="language-sh">$ git update-index --assume-unchanged .ruby-version
-$ git status
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git update-index <span class="nt">--assume-unchanged</span> .ruby-version
+<span class="nv">$ </span>git status
 On branch master
-Your branch is up-to-date with 'origin/master'.
+Your branch is up-to-date with <span class="s1">'origin/master'</span><span class="nb">.</span>
 nothing to commit, working directory clean
-</code></pre>
+</code></pre></div></div>
 
 <p>Done! Phew, at least this wasn’t too much typing, was it? Another option is to truncate the file:</p>
 
-<pre><code class="language-sh">$ cat &gt;&gt; ~/.gitignore
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> <span class="o">&gt;&gt;</span> ~/.gitignore
 .ruby-version
 ^C
-rbenv: version '2.1.5' is not installed
-$ cat &gt; .ruby-version
+rbenv: version <span class="s1">'2.1.5'</span> is not installed
+<span class="nv">$ </span><span class="nb">cat</span> <span class="o">&gt;</span> .ruby-version
 ^C
-$ git status
+<span class="nv">$ </span>git status
 On branch master
-Your branch is up-to-date with 'origin/master'.
+Your branch is up-to-date with <span class="s1">'origin/master'</span><span class="nb">.</span>
 nothing to commit, working directory clean
-</code></pre>
+</code></pre></div></div>
 
 <p>And as always be careful with git, don’t mess things up.</p>
 

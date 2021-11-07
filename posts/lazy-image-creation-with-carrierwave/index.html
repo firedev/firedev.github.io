@@ -194,186 +194,186 @@ image is created. Next time the request comes to this url, nginx takes care of
 serving the static asset.</p>
 
 <p>To start off let’s delay the versions creation until the moment we actually need
-them. Let’s add the <code>now</code> modifier to uploader and make sure no versions are
+them. Let’s add the <code class="highlighter-rouge">now</code> modifier to uploader and make sure no versions are
 created until we say so:</p>
 
-<pre><code class="language-ruby"># app/uploaders/image_uploader.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/uploaders/image_uploader.rb</span>
 
-  version :default, if: :now? do
-    ...
-  end
+  <span class="n">version</span> <span class="ss">:default</span><span class="p">,</span> <span class="ss">if: :now?</span> <span class="k">do</span>
+    <span class="o">...</span>
+  <span class="k">end</span>
 
-  version :featured, if: :now? do
-    ...
-  end
+  <span class="n">version</span> <span class="ss">:featured</span><span class="p">,</span> <span class="ss">if: :now?</span> <span class="k">do</span>
+    <span class="o">...</span>
+  <span class="k">end</span>
 
-  version :thumb, if: :now? do
-    ...
-  end
+  <span class="n">version</span> <span class="ss">:thumb</span><span class="p">,</span> <span class="ss">if: :now?</span> <span class="k">do</span>
+    <span class="o">...</span>
+  <span class="k">end</span>
 
-  def now
-    @now = true
-    self
-  end
+  <span class="k">def</span> <span class="nf">now</span>
+    <span class="vi">@now</span> <span class="o">=</span> <span class="kp">true</span>
+    <span class="nb">self</span>
+  <span class="k">end</span>
 
-  protected
+  <span class="kp">protected</span>
 
-  def now?(_)
-    @now
-  end
-</code></pre>
+  <span class="k">def</span> <span class="nf">now?</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+    <span class="vi">@now</span>
+  <span class="k">end</span>
+</code></pre></div></div>
 
-<p>In the <code>Image</code> class we are going to add a method that actually creates a version.
-All it does - sets <code>@now</code> to <code>true</code> and then calls <code>recreate_versions!</code> for a
-given <code>version</code>. Lazy, not crazy, we don’t want to create anything
+<p>In the <code class="highlighter-rouge">Image</code> class we are going to add a method that actually creates a version.
+All it does - sets <code class="highlighter-rouge">@now</code> to <code class="highlighter-rouge">true</code> and then calls <code class="highlighter-rouge">recreate_versions!</code> for a
+given <code class="highlighter-rouge">version</code>. Lazy, not crazy, we don’t want to create anything
 uncontrollably.</p>
 
-<pre><code class="language-ruby"># app/models/image.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/models/image.rb</span>
 
-  def create_version(process)
-    file.now.recreate_versions!(process)
-  end
-</code></pre>
+  <span class="k">def</span> <span class="nf">create_version</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+    <span class="n">file</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">recreate_versions!</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+  <span class="k">end</span>
+</code></pre></div></div>
 
 <p>I am using almost the out of the box uploader with the small addition.
 Here is an inflector that breaks long id strings so you don’t end up with too
 many images in one folder.</p>
 
-<pre><code class="language-ruby"># lib/inflector.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># lib/inflector.rb</span>
 
-module Inflector
-  def self.call(id)
-    path = ''
-    name = id.to_s.dup
-    (name.size - 2).times { path += name.slice!(0) + '/' }
-    path += id.to_s
-  end
-end
-</code></pre>
+<span class="k">module</span> <span class="nn">Inflector</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="nb">name</span> <span class="o">=</span> <span class="nb">id</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">dup</span>
+    <span class="p">(</span><span class="nb">name</span><span class="p">.</span><span class="nf">size</span> <span class="o">-</span> <span class="mi">2</span><span class="p">).</span><span class="nf">times</span> <span class="p">{</span> <span class="n">path</span> <span class="o">+=</span> <span class="nb">name</span><span class="p">.</span><span class="nf">slice!</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/'</span> <span class="p">}</span>
+    <span class="n">path</span> <span class="o">+=</span> <span class="nb">id</span><span class="p">.</span><span class="nf">to_s</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-<pre><code class="language-ruby"># spec/lib/inflector_spec.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># spec/lib/inflector_spec.rb</span>
 
-require 'spec_helper'
+<span class="nb">require</span> <span class="s1">'spec_helper'</span>
 
-describe Inflector do
+<span class="n">describe</span> <span class="no">Inflector</span> <span class="k">do</span>
 
-  def inflect(id)
-    Inflector.call id
-  end
+  <span class="k">def</span> <span class="nf">inflect</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="no">Inflector</span><span class="p">.</span><span class="nf">call</span> <span class="nb">id</span>
+  <span class="k">end</span>
 
-  specify do
-    expect(inflect 1).to eq('1')
-    expect(inflect 10).to eq('10')
-    expect(inflect 100).to eq('1/100')
-    expect(inflect 1_000).to eq('1/0/1000')
-    expect(inflect 10_000).to eq('1/0/0/10000')
-    expect(inflect 100_000).to eq('1/0/0/0/100000')
-  end
+  <span class="n">specify</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">1</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">'1'</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">10</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">'10'</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">100</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">'1/100'</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">1_000</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">'1/0/1000'</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">10_000</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">'1/0/0/10000'</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">inflect</span> <span class="mi">100_000</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">'1/0/0/0/100000'</span><span class="p">)</span>
+  <span class="k">end</span>
 
-end
-</code></pre>
+<span class="k">end</span>
+</code></pre></div></div>
 
-<p>Here is the <code>store_dir</code> from <code>image_uploader.rb</code>:</p>
+<p>Here is the <code class="highlighter-rouge">store_dir</code> from <code class="highlighter-rouge">image_uploader.rb</code>:</p>
 
-<pre><code class="language-ruby"># app/uploaders/image_uploader.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/uploaders/image_uploader.rb</span>
 
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{Inflector.call model.id}"
-  end
-</code></pre>
+  <span class="k">def</span> <span class="nf">store_dir</span>
+    <span class="s2">"uploads/</span><span class="si">#{</span><span class="n">model</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">underscore</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="no">Inflector</span><span class="p">.</span><span class="nf">call</span> <span class="n">model</span><span class="p">.</span><span class="nf">id</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+</code></pre></div></div>
 
 <p>Let’s write a routing test to make sure requests are landing right at our
-<code>MissingController</code>. Missing like “image is missing”. And test a couple of routes
+<code class="highlighter-rouge">MissingController</code>. Missing like “image is missing”. And test a couple of routes
 with and without inflected paths just to be sure:</p>
 
-<pre><code class="language-ruby"># spec/routing/missing_spec.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># spec/routing/missing_spec.rb</span>
 
-require 'rails_helper'
+<span class="nb">require</span> <span class="s1">'rails_helper'</span>
 
-describe 'Routes', type: :routing do
-  describe 'Missing Image' do
-    specify do
-      expect(
-        get '/uploads/image/40/thumb_5f5e5c3b-a665-494c-9c21-be82d49f6451.jpg'
-      ).to route_to(
-        controller: 'missing',
-        action: 'show',
-        klass: 'image',
-        id: '40',
-        version: 'thumb',
-        file: '5f5e5c3b-a665-494c-9c21-be82d49f6451',
-        format: 'jpg'
-      )
-    end
-  end
+<span class="n">describe</span> <span class="s1">'Routes'</span><span class="p">,</span> <span class="ss">type: :routing</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="s1">'Missing Image'</span> <span class="k">do</span>
+    <span class="n">specify</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span>
+        <span class="n">get</span> <span class="s1">'/uploads/image/40/thumb_5f5e5c3b-a665-494c-9c21-be82d49f6451.jpg'</span>
+      <span class="p">).</span><span class="nf">to</span> <span class="n">route_to</span><span class="p">(</span>
+        <span class="ss">controller: </span><span class="s1">'missing'</span><span class="p">,</span>
+        <span class="ss">action: </span><span class="s1">'show'</span><span class="p">,</span>
+        <span class="ss">klass: </span><span class="s1">'image'</span><span class="p">,</span>
+        <span class="ss">id: </span><span class="s1">'40'</span><span class="p">,</span>
+        <span class="ss">version: </span><span class="s1">'thumb'</span><span class="p">,</span>
+        <span class="ss">file: </span><span class="s1">'5f5e5c3b-a665-494c-9c21-be82d49f6451'</span><span class="p">,</span>
+        <span class="ss">format: </span><span class="s1">'jpg'</span>
+      <span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-  specify do
-    expect(
-      get '/uploads/image/1/0/1003/featured_c3ad3865-93f0-4032-a6fe-5c2ada381456.JPG'
-    ).to route_to(
-      controller: 'missing',
-      action: 'show',
-      klass: 'image',
-      inflection: '1/0',
-      id: '1003',
-      version: 'featured',
-      file: 'c3ad3865-93f0-4032-a6fe-5c2ada381456',
-      format: 'JPG'
-    )
-  end
-end
-</code></pre>
+  <span class="n">specify</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span>
+      <span class="n">get</span> <span class="s1">'/uploads/image/1/0/1003/featured_c3ad3865-93f0-4032-a6fe-5c2ada381456.JPG'</span>
+    <span class="p">).</span><span class="nf">to</span> <span class="n">route_to</span><span class="p">(</span>
+      <span class="ss">controller: </span><span class="s1">'missing'</span><span class="p">,</span>
+      <span class="ss">action: </span><span class="s1">'show'</span><span class="p">,</span>
+      <span class="ss">klass: </span><span class="s1">'image'</span><span class="p">,</span>
+      <span class="ss">inflection: </span><span class="s1">'1/0'</span><span class="p">,</span>
+      <span class="ss">id: </span><span class="s1">'1003'</span><span class="p">,</span>
+      <span class="ss">version: </span><span class="s1">'featured'</span><span class="p">,</span>
+      <span class="ss">file: </span><span class="s1">'c3ad3865-93f0-4032-a6fe-5c2ada381456'</span><span class="p">,</span>
+      <span class="ss">format: </span><span class="s1">'JPG'</span>
+    <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Okay now it’s time to make a route. Fortunately we can use constraints to make
 matters easier for everybody. Rails doesn’t have to think how to parse it and
 here is what I came up with:</p>
 
-<pre><code class="language-ruby"># config/routes.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/routes.rb</span>
 
-# /uploads/block/image/1/default_7fd5acc8-5c06-4dcc-955e-f4fc5f76be01.jpg
-get 'uploads/:klass/(*inflection)/:id/(:version)_(:file)',
-    to: 'missing#show',
-    constraints: {
-        klass: /\D*/,   # anything but numbers
-        id: /\d*/       # numbers only
-    }
-</code></pre>
+<span class="c1"># /uploads/block/image/1/default_7fd5acc8-5c06-4dcc-955e-f4fc5f76be01.jpg</span>
+<span class="n">get</span> <span class="s1">'uploads/:klass/(*inflection)/:id/(:version)_(:file)'</span><span class="p">,</span>
+    <span class="ss">to: </span><span class="s1">'missing#show'</span><span class="p">,</span>
+    <span class="ss">constraints: </span><span class="p">{</span>
+        <span class="ss">klass: </span><span class="sr">/\D*/</span><span class="p">,</span>   <span class="c1"># anything but numbers</span>
+        <span class="ss">id: </span><span class="sr">/\d*/</span>       <span class="c1"># numbers only</span>
+    <span class="p">}</span>
+</code></pre></div></div>
 
-<p>And the <code>MissingController</code> itself:</p>
+<p>And the <code class="highlighter-rouge">MissingController</code> itself:</p>
 
-<pre><code class="language-ruby"># app/controllers/missing_controller.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controllers/missing_controller.rb</span>
 
-class MissingController &lt; ApplicationController
-  def show
-    redirect_to env['PATH_INFO'] if create_version
-  end
+<span class="k">class</span> <span class="nc">MissingController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="n">redirect_to</span> <span class="n">env</span><span class="p">[</span><span class="s1">'PATH_INFO'</span><span class="p">]</span> <span class="k">if</span> <span class="n">create_version</span>
+  <span class="k">end</span>
 
-  private
+  <span class="kp">private</span>
 
-  def create_version
-    image.create_version(version)
-  end
+  <span class="k">def</span> <span class="nf">create_version</span>
+    <span class="n">image</span><span class="p">.</span><span class="nf">create_version</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+  <span class="k">end</span>
 
-  def image
-    params[:klass].camelize.constantize.find(params[:id])
-  end
+  <span class="k">def</span> <span class="nf">image</span>
+    <span class="n">params</span><span class="p">[</span><span class="ss">:klass</span><span class="p">].</span><span class="nf">camelize</span><span class="p">.</span><span class="nf">constantize</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+  <span class="k">end</span>
 
-  def version
-    params[:version].to_sym
-  end
-end
-</code></pre>
+  <span class="k">def</span> <span class="nf">version</span>
+    <span class="n">params</span><span class="p">[</span><span class="ss">:version</span><span class="p">].</span><span class="nf">to_sym</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-<p>All it does - creates a version according to <code>params</code> and once image is created
+<p>All it does - creates a version according to <code class="highlighter-rouge">params</code> and once image is created
 the same url is being requested again. But this time the created image will be
 served by nginx on top of the Rails app.</p>
 
 <h2 id="nginx">Nginx</h2>
 
-<p>If you have any special settings for static files in <code>uploads</code> folder you might
+<p>If you have any special settings for static files in <code class="highlighter-rouge">uploads</code> folder you might
 want to amend your nginx config for the given site like so:</p>
 
-<pre><code>; /etc/nginx/sites-available/site
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>; /etc/nginx/sites-available/site
 
 location ^~ /uploads/ {
     ...
@@ -383,52 +383,52 @@ location ^~ /uploads/ {
 location @backend {
       proxy_pass ...
 }
-</code></pre>
+</code></pre></div></div>
 
 <h2 id="broken-images">Broken Images</h2>
 
 <p>Say you have some broken images that can’t be recreated and causing errors. Let’s
-get rid of them automatically. Via some augmentation of our <code>MissingController</code>
+get rid of them automatically. Via some augmentation of our <code class="highlighter-rouge">MissingController</code>
 we can do that now.</p>
 
 <p>I would suggest to add some default “broken” image to
-<code>/assets/images/layout/missing_image.png</code>
-so you can see any sign that the image is deleted. Then we are changing the <code>show</code> method:</p>
+<code class="highlighter-rouge">/assets/images/layout/missing_image.png</code>
+so you can see any sign that the image is deleted. Then we are changing the <code class="highlighter-rouge">show</code> method:</p>
 
-<pre><code class="language-ruby"># app/controller/missing_controller.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controller/missing_controller.rb</span>
 
-class MissingController &lt; ApplicationController
+<span class="k">class</span> <span class="nc">MissingController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
 
-  EXCEPTIONS = [
-    Errno::ENOENT, # Original Image not found
-    CarrierWave::ProcessingError # Image is broken
-  ]
+  <span class="no">EXCEPTIONS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="no">Errno</span><span class="o">::</span><span class="no">ENOENT</span><span class="p">,</span> <span class="c1"># Original Image not found</span>
+    <span class="no">CarrierWave</span><span class="o">::</span><span class="no">ProcessingError</span> <span class="c1"># Image is broken</span>
+  <span class="p">]</span>
 
-  def show
-    redirect_to env['PATH_INFO'] if create_version
-  rescue *EXCEPTIONS
-    image.destroy
-    redirect_to self.class.helpers.asset_url('layout/missing_image.png')
-  end
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="n">redirect_to</span> <span class="n">env</span><span class="p">[</span><span class="s1">'PATH_INFO'</span><span class="p">]</span> <span class="k">if</span> <span class="n">create_version</span>
+  <span class="k">rescue</span> <span class="o">*</span><span class="no">EXCEPTIONS</span>
+    <span class="n">image</span><span class="p">.</span><span class="nf">destroy</span>
+    <span class="n">redirect_to</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_url</span><span class="p">(</span><span class="s1">'layout/missing_image.png'</span><span class="p">)</span>
+  <span class="k">end</span>
 
-  private
+  <span class="kp">private</span>
 
-  def create_version
-    image.create_version(version)
-  end
+  <span class="k">def</span> <span class="nf">create_version</span>
+    <span class="n">image</span><span class="p">.</span><span class="nf">create_version</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+  <span class="k">end</span>
 
-  def image
-    params[:klass].camelize.constantize.find(params[:id])
-  end
+  <span class="k">def</span> <span class="nf">image</span>
+    <span class="n">params</span><span class="p">[</span><span class="ss">:klass</span><span class="p">].</span><span class="nf">camelize</span><span class="p">.</span><span class="nf">constantize</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+  <span class="k">end</span>
 
-  def version
-    params[:version].to_sym
-  end
-end
-</code></pre>
+  <span class="k">def</span> <span class="nf">version</span>
+    <span class="n">params</span><span class="p">[</span><span class="ss">:version</span><span class="p">].</span><span class="nf">to_sym</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Now you have fast upload, delayed image creation and the nice part is that you
-can delete the whole <code>uploads</code> folder. Versions will be re-created.
+can delete the whole <code class="highlighter-rouge">uploads</code> folder. Versions will be re-created.
 You can change formats on-the-fly when design changes. Broken files will be
 automatically deleted as well. In other words – you don’t need to worry about images.</p>
 

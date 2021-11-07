@@ -160,86 +160,86 @@ interesting side-effect. Welcome Bottomless Hash.</p>
 
 <p>Let’s try assigning ‘through’ a key in plain old Ruby first.</p>
 
-<pre><code class="language-ruby">params = {}
-params[:world][:russia] = :moscow
-=&gt; NoMethodError: undefined method `[]=' for nil:NilClass
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">params</span><span class="p">[</span><span class="ss">:world</span><span class="p">][</span><span class="ss">:russia</span><span class="p">]</span> <span class="o">=</span> <span class="ss">:moscow</span>
+<span class="o">=&gt;</span> <span class="no">NoMethodError</span><span class="p">:</span> <span class="n">undefined</span> <span class="nb">method</span> <span class="sb">`[]=' for nil:NilClass
+</span></code></pre></div></div>
 
 <p>Okay, it doesn’t work like this. Fortunately Hashes in Ruby can be initialized
 with a default value. First thing to try seems quite obvious. Let’s put an
 empty hash as a default value.</p>
 
-<pre><code class="language-ruby">params = Hash.new({})
-params[:world][:russia] = :moscow
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span><span class="p">({})</span>
+<span class="n">params</span><span class="p">[</span><span class="ss">:world</span><span class="p">][</span><span class="ss">:russia</span><span class="p">]</span> <span class="o">=</span> <span class="ss">:moscow</span>
 
-params[:world]
-=&gt; {:russia=&gt;:moscow}
-</code></pre>
+<span class="n">params</span><span class="p">[</span><span class="ss">:world</span><span class="p">]</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:russia</span><span class="o">=&gt;</span><span class="ss">:moscow</span><span class="p">}</span>
+</code></pre></div></div>
 
 <p>Seems legit. But let’s dig a little deeper.</p>
 
-<pre><code class="language-ruby">params[:world][:thailand]=:bangkok
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span><span class="p">[</span><span class="ss">:world</span><span class="p">][</span><span class="ss">:thailand</span><span class="p">]</span><span class="o">=</span><span class="ss">:bangkok</span>
 
-params
-=&gt; {}
-</code></pre>
+<span class="n">params</span>
+<span class="o">=&gt;</span> <span class="p">{}</span>
+</code></pre></div></div>
 
 <p>Why is it empty? Let’s add more stuff to it.</p>
 
-<pre><code class="language-ruby">params[:underworld]=:hell
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span><span class="p">[</span><span class="ss">:underworld</span><span class="p">]</span><span class="o">=</span><span class="ss">:hell</span>
 
-params
-=&gt; {:underworld=&gt;:hell}
-</code></pre>
+<span class="n">params</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:underworld</span><span class="o">=&gt;</span><span class="ss">:hell</span><span class="p">}</span>
+</code></pre></div></div>
 
-<p>What is going on? Some wicked magic? Not quite. First the <code>:world</code> key was initialized
+<p>What is going on? Some wicked magic? Not quite. First the <code class="highlighter-rouge">:world</code> key was initialized
 with the same empty Hash that we put as a default value. It is easy to access still,
 since the same Hash is returned when the key is empty. However now all our cities
 are available in both worlds.</p>
 
-<pre><code class="language-ruby">params[:world][:thailand]
-=&gt; :bangkok
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span><span class="p">[</span><span class="ss">:world</span><span class="p">][</span><span class="ss">:thailand</span><span class="p">]</span>
+<span class="o">=&gt;</span> <span class="ss">:bangkok</span>
 
-params[:underworlds][:russia]
-=&gt; :moscow
-</code></pre>
+<span class="n">params</span><span class="p">[</span><span class="ss">:underworlds</span><span class="p">][</span><span class="ss">:russia</span><span class="p">]</span>
+<span class="o">=&gt;</span> <span class="ss">:moscow</span>
+</code></pre></div></div>
 
 <p>Okay, we got to fix it. To initialize new hash for values we need to pass a block.
-Block accepts two variables - the <code>hash</code> itself and the <code>key</code> it was accessed with.
+Block accepts two variables - the <code class="highlighter-rouge">hash</code> itself and the <code class="highlighter-rouge">key</code> it was accessed with.
 Lets just inject new empty hash as a value for the key.</p>
 
-<pre><code class="language-ruby">params = Hash.new do |hash, key|
-  hash[key] = Hash.new
-end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="nb">hash</span><span class="p">,</span> <span class="n">key</span><span class="o">|</span>
+  <span class="nb">hash</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span>
+<span class="k">end</span>
 
-params[:world][:thailand]=:phuket
+<span class="n">params</span><span class="p">[</span><span class="ss">:world</span><span class="p">][</span><span class="ss">:thailand</span><span class="p">]</span><span class="o">=</span><span class="ss">:phuket</span>
 
-params
-=&gt; {:world=&gt;{:thailand=&gt;:phuket}}
-</code></pre>
+<span class="n">params</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:world</span><span class="o">=&gt;</span><span class="p">{</span><span class="ss">:thailand</span><span class="o">=&gt;</span><span class="ss">:phuket</span><span class="p">}}</span>
+</code></pre></div></div>
 
 <p>Amazing. Okay but what if we need to add another level?</p>
 
-<pre><code class="language-ruby">params[:asia][:thailand][:bangkok] = :chao_praya
-=&gt; NoMethodError: undefined method `[]=' for nil:NilClass
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span><span class="p">[</span><span class="ss">:asia</span><span class="p">][</span><span class="ss">:thailand</span><span class="p">][</span><span class="ss">:bangkok</span><span class="p">]</span> <span class="o">=</span> <span class="ss">:chao_praya</span>
+<span class="o">=&gt;</span> <span class="no">NoMethodError</span><span class="p">:</span> <span class="n">undefined</span> <span class="nb">method</span> <span class="sb">`[]=' for nil:NilClass
+</span></code></pre></div></div>
 
 <p>Oh no, not again. What can we do? Let’s add another layer! So the nested Hash
 could in turn create more hashes:</p>
 
-<pre><code class="language-ruby">params = Hash.new do |hash0, key0|
-  hash0[key0] = Hash.new do |hash1, key1|
-    hash1[key1] = Hash.new
-  end
-end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">hash0</span><span class="p">,</span> <span class="n">key0</span><span class="o">|</span>
+  <span class="n">hash0</span><span class="p">[</span><span class="n">key0</span><span class="p">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">hash1</span><span class="p">,</span> <span class="n">key1</span><span class="o">|</span>
+    <span class="n">hash1</span><span class="p">[</span><span class="n">key1</span><span class="p">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-params[:asia][:thailand][:moscow] = :moscow_river
-</code></pre>
+<span class="n">params</span><span class="p">[</span><span class="ss">:asia</span><span class="p">][</span><span class="ss">:thailand</span><span class="p">][</span><span class="ss">:moscow</span><span class="p">]</span> <span class="o">=</span> <span class="ss">:moscow_river</span>
+</code></pre></div></div>
 <p>It works! But what if the rabbit hole is <em>even</em> deeper?</p>
 
-<pre><code class="language-ruby">params[:asia][:thailand][:bangkok][:river] = :chao_praya
-=&gt; NoMethodError: undefined method `[]=' for nil:NilClass
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span><span class="p">[</span><span class="ss">:asia</span><span class="p">][</span><span class="ss">:thailand</span><span class="p">][</span><span class="ss">:bangkok</span><span class="p">][</span><span class="ss">:river</span><span class="p">]</span> <span class="o">=</span> <span class="ss">:chao_praya</span>
+<span class="o">=&gt;</span> <span class="no">NoMethodError</span><span class="p">:</span> <span class="n">undefined</span> <span class="nb">method</span> <span class="sb">`[]=' for nil:NilClass
+</span></code></pre></div></div>
 
 <p>Okay, have to solve this once and for all. Let’s throw some functional
 programming in the mix and see where it takes us. What we need is a kind of
@@ -247,142 +247,142 @@ procedure that would return a new hash with the same procedure hidden inside
 waiting for an empty key to come in.</p>
 
 <p>What would such procedure look like? Quite familiar in fact. We just need to
-pack it with <code>&amp;</code> symbol-to-proc pretzel to shove into Hash initializer.</p>
+pack it with <code class="highlighter-rouge">&amp;</code> symbol-to-proc pretzel to shove into Hash initializer.</p>
 
-<pre><code class="language-ruby">procedure = lambda do |hash, key|
-  hash[key] = Hash.new(procedure)
-end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">procedure</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="k">do</span> <span class="o">|</span><span class="nb">hash</span><span class="p">,</span> <span class="n">key</span><span class="o">|</span>
+  <span class="nb">hash</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">procedure</span><span class="p">)</span>
+<span class="k">end</span>
 
-params = Hash.new(&amp;procedure)
-params[:russia][:moscow] = :moscow_river
-params
-=&gt; {:russia=&gt;{:moscow=&gt;:moscow_river}}
-</code></pre>
+<span class="n">params</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">procedure</span><span class="p">)</span>
+<span class="n">params</span><span class="p">[</span><span class="ss">:russia</span><span class="p">][</span><span class="ss">:moscow</span><span class="p">]</span> <span class="o">=</span> <span class="ss">:moscow_river</span>
+<span class="n">params</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:russia</span><span class="o">=&gt;</span><span class="p">{</span><span class="ss">:moscow</span><span class="o">=&gt;</span><span class="ss">:moscow_river</span><span class="p">}}</span>
+</code></pre></div></div>
 
 <p>Okay, that part is solved, now lets tie it a little tighter so we don’t need to
-create lambda beforehand. Ruby Hash sports <code>default_proc</code> method that can
+create lambda beforehand. Ruby Hash sports <code class="highlighter-rouge">default_proc</code> method that can
 be used to access the block hash was initialized with. Thank makes it super sweet,
 thanks Pavel for pointing me on that.</p>
 
-<pre><code class="language-ruby">params = Hash.new { |h, k| h[k] = Hash.new(&amp;h.default_proc) }
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">h</span><span class="p">,</span> <span class="n">k</span><span class="o">|</span> <span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">h</span><span class="p">.</span><span class="nf">default_proc</span><span class="p">)</span> <span class="p">}</span>
 
-params[:world][:thailand][:bangkok][:bangna]
-params
-=&gt; {:world=&gt;{:thailand=&gt;{:bangkok=&gt;{:bangna=&gt;{}}}}}
-</code></pre>
+<span class="n">params</span><span class="p">[</span><span class="ss">:world</span><span class="p">][</span><span class="ss">:thailand</span><span class="p">][</span><span class="ss">:bangkok</span><span class="p">][</span><span class="ss">:bangna</span><span class="p">]</span>
+<span class="n">params</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:world</span><span class="o">=&gt;</span><span class="p">{</span><span class="ss">:thailand</span><span class="o">=&gt;</span><span class="p">{</span><span class="ss">:bangkok</span><span class="o">=&gt;</span><span class="p">{</span><span class="ss">:bangna</span><span class="o">=&gt;</span><span class="p">{}}}}}</span>
+</code></pre></div></div>
 
 <p>This is sweet, but what is the practical point of bottomless hash? Interesting
 side-effect is that it never fails you when reading values.</p>
 
-<pre><code class="language-ruby">params[:i][:dont][:know]
-=&gt; {}
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span><span class="p">[</span><span class="ss">:i</span><span class="p">][</span><span class="ss">:dont</span><span class="p">][</span><span class="ss">:know</span><span class="p">]</span>
+<span class="o">=&gt;</span> <span class="p">{}</span>
+</code></pre></div></div>
 
 <p>And the beauty of this is that you can merge any hash with it to produce
 a bottomless version. So you can blindly access the keys.</p>
 
-<pre><code class="language-ruby">unknown = { key: :value }
-bottomless = params.merge other
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">unknown</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">key: :value</span> <span class="p">}</span>
+<span class="n">bottomless</span> <span class="o">=</span> <span class="n">params</span><span class="p">.</span><span class="nf">merge</span> <span class="n">other</span>
 
-bottomless[:missing][:value]
-=&gt; {}
-</code></pre>
+<span class="n">bottomless</span><span class="p">[</span><span class="ss">:missing</span><span class="p">][</span><span class="ss">:value</span><span class="p">]</span>
+<span class="o">=&gt;</span> <span class="p">{}</span>
+</code></pre></div></div>
 
 <p>No matter how long the chain is, bottomless hash won’t raise an error. Okay, it returns
-and empty hash instead of <code>nil</code>, which is truthy. But this can be checked with
-<code>empty?</code> even in plain ruby.</p>
+and empty hash instead of <code class="highlighter-rouge">nil</code>, which is truthy. But this can be checked with
+<code class="highlighter-rouge">empty?</code> even in plain ruby.</p>
 
 <p>As it was mentioned in comments we can encapsulated the behaviour into a Class that would
 return an empty Bottomless hash or convert a given hash into a bottomless version:</p>
 
-<pre><code class="language-ruby">class BottomlessHash &lt; Hash
-  def initialize
-    super &amp;-&gt; h, k { h[k] = self.class.new }
-  end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BottomlessHash</span> <span class="o">&lt;</span> <span class="no">Hash</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="k">super</span> <span class="o">&amp;-&gt;</span> <span class="n">h</span><span class="p">,</span> <span class="n">k</span> <span class="p">{</span> <span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
+  <span class="k">end</span>
 
-  def self.from_hash(hash)
-    new.merge(hash)
-  end
-end
-</code></pre>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">from_hash</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+    <span class="n">new</span><span class="p">.</span><span class="nf">merge</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>And some tests for the good night sleep:</p>
 
-<pre><code class="language-ruby">class BottomlessHash &lt; Hash
-  def initialize
-    super &amp;-&gt; h, k { h[k] = self.class.new }
-  end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BottomlessHash</span> <span class="o">&lt;</span> <span class="no">Hash</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="k">super</span> <span class="o">&amp;-&gt;</span> <span class="n">h</span><span class="p">,</span> <span class="n">k</span> <span class="p">{</span> <span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
+  <span class="k">end</span>
 
-  def self.from_hash(hash)
-    new.merge(hash)
-  end
-end
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">from_hash</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+    <span class="n">new</span><span class="p">.</span><span class="nf">merge</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-class Hash
-  def bottomless
-    BottomlessHash.from_hash(self)
-  end
-end
+<span class="k">class</span> <span class="nc">Hash</span>
+  <span class="k">def</span> <span class="nf">bottomless</span>
+    <span class="no">BottomlessHash</span><span class="p">.</span><span class="nf">from_hash</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-describe BottomlessHash do
-  subject { described_class.new }
+<span class="n">describe</span> <span class="no">BottomlessHash</span> <span class="k">do</span>
+  <span class="n">subject</span> <span class="p">{</span> <span class="n">described_class</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
 
-  it 'does not raise on missing key' do
-    expect do
-      subject[:missing][:key]
-    end.to_not raise_error
-  end
+  <span class="n">it</span> <span class="s1">'does not raise on missing key'</span> <span class="k">do</span>
+    <span class="n">expect</span> <span class="k">do</span>
+      <span class="n">subject</span><span class="p">[</span><span class="ss">:missing</span><span class="p">][</span><span class="ss">:key</span><span class="p">]</span>
+    <span class="k">end</span><span class="p">.</span><span class="nf">to_not</span> <span class="n">raise_error</span>
+  <span class="k">end</span>
 
-  it 'returns an empty value on missing key' do
-    expect(subject[:missing][:key]).to be_empty
-  end
+  <span class="n">it</span> <span class="s1">'returns an empty value on missing key'</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">[</span><span class="ss">:missing</span><span class="p">][</span><span class="ss">:key</span><span class="p">]).</span><span class="nf">to</span> <span class="n">be_empty</span>
+  <span class="k">end</span>
 
-  it 'stores and returns keys' do
-    subject[:existing][:key] = :value
-    expect(subject[:existing][:key]).to eq :value
-  end
+  <span class="n">it</span> <span class="s1">'stores and returns keys'</span> <span class="k">do</span>
+    <span class="n">subject</span><span class="p">[</span><span class="ss">:existing</span><span class="p">][</span><span class="ss">:key</span><span class="p">]</span> <span class="o">=</span> <span class="ss">:value</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">[</span><span class="ss">:existing</span><span class="p">][</span><span class="ss">:key</span><span class="p">]).</span><span class="nf">to</span> <span class="n">eq</span> <span class="ss">:value</span>
+  <span class="k">end</span>
 
-  describe '#from_hash' do
-    let (:hash) do
-      { existing: { key: { value: :hello } } }
-    end
+  <span class="n">describe</span> <span class="s1">'#from_hash'</span> <span class="k">do</span>
+    <span class="n">let</span> <span class="p">(</span><span class="ss">:hash</span><span class="p">)</span> <span class="k">do</span>
+      <span class="p">{</span> <span class="ss">existing: </span><span class="p">{</span> <span class="ss">key: </span><span class="p">{</span> <span class="ss">value: :hello</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+    <span class="k">end</span>
 
-    subject do
-      described_class.from_hash(hash)
-    end
+    <span class="n">subject</span> <span class="k">do</span>
+      <span class="n">described_class</span><span class="p">.</span><span class="nf">from_hash</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+    <span class="k">end</span>
 
-    it 'returns old hash values' do
-      expect(subject[:existing][:key][:value]).to eq :hello
-    end
+    <span class="n">it</span> <span class="s1">'returns old hash values'</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">[</span><span class="ss">:existing</span><span class="p">][</span><span class="ss">:key</span><span class="p">][</span><span class="ss">:value</span><span class="p">]).</span><span class="nf">to</span> <span class="n">eq</span> <span class="ss">:hello</span>
+    <span class="k">end</span>
 
-    it 'provides a bottomless version' do
-      expect(subject[:missing][:key]).to be_empty
-    end
+    <span class="n">it</span> <span class="s1">'provides a bottomless version'</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">[</span><span class="ss">:missing</span><span class="p">][</span><span class="ss">:key</span><span class="p">]).</span><span class="nf">to</span> <span class="n">be_empty</span>
+    <span class="k">end</span>
 
-    it 'stores and returns new values' do
-      subject[:existing][:key] = :value
-      expect(subject[:existing][:key]).to eq :value
-    end
+    <span class="n">it</span> <span class="s1">'stores and returns new values'</span> <span class="k">do</span>
+      <span class="n">subject</span><span class="p">[</span><span class="ss">:existing</span><span class="p">][</span><span class="ss">:key</span><span class="p">]</span> <span class="o">=</span> <span class="ss">:value</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">[</span><span class="ss">:existing</span><span class="p">][</span><span class="ss">:key</span><span class="p">]).</span><span class="nf">to</span> <span class="n">eq</span> <span class="ss">:value</span>
+    <span class="k">end</span>
 
-    it 'converts nested hashes as well' do
-      expect do
-        subject[:existing][:key][:missing]
-      end.to_not raise_error
-    end
-  end
-end
+    <span class="n">it</span> <span class="s1">'converts nested hashes as well'</span> <span class="k">do</span>
+      <span class="n">expect</span> <span class="k">do</span>
+        <span class="n">subject</span><span class="p">[</span><span class="ss">:existing</span><span class="p">][</span><span class="ss">:key</span><span class="p">][</span><span class="ss">:missing</span><span class="p">]</span>
+      <span class="k">end</span><span class="p">.</span><span class="nf">to_not</span> <span class="n">raise_error</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-</code></pre>
+</code></pre></div></div>
 
-<p>And an ActiveSupport-like extension for the Hash class so you can call <code>.bottomless</code> on
+<p>And an ActiveSupport-like extension for the Hash class so you can call <code class="highlighter-rouge">.bottomless</code> on
 any hash in the system. Thanks Patrick!</p>
 
-<pre><code class="language-ruby">class Hash
-  def bottomless
-    BottomlessHash.from_hash(self)
-  end
-end
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Hash</span>
+  <span class="k">def</span> <span class="nf">bottomless</span>
+    <span class="no">BottomlessHash</span><span class="p">.</span><span class="nf">from_hash</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Hope this little experiment might get useful for data processing or when dealing with unknown
 nested structures from the outside world.</p>

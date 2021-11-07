@@ -203,7 +203,7 @@ background-position: ;
 
 <h2 id="models-hierarchy">Models Hierarchy</h2>
 
-<pre><code>models/
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>models/
   blog_post/
     category.rb
     vote.rb
@@ -217,155 +217,155 @@ background-position: ;
   course/
     build.rb
     challenge.rb
-</code></pre>
+</code></pre></div></div>
 
-<pre><code class="language-ruby"># app/models/course/challenge.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/models/course/challenge.rb</span>
 
-class Course::Challenge &lt; ApplicationRecord
-  validates :exercise
-  belongs_to :exercise, inverse_of: :course_challenge
-  belongs_to :course
-  ...
-end
-</code></pre>
+<span class="k">class</span> <span class="nc">Course::Challenge</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">validates</span> <span class="ss">:exercise</span>
+  <span class="n">belongs_to</span> <span class="ss">:exercise</span><span class="p">,</span> <span class="ss">inverse_of: :course_challenge</span>
+  <span class="n">belongs_to</span> <span class="ss">:course</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="state-machines">State machines</h2>
 
 <ul>
-  <li><a href="https://github.com/aasm/aasm"><code>aasm</code></a></li>
+  <li><a href="https://github.com/aasm/aasm"><code class="highlighter-rouge">aasm</code></a></li>
 </ul>
 
-<pre><code class="language-ruby">state_machine :stripe_state, initial: synchronized, namespace: stripe do
-  state :synchronized
-  state :synchronizing
-  state :invalidated
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">state_machine</span> <span class="ss">:stripe_state</span><span class="p">,</span> <span class="ss">initial: </span><span class="n">synchronized</span><span class="p">,</span> <span class="ss">namespace: </span><span class="n">stripe</span> <span class="k">do</span>
+  <span class="n">state</span> <span class="ss">:synchronized</span>
+  <span class="n">state</span> <span class="ss">:synchronizing</span>
+  <span class="n">state</span> <span class="ss">:invalidated</span>
 
-  event :invalidate do
-    transition all: :invalidated
-  end
+  <span class="n">event</span> <span class="ss">:invalidate</span> <span class="k">do</span>
+    <span class="n">transition</span> <span class="ss">all: :invalidated</span>
+  <span class="k">end</span>
 
-  event :synchronize do
-    transition invalidated: :synchronized
-  end
+  <span class="n">event</span> <span class="ss">:synchronize</span> <span class="k">do</span>
+    <span class="n">transition</span> <span class="ss">invalidated: :synchronized</span>
+  <span class="k">end</span>
 
-  event :mark_as_synchronized do
-    transition synchonizing: :synchronized
-  end
-end
-</code></pre>
+  <span class="n">event</span> <span class="ss">:mark_as_synchronized</span> <span class="k">do</span>
+    <span class="n">transition</span> <span class="ss">synchonizing: :synchronized</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="repositories">Repositories</h2>
 
-<pre><code class="language-ruby"># app/repositories/lesson_repository.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/repositories/lesson_repository.rb</span>
 
-module LessonRepository
-  extend ActiveSupport::Concern
-  include StateMachine
+<span class="k">module</span> <span class="nn">LessonRepository</span>
+  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
+  <span class="kp">include</span> <span class="no">StateMachine</span>
 
-  included do
-    scope :web, -&gt; { approved.joins(:course).merge(Course.web) }
-    scope :with_locale, -&gt;(locale) { joins(:course).where(courses: { locale: locale }) }
-    scope :with_members, -&gt; { joins("...") }
-    ...
-</code></pre>
+  <span class="n">included</span> <span class="k">do</span>
+    <span class="n">scope</span> <span class="ss">:web</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">approved</span><span class="p">.</span><span class="nf">joins</span><span class="p">(</span><span class="ss">:course</span><span class="p">).</span><span class="nf">merge</span><span class="p">(</span><span class="no">Course</span><span class="p">.</span><span class="nf">web</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">scope</span> <span class="ss">:with_locale</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">locale</span><span class="p">)</span> <span class="p">{</span> <span class="n">joins</span><span class="p">(</span><span class="ss">:course</span><span class="p">).</span><span class="nf">where</span><span class="p">(</span><span class="ss">courses: </span><span class="p">{</span> <span class="ss">locale: </span><span class="n">locale</span> <span class="p">})</span> <span class="p">}</span>
+    <span class="n">scope</span> <span class="ss">:with_members</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">joins</span><span class="p">(</span><span class="s2">"..."</span><span class="p">)</span> <span class="p">}</span>
+    <span class="o">...</span>
+</code></pre></div></div>
 
 <h2 id="presenters">Presenters</h2>
 
-<pre><code class="language-ruby"># app/presenters/user_presenter.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/presenters/user_presenter.rb</span>
 
-module UserPresenter
-  def public_name
-    return full_name if full_name.present?
-    return username if username?
-  end
-</code></pre>
+<span class="k">module</span> <span class="nn">UserPresenter</span>
+  <span class="k">def</span> <span class="nf">public_name</span>
+    <span class="k">return</span> <span class="n">full_name</span> <span class="k">if</span> <span class="n">full_name</span><span class="p">.</span><span class="nf">present?</span>
+    <span class="k">return</span> <span class="n">username</span> <span class="k">if</span> <span class="n">username?</span>
+  <span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="forms-validation-and-data-normalization">Forms Validation and Data Normalization</h2>
 
 <ul>
-  <li><a href="https://github.com/Hexlet/active_form_model"><code>active_form_model</code></a></li>
+  <li><a href="https://github.com/Hexlet/active_form_model"><code class="highlighter-rouge">active_form_model</code></a></li>
 </ul>
 
-<pre><code class="language-ruby"># app/forms/user/sign_up_form.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/forms/user/sign_up_form.rb</span>
 
-class User::SignUpForm &lt; User
-  include ActiveFormModel
+<span class="k">class</span> <span class="nc">User::SignUpForm</span> <span class="o">&lt;</span> <span class="no">User</span>
+  <span class="kp">include</span> <span class="no">ActiveFormModel</span>
 
-  permit :email, :password, :first_name
+  <span class="n">permit</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:first_name</span>
 
-  validates :password, presence: true, length: { minimum: 8 }
+  <span class="n">validates</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">length: </span><span class="p">{</span> <span class="ss">minimum: </span><span class="mi">8</span> <span class="p">}</span>
 
-  def email=(email)
-    if email.present?
-      write_attribute(:email, email.downcase)
-    else
-      super
-    end
-  end
-end
-</code></pre>
+  <span class="k">def</span> <span class="nf">email</span><span class="o">=</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">email</span><span class="p">.</span><span class="nf">present?</span>
+      <span class="n">write_attribute</span><span class="p">(</span><span class="ss">:email</span><span class="p">,</span> <span class="n">email</span><span class="p">.</span><span class="nf">downcase</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="k">super</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="controllers-hierarchy">Controllers Hierarchy</h2>
 
-<pre><code>controllers/
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>controllers/
   web/
     projects/
       members/
         comments_controller.rb
     application_controller.rb
   application_controller.rb
-</code></pre>
+</code></pre></div></div>
 
-<pre><code class="language-ruby"># app/controllers/web/projects/members/comments_controller.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controllers/web/projects/members/comments_controller.rb</span>
 
-class Web::Projects::Members::CommentsController &lt; Web::ApplicationController
-  ...
-</code></pre>
+<span class="k">class</span> <span class="nc">Web::Projects::Members::CommentsController</span> <span class="o">&lt;</span> <span class="no">Web</span><span class="o">::</span><span class="no">ApplicationController</span>
+  <span class="o">...</span>
+</code></pre></div></div>
 
 <h2 id="authorization">Authorization</h2>
 
 <p>Layer above models</p>
 
 <ul>
-  <li><a href="https://github.com/varvet/pundit"><code>pundit</code></a></li>
+  <li><a href="https://github.com/varvet/pundit"><code class="highlighter-rouge">pundit</code></a></li>
 </ul>
 
-<pre><code class="language-ruby"># app/policies/resume/answer/comment_policy.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/policies/resume/answer/comment_policy.rb</span>
 
-class Resume::Answer::CommentPolicy &lt; ApplicationPolicy
-  def edit?
-    author?
-  end
+<span class="k">class</span> <span class="nc">Resume::Answer::CommentPolicy</span> <span class="o">&lt;</span> <span class="no">ApplicationPolicy</span>
+  <span class="k">def</span> <span class="nf">edit?</span>
+    <span class="n">author?</span>
+  <span class="k">end</span>
 
-  def destroy?
-    author?
-  end
+  <span class="k">def</span> <span class="nf">destroy?</span>
+    <span class="n">author?</span>
+  <span class="k">end</span>
 
-  def update?
-    author?
-  end
-end
-</code></pre>
+  <span class="k">def</span> <span class="nf">update?</span>
+    <span class="n">author?</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="mutators">Mutators</h2>
 
 <ul>
   <li>Callbacks replacement.</li>
-  <li>Anything more complex than <code>create(params)</code> goes to mutators.</li>
+  <li>Anything more complex than <code class="highlighter-rouge">create(params)</code> goes to mutators.</li>
   <li>Nothing except working with entity</li>
 </ul>
 
-<pre><code class="language-ruby"># app/mutators/resume/answer_mutator.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/mutators/resume/answer_mutator.rb</span>
 
-module Resume::AnswerMutator
-  def self.create(resume, params, current_user)
-    answer = resume.answers.build params
-    answer.user = current_user
-    resume.user.notifications.create!(kind: :new_answer, resource: answer) if answer.save
-    answer
-  end
-end
-</code></pre>
+<span class="k">module</span> <span class="nn">Resume::AnswerMutator</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="n">resume</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">current_user</span><span class="p">)</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">resume</span><span class="p">.</span><span class="nf">answers</span><span class="p">.</span><span class="nf">build</span> <span class="n">params</span>
+    <span class="n">answer</span><span class="p">.</span><span class="nf">user</span> <span class="o">=</span> <span class="n">current_user</span>
+    <span class="n">resume</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">notifications</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="ss">kind: :new_answer</span><span class="p">,</span> <span class="ss">resource: </span><span class="n">answer</span><span class="p">)</span> <span class="k">if</span> <span class="n">answer</span><span class="p">.</span><span class="nf">save</span>
+    <span class="n">answer</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="service-layer">Service Layer</h2>
 
@@ -374,38 +374,38 @@ end
   <li><a href="/posts/functional-service-objects-on-rails/">Functional service objects on rails</a></li>
 </ul>
 
-<pre><code class="language-ruby"># app/services/user_service.rb
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/services/user_service.rb</span>
 
-class UserService
-  def self.update_current_tutor(user)
-    UserMutator.assign_tutor!(user)
-    AnalyticsSender.track(:tutor_assigned, user)
-    true
-  end
-end
-</code></pre>
-<pre><code class="language-ruby">class Web::Projects::Members::CommentsController &lt; Web::Projects::Members::ApplicationController
-  before_action :require_email_confirmation!
+<span class="k">class</span> <span class="nc">UserService</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">update_current_tutor</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="no">UserMutator</span><span class="p">.</span><span class="nf">assign_tutor!</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="no">AnalyticsSender</span><span class="p">.</span><span class="nf">track</span><span class="p">(</span><span class="ss">:tutor_assigned</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+    <span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Web::Projects::Members::CommentsController</span> <span class="o">&lt;</span> <span class="no">Web</span><span class="o">::</span><span class="no">Projects</span><span class="o">::</span><span class="no">Members</span><span class="o">::</span><span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:require_email_confirmation!</span>
 
-  def create
-    member = Project::Mmember.find(params[:member_id])
-    authorize member, :create_comment?
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="n">member</span> <span class="o">=</span> <span class="no">Project</span><span class="o">::</span><span class="no">Mmember</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:member_id</span><span class="p">])</span>
+    <span class="n">authorize</span> <span class="n">member</span><span class="p">,</span> <span class="ss">:create_comment?</span>
 
-    comment = ProjectService.create_comment(member, current_user, permitted_params)
-    if comment.persisted?
-      f(:success)
-    else
-      f(:error)
-    end
-    redirect_to project_member_path(member.project, member)
-  end
+    <span class="n">comment</span> <span class="o">=</span> <span class="no">ProjectService</span><span class="p">.</span><span class="nf">create_comment</span><span class="p">(</span><span class="n">member</span><span class="p">,</span> <span class="n">current_user</span><span class="p">,</span> <span class="n">permitted_params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">comment</span><span class="p">.</span><span class="nf">persisted?</span>
+      <span class="n">f</span><span class="p">(</span><span class="ss">:success</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="n">f</span><span class="p">(</span><span class="ss">:error</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="n">redirect_to</span> <span class="n">project_member_path</span><span class="p">(</span><span class="n">member</span><span class="p">.</span><span class="nf">project</span><span class="p">,</span> <span class="n">member</span><span class="p">)</span>
+  <span class="k">end</span>
 
-  private
+  <span class="kp">private</span>
 
-  def permitted_params
-    params.require(:project_member_comment).permit(:body)
-  end
-</code></pre>
+  <span class="k">def</span> <span class="nf">permitted_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:project_member_comment</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:body</span><span class="p">)</span>
+  <span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="dependency-inversion">Dependency Inversion</h2>
 
@@ -414,54 +414,54 @@ end
   <li><a href="https://dry-rb.org/gems/dry-container/">dry-rb/dry-container</a></li>
 </ul>
 
-<pre><code class="language-ruby">if Rails.env.production?
-  register :active_campaign, -&gt; { ActivecampaignManager.new configus.ac.api.token }
-else
-  register :active_compaign, -&gt; { ActivecampaignManagerStub.new }
-end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">production?</span>
+  <span class="n">register</span> <span class="ss">:active_campaign</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="no">ActivecampaignManager</span><span class="p">.</span><span class="nf">new</span> <span class="n">configus</span><span class="p">.</span><span class="nf">ac</span><span class="p">.</span><span class="nf">api</span><span class="p">.</span><span class="nf">token</span> <span class="p">}</span>
+<span class="k">else</span>
+  <span class="n">register</span> <span class="ss">:active_compaign</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="no">ActivecampaignManagerStub</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
+<span class="k">end</span>
 
-if Rails.env.test?
-  register :gitlab_klass, -&gt; { GitlabStub }
-else
-  register :gitlab_klass, -&gt; { Gitlab }
-end
-</code></pre>
-<pre><code class="language-ruby">class AmplitudeJob &lt; ApplicationJob
-  include Import['amplitude_klass']
+<span class="k">if</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">test?</span>
+  <span class="n">register</span> <span class="ss">:gitlab_klass</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="no">GitlabStub</span> <span class="p">}</span>
+<span class="k">else</span>
+  <span class="n">register</span> <span class="ss">:gitlab_klass</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="no">Gitlab</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AmplitudeJob</span> <span class="o">&lt;</span> <span class="no">ApplicationJob</span>
+  <span class="kp">include</span> <span class="no">Import</span><span class="p">[</span><span class="s1">'amplitude_klass'</span><span class="p">]</span>
 
-  def perform(event_name, event_data, user_data, options)
-    name = EventsMapping.amplitude_names(event_name)
-    data = { }
-    event = AmplitudeAPI::Event.new(data)
-    amplitude_klass.track(event)
-  end
-end
-</code></pre>
+  <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="n">event_name</span><span class="p">,</span> <span class="n">event_data</span><span class="p">,</span> <span class="n">user_data</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="nb">name</span> <span class="o">=</span> <span class="no">EventsMapping</span><span class="p">.</span><span class="nf">amplitude_names</span><span class="p">(</span><span class="n">event_name</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="no">AmplitudeAPI</span><span class="o">::</span><span class="no">Event</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">amplitude_klass</span><span class="p">.</span><span class="nf">track</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="null-object">Null Object</h2>
 
-<pre><code class="language-ruby">- if signed_in? &amp;&amp; current_user.friends.any?
-</code></pre>
-<pre><code class="language-ruby">class Guest
-  def id; end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">-</span> <span class="k">if</span> <span class="n">signed_in?</span> <span class="o">&amp;&amp;</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">friends</span><span class="p">.</span><span class="nf">any?</span>
+</code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Guest</span>
+  <span class="k">def</span> <span class="nf">id</span><span class="p">;</span> <span class="k">end</span>
 
-  def created_at
-    Time.current
-  end
+  <span class="k">def</span> <span class="nf">created_at</span>
+    <span class="no">Time</span><span class="p">.</span><span class="nf">current</span>
+  <span class="k">end</span>
 
-  def employee
-    nil
-  end
+  <span class="k">def</span> <span class="nf">employee</span>
+    <span class="kp">nil</span>
+  <span class="k">end</span>
 
-  def authenticate(_password)
-    false
-  end
-end
-</code></pre>
-<pre><code class="language-ruby">def current_user
-  @current_user ||= User.find_by(id: session[:user_id]) || Guest.new
-end
-</code></pre>
+  <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">_password</span><span class="p">)</span>
+    <span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">current_user</span>
+  <span class="vi">@current_user</span> <span class="o">||=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">id: </span><span class="n">session</span><span class="p">[</span><span class="ss">:user_id</span><span class="p">])</span> <span class="o">||</span> <span class="no">Guest</span><span class="p">.</span><span class="nf">new</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="business-logic">Business Logic</h2>
 
@@ -480,98 +480,98 @@ end
 <h3 id="1-controller--business">1. Controller → Business</h3>
 
 <ul>
-  <li><code>Operation</code> is a good pattern-free word</li>
+  <li><code class="highlighter-rouge">Operation</code> is a good pattern-free word</li>
   <li>Unified Interface</li>
   <li>Railway oriented programming</li>
 </ul>
 
-<pre><code>app/
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app/
   controllers/
     clients_controller.rb
   operations/
     clients/
       confirmations/
         start.rb
-</code></pre>
+</code></pre></div></div>
 
-<pre><code class="language-ruby">def create
-  operation = Clients::Confirmations::Start.new
-  handle_result operation.call(transaction: transaction)
-end
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
+  <span class="n">operation</span> <span class="o">=</span> <span class="no">Clients</span><span class="o">::</span><span class="no">Confirmations</span><span class="o">::</span><span class="no">Start</span><span class="p">.</span><span class="nf">new</span>
+  <span class="n">handle_result</span> <span class="n">operation</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">transaction: </span><span class="n">transaction</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h4 id="return-result">Return result</h4>
 
 <ul>
   <li>Result object</li>
-  <li><a href="https://dry-rb.org/gems/dry-monads/"><code>dry-rb/dry-monads</code></a></li>
+  <li><a href="https://dry-rb.org/gems/dry-monads/"><code class="highlighter-rouge">dry-rb/dry-monads</code></a></li>
   <li><a href="https://dry-rb.org/gems/dry-monads/1.3/do-notation/">Do Notation</a></li>
 </ul>
 
-<pre><code class="language-ruby">class Clients::Confirmations::Start &lt; Operation
-  def call(transaction:)
-    valid = transaction_eligible? transaction
-    return ??? unless valid
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Clients::Confirmations::Start</span> <span class="o">&lt;</span> <span class="no">Operation</span>
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">transaction</span><span class="p">:)</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="n">transaction_eligible?</span> <span class="n">transaction</span>
+    <span class="k">return</span> <span class="sc">??</span><span class="p">?</span> <span class="k">unless</span> <span class="n">valid</span>
 
-    code = generate_code transaction
-    return ??? unless code
+    <span class="n">code</span> <span class="o">=</span> <span class="n">generate_code</span> <span class="n">transaction</span>
+    <span class="k">return</span> <span class="sc">??</span><span class="p">?</span> <span class="k">unless</span> <span class="n">code</span>
 
-    result = send_code code
-    return ??? unless code
+    <span class="n">result</span> <span class="o">=</span> <span class="n">send_code</span> <span class="n">code</span>
+    <span class="k">return</span> <span class="sc">??</span><span class="p">?</span> <span class="k">unless</span> <span class="n">code</span>
 
-    transaction ???
-  end
-end
-</code></pre>
+    <span class="n">transaction</span> <span class="p">?</span><span class="sc">??</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-<pre><code class="language-ruby">class Clients::Confirmations::Start &lt; Operation
-  def call(transaction:)
-    # Success() or Failure(...)
-    yield transaction_eligible? transaction
-    # Success(code) or Failure(...)
-    code = yield generate_code transaction
-    # Success() or Failure(...)
-    yield send_code code
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Clients::Confirmations::Start</span> <span class="o">&lt;</span> <span class="no">Operation</span>
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">transaction</span><span class="p">:)</span>
+    <span class="c1"># Success() or Failure(...)</span>
+    <span class="k">yield</span> <span class="n">transaction_eligible?</span> <span class="n">transaction</span>
+    <span class="c1"># Success(code) or Failure(...)</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">generate_code</span> <span class="n">transaction</span>
+    <span class="c1"># Success() or Failure(...)</span>
+    <span class="k">yield</span> <span class="n">send_code</span> <span class="n">code</span>
 
-    Success(transaction)
-  end
-end
-</code></pre>
+    <span class="no">Success</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h4 id="data-validation">Data Validation</h4>
 
 <ul>
   <li>Validate user data not domain objects</li>
   <li>Always valid objects</li>
-  <li><code>dry-rb/dry-validation</code>[https://dry-rb.org/gems/dry-validation/]</li>
+  <li><code class="highlighter-rouge">dry-rb/dry-validation</code>[https://dry-rb.org/gems/dry-validation/]</li>
 </ul>
 
-<pre><code class="language-ruby">class Profile &lt; ApplicationRecord
-  validates :name, :birthdate, presence: true
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Profile</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:birthdate</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+</code></pre></div></div>
 
-<pre><code class="language-ruby">class ProfileContract &lt; Contract
-  params do
-    required(:name).filled(:string)
-    required(:birthdate).value(:date)
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ProfileContract</span> <span class="o">&lt;</span> <span class="no">Contract</span>
+  <span class="n">params</span> <span class="k">do</span>
+    <span class="n">required</span><span class="p">(</span><span class="ss">:name</span><span class="p">).</span><span class="nf">filled</span><span class="p">(</span><span class="ss">:string</span><span class="p">)</span>
+    <span class="n">required</span><span class="p">(</span><span class="ss">:birthdate</span><span class="p">).</span><span class="nf">value</span><span class="p">(</span><span class="ss">:date</span><span class="p">)</span>
+</code></pre></div></div>
 
 <h3 id="2-business--controller">2. Business → Controller</h3>
 
-<pre><code class="language-ruby">def create
-  operation = Clients::Confirmations::Start.new
-  handle_result operation.call(transaction: transaction)
-end
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
+  <span class="n">operation</span> <span class="o">=</span> <span class="no">Clients</span><span class="o">::</span><span class="no">Confirmations</span><span class="o">::</span><span class="no">Start</span><span class="p">.</span><span class="nf">new</span>
+  <span class="n">handle_result</span> <span class="n">operation</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">transaction: </span><span class="n">transaction</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
-<pre><code class="language-ruby">def handle_result(result)
-  case result
-  when Success() then head(:ok)
-  when Success then respond_with_data(result.value!)
-  when Failure then respond_with_error(result.failure)
-  end
-end
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">handle_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+  <span class="k">case</span> <span class="n">result</span>
+  <span class="k">when</span> <span class="no">Success</span><span class="p">()</span> <span class="k">then</span> <span class="n">head</span><span class="p">(</span><span class="ss">:ok</span><span class="p">)</span>
+  <span class="k">when</span> <span class="no">Success</span> <span class="k">then</span> <span class="n">respond_with_data</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">value!</span><span class="p">)</span>
+  <span class="k">when</span> <span class="no">Failure</span> <span class="k">then</span> <span class="n">respond_with_error</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">failure</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h3 id="3-business--business">3. Business → Business</h3>
 
@@ -580,32 +580,32 @@ end
   <li><a href="https://dry-rb.org/gems/dry-initializer">https://dry-rb/dry-initializer</a></li>
 </ul>
 
-<pre><code class="language-ruby">module Confirmations
-  class Start &lt; Operation
-    option :generate_code_command,
-      reader: :private,
-      default: -&gt; { ConfirmationCodes::Generate.new }
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Confirmations</span>
+  <span class="k">class</span> <span class="nc">Start</span> <span class="o">&lt;</span> <span class="no">Operation</span>
+    <span class="n">option</span> <span class="ss">:generate_code_command</span><span class="p">,</span>
+      <span class="ss">reader: :private</span><span class="p">,</span>
+      <span class="ss">default: </span><span class="o">-&gt;</span> <span class="p">{</span> <span class="no">ConfirmationCodes</span><span class="o">::</span><span class="no">Generate</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
 
-    def call(transaction:)
-      code = yield generate_code_command.call(source: transaction)
-      ...
-</code></pre>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">transaction</span><span class="p">:)</span>
+      <span class="n">code</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">generate_code_command</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">source: </span><span class="n">transaction</span><span class="p">)</span>
+      <span class="o">...</span>
+</code></pre></div></div>
 
 <h4 id="testing">Testing</h4>
 
-<pre><code class="language-ruby">describe Clients::Confirmations::Start do
-  describe "#call" do
-    described_class.new(generate_code_command: generate_code_command).call
-  end
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">describe</span> <span class="no">Clients</span><span class="o">::</span><span class="no">Confirmations</span><span class="o">::</span><span class="no">Start</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="s2">"#call"</span> <span class="k">do</span>
+    <span class="n">described_class</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">generate_code_command: </span><span class="n">generate_code_command</span><span class="p">).</span><span class="nf">call</span>
+  <span class="k">end</span>
 
-  let(:generate_code_command) { instance_double(ConfirmationCodes::Generate) }
+  <span class="n">let</span><span class="p">(</span><span class="ss">:generate_code_command</span><span class="p">)</span> <span class="p">{</span> <span class="n">instance_double</span><span class="p">(</span><span class="no">ConfirmationCodes</span><span class="o">::</span><span class="no">Generate</span><span class="p">)</span> <span class="p">}</span>
 
-  before do
-    allow(generate_code_command).to receive(:call).with(...).and_return(...)
-  end
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="n">allow</span><span class="p">(</span><span class="n">generate_code_command</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:call</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="o">...</span><span class="p">).</span><span class="nf">and_return</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+  <span class="k">end</span>
 
-  ...
-</code></pre>
+  <span class="o">...</span>
+</code></pre></div></div>
 
 <h4 id="chaining">Chaining</h4>
 
@@ -614,23 +614,23 @@ end
   <li>Command-Query Segregation</li>
 </ul>
 
-<pre><code>   steps
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   steps
    1   2   3
 ---*---*---*------ happy path
     \   \   \
 ------------------ error
-</code></pre>
+</code></pre></div></div>
 
-<pre><code class="language-ruby">class Clients::Confirmations::Start &lt; Operation
-  def call(transaction:)
-    # Success() or Failure(...)
-    yield transaction_eligible? transaction
-    code = yield generate_code transaction
-    yield send_code code
-     Success(transaction)
-  end
-end
-</code></pre>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Clients::Confirmations::Start</span> <span class="o">&lt;</span> <span class="no">Operation</span>
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">transaction</span><span class="p">:)</span>
+    <span class="c1"># Success() or Failure(...)</span>
+    <span class="k">yield</span> <span class="n">transaction_eligible?</span> <span class="n">transaction</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">generate_code</span> <span class="n">transaction</span>
+    <span class="k">yield</span> <span class="n">send_code</span> <span class="n">code</span>
+     <span class="no">Success</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h3 id="4-db--business">4. DB → Business</h3>
 
@@ -639,35 +639,35 @@ end
   <li>Single Responsibility Principles</li>
 </ul>
 
-<pre><code class="language-ruby">module Confirmations
-  class Generate &lt; Operation
-    option :codes_repo,
-      reader: :private,
-      default: -&gt; { ConfirmationCode }
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Confirmations</span>
+  <span class="k">class</span> <span class="nc">Generate</span> <span class="o">&lt;</span> <span class="no">Operation</span>
+    <span class="n">option</span> <span class="ss">:codes_repo</span><span class="p">,</span>
+      <span class="ss">reader: :private</span><span class="p">,</span>
+      <span class="ss">default: </span><span class="o">-&gt;</span> <span class="p">{</span> <span class="no">ConfirmationCode</span> <span class="p">}</span>
 
-  private
+  <span class="kp">private</span>
 
-  def persist_code(code_attributes)
-    codes_repo.create!(code_attributes)
-  end
-end
-</code></pre>
+  <span class="k">def</span> <span class="nf">persist_code</span><span class="p">(</span><span class="n">code_attributes</span><span class="p">)</span>
+    <span class="n">codes_repo</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span><span class="n">code_attributes</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h4 id="transactions">Transactions</h4>
 
-<pre><code class="language-ruby">module Confirmation
-  class Verify &lt; Operation
-    option :repo,
-      reader: :private,
-      default: -&gt; { ApplicationRecord }
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Confirmation</span>
+  <span class="k">class</span> <span class="nc">Verify</span> <span class="o">&lt;</span> <span class="no">Operation</span>
+    <span class="n">option</span> <span class="ss">:repo</span><span class="p">,</span>
+      <span class="ss">reader: :private</span><span class="p">,</span>
+      <span class="ss">default: </span><span class="o">-&gt;</span> <span class="p">{</span> <span class="no">ApplicationRecord</span> <span class="p">}</span>
 
-    def call(transaction:, confirmation_code:)
-      repo.transaction do
-        yield confirm_code(code)
-        yield confirm_transaction(transaction)
-      end
-    end
-</code></pre>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">transaction</span><span class="p">:,</span> <span class="n">confirmation_code</span><span class="p">:)</span>
+      <span class="n">repo</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span>
+        <span class="k">yield</span> <span class="n">confirm_code</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">confirm_transaction</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+</code></pre></div></div>
 
   </article>
 
