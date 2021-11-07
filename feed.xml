@@ -6,19 +6,19 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 07 Nov 2021 21:43:15 +0300</pubDate>
-    <lastBuildDate>Sun, 07 Nov 2021 21:43:15 +0300</lastBuildDate>
+    <pubDate>Sun, 07 Nov 2021 21:46:13 +0300</pubDate>
+    <lastBuildDate>Sun, 07 Nov 2021 21:46:13 +0300</lastBuildDate>
     <generator>Jekyll v4.0.1</generator>
     
       <item>
         <title>Boring Rails</title>
         <description>
           &lt;p&gt;&lt;img src="http://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"/&gt;&lt;/p&gt;
-          &lt;p&gt;Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.&lt;/p&gt;
+          &lt;p&gt;Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;https://www.youtube.com/watch?v=NbMt4uFIL8c&lt;/li&gt;
-  &lt;li&gt;https://www.youtube.com/watch?v=Mq6MuwLMEUU&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=NbMt4uFIL8c&quot;&gt;Архитектура должна быть скучной, Кирилл Мокевнин&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=Mq6MuwLMEUU&quot;&gt;Кирилл Волченко - Куда помещать бизнес-логику в Rails?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -39,20 +39,20 @@
   &lt;li&gt;&lt;a href=&quot;#null-object&quot;&gt;Null Object&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#business-logic&quot;&gt;Business Logic&lt;/a&gt;
     &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#controller-%E2%86%92-business&quot;&gt;Controller → Business&lt;/a&gt;
+      &lt;li&gt;&lt;a href=&quot;#controller---business&quot;&gt;Controller - Business&lt;/a&gt;
         &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#return-result&quot;&gt;Return result&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#data-validation&quot;&gt;Data Validation&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#business-%E2%86%92-controller&quot;&gt;Business → Controller&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#business-%E2%86%92-business&quot;&gt;Business → Business&lt;/a&gt;
+      &lt;li&gt;&lt;a href=&quot;#business---controller&quot;&gt;Business - Controller&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#business---business&quot;&gt;Business - Business&lt;/a&gt;
         &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#testing&quot;&gt;Testing&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#chaining&quot;&gt;Chaining&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#db-%E2%86%92-business&quot;&gt;DB → Business&lt;/a&gt;
+      &lt;li&gt;&lt;a href=&quot;#db---business&quot;&gt;DB - Business&lt;/a&gt;
         &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#transactions&quot;&gt;Transactions&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
@@ -333,13 +333,13 @@
 &lt;/ul&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Controller → Business&lt;/li&gt;
-  &lt;li&gt;Business → Controller&lt;/li&gt;
-  &lt;li&gt;Business ←→ Business&lt;/li&gt;
-  &lt;li&gt;DB ←→ Business&lt;/li&gt;
+  &lt;li&gt;Controller - Business&lt;/li&gt;
+  &lt;li&gt;Business - Controller&lt;/li&gt;
+  &lt;li&gt;Business ←- Business&lt;/li&gt;
+  &lt;li&gt;DB ←- Business&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;1-controller--business&quot;&gt;1. Controller → Business&lt;/h3&gt;
+&lt;h3 id=&quot;1-controller---business&quot;&gt;1. Controller - Business&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Operation&lt;/code&gt; is a good pattern-free word&lt;/li&gt;
@@ -418,7 +418,7 @@
     &lt;span class=&quot;n&quot;&gt;required&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:birthdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;2-business--controller&quot;&gt;2. Business → Controller&lt;/h3&gt;
+&lt;h3 id=&quot;2-business---controller&quot;&gt;2. Business - Controller&lt;/h3&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;operation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Clients&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Confirmations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
@@ -435,7 +435,7 @@
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;3-business--business&quot;&gt;3. Business → Business&lt;/h3&gt;
+&lt;h3 id=&quot;3-business---business&quot;&gt;3. Business - Business&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Dependency injection&lt;/li&gt;
@@ -494,7 +494,7 @@
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;4-db--business&quot;&gt;4. DB → Business&lt;/h3&gt;
+&lt;h3 id=&quot;4-db---business&quot;&gt;4. DB - Business&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Inject repository&lt;/li&gt;

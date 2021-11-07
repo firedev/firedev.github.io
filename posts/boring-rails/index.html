@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Boring Rails</title>
-  <meta name="description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.">
+  <meta name="description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way.">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://firedev.com/posts/boring-rails/">
@@ -20,7 +20,7 @@
 
   <meta property="og:url" content="http://firedev.com/posts/boring-rails/" />
   <meta property="og:title" content="Boring Rails" />
-  <meta property="og:description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.
+  <meta property="og:description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way.
 " />
   <meta property="og:image" content="http://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg" />
 </head>
@@ -152,11 +152,11 @@ background-position: ;
 
 <div class="mb3">
   <article class="mb3">
-    <p>Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.</p>
+    <p>Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way.</p>
 
 <ul>
-  <li>https://www.youtube.com/watch?v=NbMt4uFIL8c</li>
-  <li>https://www.youtube.com/watch?v=Mq6MuwLMEUU</li>
+  <li><a href="https://www.youtube.com/watch?v=NbMt4uFIL8c">Архитектура должна быть скучной, Кирилл Мокевнин</a></li>
+  <li><a href="https://www.youtube.com/watch?v=Mq6MuwLMEUU">Кирилл Волченко - Куда помещать бизнес-логику в Rails?</a></li>
 </ul>
 
 <hr />
@@ -177,20 +177,20 @@ background-position: ;
   <li><a href="#null-object">Null Object</a></li>
   <li><a href="#business-logic">Business Logic</a>
     <ul>
-      <li><a href="#controller-%E2%86%92-business">Controller → Business</a>
+      <li><a href="#controller---business">Controller - Business</a>
         <ul>
           <li><a href="#return-result">Return result</a></li>
           <li><a href="#data-validation">Data Validation</a></li>
         </ul>
       </li>
-      <li><a href="#business-%E2%86%92-controller">Business → Controller</a></li>
-      <li><a href="#business-%E2%86%92-business">Business → Business</a>
+      <li><a href="#business---controller">Business - Controller</a></li>
+      <li><a href="#business---business">Business - Business</a>
         <ul>
           <li><a href="#testing">Testing</a></li>
           <li><a href="#chaining">Chaining</a></li>
         </ul>
       </li>
-      <li><a href="#db-%E2%86%92-business">DB → Business</a>
+      <li><a href="#db---business">DB - Business</a>
         <ul>
           <li><a href="#transactions">Transactions</a></li>
         </ul>
@@ -471,13 +471,13 @@ background-position: ;
 </ul>
 
 <ol>
-  <li>Controller → Business</li>
-  <li>Business → Controller</li>
-  <li>Business ←→ Business</li>
-  <li>DB ←→ Business</li>
+  <li>Controller - Business</li>
+  <li>Business - Controller</li>
+  <li>Business ←- Business</li>
+  <li>DB ←- Business</li>
 </ol>
 
-<h3 id="1-controller--business">1. Controller → Business</h3>
+<h3 id="1-controller---business">1. Controller - Business</h3>
 
 <ul>
   <li><code class="highlighter-rouge">Operation</code> is a good pattern-free word</li>
@@ -556,7 +556,7 @@ background-position: ;
     <span class="n">required</span><span class="p">(</span><span class="ss">:birthdate</span><span class="p">).</span><span class="nf">value</span><span class="p">(</span><span class="ss">:date</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h3 id="2-business--controller">2. Business → Controller</h3>
+<h3 id="2-business---controller">2. Business - Controller</h3>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
   <span class="n">operation</span> <span class="o">=</span> <span class="no">Clients</span><span class="o">::</span><span class="no">Confirmations</span><span class="o">::</span><span class="no">Start</span><span class="p">.</span><span class="nf">new</span>
@@ -573,7 +573,7 @@ background-position: ;
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3 id="3-business--business">3. Business → Business</h3>
+<h3 id="3-business---business">3. Business - Business</h3>
 
 <ul>
   <li>Dependency injection</li>
@@ -632,7 +632,7 @@ background-position: ;
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3 id="4-db--business">4. DB → Business</h3>
+<h3 id="4-db---business">4. DB - Business</h3>
 
 <ul>
   <li>Inject repository</li>
