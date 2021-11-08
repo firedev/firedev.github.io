@@ -154,12 +154,17 @@ background-position: ;
   <article class="mb3">
     <p>Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way.</p>
 
+<p>Sources:</p>
+
 <ul>
   <li><a href="https://www.youtube.com/watch?v=NbMt4uFIL8c">Архитектура должна быть скучной, Кирилл Мокевнин</a></li>
   <li><a href="https://www.youtube.com/watch?v=Mq6MuwLMEUU">Кирилл Волченко - Куда помещать бизнес-логику в Rails?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=Ae19vpQ14jw">Rails для продвинутых: организация кода (Иван Немытченко)</a></li>
 </ul>
 
 <hr />
+
+<p><strong>Table of Content</strong></p>
 
 <!-- TOC -->
 
@@ -168,7 +173,13 @@ background-position: ;
   <li><a href="#state-machines">State machines</a></li>
   <li><a href="#repositories">Repositories</a></li>
   <li><a href="#presenters">Presenters</a></li>
-  <li><a href="#forms-validation-and-data-normalization">Forms Validation and Data Normalization</a></li>
+  <li><a href="#form-objects">Form Objects</a>
+    <ul>
+      <li><a href="#activemodel">ActiveModel</a></li>
+      <li><a href="#shapes">Shapes</a></li>
+      <li><a href="#forms-validation-and-data-normalization">Forms Validation and Data Normalization</a></li>
+    </ul>
+  </li>
   <li><a href="#controllers-hierarchy">Controllers Hierarchy</a></li>
   <li><a href="#authorization">Authorization</a></li>
   <li><a href="#mutators">Mutators</a></li>
@@ -280,7 +291,57 @@ background-position: ;
   <span class="k">end</span>
 </code></pre></div></div>
 
-<h2 id="forms-validation-and-data-normalization">Forms Validation and Data Normalization</h2>
+<h2 id="form-objects">Form Objects</h2>
+
+<h3 id="activemodel">ActiveModel</h3>
+
+<ul>
+  <li>Extract validations</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PersonForm</span>
+  <span class="nb">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
+
+  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Model</span>
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
+  <span class="k">if</span> <span class="n">person_form</span><span class="p">.</span><span class="nf">valid?</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">person_form</span><span class="p">.</span><span class="nf">as_json</span><span class="p">)</span>
+    <span class="o">...</span>
+</code></pre></div></div>
+
+<h3 id="shapes">Shapes</h3>
+
+<ul>
+  <li>Different set of validations</li>
+  <li>Creates an original model</li>
+  <li>STI and Conditional Validations replacement</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@user</span> <span class="o">=</span> <span class="no">UserRegistrationShape</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UserRegistrationShape</span> <span class="o">&lt;</span> <span class="no">User</span>
+  <span class="kp">include</span> <span class="no">ApplicationShape</span>
+
+  <span class="n">validated_confirmation_of</span> <span class="ss">:email</span>
+  <span class="n">validates_acceptance_of</span> <span class="ss">:terms_of_service</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">ApplicationShape</span>
+  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
+
+  <span class="k">module</span> <span class="nn">ClassMethods</span>
+    <span class="n">delegate</span> <span class="ss">:model_name</span><span class="p">,</span> <span class="ss">to: :superclass</span>
+    <span class="n">delegate</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">to: </span><span class="n">superclass</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="forms-validation-and-data-normalization">Forms Validation and Data Normalization</h3>
 
 <ul>
   <li><a href="https://github.com/Hexlet/active_form_model"><code class="highlighter-rouge">active_form_model</code></a></li>

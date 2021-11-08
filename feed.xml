@@ -6,8 +6,8 @@
 </description>
     <link>http://firedev.com/</link>
     <atom:link href="http://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 07 Nov 2021 21:46:13 +0300</pubDate>
-    <lastBuildDate>Sun, 07 Nov 2021 21:46:13 +0300</lastBuildDate>
+    <pubDate>Mon, 08 Nov 2021 10:58:52 +0300</pubDate>
+    <lastBuildDate>Mon, 08 Nov 2021 10:58:52 +0300</lastBuildDate>
     <generator>Jekyll v4.0.1</generator>
     
       <item>
@@ -16,12 +16,17 @@
           &lt;p&gt;&lt;img src="http://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way.&lt;/p&gt;
 
+&lt;p&gt;Sources:&lt;/p&gt;
+
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=NbMt4uFIL8c&quot;&gt;Архитектура должна быть скучной, Кирилл Мокевнин&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=Mq6MuwLMEUU&quot;&gt;Кирилл Волченко - Куда помещать бизнес-логику в Rails?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=Ae19vpQ14jw&quot;&gt;Rails для продвинутых: организация кода (Иван Немытченко)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Table of Content&lt;/strong&gt;&lt;/p&gt;
 
 &lt;!-- TOC --&gt;
 
@@ -30,7 +35,13 @@
   &lt;li&gt;&lt;a href=&quot;#state-machines&quot;&gt;State machines&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#repositories&quot;&gt;Repositories&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#presenters&quot;&gt;Presenters&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#forms-validation-and-data-normalization&quot;&gt;Forms Validation and Data Normalization&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#form-objects&quot;&gt;Form Objects&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#activemodel&quot;&gt;ActiveModel&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#shapes&quot;&gt;Shapes&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#forms-validation-and-data-normalization&quot;&gt;Forms Validation and Data Normalization&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#controllers-hierarchy&quot;&gt;Controllers Hierarchy&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#authorization&quot;&gt;Authorization&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#mutators&quot;&gt;Mutators&lt;/a&gt;&lt;/li&gt;
@@ -142,7 +153,57 @@
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;forms-validation-and-data-normalization&quot;&gt;Forms Validation and Data Normalization&lt;/h2&gt;
+&lt;h2 id=&quot;form-objects&quot;&gt;Form Objects&lt;/h2&gt;
+
+&lt;h3 id=&quot;activemodel&quot;&gt;ActiveModel&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Extract validations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PersonForm&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;attr_accessor&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;
+
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveModel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Model&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;person_form&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;valid?&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;person_form&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;as_json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;shapes&quot;&gt;Shapes&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Different set of validations&lt;/li&gt;
+  &lt;li&gt;Creates an original model&lt;/li&gt;
+  &lt;li&gt;STI and Conditional Validations replacement&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;vi&quot;&gt;@user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;UserRegistrationShape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserRegistrationShape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationShape&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;validated_confirmation_of&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates_acceptance_of&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:terms_of_service&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;ApplicationShape&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;extend&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveSupport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Concern&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;ClassMethods&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delegate&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:model_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: :superclass&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delegate&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;superclass&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;forms-validation-and-data-normalization&quot;&gt;Forms Validation and Data Normalization&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/Hexlet/active_form_model&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;active_form_model&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
