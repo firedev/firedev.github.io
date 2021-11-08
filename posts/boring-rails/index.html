@@ -260,7 +260,7 @@ background-position: ;
   <span class="k">end</span>
 
   <span class="n">event</span> <span class="ss">:mark_as_synchronized</span> <span class="k">do</span>
-    <span class="n">transition</span> <span class="ss">synchonizing: :synchronized</span>
+    <span class="n">transition</span> <span class="ss">synchronizing: :synchronized</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div></div>
@@ -449,7 +449,7 @@ background-position: ;
   <span class="n">before_action</span> <span class="ss">:require_email_confirmation!</span>
 
   <span class="k">def</span> <span class="nf">create</span>
-    <span class="n">member</span> <span class="o">=</span> <span class="no">Project</span><span class="o">::</span><span class="no">Mmember</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:member_id</span><span class="p">])</span>
+    <span class="n">member</span> <span class="o">=</span> <span class="no">Project</span><span class="o">::</span><span class="no">Member</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:member_id</span><span class="p">])</span>
     <span class="n">authorize</span> <span class="n">member</span><span class="p">,</span> <span class="ss">:create_comment?</span>
 
     <span class="n">comment</span> <span class="o">=</span> <span class="no">ProjectService</span><span class="p">.</span><span class="nf">create_comment</span><span class="p">(</span><span class="n">member</span><span class="p">,</span> <span class="n">current_user</span><span class="p">,</span> <span class="n">permitted_params</span><span class="p">)</span>
@@ -534,8 +534,8 @@ background-position: ;
 <ol>
   <li>Controller - Business</li>
   <li>Business - Controller</li>
-  <li>Business ←- Business</li>
-  <li>DB ←- Business</li>
+  <li>Business - Business</li>
+  <li>DB - Business</li>
 </ol>
 
 <h3 id="1-controller---business">1. Controller - Business</h3>
