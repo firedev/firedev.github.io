@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Boring Rails</title>
-  <meta name="description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way.">
+  <meta name="description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way I’ve colle...">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://firedev.com/posts/boring-rails/">
@@ -20,7 +20,7 @@
 
   <meta property="og:url" content="http://firedev.com/posts/boring-rails/" />
   <meta property="og:title" content="Boring Rails" />
-  <meta property="og:description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way.
+  <meta property="og:description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way I’ve collected to share with the team.
 " />
   <meta property="og:image" content="http://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg" />
 </head>
@@ -152,17 +152,7 @@ background-position: ;
 
 <div class="mb3">
   <article class="mb3">
-    <p>Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way.</p>
-
-<p>Sources:</p>
-
-<ul>
-  <li><a href="https://www.youtube.com/watch?v=NbMt4uFIL8c">Архитектура должна быть скучной, Кирилл Мокевнин</a></li>
-  <li><a href="https://www.youtube.com/watch?v=Mq6MuwLMEUU">Кирилл Волченко - Куда помещать бизнес-логику в Rails?</a></li>
-  <li><a href="https://www.youtube.com/watch?v=Ae19vpQ14jw">Rails для продвинутых: организация кода (Иван Немытченко)</a></li>
-</ul>
-
-<hr />
+    <p>Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way I’ve collected to share with the team.</p>
 
 <p><strong>Table of Content</strong></p>
 
@@ -229,7 +219,6 @@ background-position: ;
     build.rb
     challenge.rb
 </code></pre></div></div>
-
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/models/course/challenge.rb</span>
 
 <span class="k">class</span> <span class="nc">Course::Challenge</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
@@ -322,7 +311,6 @@ background-position: ;
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@user</span> <span class="o">=</span> <span class="no">UserRegistrationShape</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
 </code></pre></div></div>
-
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UserRegistrationShape</span> <span class="o">&lt;</span> <span class="no">User</span>
   <span class="kp">include</span> <span class="no">ApplicationShape</span>
 
@@ -330,7 +318,6 @@ background-position: ;
   <span class="n">validates_acceptance_of</span> <span class="ss">:terms_of_service</span>
 <span class="k">end</span>
 </code></pre></div></div>
-
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">ApplicationShape</span>
   <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
 
@@ -376,7 +363,6 @@ background-position: ;
     application_controller.rb
   application_controller.rb
 </code></pre></div></div>
-
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controllers/web/projects/members/comments_controller.rb</span>
 
 <span class="k">class</span> <span class="nc">Web::Projects::Members::CommentsController</span> <span class="o">&lt;</span> <span class="no">Web</span><span class="o">::</span><span class="no">ApplicationController</span>
@@ -501,8 +487,6 @@ background-position: ;
 
 <h2 id="null-object">Null Object</h2>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">-</span> <span class="k">if</span> <span class="n">signed_in?</span> <span class="o">&amp;&amp;</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">friends</span><span class="p">.</span><span class="nf">any?</span>
-</code></pre></div></div>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Guest</span>
   <span class="k">def</span> <span class="nf">id</span><span class="p">;</span> <span class="k">end</span>
 
@@ -521,6 +505,31 @@ background-position: ;
 </code></pre></div></div>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">current_user</span>
   <span class="vi">@current_user</span> <span class="o">||=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">id: </span><span class="n">session</span><span class="p">[</span><span class="ss">:user_id</span><span class="p">])</span> <span class="o">||</span> <span class="no">Guest</span><span class="p">.</span><span class="nf">new</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="async">Async</h2>
+
+<ul>
+  <li>https://github.com/mperham/sidekiq/wiki/Monitoring#monitoring-queue-latency</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># sync method</span>
+<span class="k">def</span> <span class="nf">update_post_users!</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+
+<span class="c1"># async method</span>
+<span class="k">def</span> <span class="nf">update_post_users</span>
+  <span class="no">UpdatePostUsersJob</span><span class="p">.</span><span class="nf">perform_later</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># job</span>
+<span class="k">class</span> <span class="nc">UpdatePostUsersJob</span> <span class="o">&lt;</span> <span class="no">ApplicationJob</span>
+  <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="n">post_id</span><span class="p">)</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">id: </span><span class="n">post_id</span><span class="p">)</span>
+    <span class="n">post</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">update_post_users!</span>
+  <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div></div>
 
@@ -554,7 +563,6 @@ background-position: ;
       confirmations/
         start.rb
 </code></pre></div></div>
-
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
   <span class="n">operation</span> <span class="o">=</span> <span class="no">Clients</span><span class="o">::</span><span class="no">Confirmations</span><span class="o">::</span><span class="no">Start</span><span class="p">.</span><span class="nf">new</span>
   <span class="n">handle_result</span> <span class="n">operation</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">transaction: </span><span class="n">transaction</span><span class="p">)</span>
@@ -584,7 +592,6 @@ background-position: ;
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div></div>
-
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Clients::Confirmations::Start</span> <span class="o">&lt;</span> <span class="no">Operation</span>
   <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">transaction</span><span class="p">:)</span>
     <span class="c1"># Success() or Failure(...)</span>
@@ -610,7 +617,6 @@ background-position: ;
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Profile</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
   <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:birthdate</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
 </code></pre></div></div>
-
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ProfileContract</span> <span class="o">&lt;</span> <span class="no">Contract</span>
   <span class="n">params</span> <span class="k">do</span>
     <span class="n">required</span><span class="p">(</span><span class="ss">:name</span><span class="p">).</span><span class="nf">filled</span><span class="p">(</span><span class="ss">:string</span><span class="p">)</span>
@@ -624,7 +630,6 @@ background-position: ;
   <span class="n">handle_result</span> <span class="n">operation</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">transaction: </span><span class="n">transaction</span><span class="p">)</span>
 <span class="k">end</span>
 </code></pre></div></div>
-
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">handle_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
   <span class="k">case</span> <span class="n">result</span>
   <span class="k">when</span> <span class="no">Success</span><span class="p">()</span> <span class="k">then</span> <span class="n">head</span><span class="p">(</span><span class="ss">:ok</span><span class="p">)</span>
@@ -681,7 +686,6 @@ background-position: ;
     \   \   \
 ------------------ error
 </code></pre></div></div>
-
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Clients::Confirmations::Start</span> <span class="o">&lt;</span> <span class="no">Operation</span>
   <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">transaction</span><span class="p">:)</span>
     <span class="c1"># Success() or Failure(...)</span>
@@ -729,6 +733,16 @@ background-position: ;
       <span class="k">end</span>
     <span class="k">end</span>
 </code></pre></div></div>
+
+<hr />
+
+<p>Sources:</p>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=NbMt4uFIL8c">Архитектура должна быть скучной, Кирилл Мокевнин</a></li>
+  <li><a href="https://www.youtube.com/watch?v=Mq6MuwLMEUU">Кирилл Волченко - Куда помещать бизнес-логику в Rails?</a></li>
+  <li><a href="https://www.youtube.com/watch?v=Ae19vpQ14jw">Rails для продвинутых: организация кода (Иван Немытченко)</a></li>
+</ul>
 
   </article>
 
