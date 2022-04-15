@@ -1,12 +1,14 @@
-<header class="grid grid-cols-4 gap-8 mb-4">
-  <a href="/" class="block leading-4 aspect-w-3 aspect-h-1"
+<header class="sm:grid grid-cols-4 gap-8 mb-4">
+  <a href="/" class="block leading-4 aspect-w-3 aspect-h-1 overflow-hidden"
     style="background: bottom left no-repeat url(/images/logos/firedev.svg);">
     <h1 class="text-8xl leading-4 block invisible">
       firedev.com
     </h1>
   </a>
 
-  <nav class="col-span-3 flex gap-8 items-end h2 leading-6">
+  <div class="mb-8 sm:hidden"></div>
+
+  <nav class="col-span-3 flex flex-wrap gap-8 items-end  leading-6 text-5xl sm:text-2xl">
 
     {% for menu in site.pages order:descending %}
     {% if menu.menu %}
@@ -16,7 +18,7 @@
       {{ menu.title }}
     </a>
     {% else %}
-    <a class="font-normal text-gray-600" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
+    <a class=" font-normal text-gray-600" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
       {{ menu.title }}
     </a>
     {% endif %}
@@ -25,7 +27,7 @@
 
     <div class="flex flex-auto"></div>
 
-    <a class="block font-normal opacity-50 text-sm text-gray-600" href="{{ " /feed.xml" | prepend: site.baseurl }}">
+    <a class="hidden sm:block font-normal opacity-50 text-sm text-gray-600" href="{{ " /feed.xml" | prepend: site.baseurl }}">
       <i class="fa fa-rss"></i>
       RSS
 

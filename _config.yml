@@ -39,7 +39,11 @@ exclude:
 
 
 collections:
-  - projects
+  projects:
+    output: true
+    permalink: /projects/:path/
+    title: Furniture3d
+
 
 tag_title_prefix: ''
 tag_title_suffix: ''
