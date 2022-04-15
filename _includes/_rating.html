@@ -1,6 +1,6 @@
 {% if include.rating %}
-<div class="right ml2 mb2 rounded border center">
-  <div class="bg-darken-1 p2">
+<div class="float-right ml-4 mb-4 rounded-xl border text-center">
+  <div class="bg-darken-1 p-4">
     {% case include.rating %}
     {% when 0 %}
     <i class="fa fa-frown-o fa-4x"></i>
@@ -10,7 +10,7 @@
     <i class="fa fa-smile-o fa-4x"></i>
     {% endcase %}
   </div>
-  <div class="h2 px2">
+  <div class="h2 px-4">
     {% case include.rating %}
     {% when 0 %}
     <b>Meh</b>

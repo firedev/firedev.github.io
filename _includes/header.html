@@ -1,48 +1,34 @@
-<header class="site-header">
-  <div class="container px2 mt2 mb2">
-    <div class="clearfix mxn2">
-      <div class="sm-col sm-col-3 px2">
-        <h1 class="logo m0 relative">
-          <a href="/" id="logo">
-            <span class="hide">
-              <span class="fire">
-                fire
-              </span>
-              <span class="dev">
-                dev
-              </span>
-              <span class="com">
-                .com
-              </span>
-            </span>
-            <img src="/images/logos/firedev.svg" alt="firedev.com" class="absolute bottom-0" />
-            &nbsp;
-          </a>
-        </h1>
-      </div>
-      <nav class="sm-col sm-col-9 px2 mt2 py1">
-        <div class="right mt2 p1 md-show">
-          <a class="btn silver regular" href="{{ "/feed.xml" | prepend: site.baseurl }}">
-            <i class="fa fa-rss"></i>
-            RSS
-          </a>
-        </div>
-        <h3>
-          {% for menu in site.pages order:descending %}
-            {% if menu.menu %}
-              {% if (page.url == menu.url) or ((menu.url == "/posts/index.html") and (page.url == "/index.html")) %}
-                <a class="button bg-orange white" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
-                  {{ menu.title }}
-                </a>
-              {% else %}
-                <a class="btn" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
-                  {{ menu.title }}
-                </a>
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-        </h3>
-      </nav>
-    </div>
-  </div>
+<header class="grid grid-cols-4 gap-8 mb-4">
+  <a href="/" class="block leading-4 aspect-w-3 aspect-h-1"
+    style="background: bottom left no-repeat url(/images/logos/firedev.svg);">
+    <h1 class="text-8xl leading-4 block invisible">
+      firedev.com
+    </h1>
+  </a>
+
+  <nav class="col-span-3 flex gap-8 items-end h2 leading-6">
+
+    {% for menu in site.pages order:descending %}
+    {% if menu.menu %}
+    {% if (page.url == menu.url) or ((menu.url == "/posts/index.html") and (page.url == "/index.html")) %}
+    <a class="orange"
+      href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
+      {{ menu.title }}
+    </a>
+    {% else %}
+    <a class="font-normal text-gray-600" href="{{ menu.url | remove: '/index.html' | prepend: site.baseurl }}">
+      {{ menu.title }}
+    </a>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    <div class="flex flex-auto"></div>
+
+    <a class="block font-normal opacity-50 text-sm text-gray-600" href="{{ " /feed.xml" | prepend: site.baseurl }}">
+      <i class="fa fa-rss"></i>
+      RSS
+
+    </a>
+  </nav>
 </header>
