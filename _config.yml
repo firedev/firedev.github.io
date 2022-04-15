@@ -5,18 +5,38 @@ email: nick@firedev.com
 description: > # this means to ignore newlines until "baseurl:"
   Building the internet one site at a time
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://firedev.com" # the base hostname & protocol for your site
+url: "https://firedev.com" # the base hostname & protocol for your site
 twitter_username: firedev
 github_username:  firedev
 
 # Build settings
 # permalink: /:title
 permalink: /:categories/:title/
+include:
+  - _pages/
+
+plugins:
+    - jekyll-postcss
+
+postcss:
+  cache: false
+
 exclude:
   - "bower_components"
   - "bower.json"
   - "node_modules"
   - "Rakefile"
+  - tailwind.config.js
+  - postcss.config.js
+  - package.json
+  - package-lock.json
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - yarn.lock
+  - yarn-error.log
+  - .jekyll-cache/
+
 
 collections:
   - projects

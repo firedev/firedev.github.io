@@ -1,8 +1,7 @@
-<div class="clearfix mxn2 mb2">
-  <div class="sm-col sm-col-3 px2">
-    <a href="{{ include.post.url }}">
-      <div class="rounded mb1" style="
-    padding-top: 71.555%;
+<div class="sm:grid grid-cols-4 gap-8 mb-8">
+
+  <a href="{{ include.post.url }}">
+    <div class="rounded mb-2 aspect-w-4 aspect-h-3" style="
     background-image: url(/images/{{post.image}});
     {% if post.background_size == 'initial' %}
       background-size: contain;
@@ -12,15 +11,17 @@
     {% endif %}
     background-color: {{ post.background_color }};
     "></div>
-    </a>
-  </div>
+  </a>
 
-  <div class="sm-col sm-col-9 px2">
+
+  <div class="col-span-3">
     {% include _rating.html rating=post.rating %}
-    <date>{{ include.post.date | date_to_string }}</date>
-    <h2 class="mt1 mb1">
-      <a href="{{ include.post.url }}">{{ include.post.title }}</a>
-    </h2>
-    <p>{{ include.post.excerpt | strip_html }}</p>
+    <date class="">{{ include.post.date | date_to_string }}</date>
+    <div class="my-2">
+      <h2 class="">
+        <a href="{{ include.post.url }}">{{ include.post.title }}</a>
+      </h2>
+      <p>{{ include.post.excerpt | strip_html }}</p>
+    </div>
   </div>
 </div>
