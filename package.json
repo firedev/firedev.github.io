@@ -10,7 +10,7 @@
     "tailwindcss": "^3.0.23"
   },
   "scripts": {
-    "start": "bundle exec jekyll serve --watch --livereload",
+    "start": "bundle exec jekyll serve --watch --livereload --host=0.0.0.0",
     "build": "JEKYLL_ENV=production bundle exec jekyll build"
   }
 }

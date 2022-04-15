@@ -1,0 +1,18 @@
+<div class="sm:grid grid-cols-4 gap-8 mb-8">
+  <div class="rounded overflow-hidden mb-4">
+    <a href="{{project.link}}"><img alt="{{project.title}}" src="/images/projects/{{project.image}}" /></a>
+  </div>
+  <div class="col-span-3">
+    <h2 class="mt0">
+      <a href="{{project.link}}">{{project.title}}</a>
+    </h2>
+    <div class="sm:grid grid-cols-3 gap-8 mb-8">
+      <div class="col-span-2">{{project}}</div>
+      <div class="flex flex-wrap sm:block mb-4 sm:leading-9">
+        {% for tag in project.tags %}
+        <div class="inline-flex items-center py-1 px-2 bg-gray-100 rounded sm:text-base"><i class="fa fa-{{tag.icon}} mr-2"></i>{{tag.title}}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
