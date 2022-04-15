@@ -1,138 +1,120 @@
 <!DOCTYPE html>
 <html>
-
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Boring Rails</title>
-  <meta name="description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way I’ve colle...">
+  <meta name="description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://firedev.com/posts/boring-rails/">
-  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
+  <link rel="canonical" href="https://firedev.com/posts/boring-rails/">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="https://firedev.com/feed.xml" />
 
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <link href="/images/favicon.png" rel="icon" />
   <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <meta property="og:url" content="http://firedev.com/posts/boring-rails/" />
+  <meta property="og:url" content="https://firedev.com/posts/boring-rails/" />
   <meta property="og:title" content="Boring Rails" />
-  <meta property="og:description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way I’ve collected to share with the team.
+  <meta property="og:description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.
 " />
-  <meta property="og:image" content="http://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg" />
+  <meta property="og:image" content="https://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg" />
 </head>
 
+  <body class="px-4 max-w-6xl m-auto prose prose-neutral lg:text-xl">
+    <header class="grid grid-cols-4 gap-8 mb-4">
+  <a href="/" class="block leading-4 aspect-w-3 aspect-h-1"
+    style="background: bottom left no-repeat url(/images/logos/firedev.svg);">
+    <h1 class="text-8xl leading-4 block invisible">
+      firedev.com
+    </h1>
+  </a>
 
-  <body>
+  <nav class="col-span-3 flex gap-8 items-end h2 leading-6">
 
-    <header class="site-header">
-  <div class="container px2 mt2 mb2">
-    <div class="clearfix mxn2">
-      <div class="sm-col sm-col-3 px2">
-        <h1 class="logo m0 relative">
-          <a href="/" id="logo">
-            <span class="hide">
-              <span class="fire">
-                fire
-              </span>
-              <span class="dev">
-                dev
-              </span>
-              <span class="com">
-                .com
-              </span>
-            </span>
-            <img src="/images/logos/firedev.svg" alt="firedev.com" class="absolute bottom-0" />
-            &nbsp;
-          </a>
-        </h1>
-      </div>
-      <nav class="sm-col sm-col-9 px2 mt2 py1">
-        <div class="right mt2 p1 md-show">
-          <a class="btn silver regular" href="/feed.xml">
-            <i class="fa fa-rss"></i>
-            RSS
-          </a>
-        </div>
-        <h3>
-          
-            
-          
-            
-              
-                <a class="btn" href="/posts/">
-                  Posts
-                </a>
-              
-            
-          
-            
-              
-                <a class="btn" href="/projects/">
-                  Projects
-                </a>
-              
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-        </h3>
-      </nav>
-    </div>
-  </div>
+    
+    
+    
+    
+    
+    <a class="font-normal text-gray-600" href="/posts/">
+      Posts
+    </a>
+    
+    
+    
+    
+    
+    <a class="font-normal text-gray-600" href="/projects/">
+      Projects
+    </a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <div class="flex flex-auto"></div>
+
+    <a class="block font-normal opacity-50 text-sm text-gray-600" href=" /feed.xml">
+      <i class="fa fa-rss"></i>
+      RSS
+
+    </a>
+  </nav>
 </header>
 
     
-<div class="main-image mb3" style="
+<div class="main-image mb-6" style="
 background-image: url(/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg);
 background-size: cover;
 background-color: ;
@@ -141,20 +123,25 @@ background-position: ;
 </div>
 
 
-    <div class="container px2 mb4">
-        
+
+    
 
 <header>
   
-  <h1 class="m0 mb2">Boring Rails</h1>
+  <h1 class="m0 mb-4">Boring Rails</h1>
 </header>
 
 
-<div class="mb3">
-  <article class="mb3">
-    <p>Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring, pragmatic way I’ve collected to share with the team.</p>
+<div class="mb-6">
+  <article class="mb-6">
+    <p>Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.</p>
 
-<p><strong>Table of Content</strong></p>
+<ul>
+  <li>https://www.youtube.com/watch?v=NbMt4uFIL8c</li>
+  <li>https://www.youtube.com/watch?v=Mq6MuwLMEUU</li>
+</ul>
+
+<hr />
 
 <!-- TOC -->
 
@@ -163,13 +150,7 @@ background-position: ;
   <li><a href="#state-machines">State machines</a></li>
   <li><a href="#repositories">Repositories</a></li>
   <li><a href="#presenters">Presenters</a></li>
-  <li><a href="#form-objects">Form Objects</a>
-    <ul>
-      <li><a href="#activemodel">ActiveModel</a></li>
-      <li><a href="#shapes">Shapes</a></li>
-      <li><a href="#forms-validation-and-data-normalization">Forms Validation and Data Normalization</a></li>
-    </ul>
-  </li>
+  <li><a href="#forms-validation-and-data-normalization">Forms Validation and Data Normalization</a></li>
   <li><a href="#controllers-hierarchy">Controllers Hierarchy</a></li>
   <li><a href="#authorization">Authorization</a></li>
   <li><a href="#mutators">Mutators</a></li>
@@ -178,20 +159,20 @@ background-position: ;
   <li><a href="#null-object">Null Object</a></li>
   <li><a href="#business-logic">Business Logic</a>
     <ul>
-      <li><a href="#controller---business">Controller - Business</a>
+      <li><a href="#controller-%E2%86%92-business">Controller → Business</a>
         <ul>
           <li><a href="#return-result">Return result</a></li>
           <li><a href="#data-validation">Data Validation</a></li>
         </ul>
       </li>
-      <li><a href="#business---controller">Business - Controller</a></li>
-      <li><a href="#business---business">Business - Business</a>
+      <li><a href="#business-%E2%86%92-controller">Business → Controller</a></li>
+      <li><a href="#business-%E2%86%92-business">Business → Business</a>
         <ul>
           <li><a href="#testing">Testing</a></li>
           <li><a href="#chaining">Chaining</a></li>
         </ul>
       </li>
-      <li><a href="#db---business">DB - Business</a>
+      <li><a href="#db-%E2%86%92-business">DB → Business</a>
         <ul>
           <li><a href="#transactions">Transactions</a></li>
         </ul>
@@ -204,7 +185,7 @@ background-position: ;
 
 <h2 id="models-hierarchy">Models Hierarchy</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>models/
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>models/
   blog_post/
     category.rb
     vote.rb
@@ -219,6 +200,7 @@ background-position: ;
     build.rb
     challenge.rb
 </code></pre></div></div>
+
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/models/course/challenge.rb</span>
 
 <span class="k">class</span> <span class="nc">Course::Challenge</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
@@ -232,7 +214,7 @@ background-position: ;
 <h2 id="state-machines">State machines</h2>
 
 <ul>
-  <li><a href="https://github.com/aasm/aasm"><code class="highlighter-rouge">aasm</code></a></li>
+  <li><a href="https://github.com/aasm/aasm"><code class="language-plaintext highlighter-rouge">aasm</code></a></li>
 </ul>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">state_machine</span> <span class="ss">:stripe_state</span><span class="p">,</span> <span class="ss">initial: </span><span class="n">synchronized</span><span class="p">,</span> <span class="ss">namespace: </span><span class="n">stripe</span> <span class="k">do</span>
@@ -249,7 +231,7 @@ background-position: ;
   <span class="k">end</span>
 
   <span class="n">event</span> <span class="ss">:mark_as_synchronized</span> <span class="k">do</span>
-    <span class="n">transition</span> <span class="ss">synchronizing: :synchronized</span>
+    <span class="n">transition</span> <span class="ss">synchonizing: :synchronized</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div></div>
@@ -280,58 +262,10 @@ background-position: ;
   <span class="k">end</span>
 </code></pre></div></div>
 
-<h2 id="form-objects">Form Objects</h2>
-
-<h3 id="activemodel">ActiveModel</h3>
+<h2 id="forms-validation-and-data-normalization">Forms Validation and Data Normalization</h2>
 
 <ul>
-  <li>Extract validations</li>
-</ul>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PersonForm</span>
-  <span class="nb">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
-
-  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Model</span>
-  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
-<span class="k">end</span>
-</code></pre></div></div>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
-  <span class="k">if</span> <span class="n">person_form</span><span class="p">.</span><span class="nf">valid?</span>
-    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">person_form</span><span class="p">.</span><span class="nf">as_json</span><span class="p">)</span>
-    <span class="o">...</span>
-</code></pre></div></div>
-
-<h3 id="shapes">Shapes</h3>
-
-<ul>
-  <li>Different set of validations</li>
-  <li>Creates an original model</li>
-  <li>STI and Conditional Validations replacement</li>
-</ul>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@user</span> <span class="o">=</span> <span class="no">UserRegistrationShape</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
-</code></pre></div></div>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UserRegistrationShape</span> <span class="o">&lt;</span> <span class="no">User</span>
-  <span class="kp">include</span> <span class="no">ApplicationShape</span>
-
-  <span class="n">validated_confirmation_of</span> <span class="ss">:email</span>
-  <span class="n">validates_acceptance_of</span> <span class="ss">:terms_of_service</span>
-<span class="k">end</span>
-</code></pre></div></div>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">ApplicationShape</span>
-  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
-
-  <span class="k">module</span> <span class="nn">ClassMethods</span>
-    <span class="n">delegate</span> <span class="ss">:model_name</span><span class="p">,</span> <span class="ss">to: :superclass</span>
-    <span class="n">delegate</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">to: </span><span class="n">superclass</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<h3 id="forms-validation-and-data-normalization">Forms Validation and Data Normalization</h3>
-
-<ul>
-  <li><a href="https://github.com/Hexlet/active_form_model"><code class="highlighter-rouge">active_form_model</code></a></li>
+  <li><a href="https://github.com/Hexlet/active_form_model"><code class="language-plaintext highlighter-rouge">active_form_model</code></a></li>
 </ul>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/forms/user/sign_up_form.rb</span>
@@ -355,7 +289,7 @@ background-position: ;
 
 <h2 id="controllers-hierarchy">Controllers Hierarchy</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>controllers/
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>controllers/
   web/
     projects/
       members/
@@ -363,6 +297,7 @@ background-position: ;
     application_controller.rb
   application_controller.rb
 </code></pre></div></div>
+
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controllers/web/projects/members/comments_controller.rb</span>
 
 <span class="k">class</span> <span class="nc">Web::Projects::Members::CommentsController</span> <span class="o">&lt;</span> <span class="no">Web</span><span class="o">::</span><span class="no">ApplicationController</span>
@@ -374,7 +309,7 @@ background-position: ;
 <p>Layer above models</p>
 
 <ul>
-  <li><a href="https://github.com/varvet/pundit"><code class="highlighter-rouge">pundit</code></a></li>
+  <li><a href="https://github.com/varvet/pundit"><code class="language-plaintext highlighter-rouge">pundit</code></a></li>
 </ul>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/policies/resume/answer/comment_policy.rb</span>
@@ -398,7 +333,7 @@ background-position: ;
 
 <ul>
   <li>Callbacks replacement.</li>
-  <li>Anything more complex than <code class="highlighter-rouge">create(params)</code> goes to mutators.</li>
+  <li>Anything more complex than <code class="language-plaintext highlighter-rouge">create(params)</code> goes to mutators.</li>
   <li>Nothing except working with entity</li>
 </ul>
 
@@ -435,7 +370,7 @@ background-position: ;
   <span class="n">before_action</span> <span class="ss">:require_email_confirmation!</span>
 
   <span class="k">def</span> <span class="nf">create</span>
-    <span class="n">member</span> <span class="o">=</span> <span class="no">Project</span><span class="o">::</span><span class="no">Member</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:member_id</span><span class="p">])</span>
+    <span class="n">member</span> <span class="o">=</span> <span class="no">Project</span><span class="o">::</span><span class="no">Mmember</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:member_id</span><span class="p">])</span>
     <span class="n">authorize</span> <span class="n">member</span><span class="p">,</span> <span class="ss">:create_comment?</span>
 
     <span class="n">comment</span> <span class="o">=</span> <span class="no">ProjectService</span><span class="p">.</span><span class="nf">create_comment</span><span class="p">(</span><span class="n">member</span><span class="p">,</span> <span class="n">current_user</span><span class="p">,</span> <span class="n">permitted_params</span><span class="p">)</span>
@@ -487,6 +422,8 @@ background-position: ;
 
 <h2 id="null-object">Null Object</h2>
 
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">-</span> <span class="k">if</span> <span class="n">signed_in?</span> <span class="o">&amp;&amp;</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">friends</span><span class="p">.</span><span class="nf">any?</span>
+</code></pre></div></div>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Guest</span>
   <span class="k">def</span> <span class="nf">id</span><span class="p">;</span> <span class="k">end</span>
 
@@ -508,31 +445,6 @@ background-position: ;
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h2 id="async">Async</h2>
-
-<ul>
-  <li>https://github.com/mperham/sidekiq/wiki/Monitoring#monitoring-queue-latency</li>
-</ul>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># sync method</span>
-<span class="k">def</span> <span class="nf">update_post_users!</span>
-  <span class="o">...</span>
-<span class="k">end</span>
-
-<span class="c1"># async method</span>
-<span class="k">def</span> <span class="nf">update_post_users</span>
-  <span class="no">UpdatePostUsersJob</span><span class="p">.</span><span class="nf">perform_later</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
-<span class="k">end</span>
-</code></pre></div></div>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># job</span>
-<span class="k">class</span> <span class="nc">UpdatePostUsersJob</span> <span class="o">&lt;</span> <span class="no">ApplicationJob</span>
-  <span class="k">def</span> <span class="nf">perform</span><span class="p">(</span><span class="n">post_id</span><span class="p">)</span>
-    <span class="n">post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">id: </span><span class="n">post_id</span><span class="p">)</span>
-    <span class="n">post</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">update_post_users!</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
 <h2 id="business-logic">Business Logic</h2>
 
 <ul>
@@ -541,21 +453,21 @@ background-position: ;
 </ul>
 
 <ol>
-  <li>Controller - Business</li>
-  <li>Business - Controller</li>
-  <li>Business - Business</li>
-  <li>DB - Business</li>
+  <li>Controller → Business</li>
+  <li>Business → Controller</li>
+  <li>Business ←→ Business</li>
+  <li>DB ←→ Business</li>
 </ol>
 
-<h3 id="1-controller---business">1. Controller - Business</h3>
+<h3 id="1-controller--business">1. Controller → Business</h3>
 
 <ul>
-  <li><code class="highlighter-rouge">Operation</code> is a good pattern-free word</li>
+  <li><code class="language-plaintext highlighter-rouge">Operation</code> is a good pattern-free word</li>
   <li>Unified Interface</li>
   <li>Railway oriented programming</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app/
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app/
   controllers/
     clients_controller.rb
   operations/
@@ -563,6 +475,7 @@ background-position: ;
       confirmations/
         start.rb
 </code></pre></div></div>
+
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
   <span class="n">operation</span> <span class="o">=</span> <span class="no">Clients</span><span class="o">::</span><span class="no">Confirmations</span><span class="o">::</span><span class="no">Start</span><span class="p">.</span><span class="nf">new</span>
   <span class="n">handle_result</span> <span class="n">operation</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">transaction: </span><span class="n">transaction</span><span class="p">)</span>
@@ -573,7 +486,7 @@ background-position: ;
 
 <ul>
   <li>Result object</li>
-  <li><a href="https://dry-rb.org/gems/dry-monads/"><code class="highlighter-rouge">dry-rb/dry-monads</code></a></li>
+  <li><a href="https://dry-rb.org/gems/dry-monads/"><code class="language-plaintext highlighter-rouge">dry-rb/dry-monads</code></a></li>
   <li><a href="https://dry-rb.org/gems/dry-monads/1.3/do-notation/">Do Notation</a></li>
 </ul>
 
@@ -592,6 +505,7 @@ background-position: ;
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div></div>
+
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Clients::Confirmations::Start</span> <span class="o">&lt;</span> <span class="no">Operation</span>
   <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">transaction</span><span class="p">:)</span>
     <span class="c1"># Success() or Failure(...)</span>
@@ -611,25 +525,27 @@ background-position: ;
 <ul>
   <li>Validate user data not domain objects</li>
   <li>Always valid objects</li>
-  <li><code class="highlighter-rouge">dry-rb/dry-validation</code>[https://dry-rb.org/gems/dry-validation/]</li>
+  <li><code class="language-plaintext highlighter-rouge">dry-rb/dry-validation</code>[https://dry-rb.org/gems/dry-validation/]</li>
 </ul>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Profile</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
   <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:birthdate</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
 </code></pre></div></div>
+
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ProfileContract</span> <span class="o">&lt;</span> <span class="no">Contract</span>
   <span class="n">params</span> <span class="k">do</span>
     <span class="n">required</span><span class="p">(</span><span class="ss">:name</span><span class="p">).</span><span class="nf">filled</span><span class="p">(</span><span class="ss">:string</span><span class="p">)</span>
     <span class="n">required</span><span class="p">(</span><span class="ss">:birthdate</span><span class="p">).</span><span class="nf">value</span><span class="p">(</span><span class="ss">:date</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h3 id="2-business---controller">2. Business - Controller</h3>
+<h3 id="2-business--controller">2. Business → Controller</h3>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
   <span class="n">operation</span> <span class="o">=</span> <span class="no">Clients</span><span class="o">::</span><span class="no">Confirmations</span><span class="o">::</span><span class="no">Start</span><span class="p">.</span><span class="nf">new</span>
   <span class="n">handle_result</span> <span class="n">operation</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">transaction: </span><span class="n">transaction</span><span class="p">)</span>
 <span class="k">end</span>
 </code></pre></div></div>
+
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">handle_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
   <span class="k">case</span> <span class="n">result</span>
   <span class="k">when</span> <span class="no">Success</span><span class="p">()</span> <span class="k">then</span> <span class="n">head</span><span class="p">(</span><span class="ss">:ok</span><span class="p">)</span>
@@ -639,7 +555,7 @@ background-position: ;
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3 id="3-business---business">3. Business - Business</h3>
+<h3 id="3-business--business">3. Business → Business</h3>
 
 <ul>
   <li>Dependency injection</li>
@@ -680,12 +596,13 @@ background-position: ;
   <li>Command-Query Segregation</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   steps
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   steps
    1   2   3
 ---*---*---*------ happy path
     \   \   \
 ------------------ error
 </code></pre></div></div>
+
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Clients::Confirmations::Start</span> <span class="o">&lt;</span> <span class="no">Operation</span>
   <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">transaction</span><span class="p">:)</span>
     <span class="c1"># Success() or Failure(...)</span>
@@ -697,7 +614,7 @@ background-position: ;
 <span class="k">end</span>
 </code></pre></div></div>
 
-<h3 id="4-db---business">4. DB - Business</h3>
+<h3 id="4-db--business">4. DB → Business</h3>
 
 <ul>
   <li>Inject repository</li>
@@ -734,48 +651,37 @@ background-position: ;
     <span class="k">end</span>
 </code></pre></div></div>
 
-<hr />
-
-<p>Sources:</p>
-
-<ul>
-  <li><a href="https://www.youtube.com/watch?v=NbMt4uFIL8c">Архитектура должна быть скучной, Кирилл Мокевнин</a></li>
-  <li><a href="https://www.youtube.com/watch?v=Mq6MuwLMEUU">Кирилл Волченко - Куда помещать бизнес-логику в Rails?</a></li>
-  <li><a href="https://www.youtube.com/watch?v=Ae19vpQ14jw">Rails для продвинутых: организация кода (Иван Немытченко)</a></li>
-</ul>
-
   </article>
 
-  <div class="mb3 lh25">
+  <div class="my-8 leading-8 lg:leading-9">
  
 
-<a href="/ruby/" class="button bg-orange white lh1"> Ruby </a>
+<a href="/ruby/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Ruby </a>
  
 
-<a href="/rails/" class="button bg-orange white lh1"> Rails </a>
+<a href="/rails/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Rails </a>
  
 
-<a href="/refactoring/" class="button bg-orange white lh1"> Refactoring </a>
+<a href="/refactoring/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Refactoring </a>
 
 </div>
 
 
 </div>
-<div class="mt4">
-<div class="clearfix mxn2 mb2">
-  <div class="sm-col sm-col-3 px2 mb2">
-    <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
+<div class="mt-8">
+<div class="sm:grid grid-cols-4 gap-8 my-16">
+  <div class="">
+    <img class="rounded" src="/images/me.jpg" alt="Hello!" />
   </div>
-  <div class="sm-col sm-col-9 px2">
+  <div class="col-span-3">
 
-    <h2 class="mt0 h1">
+    <h2 class="h1">
       Nikolay Ostrovsky
     </h2>
 
-    <div class="clearfix mxn2 mb4">
-
-      <div class="sm-col sm-col-8 px2">
-        <p>
+    <div class="sm:grid grid-cols-3 gap-8 mb-8">
+      <div class="col-span-2">
+        <p class="mt-0">
           Startup Team Lead. I like everything minimal and as simple as possible.
         </p>
         <p>
@@ -786,16 +692,17 @@ background-position: ;
         </p>
       </div>
 
-      <div class="sm-col sm-col-4 sm-show">
-        <div class="mtn1 ml2">
-          <!-- <a class="p1 px2 white bg-green rounded mb1 inline-block" href="mailto:nick@firedev.com" -->
-          <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
-          <a class="p1 px2 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
-          <a class="p1 px2 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
-          <!--<a class="p1 px2 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
-          <a class="p1 px2 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i> StackOverflow</a>
-          <a class="p1 px2 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
-        </div>
+
+      <div class="col-span-1 leading-6">
+
+        <!-- <a class="py-1 px-4 white bg-green rounded mb-2 inline-block" href="mailto:nick@firedev.com" -->
+        <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
+        <a class="py-1 px-4 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
+        <a class="py-1 px-4 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
+        <!--<a class="py-1 px-4 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
+        <a class="py-1 px-4 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i>
+          StackOverflow</a>
+        <a class="py-1 px-4 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
       </div>
     </div>
   </div>
@@ -815,16 +722,13 @@ var disqus_shortname = 'firedevcom';
 })();
 </script>
 
+
+    <footer class="text-center">
+    <div class="py-8 my-8 text-gray-700">
+        With <i class="fa fa-heart text-red-700"></i>
+        <a href="http://firedev.com" class="text-gray-700"><strong>firedev.com</strong></a>
     </div>
 
-    <footer>
-    <div class="container px2 mt4 mb2 center">
-        With <i class="fa fa-heart red"></i>
-        <a href="http://firedev.com"><strong>firedev.com</strong></a>
-    </div>
-    <div class="container px2 mb4 center">
-        <a class="muted" href="mailto:nick@firedev.com">Email me</a>
-    </div>
 </footer>
 
     <script src="/js/firedev.js"></script>
@@ -841,5 +745,4 @@ var disqus_shortname = 'firedevcom';
 </script>
 
   </body>
-
 </html>
