@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
-  {% include head.html %}
-  <body class="px-4 max-w-6xl m-auto prose prose-neutral lg:text-xl">
-    {% include header.html %}
-    {% include _main_image.html %}
+{% include head.html %}
 
+<body class="m-auto prose prose-neutral lg:text-xl">
+  <div class="max-w-6xl px-4 mx-auto">
+    {% include header.html %}
+  </div>
+  {% include _main_image.html %}
+  <div class="max-w-6xl px-4 mx-auto">
     {{ content }}
 
     {% include footer.html %}
     {% include scripts.html %}
-  </body>
+  </div>
+</body>
+
 </html>
