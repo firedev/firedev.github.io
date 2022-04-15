@@ -27,22 +27,24 @@
 
 <body class="m-auto prose prose-neutral lg:text-xl">
   <div class="max-w-6xl px-4 mx-auto">
-    <header class="md:grid grid-cols-4 gap-8 mb-4">
-  <a href="/" class="block leading-4 aspect-w-3 aspect-h-1 overflow-hidden mb-4"
+    <header class="sm:grid grid-cols-4 gap-8 mb-4">
+  <a href="/" class="block leading-4 aspect-w-3 aspect-h-1 overflow-hidden"
     style="background: bottom left no-repeat url(/images/logos/firedev.svg);">
     <h1 class="text-8xl leading-4 block invisible">
       firedev.com
     </h1>
   </a>
 
-  <nav class="col-span-3 flex gap-8 items-end h2 leading-6 text-2xl">
+  <div class="mb-8 sm:hidden"></div>
+
+  <nav class="col-span-3 flex flex-wrap gap-8 items-end  leading-6 text-5xl sm:text-2xl">
 
     
     
     
     
     
-    <a class="font-normal text-gray-600" href="/posts/">
+    <a class=" font-normal text-gray-600" href="/posts/">
       Posts
     </a>
     
@@ -108,7 +110,7 @@
 
     <div class="flex flex-auto"></div>
 
-    <a class="block font-normal opacity-50 text-sm text-gray-600" href=" /feed.xml">
+    <a class="hidden sm:block font-normal opacity-50 text-sm text-gray-600" href=" /feed.xml">
       <i class="fa fa-rss"></i>
       RSS
 
@@ -160,122 +162,111 @@
 </div>
 
 
-<div class="projects">
+<div class="sm:grid grid-cols-4 gap-8 mb-8">
+  <div class="rounded overflow-hidden mb-4">
+    <a href="/darkanoid"><img alt="Darkanoid" src="/images/projects/darkanoid.png" /></a>
+  </div>
+  <div class="col-span-3">
+    <h2 class="mt0">
+      <a href="/darkanoid">Darkanoid</a>
+    </h2>
+    <div class="sm:grid grid-cols-3 gap-8 mb-8">
+      <div class="col-span-2"><p>Play-in-the-browser arcade game demake.</p>
 
-  <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
-      <a href="/darkanoid"><img alt="Darkanoid" src="/images/projects/darkanoid.png" /></a>
-    </div>
-    <div class="col-span-2">
-      <h2 class="mt0">
-        <a href="/darkanoid">Darkanoid</a>
-      </h2>
-      <p>
-        Play-in-the-browser arcade game remake.
-      </p>
-      <p>
-        Got into programming for <a href="//pico-8.com">PICO-8 Fantasy Console</a>. Here is a first try. The code is on
-        Github:
-      </p>
-      <p>
-        <i class="fa fa-play"></i> <a href="//firedev.com/darkanoid">firedev.com/darkanoid</a>
-      </p>
-      <p>
-        <i class="fa fa-github"></i> <a href="//github.com/firedev/darkanoid">github.com/firedev/darkanoid</a>
-      </p>
-    </div>
-    <div class="flex flex-wrap sm:block">
-      <div class="flex p-1"><i class="fa fa-pencil mr-2"></i>Design
-      </div>
-      <div class="flex p-1"><i class="fa fa-cog mr-2"></i>Gamedev
-      </div>
-      <div class="flex p-1"><i class="fa fa-terminal mr-2"></i>Lua
+<p>Got into programming for <a href="//pico-8.com">PICO-8 Fantasy Console</a>. Here is a first try. The code is on Github:</p>
+
+<p><i class="fa fa-play mr-2"></i><a href="//firedev.com/darkanoid">firedev.com/darkanoid</a></p>
+
+<p><i class="fa fa-github mr-2"></i><a href="//github.com/firedev/darkanoid">github.com/firedev/darkanoid</a></p>
+</div>
+      <div class="flex flex-wrap sm:block mb-4 sm:leading-9">
+        
+        <div class="inline-flex items-center py-1 px-2 bg-gray-100 rounded sm:text-base"><i class="fa fa-pencil mr-2"></i>Design</div>
+        
+        <div class="inline-flex items-center py-1 px-2 bg-gray-100 rounded sm:text-base"><i class="fa fa-child mr-2"></i>Gamedev</div>
+        
+        <div class="inline-flex items-center py-1 px-2 bg-gray-100 rounded sm:text-base"><i class="fa fa-terminal mr-2"></i>Lua</div>
+        
       </div>
     </div>
   </div>
-
-  <!-- <div class="sm:grid grid-cols-4 gap-8 mb-8"> -->
-  <!-- <div class="rounded overflow-hidden"> -->
-  <!-- <a href="http://anya.io"><img alt="ASCII" src="/images/projects/anya_io.jpg" /></a> -->
-  <!-- </div> -->
-  <!-- <div class="col-span-2"> -->
-  <!-- <h2 class="mt0"> -->
-  <!-- <a href="http://anya.io">Anya Belova</a> -->
-  <!-- </h2> -->
-  <!-- <p> -->
-  <!-- Meet our older daughter Anya, a growing designer. -->
-  <!-- </p> -->
-  <!-- <p> -->
-  <!-- A present for her birthday. Hope it will help her to kickstart a designer -->
-  <!-- career. She is getting pretty good with drawing and crafting things out. -->
-  <!-- </p> -->
-  <!-- <p> -->
-  <!-- <b>Psst!</b> If you need a drawing for your blog or something, let her take a stab at it. -->
-  <!-- <p> -->
-  <!-- <a href="http://anya.io">anya.io</a> -->
-  <!-- </p> -->
-  <!-- </div> -->
-  <!-- <div class="rounded overflow-hidden"> -->
-  <!-- <div class="flex items-center p-1"><i class="fa fa-pencil mr-2"></i>Design</div> -->
-  <!-- </div> -->
-  <!-- </div> -->
-
-  <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
-      <img alt="Phuket Vegan" src="/images/projects/phuketvegan.png" /></a>
-    </div>
-    <div class="col-span-2">
-      <h2 class="mt0">
-        Phuket Vegan
-      </h2>
-      <p>
-        Cleansing of Mind and Body
-      </p>
-      <p>
-        Another Phuket related project. A holistic approach to health. Come over
-        and stay as long as you like. Live in a lush tropical environment while
-        working towards better you.
-      </p>
-
-    </div>
-    <div class="flex flex-wrap sm:block">
-      <div class="flex items-center p-1"><i class="fa fa-pencil mr-2"></i>Design</div>
-      <div class="flex items-center p-1"><i class="fa fa-certificate mr-2"></i>Branding</div>
-    </div>
+</div>
+<div class="sm:grid grid-cols-4 gap-8 mb-8">
+  <div class="rounded overflow-hidden mb-4">
+    <a href="/furniture3d"><img alt="Furniture 3D Builder" src="/images/projects/furniture3d.jpg" /></a>
   </div>
+  <div class="col-span-3">
+    <h2 class="mt0">
+      <a href="/furniture3d">Furniture 3D Builder</a>
+    </h2>
+    <div class="sm:grid grid-cols-3 gap-8 mb-8">
+      <div class="col-span-2"><p>Here is a furniture generator prototype.</p>
 
-  <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div>
-      <div class="rounded overflow-hidden">
-        <a href="http://firedev.com/ascii"><img alt="ASCII" src="/images/projects/sidekiq.png" /></a>
+<p>I was approached by a furniture startup with the idea of letting customer to preconfigure the furniture they are about to order.</p>
+
+</div>
+      <div class="flex flex-wrap sm:block mb-4 sm:leading-9">
+        
+        <div class="inline-flex items-center py-1 px-2 bg-gray-100 rounded sm:text-base"><i class="fa fa-terminal mr-2"></i>Three.js</div>
+        
+        <div class="inline-flex items-center py-1 px-2 bg-gray-100 rounded sm:text-base"><i class="fa fa-terminal mr-2"></i>React.js</div>
+        
       </div>
     </div>
-    <div class="col-span-2">
-      <h2 class="mt0">
-        <a href="http://firedev.com/ascii">ANSI/ASCII Art</a>
-      </h2>
-      <p>
-        Next level visual sh*t
-      </p>
-      <p>
-        Having roots in the BBS Scene back in the days I've made this new banner
-        for <a href="http://sidekiq.org">Sidekiq</a>.
-        Let me know if you want some ASCII/ANSI art for your console stuff.
-      </p>
-      <p>
-        Here is some of the stuff salvaged from the art-packs.
-      </p>
-      <p>
-        <a href="http://firedev.com/ascii">firedev.com/ascii</a>
-      </p>
-    </div>
-    <div class="flex flex-wrap sm:block">
-      <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-terminal mr-2"></i>ANSI/ASCII</div>
+  </div>
+</div>
+<div class="sm:grid grid-cols-4 gap-8 mb-8">
+  <div class="rounded overflow-hidden mb-4">
+    <a href="///firedev.com/ascii"><img alt="ASCII Art" src="/images/projects/ascii.png" /></a>
+  </div>
+  <div class="col-span-3">
+    <h2 class="mt0">
+      <a href="///firedev.com/ascii">ASCII Art</a>
+    </h2>
+    <div class="sm:grid grid-cols-3 gap-8 mb-8">
+      <div class="col-span-2"><p>Next level visual sh*t.</p>
+
+<p>Having roots in the BBS Scene back in the days I’ve made tons of thos. Here is some of the stuff salvaged from the art-packs. The last one was for <a href="///sidekiq.org">Sidekiq</a> I think.</p>
+
+<p><a href="///firedev.com/ascii">firedev.com/ascii</a></p>
+</div>
+      <div class="flex flex-wrap sm:block mb-4 sm:leading-9">
+        
+        <div class="inline-flex items-center py-1 px-2 bg-gray-100 rounded sm:text-base"><i class="fa fa-terminal mr-2"></i>ASCII</div>
+        
+      </div>
     </div>
   </div>
+</div>
+<div class="sm:grid grid-cols-4 gap-8 mb-8">
+  <div class="rounded overflow-hidden mb-4">
+    <a href=""><img alt="Phuket Vegan" src="/images/projects/phuketvegan.png" /></a>
+  </div>
+  <div class="col-span-3">
+    <h2 class="mt0">
+      <a href="">Phuket Vegan</a>
+    </h2>
+    <div class="sm:grid grid-cols-3 gap-8 mb-8">
+      <div class="col-span-2"><p>Mind and Body Cleansing Retreat.</p>
+
+<p>A failed attempt to offer a holistic approach to health in Phuket. You could come over and stay as long as you like. Live in a lush tropical environment while working toward a better you.</p>
+
+</div>
+      <div class="flex flex-wrap sm:block mb-4 sm:leading-9">
+        
+        <div class="inline-flex items-center py-1 px-2 bg-gray-100 rounded sm:text-base"><i class="fa fa-pencil mr-2"></i>Design</div>
+        
+        <div class="inline-flex items-center py-1 px-2 bg-gray-100 rounded sm:text-base"><i class="fa fa-certificate mr-2"></i>Branding</div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://firedev.com/nanogrid/"><img alt="Nanogrid" src="/images/projects/nanogrid.png" /></a>
     </div>
     <div class="col-span-2">
@@ -295,17 +286,17 @@
         <a href="http://firedev.com/nanogrid/">firedev.com/nanogrid</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-terminal mr-2"></i>CSS</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
-      <img alt="Pharmalife" src="/images/projects/pharmalife.png" /></a>
+    <div class="rounded overflow-hidden mb-4">
+      <img alt="Pharmalife" src="/images/projects/pharmalife.png" />
     </div>
     <div class="col-span-2">
       <h2 class="mt0">
-        Pharmalife</a>
+        Pharmalife Motivation</a>
       </h2>
       <p>
         Motivation system for INPOS.
@@ -315,17 +306,17 @@
         are working. An in-house system that might be offered for other clients one day.
       </p>
       <p>
-        motivation.inpos.ru</a>
+        motivation.inpos.ru
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-terminal mr-2"></i>Ruby on Rails</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
-      <img alt="Cashflow Monitor" src="/images/projects/cashflow.png" /></a>
+    <div class="rounded overflow-hidden mb-4">
+      <img alt="Cashflow Monitor" src="/images/projects/cashflow.png" />
     </div>
     <div class="col-span-2">
       <h2 class="mt0">
@@ -343,13 +334,13 @@
         <a href="http://eapteka.ru">eapteka.ru</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-terminal mr-2"></i>Ruby on Rails</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <img alt="QA" src="/images/projects/qa.png" />
     </div>
     <div class="col-span-2">
@@ -365,14 +356,14 @@
         ready for prime time yet, but might be one day.
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-terminal mr-2"></i>Ruby on Rails</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>React.js</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <img alt="Inpos" src="/images/projects/inpos 2.png" /></a>
     </div>
     <div class="col-span-2">
@@ -390,14 +381,14 @@
         inpos.ru</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-terminal mr-2"></i>Ruby on Rails</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>React.js</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://headstartphuket.com"><img alt="HeadStart" src="/images/projects/headstart.png" /></a>
     </div>
     <div class="col-span-2">
@@ -415,7 +406,7 @@
         <a href="http://headstartphuket.com">headstartphuket.com</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-terminal mr-2"></i>Ruby on Rails</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>Backbone.js</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
@@ -424,7 +415,7 @@
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <img alt="Inpos" src="/images/projects/inpos.png" /></a>
     </div>
     <div class="col-span-2">
@@ -441,14 +432,14 @@
         inpos.ru</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-paint-brush mr-2"></i>Design</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-paint-brush mr-2"></i>Branding</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-certificate mr-2"></i>Logotype</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://7pikes.com"><img alt="Inpos" src="/images/projects/7pikes.png" /></a>
     </div>
     <div class="col-span-2">
@@ -465,13 +456,13 @@
         <a href="http://7pikes.com">7pikes.com</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-paint-brush mr-2"></i>Design</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-paint-brush mr-2"></i>Branding</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://radium.me"><img alt="Hatch" src="/images/projects/hatch.png" /></a>
     </div>
     <div class="col-span-2">
@@ -488,13 +479,13 @@
         <a href="https://itunes.apple.com/app/hatch/id718835727">Hatch in App Store</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1"><i class="fa fa-code mr-2"></i>HTML
       </div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://radium.me"><img alt="Radium" src="/images/projects/catpig.png" /></a>
     </div>
     <div class="col-span-2">
@@ -511,13 +502,13 @@
         <a href="http://radium.me">radium.me</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1"><i class="fa fa-code mr-2"></i>HTML
       </div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <img alt="A&A Model Agency Phuket" src="/images/projects/aa.png" /></a>
     </div>
     <div class="col-span-2">
@@ -528,14 +519,14 @@
         Logotype and branding for a local Phuket agency that didn't take off.
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-certificate mr-2"></i>Branding</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-paint-brush mr-2"></i>Logotype</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://molokophuket.com"><img alt="Moloko Property Phuket" src="/images/projects/moloko.png" /></a>
     </div>
     <div class="col-span-2">
@@ -552,7 +543,7 @@
         <a href="http://molokophuket.com/ru">Недвижимость Пхукета</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-terminal mr-2"></i>Ruby on Rails</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-certificate mr-2"></i>Branding</div>
@@ -560,7 +551,7 @@
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://toc.sc"><img alt="Moloko Property Phuket" src="/images/projects/toc.png" /></a>
     </div>
     <div class="col-span-2">
@@ -577,7 +568,7 @@
         <a href="http://toc.sc">toc.sc</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-terminal mr-2"></i>Ruby on Rails</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-certificate mr-2"></i>Branding</div>
@@ -585,7 +576,7 @@
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="/jquery.keynav"><img alt="jQuery Keyboard Navigation plugin" src="/images/projects/jquery.png" /></a>
     </div>
     <div class="col-span-2">
@@ -602,12 +593,12 @@
         <a href="/jquery.keynav">Try jQuery.Keynav</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>jQuery</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://phuketrussianschool.com"><img alt="Phuket Russian School"
           src="/images/projects/russian.png" /></a>
     </div>
@@ -625,14 +616,14 @@
         <a href="http://phuketrussianschool.com">phuketrussianschool.com</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>HTML
       </div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a rel="nofollow" href="http://thehouseproject.info"><img alt="The House Project"
           src="/images/projects/renthouse.png" /></a>
     </div>
@@ -654,7 +645,7 @@
         <a rel="nofollow" href="http://thehouseproject.info">thehouseproject.info</a>
 
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>PHP
       </div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
@@ -664,7 +655,7 @@
   </div>
 
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a alt="Textmate Missing Bundle" href="https://github.com/McArrow/MissingBundle.tmbundle"><img
           alt="TextMate Missing Bundle" src="/images/projects/textmate.png" /></a>
     </div>
@@ -706,11 +697,11 @@
   </div>
 
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://imagevuex.com"><img alt="Imagevue Online flash image gallery for your site."
           src="/images/projects/imagevue.png" /></a>
     </div>
-    <div class="cols-span-3">
+    <div class="col-span-2">
       <h2 class="mt0">
         <a href="http://imagevuex.com">Imagevue</a>
       </h2>
@@ -727,7 +718,7 @@
         Check the new Imagevue web site just launched!
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>PHP
       </div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
@@ -735,7 +726,7 @@
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://dear-apple.com"><img alt="Dear Apple..." src="/images/projects/dearapple.png" /></a>
     </div>
     <div class="col-span-2">
@@ -753,13 +744,13 @@
         <a href="http://dear-apple.com">dear-apple.com</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-paint-brush mr-2"></i>Logotype</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://meraktiv.no"><img alt="More Active!" src="/images/projects/meraktiv.png" /></a>
     </div>
     <div class="col-span-2">
@@ -781,14 +772,14 @@
         Are you active enough?
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>PHP
       </div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://classic.jaconda.im"><img alt="Jaconda.im" src="/images/projects/jaconda.png" /></a>
     </div>
     <div class="col-span-2">
@@ -808,7 +799,7 @@
         <a href="http://classic.jaconda.im">classic.jaconda.im</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>Ruby
         on Rails</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
@@ -817,7 +808,7 @@
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="/text2link/" title="Text2Link Safari Extension"><img alt="Text2Link Safari Extension"
           src="/images/projects/safari.png" /></a>
     </div>
@@ -838,7 +829,7 @@
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="nofollow" href="http://phuketrenthouse.com"><img alt="Phuket Rent House"
           src="/images/projects/buyhouse.png" /></a>
     </div>
@@ -860,7 +851,7 @@
         <a rel="nofollow" href="http://phuketrenthouse.com">Phuket Rent House</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>PHP
       </div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
@@ -870,7 +861,7 @@
   </div>
 
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://gipsyteam.ru"><img alt="GipsyTeam" src="/images/projects/gipsyteam.png" /></a>
     </div>
     <div class="col-span-2">
@@ -898,7 +889,7 @@
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://irradiatedsoftware.com"><img alt="SizeUp" src="/images/projects/sizeup.png" /></a>
     </div>
     <div class="col-span-3">
@@ -919,7 +910,7 @@
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://gridpapr.com"><img alt="GridPapr Online design collaboration tool"
           src="/images/projects/gridpapr.png" /></a>
     </div>
@@ -939,7 +930,7 @@
         <a href="http://gridpapr.com">gridpapr.com</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>PHP
       </div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
@@ -948,7 +939,7 @@
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://github.com/firedev/indexr"><img
           alt="Indexr The smallest footprint fancy directory lister with thumbnails."
           src="/images/projects/indexr.png" /></a>
@@ -969,14 +960,14 @@
         <a href="http://github.com/firedev/indexr">github.com/firedev/indexr</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>PHP
       </div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
     </div>
   </div>
   <div class="sm:grid grid-cols-4 gap-8 mb-8">
-    <div class="rounded overflow-hidden">
+    <div class="rounded overflow-hidden mb-4">
       <a href="http://giftsmap.com"><img alt="Giftsmap Online wishlist service."
           src="/images/projects/giftsmap.png" /></a>
     </div>
@@ -996,7 +987,7 @@
         <a href="http://giftmap.com">giftsmap.com</a>
       </p>
     </div>
-    <div class="flex flex-wrap sm:block">
+    <div class="flex flex-wrap sm:block mb-4">
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-code mr-2"></i>Ruby
         on Rails</div>
       <div class="flex items-center p-1 mb-2 mr-1 "><i class="fa fa-pencil mr-2"></i>Design</div>
