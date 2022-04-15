@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,132 +9,115 @@
   <meta name="description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given byPiotr Solnica on Full Stack Fest 2015 made me think about improving currentpractic...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://firedev.com/posts/functional-service-objects-on-rails/">
-  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
+  <link rel="canonical" href="https://firedev.com/posts/functional-service-objects-on-rails/">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="https://firedev.com/feed.xml" />
 
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <link href="/images/favicon.png" rel="icon" />
   <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <meta property="og:url" content="http://firedev.com/posts/functional-service-objects-on-rails/" />
+  <meta property="og:url" content="https://firedev.com/posts/functional-service-objects-on-rails/" />
   <meta property="og:title" content="Functional Service Objects on Rails" />
   <meta property="og:description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given by
 Piotr Solnica on Full Stack Fest 2015 made me think about improving current
 practices. I have tried different ways of organizing my service objects and
 here is what I came up with.
 " />
-  <meta property="og:image" content="http://firedev.com/images/posts/electrical_plumbing_service.jpg" />
+  <meta property="og:image" content="https://firedev.com/images/posts/electrical_plumbing_service.jpg" />
 </head>
 
+  <body class="px-4 max-w-6xl m-auto prose prose-neutral lg:text-xl">
+    <header class="grid grid-cols-4 gap-8 mb-4">
+  <a href="/" class="block leading-4 aspect-w-3 aspect-h-1"
+    style="background: bottom left no-repeat url(/images/logos/firedev.svg);">
+    <h1 class="text-8xl leading-4 block invisible">
+      firedev.com
+    </h1>
+  </a>
 
-  <body>
+  <nav class="col-span-3 flex gap-8 items-end h2 leading-6">
 
-    <header class="site-header">
-  <div class="container px2 mt2 mb2">
-    <div class="clearfix mxn2">
-      <div class="sm-col sm-col-3 px2">
-        <h1 class="logo m0 relative">
-          <a href="/" id="logo">
-            <span class="hide">
-              <span class="fire">
-                fire
-              </span>
-              <span class="dev">
-                dev
-              </span>
-              <span class="com">
-                .com
-              </span>
-            </span>
-            <img src="/images/logos/firedev.svg" alt="firedev.com" class="absolute bottom-0" />
-            &nbsp;
-          </a>
-        </h1>
-      </div>
-      <nav class="sm-col sm-col-9 px2 mt2 py1">
-        <div class="right mt2 p1 md-show">
-          <a class="btn silver regular" href="/feed.xml">
-            <i class="fa fa-rss"></i>
-            RSS
-          </a>
-        </div>
-        <h3>
-          
-            
-          
-            
-              
-                <a class="btn" href="/posts/">
-                  Posts
-                </a>
-              
-            
-          
-            
-              
-                <a class="btn" href="/projects/">
-                  Projects
-                </a>
-              
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-        </h3>
-      </nav>
-    </div>
-  </div>
+    
+    
+    
+    
+    
+    <a class="font-normal text-gray-600" href="/posts/">
+      Posts
+    </a>
+    
+    
+    
+    
+    
+    <a class="font-normal text-gray-600" href="/projects/">
+      Projects
+    </a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <div class="flex flex-auto"></div>
+
+    <a class="block font-normal opacity-50 text-sm text-gray-600" href=" /feed.xml">
+      <i class="fa fa-rss"></i>
+      RSS
+
+    </a>
+  </nav>
 </header>
 
     
-<div class="main-image mb3" style="
+<div class="main-image mb-6" style="
 background-image: url(/images/posts/electrical_plumbing_service.jpg);
 background-size: cover;
 background-color: ;
@@ -144,17 +126,17 @@ background-position: ;
 </div>
 
 
-    <div class="container px2 mb4">
-        
+
+    
 
 <header>
   
-  <h1 class="m0 mb2">Functional Service Objects on Rails</h1>
+  <h1 class="m0 mb-4">Functional Service Objects on Rails</h1>
 </header>
 
 
-<div class="mb3">
-  <article class="mb3">
+<div class="mb-6">
+  <article class="mb-6">
     <p>An excellent talk “Blending Functional and OO Programming in Ruby” given by
 Piotr Solnica on Full Stack Fest 2015 made me think about improving current
 practices. I have tried different ways of organizing my service objects and
@@ -167,12 +149,12 @@ more functional way of doing things when only data is passed through your
 system.</p>
 
 <p>I am working on this motivational portal. Let’s use a concept from the project
-for the sake of the example. The models involved in this example are <code class="highlighter-rouge">User</code>,
-  <code class="highlighter-rouge">Motivation</code>, <code class="highlighter-rouge">Shop</code> and <code class="highlighter-rouge">Role</code>.</p>
+for the sake of the example. The models involved in this example are <code class="language-plaintext highlighter-rouge">User</code>,
+  <code class="language-plaintext highlighter-rouge">Motivation</code>, <code class="language-plaintext highlighter-rouge">Shop</code> and <code class="language-plaintext highlighter-rouge">Role</code>.</p>
 
-<p><code class="highlighter-rouge">Motivation</code> is some data that defines <code class="highlighter-rouge">Shop</code> to which <code class="highlighter-rouge">User</code> has access to in
-a given month and his <code class="highlighter-rouge">Role</code> in regards to that. Each month a <code class="highlighter-rouge">User</code> can be
-assigned to different <code class="highlighter-rouge">Shops</code> and different <code class="highlighter-rouge">Roles</code>. Say, an employee this
+<p><code class="language-plaintext highlighter-rouge">Motivation</code> is some data that defines <code class="language-plaintext highlighter-rouge">Shop</code> to which <code class="language-plaintext highlighter-rouge">User</code> has access to in
+a given month and his <code class="language-plaintext highlighter-rouge">Role</code> in regards to that. Each month a <code class="language-plaintext highlighter-rouge">User</code> can be
+assigned to different <code class="language-plaintext highlighter-rouge">Shops</code> and different <code class="language-plaintext highlighter-rouge">Roles</code>. Say, an employee this
 month and shop manager the next month. I call such managers “chief” since
 manager was already taken.</p>
 
@@ -199,7 +181,7 @@ So without further ado:</p>
 
 <p>Hmm, that starts quite harmless. But what if we measure complexity with flog?</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    10.0: flog total
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    10.0: flog total
     10.0: flog/method average
 
     10.0: User#chief_shops_for_month       -:2
@@ -210,7 +192,7 @@ So without further ado:</p>
 <p>I use <a href="http://ruby.sadi.st/Flog.html">flog</a> to check complexity of my classes
 and strive to keep the average complexity per method under 5:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ flog app
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ flog app
   1278.9: flog total
      5.0: flog/method average
 
@@ -238,7 +220,7 @@ methods like so:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>But this is ridiculous. It adds a private method on <code class="highlighter-rouge">User</code> that is calling god
+<p>But this is ridiculous. It adds a private method on <code class="language-plaintext highlighter-rouge">User</code> that is calling god
 knows what. Besides I don’t like the ‘Thin Controllers, Fat Models’ concept. As
 a one-man operation there is simply not enough man-power to deal with ten feet
 long models. My motto is:</p>
@@ -247,7 +229,7 @@ long models. My motto is:</p>
   <p>Thin Everythin’!</p>
 </blockquote>
 
-<p>I build service objects in a simple way. One public method <code class="highlighter-rouge">call</code> with
+<p>I build service objects in a simple way. One public method <code class="language-plaintext highlighter-rouge">call</code> with
 occasional parameters passed from controller (i.e. variables). Let’s extract
 the query to a what a typical service object would look like:</p>
 
@@ -274,7 +256,7 @@ the query to a what a typical service object would look like:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>We keep the <code class="highlighter-rouge">User</code> API unchanged so this is a true refactoring:</p>
+<p>We keep the <code class="language-plaintext highlighter-rouge">User</code> API unchanged so this is a true refactoring:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span>
   <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
@@ -283,9 +265,9 @@ the query to a what a typical service object would look like:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>What <code class="highlighter-rouge">flog</code> has to say about this?</p>
+<p>What <code class="language-plaintext highlighter-rouge">flog</code> has to say about this?</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   18.5: flog total
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   18.5: flog total
      4.6: flog/method average
 
      7.8: User::ChiefShopsForMonth#motivations_this_month_user_was_chief -:17
@@ -303,7 +285,7 @@ that got me thinking about a better way of doing things.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rMxurF4oqsc" frameborder="0" allowfullscreen=""></iframe>
 <p><br /></p>
 
-<p>The gist of it: Don’t store state. Just pass everything to <code class="highlighter-rouge">call</code> method
+<p>The gist of it: Don’t store state. Just pass everything to <code class="language-plaintext highlighter-rouge">call</code> method
 instead. That sounded interesting. Rolled up sleeves and here we go.</p>
 
 <h2 id="refactoring-service-object">Refactoring Service object</h2>
@@ -326,12 +308,12 @@ the mix:</p>
   <p>Don’t modify and request data in the same method call</p>
 </blockquote>
 
-<p>Or it can be put in another way, return <code class="highlighter-rouge">self</code> until the very last moment. That
+<p>Or it can be put in another way, return <code class="language-plaintext highlighter-rouge">self</code> until the very last moment. That
 allows chaining and storing the intermediate results and other interesting
 things. The best examples in the wild I think are Rails scopes and JavaScript.
 ActiveRecord Scopes can be chained up to the last moment where you can load the
-relation into array by calling <code class="highlighter-rouge">to_a</code> on it. JavaScript is basically built on
-returning <code class="highlighter-rouge">this</code>.  If you have ever used a JavaScript library like jQuery you
+relation into array by calling <code class="language-plaintext highlighter-rouge">to_a</code> on it. JavaScript is basically built on
+returning <code class="language-plaintext highlighter-rouge">this</code>.  If you have ever used a JavaScript library like jQuery you
 know the drill.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span>
@@ -370,15 +352,15 @@ know the drill.</p>
 </code></pre></div></div>
 
 <p>While getting here it became obvious to me that I didn’t have to use
-<code class="highlighter-rouge">user.motivation</code> as <code class="highlighter-rouge">merge</code> is taking care of this. And I think by relying on
-<code class="highlighter-rouge">Motivation</code> class directly I can make it more intention-revealing, even if it
+<code class="language-plaintext highlighter-rouge">user.motivation</code> as <code class="language-plaintext highlighter-rouge">merge</code> is taking care of this. And I think by relying on
+<code class="language-plaintext highlighter-rouge">Motivation</code> class directly I can make it more intention-revealing, even if it
 adds another dependency.</p>
 
-<p>New structure gains certain tidiness in the upper part. Now <code class="highlighter-rouge">initialize</code> only
-does dependency-injection for the whole object. Then <code class="highlighter-rouge">call</code> sets up the
-parameters and returns <code class="highlighter-rouge">self</code> for chaining. You don’t have to return <code class="highlighter-rouge">self</code>,
+<p>New structure gains certain tidiness in the upper part. Now <code class="language-plaintext highlighter-rouge">initialize</code> only
+does dependency-injection for the whole object. Then <code class="language-plaintext highlighter-rouge">call</code> sets up the
+parameters and returns <code class="language-plaintext highlighter-rouge">self</code> for chaining. You don’t have to return <code class="language-plaintext highlighter-rouge">self</code>,
 but that gives you flexibility so I don’t see a reason not to add it. And
-finally you can get the list of shops for the given month by calling <code class="highlighter-rouge">.shops</code>.</p>
+finally you can get the list of shops for the given month by calling <code class="language-plaintext highlighter-rouge">.shops</code>.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span>
   <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
@@ -387,12 +369,12 @@ finally you can get the list of shops for the given month by calling <code class
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>Things get hairy however after the <code class="highlighter-rouge">private</code> mark. The state moved here
+<p>Things get hairy however after the <code class="language-plaintext highlighter-rouge">private</code> mark. The state moved here
 and there are four attributes instead of two. Flog is not very happy about this
 either.  Average complexity per method is somewhat lower, but the total is even
 higher.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   26.0: flog total
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   26.0: flog total
      4.3: flog/method average
 
      7.6: User::ChiefShopsForMonth#chief_this_month -:30
@@ -412,7 +394,7 @@ higher.</p>
 
 <p>So I claim that I don’t need to inject dependenices for other ActiveRecord
 classes since they are not going to change. And if they will mist likely my
-service will be deleted. Thus I can get rid of <code class="highlighter-rouge">initialize</code>. Of course in more
+service will be deleted. Thus I can get rid of <code class="language-plaintext highlighter-rouge">initialize</code>. Of course in more
 complex screnario this is not the best way to go, but this is a simple query
 object so for the sake of refactoring experiment I think this will pass.</p>
 
@@ -424,9 +406,9 @@ object so for the sake of refactoring experiment I think this will pass.</p>
 
 <p>Since I am not changing anything here, apart from the inner state of the object
 and I am getting rid of the state, I don’t need a separate method that returns
-the result. That allows me to shrink object’s API to single <code class="highlighter-rouge">call</code> method.
-Which is actually an improvement. Since now I don’t need to pass <code class="highlighter-rouge">user</code> and
-<code class="highlighter-rouge">month</code> separately and they can go together as parameters in a single method
+the result. That allows me to shrink object’s API to single <code class="language-plaintext highlighter-rouge">call</code> method.
+Which is actually an improvement. Since now I don’t need to pass <code class="language-plaintext highlighter-rouge">user</code> and
+<code class="language-plaintext highlighter-rouge">month</code> separately and they can go together as parameters in a single method
 call.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span>
@@ -465,20 +447,20 @@ single method.</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>Yes you have to call <code class="highlighter-rouge">new</code>, but only to instantiate an object. Or you can still
+<p>Yes you have to call <code class="language-plaintext highlighter-rouge">new</code>, but only to instantiate an object. Or you can still
 inject dependencies for testing. As a side effect we can pass a hash as
 parameter. Piotr suggests to use value object. I think it is overkill here. I
 could easily pass a params hash if I wanted to, but I am afraid it might hurt
 readability. And now look at this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    10.4: flog total
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    10.4: flog total
      2.6: flog/method average
 
      5.0: User::ChiefShopsForMonth#call    -:4
      3.4: User::ChiefShopsForMonth#chief_this_month -:14
 </code></pre></div></div>
 
-<p>The whole class is almost as simple as the original single method in <code class="highlighter-rouge">User</code>. It
+<p>The whole class is almost as simple as the original single method in <code class="language-plaintext highlighter-rouge">User</code>. It
 encapsulates everything it needs. It doesn’t pollute models with methods that
 would never be used from other places. And has intention-revealing name and
 simple single-method API.</p>
@@ -492,39 +474,38 @@ controllers. Please let me know if you think something could be improved.</p>
 
   </article>
 
-  <div class="mb3 lh25">
+  <div class="my-8 leading-8 lg:leading-9">
  
 
-<a href="/ruby/" class="button bg-orange white lh1"> Ruby </a>
+<a href="/ruby/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Ruby </a>
  
 
-<a href="/rails/" class="button bg-orange white lh1"> Rails </a>
+<a href="/rails/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Rails </a>
  
 
-<a href="/refactoring/" class="button bg-orange white lh1"> Refactoring </a>
+<a href="/refactoring/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Refactoring </a>
  
 
-<a href="/functional/" class="button bg-orange white lh1"> Functional </a>
+<a href="/functional/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Functional </a>
 
 </div>
 
 
 </div>
-<div class="mt4">
-<div class="clearfix mxn2 mb2">
-  <div class="sm-col sm-col-3 px2 mb2">
-    <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
+<div class="mt-8">
+<div class="sm:grid grid-cols-4 gap-8 my-16">
+  <div class="">
+    <img class="rounded" src="/images/me.jpg" alt="Hello!" />
   </div>
-  <div class="sm-col sm-col-9 px2">
+  <div class="col-span-3">
 
-    <h2 class="mt0 h1">
+    <h2 class="h1">
       Nikolay Ostrovsky
     </h2>
 
-    <div class="clearfix mxn2 mb4">
-
-      <div class="sm-col sm-col-8 px2">
-        <p>
+    <div class="sm:grid grid-cols-3 gap-8 mb-8">
+      <div class="col-span-2">
+        <p class="mt-0">
           Startup Team Lead. I like everything minimal and as simple as possible.
         </p>
         <p>
@@ -535,16 +516,17 @@ controllers. Please let me know if you think something could be improved.</p>
         </p>
       </div>
 
-      <div class="sm-col sm-col-4 sm-show">
-        <div class="mtn1 ml2">
-          <!-- <a class="p1 px2 white bg-green rounded mb1 inline-block" href="mailto:nick@firedev.com" -->
-          <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
-          <a class="p1 px2 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
-          <a class="p1 px2 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
-          <!--<a class="p1 px2 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
-          <a class="p1 px2 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i> StackOverflow</a>
-          <a class="p1 px2 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
-        </div>
+
+      <div class="col-span-1 leading-6">
+
+        <!-- <a class="py-1 px-4 white bg-green rounded mb-2 inline-block" href="mailto:nick@firedev.com" -->
+        <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
+        <a class="py-1 px-4 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
+        <a class="py-1 px-4 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
+        <!--<a class="py-1 px-4 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
+        <a class="py-1 px-4 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i>
+          StackOverflow</a>
+        <a class="py-1 px-4 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
       </div>
     </div>
   </div>
@@ -564,16 +546,13 @@ var disqus_shortname = 'firedevcom';
 })();
 </script>
 
+
+    <footer class="text-center">
+    <div class="py-8 my-8 text-gray-700">
+        With <i class="fa fa-heart text-red-700"></i>
+        <a href="http://firedev.com" class="text-gray-700"><strong>firedev.com</strong></a>
     </div>
 
-    <footer>
-    <div class="container px2 mt4 mb2 center">
-        With <i class="fa fa-heart red"></i>
-        <a href="http://firedev.com"><strong>firedev.com</strong></a>
-    </div>
-    <div class="container px2 mb4 center">
-        <a class="muted" href="mailto:nick@firedev.com">Email me</a>
-    </div>
 </footer>
 
     <script src="/js/firedev.js"></script>
@@ -590,5 +569,4 @@ var disqus_shortname = 'firedevcom';
 </script>
 
   </body>
-
 </html>

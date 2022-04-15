@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,130 +9,113 @@
   <meta name="description" content="This is extracted from the Github issue created to discuss the approach with myteam. Please bear with me if I refer to something that wasn’t mentioned in the...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://firedev.com/posts/immutable-css/">
-  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="http://firedev.com/feed.xml" />
+  <link rel="canonical" href="https://firedev.com/posts/immutable-css/">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="https://firedev.com/feed.xml" />
 
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <link href="/images/favicon.png" rel="icon" />
   <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <meta property="og:url" content="http://firedev.com/posts/immutable-css/" />
+  <meta property="og:url" content="https://firedev.com/posts/immutable-css/" />
   <meta property="og:title" content="Immutable CSS" />
   <meta property="og:description" content="This is extracted from the Github issue created to discuss the approach with my
 team. Please bear with me if I refer to something that wasn’t mentioned in the text.
 " />
-  <meta property="og:image" content="http://firedev.com/images/posts/monolith.jpg" />
+  <meta property="og:image" content="https://firedev.com/images/posts/monolith.jpg" />
 </head>
 
+  <body class="px-4 max-w-6xl m-auto prose prose-neutral lg:text-xl">
+    <header class="grid grid-cols-4 gap-8 mb-4">
+  <a href="/" class="block leading-4 aspect-w-3 aspect-h-1"
+    style="background: bottom left no-repeat url(/images/logos/firedev.svg);">
+    <h1 class="text-8xl leading-4 block invisible">
+      firedev.com
+    </h1>
+  </a>
 
-  <body>
+  <nav class="col-span-3 flex gap-8 items-end h2 leading-6">
 
-    <header class="site-header">
-  <div class="container px2 mt2 mb2">
-    <div class="clearfix mxn2">
-      <div class="sm-col sm-col-3 px2">
-        <h1 class="logo m0 relative">
-          <a href="/" id="logo">
-            <span class="hide">
-              <span class="fire">
-                fire
-              </span>
-              <span class="dev">
-                dev
-              </span>
-              <span class="com">
-                .com
-              </span>
-            </span>
-            <img src="/images/logos/firedev.svg" alt="firedev.com" class="absolute bottom-0" />
-            &nbsp;
-          </a>
-        </h1>
-      </div>
-      <nav class="sm-col sm-col-9 px2 mt2 py1">
-        <div class="right mt2 p1 md-show">
-          <a class="btn silver regular" href="/feed.xml">
-            <i class="fa fa-rss"></i>
-            RSS
-          </a>
-        </div>
-        <h3>
-          
-            
-          
-            
-              
-                <a class="btn" href="/posts/">
-                  Posts
-                </a>
-              
-            
-          
-            
-              
-                <a class="btn" href="/projects/">
-                  Projects
-                </a>
-              
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-            
-          
-        </h3>
-      </nav>
-    </div>
-  </div>
+    
+    
+    
+    
+    
+    <a class="font-normal text-gray-600" href="/posts/">
+      Posts
+    </a>
+    
+    
+    
+    
+    
+    <a class="font-normal text-gray-600" href="/projects/">
+      Projects
+    </a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <div class="flex flex-auto"></div>
+
+    <a class="block font-normal opacity-50 text-sm text-gray-600" href=" /feed.xml">
+      <i class="fa fa-rss"></i>
+      RSS
+
+    </a>
+  </nav>
 </header>
 
     
-<div class="main-image mb3" style="
+<div class="main-image mb-6" style="
 background-image: url(/images/posts/monolith.jpg);
 background-size: ;
 background-color: ;
@@ -142,17 +124,17 @@ background-position: ;
 </div>
 
 
-    <div class="container px2 mb4">
-        
+
+    
 
 <header>
   
-  <h1 class="m0 mb2">Immutable CSS</h1>
+  <h1 class="m0 mb-4">Immutable CSS</h1>
 </header>
 
 
-<div class="mb3">
-  <article class="mb3">
+<div class="mb-6">
+  <article class="mb-6">
     <p>This is extracted from the Github issue created to discuss the approach with my
 team. Please bear with me if I refer to something that wasn’t mentioned in the text.</p>
 
@@ -163,19 +145,19 @@ small classes that you reuse everywhere. They are mostly one-liners with clear
 semantics. And you don’t write new CSS until it’s absolutely needed.</p>
 
 <p>Lets pretend that we need to build a menu that changes background for each client.
-Consider the following example. The semantics is easy to remember: <code class="highlighter-rouge">m</code> —
-margin, <code class="highlighter-rouge">p</code> — padding.</p>
+Consider the following example. The semantics is easy to remember: <code class="language-plaintext highlighter-rouge">m</code> —
+margin, <code class="language-plaintext highlighter-rouge">p</code> — padding.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="menu mb1 p1"&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="menu mb1 p1"&gt;
   &lt;img src="logo.svg"/&gt;
 &lt;/div&gt;
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.mb1 { margin-bottom: x } - adds bottom spacing
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.mb1 { margin-bottom: x } - adds bottom spacing
 .p1 { padding: x } - adds padding
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">1</code> in class name means ‘single spacing’. And you don’t use pixels or any
+<p><code class="language-plaintext highlighter-rouge">1</code> in class name means ‘single spacing’. And you don’t use pixels or any
 magic numbers. The spacing is based on the font size.</p>
 
 <p>There are more utility classes like these and HTML tags are pre-styled so you
@@ -203,7 +185,7 @@ pile of CSS in the browser.</p>
 independent. You have some <em>base CSS</em> anyway.</p>
 
 <p>So in the case above the Menu CSS Module would contain a single line -
-<code class="highlighter-rouge">background-color</code>. Everything else is build using immutable css classes from
+<code class="language-plaintext highlighter-rouge">background-color</code>. Everything else is build using immutable css classes from
 the BASE.</p>
 
 <h2 id="show-me">Show me!</h2>
@@ -227,25 +209,25 @@ the BASE.</p>
 </code></pre></div></div>
 
 <p>So you see this in your code, and to get the idea of what is going on you open
-the module, then you follow the <code class="highlighter-rouge">../../..</code> chain to find out that <code class="highlighter-rouge">input-container</code>
-is something like <code class="highlighter-rouge">margin-bottom: 10px</code> and before you know it — your whole codebase
+the module, then you follow the <code class="language-plaintext highlighter-rouge">../../..</code> chain to find out that <code class="language-plaintext highlighter-rouge">input-container</code>
+is something like <code class="language-plaintext highlighter-rouge">margin-bottom: 10px</code> and before you know it — your whole codebase
 looks like this.</p>
 
 <p>In addition to the scss mess already in place. It’s just a different form of
-SASS <code class="highlighter-rouge">extend</code>. With inheritance, specificity and the like. Just a different
+SASS <code class="language-plaintext highlighter-rouge">extend</code>. With inheritance, specificity and the like. Just a different
 file format.</p>
 
 <p>Compare to the following piece of CSS:</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
-<p>Wait, what? No CSS? Yes. You see the basic HTML tags like <code class="highlighter-rouge">&lt;select&gt;</code> don’t need to
+<p>Wait, what? No CSS? Yes. You see the basic HTML tags like <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> don’t need to
 carry any classes. You just pre-style them once. How many variation of
-<code class="highlighter-rouge">&lt;select&gt;</code> or <code class="highlighter-rouge">&lt;input&gt;</code> you need anyway?</p>
+<code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> or <code class="language-plaintext highlighter-rouge">&lt;input&gt;</code> you need anyway?</p>
 
-<p>For <code class="highlighter-rouge">.type</code> that seems to be a some form of container I just put <code class="highlighter-rouge">.container</code>
-in HTML. <code class="highlighter-rouge">width: 70%</code> is a magic number. It seems to me that it can be replaced
-with <code class="highlighter-rouge">.col-8</code> given 12-column grid.</p>
+<p>For <code class="language-plaintext highlighter-rouge">.type</code> that seems to be a some form of container I just put <code class="language-plaintext highlighter-rouge">.container</code>
+in HTML. <code class="language-plaintext highlighter-rouge">width: 70%</code> is a magic number. It seems to me that it can be replaced
+with <code class="language-plaintext highlighter-rouge">.col-8</code> given 12-column grid.</p>
 
 <p>So in HTML it will be something like:</p>
 
@@ -258,7 +240,7 @@ with <code class="highlighter-rouge">.col-8</code> given 12-column grid.</p>
 <h2 id="so-it-that-another-css-framework">So it that another CSS framework?</h2>
 
 <p>Nope, just a library. As they say - you call the library, framework calls you.
-In fact it’s a set of css modules: <code class="highlighter-rouge">whitespace</code>, <code class="highlighter-rouge">grid</code>, <code class="highlighter-rouge">forms</code>, etc. A dozen
+In fact it’s a set of css modules: <code class="language-plaintext highlighter-rouge">whitespace</code>, <code class="language-plaintext highlighter-rouge">grid</code>, <code class="language-plaintext highlighter-rouge">forms</code>, etc. A dozen
 one-liners each that can be reused everywhere.</p>
 
 <p>I made a full circle before adopting this technique exclusively. After working
@@ -301,15 +283,15 @@ for the menu. When you decide you need more you can continue.</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>If you don’t need anything dynamic, just replace <code class="highlighter-rouge">.menu</code> with <code class="highlighter-rouge">.bg-blue.white</code>.
+<p>If you don’t need anything dynamic, just replace <code class="language-plaintext highlighter-rouge">.menu</code> with <code class="language-plaintext highlighter-rouge">.bg-blue.white</code>.
 And that removes CSS completely.</p>
 
-<p><code class="highlighter-rouge">.btn</code> class applies transparent button look by default. It inherits font and
+<p><code class="language-plaintext highlighter-rouge">.btn</code> class applies transparent button look by default. It inherits font and
 hover color from text so it works with any kind of stuff.</p>
 
-<p><code class="highlighter-rouge">&lt;button&gt;</code> HTML tag or <code class="highlighter-rouge">.button</code> class on the other hand is pre-styled as a
+<p><code class="language-plaintext highlighter-rouge">&lt;button&gt;</code> HTML tag or <code class="language-plaintext highlighter-rouge">.button</code> class on the other hand is pre-styled as a
 fully-blown button with colored background (it is actually inherited from
-<code class="highlighter-rouge">.btn.btn-primary</code>).</p>
+<code class="language-plaintext highlighter-rouge">.btn.btn-primary</code>).</p>
 
 <h2 id="what-if-we-dont-like-it">What if we don’t like it?</h2>
 
@@ -334,7 +316,7 @@ some links to digest meanwhile:</p>
   <li><a href="http://jxnblk.com/gravitons">Gravitons</a> — A base set of simple utilities to start with</li>
   <li><a href="http://basscss.com">BASSCSS</a> — The actual library I am suggestion to use</li>
   <li><a href="http://github.com/firedev/basscss-fix">BASSCSS-FIX</a> — Some things I wasn’t content with</li>
-  <li><a href="http://jxnblk.com/rebass">ReBASS</a> — BASSCSS-based React componets (<code class="highlighter-rouge">Row</code>, <code class="highlighter-rouge">Column</code>, <code class="highlighter-rouge">Button</code> etc)</li>
+  <li><a href="http://jxnblk.com/rebass">ReBASS</a> — BASSCSS-based React componets (<code class="language-plaintext highlighter-rouge">Row</code>, <code class="language-plaintext highlighter-rouge">Column</code>, <code class="language-plaintext highlighter-rouge">Button</code> etc)</li>
   <li><a href="http://tachyons.io">Tachyons</a> — Another tiny library with similar ideas</li>
   <li><a href="http://solid.buzzfeed.com">Solid</a> — Buzzfeed implementation</li>
   <li><a href="https://www.youtube.com/watch?v=0aBv8dsZs84">Styling React Components in JavaScript</a> — Embedding is disabled but the fun part starts in the second half of the video.</li>
@@ -350,9 +332,9 @@ boilerplate to demo some of the ideas.</p>
   <li><a href="http://github.com/firedev/boilerplate">Slim/SASS/BASS Boilerplate</a></li>
 </ul>
 
-<p>Usage is simple. You just have to have <code class="highlighter-rouge">npm</code>, <code class="highlighter-rouge">bower</code>, and <code class="highlighter-rouge">grunt</code> installed:</p>
+<p>Usage is simple. You just have to have <code class="language-plaintext highlighter-rouge">npm</code>, <code class="language-plaintext highlighter-rouge">bower</code>, and <code class="language-plaintext highlighter-rouge">grunt</code> installed:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install
 bower install
 grunt
 </code></pre></div></div>
@@ -366,42 +348,41 @@ grunt
 
   </article>
 
-  <div class="mb3 lh25">
+  <div class="my-8 leading-8 lg:leading-9">
  
 
-<a href="/CSS/" class="button bg-orange white lh1"> Css </a>
+<a href="/CSS/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Css </a>
  
 
-<a href="/react/" class="button bg-orange white lh1"> React </a>
+<a href="/react/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> React </a>
  
 
-<a href="/components/" class="button bg-orange white lh1"> Components </a>
+<a href="/components/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Components </a>
  
 
-<a href="/immutable/" class="button bg-orange white lh1"> Immutable </a>
+<a href="/immutable/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Immutable </a>
  
 
-<a href="/frontend/" class="button bg-orange white lh1"> Frontend </a>
+<a href="/frontend/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Frontend </a>
 
 </div>
 
 
 </div>
-<div class="mt4">
-<div class="clearfix mxn2 mb2">
-  <div class="sm-col sm-col-3 px2 mb2">
-    <img class="rounded" src="/images/me.jpg" alt="Hello!"/>
+<div class="mt-8">
+<div class="sm:grid grid-cols-4 gap-8 my-16">
+  <div class="">
+    <img class="rounded" src="/images/me.jpg" alt="Hello!" />
   </div>
-  <div class="sm-col sm-col-9 px2">
+  <div class="col-span-3">
 
-    <h2 class="mt0 h1">
+    <h2 class="h1">
       Nikolay Ostrovsky
     </h2>
 
-    <div class="clearfix mxn2 mb4">
-
-      <div class="sm-col sm-col-8 px2">
-        <p>
+    <div class="sm:grid grid-cols-3 gap-8 mb-8">
+      <div class="col-span-2">
+        <p class="mt-0">
           Startup Team Lead. I like everything minimal and as simple as possible.
         </p>
         <p>
@@ -412,16 +393,17 @@ grunt
         </p>
       </div>
 
-      <div class="sm-col sm-col-4 sm-show">
-        <div class="mtn1 ml2">
-          <!-- <a class="p1 px2 white bg-green rounded mb1 inline-block" href="mailto:nick@firedev.com" -->
-          <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
-          <a class="p1 px2 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
-          <a class="p1 px2 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
-          <!--<a class="p1 px2 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
-          <a class="p1 px2 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i> StackOverflow</a>
-          <a class="p1 px2 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
-        </div>
+
+      <div class="col-span-1 leading-6">
+
+        <!-- <a class="py-1 px-4 white bg-green rounded mb-2 inline-block" href="mailto:nick@firedev.com" -->
+        <!-- title="Hey, I am looking for a team to join"><i class="fa fa-cog"></i> <b>Looking</b></a> -->
+        <a class="py-1 px-4 block" href="http://github.com/firedev"><i class="fa fa-github"></i> Github</a>
+        <a class="py-1 px-4 block" href="http://twitter.com/firedev"><i class="fa fa-twitter"></i> Twitter</a>
+        <!--<a class="py-1 px-4 block" href="http://twitter.com/_dearapple"><i class="fa fa-twitter"></i>@_dearapple</a>-->
+        <a class="py-1 px-4 block" href="http://stackoverflow.com/users/166484/nick"><i class="fa fa-stack-overflow"></i>
+          StackOverflow</a>
+        <a class="py-1 px-4 block" href="mailto:nick@firedev.com"><i class="fa fa-envelope"></i> Email Me</a>
       </div>
     </div>
   </div>
@@ -441,16 +423,13 @@ var disqus_shortname = 'firedevcom';
 })();
 </script>
 
+
+    <footer class="text-center">
+    <div class="py-8 my-8 text-gray-700">
+        With <i class="fa fa-heart text-red-700"></i>
+        <a href="http://firedev.com" class="text-gray-700"><strong>firedev.com</strong></a>
     </div>
 
-    <footer>
-    <div class="container px2 mt4 mb2 center">
-        With <i class="fa fa-heart red"></i>
-        <a href="http://firedev.com"><strong>firedev.com</strong></a>
-    </div>
-    <div class="container px2 mb4 center">
-        <a class="muted" href="mailto:nick@firedev.com">Email me</a>
-    </div>
 </footer>
 
     <script src="/js/firedev.js"></script>
@@ -467,5 +446,4 @@ var disqus_shortname = 'firedevcom';
 </script>
 
   </body>
-
 </html>
