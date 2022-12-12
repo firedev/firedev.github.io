@@ -9,10 +9,7 @@ menu: true
 
 ## Fullstack / DesignOp / Team lead
 
-Phuket, Thailand
-- [firedev.com](http://firedev.com/projects/)
 - [github.com](http://github.com/firedev)
-- [linkedin.com](https://www.linkedin.com/in/nick-ostrovsky-6a3394b6/)
 - [stackoverflow.com](https://stackoverflow.com/users/166484/firedev) top 2%
 
 More than two decades of development and teamwork growing businesses from scratch while leading remote and in-house teams.
@@ -35,7 +32,6 @@ I art direct, design, and love frontend. Love Rails and React affinity. Contribu
 
 
 ### Full Stack Developer at Hubstaff.com, USA. Jun 2022 ---
-
 
 A platform that provides proof of work for organizations
 - Technologies: Rails, Sidekiq, Vue, Postgres
@@ -67,7 +63,7 @@ Mobile Progressive Tinder-like Web Application aimed at adult entertainment.
 - Implemented Video and Phone Calling with Quicklbox as backend
 - Technologies: Typescript / React / Express / PWA / WebRTC + Quick/ Clickhouse / Docker
 
-###  Full Stack Developer at Heartland Retail, USA. Jan 2015 --- Dec 2018
+### Full Stack Developer at Heartland Retail, USA. Jan 2015 --- Dec 2018
 
 Cloud POS and Retail Management System with extensive reporting functionality.
 - Implemented store analytics dashboard to allow store staff to compare key metrics over periods
