@@ -75,7 +75,7 @@ We estimate tasks to know how much we can do, and to not take too much load. I l
 - ` 5 ` - This is going to take the whole evening
 - ` 8 ` - If you feel this is going to take more than a day, please convert it to an Epic and break it down into smaller tasks.
 
-[A more strict](https://blog.borodutch.com/sup-simplified-scrum-for-your-development-team/) version of the same idea is the task can be of any size, but in the sprint backlog, you can have only 1's. Also, see [Microtasking](https://www.yegor256.com/2017/11/28/microtasking.html)](https://www.yegor256.com/2017/11/28/microtasking.html)
+[A more strict](https://blog.borodutch.com/sup-simplified-scrum-for-your-development-team/) version of the same idea is the task can be of any size, but in the sprint backlog, you can have only `1`'s. Also, take a look at [Microtasking](https://www.yegor256.com/2017/11/28/microtasking.html).
 
 ## Decompose
 Once you decompose you can decide what to do with the original task.

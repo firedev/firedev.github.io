@@ -4,14 +4,20 @@
 @import "tailwindcss/base";
 
 @layer base {
-  h1 {
+  .h0 {
+    @apply text-6xl;
+  }
+  h1,
+  .h1 {
+    @apply text-4xl;
+  }
+  h2,
+  .h2 {
     @apply text-2xl;
   }
-  h2 {
+  h3,
+  .h3 {
     @apply text-xl;
-  }
-  h3 {
-    @apply text-lg;
   }
   a {
     @apply text-blue-600 underline;
@@ -19,7 +25,6 @@
   .container {
     @apply px-4;
   }
-
 }
 
 @charset "utf-8";
@@ -32,9 +37,10 @@
   background-position: center center;
 }
 body {
-  @apply text-gray-600;
-  font-family: -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue",
-    Helvetica, sans-serif;
+  @apply text-gray-700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", Arial, sans-serif;
 }
 img {
   display: block;
@@ -62,33 +68,26 @@ p {
   margin-top: 1.5em;
   margin-bottom: 1rem;
 }
-.h1,
-h1 {
-  font-size: 2rem;
-}
-.h2,
-h2 {
-  font-size: 1.5em;
-}
-.h3,
-h3 {
-  font-size: 1.25em;
-}
+
 .bg-orange {
   background-color: #ff6633;
 }
 pre,
 code {
   background: #f3f3f3;
-  font-family: "Iosevka", "SF Mono", "Fira Code", "Source Code Pro", Consolas,
-    monospace;
+  font-family: "Iosevka", ui-monospace, Menlo, Monaco, "Cascadia Mono",
+    "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace",
+    "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  font-weight: 600 !important;
 }
 
 pre {
   padding: 1rem;
 }
 
-hr { margin: 2rem 0}
+hr {
+  margin: 2rem 0;
+}
 
 p code {
   padding: 0.25rem;
