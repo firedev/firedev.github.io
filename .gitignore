@@ -4,3 +4,4 @@ _site
 bower_components
 _drafts
 node_modules
+.vscode
