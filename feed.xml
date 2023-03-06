@@ -6,8 +6,8 @@
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 Mar 2023 09:26:09 +0700</pubDate>
-    <lastBuildDate>Mon, 06 Mar 2023 09:26:09 +0700</lastBuildDate>
+    <pubDate>Mon, 06 Mar 2023 09:27:23 +0700</pubDate>
+    <lastBuildDate>Mon, 06 Mar 2023 09:27:23 +0700</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
@@ -198,6 +198,10 @@ This helps to break down complex tasks and measure team velocity. And it looks c
         <guid isPermaLink="true">https://firedev.com/posts/develop-for-joy/</guid>
         
         <category>development</category>
+        
+        <category>productivity</category>
+        
+        <category>joy</category>
         
         
         <category>posts</category>
