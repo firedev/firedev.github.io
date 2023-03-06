@@ -2,6 +2,7 @@
 ---
 
 @import "tailwindcss/base";
+
 @layer base {
   h1 {
     @apply text-2xl;
@@ -58,7 +59,7 @@ h1,
 h2,
 h3,
 p {
-  margin-top: 0;
+  margin-top: 1.5em;
   margin-bottom: 1rem;
 }
 .h1,
@@ -86,6 +87,8 @@ code {
 pre {
   padding: 1rem;
 }
+
+hr { margin: 2rem 0}
 
 p code {
   padding: 0.25rem;
