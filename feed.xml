@@ -6,9 +6,203 @@
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 30 Jan 2023 22:25:29 +0700</pubDate>
-    <lastBuildDate>Mon, 30 Jan 2023 22:25:29 +0700</lastBuildDate>
+    <pubDate>Mon, 06 Mar 2023 09:26:09 +0700</pubDate>
+    <lastBuildDate>Mon, 06 Mar 2023 09:26:09 +0700</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
+    
+      <item>
+        <title>Develop for Joy</title>
+        <description>
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/paul-pastourmatzis-8kDOOrs608I-unsplash.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;Wearing a team lead hat developer happiness becomes the most important aspect. I always hire people smarter than me and care about their well-being. Contract work is a constant pressure. So one of the goals is to keep the happiness baseline from dipping&lt;/p&gt;
+
+&lt;p&gt;Here are some ideas that helped me in the past broken into three main topics: People, Organization and the Project. See if they are worth your time.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;1-people&quot;&gt;1. People&lt;/h1&gt;
+
+&lt;p&gt;I believe we’re all born to enjoy our lives. No one has to suffer.&lt;/p&gt;
+
+&lt;h2 id=&quot;refuse-to-suffer&quot;&gt;Refuse to suffer.&lt;/h2&gt;
+&lt;p&gt;Make a hard agreement on all the small things. Syntax, variable names, coding standards. Everything should be discussed.&lt;/p&gt;
+
+&lt;p&gt;See something preposterous? Say it.&lt;/p&gt;
+
+&lt;p&gt;Vote once and let everybody tell what they think. I saw people switching religions sometimes. Consider other ideas. Then lint, fix, improve, and leave it alone. If something doesn’t stick - change the rule and continue.&lt;/p&gt;
+
+&lt;p&gt;But what if something is still offensive to you?&lt;/p&gt;
+
+&lt;h2 id=&quot;stay-friendly&quot;&gt;Stay friendly.&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.goodreads.com/book/show/6596.The_Four_Agreements&quot;&gt;The Four Agreements&lt;/a&gt; can be applied to any situation when dealing with people:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Be impeccable with your word. Speak with integrity. Do not offend. &lt;a href=&quot;https://www.researchgate.net/publication/46608952_Bad_Is_Stronger_than_Good&quot;&gt;Bad is stronger than Good&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Take nothing personally. There is a huge amount of freedom that comes to you when you do that.&lt;/li&gt;
+  &lt;li&gt;Don’t make assumptions. Communicate with others as clearly as you can to avoid misunderstandings and drama.&lt;/li&gt;
+  &lt;li&gt;Always do your best. Everything is alive and changing all the time, so your best will sometimes be high quality, and other times it will not be as good.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;hear-the-woes&quot;&gt;Hear the woes.&lt;/h2&gt;
+&lt;p&gt;Developer happiness is subjective, so you can use WTFs/day. Take note and let the person to improve something he feels strongly about. Sometimes it turns out the whole team wants the change, just no one is saying anything. Imagine being triggered by something multiple times a day burning brain fuel and getting stressed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.osnews.com/images/comics/wtfm.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;stressless-environment&quot;&gt;Stressless environment.&lt;/h2&gt;
+&lt;p&gt;It is not just thinking gets harder under stress. It is proven that &lt;a href=&quot;https://www.healthline.com/health-news/how-stress-can-shrink-your-brain&quot;&gt;stress shrinks our prefrontal cortex&lt;/a&gt;. In other words, you become dumber and stay that way. This is counterproductive. Under stress, the vision narrows and you turn into a monkey armed with a typewriter.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-flow&quot;&gt;The flow&lt;/h2&gt;
+&lt;p&gt;The fleeting sense of &lt;a href=&quot;https://en.wikipedia.org/wiki/Flow_(psychology)&quot;&gt;Flow&lt;/a&gt; when you are incredibly productive is what you feel when you are working on your &lt;a href=&quot;https://en.wikipedia.org/wiki/Ikigai&quot;&gt;Ikigai&lt;/a&gt; — something you like, something you are good at, and what you find meaningful. This is what a good organization is for.&lt;/p&gt;
+
+&lt;h1 id=&quot;2-organization&quot;&gt;2. Organization&lt;/h1&gt;
+
+&lt;p&gt;We are all born with the right to be happy, love, and enjoy our life and our work. The organization should help people get in the flow. Just let go of the people you don’t trust and make work better for the ones you do.&lt;/p&gt;
+
+&lt;h2 id=&quot;close-tickets&quot;&gt;Close tickets&lt;/h2&gt;
+&lt;p&gt;There are many metrics of team productivity. But the main metric is closed tickets. The proof of work is actual work. But here is the tricky part, what makes a good ticket?&lt;/p&gt;
+
+&lt;h2 id=&quot;invest&quot;&gt;INVEST&lt;/h2&gt;
+&lt;p&gt;Break down the requirements into tasks that are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Independent&lt;/strong&gt; — one independent non-blocking feature per ticket&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Negotiable&lt;/strong&gt; — something’s odd? Let’s discuss&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Valuable&lt;/strong&gt; — have meaning&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Estimable&lt;/strong&gt; — easy to estimate&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Small&lt;/strong&gt;  — not bigger than a day&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Testable&lt;/strong&gt;  — can be automatically tested&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;small-tasks&quot;&gt;Small tasks&lt;/h2&gt;
+&lt;p&gt;We estimate tasks to know how much we can do, and to not take too much load. I like to use points after Bob Martin’s idea. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3&lt;/code&gt; is a “standard task”. A “Standard task” is you can wrap up before lunch. We use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3&lt;/code&gt;
+ and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5&lt;/code&gt; story points relative to the standard task:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 0 &lt;/code&gt; – I’ll close it right away (0~15 min)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 1 &lt;/code&gt; - Won’t take more that an hour&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 2 &lt;/code&gt; – This needs fixing in a couple of places&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 3 &lt;/code&gt; – This will take the whole morning&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 5 &lt;/code&gt; - This is going to take the whole evening&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 8 &lt;/code&gt; - If you feel this is going to take more than a day, please convert it to an Epic and break it down into smaller tasks.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.borodutch.com/sup-simplified-scrum-for-your-development-team/&quot;&gt;A more strict&lt;/a&gt; version of the same idea is the task can be of any size, but in the sprint backlog, you can have only 1’s. Also see &lt;a href=&quot;https://www.yegor256.com/2017/11/28/microtasking.html&quot;&gt;Microtasking&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;decompose&quot;&gt;Decompose&lt;/h2&gt;
+&lt;p&gt;Once you decompose you can decide what to do with the original task.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Close the original task and continue working on a decomposed task.&lt;/li&gt;
+  &lt;li&gt;Convert it to an Epic with a checklist of subtasks. Subtasks should be closed in order for this Epic to be considered complete.
+This helps to break down complex tasks and measure team velocity. And it looks crazy at first. But that is only until you start completing the Epics. In the end, everything is a subtask of a bigger goal.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;priorities&quot;&gt;Priorities&lt;/h2&gt;
+&lt;p&gt;Try something simple:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; must &lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; want &lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;and the rest&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Start from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;must&lt;/code&gt; with the least estimate. These are the most low-hanging fruits. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;want&lt;/code&gt; is something we want to have eventually but it can wait until the next iteration. The rest — later.&lt;/p&gt;
+
+&lt;p&gt;Watch out for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bug&lt;/code&gt; labels, but remember that not every bug should be fixed immediately.&lt;/p&gt;
+
+&lt;h2 id=&quot;let-dev-go-their-own-way&quot;&gt;Let dev go their own way&lt;/h2&gt;
+&lt;p&gt;The flow is reachable when people work on something they want to work on the most. Chop tickets so everyone could find jobs they like best. Somebody loves data science, or frontend, or testing. Have a ticket for everything.&lt;/p&gt;
+
+&lt;h2 id=&quot;go-together&quot;&gt;Go together&lt;/h2&gt;
+&lt;p&gt;Then let people work in small teams of two or three people on an Epic. That will improve everything. Morale, speed, efficiency. That works incredibly cool when the team is spread across different time zones. The work continues when you are sleeping. That helps to train communication skills and fill in the blanks for the people working with it.&lt;/p&gt;
+
+&lt;h2 id=&quot;measure&quot;&gt;Measure&lt;/h2&gt;
+&lt;p&gt;After a few iterations with the burndown chart. We could predict how much work the team is delivering per sprint. We could do two big business epics, fix some bugs, then maybe resolve some overdue itch. That helped us to better estimate big tasks. Everything was immediately broken down into a “standard epic”, something the team can easily do in one sprint or less.&lt;/p&gt;
+
+&lt;h2 id=&quot;chill-out&quot;&gt;Chill out&lt;/h2&gt;
+&lt;p&gt;Work hard - play hard. Do not keep the team endlessly crunching. Let them record demos, present their work, and experiment in the scope of an obscure ticket. Let developers create tickets for themselves and close them. Refactor their work or improve the project’s flow. This is something they actively want to do, use this power. No one releases on Friday anyway.&lt;/p&gt;
+
+&lt;p&gt;Basecamp’s &lt;a href=&quot;https://basecamp.com/shapeup&quot;&gt;Shape Up&lt;/a&gt; method has 2 week cool-down periods between sprints.&lt;/p&gt;
+
+&lt;h2 id=&quot;code-preview&quot;&gt;Code preview&lt;/h2&gt;
+&lt;p&gt;Code preview is cheaper than code review. Especially when the work is done and can’t be merged. There are different ways to do it. Designs. Diagrams. Comments with code, basically explain how you are going to do it before the code is written. One can even make a draft pull request with plain text description of what goes where.&lt;/p&gt;
+
+&lt;p&gt;See how they are “shaping the work” in &lt;a href=&quot;https://basecamp.com/shapeup&quot;&gt;Basecamp&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;reduce-friction&quot;&gt;Reduce friction&lt;/h2&gt;
+&lt;p&gt;If you listen to your developers, especially the newcomers, they are going to tell you everything in their first days and weeks. Just see what they have issues with. Here are the proverbial low-hanging fruits. Pick them and fix them. Make the project as frictionless as possible.&lt;/p&gt;
+
+&lt;h1 id=&quot;3-project&quot;&gt;3. Project&lt;/h1&gt;
+
+&lt;p&gt;The project should be a friend, not a foe. It should tender to your code but protect itself from failing tests.&lt;/p&gt;
+
+&lt;h2 id=&quot;make-it-visible&quot;&gt;Make it visible&lt;/h2&gt;
+&lt;p&gt;First, make sure you get all notifications and see everything that is going on before turning them off and filtering them in any way.&lt;/p&gt;
+
+&lt;h2 id=&quot;make-you-visible&quot;&gt;Make you visible&lt;/h2&gt;
+&lt;p&gt;Before working on something make sure there is an open ticket for it. If there is none, create it. This will make everybody live’s easier. The changes will be documented and one could see what was going on when opening the code later.&lt;/p&gt;
+
+&lt;h2 id=&quot;low-bus-factor&quot;&gt;Low bus factor&lt;/h2&gt;
+&lt;p&gt;There should be as few key people as possible. Key reviewers, key mergers, key admins. Spread the knowledge, train the team, and have smaller tickets. Make it so people could have their lives.&lt;/p&gt;
+
+&lt;h2 id=&quot;automate-everything&quot;&gt;Automate everything&lt;/h2&gt;
+&lt;p&gt;Before we had to write our own automation now github actions seem to do everything. Use it. The project should embrace the code developer produces. Test it, warn about potential issues, assign the reviewers, assign labels, status checks, everything. Whatever your process is - there is a bot just for that.&lt;/p&gt;
+
+&lt;h2 id=&quot;code-review&quot;&gt;Code review&lt;/h2&gt;
+&lt;p&gt;Automatically assigned reviewers prevent bottlenecking. If you are assigned please review it as soon as possible to let others move forward.&lt;/p&gt;
+
+&lt;p&gt;Comment on everything that looks concerning. Discuss everything in the comments. &lt;a href=&quot;#stay-friendly&quot;&gt;Stay friendly&lt;/a&gt;. Mention people who might provide insight when needed.&lt;/p&gt;
+
+&lt;p&gt;The reviewer can merge or leave it up to the developer. Use &lt;a href=&quot;https://github.com/blog/2243-rebase-and-merge-pull-requests&quot;&gt;Rebase and Merge&lt;/a&gt; or add a comment and  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Request Changes&lt;/code&gt; if needed. All comments should be marked as resolved by their author before merging.&lt;/p&gt;
+
+&lt;p&gt;If you do not agree with something please discuss it in public discussion. Focus on important stuff, see &lt;a href=&quot;http://en.wiktionary.org/wiki/bikeshedding&quot;&gt;Bikeshedding&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;post-metrics&quot;&gt;Post metrics&lt;/h2&gt;
+&lt;p&gt;Metrics should be a fact of life. When I had an edication project we had teacher leaderboard in the office and student leaderboards in school. No pressure just everyone could see how they are doing. Scrum corkboard on the wall with the paper notes that we moved when the task changed state. How the things are going was al obvious at the glance.&lt;/p&gt;
+
+&lt;h2 id=&quot;green-builds&quot;&gt;Green builds&lt;/h2&gt;
+&lt;p&gt;Do not send mixed signals. Every developer waits for green. If you see some build step is always failing, either change it to pending or remove it. There should be a positive reinforcement. Plus it’s annoying when you have to check the build status manually every time.&lt;/p&gt;
+
+&lt;h2 id=&quot;simple-branching&quot;&gt;Simple branching&lt;/h2&gt;
+&lt;p&gt;Before there was this craze with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flow&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git-flow&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github-flow&lt;/code&gt;. People were foaming at their mouth how to name branches. I like &lt;a href=&quot;https://trunkbaseddevelopment.com/&quot;&gt;Trunk-based development&lt;/a&gt; with some simple branch naming rules like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0000-task-title&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; branch is always ready to release and continuously deployed to a staging environment after every green build. Red build or a failing migration in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; is an incident that should be fixed asap.&lt;/p&gt;
+
+&lt;p&gt;The rest is optional. I let developers merge their pull requests once everything is green and they feel it’s ready.&lt;/p&gt;
+
+&lt;h2 id=&quot;simple-commit-messages&quot;&gt;Simple commit messages&lt;/h2&gt;
+&lt;p&gt;The first line should describe the commit as much as possible, so it’s possible to do &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git log --oneline&lt;/code&gt; makes sense. &lt;a href=&quot;https://www.conventionalcommits.org/&quot;&gt;Conventional commits&lt;/a&gt; seem to work very well with the simple prefixes like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feat:&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fix:&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;one-feature--one-commit&quot;&gt;One feature – one commit&lt;/h2&gt;
+&lt;p&gt;This makes rollbacks and cherry-picking a non-issue. Plus the history is almost linear, especially if you always rebase. The idea a bit controversial if you are constantly force-pushing and that makes code hard to review. So one could keep multiple commits until the branch is reviewed and squash on merge.&lt;/p&gt;
+
+&lt;h2 id=&quot;best-pull-request-removes-code&quot;&gt;Best pull request removes code&lt;/h2&gt;
+&lt;p&gt;First rule of software quality:&lt;/p&gt;
+&lt;h2 id=&quot;e--mc&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; e = mc² &lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;*) &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; errors = more code &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Keep it clean. Clean code is easy to understand and easy to change.&lt;/p&gt;
+
+&lt;h2 id=&quot;best-pull-request-increases-coverage&quot;&gt;Best pull request increases coverage&lt;/h2&gt;
+&lt;p&gt;Check coverage at the gate. Write any test, but the coverage should increase.&lt;/p&gt;
+
+&lt;h2 id=&quot;remove-deadwood&quot;&gt;Remove deadwood&lt;/h2&gt;
+&lt;p&gt;Close the branches that are sitting there for years. Close obsolete tickets. You ain’t gonna need it anyway.&lt;/p&gt;
+
+&lt;p&gt;PS. We can reopen them later if needed.&lt;/p&gt;
+
+&lt;p&gt;…&lt;/p&gt;
+
+&lt;p&gt;Please share what worked for you. And before we part ways, please remember — we were born to have fun.&lt;/p&gt;
+
+&lt;p&gt;Please do have fun and organize for joy.&lt;/p&gt;
+
+        </description>
+        <pubDate>Mon, 06 Mar 2023 00:00:00 +0700</pubDate>
+        <link>https://firedev.com/posts/develop-for-joy/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/develop-for-joy/</guid>
+        
+        <category>development</category>
+        
+        
+        <category>posts</category>
+        
+      </item>
     
       <item>
         <title>Boring Rails</title>
@@ -2819,305 +3013,6 @@ nested structures from the outside world.&lt;/p&gt;
         <guid isPermaLink="true">https://firedev.com/posts/bottomless-ruby-hash/</guid>
         
         <category>ruby</category>
-        
-        
-        <category>posts</category>
-        
-      </item>
-    
-      <item>
-        <title>Lazy image creation with Carrierwave</title>
-        <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/lazy-image-creation-with-carrierwave.jpg"/&gt;&lt;/p&gt;
-          &lt;p&gt;I don’t know about you but I kind of grown to like Carrierwave. Yes, there are
-other uploaders on the block but that’s not the point. Everybody I know are using
-it wrong.&lt;/p&gt;
-
-&lt;p&gt;If you are storing images on your own server I bet you are always concerned about
-versions. Let’s say for an average web site you need at least three versions:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Featured: Big cropped wide screen image for heading&lt;/li&gt;
-  &lt;li&gt;Default: Smaller image for gallery&lt;/li&gt;
-  &lt;li&gt;Thumb: Thumbnail for the list&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These are just for the sake of the example but there could be more. And  for
-each image you need only a subset of versions. Only one image per article is
-displayed as a featured image, not every image goes to gallery etc.
-But you create them all anyway, because that’s how it is.&lt;/p&gt;
-
-&lt;h2 id=&quot;stop&quot;&gt;Stop&lt;/h2&gt;
-
-&lt;p&gt;You’re doing it wrong. While versions creation is indeed the
-Carrierwave’s responsibility, the decision on which version to create should
-not be made when image is uploaded. And certainly you don’t need to create all
-versions at the same time or check if the file exists.&lt;/p&gt;
-
-&lt;p&gt;Come to think of it, you don’t know upfront what version you might need so you
-create all possible versions or create some inventive schemes with conditional
-versioning thanks to Carrierwave abilities.&lt;/p&gt;
-
-&lt;p&gt;But in fact there is a better way. Lazily create only the versions that are
-actually being used just-in-time when the request comes.&lt;/p&gt;
-
-&lt;h2 id=&quot;hammer-time&quot;&gt;Hammer time&lt;/h2&gt;
-
-&lt;p&gt;Okay let’s roll our sleeves. The idea is to create the route matching
-the image path. If the asset is missing the request falls through to Rails and
-image is created. Next time the request comes to this url, nginx takes care of
-serving the static asset.&lt;/p&gt;
-
-&lt;p&gt;To start off let’s delay the versions creation until the moment we actually need
-them. Let’s add the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;now&lt;/code&gt; modifier to uploader and make sure no versions are
-created until we say so:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/uploaders/image_uploader.rb&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;if: :now?&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:featured&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;if: :now?&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:thumb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;if: :now?&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;now&lt;/span&gt;
-    &lt;span class=&quot;vi&quot;&gt;@now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;kp&quot;&gt;protected&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;now?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;vi&quot;&gt;@now&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;In the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Image&lt;/code&gt; class we are going to add a method that actually creates a version.
-All it does - sets &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@now&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; and then calls &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recreate_versions!&lt;/code&gt; for a
-given &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;version&lt;/code&gt;. Lazy, not crazy, we don’t want to create anything
-uncontrollably.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/models/image.rb&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;recreate_versions!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;I am using almost the out of the box uploader with the small addition.
-Here is an inflector that breaks long id strings so you don’t end up with too
-many images in one folder.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# lib/inflector.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Inflector&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dup&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;times&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;slice!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/lib/inflector_spec.rb&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'spec_helper'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Inflector&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inflect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;Inflector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;specify&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'10'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'1/100'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1_000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'1/0/1000'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10_000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'1/0/0/10000'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflect&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100_000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'1/0/0/0/100000'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;store_dir&lt;/code&gt; from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;image_uploader.rb&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/uploaders/image_uploader.rb&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;store_dir&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;uploads/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;underscore&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Inflector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Let’s write a routing test to make sure requests are landing right at our
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MissingController&lt;/code&gt;. Missing like “image is missing”. And test a couple of routes
-with and without inflected paths just to be sure:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/routing/missing_spec.rb&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'rails_helper'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Routes'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;type: :routing&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Missing Image'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;specify&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/uploads/image/40/thumb_5f5e5c3b-a665-494c-9c21-be82d49f6451.jpg'&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;route_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;controller: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'missing'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;action: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'show'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;klass: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'40'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;version: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'thumb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;file: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'5f5e5c3b-a665-494c-9c21-be82d49f6451'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;format: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'jpg'&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;specify&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/uploads/image/1/0/1003/featured_c3ad3865-93f0-4032-a6fe-5c2ada381456.JPG'&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;route_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;controller: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'missing'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;action: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'show'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;klass: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;inflection: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'1/0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'1003'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;version: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'featured'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;file: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'c3ad3865-93f0-4032-a6fe-5c2ada381456'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;ss&quot;&gt;format: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'JPG'&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Okay now it’s time to make a route. Fortunately we can use constraints to make
-matters easier for everybody. Rails doesn’t have to think how to parse it and
-here is what I came up with:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# config/routes.rb&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# /uploads/block/image/1/default_7fd5acc8-5c06-4dcc-955e-f4fc5f76be01.jpg&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'uploads/:klass/(*inflection)/:id/(:version)_(:file)'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'missing#show'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;ss&quot;&gt;constraints: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;klass: &lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/\D*/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# anything but numbers&lt;/span&gt;
-        &lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/\d*/&lt;/span&gt;       &lt;span class=&quot;c1&quot;&gt;# numbers only&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MissingController&lt;/code&gt; itself:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controllers/missing_controller.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MissingController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'PATH_INFO'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create_version&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_version&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create_version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;image&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:klass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;camelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;constantize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;version&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_sym&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;All it does - creates a version according to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;params&lt;/code&gt; and once image is created
-the same url is being requested again. But this time the created image will be
-served by nginx on top of the Rails app.&lt;/p&gt;
-
-&lt;h2 id=&quot;nginx&quot;&gt;Nginx&lt;/h2&gt;
-
-&lt;p&gt;If you have any special settings for static files in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uploads&lt;/code&gt; folder you might
-want to amend your nginx config for the given site like so:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;; /etc/nginx/sites-available/site
-
-location ^~ /uploads/ {
-    ...
-    try_files $uri @backend;
-}
-
-location @backend {
-      proxy_pass ...
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;broken-images&quot;&gt;Broken Images&lt;/h2&gt;
-
-&lt;p&gt;Say you have some broken images that can’t be recreated and causing errors. Let’s
-get rid of them automatically. Via some augmentation of our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MissingController&lt;/code&gt;
-we can do that now.&lt;/p&gt;
-
-&lt;p&gt;I would suggest to add some default “broken” image to
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/assets/images/layout/missing_image.png&lt;/code&gt;
-so you can see any sign that the image is deleted. Then we are changing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show&lt;/code&gt; method:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# app/controller/missing_controller.rb&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MissingController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
-
-  &lt;span class=&quot;no&quot;&gt;EXCEPTIONS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;Errno&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ENOENT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Original Image not found&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;CarrierWave&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ProcessingError&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Image is broken&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'PATH_INFO'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create_version&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;EXCEPTIONS&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;redirect_to&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;helpers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;asset_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'layout/missing_image.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_version&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create_version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;image&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:klass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;camelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;constantize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;version&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_sym&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now you have fast upload, delayed image creation and the nice part is that you
-can delete the whole &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uploads&lt;/code&gt; folder. Versions will be re-created.
-You can change formats on-the-fly when design changes. Broken files will be
-automatically deleted as well. In other words – you don’t need to worry about images.&lt;/p&gt;
-
-&lt;p&gt;This is pretty much the complete implementation taken out of one of the projects I
-am working on. Please let me know if that helped you. Thanks.&lt;/p&gt;
-
-        </description>
-        <pubDate>Tue, 30 Jun 2015 00:00:00 +0700</pubDate>
-        <link>https://firedev.com/posts/lazy-image-creation-with-carrierwave/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/lazy-image-creation-with-carrierwave/</guid>
-        
-        <category>rails</category>
-        
-        <category>carrierwave</category>
         
         
         <category>posts</category>
