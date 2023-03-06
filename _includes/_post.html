@@ -18,7 +18,7 @@
     {% include _rating.html rating=post.rating %}
     <date class="">{{ include.post.date | date_to_string }}</date>
     <div class="my-2">
-      <h2 class="">
+      <h2 class="mt-0">
         <a href="{{ include.post.url }}">{{ include.post.title }}</a>
       </h2>
       <p>{{ include.post.excerpt | strip_html }}</p>
