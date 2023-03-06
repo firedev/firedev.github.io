@@ -6,15 +6,15 @@
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 Mar 2023 09:27:23 +0700</pubDate>
-    <lastBuildDate>Mon, 06 Mar 2023 09:27:23 +0700</lastBuildDate>
+    <pubDate>Mon, 06 Mar 2023 09:57:39 +0700</pubDate>
+    <lastBuildDate>Mon, 06 Mar 2023 09:57:39 +0700</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
         <title>Develop for Joy</title>
         <description>
           &lt;p&gt;&lt;img src="https://firedev.com/images/posts/paul-pastourmatzis-8kDOOrs608I-unsplash.jpg"/&gt;&lt;/p&gt;
-          &lt;p&gt;Wearing a team lead hat developer happiness becomes the most important aspect. I always hire people smarter than me and care about their well-being. Contract work is a constant pressure. So one of the goals is to keep the happiness baseline from dipping&lt;/p&gt;
+          &lt;p&gt;Wearing a team lead hat developer happiness becomes the most important aspect. I always hire people smarter than me and care about their well-being. Contract work is a constant pressure. So one of the goals is to keep the happiness baseline from dipping.&lt;/p&gt;
 
 &lt;p&gt;Here are some ideas that helped me in the past broken into three main topics: People, Organization and the Project. See if they are worth your time.&lt;/p&gt;
 
@@ -111,7 +111,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;p&gt;The flow is reachable when people work on something they want to work on the most. Chop tickets so everyone could find jobs they like best. Somebody loves data science, or frontend, or testing. Have a ticket for everything.&lt;/p&gt;
 
 &lt;h2 id=&quot;go-together&quot;&gt;Go together&lt;/h2&gt;
-&lt;p&gt;Then let people work in small teams of two or three people on an Epic. That will improve everything. Morale, speed, efficiency. That works incredibly cool when the team is spread across different time zones. The work continues when you are sleeping. That helps to train communication skills and fill in the blanks for the people working with it.&lt;/p&gt;
+&lt;p&gt;Then let people work in small teams of two or three people on an Epic. That will improve everything. Morale, speed, efficiency. That works incredibly cool when the team is spread across different time zones. The work continues when you are sleeping. That helps to train communication, self-organization, and fill in the blanks for the new people within the project.&lt;/p&gt;
 
 &lt;h2 id=&quot;measure&quot;&gt;Measure&lt;/h2&gt;
 &lt;p&gt;After a few iterations with the burndown chart. We could predict how much work the team is delivering per sprint. We could do two big business epics, fix some bugs, then maybe resolve some overdue itch. That helped us to better estimate big tasks. Everything was immediately broken down into a “standard epic”, something the team can easily do in one sprint or less.&lt;/p&gt;
