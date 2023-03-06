@@ -6,8 +6,8 @@
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 Mar 2023 14:13:03 +0700</pubDate>
-    <lastBuildDate>Mon, 06 Mar 2023 14:13:03 +0700</lastBuildDate>
+    <pubDate>Mon, 06 Mar 2023 14:17:52 +0700</pubDate>
+    <lastBuildDate>Mon, 06 Mar 2023 14:17:52 +0700</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
@@ -43,7 +43,7 @@
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;hear-the-woes&quot;&gt;Hear the woes.&lt;/h2&gt;
-&lt;p&gt;Developer happiness is subjective, so you can use WTFs/day. Take note and let the person to improve something he feels strongly about. Sometimes it turns out the whole team wants the change, just no one is saying anything. Imagine being triggered by something multiple times a day burning brain fuel and getting stressed.&lt;/p&gt;
+&lt;p&gt;Developer happiness is subjective, so you can use WTFs/day. Take note and let the person improve something he feels strongly about. Sometimes it turns out the whole team wants the change, just no one is saying anything. Imagine being triggered by something multiple times a day burning brain fuel and getting stressed.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://www.osnews.com/images/comics/wtfm.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -72,25 +72,25 @@
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;small-tasks&quot;&gt;Small tasks&lt;/h2&gt;
-&lt;p&gt;We estimate tasks to know how much we can do, and to not take too much load. I like to use points after Bob Martin’s idea. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3&lt;/code&gt; is a “standard task”. A “Standard task” is you can wrap up before lunch. We use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3&lt;/code&gt;
+&lt;p&gt;We estimate tasks to know how much we can do, and to not take too much load. I like to use points after Bob Martin’s idea. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3&lt;/code&gt; is a “standard task”. A “Standard task” you can wrap up before lunch. We use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3&lt;/code&gt;
  and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5&lt;/code&gt; story points relative to the standard task:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 0 &lt;/code&gt; – I’ll close it right away (0~15 min)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 1 &lt;/code&gt; - Won’t take more that an hour&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 1 &lt;/code&gt; - Won’t take more than an hour&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 2 &lt;/code&gt; – This needs fixing in a couple of places&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 3 &lt;/code&gt; – This will take the whole morning&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 5 &lt;/code&gt; - This is going to take the whole evening&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 8 &lt;/code&gt; - If you feel this is going to take more than a day, please convert it to an Epic and break it down into smaller tasks.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://blog.borodutch.com/sup-simplified-scrum-for-your-development-team/&quot;&gt;A more strict&lt;/a&gt; version of the same idea is the task can be of any size, but in the sprint backlog, you can have only 1’s. Also see &lt;a href=&quot;https://www.yegor256.com/2017/11/28/microtasking.html&quot;&gt;Microtasking&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.borodutch.com/sup-simplified-scrum-for-your-development-team/&quot;&gt;A more strict&lt;/a&gt; version of the same idea is the task can be of any size, but in the sprint backlog, you can have only 1’s. Also, see &lt;a href=&quot;https://www.yegor256.com/2017/11/28/microtasking.html&quot;&gt;Microtasking&lt;/a&gt;](https://www.yegor256.com/2017/11/28/microtasking.html)&lt;/p&gt;
 
 &lt;h2 id=&quot;decompose&quot;&gt;Decompose&lt;/h2&gt;
 &lt;p&gt;Once you decompose you can decide what to do with the original task.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Close the original task and continue working on a decomposed task.&lt;/li&gt;
-  &lt;li&gt;Convert it to an Epic with a checklist of subtasks. Subtasks should be closed in order for this Epic to be considered complete.
+  &lt;li&gt;Convert it to an Epic with a checklist of subtasks. Subtasks should be closed for this Epic to be considered complete.
 This helps to break down complex tasks and measure team velocity. And it looks crazy at first. But that is only until you start completing the Epics. In the end, everything is a subtask of a bigger goal.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -107,7 +107,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 
 &lt;p&gt;Watch out for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bug&lt;/code&gt; labels, but remember that not every bug should be fixed immediately.&lt;/p&gt;
 
-&lt;h2 id=&quot;let-dev-go-their-own-way&quot;&gt;Let dev go their own way&lt;/h2&gt;
+&lt;h2 id=&quot;let-dev-go-their-way&quot;&gt;Let dev go their way&lt;/h2&gt;
 &lt;p&gt;The flow is reachable when people work on something they want to work on the most. Chop tickets so everyone could find jobs they like best. Somebody loves data science, frontend, or testing. Have a ticket for everything.&lt;/p&gt;
 
 &lt;h2 id=&quot;go-together&quot;&gt;Go together&lt;/h2&gt;
@@ -119,7 +119,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;h2 id=&quot;chill-out&quot;&gt;Chill out&lt;/h2&gt;
 &lt;p&gt;Work hard - play hard. Do not keep the team endlessly crunching. Let them record demos, present their work, and experiment in the scope of an obscure ticket. Let developers create tickets for themselves and close them. Refactor their work or improve the project’s flow. This is something they actively want to do, use this power. No one releases on Friday anyway.&lt;/p&gt;
 
-&lt;p&gt;Basecamp’s &lt;a href=&quot;https://basecamp.com/shapeup&quot;&gt;Shape Up&lt;/a&gt; method has 2 week cool-down periods between sprints.&lt;/p&gt;
+&lt;p&gt;Basecamp’s &lt;a href=&quot;https://basecamp.com/shapeup&quot;&gt;Shape Up&lt;/a&gt; method has 2-week cool-down periods between sprints.&lt;/p&gt;
 
 &lt;h2 id=&quot;code-preview&quot;&gt;Code preview&lt;/h2&gt;
 &lt;p&gt;Code preview is cheaper than code review. Especially when the work is done and can’t be merged. There are different ways to do it. Designs. Diagrams. Comments with code, basically explain how you are going to do it before the code is written. One can even make a draft pull request with a plain text description of what goes where.&lt;/p&gt;
@@ -143,7 +143,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;p&gt;There should be as few key people as possible. Key reviewers, key mergers, key admins. Spread the knowledge, train the team, and have smaller tickets. Make it so people could have their lives.&lt;/p&gt;
 
 &lt;h2 id=&quot;automate-everything&quot;&gt;Automate everything&lt;/h2&gt;
-&lt;p&gt;Before we had to write our own automation now GitHub actions seem to do everything. Use it. The project should embrace the code developer produces. Test it, warn about potential issues, assign the reviewers, assign labels, status checks, everything. Whatever your process is - there is a bot just for that.&lt;/p&gt;
+&lt;p&gt;Before we had to write our automation now GitHub actions seem to do everything. Use it. The project should embrace the code developer produces. Test it, warn about potential issues, assign the reviewers, assign labels, status checks, everything. Whatever your process is - there is a bot just for that.&lt;/p&gt;
 
 &lt;h2 id=&quot;code-review&quot;&gt;Code review&lt;/h2&gt;
 &lt;p&gt;Automatically assigned reviewers prevent bottlenecking. If you are assigned please review it as soon as possible to let others move forward.&lt;/p&gt;
@@ -155,24 +155,24 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;p&gt;If you do not agree with something please discuss it in public discussion. Focus on the important, see &lt;a href=&quot;http://en.wiktionary.org/wiki/bikeshedding&quot;&gt;Bikeshedding&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;post-metrics&quot;&gt;Post metrics&lt;/h2&gt;
-&lt;p&gt;Metrics should be a fact of life. For my &lt;a href=&quot;https://demo.learn21.school&quot;&gt;EduTech startup&lt;/a&gt;, we had a dynamic teacher leaderboard in the office and student leaderboards in school. No pressure, but everyone could see how they are doing. Scrum corkboard on the wall with the paper notes that we moved when the task changed state. How the things are going was obvious at a glance.&lt;/p&gt;
+&lt;p&gt;Metrics should be a fact of life. For my &lt;a href=&quot;https://demo.learn21.school&quot;&gt;EduTech startup&lt;/a&gt;, we had a dynamic teacher leaderboard in the office and student leaderboards in school. No pressure, but everyone could see how they are doing. Scrum corkboard on the wall with the paper notes that we moved when the task changed state. How things are going was obvious at a glance.&lt;/p&gt;
 
 &lt;h2 id=&quot;green-builds&quot;&gt;Green builds&lt;/h2&gt;
-&lt;p&gt;Do not send mixed signals. Every developer waits for green. If you see some build step is always failing, either change it to pending or remove it. There should be a positive reinforcement. Plus it’s annoying when you have to check the build status manually every time.&lt;/p&gt;
+&lt;p&gt;Do not send mixed signals. Every developer waits for green. If you see some build step is always failing, either change it to pending or remove it. There should be positive reinforcement. Plus it’s annoying when you have to check the build status manually every time.&lt;/p&gt;
 
 &lt;h2 id=&quot;simple-branching&quot;&gt;Simple branching&lt;/h2&gt;
-&lt;p&gt;Before there was this craze with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flow&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git-flow&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github-flow&lt;/code&gt;. People were foaming at their mouth how to name branches. I like &lt;a href=&quot;https://trunkbaseddevelopment.com/&quot;&gt;Trunk-based development&lt;/a&gt; with some simple branch naming rules like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0000-task-title&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; branch is always ready to release and continuously deployed to a staging environment after every green build. Red build or a failing migration in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; is an incident that should be fixed asap.&lt;/p&gt;
+&lt;p&gt;Before there was this craze with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flow&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git-flow&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github-flow&lt;/code&gt;. People were foaming at their mouths on how to arrange branches. I like &lt;a href=&quot;https://trunkbaseddevelopment.com/&quot;&gt;Trunk-based development&lt;/a&gt; with some simple branch naming rules like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0000-task-title&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; branch is always ready to release and continuously deployed to a staging environment after every green build. Red build or a failing migration in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; is an incident that should be fixed asap.&lt;/p&gt;
 
 &lt;p&gt;The rest is optional. I let developers merge their pull requests once everything is green and they feel it’s ready.&lt;/p&gt;
 
 &lt;h2 id=&quot;simple-commit-messages&quot;&gt;Simple commit messages&lt;/h2&gt;
-&lt;p&gt;The first line should describe the commit as much as possible, so it’s possible to do &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git log --oneline&lt;/code&gt; makes sense. &lt;a href=&quot;https://www.conventionalcommits.org/&quot;&gt;Conventional commits&lt;/a&gt; seem to work very well with the simple prefixes like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feat:&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fix:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The first line should describe the commit as much as possible, so it’s possible to do &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git log --oneline&lt;/code&gt; makes sense. &lt;a href=&quot;https://www.conventionalcommits.org/&quot;&gt;Conventional commits&lt;/a&gt; seem to work very well with simple prefixes like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feat:&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fix:&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;one-feature--one-commit&quot;&gt;One feature – one commit&lt;/h2&gt;
-&lt;p&gt;This makes rollbacks and cherry-picking a non-issue. Plus the history is almost linear, especially if you always rebase. The idea a bit controversial if you are constantly force-pushing and that makes code hard to review. So one could keep multiple commits until the branch is reviewed and squash on merge.&lt;/p&gt;
+&lt;p&gt;This makes rollbacks and cherry-picking a non-issue. Plus the history is almost linear, especially if you always rebase. The idea is a bit controversial if you are constantly force-pushing and that makes code hard to review. So one could keep multiple commits until the branch is reviewed and squash on merge.&lt;/p&gt;
 
 &lt;h2 id=&quot;best-pull-request-removes-code&quot;&gt;Best pull request removes code&lt;/h2&gt;
-&lt;p&gt;First rule of software quality:&lt;/p&gt;
+&lt;p&gt;The first rule of software quality:&lt;/p&gt;
 &lt;h2 id=&quot;e--mc&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; e = mc² &lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;*) &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; errors = more code &lt;/code&gt;&lt;/p&gt;
 
