@@ -6,8 +6,8 @@
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 Mar 2023 14:47:30 +0700</pubDate>
-    <lastBuildDate>Mon, 06 Mar 2023 14:47:30 +0700</lastBuildDate>
+    <pubDate>Mon, 06 Mar 2023 15:26:41 +0700</pubDate>
+    <lastBuildDate>Mon, 06 Mar 2023 15:26:41 +0700</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
@@ -84,7 +84,7 @@
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; 8 &lt;/code&gt; - If you feel this is going to take more than a day, please convert it to an Epic and break it down into smaller tasks.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://blog.borodutch.com/sup-simplified-scrum-for-your-development-team/&quot;&gt;A more strict&lt;/a&gt; version of the same idea is the task can be of any size, but in the sprint backlog, you can have only 1’s. Also, see &lt;a href=&quot;https://www.yegor256.com/2017/11/28/microtasking.html&quot;&gt;Microtasking&lt;/a&gt;](https://www.yegor256.com/2017/11/28/microtasking.html)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.borodutch.com/sup-simplified-scrum-for-your-development-team/&quot;&gt;A more strict&lt;/a&gt; version of the same idea is the task can be of any size, but in the sprint backlog, you can have only 1’s. Also, take a look at &lt;a href=&quot;https://www.yegor256.com/2017/11/28/microtasking.html&quot;&gt;Microtasking&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;decompose&quot;&gt;Decompose&lt;/h2&gt;
 &lt;p&gt;Once you decompose you can decide what to do with the original task.&lt;/p&gt;
