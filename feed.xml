@@ -6,8 +6,8 @@
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 Mar 2023 11:19:53 +0700</pubDate>
-    <lastBuildDate>Mon, 06 Mar 2023 11:19:53 +0700</lastBuildDate>
+    <pubDate>Mon, 06 Mar 2023 14:13:03 +0700</pubDate>
+    <lastBuildDate>Mon, 06 Mar 2023 14:13:03 +0700</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
@@ -48,7 +48,7 @@
 &lt;p&gt;&lt;img src=&quot;http://www.osnews.com/images/comics/wtfm.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;stressless-environment&quot;&gt;Stressless environment.&lt;/h2&gt;
-&lt;p&gt;It is not just thinking gets harder under stress. It is proven that &lt;a href=&quot;https://www.healthline.com/health-news/how-stress-can-shrink-your-brain&quot;&gt;stress shrinks our prefrontal cortex&lt;/a&gt;. In other words, you become dumber and stay that way. This is counterproductive. Under stress, the vision narrows and you turn into a monkey armed with a typewriter.&lt;/p&gt;
+&lt;p&gt;It is not just thinking that gets harder under stress. It is proven that &lt;a href=&quot;https://www.healthline.com/health-news/how-stress-can-shrink-your-brain&quot;&gt;stress shrinks our prefrontal cortex&lt;/a&gt;. In other words, you become dumber and stay that way. This is counterproductive. Under stress, the vision narrows and you turn into a monkey armed with a typewriter.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-flow&quot;&gt;The flow&lt;/h2&gt;
 &lt;p&gt;The fleeting sense of &lt;a href=&quot;https://en.wikipedia.org/wiki/Flow_(psychology)&quot;&gt;Flow&lt;/a&gt; when you are incredibly productive is what you feel when you are working on your &lt;a href=&quot;https://en.wikipedia.org/wiki/Ikigai&quot;&gt;Ikigai&lt;/a&gt; — something you like, something you are good at, and what you find meaningful. This is what a good organization is for.&lt;/p&gt;
@@ -108,7 +108,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;p&gt;Watch out for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bug&lt;/code&gt; labels, but remember that not every bug should be fixed immediately.&lt;/p&gt;
 
 &lt;h2 id=&quot;let-dev-go-their-own-way&quot;&gt;Let dev go their own way&lt;/h2&gt;
-&lt;p&gt;The flow is reachable when people work on something they want to work on the most. Chop tickets so everyone could find jobs they like best. Somebody loves data science, or frontend, or testing. Have a ticket for everything.&lt;/p&gt;
+&lt;p&gt;The flow is reachable when people work on something they want to work on the most. Chop tickets so everyone could find jobs they like best. Somebody loves data science, frontend, or testing. Have a ticket for everything.&lt;/p&gt;
 
 &lt;h2 id=&quot;go-together&quot;&gt;Go together&lt;/h2&gt;
 &lt;p&gt;Then let people work in small teams of two or three people on an Epic. That will improve everything. Morale, speed, efficiency. That works incredibly cool when the team is spread across different time zones. The work continues when you are sleeping. That helps to train communication, self-organization, and fill in the blanks for the new people within the project.&lt;/p&gt;
@@ -122,7 +122,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;p&gt;Basecamp’s &lt;a href=&quot;https://basecamp.com/shapeup&quot;&gt;Shape Up&lt;/a&gt; method has 2 week cool-down periods between sprints.&lt;/p&gt;
 
 &lt;h2 id=&quot;code-preview&quot;&gt;Code preview&lt;/h2&gt;
-&lt;p&gt;Code preview is cheaper than code review. Especially when the work is done and can’t be merged. There are different ways to do it. Designs. Diagrams. Comments with code, basically explain how you are going to do it before the code is written. One can even make a draft pull request with plain text description of what goes where.&lt;/p&gt;
+&lt;p&gt;Code preview is cheaper than code review. Especially when the work is done and can’t be merged. There are different ways to do it. Designs. Diagrams. Comments with code, basically explain how you are going to do it before the code is written. One can even make a draft pull request with a plain text description of what goes where.&lt;/p&gt;
 
 &lt;p&gt;See how they are “shaping the work” in &lt;a href=&quot;https://basecamp.com/shapeup&quot;&gt;Basecamp&lt;/a&gt;.&lt;/p&gt;
 
@@ -143,7 +143,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;p&gt;There should be as few key people as possible. Key reviewers, key mergers, key admins. Spread the knowledge, train the team, and have smaller tickets. Make it so people could have their lives.&lt;/p&gt;
 
 &lt;h2 id=&quot;automate-everything&quot;&gt;Automate everything&lt;/h2&gt;
-&lt;p&gt;Before we had to write our own automation now github actions seem to do everything. Use it. The project should embrace the code developer produces. Test it, warn about potential issues, assign the reviewers, assign labels, status checks, everything. Whatever your process is - there is a bot just for that.&lt;/p&gt;
+&lt;p&gt;Before we had to write our own automation now GitHub actions seem to do everything. Use it. The project should embrace the code developer produces. Test it, warn about potential issues, assign the reviewers, assign labels, status checks, everything. Whatever your process is - there is a bot just for that.&lt;/p&gt;
 
 &lt;h2 id=&quot;code-review&quot;&gt;Code review&lt;/h2&gt;
 &lt;p&gt;Automatically assigned reviewers prevent bottlenecking. If you are assigned please review it as soon as possible to let others move forward.&lt;/p&gt;
@@ -152,10 +152,10 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 
 &lt;p&gt;The reviewer can merge or leave it up to the developer. Use &lt;a href=&quot;https://github.com/blog/2243-rebase-and-merge-pull-requests&quot;&gt;Rebase and Merge&lt;/a&gt; or add a comment and  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Request Changes&lt;/code&gt; if needed. All comments should be marked as resolved by their author before merging.&lt;/p&gt;
 
-&lt;p&gt;If you do not agree with something please discuss it in public discussion. Focus on important stuff, see &lt;a href=&quot;http://en.wiktionary.org/wiki/bikeshedding&quot;&gt;Bikeshedding&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you do not agree with something please discuss it in public discussion. Focus on the important, see &lt;a href=&quot;http://en.wiktionary.org/wiki/bikeshedding&quot;&gt;Bikeshedding&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;post-metrics&quot;&gt;Post metrics&lt;/h2&gt;
-&lt;p&gt;Metrics should be a fact of life. When I had an edication project we had teacher leaderboard in the office and student leaderboards in school. No pressure just everyone could see how they are doing. Scrum corkboard on the wall with the paper notes that we moved when the task changed state. How the things are going was al obvious at the glance.&lt;/p&gt;
+&lt;p&gt;Metrics should be a fact of life. For my &lt;a href=&quot;https://demo.learn21.school&quot;&gt;EduTech startup&lt;/a&gt;, we had a dynamic teacher leaderboard in the office and student leaderboards in school. No pressure, but everyone could see how they are doing. Scrum corkboard on the wall with the paper notes that we moved when the task changed state. How the things are going was obvious at a glance.&lt;/p&gt;
 
 &lt;h2 id=&quot;green-builds&quot;&gt;Green builds&lt;/h2&gt;
 &lt;p&gt;Do not send mixed signals. Every developer waits for green. If you see some build step is always failing, either change it to pending or remove it. There should be a positive reinforcement. Plus it’s annoying when you have to check the build status manually every time.&lt;/p&gt;
