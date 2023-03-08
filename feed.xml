@@ -6,8 +6,8 @@
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 08 Mar 2023 11:32:47 +0700</pubDate>
-    <lastBuildDate>Wed, 08 Mar 2023 11:32:47 +0700</lastBuildDate>
+    <pubDate>Wed, 08 Mar 2023 17:25:31 +0700</pubDate>
+    <lastBuildDate>Wed, 08 Mar 2023 17:25:31 +0700</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
@@ -57,6 +57,9 @@
 
 &lt;p&gt;We are all born with the right to be happy, love, and enjoy our life and our work. The organization should help people get in the flow. Just let go of the people you don’t trust and make work better for the ones you do.&lt;/p&gt;
 
+&lt;h1 id=&quot;hiring&quot;&gt;Hiring&lt;/h1&gt;
+&lt;p&gt;When I hire people I ask them what they are good at, what they like to do, and what they want to do. Since the work is chopped down into small parts everybody since they always work on something they&lt;/p&gt;
+
 &lt;h2 id=&quot;close-tickets&quot;&gt;Close tickets&lt;/h2&gt;
 &lt;p&gt;There are many metrics of team productivity. But the main metric is closed tickets. The proof of work is actual work. But here is the tricky part, what makes a good ticket?&lt;/p&gt;
 
@@ -64,7 +67,7 @@
 &lt;p&gt;Break down the requirements into tasks that are:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Independent&lt;/strong&gt; — one independent non-blocking feature per ticket&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Negotiable&lt;/strong&gt; — something’s odd? Let’s discuss&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Negotiable&lt;/strong&gt; — not a fixed contract for features&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Valuable&lt;/strong&gt; — have meaning&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Estimable&lt;/strong&gt; — easy to estimate&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Small&lt;/strong&gt;  — not bigger than a day&lt;/li&gt;
@@ -94,7 +97,7 @@
 This helps to break down complex tasks and measure team velocity. And it looks crazy at first. But that is only until you start completing the Epics. In the end, everything is a subtask of a bigger goal.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;always-move-forward&quot;&gt;Always move forward&lt;/h1&gt;
+&lt;h2 id=&quot;always-move-forward&quot;&gt;Always move forward&lt;/h2&gt;
 &lt;p&gt;Accept that the work is endless. The project can’t be “completed”. It’s always in flux. So if the issue is too big — divide it into two: 20% work that completes 80% of the scope and the rest. Complete the former, split the latter, and so on. This way the work is always 80% done and moves forward quickly with tangible increments.&lt;/p&gt;
 
 &lt;h2 id=&quot;priorities&quot;&gt;Priorities&lt;/h2&gt;
