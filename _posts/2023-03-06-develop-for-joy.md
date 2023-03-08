@@ -83,6 +83,9 @@ Once you decompose you can decide what to do with the original task.
 * Convert it to an Epic with a checklist of subtasks. Subtasks should be closed for this Epic to be considered complete.
 This helps to break down complex tasks and measure team velocity. And it looks crazy at first. But that is only until you start completing the Epics. In the end, everything is a subtask of a bigger goal.
 
+# Always move forward
+Accept that the work is endless. The project can't be "completed". It's always in flux. So if the issue is too big — divide it into two: 20% work that completes 80% of the scope and the rest. Complete the former, split the latter, and so on. This way the work is always 80% done and moves forward quickly with tangible increments.
+
 ## Priorities
 Try something simple:
 
@@ -118,7 +121,7 @@ If you listen to your developers, especially the newcomers, they are going to te
 
 # 3. Project
 
-The project should be a friend, not a foe. It should tender to your code but protect itself from failing tests.
+The project should be a friend, not a foe. It should tender to your code while protecting itself from defects with failing tests.
 
 ## Make it visible
 First, make sure you get all notifications and see everything that is going on before turning them off and filtering them in any way.
@@ -148,7 +151,7 @@ Metrics should be a fact of life. For my [EduTech startup](https://demo.learn21.
 Do not send mixed signals. Every developer waits for green. If you see some build step is always failing, either change it to pending or remove it. There should be positive reinforcement. Plus it's annoying when you have to check the build status manually every time.
 
 ## Simple branching
-Before there was this craze with `flow`, `git-flow`, `github-flow`. People were foaming at their mouths on how to arrange branches. I like [Trunk-based development](https://trunkbaseddevelopment.com/) with some simple branch naming rules like `0000-task-title`. The `master` branch is always ready to release and continuously deployed to a staging environment after every green build. Red build or a failing migration in `master` is an incident that should be fixed asap.
+Before there was this craze with `flow`, `git-flow`, `github-flow`. People were foaming at their mouths on how to arrange branches. I like [Trunk-based development](https://trunkbaseddevelopment.com/) with some simple branch naming rules like `0000-task-title`. The `master` branch is always ready to release and continuously deployed to a staging environment after every green build. A red build or a failing migration in `master` is an incident that should be fixed asap.
 
 The rest is optional. I let developers merge their pull requests once everything is green and they feel it's ready.
 
@@ -175,6 +178,4 @@ PS. We can reopen them later if needed.
 
 ...
 
-Please share what worked for you. And before we part ways, please remember — we were born to have fun.
-
-Please do have fun and organize for joy.
+Share what worked for you. And before we part ways, please remember — we were born to have fun. Develop for joy.
