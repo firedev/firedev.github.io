@@ -6,8 +6,8 @@
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 Mar 2023 15:27:41 +0700</pubDate>
-    <lastBuildDate>Mon, 06 Mar 2023 15:27:41 +0700</lastBuildDate>
+    <pubDate>Wed, 08 Mar 2023 10:42:20 +0700</pubDate>
+    <lastBuildDate>Wed, 08 Mar 2023 10:42:20 +0700</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
@@ -131,7 +131,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 
 &lt;h1 id=&quot;3-project&quot;&gt;3. Project&lt;/h1&gt;
 
-&lt;p&gt;The project should be a friend, not a foe. It should tender to your code but protect itself from failing tests.&lt;/p&gt;
+&lt;p&gt;The project should be a friend, not a foe. It should tender to your code while protecting itself from defects with failing tests.&lt;/p&gt;
 
 &lt;h2 id=&quot;make-it-visible&quot;&gt;Make it visible&lt;/h2&gt;
 &lt;p&gt;First, make sure you get all notifications and see everything that is going on before turning them off and filtering them in any way.&lt;/p&gt;
@@ -161,7 +161,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;p&gt;Do not send mixed signals. Every developer waits for green. If you see some build step is always failing, either change it to pending or remove it. There should be positive reinforcement. Plus it’s annoying when you have to check the build status manually every time.&lt;/p&gt;
 
 &lt;h2 id=&quot;simple-branching&quot;&gt;Simple branching&lt;/h2&gt;
-&lt;p&gt;Before there was this craze with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flow&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git-flow&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github-flow&lt;/code&gt;. People were foaming at their mouths on how to arrange branches. I like &lt;a href=&quot;https://trunkbaseddevelopment.com/&quot;&gt;Trunk-based development&lt;/a&gt; with some simple branch naming rules like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0000-task-title&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; branch is always ready to release and continuously deployed to a staging environment after every green build. Red build or a failing migration in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; is an incident that should be fixed asap.&lt;/p&gt;
+&lt;p&gt;Before there was this craze with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flow&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git-flow&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github-flow&lt;/code&gt;. People were foaming at their mouths on how to arrange branches. I like &lt;a href=&quot;https://trunkbaseddevelopment.com/&quot;&gt;Trunk-based development&lt;/a&gt; with some simple branch naming rules like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0000-task-title&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; branch is always ready to release and continuously deployed to a staging environment after every green build. A red build or a failing migration in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; is an incident that should be fixed asap.&lt;/p&gt;
 
 &lt;p&gt;The rest is optional. I let developers merge their pull requests once everything is green and they feel it’s ready.&lt;/p&gt;
 
@@ -190,7 +190,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 
 &lt;p&gt;Please share what worked for you. And before we part ways, please remember — we were born to have fun.&lt;/p&gt;
 
-&lt;p&gt;Please do have fun and organize for joy.&lt;/p&gt;
+&lt;p&gt;Please develop for joy.&lt;/p&gt;
 
         </description>
         <pubDate>Mon, 06 Mar 2023 00:00:00 +0700</pubDate>
