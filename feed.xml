@@ -6,8 +6,8 @@
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 08 Mar 2023 17:25:31 +0700</pubDate>
-    <lastBuildDate>Wed, 08 Mar 2023 17:25:31 +0700</lastBuildDate>
+    <pubDate>Thu, 03 Aug 2023 12:27:07 +0300</pubDate>
+    <lastBuildDate>Thu, 03 Aug 2023 12:27:07 +0300</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
@@ -197,7 +197,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;p&gt;Share what worked for you. And before we part ways, please remember — we were born to have fun. Develop for joy.&lt;/p&gt;
 
         </description>
-        <pubDate>Mon, 06 Mar 2023 00:00:00 +0700</pubDate>
+        <pubDate>Mon, 06 Mar 2023 00:00:00 +0300</pubDate>
         <link>https://firedev.com/posts/develop-for-joy/</link>
         <guid isPermaLink="true">https://firedev.com/posts/develop-for-joy/</guid>
         
@@ -734,7 +734,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
         </description>
-        <pubDate>Sun, 07 Nov 2021 00:00:00 +0700</pubDate>
+        <pubDate>Sun, 07 Nov 2021 00:00:00 +0300</pubDate>
         <link>https://firedev.com/posts/boring-rails/</link>
         <guid isPermaLink="true">https://firedev.com/posts/boring-rails/</guid>
         
@@ -1033,7 +1033,7 @@ found in CSS Frameworks everywhere. Start small, use an
 &lt;a href=&quot;http://firedev.com/posts/immutable-css/&quot;&gt;Immutable CSS&lt;/a&gt; library and have fun.&lt;/p&gt;
 
         </description>
-        <pubDate>Tue, 16 Feb 2016 00:00:00 +0700</pubDate>
+        <pubDate>Tue, 16 Feb 2016 00:00:00 +0300</pubDate>
         <link>https://firedev.com/posts/sane-breakpoints/</link>
         <guid isPermaLink="true">https://firedev.com/posts/sane-breakpoints/</guid>
         
@@ -1316,7 +1316,7 @@ overall look and feel. And the best part is – now you can compose:&lt;/p&gt;
 &lt;a href=&quot;http://fontawesome.io/&quot;&gt;&lt;i class=&quot;fa fa-link pr1&quot;&gt;&lt;/i&gt;Font Awesome&lt;/a&gt;&lt;/p&gt;
 
         </description>
-        <pubDate>Sun, 24 Jan 2016 00:00:00 +0700</pubDate>
+        <pubDate>Sun, 24 Jan 2016 00:00:00 +0300</pubDate>
         <link>https://firedev.com/posts/atomic-icons/</link>
         <guid isPermaLink="true">https://firedev.com/posts/atomic-icons/</guid>
         
@@ -1549,7 +1549,7 @@ grunt
 &lt;/ul&gt;
 
         </description>
-        <pubDate>Tue, 22 Dec 2015 00:00:00 +0700</pubDate>
+        <pubDate>Tue, 22 Dec 2015 00:00:00 +0300</pubDate>
         <link>https://firedev.com/posts/immutable-css/</link>
         <guid isPermaLink="true">https://firedev.com/posts/immutable-css/</guid>
         
@@ -1715,7 +1715,7 @@ USB-C across the board though.&lt;/p&gt;
 The other accessories is something for you to decide if you need them or not.&lt;/p&gt;
 
         </description>
-        <pubDate>Wed, 04 Nov 2015 00:00:00 +0700</pubDate>
+        <pubDate>Wed, 04 Nov 2015 00:00:00 +0300</pubDate>
         <link>https://firedev.com/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</link>
         <guid isPermaLink="true">https://firedev.com/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</guid>
         
@@ -2001,7 +2001,7 @@ what else.&lt;/p&gt;
 found anything useful and share some of your tricks.&lt;/p&gt;
 
         </description>
-        <pubDate>Sun, 01 Nov 2015 00:00:00 +0700</pubDate>
+        <pubDate>Sun, 01 Nov 2015 00:00:00 +0300</pubDate>
         <link>https://firedev.com/posts/mac-as-ide/</link>
         <guid isPermaLink="true">https://firedev.com/posts/mac-as-ide/</guid>
         
@@ -2021,31 +2021,27 @@ found anything useful and share some of your tricks.&lt;/p&gt;
         <description>
           &lt;p&gt;&lt;img src="https://firedev.com/images/posts/electrical_plumbing_service.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;An excellent talk “Blending Functional and OO Programming in Ruby” given by
-Piotr Solnica on Full Stack Fest 2015 made me think about improving current
+Piotr Solnica at Full Stack Fest 2015 made me think about improving current
 practices. I have tried different ways of organizing my service objects and
 here is what I came up with.&lt;/p&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
-&lt;p&gt;The idea is to switch from Object Oriented mentality and stateful objects to
-more functional way of doing things when only data is passed through your
+&lt;p&gt;The idea is to switch from Object Oriented mentality and stateful objects to a more functional way of doing things when only data is passed through your
 system.&lt;/p&gt;
 
 &lt;p&gt;I am working on this motivational portal. Let’s use a concept from the project
 for the sake of the example. The models involved in this example are &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt;,
   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Motivation&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Shop&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Role&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Motivation&lt;/code&gt; is some data that defines &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Shop&lt;/code&gt; to which &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt; has access to in
-a given month and his &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Role&lt;/code&gt; in regards to that. Each month a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt; can be
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Motivation&lt;/code&gt; is some data that connects &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Shop&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt; is working in a given month and his &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Role&lt;/code&gt;. Each month a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt; can be
 assigned to different &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Shops&lt;/code&gt; and different &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Roles&lt;/code&gt;. Say, an employee this
-month and shop manager the next month. I call such managers “chief” since
-manager was already taken.&lt;/p&gt;
+month and a shop manager the next month. I call such managers “chief” since the manager was already taken.&lt;/p&gt;
 
-&lt;h2 id=&quot;stuff-everything-into-model&quot;&gt;Stuff everything into model&lt;/h2&gt;
-
-&lt;p&gt;For current month we need to get the list of shops user can manage. And to do
-that we have to use multiple tables as there a certain roles that carry “chief”
-ability. The most obvious solution is to stuff everything into User model.
+&lt;h2 id=&quot;stuff-everything-into-the-model&quot;&gt;Stuff everything into the model&lt;/h2&gt;
+&lt;p&gt;For the current month we need to get the list of shops the user can manage. And to do
+that we have to use multiple tables as certain roles carry &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chief&lt;/code&gt;
+ability. The most obvious solution is to stuff everything into the User model.
 So without further ado:&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
@@ -2062,7 +2058,7 @@ So without further ado:&lt;/p&gt;
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;shops&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chief_shops_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Hmm, that starts quite harmless. But what if we measure complexity with flog?&lt;/p&gt;
+&lt;p&gt;Hmm, that starts quite harmless. But what if we measure complexity with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flog&lt;/code&gt;?&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    10.0: flog total
     10.0: flog/method average
@@ -2072,8 +2068,8 @@ So without further ado:&lt;/p&gt;
 
 &lt;h3 id=&quot;flog&quot;&gt;Flog&lt;/h3&gt;
 
-&lt;p&gt;I use &lt;a href=&quot;http://ruby.sadi.st/Flog.html&quot;&gt;flog&lt;/a&gt; to check complexity of my classes
-and strive to keep the average complexity per method under 5:&lt;/p&gt;
+&lt;p&gt;I use &lt;a href=&quot;http://ruby.sadi.st/Flog.html&quot;&gt;flog&lt;/a&gt; to check the complexity of my classes
+and strive to keep the average complexity per method under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ flog app
   1278.9: flog total
@@ -2087,8 +2083,7 @@ and strive to keep the average complexity per method under 5:&lt;/p&gt;
 
 &lt;h2 id=&quot;service-class&quot;&gt;Service class&lt;/h2&gt;
 
-&lt;p&gt;To me 10 flog per method is simply too much. We can try to break it down in two
-methods like so:&lt;/p&gt;
+&lt;p&gt;To me, 10 flog per method is simply too much. We can try to break it down into two methods like so:&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chief_shops_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -2105,16 +2100,16 @@ methods like so:&lt;/p&gt;
 
 &lt;p&gt;But this is ridiculous. It adds a private method on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt; that is calling god
 knows what. Besides I don’t like the ‘Thin Controllers, Fat Models’ concept. As
-a one-man operation there is simply not enough man-power to deal with ten feet
+a one-man operation, there is simply not enough man-power to deal with ten feet
 long models. My motto is:&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Thin Everythin’!&lt;/p&gt;
+  &lt;p&gt;Thin Everything!&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;I build service objects in a simple way. One public method &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;call&lt;/code&gt; with
-occasional parameters passed from controller (i.e. variables). Let’s extract
-the query to a what a typical service object would look like:&lt;/p&gt;
+&lt;p&gt;I build service objects in a certain way. One public method &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;call&lt;/code&gt; with
+occasional parameters passed from the controller (i.e. variables). Let’s extract
+the query to what a typical service object would look like:&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ChiefShopsForMonth&lt;/span&gt;
@@ -2162,7 +2157,7 @@ it more functional-ish.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-talk&quot;&gt;The talk&lt;/h3&gt;
 
-&lt;p&gt;This is the talk &lt;a href=&quot;http://solnic.eu&quot;&gt;Piotr Solnica&lt;/a&gt; gave at Full-stack fest in 2015
+&lt;p&gt;This is the talk &lt;a href=&quot;http://solnic.eu&quot;&gt;Piotr Solnica&lt;/a&gt; gave at Full-stack Fest in 2015
 that got me thinking about a better way of doing things.&lt;/p&gt;
 
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/rMxurF4oqsc&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
@@ -2173,7 +2168,7 @@ instead. That sounded interesting. Rolled up sleeves and here we go.&lt;/p&gt;
 
 &lt;h2 id=&quot;refactoring-service-object&quot;&gt;Refactoring Service object&lt;/h2&gt;
 
-&lt;p&gt;Let’s try with full head-on solution first. I would like to throw everything in
+&lt;p&gt;Let’s try a full head-on solution first. I would like to throw everything in
 the mix:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -2195,7 +2190,7 @@ the mix:&lt;/p&gt;
 allows chaining and storing the intermediate results and other interesting
 things. The best examples in the wild I think are Rails scopes and JavaScript.
 ActiveRecord Scopes can be chained up to the last moment where you can load the
-relation into array by calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;to_a&lt;/code&gt; on it. JavaScript is basically built on
+relation into an array by calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;to_a&lt;/code&gt; on it. JavaScript is built on
 returning &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;this&lt;/code&gt;.  If you have ever used a JavaScript library like jQuery you
 know the drill.&lt;/p&gt;
 
@@ -2239,11 +2234,11 @@ know the drill.&lt;/p&gt;
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Motivation&lt;/code&gt; class directly I can make it more intention-revealing, even if it
 adds another dependency.&lt;/p&gt;
 
-&lt;p&gt;New structure gains certain tidiness in the upper part. Now &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;initialize&lt;/code&gt; only
-does dependency-injection for the whole object. Then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;call&lt;/code&gt; sets up the
+&lt;p&gt;The new structure gains certain tidiness in the upper part. Now &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;initialize&lt;/code&gt; only
+does dependency injection for the whole object. Then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;call&lt;/code&gt; sets up the
 parameters and returns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self&lt;/code&gt; for chaining. You don’t have to return &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self&lt;/code&gt;,
 but that gives you flexibility so I don’t see a reason not to add it. And
-finally you can get the list of shops for the given month by calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.shops&lt;/code&gt;.&lt;/p&gt;
+finally, you can get the list of shops for the given month by calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.shops&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chief_shops_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -2254,7 +2249,7 @@ finally you can get the list of shops for the given month by calling &lt;code cl
 
 &lt;p&gt;Things get hairy however after the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;private&lt;/code&gt; mark. The state moved here
 and there are four attributes instead of two. Flog is not very happy about this
-either.  Average complexity per method is somewhat lower, but the total is even
+either.  The average complexity per method is somewhat lower, but the total is even
 higher.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   26.0: flog total
@@ -2275,11 +2270,10 @@ higher.&lt;/p&gt;
 
 &lt;p&gt;well, something along these lines at least.&lt;/p&gt;
 
-&lt;p&gt;So I claim that I don’t need to inject dependenices for other ActiveRecord
-classes since they are not going to change. And if they will mist likely my
-service will be deleted. Thus I can get rid of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;initialize&lt;/code&gt;. Of course in more
-complex screnario this is not the best way to go, but this is a simple query
-object so for the sake of refactoring experiment I think this will pass.&lt;/p&gt;
+&lt;p&gt;So I claim that I don’t need to inject dependencies for other ActiveRecord
+classes since they are not going to change. And if they will, my
+service will be obsolete anyway. Thus I can get rid of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;initialize&lt;/code&gt;. Of course, in more complex scenarios this is not the best way to go, but this is a simple query
+object. So for the sake of the refactoring experiment, this will do.&lt;/p&gt;
 
 &lt;p&gt;I think the rule of thumb here is similar to what Piotr is suggesting:&lt;/p&gt;
 
@@ -2289,8 +2283,8 @@ object so for the sake of refactoring experiment I think this will pass.&lt;/p&g
 
 &lt;p&gt;Since I am not changing anything here, apart from the inner state of the object
 and I am getting rid of the state, I don’t need a separate method that returns
-the result. That allows me to shrink object’s API to single &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;call&lt;/code&gt; method.
-Which is actually an improvement. Since now I don’t need to pass &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user&lt;/code&gt; and
+the result. That allows me to shrink the object’s API to a single &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;call&lt;/code&gt; method.
+This is an improvement. Since now I don’t need to pass &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user&lt;/code&gt; and
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;month&lt;/code&gt; separately and they can go together as parameters in a single method
 call.&lt;/p&gt;
 
@@ -2314,27 +2308,19 @@ call.&lt;/p&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;As you can see now state is not stored anywhere. Okay dependencies are not
+&lt;p&gt;As you can see, now the state is not stored anywhere. Okay, dependencies are not
 injected which is a questionable practice. But again I claim in this case this
 could pass.&lt;/p&gt;
 
-&lt;p&gt;The invocation is almost the same as with the previous example. The only
+&lt;p&gt;The invocation is almost the same as in the previous example. The only
 difference is that we don’t have to query for shops as this is a Query Object
-so it only returns result straight away. And API is effectively shrunk to a
+so it only returns results straight away. And API is effectively shrunk to a
 single method.&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;chief_shops_for_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ChiefShopsForMonth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;user: &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;month: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Yes you have to call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new&lt;/code&gt;, but only to instantiate an object. Or you can still
-inject dependencies for testing. As a side effect we can pass a hash as
-parameter. Piotr suggests to use value object. I think it is overkill here. I
-could easily pass a params hash if I wanted to, but I am afraid it might hurt
-readability. And now look at this:&lt;/p&gt;
+&lt;p&gt;Yes, you have to call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new&lt;/code&gt;, but only to instantiate an object. Or you can still
+inject dependencies for testing. As a side effect, we can pass a hash as a parameter. Piotr suggests using a value object. I think it is overkill here. I
+could easily pass the params hash, but it might hurt
+readability. Now look at this:&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    10.4: flog total
      2.6: flog/method average
@@ -2345,18 +2331,18 @@ readability. And now look at this:&lt;/p&gt;
 
 &lt;p&gt;The whole class is almost as simple as the original single method in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt;. It
 encapsulates everything it needs. It doesn’t pollute models with methods that
-would never be used from other places. And has intention-revealing name and
+would never be used in other places. And has an intention-revealing name and
 simple single-method API.&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;These are just some ideas on how to approach refactoring of fat models and fat
-controllers. Please let me know if you think something could be improved.&lt;/p&gt;
+&lt;p&gt;These are just some ideas on how to approach the refactoring of fat models and fat
+controllers. Please let me know if something could be improved.&lt;/p&gt;
 
 &lt;p&gt;Thanks.&lt;/p&gt;
 
         </description>
-        <pubDate>Sat, 17 Oct 2015 00:00:00 +0700</pubDate>
+        <pubDate>Sat, 17 Oct 2015 00:00:00 +0300</pubDate>
         <link>https://firedev.com/posts/functional-service-objects-on-rails/</link>
         <guid isPermaLink="true">https://firedev.com/posts/functional-service-objects-on-rails/</guid>
         
@@ -2759,7 +2745,7 @@ bottomless_hash &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1.0&lt;span clas
 &lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Gist &lt;a href=&quot;https://gist.github.com/firedev/9de91e245f70c2e963e4&quot;&gt;bottomless_hash.rb&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
 
         </description>
-        <pubDate>Sat, 10 Oct 2015 00:00:00 +0700</pubDate>
+        <pubDate>Sat, 10 Oct 2015 00:00:00 +0300</pubDate>
         <link>https://firedev.com/posts/making-bottomless-hash-ruby-gem/</link>
         <guid isPermaLink="true">https://firedev.com/posts/making-bottomless-hash-ruby-gem/</guid>
         
@@ -3016,7 +3002,7 @@ nested structures from the outside world.&lt;/p&gt;
 &lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Gist &lt;a href=&quot;https://gist.github.com/firedev/9de91e245f70c2e963e4&quot;&gt;bottomless_hash.rb&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
 
         </description>
-        <pubDate>Wed, 07 Oct 2015 00:00:00 +0700</pubDate>
+        <pubDate>Wed, 07 Oct 2015 00:00:00 +0300</pubDate>
         <link>https://firedev.com/posts/bottomless-ruby-hash/</link>
         <guid isPermaLink="true">https://firedev.com/posts/bottomless-ruby-hash/</guid>
         
