@@ -4,16 +4,16 @@
     <title>firedev.com</title>
     <description>Building the internet one site at a time
 </description>
-    <link>https://firedev.com/</link>
-    <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 03 Aug 2023 12:27:07 +0300</pubDate>
-    <lastBuildDate>Thu, 03 Aug 2023 12:27:07 +0300</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 01 Sep 2023 14:02:40 +0300</pubDate>
+    <lastBuildDate>Fri, 01 Sep 2023 14:02:40 +0300</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
         <title>Develop for Joy</title>
         <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/paul-pastourmatzis-8kDOOrs608I-unsplash.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/paul-pastourmatzis-8kDOOrs608I-unsplash.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;When you are wearing a team lead hat developer happiness becomes the most important aspect. I hire people smarter than me and care about their well-being. But contract work is a constant pressure. So one of the goals is to prevent the happiness baseline from dipping.&lt;/p&gt;
 
 &lt;p&gt;Here are some ideas that helped me in the past broken into three main topics: People, Organization and the Project. See if they are worth your time.&lt;/p&gt;
@@ -198,8 +198,8 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 
         </description>
         <pubDate>Mon, 06 Mar 2023 00:00:00 +0300</pubDate>
-        <link>https://firedev.com/posts/develop-for-joy/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/develop-for-joy/</guid>
+        <link>http://localhost:4000/posts/develop-for-joy/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/develop-for-joy/</guid>
         
         <category>development</category>
         
@@ -215,7 +215,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
       <item>
         <title>Boring Rails</title>
         <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -491,7 +491,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AmplitudeJob&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationJob&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Import&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'amplitude_klass'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Import&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;amplitude_klass&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;event_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;event_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;EventsMapping&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;amplitude_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;event_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -735,8 +735,8 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 
         </description>
         <pubDate>Sun, 07 Nov 2021 00:00:00 +0300</pubDate>
-        <link>https://firedev.com/posts/boring-rails/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/boring-rails/</guid>
+        <link>http://localhost:4000/posts/boring-rails/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/boring-rails/</guid>
         
         <category>ruby</category>
         
@@ -752,7 +752,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
       <item>
         <title>Sane Breakpoints</title>
         <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/break-point.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/break-point.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;I see different approaches to breakpoints and responsive design.
 Most of the time they are over-complicated and only making things worse.
 So here’s mine suggestion for device breakpoints that are in touch
@@ -1034,8 +1034,8 @@ found in CSS Frameworks everywhere. Start small, use an
 
         </description>
         <pubDate>Tue, 16 Feb 2016 00:00:00 +0300</pubDate>
-        <link>https://firedev.com/posts/sane-breakpoints/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/sane-breakpoints/</guid>
+        <link>http://localhost:4000/posts/sane-breakpoints/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/sane-breakpoints/</guid>
         
         <category>CSS</category>
         
@@ -1051,7 +1051,7 @@ found in CSS Frameworks everywhere. Start small, use an
       <item>
         <title>Atomic Icons</title>
         <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/atomic-icons.png"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/atomic-icons.png"/&gt;&lt;/p&gt;
           &lt;p&gt;Once in a while comes a moment when you decide to change an icon set you have
 been using. Just a bit of upfront planning goes a long way. Consider a system
 that turns icons into independent components.&lt;/p&gt;
@@ -1156,13 +1156,13 @@ Squirrel or IcoMoon your compile your own icon font implementation.&lt;/p&gt;
 
 &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;@mixin&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'CustomFont'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&apos;CustomFont&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;nc&quot;&gt;.icon-ok&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;err&quot;&gt;@include&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;icon(ok);&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'\#ok;'&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&apos;\#ok;&apos;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1184,12 +1184,12 @@ multiplying icon classes we are introducing the Icon component.&lt;/p&gt;
 &lt;p&gt;It does one thing - displays an icon. Font Awesome Rails gem has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fa_icon&lt;/code&gt; helper that does that.
 But we wrap it in our own view helper, icon:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;= icon 'remove'
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;= icon &apos;remove&apos;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;In React that would be something like:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;Icon icon='remove' /&amp;gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;Icon icon=&apos;remove&apos; /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Output:&lt;/p&gt;
@@ -1204,7 +1204,7 @@ It can be anything as long as there is one way to call it.&lt;/p&gt;
 &lt;p&gt;This simple thing frees our hands immediately. You don’t style buttons anymore.&lt;/p&gt;
 
 &lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;button&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;icon&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'remove'&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;icon&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;remove&apos;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
   Delete
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1213,7 +1213,7 @@ It can be anything as long as there is one way to call it.&lt;/p&gt;
 &lt;p&gt;Let’s see how can we use is in React component instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;className: &quot;remove&quot;&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;button&amp;gt;
-  &amp;lt;Icon icon='remove' /&amp;gt;
+  &amp;lt;Icon icon=&apos;remove&apos; /&amp;gt;
   Delete
 &amp;lt;/button&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1263,9 +1263,9 @@ a simple solution that works. You get a set of three helpers.&lt;/p&gt;
 &lt;p&gt;While in Slim you do it like this:&lt;/p&gt;
 
 &lt;div class=&quot;language-slim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;icon_before&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'remove'&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;icon_before&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;remove&apos;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; Remove from
-  &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;icon_after&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cloud'&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;icon_after&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cloud&apos;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;I don’t see a point for additional verbosity in React component so it can be something like this:&lt;/p&gt;
@@ -1317,8 +1317,8 @@ overall look and feel. And the best part is – now you can compose:&lt;/p&gt;
 
         </description>
         <pubDate>Sun, 24 Jan 2016 00:00:00 +0300</pubDate>
-        <link>https://firedev.com/posts/atomic-icons/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/atomic-icons/</guid>
+        <link>http://localhost:4000/posts/atomic-icons/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/atomic-icons/</guid>
         
         <category>CSS</category>
         
@@ -1336,7 +1336,7 @@ overall look and feel. And the best part is – now you can compose:&lt;/p&gt;
       <item>
         <title>Immutable CSS</title>
         <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/monolith.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/monolith.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;This is extracted from the Github issue created to discuss the approach with my
 team. Please bear with me if I refer to something that wasn’t mentioned in the text.&lt;/p&gt;
 
@@ -1396,11 +1396,11 @@ the BASE.&lt;/p&gt;
 
 &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.type&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;70%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;py&quot;&gt;composes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m-input-container&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'./../../../../form/input-container.css'&lt;/span&gt;
+  &lt;span class=&quot;py&quot;&gt;composes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m-input-container&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&apos;./../../../../form/input-container.css&apos;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;nc&quot;&gt;.type__select&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;py&quot;&gt;composes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m-input&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;'./../../../../form/input.css'&lt;/span&gt;
+  &lt;span class=&quot;py&quot;&gt;composes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m-input&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&apos;./../../../../form/input.css&apos;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1550,8 +1550,8 @@ grunt
 
         </description>
         <pubDate>Tue, 22 Dec 2015 00:00:00 +0300</pubDate>
-        <link>https://firedev.com/posts/immutable-css/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/immutable-css/</guid>
+        <link>http://localhost:4000/posts/immutable-css/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/immutable-css/</guid>
         
         <category>CSS</category>
         
@@ -1571,7 +1571,7 @@ grunt
       <item>
         <title>Apple Magic Keyboard, Magic Mouse 2 and Magic Trackpad 2</title>
         <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/magic-keyboard-mouse-trackpad.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/magic-keyboard-mouse-trackpad.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;Keyboard is great. Mouse is good. Trackpad is okay.&lt;/p&gt;
 
 &lt;p&gt;Now for the longer version. I am living in Thailand and it was really easy to
@@ -1716,8 +1716,8 @@ The other accessories is something for you to decide if you need them or not.&lt
 
         </description>
         <pubDate>Wed, 04 Nov 2015 00:00:00 +0300</pubDate>
-        <link>https://firedev.com/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</guid>
+        <link>http://localhost:4000/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</guid>
         
         <category>apple</category>
         
@@ -1731,9 +1731,9 @@ The other accessories is something for you to decide if you need them or not.&lt
       </item>
     
       <item>
-        <title>Mac as IDE: You're using it wrong</title>
+        <title>Mac as IDE: You&apos;re using it wrong</title>
         <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/ascii-keyboard-controller.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/ascii-keyboard-controller.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;Are you using this editor and that version control app? Think bigger. Instead
 of jumping between applications or forcing yourself to an IDE use your Mac as a
 system where apps work together for the greater good.&lt;/p&gt;
@@ -1760,7 +1760,7 @@ things could be better. Let’s fix them.&lt;/p&gt;
 pane of System Preferences.  Now we can switch between buttons and click
 checkboxes in pop-up windows from keyboard. Not everybody knows that you can use
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cmd-First letter of the button in popup&lt;/code&gt; as well. So you can press &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cmd-D&lt;/code&gt; to
-choose &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Don't Save&lt;/code&gt; in Save Dialog.&lt;/p&gt;
+choose &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Don&apos;t Save&lt;/code&gt; in Save Dialog.&lt;/p&gt;
 
 &lt;p&gt;Enable function keys to be used as such. You will have to press &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fn&lt;/code&gt; along
 with brightness and volume control but that will allow you easier reach for the
@@ -2002,8 +2002,8 @@ found anything useful and share some of your tricks.&lt;/p&gt;
 
         </description>
         <pubDate>Sun, 01 Nov 2015 00:00:00 +0300</pubDate>
-        <link>https://firedev.com/posts/mac-as-ide/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/mac-as-ide/</guid>
+        <link>http://localhost:4000/posts/mac-as-ide/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/mac-as-ide/</guid>
         
         <category>development</category>
         
@@ -2019,7 +2019,7 @@ found anything useful and share some of your tricks.&lt;/p&gt;
       <item>
         <title>Functional Service Objects on Rails</title>
         <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/electrical_plumbing_service.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/electrical_plumbing_service.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;An excellent talk “Blending Functional and OO Programming in Ruby” given by
 Piotr Solnica at Full Stack Fest 2015 made me think about improving current
 practices. I have tried different ways of organizing my service objects and
@@ -2343,8 +2343,8 @@ controllers. Please let me know if something could be improved.&lt;/p&gt;
 
         </description>
         <pubDate>Sat, 17 Oct 2015 00:00:00 +0300</pubDate>
-        <link>https://firedev.com/posts/functional-service-objects-on-rails/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/functional-service-objects-on-rails/</guid>
+        <link>http://localhost:4000/posts/functional-service-objects-on-rails/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/functional-service-objects-on-rails/</guid>
         
         <category>ruby</category>
         
@@ -2362,7 +2362,7 @@ controllers. Please let me know if something could be improved.&lt;/p&gt;
       <item>
         <title>Making Bottomless Hash Ruby Gem</title>
         <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/bottomless_pit_gravity_falls.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/bottomless_pit_gravity_falls.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;After creating &lt;a href=&quot;http://firedev.com/2015/bottomless-ruby-hash&quot;&gt;Bottomless Hash&lt;/a&gt;
 last time and writing tests the next logical step is to make a Gem out of it.&lt;/p&gt;
 
@@ -2399,7 +2399,7 @@ Options:
 &lt;p&gt;Create a Ruby Gem skeleton with RSpec as a test runner.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ bundle gem bottomless_hash -t=rspec
-Creating gem 'bottomless_hash'...
+Creating gem &apos;bottomless_hash&apos;...
 Do you want to include a code of conduct in gems you generate?
 Codes of conduct can increase contributions to your project by contributors who prefer collaborative, safe spaces. You can read more about the code of conduct at contributor-covenant.org. Having a code of conduct means agreeing to the responsibility of enforcing it, so be sure that you are prepared to do that. For suggestions about how to enforce codes of conduct, see bit.ly/coc-enforcement. y/(n): y
 Code of conduct enabled in config
@@ -2450,9 +2450,9 @@ To git@github.com:firedev/bottomless_hash.git
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bottomless_hash.gemspec&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# coding: utf-8&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;lib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;expand_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'../lib'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;__FILE__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;lib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;expand_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;../lib&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;__FILE__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;vg&quot;&gt;$LOAD_PATH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;unshift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$LOAD_PATH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;include?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bottomless_hash/version'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;bottomless_hash/version&apos;&lt;/span&gt;
 
 &lt;span class=&quot;no&quot;&gt;Gem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Specification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;          &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bottomless_hash&quot;&lt;/span&gt;
@@ -2467,10 +2467,10 @@ To git@github.com:firedev/bottomless_hash.git
   &lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;homepage&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://github.com/firedev/bottomless_hash&quot;&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;license&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;MIT&quot;&lt;/span&gt;
 
-  &lt;span class=&quot;c1&quot;&gt;# Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Prevent pushing this gem to RubyGems.org by setting &apos;allowed_push_host&apos;, or&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# delete this section to allow pushing this gem to any host.&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# if spec.respond_to?(:metadata)&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;#   spec.metadata['allowed_push_host'] = &quot;TODO: Set to 'http://mygemserver.com'&quot;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#   spec.metadata[&apos;allowed_push_host&apos;] = &quot;TODO: Set to &apos;http://mygemserver.com&apos;&quot;&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# else&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;#   raise &quot;RubyGems 2.0 or newer is required to protect against public gem pushes.&quot;&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# end&lt;/span&gt;
@@ -2533,29 +2533,29 @@ into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lib/bott
 &lt;p&gt;And don’t forget specs.&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/bottomless_hash&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'spec_helper'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;spec_helper&apos;&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;BottomlessHash&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'has a version number'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;has a version number&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BottomlessHash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;not_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'does not raise on missing key'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;does not raise on missing key&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;raise_error&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'returns an empty value on missing key'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;returns an empty value on missing key&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_empty&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'stores and returns keys'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;stores and returns keys&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#from_hash'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;#from_hash&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;existing: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;value: :hello&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
@@ -2564,20 +2564,20 @@ into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lib/bott
       &lt;span class=&quot;n&quot;&gt;described_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;from_hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'returns old hash values'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;returns old hash values&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hello&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'provides a bottomless version'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;provides a bottomless version&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_empty&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'stores and returns new values'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;stores and returns new values&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'converts nested hashes as well'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;converts nested hashes as well&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;raise_error&lt;/span&gt;
@@ -2628,7 +2628,7 @@ not be able to infer it’s name from the spec file.&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# spec/hash_spec.rb&lt;/span&gt;
 
-&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'../lib/bottomless_hash'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require_relative&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;../lib/bottomless_hash&apos;&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Hash&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
@@ -2638,20 +2638,20 @@ not be able to infer it’s name from the spec file.&lt;/p&gt;
       &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;bottomless&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'is a BottomlessHash now'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;is a BottomlessHash now&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_a&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;BottomlessHash&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'returns values for existing keys'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;returns values for existing keys&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hello&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bottomlessly stores values'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;bottomlessly stores values&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:omg&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:omg&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'does not raise error on missing keys'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;does not raise error on missing keys&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;raise_error&lt;/span&gt;
@@ -2684,7 +2684,7 @@ Finished &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;0.00285 seconds &lt;spa
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem build bottomless_hash.gemspec                                                                                                    1 ↵
 WARNING:  open-ended dependency on rspec &lt;span class=&quot;o&quot;&gt;(&amp;gt;=&lt;/span&gt; 0, development&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; is not recommended
   &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;rspec is semantically versioned, use:
-    add_development_dependency &lt;span class=&quot;s1&quot;&gt;'rspec'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 0'&lt;/span&gt;
+    add_development_dependency &lt;span class=&quot;s1&quot;&gt;&apos;rspec&apos;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&apos;~&amp;gt; 0&apos;&lt;/span&gt;
 WARNING:  See http://guides.rubygems.org/specification-reference/ &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;help
   &lt;/span&gt;Successfully built RubyGem
   Name: bottomless_hash
@@ -2719,7 +2719,7 @@ index b0a7bb7..817054f 100644
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem push bottomless_hash-0.1.0.gem
 Enter your RubyGems.org credentials.
-Don&lt;span class=&quot;s1&quot;&gt;'t have an account yet? Create one at https://rubygems.org/sign_up
+Don&lt;span class=&quot;s1&quot;&gt;&apos;t have an account yet? Create one at https://rubygems.org/sign_up
    Email:   nick@firedev.com
 Password:
 
@@ -2746,8 +2746,8 @@ bottomless_hash &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1.0&lt;span clas
 
         </description>
         <pubDate>Sat, 10 Oct 2015 00:00:00 +0300</pubDate>
-        <link>https://firedev.com/posts/making-bottomless-hash-ruby-gem/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/making-bottomless-hash-ruby-gem/</guid>
+        <link>http://localhost:4000/posts/making-bottomless-hash-ruby-gem/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/making-bottomless-hash-ruby-gem/</guid>
         
         <category>ruby</category>
         
@@ -2761,7 +2761,7 @@ bottomless_hash &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1.0&lt;span clas
       <item>
         <title>Bottomless Ruby Hash</title>
         <description>
-          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/bottomless_pit.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/bottomless_pit.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;The other day somebody asked if there is a way to blindly assign nested values
 to Ruby Hash without creating each key. Turns out there is, and it has an
 interesting side-effect. Welcome Bottomless Hash.&lt;/p&gt;
@@ -2770,7 +2770,7 @@ interesting side-effect. Welcome Bottomless Hash.&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:world&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:russia&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:moscow&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;NoMethodError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;undefined&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`[]=' for nil:NilClass
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;NoMethodError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;undefined&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`[]=&apos; for nil:NilClass
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Okay, it doesn’t work like this. Fortunately Hashes in Ruby can be initialized
@@ -2829,7 +2829,7 @@ Lets just inject new empty hash as a value for the key.&lt;/p&gt;
 &lt;p&gt;Amazing. Okay but what if we need to add another level?&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:asia&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:thailand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:bangkok&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:chao_praya&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;NoMethodError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;undefined&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`[]=' for nil:NilClass
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;NoMethodError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;undefined&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`[]=&apos; for nil:NilClass
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Oh no, not again. What can we do? Let’s add another layer! So the nested Hash
@@ -2846,7 +2846,7 @@ could in turn create more hashes:&lt;/p&gt;
 &lt;p&gt;It works! But what if the rabbit hole is &lt;em&gt;even&lt;/em&gt; deeper?&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:asia&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:thailand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:bangkok&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:river&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:chao_praya&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;NoMethodError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;undefined&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`[]=' for nil:NilClass
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;NoMethodError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;undefined&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`[]=&apos; for nil:NilClass
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Okay, have to solve this once and for all. Let’s throw some functional
@@ -2935,22 +2935,22 @@ return an empty Bottomless hash or convert a given hash into a bottomless versio
 &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;BottomlessHash&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;described_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'does not raise on missing key'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;does not raise on missing key&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;raise_error&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'returns an empty value on missing key'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;returns an empty value on missing key&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_empty&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'stores and returns keys'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;stores and returns keys&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#from_hash'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;#from_hash&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;existing: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;value: :hello&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
@@ -2959,20 +2959,20 @@ return an empty Bottomless hash or convert a given hash into a bottomless versio
       &lt;span class=&quot;n&quot;&gt;described_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;from_hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'returns old hash values'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;returns old hash values&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hello&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'provides a bottomless version'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;provides a bottomless version&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be_empty&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'stores and returns new values'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;stores and returns new values&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'converts nested hashes as well'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;converts nested hashes as well&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:existing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:missing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;raise_error&lt;/span&gt;
@@ -3003,8 +3003,8 @@ nested structures from the outside world.&lt;/p&gt;
 
         </description>
         <pubDate>Wed, 07 Oct 2015 00:00:00 +0300</pubDate>
-        <link>https://firedev.com/posts/bottomless-ruby-hash/</link>
-        <guid isPermaLink="true">https://firedev.com/posts/bottomless-ruby-hash/</guid>
+        <link>http://localhost:4000/posts/bottomless-ruby-hash/</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/bottomless-ruby-hash/</guid>
         
         <category>ruby</category>
         
