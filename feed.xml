@@ -4,16 +4,16 @@
     <title>firedev.com</title>
     <description>Building the internet one site at a time
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 01 Sep 2023 14:11:28 +0300</pubDate>
-    <lastBuildDate>Fri, 01 Sep 2023 14:11:28 +0300</lastBuildDate>
+    <link>https://firedev.com/</link>
+    <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 01 Sep 2023 14:11:49 +0300</pubDate>
+    <lastBuildDate>Fri, 01 Sep 2023 14:11:49 +0300</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
         <title>Develop for Joy</title>
         <description>
-          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/paul-pastourmatzis-8kDOOrs608I-unsplash.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/paul-pastourmatzis-8kDOOrs608I-unsplash.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;When you are wearing a team lead hat developer happiness becomes the most important aspect. I hire people smarter than me and care about their well-being. But contract work is a constant pressure. So one of the goals is to prevent the happiness baseline from dipping.&lt;/p&gt;
 
 &lt;p&gt;Here are some ideas that helped me in the past broken into three main topics: People, Organization and the Project. See if they are worth your time.&lt;/p&gt;
@@ -198,8 +198,8 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 
         </description>
         <pubDate>Mon, 06 Mar 2023 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/posts/develop-for-joy/</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/develop-for-joy/</guid>
+        <link>https://firedev.com/posts/develop-for-joy/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/develop-for-joy/</guid>
         
         <category>development</category>
         
@@ -215,7 +215,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
       <item>
         <title>Boring Rails</title>
         <description>
-          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -735,8 +735,8 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 
         </description>
         <pubDate>Sun, 07 Nov 2021 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/posts/boring-rails/</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/boring-rails/</guid>
+        <link>https://firedev.com/posts/boring-rails/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/boring-rails/</guid>
         
         <category>ruby</category>
         
@@ -752,7 +752,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
       <item>
         <title>Sane Breakpoints</title>
         <description>
-          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/break-point.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/break-point.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;I see different approaches to breakpoints and responsive design.
 Most of the time they are over-complicated and only making things worse.
 So here’s mine suggestion for device breakpoints that are in touch
@@ -1034,8 +1034,8 @@ found in CSS Frameworks everywhere. Start small, use an
 
         </description>
         <pubDate>Tue, 16 Feb 2016 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/posts/sane-breakpoints/</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/sane-breakpoints/</guid>
+        <link>https://firedev.com/posts/sane-breakpoints/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/sane-breakpoints/</guid>
         
         <category>CSS</category>
         
@@ -1051,7 +1051,7 @@ found in CSS Frameworks everywhere. Start small, use an
       <item>
         <title>Atomic Icons</title>
         <description>
-          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/atomic-icons.png"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/atomic-icons.png"/&gt;&lt;/p&gt;
           &lt;p&gt;Once in a while comes a moment when you decide to change an icon set you have
 been using. Just a bit of upfront planning goes a long way. Consider a system
 that turns icons into independent components.&lt;/p&gt;
@@ -1317,8 +1317,8 @@ overall look and feel. And the best part is – now you can compose:&lt;/p&gt;
 
         </description>
         <pubDate>Sun, 24 Jan 2016 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/posts/atomic-icons/</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/atomic-icons/</guid>
+        <link>https://firedev.com/posts/atomic-icons/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/atomic-icons/</guid>
         
         <category>CSS</category>
         
@@ -1336,7 +1336,7 @@ overall look and feel. And the best part is – now you can compose:&lt;/p&gt;
       <item>
         <title>Immutable CSS</title>
         <description>
-          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/monolith.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/monolith.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;This is extracted from the Github issue created to discuss the approach with my
 team. Please bear with me if I refer to something that wasn’t mentioned in the text.&lt;/p&gt;
 
@@ -1550,8 +1550,8 @@ grunt
 
         </description>
         <pubDate>Tue, 22 Dec 2015 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/posts/immutable-css/</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/immutable-css/</guid>
+        <link>https://firedev.com/posts/immutable-css/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/immutable-css/</guid>
         
         <category>CSS</category>
         
@@ -1571,7 +1571,7 @@ grunt
       <item>
         <title>Apple Magic Keyboard, Magic Mouse 2 and Magic Trackpad 2</title>
         <description>
-          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/magic-keyboard-mouse-trackpad.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/magic-keyboard-mouse-trackpad.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;Keyboard is great. Mouse is good. Trackpad is okay.&lt;/p&gt;
 
 &lt;p&gt;Now for the longer version. I am living in Thailand and it was really easy to
@@ -1716,8 +1716,8 @@ The other accessories is something for you to decide if you need them or not.&lt
 
         </description>
         <pubDate>Wed, 04 Nov 2015 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</guid>
+        <link>https://firedev.com/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</guid>
         
         <category>apple</category>
         
@@ -1733,7 +1733,7 @@ The other accessories is something for you to decide if you need them or not.&lt
       <item>
         <title>Mac as IDE: You&apos;re using it wrong</title>
         <description>
-          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/ascii-keyboard-controller.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/ascii-keyboard-controller.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;Are you using this editor and that version control app? Think bigger. Instead
 of jumping between applications or forcing yourself to an IDE use your Mac as a
 system where apps work together for the greater good.&lt;/p&gt;
@@ -2002,8 +2002,8 @@ found anything useful and share some of your tricks.&lt;/p&gt;
 
         </description>
         <pubDate>Sun, 01 Nov 2015 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/posts/mac-as-ide/</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/mac-as-ide/</guid>
+        <link>https://firedev.com/posts/mac-as-ide/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/mac-as-ide/</guid>
         
         <category>development</category>
         
@@ -2019,7 +2019,7 @@ found anything useful and share some of your tricks.&lt;/p&gt;
       <item>
         <title>Functional Service Objects on Rails</title>
         <description>
-          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/electrical_plumbing_service.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/electrical_plumbing_service.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;An excellent talk “Blending Functional and OO Programming in Ruby” given by
 Piotr Solnica at Full Stack Fest 2015 made me think about improving current
 practices. I have tried different ways of organizing my service objects and
@@ -2343,8 +2343,8 @@ controllers. Please let me know if something could be improved.&lt;/p&gt;
 
         </description>
         <pubDate>Sat, 17 Oct 2015 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/posts/functional-service-objects-on-rails/</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/functional-service-objects-on-rails/</guid>
+        <link>https://firedev.com/posts/functional-service-objects-on-rails/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/functional-service-objects-on-rails/</guid>
         
         <category>ruby</category>
         
@@ -2362,7 +2362,7 @@ controllers. Please let me know if something could be improved.&lt;/p&gt;
       <item>
         <title>Making Bottomless Hash Ruby Gem</title>
         <description>
-          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/bottomless_pit_gravity_falls.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/bottomless_pit_gravity_falls.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;After creating &lt;a href=&quot;http://firedev.com/2015/bottomless-ruby-hash&quot;&gt;Bottomless Hash&lt;/a&gt;
 last time and writing tests the next logical step is to make a Gem out of it.&lt;/p&gt;
 
@@ -2746,8 +2746,8 @@ bottomless_hash &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1.0&lt;span clas
 
         </description>
         <pubDate>Sat, 10 Oct 2015 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/posts/making-bottomless-hash-ruby-gem/</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/making-bottomless-hash-ruby-gem/</guid>
+        <link>https://firedev.com/posts/making-bottomless-hash-ruby-gem/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/making-bottomless-hash-ruby-gem/</guid>
         
         <category>ruby</category>
         
@@ -2761,7 +2761,7 @@ bottomless_hash &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1.0&lt;span clas
       <item>
         <title>Bottomless Ruby Hash</title>
         <description>
-          &lt;p&gt;&lt;img src="http://localhost:4000/images/posts/bottomless_pit.jpg"/&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;img src="https://firedev.com/images/posts/bottomless_pit.jpg"/&gt;&lt;/p&gt;
           &lt;p&gt;The other day somebody asked if there is a way to blindly assign nested values
 to Ruby Hash without creating each key. Turns out there is, and it has an
 interesting side-effect. Welcome Bottomless Hash.&lt;/p&gt;
@@ -3003,8 +3003,8 @@ nested structures from the outside world.&lt;/p&gt;
 
         </description>
         <pubDate>Wed, 07 Oct 2015 00:00:00 +0300</pubDate>
-        <link>http://localhost:4000/posts/bottomless-ruby-hash/</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/bottomless-ruby-hash/</guid>
+        <link>https://firedev.com/posts/bottomless-ruby-hash/</link>
+        <guid isPermaLink="true">https://firedev.com/posts/bottomless-ruby-hash/</guid>
         
         <category>ruby</category>
         
