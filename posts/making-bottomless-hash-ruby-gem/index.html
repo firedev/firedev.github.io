@@ -481,14 +481,14 @@ WARNING:  See http://guides.rubygems.org/specification-reference/ <span class="k
 <p>Okay it worked but I’d like to get rid of the warning, so I change the line in
 <code class="language-plaintext highlighter-rouge">.gemspec</code> as suggested.</p>
 
-<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> git diff
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git diff
 <span class="gh">diff --git a/bottomless_hash.gemspec b/bottomless_hash.gemspec
 index b0a7bb7..817054f 100644
 </span><span class="gd">--- a/bottomless_hash.gemspec
 </span><span class="gi">+++ b/bottomless_hash.gemspec
 </span><span class="p">@@ -31,5 +31,5 @@</span> Gem::Specification.new do |spec|
-
-   spec.add_development_dependency "bundler", "~&gt; 1.10"
+<span class="err">
+</span>   spec.add_development_dependency "bundler", "~&gt; 1.10"
    spec.add_development_dependency "rake", "~&gt; 10.0"
 <span class="gd">-  spec.add_development_dependency "rspec"
 </span><span class="gi">+  spec.add_development_dependency "rspec", "~&gt; 0"

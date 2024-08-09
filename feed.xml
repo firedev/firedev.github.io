@@ -6,9 +6,9 @@
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 04 Sep 2023 14:01:25 +0300</pubDate>
-    <lastBuildDate>Mon, 04 Sep 2023 14:01:25 +0300</lastBuildDate>
-    <generator>Jekyll v4.2.2</generator>
+    <pubDate>Fri, 09 Aug 2024 17:51:56 +0300</pubDate>
+    <lastBuildDate>Fri, 09 Aug 2024 17:51:56 +0300</lastBuildDate>
+    <generator>Jekyll v4.3.3</generator>
     
       <item>
         <title>Develop for Joy</title>
@@ -1033,7 +1033,7 @@ found in CSS Frameworks everywhere. Start small, use an
 &lt;a href=&quot;http://firedev.com/posts/immutable-css/&quot;&gt;Immutable CSS&lt;/a&gt; library and have fun.&lt;/p&gt;
 
         </description>
-        <pubDate>Tue, 16 Feb 2016 00:00:00 +0300</pubDate>
+        <pubDate>Tue, 16 Feb 2016 00:00:00 +0200</pubDate>
         <link>https://firedev.com/posts/sane-breakpoints/</link>
         <guid isPermaLink="true">https://firedev.com/posts/sane-breakpoints/</guid>
         
@@ -1316,7 +1316,7 @@ overall look and feel. And the best part is – now you can compose:&lt;/p&gt;
 &lt;a href=&quot;http://fontawesome.io/&quot;&gt;&lt;i class=&quot;fa fa-link pr1&quot;&gt;&lt;/i&gt;Font Awesome&lt;/a&gt;&lt;/p&gt;
 
         </description>
-        <pubDate>Sun, 24 Jan 2016 00:00:00 +0300</pubDate>
+        <pubDate>Sun, 24 Jan 2016 00:00:00 +0200</pubDate>
         <link>https://firedev.com/posts/atomic-icons/</link>
         <guid isPermaLink="true">https://firedev.com/posts/atomic-icons/</guid>
         
@@ -1549,7 +1549,7 @@ grunt
 &lt;/ul&gt;
 
         </description>
-        <pubDate>Tue, 22 Dec 2015 00:00:00 +0300</pubDate>
+        <pubDate>Tue, 22 Dec 2015 00:00:00 +0200</pubDate>
         <link>https://firedev.com/posts/immutable-css/</link>
         <guid isPermaLink="true">https://firedev.com/posts/immutable-css/</guid>
         
@@ -2695,14 +2695,14 @@ WARNING:  See http://guides.rubygems.org/specification-reference/ &lt;span class
 &lt;p&gt;Okay it worked but I’d like to get rid of the warning, so I change the line in
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gemspec&lt;/code&gt; as suggested.&lt;/p&gt;
 
-&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; git diff
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ git diff
 &lt;span class=&quot;gh&quot;&gt;diff --git a/bottomless_hash.gemspec b/bottomless_hash.gemspec
 index b0a7bb7..817054f 100644
 &lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;--- a/bottomless_hash.gemspec
 &lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+++ b/bottomless_hash.gemspec
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;@@ -31,5 +31,5 @@&lt;/span&gt; Gem::Specification.new do |spec|
-
-   spec.add_development_dependency &quot;bundler&quot;, &quot;~&amp;gt; 1.10&quot;
+&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;   spec.add_development_dependency &quot;bundler&quot;, &quot;~&amp;gt; 1.10&quot;
    spec.add_development_dependency &quot;rake&quot;, &quot;~&amp;gt; 10.0&quot;
 &lt;span class=&quot;gd&quot;&gt;-  spec.add_development_dependency &quot;rspec&quot;
 &lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+  spec.add_development_dependency &quot;rspec&quot;, &quot;~&amp;gt; 0&quot;
