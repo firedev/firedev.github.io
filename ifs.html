@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест IFS</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .question { margin-bottom: 15px; }
+        .result { margin-top: 20px; padding: 15px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        label { margin-right: 10px; }
+      /* Стили для .form-radio */
+.form-radio {
+    margin-bottom: 0.5rem;
+}
+
+/* Стили для input[type="radio"] внутри .form-radio */
+.form-radio input[type="radio"] {
+    position: absolute;
+    left: -9999px;
+}
+
+/* Стили для label, span или div + span, следующих за input[type="radio"] */
+.form-radio input[type="radio"] + label,
+.form-radio input[type="radio"] + span,
+.form-radio input[type="radio"] + div + span {
+    /* Предполагаемые стили из @extend .btn */
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    cursor: pointer;
+
+    /* Предполагаемые стили из @extend .blue */
+    color: #007bff;
+
+    /* Предполагаемые стили из @extend .muted */
+    opacity: 0.65;
+
+    /* Явно указанный стиль */
+    background: white;
+}
+
+/* Стили для label, span или div + span, когда радиокнопка выбрана */
+.form-radio input[type="radio"]:checked + label,
+.form-radio input[type="radio"]:checked + span,
+.form-radio input[type="radio"]:checked + label {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+
+    /* Явно указанные стили */
+    opacity: 1;
+}
+
+/* Стили для псевдоэлемента ::after у label, когда радиокнопка выбрана */
+.form-radio input[type="radio"]:checked + label::after {
+    content: '';
+    display: block;
+    width: 100%;
+}
+    </style>
+</head>
+<body class="form-radio">
+    <h1>Тест: Роли в вашей Внутренней Семье (IFS)</h1>
+    <form id="ifsTest"></form>
+    <div id="results" class="result" style="display: none;"></div>
+
+    <script>
+        // Данные вопросов
+        const categories = [
+            {
+                title: "Менеджеры",
+                questions: [
+                    "Я часто стараюсь всё спланировать заранее, чтобы избежать неожиданностей.",
+                    "Мне важно, чтобы другие видели меня сильным и компетентным.",
+                    "Я склонен критиковать себя, чтобы стать лучше или избежать ошибок.",
+                    "Я чувствую тревогу, если что-то идёт не по плану."
+                ]
+            },
+            {
+                title: "Пожарные",
+                questions: [
+                    "Когда я чувствую стресс, я могу переедать, пить или отвлекаться.",
+                    "Я иногда действую импульсивно, чтобы заглушить эмоции.",
+                    "Мне сложно усидеть на месте, когда я расстроен.",
+                    "После сильных эмоций я могу чувствовать стыд за свои поступки."
+                ]
+            },
+            {
+                title: "Изгнанники",
+                questions: [
+                    "У меня есть воспоминания, которые я стараюсь не трогать.",
+                    "Иногда я чувствую себя беспомощным без причины.",
+                    "Я боюсь, что эмоции меня захлестнут.",
+                    "Мне кажется, что часть меня прячет печаль или страх."
+                ]
+            },
+            {
+                title: "Я (Self)",
+                questions: [
+                    "Я могу оставаться спокойным даже в сложных ситуациях.",
+                    "Мне легко смотреть на свои чувства с интересом.",
+                    "Я часто чувствую сострадание к себе и другим.",
+                    "У меня есть ощущение внутренней ясности и уверенности."
+                ]
+            }
+        ];
+
+        // Массив ответов для каждой категории
+        const responses = {
+            "Менеджеры": [
+                "Ваши Менеджеры почти не активны. Вы редко стремитесь всё контролировать, предпочитая спонтанность и гибкость.",
+                "Менеджеры у вас умеренно активны. Вы иногда планируете и контролируете, но это не главная черта вашей системы.",
+                "Ваши Менеджеры довольно активны. Они помогают вам сохранять порядок и защиту, но иногда могут мешать расслаблению.",
+                "Менеджеры доминируют в вашей системе. Вы любите контроль и стараетесь избегать уязвимости, что может быть как силой, так и нагрузкой."
+            ],
+            "Пожарные": [
+                "Пожарные у вас почти не проявляются. Вы редко прибегаете к импульсивным действиям, чтобы справиться со стрессом.",
+                "Пожарные иногда вмешиваются, помогая снять напряжение, но это не частое явление.",
+                "Ваши Пожарные заметно активны. Вы можете искать быстрое облегчение в стрессовых ситуациях.",
+                "Пожарные очень активны. Они часто 'тушат пожар' ваших эмоций через импульсивные действия."
+            ],
+            "Изгнанники": [
+                "Изгнанники почти не дают о себе знать. У вас мало подавленных эмоций, или они хорошо скрыты.",
+                "Изгнанники иногда напоминают о себе. Возможно, есть скрытые чувства, которые стоит исследовать.",
+                "Изгнанники довольно активны. Вы можете нести подавленную боль или страх.",
+                "Изгнанники сильно влияют на вас. Внутри скрывается много уязвимости или непроработанных эмоций."
+            ],
+            "Я (Self)": [
+                "Ваше 'Я' пока слабо проявлено. Вы редко чувствуете внутреннее спокойствие и ясность.",
+                "Ваше 'Я' начинает проявляться. Есть моменты спокойствия, но они нестабильны.",
+                "Ваше 'Я' довольно сильно. Вы часто действуете из состояния спокойствия и сострадания.",
+                "Ваше 'Я' — мощный центр вашей системы. Вы уравновешены, любопытны и полны сострадания."
+            ]
+        };
+
+        // Генерация формы
+        const form = document.getElementById('ifsTest');
+        let questionIndex = 1;
+      
+      const labels = ['', 'Никогда', 'Редко', 'Средне', 'Часто', 'Всегда']
+
+        categories.forEach(category => {
+            const h2 = document.createElement('h2');
+            h2.textContent = category.title;
+            form.appendChild(h2);
+
+            category.questions.forEach(question => {
+                const div = document.createElement('div');
+                div.className = 'question';
+                div.innerHTML = `${questionIndex}. ${question}<br>` +
+                    [1, 2, 3, 4, 5].map(val => 
+                        `<input type="radio" id="q${questionIndex}-${val}" name="q${questionIndex}" value="${val}"><label for="q${questionIndex}-${val}">${labels[val]}</label>`
+                    ).join('');
+                form.appendChild(div);
+                questionIndex++;
+            });
+        });
+
+        const button = document.createElement('button');
+        button.textContent = 'Узнать результаты';
+        button.type = 'button';
+        button.onclick = calculateResults;
+        form.appendChild(button);
+
+        // Логика подсчёта и вывода результатов
+        function calculateResults() {
+            const maxScore = 20; // Максимальный балл для категории (4 вопроса * 5 баллов)
+            const ranges = [
+                { min: 4, max: 8, index: 0 },   // Низкий
+                { min: 9, max: 12, index: 1 },  // Средне-низкий
+                { min: 13, max: 16, index: 2 }, // Средне-высокий
+                { min: 17, max: 20, index: 3 }  // Высокий
+            ];
+
+            const scores = { "Менеджеры": 0, "Пожарные": 0, "Изгнанники": 0, "Я (Self)": 0 };
+            let qIndex = 1;
+
+            categories.forEach(category => {
+                category.questions.forEach(() => {
+                    const value = form.querySelector(`input[name="q${qIndex}"]:checked`);
+                    scores[category.title] += value ? parseInt(value.value) : 0;
+                    qIndex++;
+                });
+            });
+
+            // Проверка заполненности
+            if (Object.values(scores).some(score => score === 0)) {
+                alert("Пожалуйста, ответьте на все вопросы!");
+                return;
+            }
+
+            // Определение ответа по диапазону
+            function getResponse(score, category) {
+                const range = ranges.find(r => score >= r.min && score <= r.max);
+                return responses[category][range.index];
+            }
+
+            // Формирование результата
+            let result = `<h2>Ваши результаты:</h2>`;
+            for (const [category, score] of Object.entries(scores)) {
+                result += `<p><strong>${category}:</strong> ${score}/${maxScore}</p>`;
+                result += getResponse(score, category) + "<br>";
+            }
+
+            result += `<p><strong>Вывод:</strong> Ваша внутренняя система ${scores["Я (Self)"] >= 17 && scores["Изгнанники"] <= 8 ? "очень сбалансирована" : 
+                scores["Я (Self)"] >= 13 && scores["Изгнанники"] <= 12 ? "хорошо сбалансирована" : "имеет некоторые акценты"}. 
+                ${scores["Менеджеры"] >= 17 ? "Менеджеры играют ключевую роль. " : ""}${scores["Я (Self)"] >= 17 ? "Ваше 'Я' — главный ресурс." : ""}</p>`;
+
+            const resultDiv = document.getElementById('results');
+            resultDiv.innerHTML = result;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
