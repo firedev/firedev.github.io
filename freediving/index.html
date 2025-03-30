@@ -52,7 +52,13 @@
     <div id="counter">0: 00:00</div>
     <div id="status">Waiting to start...</div>
 
+    <!-- Include NoSleep.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/nosleep.js@1.0.0/dist/NoSleep.min.js"></script>
+
     <script>
+        // Initialize NoSleep
+        const noSleep = new NoSleep();
+
         function speak(text) {
             if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(text);
@@ -60,7 +66,6 @@
                 utterance.rate = 1;
                 utterance.pitch = 1;
                 
-                // Get available voices and select "Karen" if available
                 const voices = window.speechSynthesis.getVoices();
                 const karenVoice = voices.find(voice => voice.name === 'Karen') || 
                                 voices.find(voice => voice.lang === 'en-US') || 
@@ -85,8 +90,11 @@
         }
 
         function startSequence() {
-            let round = 0;  // Start with warm-up round
-            const maxRounds = 20;  // Still runs 20 regular rounds after warm-up
+            // Enable NoSleep when sequence starts
+            noSleep.enable();
+
+            let round = 0;
+            const maxRounds = 20;
             let roundStartTime;
 
             function updateCounter() {
@@ -100,49 +108,46 @@
                 if (round > maxRounds) {
                     updateStatus('Sequence completed!');
                     document.getElementById('counter').textContent = 'Done!';
+                    // Disable NoSleep when sequence ends
+                    noSleep.disable();
                     return;
                 }
 
                 updateStatus(`Running ${round === 0 ? 'warm-up' : 'round ' + round}`);
                 roundStartTime = Date.now();
                 
-                // Start counter
                 const counterInterval = setInterval(updateCounter, 1000);
 
-                // Speak announcements
-                speak("breath in");          // At 0:00
-                setTimeout(() => speak("relax"), 1000);  // At 0:01
+                speak("breath in");
+                setTimeout(() => speak("relax"), 1000);
                 if (round === 0) {
-                    setTimeout(() => speak("Two minutes of relaxation starts now. Get comfortable laying on a bed, on a yoga mat, or on the couch"), 2000);  // At 0:02
+                    setTimeout(() => speak("Two minutes of relaxation starts now. Get comfortable laying on a bed, on a yoga mat, or on the couch"), 2000);
                 } else {
-                    setTimeout(() => speak(`round ${round}`), 2000);  // At 0:02
+                    setTimeout(() => speak(`round ${round}`), 2000);
                 }
-                setTimeout(() => speak("1 minute"), 60000);    // 1:00
-                setTimeout(() => speak("1:30"), 90000);       // 1:30
-                setTimeout(() => speak("1:40"), 100000);      // 1:40
-                setTimeout(() => speak("1:45"), 105000);      // 1:45
-                setTimeout(() => speak("1:50"), 110000);      // 1:50
-                setTimeout(() => speak("5"), 115000);         // 1:55
-                setTimeout(() => speak("4"), 116000);         // 1:56
-                setTimeout(() => speak("3"), 117000);         // 1:57
-                setTimeout(() => speak("2"), 118000);         // 1:58
-                setTimeout(() => speak("1"), 119000);         // 1:59
+                setTimeout(() => speak("1 minute"), 60000);
+                setTimeout(() => speak("1:30"), 90000);
+                setTimeout(() => speak("1:40"), 100000);
+                setTimeout(() => speak("1:45"), 105000);
+                setTimeout(() => speak("1:50"), 110000);
+                setTimeout(() => speak("5"), 115000);
+                setTimeout(() => speak("4"), 116000);
+                setTimeout(() => speak("3"), 117000);
+                setTimeout(() => speak("2"), 118000);
+                setTimeout(() => speak("1"), 119000);
                 
-                // Schedule next round and stop counter
                 setTimeout(() => {
                     clearInterval(counterInterval);
                     round++;
                     runRound();
-                }, 120000);  // 2:00
+                }, 120000);
             }
 
             runRound();
         }
 
-        // Load voices when available (ensure voices are loaded before first speak)
         window.speechSynthesis.onvoiceschanged = () => {
             console.log('Voices loaded');
         };
     </script>
 </body>
-</html>
