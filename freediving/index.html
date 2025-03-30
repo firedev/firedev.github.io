@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timed Speech Sequence with Warm-up</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #counter {
+            margin: 20px;
+            font-size: 24px;
+            font-family: monospace;
+        }
+        #status {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        #description {
+            max-width: 600px;
+            margin: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div id="description">
+        We are doing a high volume, low intensity static session. This type of training creates a high buildup of CO2 in the body, training tolerance. It also allows us many opportunities to work on aspects that start at the beginning of a dive, including taking a full final breath, relaxing quickly as soon as you feel a contraction, experiencing a few contractions, and learning how to control them.
+    </div>
+    <button onclick="startSequence()">Start Sequence</button>
+    <div id="counter">0: 00:00</div>
+    <div id="status">Waiting to start...</div>
+
+    <script>
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.volume = 1;
+                utterance.rate = 1;
+                utterance.pitch = 1;
+                
+                // Get available voices and select "Karen" if available
+                const voices = window.speechSynthesis.getVoices();
+                const karenVoice = voices.find(voice => voice.name === 'Karen') || 
+                                voices.find(voice => voice.lang === 'en-US') || 
+                                voices[0];
+                utterance.voice = karenVoice;
+                
+                window.speechSynthesis.speak(utterance);
+                return utterance;
+            } else {
+                alert('Browser doesn\'t support speech synthesis!');
+            }
+        }
+
+        function updateStatus(text) {
+            document.getElementById('status').textContent = text;
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function startSequence() {
+            let round = 0;  // Start with warm-up round
+            const maxRounds = 20;  // Still runs 20 regular rounds after warm-up
+            let roundStartTime;
+
+            function updateCounter() {
+                const elapsed = Math.floor((Date.now() - roundStartTime) / 1000);
+                if (elapsed <= 120) {
+                    document.getElementById('counter').textContent = `${round}: ${formatTime(elapsed)}`;
+                }
+            }
+
+            function runRound() {
+                if (round > maxRounds) {
+                    updateStatus('Sequence completed!');
+                    document.getElementById('counter').textContent = 'Done!';
+                    return;
+                }
+
+                updateStatus(`Running ${round === 0 ? 'warm-up' : 'round ' + round}`);
+                roundStartTime = Date.now();
+                
+                // Start counter
+                const counterInterval = setInterval(updateCounter, 1000);
+
+                // Speak announcements
+                speak("breath in");          // At 0:00
+                setTimeout(() => speak("relax"), 1000);  // At 0:01
+                if (round === 0) {
+                    setTimeout(() => speak("Two minutes of relaxation starts now. Get comfortable laying on a bed, on a yoga mat, or on the couch"), 2000);  // At 0:02
+                } else {
+                    setTimeout(() => speak(`round ${round}`), 2000);  // At 0:02
+                }
+                setTimeout(() => speak("1 minute"), 60000);    // 1:00
+                setTimeout(() => speak("1:30"), 90000);       // 1:30
+                setTimeout(() => speak("1:40"), 100000);      // 1:40
+                setTimeout(() => speak("1:45"), 105000);      // 1:45
+                setTimeout(() => speak("1:50"), 110000);      // 1:50
+                setTimeout(() => speak("5"), 115000);         // 1:55
+                setTimeout(() => speak("4"), 116000);         // 1:56
+                setTimeout(() => speak("3"), 117000);         // 1:57
+                setTimeout(() => speak("2"), 118000);         // 1:58
+                setTimeout(() => speak("1"), 119000);         // 1:59
+                
+                // Schedule next round and stop counter
+                setTimeout(() => {
+                    clearInterval(counterInterval);
+                    round++;
+                    runRound();
+                }, 120000);  // 2:00
+            }
+
+            runRound();
+        }
+
+        // Load voices when available (ensure voices are loaded before first speak)
+        window.speechSynthesis.onvoiceschanged = () => {
+            console.log('Voices loaded');
+        };
+    </script>
+</body>
+</html>

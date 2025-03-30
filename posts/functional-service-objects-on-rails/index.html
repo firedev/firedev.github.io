@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Functional Service Objects on Rails</title>
-  <meta name="description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given byPiotr Solnica at Full Stack Fest 2015 made me think about improving currentpractic...">
+  <meta name="description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given byPiotr Solnica on Full Stack Fest 2015 made me think about improving currentpractic...">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="https://firedev.com/posts/functional-service-objects-on-rails/">
@@ -20,7 +20,7 @@
   <meta property="og:url" content="https://firedev.com/posts/functional-service-objects-on-rails/" />
   <meta property="og:title" content="Functional Service Objects on Rails" />
   <meta property="og:description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given by
-Piotr Solnica at Full Stack Fest 2015 made me think about improving current
+Piotr Solnica on Full Stack Fest 2015 made me think about improving current
 practices. I have tried different ways of organizing my service objects and
 here is what I came up with.
 " />
@@ -32,7 +32,7 @@ here is what I came up with.
   <div class="max-w-6xl px-4 mx-auto">
     <header class="sm:grid grid-cols-4 gap-8 mb-4">
   <a href="/" class="block leading-4 aspect-w-3 aspect-h-1 overflow-hidden"
-     style="background: bottom left no-repeat url(/images/logos/firedev.svg);">
+    style="background: bottom left no-repeat url(/images/logos/firedev.svg);">
     <h1 class="text-8xl leading-4 block invisible">
       firedev.com
     </h1>
@@ -47,7 +47,7 @@ here is what I came up with.
     
     
     
-    <a class="font-normal text-gray-600" href="/posts/">
+    <a class=" font-normal text-gray-600" href="/posts/">
       Posts
     </a>
     
@@ -55,7 +55,7 @@ here is what I came up with.
     
     
     
-    <a class="font-normal text-gray-600" href="/projects/">
+    <a class=" font-normal text-gray-600" href="/projects/">
       Projects
     </a>
     
@@ -65,7 +65,7 @@ here is what I came up with.
     
     
     
-    <a class="font-normal text-gray-600" href="/about/">
+    <a class=" font-normal text-gray-600" href="/about/">
       About
     </a>
     
@@ -120,10 +120,9 @@ here is what I came up with.
 
     <div class="flex flex-auto"></div>
 
-    <a class="hidden sm:block font-normal opacity-50 text-sm text-gray-600"
-       href=" /feed.xml">
-    <i class="fa fa-rss"></i>
-    RSS
+    <a class="hidden sm:block font-normal opacity-50 text-sm text-gray-600" href=" /feed.xml">
+      <i class="fa fa-rss"></i>
+      RSS
 
     </a>
   </nav>
@@ -152,27 +151,31 @@ here is what I came up with.
 <div class="mb-6">
   <article class="mb-6">
     <p>An excellent talk “Blending Functional and OO Programming in Ruby” given by
-Piotr Solnica at Full Stack Fest 2015 made me think about improving current
+Piotr Solnica on Full Stack Fest 2015 made me think about improving current
 practices. I have tried different ways of organizing my service objects and
 here is what I came up with.</p>
 
 <h2 id="background">Background</h2>
 
-<p>The idea is to switch from Object Oriented mentality and stateful objects to a more functional way of doing things when only data is passed through your
+<p>The idea is to switch from Object Oriented mentality and stateful objects to
+more functional way of doing things when only data is passed through your
 system.</p>
 
 <p>I am working on this motivational portal. Let’s use a concept from the project
 for the sake of the example. The models involved in this example are <code class="language-plaintext highlighter-rouge">User</code>,
   <code class="language-plaintext highlighter-rouge">Motivation</code>, <code class="language-plaintext highlighter-rouge">Shop</code> and <code class="language-plaintext highlighter-rouge">Role</code>.</p>
 
-<p><code class="language-plaintext highlighter-rouge">Motivation</code> is some data that connects <code class="language-plaintext highlighter-rouge">Shop</code> where <code class="language-plaintext highlighter-rouge">User</code> is working in a given month and his <code class="language-plaintext highlighter-rouge">Role</code>. Each month a <code class="language-plaintext highlighter-rouge">User</code> can be
+<p><code class="language-plaintext highlighter-rouge">Motivation</code> is some data that defines <code class="language-plaintext highlighter-rouge">Shop</code> to which <code class="language-plaintext highlighter-rouge">User</code> has access to in
+a given month and his <code class="language-plaintext highlighter-rouge">Role</code> in regards to that. Each month a <code class="language-plaintext highlighter-rouge">User</code> can be
 assigned to different <code class="language-plaintext highlighter-rouge">Shops</code> and different <code class="language-plaintext highlighter-rouge">Roles</code>. Say, an employee this
-month and a shop manager the next month. I call such managers “chief” since the manager was already taken.</p>
+month and shop manager the next month. I call such managers “chief” since
+manager was already taken.</p>
 
-<h2 id="stuff-everything-into-the-model">Stuff everything into the model</h2>
-<p>For the current month we need to get the list of shops the user can manage. And to do
-that we have to use multiple tables as certain roles carry <code class="language-plaintext highlighter-rouge">chief</code>
-ability. The most obvious solution is to stuff everything into the User model.
+<h2 id="stuff-everything-into-model">Stuff everything into model</h2>
+
+<p>For current month we need to get the list of shops user can manage. And to do
+that we have to use multiple tables as there a certain roles that carry “chief”
+ability. The most obvious solution is to stuff everything into User model.
 So without further ado:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
@@ -189,7 +192,7 @@ So without further ado:</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">shops</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Hmm, that starts quite harmless. But what if we measure complexity with <code class="language-plaintext highlighter-rouge">flog</code>?</p>
+<p>Hmm, that starts quite harmless. But what if we measure complexity with flog?</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    10.0: flog total
     10.0: flog/method average
@@ -199,8 +202,8 @@ So without further ado:</p>
 
 <h3 id="flog">Flog</h3>
 
-<p>I use <a href="http://ruby.sadi.st/Flog.html">flog</a> to check the complexity of my classes
-and strive to keep the average complexity per method under <code class="language-plaintext highlighter-rouge">5</code>:</p>
+<p>I use <a href="http://ruby.sadi.st/Flog.html">flog</a> to check complexity of my classes
+and strive to keep the average complexity per method under 5:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ flog app
   1278.9: flog total
@@ -214,7 +217,8 @@ and strive to keep the average complexity per method under <code class="language
 
 <h2 id="service-class">Service class</h2>
 
-<p>To me, 10 flog per method is simply too much. We can try to break it down into two methods like so:</p>
+<p>To me 10 flog per method is simply too much. We can try to break it down in two
+methods like so:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span>
   <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
@@ -231,16 +235,16 @@ and strive to keep the average complexity per method under <code class="language
 
 <p>But this is ridiculous. It adds a private method on <code class="language-plaintext highlighter-rouge">User</code> that is calling god
 knows what. Besides I don’t like the ‘Thin Controllers, Fat Models’ concept. As
-a one-man operation, there is simply not enough man-power to deal with ten feet
+a one-man operation there is simply not enough man-power to deal with ten feet
 long models. My motto is:</p>
 
 <blockquote>
-  <p>Thin Everything!</p>
+  <p>Thin Everythin’!</p>
 </blockquote>
 
-<p>I build service objects in a certain way. One public method <code class="language-plaintext highlighter-rouge">call</code> with
-occasional parameters passed from the controller (i.e. variables). Let’s extract
-the query to what a typical service object would look like:</p>
+<p>I build service objects in a simple way. One public method <code class="language-plaintext highlighter-rouge">call</code> with
+occasional parameters passed from controller (i.e. variables). Let’s extract
+the query to a what a typical service object would look like:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span>
   <span class="k">class</span> <span class="nc">ChiefShopsForMonth</span>
@@ -288,7 +292,7 @@ it more functional-ish.</p>
 
 <h3 id="the-talk">The talk</h3>
 
-<p>This is the talk <a href="http://solnic.eu">Piotr Solnica</a> gave at Full-stack Fest in 2015
+<p>This is the talk <a href="http://solnic.eu">Piotr Solnica</a> gave at Full-stack fest in 2015
 that got me thinking about a better way of doing things.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rMxurF4oqsc" frameborder="0" allowfullscreen=""></iframe>
@@ -299,7 +303,7 @@ instead. That sounded interesting. Rolled up sleeves and here we go.</p>
 
 <h2 id="refactoring-service-object">Refactoring Service object</h2>
 
-<p>Let’s try a full head-on solution first. I would like to throw everything in
+<p>Let’s try with full head-on solution first. I would like to throw everything in
 the mix:</p>
 
 <ul>
@@ -321,7 +325,7 @@ the mix:</p>
 allows chaining and storing the intermediate results and other interesting
 things. The best examples in the wild I think are Rails scopes and JavaScript.
 ActiveRecord Scopes can be chained up to the last moment where you can load the
-relation into an array by calling <code class="language-plaintext highlighter-rouge">to_a</code> on it. JavaScript is built on
+relation into array by calling <code class="language-plaintext highlighter-rouge">to_a</code> on it. JavaScript is basically built on
 returning <code class="language-plaintext highlighter-rouge">this</code>.  If you have ever used a JavaScript library like jQuery you
 know the drill.</p>
 
@@ -365,11 +369,11 @@ know the drill.</p>
 <code class="language-plaintext highlighter-rouge">Motivation</code> class directly I can make it more intention-revealing, even if it
 adds another dependency.</p>
 
-<p>The new structure gains certain tidiness in the upper part. Now <code class="language-plaintext highlighter-rouge">initialize</code> only
-does dependency injection for the whole object. Then <code class="language-plaintext highlighter-rouge">call</code> sets up the
+<p>New structure gains certain tidiness in the upper part. Now <code class="language-plaintext highlighter-rouge">initialize</code> only
+does dependency-injection for the whole object. Then <code class="language-plaintext highlighter-rouge">call</code> sets up the
 parameters and returns <code class="language-plaintext highlighter-rouge">self</code> for chaining. You don’t have to return <code class="language-plaintext highlighter-rouge">self</code>,
 but that gives you flexibility so I don’t see a reason not to add it. And
-finally, you can get the list of shops for the given month by calling <code class="language-plaintext highlighter-rouge">.shops</code>.</p>
+finally you can get the list of shops for the given month by calling <code class="language-plaintext highlighter-rouge">.shops</code>.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span>
   <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
@@ -380,7 +384,7 @@ finally, you can get the list of shops for the given month by calling <code clas
 
 <p>Things get hairy however after the <code class="language-plaintext highlighter-rouge">private</code> mark. The state moved here
 and there are four attributes instead of two. Flog is not very happy about this
-either.  The average complexity per method is somewhat lower, but the total is even
+either.  Average complexity per method is somewhat lower, but the total is even
 higher.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   26.0: flog total
@@ -401,10 +405,11 @@ higher.</p>
 
 <p>well, something along these lines at least.</p>
 
-<p>So I claim that I don’t need to inject dependencies for other ActiveRecord
-classes since they are not going to change. And if they will, my
-service will be obsolete anyway. Thus I can get rid of <code class="language-plaintext highlighter-rouge">initialize</code>. Of course, in more complex scenarios this is not the best way to go, but this is a simple query
-object. So for the sake of the refactoring experiment, this will do.</p>
+<p>So I claim that I don’t need to inject dependenices for other ActiveRecord
+classes since they are not going to change. And if they will mist likely my
+service will be deleted. Thus I can get rid of <code class="language-plaintext highlighter-rouge">initialize</code>. Of course in more
+complex screnario this is not the best way to go, but this is a simple query
+object so for the sake of refactoring experiment I think this will pass.</p>
 
 <p>I think the rule of thumb here is similar to what Piotr is suggesting:</p>
 
@@ -414,8 +419,8 @@ object. So for the sake of the refactoring experiment, this will do.</p>
 
 <p>Since I am not changing anything here, apart from the inner state of the object
 and I am getting rid of the state, I don’t need a separate method that returns
-the result. That allows me to shrink the object’s API to a single <code class="language-plaintext highlighter-rouge">call</code> method.
-This is an improvement. Since now I don’t need to pass <code class="language-plaintext highlighter-rouge">user</code> and
+the result. That allows me to shrink object’s API to single <code class="language-plaintext highlighter-rouge">call</code> method.
+Which is actually an improvement. Since now I don’t need to pass <code class="language-plaintext highlighter-rouge">user</code> and
 <code class="language-plaintext highlighter-rouge">month</code> separately and they can go together as parameters in a single method
 call.</p>
 
@@ -439,19 +444,27 @@ call.</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>As you can see, now the state is not stored anywhere. Okay, dependencies are not
+<p>As you can see now state is not stored anywhere. Okay dependencies are not
 injected which is a questionable practice. But again I claim in this case this
 could pass.</p>
 
-<p>The invocation is almost the same as in the previous example. The only
+<p>The invocation is almost the same as with the previous example. The only
 difference is that we don’t have to query for shops as this is a Query Object
-so it only returns results straight away. And API is effectively shrunk to a
+so it only returns result straight away. And API is effectively shrunk to a
 single method.</p>
 
-<p>Yes, you have to call <code class="language-plaintext highlighter-rouge">new</code>, but only to instantiate an object. Or you can still
-inject dependencies for testing. As a side effect, we can pass a hash as a parameter. Piotr suggests using a value object. I think it is overkill here. I
-could easily pass the params hash, but it might hurt
-readability. Now look at this:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span>
+  <span class="k">def</span> <span class="nf">chief_shops_for_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+    <span class="no">User</span><span class="o">::</span><span class="no">ChiefShopsForMonth</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">user: </span><span class="nb">self</span><span class="p">,</span> <span class="ss">month: </span><span class="n">month</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Yes you have to call <code class="language-plaintext highlighter-rouge">new</code>, but only to instantiate an object. Or you can still
+inject dependencies for testing. As a side effect we can pass a hash as
+parameter. Piotr suggests to use value object. I think it is overkill here. I
+could easily pass a params hash if I wanted to, but I am afraid it might hurt
+readability. And now look at this:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    10.4: flog total
      2.6: flog/method average
@@ -462,13 +475,13 @@ readability. Now look at this:</p>
 
 <p>The whole class is almost as simple as the original single method in <code class="language-plaintext highlighter-rouge">User</code>. It
 encapsulates everything it needs. It doesn’t pollute models with methods that
-would never be used in other places. And has an intention-revealing name and
+would never be used from other places. And has intention-revealing name and
 simple single-method API.</p>
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>These are just some ideas on how to approach the refactoring of fat models and fat
-controllers. Please let me know if something could be improved.</p>
+<p>These are just some ideas on how to approach refactoring of fat models and fat
+controllers. Please let me know if you think something could be improved.</p>
 
 <p>Thanks.</p>
 
