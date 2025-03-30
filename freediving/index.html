@@ -42,11 +42,16 @@
             font-size: 16px;
             line-height: 1.5;
         }
+        h1 {
+            font-size: 24px;
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
+    <h1>HIGH VOLUME LOW INTENSITY STATIC 20x2:00</h1>
     <div id="description">
-        We are doing a high volume, low intensity static session. This type of training creates a high buildup of CO2 in the body, training tolerance. It also allows us many opportunities to work on aspects that start at the beginning of a dive, including taking a full final breath, relaxing quickly as soon as you feel a contraction, experiencing a few contractions, and learning how to control them.
+        This session enhances CO2 tolerance through repeated breath holds, preparing you for the demands of diving. It provides ample opportunities to practice essential skills: taking a deep final breath, staying relaxed as contractions start, feeling a few contractions, and gaining control over them.
     </div>
     <button onclick="startSequence()">Start Sequence</button>
     <div id="counter">0: 00:00</div>
@@ -56,7 +61,6 @@
     <script src="https://cdn.jsdelivr.net/npm/nosleep.js@1.0.0/dist/NoSleep.min.js"></script>
 
     <script>
-        // Check if NoSleep loaded correctly, use a fallback if not
         const noSleep = (typeof NoSleep !== 'undefined') ? new NoSleep() : {
             enable: () => console.log('NoSleep not available, screen may lock'),
             disable: () => console.log('NoSleep disable called (fallback)')
@@ -93,10 +97,9 @@
         }
 
         function startSequence() {
-            console.log('Sequence starting...'); // Debug log
+            console.log('Sequence starting...');
             updateStatus('Starting sequence...');
             
-            // Enable NoSleep
             try {
                 noSleep.enable();
                 console.log('NoSleep enabled');
