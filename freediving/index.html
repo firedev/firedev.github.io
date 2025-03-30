@@ -14,6 +14,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #f0f0f0; /* Light background to confirm rendering */
         }
         button {
             padding: 15px 30px;
@@ -57,15 +58,18 @@
     <div id="counter">0: 00:00</div>
     <div id="status">Waiting to start...</div>
 
-    <!-- Include NoSleep.js from CDN with local fallback -->
-    <script src="https://cdn.jsdelivr.net/npm/nosleep.js@1.0.0/dist/NoSleep.min.js" 
-            onerror="document.write('<script>{enable:() => console.log(\'CDN failed, using fallback\'), disable:() => console.log(\'Fallback disable\')}<\/script>')"></script>
+    <!-- Include NoSleep.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/nosleep.js@1.0.0/dist/NoSleep.min.js"></script>
 
     <script>
+        // Initialize NoSleep with a fallback
         const noSleep = (typeof NoSleep !== 'undefined') ? new NoSleep() : {
-            enable: () => console.log('NoSleep not available, screen may lock'),
-            disable: () => console.log('NoSleep disable called (fallback)')
+            enable: function() { console.log('NoSleep not available, screen may lock'); },
+            disable: function() { console.log('NoSleep disable called (fallback)'); }
         };
+
+        // Log to confirm script is running
+        console.log('Page loaded successfully');
 
         function speak(text) {
             if ('speechSynthesis' in window) {
@@ -169,6 +173,11 @@
         window.speechSynthesis.onvoiceschanged = () => {
             console.log('Voices loaded:', window.speechSynthesis.getVoices());
         };
+
+        // Ensure DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM fully loaded');
+        });
     </script>
 </body>
 </html>
