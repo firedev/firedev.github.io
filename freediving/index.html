@@ -57,8 +57,9 @@
     <div id="counter">0: 00:00</div>
     <div id="status">Waiting to start...</div>
 
-    <!-- Include NoSleep.js from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/nosleep.js@1.0.0/dist/NoSleep.min.js"></script>
+    <!-- Include NoSleep.js from CDN with local fallback -->
+    <script src="https://cdn.jsdelivr.net/npm/nosleep.js@1.0.0/dist/NoSleep.min.js" 
+            onerror="document.write('<script>{enable:() => console.log(\'CDN failed, using fallback\'), disable:() => console.log(\'Fallback disable\')}<\/script>')"></script>
 
     <script>
         const noSleep = (typeof NoSleep !== 'undefined') ? new NoSleep() : {
