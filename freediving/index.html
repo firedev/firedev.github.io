@@ -56,8 +56,11 @@
     <script src="https://cdn.jsdelivr.net/npm/nosleep.js@1.0.0/dist/NoSleep.min.js"></script>
 
     <script>
-        // Initialize NoSleep
-        const noSleep = new NoSleep();
+        // Check if NoSleep loaded correctly, use a fallback if not
+        const noSleep = (typeof NoSleep !== 'undefined') ? new NoSleep() : {
+            enable: () => console.log('NoSleep not available, screen may lock'),
+            disable: () => console.log('NoSleep disable called (fallback)')
+        };
 
         function speak(text) {
             if ('speechSynthesis' in window) {
@@ -90,8 +93,16 @@
         }
 
         function startSequence() {
-            // Enable NoSleep when sequence starts
-            noSleep.enable();
+            console.log('Sequence starting...'); // Debug log
+            updateStatus('Starting sequence...');
+            
+            // Enable NoSleep
+            try {
+                noSleep.enable();
+                console.log('NoSleep enabled');
+            } catch (error) {
+                console.error('NoSleep enable failed:', error);
+            }
 
             let round = 0;
             const maxRounds = 20;
@@ -108,8 +119,12 @@
                 if (round > maxRounds) {
                     updateStatus('Sequence completed!');
                     document.getElementById('counter').textContent = 'Done!';
-                    // Disable NoSleep when sequence ends
-                    noSleep.disable();
+                    try {
+                        noSleep.disable();
+                        console.log('NoSleep disabled');
+                    } catch (error) {
+                        console.error('NoSleep disable failed:', error);
+                    }
                     return;
                 }
 
@@ -118,6 +133,7 @@
                 
                 const counterInterval = setInterval(updateCounter, 1000);
 
+                console.log(`Round ${round} starting...`);
                 speak("breath in");
                 setTimeout(() => speak("relax"), 1000);
                 if (round === 0) {
@@ -147,7 +163,8 @@
         }
 
         window.speechSynthesis.onvoiceschanged = () => {
-            console.log('Voices loaded');
+            console.log('Voices loaded:', window.speechSynthesis.getVoices());
         };
     </script>
 </body>
+</html>
