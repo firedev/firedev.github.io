@@ -41,7 +41,7 @@ The output is too human-readable so let's throw in some options to dumb it down:
   No linebreaks between results in different files
 ```
 
-Thats a quite a list of options but I like `ag`. Now let's pipe the output
+That's quite a list of options but I like `ag`. Now let's pipe the output
 through `sort --uniq -f` to remove the duplicates ignoring the case and count the lines with `wc -l`:
 
 ```sh
@@ -120,7 +120,7 @@ DATA is a File that contains the data section of the executed file.
 To create a data section use __END__
 ```
 
-We can simply use the reset of the executable file as a `DATA` enumerator. Cool, eh?
+We can simply use the rest of the executable file as a `DATA` enumerator. Cool, eh?
 ```ruby
 # colors.rb
 puts DATA.count
@@ -135,7 +135,7 @@ __END__
 
 For this project I will use [Paleta](https://github.com/jordanstephens/paleta) gem.
 We have the colors loaded into the `DATA` enumerator. The only thing that's left is to
-create some lambdas accoding to the plan.
+create some lambdas according to the plan.
 
 ### 1. Convert colors to full hex
 To do that we are going to feed the color to Paleta and get hex value back. The only thing we need to add

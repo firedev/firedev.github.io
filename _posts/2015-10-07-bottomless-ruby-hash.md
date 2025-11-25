@@ -124,7 +124,7 @@ params
 
 Okay, that part is solved, now lets tie it a little tighter so we don't need to
 create lambda beforehand. Ruby Hash sports `default_proc` method that can
-be used to access the block hash was initialized with. Thank makes it super sweet,
+be used to access the block hash was initialized with. That makes it super sweet,
 thanks Pavel for pointing me on that.
 
 ```ruby

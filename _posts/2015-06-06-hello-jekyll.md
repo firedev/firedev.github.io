@@ -15,7 +15,7 @@ to the world. Fully autonomous this time. Surprisingly there are not that many
 options available for blogging...
 
 Why not Wordpress? I never really liked it, between these options and plugins
-there seem to be little left to the actual content creation.
+there seems to be little left to the actual content creation.
 This weekend I have decided to finally get back to blogging.
 
 Having two kids and being a freelancer I don't have much time to fight technology.
@@ -29,7 +29,7 @@ time and Middleman. Jekyll had less options and less of everything so it
 sounded like a nice fit for a weekend project. And here it is.
 
 ## Partials in Jekyll
-One of the tricky part was rendering of posts. In rails I would throw in a partial.
+One of the tricky parts was rendering of posts. In rails I would throw in a partial.
 Since there are no partials in Jekyll I had to use includes.
 
 This is what I have in my `posts` and `index` pages:

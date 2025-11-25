@@ -69,15 +69,15 @@ m { @stock_movement_positions.map(&:product_id); }
 ```
 
 You have to be especially careful inside of the loops. This is not a rule of the thumb
-but when dealing with database I would conside using `pluck`. Or `select`.
+but when dealing with database I would consider using `pluck`. Or `select`.
 
 `select` is a different beast. Affected by Rails Magic it can act differently
 things depending on its position in `ActiveRecord` chain. Plus there are different
 flavors of `select` in `ActiveRecord::Association::CollectionProxy`, `ActiveRecord::QueryMethods` etc.
 
-What is important to rememeber is that `select` might return instanciated real-only objects
-with paritally filled attributes. It can also return a sub-query, but that's another topic.
-Armed with this knowlegde, let's find a better specimen for refactoring.
+What is important to remember is that `select` might return instantiated read-only objects
+with partially filled attributes. It can also return a sub-query, but that's another topic.
+Armed with this knowledge, let's find a better specimen for refactoring.
 
 ## A better example
 

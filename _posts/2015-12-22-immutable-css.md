@@ -54,7 +54,7 @@ After that styling the transparent menu is trivial:
 
 ## But CSS Modules...?
 
-Everybody seem to have high hopes for CSS modules. Let's clear this up. I am
+Everybody seems to have high hopes for CSS modules. Let's clear this up. I am
 not opposed to idea and they are great. However I would argue that CSS modules
 is a file organization concept mostly. As everything is compiled into a big
 pile of CSS in the browser.
@@ -197,9 +197,9 @@ I'd love to show more examples, production code or answer questions. Here are
 some links to digest meanwhile:
 
 * [Gravitons](http://jxnblk.com/gravitons) — A base set of simple utilities to start with
-* [BASSCSS](http://basscss.com) — The actual library I am suggestion to use
+* [BASSCSS](http://basscss.com) — The actual library I am suggesting to use
 * [BASSCSS-FIX](http://github.com/firedev/basscss-fix) — Some things I wasn't content with
-* [ReBASS](http://jxnblk.com/rebass) — BASSCSS-based React componets (`Row`, `Column`, `Button` etc)
+* [ReBASS](http://jxnblk.com/rebass) — BASSCSS-based React components (`Row`, `Column`, `Button` etc)
 * [Tachyons](http://tachyons.io) — Another tiny library with similar ideas
 * [Solid](http://solid.buzzfeed.com) — Buzzfeed implementation
 * [Styling React Components in JavaScript](https://www.youtube.com/watch?v=0aBv8dsZs84) — Embedding is disabled but the fun part starts in the second half of the video.
