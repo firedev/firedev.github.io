@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Sequence with Warm-up</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0; /* Light background to confirm rendering */
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #counter {
+            margin: 20px;
+            font-size: 24px;
+            font-family: monospace;
+        }
+        #status {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        #description {
+            max-width: 600px;
+            margin: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HIGH VOLUME LOW INTENSITY STATIC 20x2:00</h1>
+    <div id="description">
+        This session enhances CO2 tolerance through repeated breath holds, preparing you for the demands of diving. It provides ample opportunities to practice essential skills: taking a deep final breath, staying relaxed as contractions start, feeling a few contractions, and gaining control over them.
+    </div>
+    <button onclick="startSequence()">Start Sequence</button>
+    <div id="counter">0: 00:00</div>
+    <div id="status">Waiting to start...</div>
+
+    <!-- Include NoSleep.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/nosleep.js@1.0.0/dist/NoSleep.min.js"></script>
+
+    <script>
+        // Initialize NoSleep with a fallback
+        const noSleep = (typeof NoSleep !== 'undefined') ? new NoSleep() : {
+            enable: function() { console.log('NoSleep not available, screen may lock'); },
+            disable: function() { console.log('NoSleep disable called (fallback)'); }
+        };
+
+        // Log to confirm script is running
+        console.log('Page loaded successfully');
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.volume = 1;
+                utterance.rate = 1;
+                utterance.pitch = 1;
+                
+                const voices = window.speechSynthesis.getVoices();
+                const karenVoice = voices.find(voice => voice.name === 'Karen') || 
+                                voices.find(voice => voice.lang === 'en-US') || 
+                                voices[0];
+                utterance.voice = karenVoice;
+                
+                window.speechSynthesis.speak(utterance);
+                return utterance;
+            } else {
+                alert('Browser doesn\'t support speech synthesis!');
+            }
+        }
+
+        function updateStatus(text) {
+            document.getElementById('status').textContent = text;
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function startSequence() {
+            console.log('Sequence starting...');
+            updateStatus('Starting sequence...');
+            
+            try {
+                noSleep.enable();
+                console.log('NoSleep enabled');
+            } catch (error) {
+                console.error('NoSleep enable failed:', error);
+            }
+
+            let round = 0;
+            const maxRounds = 20;
+            let roundStartTime;
+
+            function updateCounter() {
+                const elapsed = Math.floor((Date.now() - roundStartTime) / 1000);
+                if (elapsed <= 120) {
+                    document.getElementById('counter').textContent = `${round}: ${formatTime(elapsed)}`;
+                }
+            }
+
+            function runRound() {
+                if (round > maxRounds) {
+                    updateStatus('Sequence completed!');
+                    document.getElementById('counter').textContent = 'Done!';
+                    try {
+                        noSleep.disable();
+                        console.log('NoSleep disabled');
+                    } catch (error) {
+                        console.error('NoSleep disable failed:', error);
+                    }
+                    return;
+                }
+
+                updateStatus(`Running ${round === 0 ? 'warm-up' : 'round ' + round}`);
+                roundStartTime = Date.now();
+                
+                const counterInterval = setInterval(updateCounter, 1000);
+
+                console.log(`Round ${round} starting...`);
+                speak("breath in");
+                setTimeout(() => speak("relax"), 1000);
+                if (round === 0) {
+                    setTimeout(() => speak("Two minutes of relaxation starts now. Get comfortable laying on a bed, on a yoga mat, or on the couch"), 2000);
+                } else {
+                    setTimeout(() => speak(`round ${round}`), 2000);
+                }
+                setTimeout(() => speak("1 minute"), 60000);
+                setTimeout(() => speak("1:30"), 90000);
+                setTimeout(() => speak("1:40"), 100000);
+                setTimeout(() => speak("1:45"), 105000);
+                setTimeout(() => speak("1:50"), 110000);
+                setTimeout(() => speak("5"), 115000);
+                setTimeout(() => speak("4"), 116000);
+                setTimeout(() => speak("3"), 117000);
+                setTimeout(() => speak("2"), 118000);
+                setTimeout(() => speak("1"), 119000);
+                
+                setTimeout(() => {
+                    clearInterval(counterInterval);
+                    round++;
+                    runRound();
+                }, 120000);
+            }
+
+            runRound();
+        }
+
+        window.speechSynthesis.onvoiceschanged = () => {
+            console.log('Voices loaded:', window.speechSynthesis.getVoices());
+        };
+
+        // Ensure DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM fully loaded');
+        });
+    </script>
+</body>
+</html>

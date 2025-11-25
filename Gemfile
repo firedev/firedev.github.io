@@ -19,3 +19,11 @@ end
 gem "pygments.rb"
 gem "rake"
 gem "rouge"
+
+gem "csv", "~> 3.3"
+
+gem "base64", "~> 0.2.0"
+
+gem "bigdecimal", "~> 3.1"
+
+gem "webrick", "~> 1.9"

@@ -269,9 +269,9 @@ One thing I would like to discuss first. As Sandi Metz says:
 well, something along these lines at least.
 
 So I claim that I don't need to inject dependenices for other ActiveRecord
-classes since they are not going to change. And if they will mist likely my
+classes since they are not going to change. And if they will most likely my
 service will be deleted. Thus I can get rid of `initialize`. Of course in more
-complex screnario this is not the best way to go, but this is a simple query
+complex scenario this is not the best way to go, but this is a simple query
 object so for the sake of refactoring experiment I think this will pass.
 
 I think the rule of thumb here is similar to what Piotr is suggesting:

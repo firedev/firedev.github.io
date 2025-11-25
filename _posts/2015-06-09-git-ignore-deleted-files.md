@@ -7,7 +7,7 @@ tags:
 image: logos/git.png
 background_size: contain
 ---
-Sometimes working with other people you with you didn't have some of the files
+Sometimes working with other people you wish you didn't have some of the files
 in repository because they are getting in the way of your settings. `.ruby-version`
 for instance.
 

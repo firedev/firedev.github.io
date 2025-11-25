@@ -75,7 +75,7 @@ the system in the first place. Imagine an app with icon buttons:
 
 Years pass and it gets obsolete quickly. You start having dynamic buttons so
 as a simplest solution you're changing `src` attributes. Then one day you're
-deciding that this is enough mess and move stying to CSS:
+deciding that this is enough mess and move styling to CSS:
 
 ```css
 button.ok {

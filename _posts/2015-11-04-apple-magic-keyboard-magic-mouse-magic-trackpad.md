@@ -105,7 +105,7 @@ version one.
 
 The trackpad is a new beast and comes with Force Touch. Where do I start? The
 body now flatter and shaped just like the new keyboard. The old Magic Trackpad
-used micro-switches in it's feet so you couldn't use it on soft surfaces
+used micro-switches in its feet so you couldn't use it on soft surfaces
 without having tap-to-click enabled. The new one doesn't have moving parts at
 all (there is a power switch though). So theoretically it could be used for
 couch surfing or controlling the new Apple TV, but I didn't try either.
@@ -120,7 +120,7 @@ face of someone you don't like on Internet. Preview or rename files and do some
 other stuff here and there with deeper press. But it all seemed gimmicky and
 not really supported anywhere outside of Apple's own applications. Plus it hits
 you off-balance when you are dragging something for a longer distance and
-accidentally hitting the "second base" from time to time. Did I even pressed it
+accidentally hitting the "second base" from time to time. Did I even press it
 hard enough before that?
 
 The other nitpick is that you can't really reliably press on the very edge of

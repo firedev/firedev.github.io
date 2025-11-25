@@ -10,7 +10,7 @@ background_size: cover
 ---
 
 I don't know about you but I kind of grown to like Carrierwave. Yes, there are
-other uploaders on the block but that's not the point. Everybody I know are using
+other uploaders on the block but that's not the point. Everybody I know is using
 it wrong.
 
 If you are storing images on your own server I bet you are always concerned about

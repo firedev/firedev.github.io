@@ -121,7 +121,7 @@ If you listen to your developers, especially the newcomers, they are going to te
 
 # 3. Project
 
-The project should be a friend, not a foe. It should tender to your code while protecting itself from defects with failing tests.
+The project should be a friend, not a foe. It should tend to your code while protecting itself from defects with failing tests.
 
 ## Make it visible
 First, make sure you get all notifications and see everything that is going on before turning them off and filtering them in any way.

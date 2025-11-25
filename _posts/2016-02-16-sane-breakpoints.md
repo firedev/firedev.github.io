@@ -16,7 +16,7 @@ custom_css: |
 
 I see different approaches to breakpoints and responsive design.
 Most of the time they are over-complicated and only making things worse.
-So here's mine suggestion for device breakpoints that are in touch
+So here's my suggestion for device breakpoints that are in touch
 with reality.
 
 _And if my day keeps goin' this way I just might... break somethin' tonight_
@@ -43,7 +43,7 @@ A saner approach is to let some constraints in.
 
 That is pretty much it. There are some tricky parts, though.
 
-Use 1:1 viewport, this is important if you don't want to pulling your hair out later.
+Use 1:1 viewport, this is important if you don't want to pull your hair out later.
 This way you will always work with something you're looking at, not a scaled version of
 your website.
 
@@ -68,7 +68,7 @@ All your styles should look like this:
 ```
 ## Devices
 
-But we can't use only `min-width`! We want out site to look best on mobile devices
+But we can't use only `min-width`! We want our site to look best on mobile devices
 We have to use `orientation: portrait` and `landscape`! Maybe not. Think what
 is exactly you are trying to achieve?
 
@@ -106,7 +106,7 @@ When people think about breakpoints they often imagining them as some
 magical bullet that can detect if you are using an iPad.
 
 **I am referring only to `@media (min-width: $variable)` well-behaved
-breakpoints as this are the only ones you should use.**
+breakpoints as these are the only ones you should use.**
 
 Think of a breakpoint as a fence. Like a fence it has two sides, everything
 that is smaller than the specified width and everything that is equal or larger
@@ -174,7 +174,7 @@ room.
 |                 | **560px** | iPad Portrait    | **880px** | iPad Pro Portrait | **1040px** | Notebook / Desktop |
 
 I have chosen these after some consideration, but nothing is written in stone,
-you can change them as you see fit for your project. Them menu might be not
+you can change them as you see fit for your project. The menu might not be
 fitting in only this much or something breaks.
 
 Anyway here are the breakpoints in SCSS format, I tried to round them up a little bit:

@@ -28,7 +28,7 @@ Even if it's time to jump on the F-train, this is a cool experiment.
 ### BASSCSS
 Another sweet concept that offers a bunch of immutable css styles that allow you to
 work by writing everything in HTML. Check [the examples](http://www.basscss.com/).
-It offer a grid of it's own and the opportunity to combine the best of both worlds
+It offers a grid of its own and the opportunity to combine the best of both worlds
 is too good to pass up.
 
 ### nanogrid
