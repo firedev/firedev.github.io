@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>firedev.com</title>
-    <description>Building the internet one site at a time
+    <description>Full-stack developer. Ruby, Rails, React. 20+ years of shipping.
 </description>
     <link>https://firedev.com/</link>
     <atom:link href="https://firedev.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 09 Aug 2024 17:51:56 +0300</pubDate>
-    <lastBuildDate>Fri, 09 Aug 2024 17:51:56 +0300</lastBuildDate>
-    <generator>Jekyll v4.3.3</generator>
+    <pubDate>Wed, 11 Mar 2026 16:21:16 +0700</pubDate>
+    <lastBuildDate>Wed, 11 Mar 2026 16:21:16 +0700</lastBuildDate>
+    <generator>Jekyll v4.4.1</generator>
     
       <item>
         <title>Develop for Joy</title>
@@ -45,7 +45,7 @@
 &lt;h2 id=&quot;hear-the-woes&quot;&gt;Hear the woes&lt;/h2&gt;
 &lt;p&gt;Developer happiness is subjective, so you can use WTFs/day. Take note and let the person improve something he feels strongly about. Sometimes it turns out the whole team wants the change, just no one is saying anything. Imagine being triggered by something multiple times a day burning brain fuel and getting stressed.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://www.osnews.com/images/comics/wtfm.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://www.osnews.com/images/comics/wtfm.jpg&quot; alt=&quot;WTF per minute code quality measurement&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;stressless-environment&quot;&gt;Stressless environment&lt;/h2&gt;
 &lt;p&gt;It is not just thinking that gets harder under stress. It is proven that &lt;a href=&quot;https://www.healthline.com/health-news/how-stress-can-shrink-your-brain&quot;&gt;stress shrinks our prefrontal cortex&lt;/a&gt;. In other words, you become dumber and stay that way. This is counterproductive. Under stress, the vision narrows and you turn into a monkey armed with a typewriter.&lt;/p&gt;
@@ -58,7 +58,7 @@
 &lt;p&gt;We are all born with the right to be happy, love, and enjoy our life and our work. The organization should help people get in the flow. Just let go of the people you don’t trust and make work better for the ones you do.&lt;/p&gt;
 
 &lt;h1 id=&quot;hiring&quot;&gt;Hiring&lt;/h1&gt;
-&lt;p&gt;When I hire people I ask them what they are good at, what they like to do, and what they want to do. Since the work is chopped down into small parts everybody since they always work on something they&lt;/p&gt;
+&lt;p&gt;When I hire people I ask them what they are good at, what they like to do, and what they want to do. Since the work is chopped down into small parts, everybody gets to work on something they enjoy.&lt;/p&gt;
 
 &lt;h2 id=&quot;close-tickets&quot;&gt;Close tickets&lt;/h2&gt;
 &lt;p&gt;There are many metrics of team productivity. But the main metric is closed tickets. The proof of work is actual work. But here is the tricky part, what makes a good ticket?&lt;/p&gt;
@@ -197,7 +197,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;p&gt;Share what worked for you. And before we part ways, please remember — we were born to have fun. Develop for joy.&lt;/p&gt;
 
         </description>
-        <pubDate>Mon, 06 Mar 2023 00:00:00 +0300</pubDate>
+        <pubDate>Mon, 06 Mar 2023 00:00:00 +0700</pubDate>
         <link>https://firedev.com/posts/develop-for-joy/</link>
         <guid isPermaLink="true">https://firedev.com/posts/develop-for-joy/</guid>
         
@@ -734,7 +734,7 @@ This helps to break down complex tasks and measure team velocity. And it looks c
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
         </description>
-        <pubDate>Sun, 07 Nov 2021 00:00:00 +0300</pubDate>
+        <pubDate>Sun, 07 Nov 2021 00:00:00 +0700</pubDate>
         <link>https://firedev.com/posts/boring-rails/</link>
         <guid isPermaLink="true">https://firedev.com/posts/boring-rails/</guid>
         
@@ -1033,7 +1033,7 @@ found in CSS Frameworks everywhere. Start small, use an
 &lt;a href=&quot;http://firedev.com/posts/immutable-css/&quot;&gt;Immutable CSS&lt;/a&gt; library and have fun.&lt;/p&gt;
 
         </description>
-        <pubDate>Tue, 16 Feb 2016 00:00:00 +0200</pubDate>
+        <pubDate>Tue, 16 Feb 2016 00:00:00 +0700</pubDate>
         <link>https://firedev.com/posts/sane-breakpoints/</link>
         <guid isPermaLink="true">https://firedev.com/posts/sane-breakpoints/</guid>
         
@@ -1119,7 +1119,7 @@ as a simplest solution you’re changing &lt;code class=&quot;language-plaintext
 deciding that this is enough mess and move stying to CSS:&lt;/p&gt;
 
 &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.ok&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;url(icons/ok.gif)&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;icons&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ok&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1136,8 +1136,8 @@ deciding that this is enough mess and move stying to CSS:&lt;/p&gt;
 &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;@mixin&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nl&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;32px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;nl&quot;&gt;background-position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;8px&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;url(icons/#{$icon}.gif)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;icons&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;#{$&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.gif&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;nc&quot;&gt;.icon-ok&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;err&quot;&gt;@include&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;icon(ok);&lt;/span&gt;
@@ -1316,7 +1316,7 @@ overall look and feel. And the best part is – now you can compose:&lt;/p&gt;
 &lt;a href=&quot;http://fontawesome.io/&quot;&gt;&lt;i class=&quot;fa fa-link pr1&quot;&gt;&lt;/i&gt;Font Awesome&lt;/a&gt;&lt;/p&gt;
 
         </description>
-        <pubDate>Sun, 24 Jan 2016 00:00:00 +0200</pubDate>
+        <pubDate>Sun, 24 Jan 2016 00:00:00 +0700</pubDate>
         <link>https://firedev.com/posts/atomic-icons/</link>
         <guid isPermaLink="true">https://firedev.com/posts/atomic-icons/</guid>
         
@@ -1481,7 +1481,7 @@ for the menu. When you decide you need more you can continue.&lt;/p&gt;
 
 &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.menu&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xxx&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xxx&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xxx&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1549,7 +1549,7 @@ grunt
 &lt;/ul&gt;
 
         </description>
-        <pubDate>Tue, 22 Dec 2015 00:00:00 +0200</pubDate>
+        <pubDate>Tue, 22 Dec 2015 00:00:00 +0700</pubDate>
         <link>https://firedev.com/posts/immutable-css/</link>
         <guid isPermaLink="true">https://firedev.com/posts/immutable-css/</guid>
         
@@ -1715,7 +1715,7 @@ USB-C across the board though.&lt;/p&gt;
 The other accessories is something for you to decide if you need them or not.&lt;/p&gt;
 
         </description>
-        <pubDate>Wed, 04 Nov 2015 00:00:00 +0300</pubDate>
+        <pubDate>Wed, 04 Nov 2015 00:00:00 +0700</pubDate>
         <link>https://firedev.com/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</link>
         <guid isPermaLink="true">https://firedev.com/posts/apple-magic-keyboard-magic-mouse-magic-trackpad/</guid>
         
@@ -2001,7 +2001,7 @@ what else.&lt;/p&gt;
 found anything useful and share some of your tricks.&lt;/p&gt;
 
         </description>
-        <pubDate>Sun, 01 Nov 2015 00:00:00 +0300</pubDate>
+        <pubDate>Sun, 01 Nov 2015 00:00:00 +0700</pubDate>
         <link>https://firedev.com/posts/mac-as-ide/</link>
         <guid isPermaLink="true">https://firedev.com/posts/mac-as-ide/</guid>
         
@@ -2342,7 +2342,7 @@ controllers. Please let me know if something could be improved.&lt;/p&gt;
 &lt;p&gt;Thanks.&lt;/p&gt;
 
         </description>
-        <pubDate>Sat, 17 Oct 2015 00:00:00 +0300</pubDate>
+        <pubDate>Sat, 17 Oct 2015 00:00:00 +0700</pubDate>
         <link>https://firedev.com/posts/functional-service-objects-on-rails/</link>
         <guid isPermaLink="true">https://firedev.com/posts/functional-service-objects-on-rails/</guid>
         
@@ -2745,7 +2745,7 @@ bottomless_hash &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1.0&lt;span clas
 &lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Gist &lt;a href=&quot;https://gist.github.com/firedev/9de91e245f70c2e963e4&quot;&gt;bottomless_hash.rb&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
 
         </description>
-        <pubDate>Sat, 10 Oct 2015 00:00:00 +0300</pubDate>
+        <pubDate>Sat, 10 Oct 2015 00:00:00 +0700</pubDate>
         <link>https://firedev.com/posts/making-bottomless-hash-ruby-gem/</link>
         <guid isPermaLink="true">https://firedev.com/posts/making-bottomless-hash-ruby-gem/</guid>
         
@@ -3002,7 +3002,7 @@ nested structures from the outside world.&lt;/p&gt;
 &lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt; Gist &lt;a href=&quot;https://gist.github.com/firedev/9de91e245f70c2e963e4&quot;&gt;bottomless_hash.rb&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
 
         </description>
-        <pubDate>Wed, 07 Oct 2015 00:00:00 +0300</pubDate>
+        <pubDate>Wed, 07 Oct 2015 00:00:00 +0700</pubDate>
         <link>https://firedev.com/posts/bottomless-ruby-hash/</link>
         <guid isPermaLink="true">https://firedev.com/posts/bottomless-ruby-hash/</guid>
         
