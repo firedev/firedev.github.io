@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>firedev — One Developer. Agency Output.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { fire: '#f63', ink: '#111' },
+          fontFamily: {
+            serif: ['Libre Baskerville', 'Georgia', 'Times New Roman', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .table-fade { position: relative; }
+    .table-fade::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 2rem;
+      background: linear-gradient(to right, transparent, #fafafa);
+      pointer-events: none;
+    }
+    @media (min-width: 768px) { .table-fade::after { display: none; } }
+  </style>
+</head>
+<body class="bg-[#fafafa] text-ink antialiased">
+
+  <!-- Header -->
+  <header class="max-w-5xl mx-auto px-6 md:px-8 pt-8 pb-6">
+    <div class="flex justify-between items-baseline">
+      <span class="font-mono text-fire text-sm tracking-wide">firedev</span>
+      <a href="mailto:nick@firedev.com" class="font-mono text-xs text-ink/50 hover:text-fire transition-colors">nick@firedev.com</a>
+    </div>
+    <hr class="border-ink mt-6">
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-5xl mx-auto px-6 md:px-8 pt-16 md:pt-28 pb-20 md:pb-32">
+    <div class="max-w-2xl">
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-[5.5rem] font-bold leading-[1.05] tracking-tight mb-10">One developer.<br>Agency output.</h1>
+      <p class="font-serif text-xl md:text-2xl leading-relaxed text-ink/70 max-w-lg">No project managers. No coordination overhead. One senior engineer with AI delivers what takes a team of five.</p>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="max-w-5xl mx-auto px-6 md:px-8 pb-24 md:pb-32">
+    <hr class="border-ink mb-12">
+    <div class="table-fade overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
+      <table class="w-full min-w-[540px] border-collapse">
+        <thead>
+          <tr>
+            <th class="font-mono text-xs text-ink/40 font-normal tracking-wider text-left pb-4 pr-6 uppercase"></th>
+            <th class="font-mono text-xs text-ink/40 font-normal tracking-wider text-left pb-4 pr-6 uppercase">5-Person Agency</th>
+            <th class="font-mono text-xs text-ink/40 font-normal tracking-wider text-left pb-4 uppercase">firedev</th>
+          </tr>
+        </thead>
+        <tbody class="font-serif">
+          <tr class="border-t border-ink/10">
+            <td class="py-4 pr-6 text-ink/60">People involved</td>
+            <td class="py-4 pr-6">5 &ndash; 8</td>
+            <td class="py-4 text-fire font-bold">1</td>
+          </tr>
+          <tr class="border-t border-ink/10">
+            <td class="py-4 pr-6 text-ink/60">Decision makers</td>
+            <td class="py-4 pr-6">2 &ndash; 3</td>
+            <td class="py-4 text-fire font-bold">1</td>
+          </tr>
+          <tr class="border-t border-ink/10">
+            <td class="py-4 pr-6 text-ink/60">Communication overhead</td>
+            <td class="py-4 pr-6">High</td>
+            <td class="py-4 text-fire font-bold">Zero</td>
+          </tr>
+          <tr class="border-t border-ink/10">
+            <td class="py-4 pr-6 text-ink/60">Weekly meetings</td>
+            <td class="py-4 pr-6">3 &ndash; 5 hours</td>
+            <td class="py-4 text-fire font-bold">1 hour</td>
+          </tr>
+          <tr class="border-t border-ink/10">
+            <td class="py-4 pr-6 text-ink/60">Time to first prototype</td>
+            <td class="py-4 pr-6">4 &ndash; 6 weeks</td>
+            <td class="py-4 text-fire font-bold">3 &ndash; 5 days</td>
+          </tr>
+          <tr class="border-t border-ink/10">
+            <td class="py-4 pr-6 text-ink/60">Monthly cost</td>
+            <td class="py-4 pr-6">$40 &ndash; 80K</td>
+            <td class="py-4 text-fire font-bold">Fraction</td>
+          </tr>
+          <tr class="border-t border-ink/10">
+            <td class="py-4 pr-6 text-ink/60">Code reviewer</td>
+            <td class="py-4 pr-6">Junior dev</td>
+            <td class="py-4 text-fire font-bold">20-year veteran</td>
+          </tr>
+          <tr class="border-t border-ink/10 border-b border-ink/10">
+            <td class="py-4 pr-6 text-ink/60">Accountability</td>
+            <td class="py-4 pr-6">Diffused</td>
+            <td class="py-4 text-fire font-bold">Direct</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- The Math -->
+  <section class="max-w-5xl mx-auto px-6 md:px-8 pb-24 md:pb-32">
+    <hr class="border-ink mb-12">
+    <h2 class="font-serif text-3xl md:text-4xl font-bold mb-12">The math is simple</h2>
+    <div class="font-mono text-base md:text-lg leading-loose space-y-2 text-ink/80">
+      <p>Agency team&nbsp;&nbsp;&nbsp;&nbsp;= 5 people &times; overhead &times; margin = <span class="text-ink">$$$$$</span></p>
+      <p>firedev + AI&nbsp;&nbsp;&nbsp;= 1 person &times; 10x tools &times; 0 overhead = <span class="text-fire">$$</span></p>
+      <p>Your savings&nbsp;&nbsp;&nbsp;= <span class="text-fire font-bold">significant</span></p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="max-w-5xl mx-auto px-6 md:px-8 pb-24 md:pb-32">
+    <hr class="border-ink mb-12">
+    <h2 class="font-serif text-3xl md:text-4xl font-bold mb-16">How it works</h2>
+    <div class="space-y-10 max-w-xl">
+      <div class="flex gap-6 items-baseline">
+        <span class="font-mono text-3xl md:text-4xl text-fire font-bold leading-none shrink-0">1.</span>
+        <p class="font-serif text-lg md:text-xl text-ink/80">I design the architecture.</p>
+      </div>
+      <div class="flex gap-6 items-baseline">
+        <span class="font-mono text-3xl md:text-4xl text-fire font-bold leading-none shrink-0">2.</span>
+        <p class="font-serif text-lg md:text-xl text-ink/80">AI builds within my guardrails.</p>
+      </div>
+      <div class="flex gap-6 items-baseline">
+        <span class="font-mono text-3xl md:text-4xl text-fire font-bold leading-none shrink-0">3.</span>
+        <p class="font-serif text-lg md:text-xl text-ink/80">I review every line.</p>
+      </div>
+      <div class="flex gap-6 items-baseline">
+        <span class="font-mono text-3xl md:text-4xl text-fire font-bold leading-none shrink-0">4.</span>
+        <p class="font-serif text-lg md:text-xl text-ink/80">You get working software weekly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected work -->
+  <section class="max-w-5xl mx-auto px-6 md:px-8 pb-24 md:pb-32">
+    <hr class="border-ink mb-12">
+    <h2 class="font-serif text-3xl md:text-4xl font-bold mb-12">Selected work</h2>
+    <div>
+      <div class="py-5 border-b border-ink/10">
+        <p class="font-serif text-lg"><span class="font-bold">Hubstaff</span> &mdash; SaaS workforce management &mdash; <span class="font-mono text-sm text-ink/50">Rails, Vue</span></p>
+      </div>
+      <div class="py-5 border-b border-ink/10">
+        <p class="font-serif text-lg"><span class="font-bold">eApteka (Sber)</span> &mdash; Enterprise pharmacy platform &mdash; <span class="font-mono text-sm text-ink/50">Rails, PostgreSQL, React</span></p>
+      </div>
+      <div class="py-5 border-b border-ink/10">
+        <p class="font-serif text-lg"><span class="font-bold">Heartland Retail</span> &mdash; Cloud POS analytics &mdash; <span class="font-mono text-sm text-ink/50">React, D3</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-5xl mx-auto px-6 md:px-8 pt-8 pb-32 md:pb-40">
+    <hr class="border-ink mb-16">
+    <div class="max-w-md">
+      <h2 class="font-serif text-4xl md:text-5xl font-bold mb-8">Let's talk</h2>
+      <a href="mailto:nick@firedev.com" class="font-mono text-xl text-fire hover:text-ink transition-colors">nick@firedev.com</a>
+      <p class="font-serif text-ink/50 mt-6">Architecture review. Project estimate. No strings.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="max-w-5xl mx-auto px-6 md:px-8 pb-8">
+    <hr class="border-ink mb-6">
+    <p class="font-mono text-xs text-ink/30">firedev &mdash; development on fire &mdash; 2026</p>
+  </footer>
+
+</body>
+</html>
