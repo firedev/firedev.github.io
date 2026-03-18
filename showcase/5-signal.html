@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>firedev — development on fire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+          },
+          colors: {
+            fire: '#f63',
+            muted: '#888',
+            border: '#eee',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+      color: #f63;
+      font-weight: 300;
+      margin-left: 2px;
+    }
+
+    .project-item {
+      border-left: 3px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+    .project-item:hover {
+      border-left-color: #f63;
+    }
+
+    .blog-title {
+      transition: color 0.2s ease;
+    }
+    .blog-item:hover .blog-title {
+      color: #f63;
+    }
+
+    .contact-link {
+      transition: color 0.2s ease;
+    }
+    .contact-link:hover {
+      color: #f63;
+    }
+
+    .scroll-hint {
+      animation: drift 2.5s ease-in-out infinite;
+    }
+    @keyframes drift {
+      0%, 100% { transform: translateY(0); opacity: 0.4; }
+      50% { transform: translateY(6px); opacity: 0.7; }
+    }
+  </style>
+</head>
+<body class="bg-white text-[#111] font-sans text-[17px] leading-[1.7]">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 bg-white z-50 border-b border-border">
+    <div class="max-w-[700px] mx-auto px-6 h-14 flex items-center justify-between">
+      <a href="#home" class="text-fire font-semibold text-[15px] tracking-tight">firedev</a>
+      <div class="flex gap-8">
+        <a href="#projects" class="text-[#111] text-[14px] hover:text-fire contact-link">Projects</a>
+        <a href="#blog" class="text-[#111] text-[14px] hover:text-fire contact-link">Blog</a>
+        <a href="#contact" class="text-[#111] text-[14px] hover:text-fire contact-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content wrapper -->
+  <div class="max-w-[700px] mx-auto px-6">
+
+    <!-- Section 1: Home -->
+    <section id="home" class="pt-[40vh] pb-24">
+      <h1 class="font-semibold" style="font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1;">
+        I build software<span class="cursor-blink">|</span>
+      </h1>
+      <p class="mt-6 text-[#555] max-w-[600px] leading-[1.7]">
+        Full-stack architect. 20 years of shipping real products. Ruby, Rails, React, Vue, TypeScript, PostgreSQL. Now AI-augmented.
+      </p>
+      <p class="mt-4 text-muted text-[14px]">Nikolay Ostrovsky</p>
+
+      <div class="mt-12 text-center">
+        <span class="scroll-hint inline-block text-muted text-[20px]">&darr;</span>
+      </div>
+
+      <!-- Project previews -->
+      <div class="mt-16">
+        <div class="py-4 border-t border-border">
+          <p class="font-semibold text-[15px]">Furniture 3D Builder</p>
+          <p class="text-[#555] text-[14px]">Furniture configurator prototype</p>
+        </div>
+        <div class="py-4 border-t border-border">
+          <p class="font-semibold text-[15px]">Darkanoid</p>
+          <p class="text-[#555] text-[14px]">Browser arcade game demake</p>
+        </div>
+        <div class="py-4 border-t border-b border-border">
+          <p class="font-semibold text-[15px]">ASCII Art</p>
+          <p class="text-[#555] text-[14px]">BBS Scene art collection</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Projects -->
+    <section id="projects" class="py-24">
+      <h2 class="font-semibold text-[17px] mb-8">Projects</h2>
+
+      <a href="#" class="project-item block py-5 pl-4 border-t border-border">
+        <p class="font-semibold text-[15px]">Furniture 3D Builder</p>
+        <p class="text-muted text-[13px] mt-0.5">Three.js &middot; React</p>
+        <p class="text-[#555] text-[14px] mt-1">Furniture configurator prototype</p>
+      </a>
+
+      <a href="#" class="project-item block py-5 pl-4 border-t border-border">
+        <p class="font-semibold text-[15px]">Darkanoid</p>
+        <p class="text-muted text-[13px] mt-0.5">Lua &middot; PICO-8</p>
+        <p class="text-[#555] text-[14px] mt-1">Browser arcade game demake</p>
+      </a>
+
+      <a href="#" class="project-item block py-5 pl-4 border-t border-border">
+        <p class="font-semibold text-[15px]">Phuket Vegan</p>
+        <p class="text-muted text-[13px] mt-0.5">Design &middot; Branding</p>
+        <p class="text-[#555] text-[14px] mt-1">Health retreat brand identity</p>
+      </a>
+
+      <a href="#" class="project-item block py-5 pl-4 border-t border-b border-border">
+        <p class="font-semibold text-[15px]">ASCII Art</p>
+        <p class="text-muted text-[13px] mt-0.5">ASCII</p>
+        <p class="text-[#555] text-[14px] mt-1">BBS Scene art collection</p>
+      </a>
+    </section>
+
+    <!-- Section 3: Blog / Writing -->
+    <section id="blog" class="py-24">
+      <h2 class="font-semibold text-[17px] mb-8">Writing</h2>
+
+      <div class="blog-item flex items-baseline gap-6 py-3.5 border-t border-border cursor-default">
+        <span class="text-muted text-[13px] shrink-0 tabular-nums w-[72px]">Mar 2023</span>
+        <span class="blog-title text-[15px]">Develop for Joy</span>
+      </div>
+
+      <div class="blog-item flex items-baseline gap-6 py-3.5 border-t border-border cursor-default">
+        <span class="text-muted text-[13px] shrink-0 tabular-nums w-[72px]">Nov 2021</span>
+        <span class="blog-title text-[15px]">Boring Rails</span>
+      </div>
+
+      <div class="blog-item flex items-baseline gap-6 py-3.5 border-t border-border cursor-default">
+        <span class="text-muted text-[13px] shrink-0 tabular-nums w-[72px]">Feb 2016</span>
+        <span class="blog-title text-[15px]">Sane Breakpoints</span>
+      </div>
+
+      <div class="blog-item flex items-baseline gap-6 py-3.5 border-t border-border cursor-default">
+        <span class="text-muted text-[13px] shrink-0 tabular-nums w-[72px]">Jan 2016</span>
+        <span class="blog-title text-[15px]">Atomic Icons</span>
+      </div>
+
+      <div class="blog-item flex items-baseline gap-6 py-3.5 border-t border-border cursor-default">
+        <span class="text-muted text-[13px] shrink-0 tabular-nums w-[72px]">Dec 2015</span>
+        <span class="blog-title text-[15px]">Immutable CSS</span>
+      </div>
+
+      <div class="blog-item flex items-baseline gap-6 py-3.5 border-t border-b border-border cursor-default">
+        <span class="text-muted text-[13px] shrink-0 tabular-nums w-[72px]">Nov 2015</span>
+        <span class="blog-title text-[15px]">Mac as IDE</span>
+      </div>
+    </section>
+
+    <!-- Section 4: Contact -->
+    <section id="contact" class="py-24">
+      <h2 class="font-semibold text-[17px] mb-8">Contact</h2>
+
+      <p class="text-[15px] font-semibold">Nikolay Ostrovsky</p>
+      <p class="mt-2">
+        <a href="mailto:nick@firedev.com" class="text-[15px] text-[#111] contact-link">nick@firedev.com</a>
+      </p>
+
+      <div class="mt-6 flex gap-6">
+        <a href="https://github.com/firedev" class="text-[#111] text-[18px] contact-link" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://twitter.com/firedev" class="text-[#111] text-[18px] contact-link" aria-label="Twitter">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://stackoverflow.com/users/firedev" class="text-[#111] text-[18px] contact-link" aria-label="StackOverflow">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </div>
+
+      <p class="mt-6 text-muted text-[14px]">Available for architecture work.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-24 pb-16 text-center">
+      <span class="text-muted text-[13px]">firedev</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — SYSTEM.OVERRIDE</title>
+    <meta
+      name="description"
+      content="Nikolay Ostrovsky — The bottleneck was never the code. It was the system."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              mono: ['"Space Mono"', "monospace"],
+              sans: ['"Inter"', "sans-serif"],
+            },
+            colors: {
+              fire: "#f63",
+              terminal: "#0f0",
+              bg: "#0a0a0a",
+              cyan: "#0ff",
+              magenta: "#f0f",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Scanline overlay */
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.15) 0px,
+          transparent 1px,
+          transparent 2px
+        );
+      }
+
+      /* CRT screen flicker */
+      @keyframes flicker {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        92% {
+          opacity: 1;
+        }
+        93% {
+          opacity: 0.8;
+        }
+        94% {
+          opacity: 1;
+        }
+        96% {
+          opacity: 0.9;
+        }
+        97% {
+          opacity: 1;
+        }
+      }
+
+      body {
+        animation: flicker 4s infinite;
+      }
+
+      /* Glitch headline animation */
+      .glitch {
+        position: relative;
+        display: inline-block;
+      }
+
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .glitch::before {
+        color: #0ff;
+        z-index: -1;
+        animation: glitch-1 3s infinite linear alternate-reverse;
+      }
+
+      .glitch::after {
+        color: #f0f;
+        z-index: -2;
+        animation: glitch-2 2s infinite linear alternate-reverse;
+      }
+
+      @keyframes glitch-1 {
+        0% {
+          clip-path: inset(40% 0 61% 0);
+          transform: translate(-2px, -1px);
+          text-shadow: 2px 0 #0ff;
+        }
+        5% {
+          clip-path: inset(10% 0 85% 0);
+          transform: translate(1px, 2px);
+        }
+        10% {
+          clip-path: inset(80% 0 5% 0);
+          transform: translate(-1px, -3px);
+          text-shadow: -2px 0 #0ff;
+        }
+        15% {
+          clip-path: inset(25% 0 58% 0);
+          transform: translate(0px, 1px);
+        }
+        20% {
+          clip-path: inset(53% 0 24% 0);
+          transform: translate(-3px, 0px);
+          text-shadow: 2px 0 #0ff;
+        }
+        25% {
+          clip-path: inset(5% 0 70% 0);
+          transform: translate(2px, -2px);
+        }
+        30% {
+          clip-path: inset(65% 0 15% 0);
+          transform: translate(-1px, 3px);
+          text-shadow: -2px 0 #0ff;
+        }
+        35% {
+          clip-path: inset(35% 0 45% 0);
+          transform: translate(1px, -1px);
+        }
+        40% {
+          clip-path: inset(90% 0 2% 0);
+          transform: translate(-2px, 2px);
+          text-shadow: 2px 0 #0ff;
+        }
+        45% {
+          clip-path: inset(15% 0 72% 0);
+          transform: translate(3px, 0px);
+        }
+        50% {
+          clip-path: inset(48% 0 33% 0);
+          transform: translate(0px, -2px);
+          text-shadow: -2px 0 #0ff;
+        }
+        55% {
+          clip-path: inset(72% 0 10% 0);
+          transform: translate(-1px, 1px);
+        }
+        60% {
+          clip-path: inset(20% 0 55% 0);
+          transform: translate(2px, -3px);
+          text-shadow: 2px 0 #0ff;
+        }
+        65% {
+          clip-path: inset(58% 0 22% 0);
+          transform: translate(-3px, 2px);
+        }
+        70% {
+          clip-path: inset(8% 0 82% 0);
+          transform: translate(1px, 0px);
+          text-shadow: -2px 0 #0ff;
+        }
+        75% {
+          clip-path: inset(42% 0 38% 0);
+          transform: translate(0px, 3px);
+        }
+        80% {
+          clip-path: inset(85% 0 3% 0);
+          transform: translate(-2px, -1px);
+          text-shadow: 2px 0 #0ff;
+        }
+        85% {
+          clip-path: inset(30% 0 50% 0);
+          transform: translate(3px, 1px);
+        }
+        90% {
+          clip-path: inset(62% 0 18% 0);
+          transform: translate(-1px, -2px);
+          text-shadow: -2px 0 #0ff;
+        }
+        95% {
+          clip-path: inset(12% 0 75% 0);
+          transform: translate(2px, 3px);
+        }
+        100% {
+          clip-path: inset(50% 0 30% 0);
+          transform: translate(-2px, 0px);
+          text-shadow: 2px 0 #0ff;
+        }
+      }
+
+      @keyframes glitch-2 {
+        0% {
+          clip-path: inset(25% 0 58% 0);
+          transform: translate(2px, 1px);
+          text-shadow: -2px 0 #f0f;
+        }
+        5% {
+          clip-path: inset(75% 0 10% 0);
+          transform: translate(-1px, -2px);
+        }
+        10% {
+          clip-path: inset(5% 0 80% 0);
+          transform: translate(1px, 3px);
+          text-shadow: 2px 0 #f0f;
+        }
+        15% {
+          clip-path: inset(50% 0 30% 0);
+          transform: translate(-3px, -1px);
+        }
+        20% {
+          clip-path: inset(18% 0 65% 0);
+          transform: translate(0px, 2px);
+          text-shadow: -2px 0 #f0f;
+        }
+        25% {
+          clip-path: inset(68% 0 12% 0);
+          transform: translate(2px, -3px);
+        }
+        30% {
+          clip-path: inset(38% 0 42% 0);
+          transform: translate(-1px, 0px);
+          text-shadow: 2px 0 #f0f;
+        }
+        35% {
+          clip-path: inset(82% 0 5% 0);
+          transform: translate(3px, 1px);
+        }
+        40% {
+          clip-path: inset(12% 0 72% 0);
+          transform: translate(-2px, -2px);
+          text-shadow: -2px 0 #f0f;
+        }
+        45% {
+          clip-path: inset(55% 0 25% 0);
+          transform: translate(1px, 3px);
+        }
+        50% {
+          clip-path: inset(30% 0 48% 0);
+          transform: translate(0px, -1px);
+          text-shadow: 2px 0 #f0f;
+        }
+        55% {
+          clip-path: inset(88% 0 2% 0);
+          transform: translate(-3px, 2px);
+        }
+        60% {
+          clip-path: inset(42% 0 38% 0);
+          transform: translate(2px, 0px);
+          text-shadow: -2px 0 #f0f;
+        }
+        65% {
+          clip-path: inset(8% 0 78% 0);
+          transform: translate(-1px, -3px);
+        }
+        70% {
+          clip-path: inset(62% 0 20% 0);
+          transform: translate(3px, 1px);
+          text-shadow: 2px 0 #f0f;
+        }
+        75% {
+          clip-path: inset(22% 0 60% 0);
+          transform: translate(-2px, -1px);
+        }
+        80% {
+          clip-path: inset(48% 0 32% 0);
+          transform: translate(1px, 2px);
+          text-shadow: -2px 0 #f0f;
+        }
+        85% {
+          clip-path: inset(78% 0 8% 0);
+          transform: translate(0px, -2px);
+        }
+        90% {
+          clip-path: inset(15% 0 68% 0);
+          transform: translate(-1px, 3px);
+          text-shadow: 2px 0 #f0f;
+        }
+        95% {
+          clip-path: inset(58% 0 22% 0);
+          transform: translate(2px, -1px);
+        }
+        100% {
+          clip-path: inset(35% 0 45% 0);
+          transform: translate(-2px, 2px);
+          text-shadow: -2px 0 #f0f;
+        }
+      }
+
+      /* Nav scanline effect */
+      nav::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.1) 0px,
+          transparent 1px,
+          transparent 2px
+        );
+      }
+
+      /* Terminal cursor blink */
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .cursor-blink::after {
+        content: "█";
+        animation: blink 1s step-end infinite;
+        color: #0f0;
+      }
+
+      /* Card hover glow */
+      .card-glow {
+        transition:
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .card-glow:hover {
+        box-shadow:
+          0 0 20px rgba(0, 255, 0, 0.15),
+          inset 0 0 20px rgba(0, 255, 0, 0.05);
+        border-color: #0f0;
+      }
+
+      /* Terminal line hover */
+      .terminal-line {
+        transition:
+          background 0.2s ease,
+          padding-left 0.2s ease;
+      }
+
+      .terminal-line:hover {
+        background: rgba(0, 255, 0, 0.05);
+        padding-left: 1.5rem;
+      }
+
+      /* Stat number glow */
+      .stat-glow {
+        text-shadow:
+          0 0 10px rgba(255, 102, 51, 0.5),
+          0 0 30px rgba(255, 102, 51, 0.2);
+      }
+
+      /* CRT vignette */
+      .crt-vignette {
+        box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
+      }
+
+      /* Smooth section transitions */
+      section {
+        position: relative;
+      }
+
+      /* Glitch nav logo */
+      .nav-glitch {
+        position: relative;
+      }
+
+      .nav-glitch:hover::before {
+        content: "firedev";
+        position: absolute;
+        top: 0;
+        left: 2px;
+        color: #0ff;
+        z-index: -1;
+        animation: glitch-1 0.3s infinite linear;
+      }
+
+      .nav-glitch:hover::after {
+        content: "firedev";
+        position: absolute;
+        top: 0;
+        left: -2px;
+        color: #f0f;
+        z-index: -2;
+        animation: glitch-2 0.3s infinite linear;
+      }
+
+      /* Selection color */
+      ::selection {
+        background: rgba(0, 255, 0, 0.3);
+        color: #0f0;
+      }
+    </style>
+  </head>
+  <body class="bg-bg text-gray-300 font-sans antialiased">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-sm border-b border-gray-800/50"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <a
+          href="#home"
+          class="nav-glitch font-mono font-bold text-xl text-fire tracking-tight"
+          >firedev</a
+        >
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a
+            href="#shipped"
+            class="font-mono text-sm text-gray-600 hover:text-terminal transition-colors"
+            >// OUTPUT</a
+          >
+          <a
+            href="#thinking"
+            class="font-mono text-sm text-gray-600 hover:text-terminal transition-colors"
+            >// LOG</a
+          >
+          <a
+            href="#about"
+            class="font-mono text-sm text-gray-600 hover:text-terminal transition-colors"
+            >// SELF</a
+          >
+          <a
+            href="#contact"
+            class="font-mono text-sm text-gray-600 hover:text-terminal transition-colors"
+            >// PING</a
+          >
+        </div>
+
+        <!-- Mobile menu button -->
+        <button
+          id="menu-toggle"
+          class="md:hidden text-gray-600 hover:text-terminal transition-colors"
+        >
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden border-t border-gray-800/50 bg-bg/95 backdrop-blur-sm"
+      >
+        <div class="px-6 py-4 flex flex-col gap-4">
+          <a
+            href="#shipped"
+            class="mobile-link font-mono text-sm text-gray-600 hover:text-terminal transition-colors"
+            >// OUTPUT</a
+          >
+          <a
+            href="#thinking"
+            class="mobile-link font-mono text-sm text-gray-600 hover:text-terminal transition-colors"
+            >// LOG</a
+          >
+          <a
+            href="#about"
+            class="mobile-link font-mono text-sm text-gray-600 hover:text-terminal transition-colors"
+            >// SELF</a
+          >
+          <a
+            href="#contact"
+            class="mobile-link font-mono text-sm text-gray-600 hover:text-terminal transition-colors"
+            >// PING</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Section 1: Home -->
+    <section
+      id="home"
+      class="min-h-screen flex items-center justify-center relative crt-vignette"
+    >
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <!-- Glitch headline -->
+        <h1
+          class="text-5xl sm:text-6xl md:text-8xl font-bold font-mono text-white mb-8 leading-tight"
+        >
+          <span class="glitch" data-text="SYSTEM.OVERRIDE"
+            >SYSTEM.OVERRIDE</span
+          >
+        </h1>
+
+        <!-- Subtext -->
+        <p
+          class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-16 leading-relaxed font-light"
+        >
+          The old pipeline is the bottleneck. One architect with root access to
+          AI bypasses the entire queue. No tickets. No sprints. Just deployed.
+        </p>
+
+        <!-- Stats row -->
+        <div class="grid grid-cols-3 gap-8 max-w-xl mx-auto mb-16">
+          <div>
+            <div
+              class="text-4xl md:text-5xl font-mono font-bold text-fire stat-glow"
+            >
+              20+
+            </div>
+            <div
+              class="text-sm md:text-sm font-mono text-gray-600 mt-2 uppercase tracking-wider"
+            >
+              Years in the system
+            </div>
+          </div>
+          <div>
+            <div
+              class="text-4xl md:text-5xl font-mono font-bold text-fire stat-glow"
+            >
+              8
+            </div>
+            <div
+              class="text-sm md:text-sm font-mono text-gray-600 mt-2 uppercase tracking-wider"
+            >
+              Systems deployed
+            </div>
+          </div>
+          <div>
+            <div
+              class="text-4xl md:text-5xl font-mono font-bold text-fire stat-glow"
+            >
+              &infin;
+            </div>
+            <div
+              class="text-sm md:text-sm font-mono text-gray-600 mt-2 uppercase tracking-wider"
+            >
+              AI multiplier
+            </div>
+          </div>
+        </div>
+
+        <!-- Name -->
+        <p
+          class="font-mono text-gray-600 text-sm mb-8 tracking-widest uppercase"
+        >
+          guest@firedev ~
+        </p>
+
+        <!-- CTA -->
+        <a
+          href="#shipped"
+          class="inline-block font-mono text-terminal border border-terminal/30 px-8 py-3 hover:bg-terminal/10 hover:border-terminal transition-all duration-300 text-sm tracking-wide"
+        >
+          ls -la projects/
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 2: Shipped -->
+    <section id="shipped" class="py-24 md:py-32 relative">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Section header -->
+        <div class="mb-16">
+          <span class="font-mono text-terminal text-sm tracking-widest"
+            >// 02</span
+          >
+          <h2
+            class="text-3xl md:text-4xl font-mono font-bold text-white mt-2 cursor-blink"
+          >
+            // OUTPUT
+          </h2>
+        </div>
+
+        <!-- Project cards -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Card 1 -->
+          <div
+            class="card-glow border border-gray-800 bg-gray-900/30 p-8 group"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <span
+                class="font-mono text-terminal text-sm tracking-wider opacity-60"
+                >001</span
+              >
+              <i
+                class="fas fa-cube text-gray-700 group-hover:text-terminal/50 transition-colors"
+              ></i>
+            </div>
+            <h3 class="font-mono font-bold text-white text-lg mb-3">
+              Furniture 3D Builder
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Furniture configurator prototype for customer pre-orders
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="card-glow border border-gray-800 bg-gray-900/30 p-8 group"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <span
+                class="font-mono text-terminal text-sm tracking-wider opacity-60"
+                >002</span
+              >
+              <i
+                class="fas fa-gamepad text-gray-700 group-hover:text-terminal/50 transition-colors"
+              ></i>
+            </div>
+            <h3 class="font-mono font-bold text-white text-lg mb-3">
+              Darkanoid
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Browser arcade game demake for PICO-8 Fantasy Console
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="card-glow border border-gray-800 bg-gray-900/30 p-8 group"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <span
+                class="font-mono text-terminal text-sm tracking-wider opacity-60"
+                >003</span
+              >
+              <i
+                class="fas fa-leaf text-gray-700 group-hover:text-terminal/50 transition-colors"
+              ></i>
+            </div>
+            <h3 class="font-mono font-bold text-white text-lg mb-3">
+              Phuket Vegan
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Mind and Body Cleansing Retreat brand
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="card-glow border border-gray-800 bg-gray-900/30 p-8 group"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <span
+                class="font-mono text-terminal text-sm tracking-wider opacity-60"
+                >004</span
+              >
+              <i
+                class="fas fa-terminal text-gray-700 group-hover:text-terminal/50 transition-colors"
+              ></i>
+            </div>
+            <h3 class="font-mono font-bold text-white text-lg mb-3">
+              ASCII Art
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              BBS Scene art-pack collection
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Thinking -->
+    <section id="thinking" class="py-24 md:py-32 relative">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Section header -->
+        <div class="mb-16">
+          <span class="font-mono text-terminal text-sm tracking-widest"
+            >// 03</span
+          >
+          <h2
+            class="text-3xl md:text-4xl font-mono font-bold text-white mt-2 cursor-blink"
+          >
+            // LOG
+          </h2>
+        </div>
+
+        <!-- Blog posts as terminal output -->
+        <div class="border border-gray-800 bg-gray-900/20">
+          <!-- Terminal header bar -->
+          <div
+            class="border-b border-gray-800 px-6 py-3 flex items-center gap-2"
+          >
+            <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
+            <span class="font-mono text-gray-600 text-sm ml-3"
+              >~/log — tail -f brain.log</span
+            >
+          </div>
+
+          <div class="divide-y divide-gray-800/50">
+            <a
+              href="#"
+              class="terminal-line flex items-center justify-between px-6 py-4 group"
+            >
+              <div class="flex items-center gap-4">
+                <span class="font-mono text-terminal text-sm opacity-50"
+                  >$</span
+                >
+                <span
+                  class="font-mono text-gray-300 group-hover:text-white transition-colors text-sm md:text-base"
+                  >Develop for Joy</span
+                >
+              </div>
+              <span class="font-mono text-gray-600 text-sm md:text-sm"
+                >Mar 2023</span
+              >
+            </a>
+
+            <a
+              href="#"
+              class="terminal-line flex items-center justify-between px-6 py-4 group"
+            >
+              <div class="flex items-center gap-4">
+                <span class="font-mono text-terminal text-sm opacity-50"
+                  >$</span
+                >
+                <span
+                  class="font-mono text-gray-300 group-hover:text-white transition-colors text-sm md:text-base"
+                  >Boring Rails</span
+                >
+              </div>
+              <span class="font-mono text-gray-600 text-sm md:text-sm"
+                >Nov 2021</span
+              >
+            </a>
+
+            <a
+              href="#"
+              class="terminal-line flex items-center justify-between px-6 py-4 group"
+            >
+              <div class="flex items-center gap-4">
+                <span class="font-mono text-terminal text-sm opacity-50"
+                  >$</span
+                >
+                <span
+                  class="font-mono text-gray-300 group-hover:text-white transition-colors text-sm md:text-base"
+                  >Sane Breakpoints</span
+                >
+              </div>
+              <span class="font-mono text-gray-600 text-sm md:text-sm"
+                >Feb 2016</span
+              >
+            </a>
+
+            <a
+              href="#"
+              class="terminal-line flex items-center justify-between px-6 py-4 group"
+            >
+              <div class="flex items-center gap-4">
+                <span class="font-mono text-terminal text-sm opacity-50"
+                  >$</span
+                >
+                <span
+                  class="font-mono text-gray-300 group-hover:text-white transition-colors text-sm md:text-base"
+                  >Atomic Icons</span
+                >
+              </div>
+              <span class="font-mono text-gray-600 text-sm md:text-sm"
+                >Jan 2016</span
+              >
+            </a>
+
+            <a
+              href="#"
+              class="terminal-line flex items-center justify-between px-6 py-4 group"
+            >
+              <div class="flex items-center gap-4">
+                <span class="font-mono text-terminal text-sm opacity-50"
+                  >$</span
+                >
+                <span
+                  class="font-mono text-gray-300 group-hover:text-white transition-colors text-sm md:text-base"
+                  >Immutable CSS</span
+                >
+              </div>
+              <span class="font-mono text-gray-600 text-sm md:text-sm"
+                >Dec 2015</span
+              >
+            </a>
+
+            <a
+              href="#"
+              class="terminal-line flex items-center justify-between px-6 py-4 group"
+            >
+              <div class="flex items-center gap-4">
+                <span class="font-mono text-terminal text-sm opacity-50"
+                  >$</span
+                >
+                <span
+                  class="font-mono text-gray-300 group-hover:text-white transition-colors text-sm md:text-base"
+                  >Mac as IDE</span
+                >
+              </div>
+              <span class="font-mono text-gray-600 text-sm md:text-sm"
+                >Nov 2015</span
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: About -->
+    <section id="about" class="py-24 md:py-32 relative">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Section header -->
+        <div class="mb-16">
+          <span class="font-mono text-terminal text-sm tracking-widest"
+            >// 04</span
+          >
+          <h2 class="text-3xl md:text-4xl font-mono font-bold text-white mt-2">
+            // SELF
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-5 gap-12 items-start">
+          <!-- Text column -->
+          <div class="md:col-span-3 space-y-8">
+            <p
+              class="text-gray-300 text-lg leading-relaxed font-mono"
+              style="line-height: 2"
+            >
+              <span class="text-terminal opacity-50">[INIT]</span> INTJ.
+              Strategist by wiring, not by choice.<br />
+              <span class="text-terminal opacity-50">[SCAN]</span> Pattern
+              recognition where others see noise.<br />
+              <span class="text-terminal opacity-50">[LOAD]</span> Engineer.
+              Physicist. Systems thinker.<br />
+              <span class="text-terminal opacity-50">[PROC]</span> Builds
+              production systems. Studies quantum mechanics for fun.<br />
+              <span class="text-terminal opacity-50">[I/O&nbsp;]</span>
+              Freediving. Motorcycles. Biohacking.<br />
+              <span class="text-terminal opacity-50">[CORE]</span> Logic first.
+              Then intuition. Never the reverse.
+            </p>
+
+            <div class="border border-gray-800 bg-gray-900/30 p-6">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="font-mono text-fire text-2xl font-bold stat-glow"
+                  >2%</span
+                >
+                <span class="font-mono text-gray-600 text-sm"
+                  >of the population</span
+                >
+              </div>
+              <p class="text-gray-600 text-sm font-mono">
+                INTJ &mdash; the rarest type. Sees the whole architecture before
+                the first keystroke. The glitch in the matrix is the feature.
+              </p>
+            </div>
+          </div>
+
+          <!-- Image column -->
+          <div class="md:col-span-2">
+            <div class="relative">
+              <div class="border border-gray-800 overflow-hidden">
+                <img
+                  src="/images/me.jpg"
+                  alt="Nikolay Ostrovsky"
+                  class="w-full grayscale hover:grayscale-0 transition-all duration-700 opacity-80 hover:opacity-100"
+                />
+              </div>
+              <!-- Decorative corner marks -->
+              <div
+                class="absolute -top-2 -left-2 w-4 h-4 border-t border-l border-terminal/40"
+              ></div>
+              <div
+                class="absolute -top-2 -right-2 w-4 h-4 border-t border-r border-terminal/40"
+              ></div>
+              <div
+                class="absolute -bottom-2 -left-2 w-4 h-4 border-b border-l border-terminal/40"
+              ></div>
+              <div
+                class="absolute -bottom-2 -right-2 w-4 h-4 border-b border-r border-terminal/40"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Contact -->
+    <section id="contact" class="py-24 md:py-32 relative">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Section header -->
+        <div class="mb-16">
+          <span class="font-mono text-terminal text-sm tracking-widest"
+            >// 05</span
+          >
+          <h2
+            class="text-3xl md:text-4xl font-mono font-bold text-white mt-2 cursor-blink"
+          >
+            // PING
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-16">
+          <!-- Info -->
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-mono font-bold text-white text-xl mb-1">
+                Nikolay Ostrovsky
+              </h3>
+              <p class="font-mono text-gray-600 text-sm">
+                $ whoami &mdash; architect with root access
+              </p>
+            </div>
+
+            <a
+              href="mailto:nick@firedev.com"
+              class="inline-flex items-center gap-3 font-mono text-terminal hover:text-white transition-colors group"
+            >
+              <i
+                class="fas fa-envelope text-sm opacity-50 group-hover:opacity-100 transition-opacity"
+              ></i>
+              <span>nick@firedev.com</span>
+            </a>
+          </div>
+
+          <!-- Social links -->
+          <div class="space-y-4">
+            <a
+              href="https://github.com/firedev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="terminal-line flex items-center gap-4 px-4 py-3 border border-gray-800/50 hover:border-terminal/30 transition-all group"
+            >
+              <i
+                class="fab fa-github text-gray-600 group-hover:text-terminal transition-colors"
+              ></i>
+              <span
+                class="font-mono text-gray-600 group-hover:text-white transition-colors text-sm"
+                >github.com/firedev</span
+              >
+            </a>
+
+            <a
+              href="https://twitter.com/firedev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="terminal-line flex items-center gap-4 px-4 py-3 border border-gray-800/50 hover:border-terminal/30 transition-all group"
+            >
+              <i
+                class="fab fa-x-twitter text-gray-600 group-hover:text-terminal transition-colors"
+              ></i>
+              <span
+                class="font-mono text-gray-600 group-hover:text-white transition-colors text-sm"
+                >twitter.com/firedev</span
+              >
+            </a>
+
+            <a
+              href="https://stackoverflow.com/users/firedev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="terminal-line flex items-center gap-4 px-4 py-3 border border-gray-800/50 hover:border-terminal/30 transition-all group"
+            >
+              <i
+                class="fab fa-stack-overflow text-gray-600 group-hover:text-terminal transition-colors"
+              ></i>
+              <span
+                class="font-mono text-gray-600 group-hover:text-white transition-colors text-sm"
+                >StackOverflow — top 2%</span
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800/50 py-8">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <p class="font-mono text-gray-600 text-sm">
+          // EOF &mdash; firedev 2026
+        </p>
+      </div>
+    </footer>
+
+    <!-- Mobile menu JS -->
+    <script>
+      const toggle = document.getElementById("menu-toggle");
+      const menu = document.getElementById("mobile-menu");
+      const icon = toggle.querySelector("i");
+
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        if (menu.classList.contains("hidden")) {
+          icon.className = "fas fa-bars text-xl";
+        } else {
+          icon.className = "fas fa-times text-xl";
+        }
+      });
+
+      document.querySelectorAll(".mobile-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+          icon.className = "fas fa-bars text-xl";
+        });
+      });
+    </script>
+  </body>
+</html>

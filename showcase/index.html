@@ -1,166 +1,456 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>firedev — Landing Page Showcase</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { fire: '#f63', coal: '#111' }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-coal text-white antialiased min-h-screen">
-  <div class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-4xl font-bold mb-2">firedev redesign showcase</h1>
-    <p class="text-gray-400 text-lg mb-12">5 landing page variants. Radically different designs, same brand.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — Landing Page Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { fire: "#f63", coal: "#111" },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-coal text-white antialiased min-h-screen">
+    <div class="max-w-4xl mx-auto px-6 py-16">
+      <h1 class="text-4xl font-bold mb-2">firedev redesign showcase</h1>
+      <p class="text-gray-600 text-lg mb-12">
+        15 variants across 3 rounds. AI Architect positioning.
+      </p>
 
-    <div class="space-y-6">
-      <a href="1-senior-architect.html" class="block bg-white/5 border border-gray-800 p-8 hover:border-fire transition-colors group">
-        <div class="flex justify-between items-start">
-          <div>
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-fire font-mono text-sm">VARIANT 1</span>
-              <span class="text-xs bg-fire/10 text-fire px-2 py-0.5 font-mono">DARK</span>
-              <span class="text-xs bg-white/5 text-gray-500 px-2 py-0.5 font-mono">MONOSPACE</span>
+      <!-- Round 3: INTJ + refined copy -->
+      <h2 class="text-fire font-mono text-sm tracking-wider uppercase mb-6">
+        Round 3 — INTJ Architect
+      </h2>
+      <div class="space-y-4 mb-16">
+        <a
+          href="6-glitch.html"
+          class="block bg-white/5 border border-gray-800 p-8 hover:border-fire transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-fire font-mono text-sm">VARIANT 6</span>
+                <span class="text-sm bg-fire/10 text-fire px-2 py-0.5 font-mono"
+                  >DARK</span
+                >
+                <span
+                  class="text-sm bg-white/5 text-gray-600 px-2 py-0.5 font-mono"
+                  >CRT</span
+                >
+              </div>
+              <h2
+                class="text-2xl font-bold mb-2 group-hover:text-fire transition-colors"
+              >
+                System Override
+              </h2>
+              <p class="text-gray-600">
+                CRT scanlines, glitch text animation, terminal cards. The
+                hacker-architect who sees the matrix.
+              </p>
             </div>
-            <h2 class="text-2xl font-bold mb-2 group-hover:text-fire transition-colors">The Brutalist Terminal</h2>
-            <p class="text-gray-400">Trust angle. Looks like an actual terminal session &mdash; prompts, git log, brew list. Zero decoration, raw confidence. For CTOs who respect craft over marketing.</p>
-          </div>
-          <div class="text-gray-600 group-hover:text-fire transition-colors text-2xl ml-4 shrink-0">&rarr;</div>
-        </div>
-      </a>
-
-      <a href="2-speed-machine.html" class="block bg-white/5 border border-gray-800 p-8 hover:border-fire transition-colors group">
-        <div class="flex justify-between items-start">
-          <div>
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-fire font-mono text-sm">VARIANT 2</span>
-              <span class="text-xs bg-fire/10 text-fire px-2 py-0.5 font-mono">DARK</span>
-              <span class="text-xs bg-white/5 text-gray-500 px-2 py-0.5 font-mono">ANIMATED</span>
+            <div
+              class="text-gray-600 group-hover:text-fire transition-colors text-2xl ml-4 shrink-0"
+            >
+              &rarr;
             </div>
-            <h2 class="text-2xl font-bold mb-2 group-hover:text-fire transition-colors">The Speed Machine</h2>
-            <p class="text-gray-400">Speed angle. Animated gauge, diagonal cuts, timeline bar chart comparison. CSS-only conic-gradient speedometer. Startup launch energy.</p>
           </div>
-          <div class="text-gray-600 group-hover:text-fire transition-colors text-2xl ml-4 shrink-0">&rarr;</div>
-        </div>
-      </a>
+        </a>
 
-      <a href="3-one-person-powerhouse.html" class="block bg-white/5 border border-gray-800 p-8 hover:border-fire transition-colors group">
-        <div class="flex justify-between items-start">
-          <div>
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-fire font-mono text-sm">VARIANT 3</span>
-              <span class="text-xs bg-gray-200/10 text-gray-300 px-2 py-0.5 font-mono">LIGHT</span>
-              <span class="text-xs bg-white/5 text-gray-500 px-2 py-0.5 font-mono">SERIF</span>
+        <a
+          href="7-gravity.html"
+          class="block bg-white/5 border border-gray-800 p-8 hover:border-fire transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-fire font-mono text-sm">VARIANT 7</span>
+                <span class="text-sm bg-fire/10 text-fire px-2 py-0.5 font-mono"
+                  >DARK</span
+                >
+                <span
+                  class="text-sm bg-white/5 text-gray-600 px-2 py-0.5 font-mono"
+                  >ORBITAL</span
+                >
+              </div>
+              <h2
+                class="text-2xl font-bold mb-2 group-hover:text-fire transition-colors"
+              >
+                Gravitational Pull
+              </h2>
+              <p class="text-gray-600">
+                Concentric orbit rings, radial glows, floating cards. Everything
+                orbits the architect. Premium, calm, confident.
+              </p>
             </div>
-            <h2 class="text-2xl font-bold mb-2 group-hover:text-fire transition-colors">The Swiss Anti-Agency</h2>
-            <p class="text-gray-400">Solo unicorn angle. Light theme, serif typography, real HTML comparison table vs 5-person agency. Massive whitespace. The anti-template.</p>
-          </div>
-          <div class="text-gray-600 group-hover:text-fire transition-colors text-2xl ml-4 shrink-0">&rarr;</div>
-        </div>
-      </a>
-
-      <a href="4-burn-the-backlog.html" class="block bg-white/5 border border-gray-800 p-8 hover:border-fire transition-colors group">
-        <div class="flex justify-between items-start">
-          <div>
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-fire font-mono text-sm">VARIANT 4</span>
-              <span class="text-xs bg-fire/10 text-fire px-2 py-0.5 font-mono">DARK</span>
-              <span class="text-xs bg-white/5 text-gray-500 px-2 py-0.5 font-mono">PARTICLES</span>
+            <div
+              class="text-gray-600 group-hover:text-fire transition-colors text-2xl ml-4 shrink-0"
+            >
+              &rarr;
             </div>
-            <h2 class="text-2xl font-bold mb-2 group-hover:text-fire transition-colors">Burn the Backlog</h2>
-            <p class="text-gray-400">Fire maximalist. CSS ember particles, provocative copy, "incident report" social proof. Warm color system. The one that takes risks.</p>
           </div>
-          <div class="text-gray-600 group-hover:text-fire transition-colors text-2xl ml-4 shrink-0">&rarr;</div>
-        </div>
-      </a>
+        </a>
 
-      <a href="5-trust-quality.html" class="block bg-white/5 border border-gray-800 p-8 hover:border-fire transition-colors group">
-        <div class="flex justify-between items-start">
-          <div>
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-fire font-mono text-sm">VARIANT 5</span>
-              <span class="text-xs bg-fire/10 text-fire px-2 py-0.5 font-mono">DARK</span>
-              <span class="text-xs bg-white/5 text-gray-500 px-2 py-0.5 font-mono">README</span>
+        <a
+          href="8-manifesto.html"
+          class="block bg-white/5 border border-gray-800 p-8 hover:border-fire transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-fire font-mono text-sm">VARIANT 8</span>
+                <span
+                  class="text-sm bg-gray-200/10 text-gray-300 px-2 py-0.5 font-mono"
+                  >B&amp;W</span
+                >
+                <span
+                  class="text-sm bg-white/5 text-gray-600 px-2 py-0.5 font-mono"
+                  >BRUTALIST</span
+                >
+              </div>
+              <h2
+                class="text-2xl font-bold mb-2 group-hover:text-fire transition-colors"
+              >
+                The Manifesto
+              </h2>
+              <p class="text-gray-600">
+                Stark black/white alternating sections, 15vw serif headlines,
+                newspaper columns. Raw, unapologetic, zine energy.
+              </p>
             </div>
-            <h2 class="text-2xl font-bold mb-2 group-hover:text-fire transition-colors">The README</h2>
-            <p class="text-gray-400">Developer-to-developer. GitHub dark mode aesthetic, git diff coloring, YAML syntax highlighting, FAQ. Reads like technical docs, not marketing.</p>
+            <div
+              class="text-gray-600 group-hover:text-fire transition-colors text-2xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
           </div>
-          <div class="text-gray-600 group-hover:text-fire transition-colors text-2xl ml-4 shrink-0">&rarr;</div>
-        </div>
-      </a>
-    </div>
+        </a>
 
-    <div class="mt-16 pt-8 border-t border-gray-800">
-      <p class="text-gray-300 font-bold mb-4">Design matrix</p>
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm text-left">
-          <thead class="text-gray-500 font-mono text-xs border-b border-gray-800">
-            <tr>
-              <th class="py-2 pr-4">#</th>
-              <th class="py-2 pr-4">Theme</th>
-              <th class="py-2 pr-4">Type</th>
-              <th class="py-2 pr-4">Target</th>
-              <th class="py-2">Angle</th>
-            </tr>
-          </thead>
-          <tbody class="text-gray-400">
-            <tr class="border-b border-gray-800/50">
-              <td class="py-2 pr-4 text-fire font-mono">1</td>
-              <td class="py-2 pr-4">Dark</td>
-              <td class="py-2 pr-4">Monospace / Terminal</td>
-              <td class="py-2 pr-4">Senior engineers, CTOs</td>
-              <td class="py-2">Trust + craft</td>
-            </tr>
-            <tr class="border-b border-gray-800/50">
-              <td class="py-2 pr-4 text-fire font-mono">2</td>
-              <td class="py-2 pr-4">Dark</td>
-              <td class="py-2 pr-4">Kinetic / Animated</td>
-              <td class="py-2 pr-4">Startup founders</td>
-              <td class="py-2">Speed + urgency</td>
-            </tr>
-            <tr class="border-b border-gray-800/50">
-              <td class="py-2 pr-4 text-fire font-mono">3</td>
-              <td class="py-2 pr-4">Light</td>
-              <td class="py-2 pr-4">Swiss / Serif</td>
-              <td class="py-2 pr-4">Cost-conscious buyers</td>
-              <td class="py-2">Value + efficiency</td>
-            </tr>
-            <tr class="border-b border-gray-800/50">
-              <td class="py-2 pr-4 text-fire font-mono">4</td>
-              <td class="py-2 pr-4">Warm dark</td>
-              <td class="py-2 pr-4">Maximalist / Particles</td>
-              <td class="py-2 pr-4">Engineering managers</td>
-              <td class="py-2">Action + provocation</td>
-            </tr>
-            <tr>
-              <td class="py-2 pr-4 text-fire font-mono">5</td>
-              <td class="py-2 pr-4">GitHub dark</td>
-              <td class="py-2 pr-4">README / Docs</td>
-              <td class="py-2 pr-4">Developers</td>
-              <td class="py-2">Technical credibility</td>
-            </tr>
-          </tbody>
-        </table>
+        <a
+          href="9-glass.html"
+          class="block bg-white/5 border border-gray-800 p-8 hover:border-fire transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-fire font-mono text-sm">VARIANT 9</span>
+                <span class="text-sm bg-fire/10 text-fire px-2 py-0.5 font-mono"
+                  >DARK</span
+                >
+                <span
+                  class="text-sm bg-white/5 text-gray-600 px-2 py-0.5 font-mono"
+                  >GLASS</span
+                >
+              </div>
+              <h2
+                class="text-2xl font-bold mb-2 group-hover:text-fire transition-colors"
+              >
+                Layers of Glass
+              </h2>
+              <p class="text-gray-600">
+                Glassmorphism on purple-blue gradient. Frosted panels, floating
+                color orbs, layered depth. Premium and modern.
+              </p>
+            </div>
+            <div
+              class="text-gray-600 group-hover:text-fire transition-colors text-2xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="10-aurora.html"
+          class="block bg-white/5 border border-gray-800 p-8 hover:border-fire transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-fire font-mono text-sm">VARIANT 10</span>
+                <span class="text-sm bg-fire/10 text-fire px-2 py-0.5 font-mono"
+                  >DARK</span
+                >
+                <span
+                  class="text-sm bg-white/5 text-gray-600 px-2 py-0.5 font-mono"
+                  >GRADIENT</span
+                >
+              </div>
+              <h2
+                class="text-2xl font-bold mb-2 group-hover:text-fire transition-colors"
+              >
+                Aurora
+              </h2>
+              <p class="text-gray-600">
+                Animated aurora borealis (orange/teal/purple). Rare phenomenon =
+                rare personality. INTJ rarity woven into the design.
+              </p>
+            </div>
+            <div
+              class="text-gray-600 group-hover:text-fire transition-colors text-2xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
       </div>
-    </div>
 
-    <div class="mt-8 pt-8 border-t border-gray-800 text-gray-500 text-sm">
-      <p class="mb-4"><strong class="text-gray-300">Research-backed positioning:</strong></p>
-      <ul class="space-y-1">
-        <li>Trust is the #1 buying objection for AI-powered services (variants 1, 5)</li>
-        <li>Speed is the most visceral top-of-funnel hook (variant 2)</li>
-        <li>"One-person unicorn" is the defining narrative of 2026 tech (variant 3)</li>
-        <li>Provocative copy outperforms safe copy for differentiation (variant 4)</li>
-        <li>Developer-native communication converts better than marketing-speak (variant 5)</li>
-      </ul>
+      <!-- Round 2: AI Architect variants -->
+      <h2 class="text-gray-600 font-mono text-sm tracking-wider uppercase mb-6">
+        Round 2 — AI Architect
+      </h2>
+      <div class="space-y-4 mb-16">
+        <a
+          href="1-orchestrator.html"
+          class="block bg-white/5 border border-gray-800/50 p-6 hover:border-gray-600 transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="text-lg font-bold mb-1 text-gray-300 group-hover:text-white transition-colors"
+              >
+                The AI Orchestrator
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Animated node graph. Dark, sophisticated, connected.
+              </p>
+            </div>
+            <div
+              class="text-gray-700 group-hover:text-gray-600 transition-colors text-xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="2-velocity.html"
+          class="block bg-white/5 border border-gray-800/50 p-6 hover:border-gray-600 transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="text-lg font-bold mb-1 text-gray-300 group-hover:text-white transition-colors"
+              >
+                10x Velocity
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Speed lines, angled dividers, perspective-tilt cards.
+              </p>
+            </div>
+            <div
+              class="text-gray-700 group-hover:text-gray-600 transition-colors text-xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="3-blueprint.html"
+          class="block bg-white/5 border border-gray-800/50 p-6 hover:border-gray-600 transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="text-lg font-bold mb-1 text-gray-300 group-hover:text-white transition-colors"
+              >
+                Architecture Blueprint
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Blueprint grid, monospace specs, dimension lines.
+              </p>
+            </div>
+            <div
+              class="text-gray-700 group-hover:text-gray-600 transition-colors text-xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="4-multiplier.html"
+          class="block bg-white/5 border border-gray-800/50 p-6 hover:border-gray-600 transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="text-lg font-bold mb-1 text-gray-300 group-hover:text-white transition-colors"
+              >
+                The Force Multiplier
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Light editorial. Massive serif typography, magazine grid.
+              </p>
+            </div>
+            <div
+              class="text-gray-700 group-hover:text-gray-600 transition-colors text-xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="5-signal.html"
+          class="block bg-white/5 border border-gray-800/50 p-6 hover:border-gray-600 transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="text-lg font-bold mb-1 text-gray-300 group-hover:text-white transition-colors"
+              >
+                Signal in the Noise
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Pure white, zero decoration, anti-hype minimal.
+              </p>
+            </div>
+            <div
+              class="text-gray-700 group-hover:text-gray-600 transition-colors text-xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- ORIGINAL variants -->
+      <h2 class="text-gray-600 font-mono text-sm tracking-wider uppercase mb-6">
+        Round 1 — Original
+      </h2>
+      <div class="space-y-4 mb-16">
+        <a
+          href="1-senior-architect.html"
+          class="block bg-white/5 border border-gray-800/50 p-6 hover:border-gray-600 transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="text-lg font-bold mb-1 text-gray-300 group-hover:text-white transition-colors"
+              >
+                The Brutalist Terminal
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Trust angle. Terminal session aesthetic. For CTOs who respect
+                craft.
+              </p>
+            </div>
+            <div
+              class="text-gray-700 group-hover:text-gray-600 transition-colors text-xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="2-speed-machine.html"
+          class="block bg-white/5 border border-gray-800/50 p-6 hover:border-gray-600 transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="text-lg font-bold mb-1 text-gray-300 group-hover:text-white transition-colors"
+              >
+                The Speed Machine
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Speed angle. Animated gauge, diagonal cuts, timeline
+                comparisons.
+              </p>
+            </div>
+            <div
+              class="text-gray-700 group-hover:text-gray-600 transition-colors text-xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="3-one-person-powerhouse.html"
+          class="block bg-white/5 border border-gray-800/50 p-6 hover:border-gray-600 transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="text-lg font-bold mb-1 text-gray-300 group-hover:text-white transition-colors"
+              >
+                The Swiss Anti-Agency
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Solo unicorn angle. Light theme, serif, comparison table vs
+                5-person agency.
+              </p>
+            </div>
+            <div
+              class="text-gray-700 group-hover:text-gray-600 transition-colors text-xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="4-burn-the-backlog.html"
+          class="block bg-white/5 border border-gray-800/50 p-6 hover:border-gray-600 transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="text-lg font-bold mb-1 text-gray-300 group-hover:text-white transition-colors"
+              >
+                Burn the Backlog
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Fire maximalist. CSS ember particles, provocative copy, incident
+                reports.
+              </p>
+            </div>
+            <div
+              class="text-gray-700 group-hover:text-gray-600 transition-colors text-xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="5-trust-quality.html"
+          class="block bg-white/5 border border-gray-800/50 p-6 hover:border-gray-600 transition-colors group"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="text-lg font-bold mb-1 text-gray-300 group-hover:text-white transition-colors"
+              >
+                The README
+              </h2>
+              <p class="text-gray-600 text-sm">
+                Developer-to-developer. GitHub dark mode, git diff coloring,
+                YAML syntax.
+              </p>
+            </div>
+            <div
+              class="text-gray-700 group-hover:text-gray-600 transition-colors text-xl ml-4 shrink-0"
+            >
+              &rarr;
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <footer
+        class="pt-8 border-t border-gray-800 text-gray-600 text-sm text-center"
+      >
+        &copy; 2026 firedev
+      </footer>
     </div>
-  </div>
-</body>
+  </body>
 </html>
