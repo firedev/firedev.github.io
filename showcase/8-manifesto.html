@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — development on fire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ["Playfair Display", "Georgia", "serif"],
+              sans: [
+                "Inter",
+                "-apple-system",
+                "BlinkMacSystemFont",
+                "sans-serif",
+              ],
+            },
+            colors: {
+              fire: "#f63",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .headline-massive {
+        font-size: clamp(4rem, 15vw, 12rem);
+        line-height: 0.9;
+        letter-spacing: -0.03em;
+      }
+
+      .section-header {
+        font-size: clamp(3rem, 10vw, 8rem);
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+      }
+
+      .stat-number {
+        font-size: clamp(3rem, 8vw, 6rem);
+        line-height: 1;
+      }
+
+      .thick-rule {
+        border-top: 3px solid currentColor;
+      }
+
+      .fire-rule {
+        border-color: #f63;
+      }
+
+      /* Mobile menu */
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-toggle {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: #000;
+          flex-direction: column;
+          padding: 1.5rem 2rem;
+          gap: 1rem;
+          border-bottom: 4px solid #f63;
+        }
+        .nav-links.open {
+          display: flex;
+        }
+        .nav-toggle {
+          display: block;
+        }
+      }
+
+      /* Hover transitions */
+      .hover-fire {
+        transition: color 0.15s ease;
+      }
+      .hover-fire:hover {
+        color: #f63;
+      }
+
+      /* Newspaper column gap */
+      .newspaper-grid {
+        column-count: 2;
+        column-gap: 3rem;
+        column-rule: 3px solid #000;
+      }
+      @media (max-width: 768px) {
+        .newspaper-grid {
+          column-count: 1;
+          column-rule: none;
+        }
+      }
+
+      .project-entry {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white font-sans">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 right-0 bg-black z-50 border-b-4 border-fire"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between relative"
+      >
+        <a
+          href="#home"
+          class="font-serif font-bold text-xl text-fire tracking-tight"
+          >firedev</a
+        >
+        <button
+          class="nav-toggle text-white text-2xl"
+          onclick="
+            document.querySelector('.nav-links').classList.toggle('open')
+          "
+          aria-label="Menu"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="nav-links">
+          <a
+            href="#shipped"
+            class="text-white text-sm font-medium uppercase tracking-widest hover-fire"
+            >The Work</a
+          >
+          <a
+            href="#thinking"
+            class="text-white text-sm font-medium uppercase tracking-widest hover-fire"
+            >The Thinking</a
+          >
+          <a
+            href="#about"
+            class="text-white text-sm font-medium uppercase tracking-widest hover-fire"
+            >About</a
+          >
+          <a
+            href="#contact"
+            class="text-white text-sm font-medium uppercase tracking-widest hover-fire"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Section 1: Home -->
+    <section
+      id="home"
+      class="bg-black text-white min-h-screen flex flex-col justify-center px-6 pt-16"
+    >
+      <div class="max-w-6xl mx-auto w-full">
+        <h1 class="font-serif font-black headline-massive uppercase">
+          The Age of<br />Teams Is Over.
+        </h1>
+
+        <p
+          class="mt-8 text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed"
+        >
+          The 10-person sprint team is a relic. The standup is dead. One
+          architect with AI leverage and two decades of pattern recognition
+          ships more than your entire department.
+        </p>
+
+        <!-- Pull quote -->
+        <div class="mt-12 border-l-[6px] border-fire pl-6 py-2 max-w-2xl">
+          <p
+            class="font-serif text-2xl md:text-3xl italic text-white leading-tight"
+          >
+            The best architecture has always come from one mind. AI just removed
+            the bottleneck.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-16 flex gap-12 md:gap-20 flex-wrap">
+          <div>
+            <div class="font-serif font-black stat-number text-white">20+</div>
+            <div class="text-sm uppercase tracking-[0.2em] text-gray-600 mt-1">
+              Years of Proof
+            </div>
+          </div>
+          <div>
+            <div class="font-serif font-black stat-number text-white">8</div>
+            <div class="text-sm uppercase tracking-[0.2em] text-gray-600 mt-1">
+              Built from Zero
+            </div>
+          </div>
+          <div>
+            <div class="font-serif font-black stat-number text-fire">
+              &infin;
+            </div>
+            <div class="text-sm uppercase tracking-[0.2em] text-gray-600 mt-1">
+              Leverage: Infinite
+            </div>
+          </div>
+        </div>
+
+        <!-- Name + CTA -->
+        <div
+          class="mt-16 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12"
+        >
+          <p class="text-white font-bold text-lg">Nikolay Ostrovsky</p>
+          <a href="#shipped" class="text-fire font-bold text-lg hover-fire"
+            >Judge the Work &rarr;</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Shipped -->
+    <section id="shipped" class="bg-white text-black py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2
+          class="font-serif font-black section-header uppercase tracking-tight"
+        >
+          The Work
+        </h2>
+        <div class="thick-rule mt-4 mb-12"></div>
+
+        <div class="newspaper-grid">
+          <div class="project-entry mb-8">
+            <h3 class="font-serif font-bold text-2xl md:text-3xl">
+              Furniture 3D Builder
+            </h3>
+            <p class="mt-2 text-gray-700 text-base leading-relaxed">
+              Furniture configurator prototype
+            </p>
+            <div class="thick-rule mt-6"></div>
+          </div>
+
+          <div class="project-entry mb-8">
+            <h3 class="font-serif font-bold text-2xl md:text-3xl">Darkanoid</h3>
+            <p class="mt-2 text-gray-700 text-base leading-relaxed">
+              Browser arcade game demake, PICO-8
+            </p>
+            <div class="thick-rule mt-6"></div>
+          </div>
+
+          <div class="project-entry mb-8">
+            <h3 class="font-serif font-bold text-2xl md:text-3xl">
+              Phuket Vegan
+            </h3>
+            <p class="mt-2 text-gray-700 text-base leading-relaxed">
+              Health retreat brand
+            </p>
+            <div class="thick-rule mt-6"></div>
+          </div>
+
+          <div class="project-entry mb-8">
+            <h3 class="font-serif font-bold text-2xl md:text-3xl">ASCII Art</h3>
+            <p class="mt-2 text-gray-700 text-base leading-relaxed">
+              BBS Scene art collection
+            </p>
+            <div class="thick-rule mt-6"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Thinking -->
+    <section id="thinking" class="bg-black text-white py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2
+          class="font-serif font-black section-header uppercase tracking-tight"
+        >
+          The Thinking
+        </h2>
+        <div class="thick-rule fire-rule mt-4 mb-12"></div>
+
+        <div class="space-y-0">
+          <div
+            class="flex items-baseline justify-between py-5 border-b border-gray-800 hover-fire group cursor-default"
+          >
+            <span
+              class="font-bold text-lg md:text-xl group-hover:text-fire transition-colors"
+              >Develop for Joy</span
+            >
+            <span class="text-gray-600 text-sm font-mono ml-4 shrink-0"
+              >Mar 2023</span
+            >
+          </div>
+
+          <div
+            class="flex items-baseline justify-between py-5 border-b border-gray-800 hover-fire group cursor-default"
+          >
+            <span
+              class="font-bold text-lg md:text-xl group-hover:text-fire transition-colors"
+              >Boring Rails</span
+            >
+            <span class="text-gray-600 text-sm font-mono ml-4 shrink-0"
+              >Nov 2021</span
+            >
+          </div>
+
+          <div
+            class="flex items-baseline justify-between py-5 border-b border-gray-800 hover-fire group cursor-default"
+          >
+            <span
+              class="font-bold text-lg md:text-xl group-hover:text-fire transition-colors"
+              >Sane Breakpoints</span
+            >
+            <span class="text-gray-600 text-sm font-mono ml-4 shrink-0"
+              >Feb 2016</span
+            >
+          </div>
+
+          <div
+            class="flex items-baseline justify-between py-5 border-b border-gray-800 hover-fire group cursor-default"
+          >
+            <span
+              class="font-bold text-lg md:text-xl group-hover:text-fire transition-colors"
+              >Atomic Icons</span
+            >
+            <span class="text-gray-600 text-sm font-mono ml-4 shrink-0"
+              >Jan 2016</span
+            >
+          </div>
+
+          <div
+            class="flex items-baseline justify-between py-5 border-b border-gray-800 hover-fire group cursor-default"
+          >
+            <span
+              class="font-bold text-lg md:text-xl group-hover:text-fire transition-colors"
+              >Immutable CSS</span
+            >
+            <span class="text-gray-600 text-sm font-mono ml-4 shrink-0"
+              >Dec 2015</span
+            >
+          </div>
+
+          <div
+            class="flex items-baseline justify-between py-5 border-b border-gray-800 hover-fire group cursor-default"
+          >
+            <span
+              class="font-bold text-lg md:text-xl group-hover:text-fire transition-colors"
+              >Mac as IDE</span
+            >
+            <span class="text-gray-600 text-sm font-mono ml-4 shrink-0"
+              >Nov 2015</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: About -->
+    <section id="about" class="bg-white text-black py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+          <!-- Left: Photo -->
+          <div>
+            <img
+              src="/images/me.jpg"
+              alt="Nikolay Ostrovsky"
+              class="w-full border-4 border-fire"
+            />
+          </div>
+
+          <!-- Right: Text -->
+          <div>
+            <h2
+              class="font-serif font-black text-4xl md:text-5xl uppercase tracking-tight leading-none"
+            >
+              One Mind.<br />
+              <span class="text-fire">No Committee.</span><br />
+              No Compromise.
+            </h2>
+
+            <p class="mt-8 text-gray-700 text-lg leading-relaxed">
+              I see patterns. That's the whole job. Engineer, physicist, systems
+              thinker. Two decades of reducing complexity to its bones. I don't
+              brainstorm. I don't consensus-build. I architect, then I ship.
+              Freediving, motorcycles, quantum mechanics &mdash; same
+              discipline. Go deep or go home.
+            </p>
+
+            <div class="mt-8 border-l-[6px] border-fire pl-6">
+              <p class="font-serif italic text-xl text-gray-900">
+                INTJ &mdash; 2% of the population. The type that sees the whole
+                system before writing a single line. Your team of ten is still
+                drawing diagrams. I'm already in production.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Contact -->
+    <section id="contact" class="bg-black text-white py-24 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="font-bold text-2xl md:text-3xl">Nikolay Ostrovsky</p>
+        <p class="text-gray-600 text-lg mt-2 uppercase tracking-widest">
+          Architect. Not a Team.
+        </p>
+
+        <a
+          href="mailto:nick@firedev.com"
+          class="block mt-8 font-serif font-bold text-3xl md:text-5xl text-fire hover:underline"
+        >
+          nick@firedev.com
+        </a>
+
+        <div class="mt-10 flex justify-center gap-8 text-2xl">
+          <a
+            href="https://github.com/firedev"
+            class="text-white hover-fire"
+            aria-label="GitHub"
+          >
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a
+            href="https://twitter.com/firedev"
+            class="text-white hover-fire"
+            aria-label="Twitter"
+          >
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a
+            href="https://stackoverflow.com/users/firedev"
+            class="text-white hover-fire"
+            aria-label="StackOverflow"
+          >
+            <i class="fa-brands fa-stack-overflow"></i>
+          </a>
+        </div>
+
+        <p class="mt-12 font-serif italic text-xl text-gray-600">
+          Ready to stop hiring teams?
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="border-t-4 border-fire bg-black text-gray-600 text-sm text-center py-6 px-6"
+    >
+      &copy; 2026 firedev
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — development on fire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                "Inter",
+                "-apple-system",
+                "BlinkMacSystemFont",
+                "Segoe UI",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+              ],
+            },
+            colors: {
+              fire: "#f63",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        -webkit-font-smoothing: antialiased;
+        background: linear-gradient(135deg, #0f0a1a, #1a0a2e);
+        min-height: 100vh;
+      }
+
+      /* Background orbs */
+      .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .orb-1 {
+        width: 500px;
+        height: 500px;
+        background: rgba(255, 102, 51, 0.12);
+        top: -100px;
+        right: -100px;
+        animation: float1 20s ease-in-out infinite;
+      }
+      .orb-2 {
+        width: 450px;
+        height: 450px;
+        background: rgba(139, 92, 246, 0.15);
+        bottom: 20%;
+        left: -150px;
+        animation: float2 25s ease-in-out infinite;
+      }
+      .orb-3 {
+        width: 400px;
+        height: 400px;
+        background: rgba(59, 130, 246, 0.1);
+        top: 40%;
+        right: 10%;
+        animation: float3 22s ease-in-out infinite;
+      }
+      .orb-4 {
+        width: 350px;
+        height: 350px;
+        background: rgba(236, 72, 153, 0.08);
+        bottom: -50px;
+        left: 30%;
+        animation: float4 18s ease-in-out infinite;
+      }
+
+      @keyframes float1 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        33% {
+          transform: translate(-60px, 80px);
+        }
+        66% {
+          transform: translate(40px, -40px);
+        }
+      }
+      @keyframes float2 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        33% {
+          transform: translate(80px, -60px);
+        }
+        66% {
+          transform: translate(-30px, 50px);
+        }
+      }
+      @keyframes float3 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        33% {
+          transform: translate(-50px, -70px);
+        }
+        66% {
+          transform: translate(60px, 30px);
+        }
+      }
+      @keyframes float4 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        33% {
+          transform: translate(70px, 40px);
+        }
+        66% {
+          transform: translate(-40px, -60px);
+        }
+      }
+
+      /* Glass panel base */
+      .glass {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+      }
+      .glass-subtle {
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 12px;
+      }
+      .glass-nav {
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        background: rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Glass card hover */
+      .glass-card {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          background 0.3s ease;
+      }
+      .glass-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.3),
+          0 0 40px rgba(255, 102, 51, 0.05);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      /* CTA button */
+      .btn-fire {
+        background: linear-gradient(135deg, #f63, #e85d2a);
+        backdrop-filter: blur(10px);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .btn-fire:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(255, 102, 51, 0.4);
+      }
+
+      /* Nav link hover */
+      .nav-link {
+        transition: color 0.2s ease;
+      }
+      .nav-link:hover {
+        color: #f63;
+      }
+
+      /* Blog item */
+      .blog-item {
+        transition: background 0.2s ease;
+      }
+      .blog-item:hover {
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      /* Photo ring */
+      .photo-ring {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 102, 51, 0.3),
+          rgba(139, 92, 246, 0.3)
+        );
+        padding: 3px;
+        border-radius: 20px;
+      }
+
+      /* Stat card accent top border */
+      .stat-accent {
+        position: relative;
+        overflow: hidden;
+      }
+      .stat-accent::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 102, 51, 0.5),
+          transparent
+        );
+      }
+
+      /* Section fade-in on scroll */
+      .section-fade {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .section-fade.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+    </style>
+  </head>
+  <body class="font-sans text-white">
+    <!-- Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <a href="#home" class="text-xl font-bold text-fire tracking-tight"
+          >firedev</a
+        >
+        <div class="flex items-center gap-8">
+          <a
+            href="#portfolio"
+            class="nav-link text-sm text-white/60 font-medium"
+            >Portfolio</a
+          >
+          <a
+            href="#perspective"
+            class="nav-link text-sm text-white/60 font-medium"
+            >Perspective</a
+          >
+          <a href="#about" class="nav-link text-sm text-white/60 font-medium"
+            >About</a
+          >
+          <a href="#contact" class="nav-link text-sm text-white/60 font-medium"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="relative z-10">
+      <!-- Section 1: Home -->
+      <section
+        id="home"
+        class="min-h-screen flex items-center justify-center px-6 pt-20"
+      >
+        <div class="max-w-4xl mx-auto text-center section-fade">
+          <!-- Main glass panel -->
+          <div class="glass p-10 md:p-14 mb-10">
+            <h1
+              class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight"
+            >
+              Clarity through complexity<span class="text-fire">.</span>
+            </h1>
+            <p
+              class="text-lg md:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed font-light"
+            >
+              Where others see tangled systems, I see structure waiting to
+              emerge. Two decades of architectural intuition, now amplified by
+              AI, cutting through every layer of ambiguity.
+            </p>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-4 md:gap-6 mb-10">
+            <div class="glass glass-card stat-accent p-6 md:p-8">
+              <div class="text-3xl md:text-5xl font-extrabold text-fire mb-2">
+                20+
+              </div>
+              <div
+                class="text-sm md:text-sm text-white/40 uppercase tracking-widest font-medium"
+              >
+                Years of craft
+              </div>
+            </div>
+            <div class="glass glass-card stat-accent p-6 md:p-8">
+              <div class="text-3xl md:text-5xl font-extrabold text-fire mb-2">
+                8
+              </div>
+              <div
+                class="text-sm md:text-sm text-white/40 uppercase tracking-widest font-medium"
+              >
+                Ventures shaped
+              </div>
+            </div>
+            <div class="glass glass-card stat-accent p-6 md:p-8">
+              <div
+                class="text-3xl md:text-5xl font-extrabold text-white/90 mb-2"
+              >
+                &infin;
+              </div>
+              <div
+                class="text-sm md:text-sm text-white/40 uppercase tracking-widest font-medium"
+              >
+                Unlimited scale
+              </div>
+            </div>
+          </div>
+
+          <!-- Quote & name -->
+          <div class="glass-subtle p-8 mb-8">
+            <p
+              class="text-white/40 text-base md:text-lg italic font-light mb-4"
+            >
+              "Experience is the lens. AI is the light. Together, they reveal
+              what others miss."
+            </p>
+            <p class="text-white/70 font-semibold text-lg">Nikolay Ostrovsky</p>
+            <p class="text-white/30 text-sm mt-1">
+              Full-Stack Architect &middot; AI-Augmented
+            </p>
+          </div>
+
+          <!-- CTA -->
+          <a
+            href="#portfolio"
+            class="btn-fire inline-block px-8 py-4 rounded-xl text-white font-semibold text-base tracking-wide"
+          >
+            Explore the portfolio <span class="ml-1">&rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section 2: Shipped -->
+      <section id="portfolio" class="py-24 md:py-32 px-6">
+        <div class="max-w-6xl mx-auto section-fade">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+            Portfolio
+          </h2>
+          <p class="text-white/30 mb-12 text-base">
+            A curated selection of products, prototypes, and creative ventures.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="glass glass-card p-8">
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-xl font-bold text-white/90">
+                  Furniture 3D Builder
+                </h3>
+                <i class="fa-solid fa-cube text-fire/60 text-lg"></i>
+              </div>
+              <p class="text-white/40 leading-relaxed">
+                Interactive 3D furniture configurator
+              </p>
+            </div>
+
+            <div class="glass glass-card p-8">
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-xl font-bold text-white/90">Darkanoid</h3>
+                <i class="fa-solid fa-gamepad text-fire/60 text-lg"></i>
+              </div>
+              <p class="text-white/40 leading-relaxed">
+                Retro arcade demake built in PICO-8
+              </p>
+            </div>
+
+            <div class="glass glass-card p-8">
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-xl font-bold text-white/90">Phuket Vegan</h3>
+                <i class="fa-solid fa-leaf text-fire/60 text-lg"></i>
+              </div>
+              <p class="text-white/40 leading-relaxed">
+                Brand identity for a wellness retreat
+              </p>
+            </div>
+
+            <div class="glass glass-card p-8">
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-xl font-bold text-white/90">ASCII Art</h3>
+                <i class="fa-solid fa-terminal text-fire/60 text-lg"></i>
+              </div>
+              <p class="text-white/40 leading-relaxed">
+                Curated BBS-era digital art archive
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Thinking -->
+      <section id="perspective" class="py-24 md:py-32 px-6">
+        <div class="max-w-4xl mx-auto section-fade">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+            Perspective
+          </h2>
+          <p class="text-white/30 mb-12 text-base">
+            Reflections on craft, tools, and the philosophy behind the work.
+          </p>
+
+          <div class="glass p-2 md:p-4">
+            <a
+              href="#"
+              class="blog-item flex items-center justify-between px-6 py-5 rounded-xl"
+            >
+              <span class="text-white/80 font-medium">Develop for Joy</span>
+              <span class="text-white/25 text-sm font-light">Mar 2023</span>
+            </a>
+
+            <div class="mx-6 border-t border-white/10"></div>
+
+            <a
+              href="#"
+              class="blog-item flex items-center justify-between px-6 py-5 rounded-xl"
+            >
+              <span class="text-white/80 font-medium">Boring Rails</span>
+              <span class="text-white/25 text-sm font-light">Nov 2021</span>
+            </a>
+
+            <div class="mx-6 border-t border-white/10"></div>
+
+            <a
+              href="#"
+              class="blog-item flex items-center justify-between px-6 py-5 rounded-xl"
+            >
+              <span class="text-white/80 font-medium">Sane Breakpoints</span>
+              <span class="text-white/25 text-sm font-light">Feb 2016</span>
+            </a>
+
+            <div class="mx-6 border-t border-white/10"></div>
+
+            <a
+              href="#"
+              class="blog-item flex items-center justify-between px-6 py-5 rounded-xl"
+            >
+              <span class="text-white/80 font-medium">Atomic Icons</span>
+              <span class="text-white/25 text-sm font-light">Jan 2016</span>
+            </a>
+
+            <div class="mx-6 border-t border-white/10"></div>
+
+            <a
+              href="#"
+              class="blog-item flex items-center justify-between px-6 py-5 rounded-xl"
+            >
+              <span class="text-white/80 font-medium">Immutable CSS</span>
+              <span class="text-white/25 text-sm font-light">Dec 2015</span>
+            </a>
+
+            <div class="mx-6 border-t border-white/10"></div>
+
+            <a
+              href="#"
+              class="blog-item flex items-center justify-between px-6 py-5 rounded-xl"
+            >
+              <span class="text-white/80 font-medium">Mac as IDE</span>
+              <span class="text-white/25 text-sm font-light">Nov 2015</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: About -->
+      <section id="about" class="py-24 md:py-32 px-6">
+        <div class="max-w-5xl mx-auto section-fade">
+          <h2 class="text-3xl md:text-4xl font-bold mb-12 tracking-tight">
+            About
+          </h2>
+
+          <div class="grid md:grid-cols-5 gap-6 items-start">
+            <!-- Photo panel -->
+            <div
+              class="md:col-span-2 glass p-6 flex items-center justify-center"
+            >
+              <div class="photo-ring">
+                <img
+                  src="/images/me.jpg"
+                  alt="Nikolay Ostrovsky"
+                  class="w-full max-w-[280px] rounded-[17px] block"
+                />
+              </div>
+            </div>
+
+            <!-- Bio panel -->
+            <div class="md:col-span-3 glass p-8 md:p-10">
+              <h3 class="text-xl font-bold text-fire mb-6 tracking-wide">
+                The Architect's Disposition
+              </h3>
+              <p class="text-white/50 leading-relaxed mb-6 font-light">
+                I gravitate toward the structural. Patterns emerge from apparent
+                disorder; the elegant solution reveals itself through patient
+                observation. Trained as an engineer, drawn to physics and
+                philosophy, I approach software the way I approach everything
+                &mdash; seeking the fundamental principle beneath the surface
+                noise. Freediving, motorcycles, biohacking: different domains,
+                same commitment to understanding how systems truly work.
+              </p>
+              <p class="text-white/25 text-sm italic font-light">
+                INTJ &mdash; the rarest type, comprising 2% of the population.
+                An architect by nature: the complete system is understood before
+                the first line is written.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Contact -->
+      <section id="contact" class="py-24 md:py-32 px-6">
+        <div class="max-w-2xl mx-auto section-fade">
+          <div class="glass p-10 md:p-14 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2 tracking-tight">
+              Nikolay Ostrovsky
+            </h2>
+            <p class="text-white/40 text-sm mb-8">
+              Full-Stack Architect &middot; AI-Augmented
+            </p>
+
+            <a
+              href="mailto:nick@firedev.com"
+              class="text-fire font-medium text-lg hover:underline underline-offset-4"
+              >nick@firedev.com</a
+            >
+
+            <div class="flex items-center justify-center gap-6 mt-8 mb-10">
+              <a
+                href="https://github.com/firedev"
+                class="nav-link text-white/40 text-xl"
+                title="GitHub"
+              >
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a
+                href="https://twitter.com/firedev"
+                class="nav-link text-white/40 text-xl"
+                title="Twitter"
+              >
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+              <a
+                href="https://stackoverflow.com/users/firedev"
+                class="nav-link text-white/40 text-xl"
+                title="StackOverflow (top 2%)"
+              >
+                <i class="fa-brands fa-stack-overflow"></i>
+              </a>
+            </div>
+
+            <p class="text-white/20 text-sm font-light italic">
+              Let's create something exceptional.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="py-10 text-center">
+        <p class="text-white/20 text-sm">&copy; 2026 firedev</p>
+      </footer>
+    </div>
+
+    <!-- Scroll reveal -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".section-fade")
+        .forEach((el) => observer.observe(el));
+
+      // Make the first section visible immediately
+      document.addEventListener("DOMContentLoaded", () => {
+        const home = document.querySelector("#home .section-fade");
+        if (home) home.classList.add("visible");
+      });
+    </script>
+  </body>
+</html>

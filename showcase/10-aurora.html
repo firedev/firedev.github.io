@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nikolay Ostrovsky — Rare Convergence of Architecture & AI</title>
+    <meta
+      name="description"
+      content="When two decades of full-stack architecture converge with AI-native velocity, something rare happens."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              outfit: ["Outfit", "sans-serif"],
+            },
+            colors: {
+              base: "#08080c",
+              fire: "#f63",
+              teal: "#0d9488",
+              violet: "#7c3aed",
+              card: "#111111",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      * {
+        font-family: "Outfit", sans-serif;
+      }
+
+      /* Aurora blobs */
+      .aurora-container {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .aurora-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.12;
+        will-change: transform;
+      }
+
+      .aurora-blob-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, #ff6633 0%, transparent 70%);
+        top: -10%;
+        left: -5%;
+        animation: drift1 18s ease-in-out infinite;
+      }
+
+      .aurora-blob-2 {
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(circle, #0d9488 0%, transparent 70%);
+        top: -20%;
+        right: -10%;
+        animation: drift2 22s ease-in-out infinite;
+      }
+
+      .aurora-blob-3 {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+        top: 10%;
+        left: 30%;
+        animation: drift3 20s ease-in-out infinite;
+      }
+
+      @keyframes drift1 {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(80px, 40px) scale(1.1);
+        }
+        50% {
+          transform: translate(40px, 100px) scale(0.95);
+        }
+        75% {
+          transform: translate(-30px, 60px) scale(1.05);
+        }
+      }
+
+      @keyframes drift2 {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(-60px, 60px) scale(1.05);
+        }
+        50% {
+          transform: translate(-100px, 20px) scale(1.1);
+        }
+        75% {
+          transform: translate(-40px, -30px) scale(0.95);
+        }
+      }
+
+      @keyframes drift3 {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(70px, -50px) scale(1.08);
+        }
+        66% {
+          transform: translate(-50px, 40px) scale(0.92);
+        }
+      }
+
+      /* About section aurora (subtler) */
+      .aurora-about .aurora-blob {
+        opacity: 0.08;
+      }
+
+      /* Gradient ring for photo */
+      .gradient-ring {
+        padding: 3px;
+        background: conic-gradient(from 0deg, #0d9488, #f63, #7c3aed, #0d9488);
+        border-radius: 9999px;
+        display: inline-block;
+      }
+
+      /* Card hover effect */
+      .project-card {
+        border-left: 3px solid transparent;
+        transition:
+          border-color 0.3s ease,
+          background-color 0.3s ease;
+      }
+      .project-card:hover {
+        border-left-color: #f63;
+        background-color: rgba(255, 255, 255, 0.03);
+      }
+
+      /* Post hover */
+      .post-row {
+        transition: color 0.2s ease;
+      }
+      .post-row:hover .post-title {
+        color: #f63;
+      }
+
+      /* Smooth scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #08080c;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 3px;
+      }
+
+      /* Mobile aurora sizing */
+      @media (max-width: 768px) {
+        .aurora-blob-1 {
+          width: 350px;
+          height: 350px;
+        }
+        .aurora-blob-2 {
+          width: 400px;
+          height: 400px;
+        }
+        .aurora-blob-3 {
+          width: 300px;
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-base text-white antialiased">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-base/70 border-b border-white/5"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <a href="#home" class="text-fire font-bold text-xl tracking-tight"
+          >firedev</a
+        >
+        <div class="flex items-center gap-8 text-sm text-gray-600">
+          <a href="#built" class="hover:text-white transition-colors">Built</a>
+          <a href="#written" class="hover:text-white transition-colors"
+            >Written</a
+          >
+          <a href="#about" class="hover:text-white transition-colors">About</a>
+          <a href="#contact" class="hover:text-white transition-colors"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Section 1: Home / Hero -->
+    <section
+      id="home"
+      class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      <!-- Aurora background -->
+      <div class="aurora-container">
+        <div class="aurora-blob aurora-blob-1"></div>
+        <div class="aurora-blob aurora-blob-2"></div>
+        <div class="aurora-blob aurora-blob-3"></div>
+      </div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-6 py-32">
+        <div class="max-w-3xl">
+          <h1
+            class="text-6xl md:text-8xl font-bold leading-none tracking-tight mb-8"
+          >
+            Some things only<br />
+            <span class="text-white">happen when conditions align.</span>
+          </h1>
+          <p
+            class="text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl mb-14"
+          >
+            Most architects know code or design. Most AI practitioners lack
+            battle scars. This is the rare intersection &mdash; two decades of
+            full-stack architecture fused with AI-native velocity.
+          </p>
+
+          <!-- Stats -->
+          <div class="flex gap-16 mb-14">
+            <div>
+              <div class="text-4xl md:text-5xl font-bold text-white">20+</div>
+              <div class="text-sm text-gray-600 mt-1">Years converging</div>
+            </div>
+            <div>
+              <div class="text-4xl md:text-5xl font-bold text-white">8</div>
+              <div class="text-sm text-gray-600 mt-1">Systems architected</div>
+            </div>
+            <div>
+              <div class="text-4xl md:text-5xl font-bold text-white">
+                &infin;
+              </div>
+              <div class="text-sm text-gray-600 mt-1">Amplification factor</div>
+            </div>
+          </div>
+
+          <p class="text-gray-600 text-sm mb-4">Nikolay Ostrovsky</p>
+          <a
+            href="#built"
+            class="text-fire font-medium hover:underline underline-offset-4 transition-all"
+          >
+            Discover the work &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Built -->
+    <section id="built" class="py-24 md:py-32 bg-card">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-16">Built</h2>
+
+        <div class="grid gap-4">
+          <!-- Project 1 -->
+          <div class="project-card rounded-lg p-6 md:p-8">
+            <h3 class="text-xl font-semibold text-white mb-2">
+              Furniture 3D Builder
+            </h3>
+            <p class="text-gray-600">Furniture configurator prototype</p>
+          </div>
+          <!-- Project 2 -->
+          <div class="project-card rounded-lg p-6 md:p-8">
+            <h3 class="text-xl font-semibold text-white mb-2">Darkanoid</h3>
+            <p class="text-gray-600">Browser arcade game demake, PICO-8</p>
+          </div>
+          <!-- Project 3 -->
+          <div class="project-card rounded-lg p-6 md:p-8">
+            <h3 class="text-xl font-semibold text-white mb-2">Phuket Vegan</h3>
+            <p class="text-gray-600">Health retreat brand</p>
+          </div>
+          <!-- Project 4 -->
+          <div class="project-card rounded-lg p-6 md:p-8">
+            <h3 class="text-xl font-semibold text-white mb-2">ASCII Art</h3>
+            <p class="text-gray-600">BBS Scene art collection</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Written -->
+    <section id="written" class="py-24 md:py-32 bg-base">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-16">Written</h2>
+
+        <div class="space-y-0 divide-y divide-white/5">
+          <a
+            href="#"
+            class="post-row flex items-baseline justify-between py-5 group"
+          >
+            <span class="post-title text-white text-lg transition-colors"
+              >Develop for Joy</span
+            >
+            <span class="text-gray-600 text-sm ml-4 shrink-0">Mar 2023</span>
+          </a>
+          <a
+            href="#"
+            class="post-row flex items-baseline justify-between py-5 group"
+          >
+            <span class="post-title text-white text-lg transition-colors"
+              >Boring Rails</span
+            >
+            <span class="text-gray-600 text-sm ml-4 shrink-0">Nov 2021</span>
+          </a>
+          <a
+            href="#"
+            class="post-row flex items-baseline justify-between py-5 group"
+          >
+            <span class="post-title text-white text-lg transition-colors"
+              >Sane Breakpoints</span
+            >
+            <span class="text-gray-600 text-sm ml-4 shrink-0">Feb 2016</span>
+          </a>
+          <a
+            href="#"
+            class="post-row flex items-baseline justify-between py-5 group"
+          >
+            <span class="post-title text-white text-lg transition-colors"
+              >Atomic Icons</span
+            >
+            <span class="text-gray-600 text-sm ml-4 shrink-0">Jan 2016</span>
+          </a>
+          <a
+            href="#"
+            class="post-row flex items-baseline justify-between py-5 group"
+          >
+            <span class="post-title text-white text-lg transition-colors"
+              >Immutable CSS</span
+            >
+            <span class="text-gray-600 text-sm ml-4 shrink-0">Dec 2015</span>
+          </a>
+          <a
+            href="#"
+            class="post-row flex items-baseline justify-between py-5 group"
+          >
+            <span class="post-title text-white text-lg transition-colors"
+              >Mac as IDE</span
+            >
+            <span class="text-gray-600 text-sm ml-4 shrink-0">Nov 2015</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: About -->
+    <section id="about" class="relative py-24 md:py-32 bg-base overflow-hidden">
+      <!-- Subtle aurora return -->
+      <div class="aurora-container aurora-about">
+        <div
+          class="aurora-blob aurora-blob-1"
+          style="top: 20%; left: -10%"
+        ></div>
+        <div
+          class="aurora-blob aurora-blob-2"
+          style="top: 30%; right: -15%"
+        ></div>
+        <div
+          class="aurora-blob aurora-blob-3"
+          style="top: 40%; left: 40%"
+        ></div>
+      </div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-5 gap-16 items-start">
+          <!-- Photo -->
+          <div class="md:col-span-2 flex justify-center md:justify-start">
+            <div class="gradient-ring">
+              <img
+                src="/images/me.jpg"
+                alt="Nikolay Ostrovsky"
+                class="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover"
+              />
+            </div>
+          </div>
+
+          <!-- Text -->
+          <div class="md:col-span-3">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">
+              Rare Conditions, Rare Mind
+            </h2>
+            <p class="text-gray-300 text-lg leading-relaxed mb-4">
+              Like the aurora, the INTJ architect appears when rare conditions
+              converge &mdash; the right wiring, the right obsessions, the right
+              moment in time. I see systems where others see chaos. Engineer,
+              physicist, philosopher &mdash; I build production systems for a
+              living and study quantum mechanics for fun.
+            </p>
+            <p class="text-gray-300 text-lg leading-relaxed mb-8">
+              Freediving, motorcycles, biohacking &mdash; everything runs
+              through the same filter: find the pattern, strip it to its
+              essence, push past the obvious limit. Two decades of this
+              thinking, now amplified by AI. A rare convergence that doesn't
+              repeat.
+            </p>
+
+            <!-- Rarity callout -->
+            <div class="border border-teal/30 rounded-lg p-6 bg-teal/5">
+              <div class="flex items-start gap-4">
+                <div class="text-teal text-2xl mt-0.5">
+                  <i class="fa-solid fa-globe"></i>
+                </div>
+                <div>
+                  <p class="text-white font-semibold mb-1">
+                    INTJ &mdash; 2% of the population. Like an aurora, this only
+                    happens when the right forces align.
+                  </p>
+                  <p class="text-gray-600">
+                    The Architect who sees the whole system before writing a
+                    single line of code &mdash; and now moves at a speed that
+                    didn't exist a year ago.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Contact -->
+    <section id="contact" class="py-24 md:py-32 bg-card">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3">Nikolay Ostrovsky</h2>
+        <p class="text-gray-600 mb-10">
+          Full-Stack Architect &middot; Rare Convergence of Experience & AI
+        </p>
+
+        <a
+          href="mailto:nick@firedev.com"
+          class="text-xl text-gray-300 hover:text-fire transition-colors"
+        >
+          nick@firedev.com
+        </a>
+
+        <div class="flex justify-center gap-8 mt-10 text-gray-600">
+          <a
+            href="https://github.com/nickostrovsky"
+            class="hover:text-white transition-colors text-xl"
+            aria-label="GitHub"
+          >
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a
+            href="https://twitter.com/nickostrovsky"
+            class="hover:text-white transition-colors text-xl"
+            aria-label="Twitter"
+          >
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a
+            href="https://stackoverflow.com/users/nickostrovsky"
+            class="hover:text-white transition-colors text-xl"
+            aria-label="StackOverflow (top 2%)"
+          >
+            <i class="fa-brands fa-stack-overflow"></i>
+          </a>
+        </div>
+
+        <p class="text-gray-600 mt-14 text-lg">
+          The conditions have aligned. Let's see what we can build.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-base border-t border-white/5">
+      <div class="max-w-6xl mx-auto px-6 text-center text-gray-600 text-sm">
+        &copy; 2026 firedev
+      </div>
+    </footer>
+  </body>
+</html>
