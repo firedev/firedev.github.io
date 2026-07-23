@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Mindbox","description":"Advertising systems and campaigns for major international brands.","order":14,"slug":"mindbox","name":"Mindbox","years":"2000s","group":"work","role":"Art Director","summary":"Advertising systems and campaigns for major international brands.","story":["As art director I led a team that won long-term work with clients including L’Oréal, SunInBev, JTI, and BAT.","I oversaw campaign design and the web production systems used to deliver the work."],"stack":"Art direction · Team leadership · Campaign production","cover":"/images/projects/screens/mindbox.png","logo":"https://www.google.com/s2/favicons?domain=mindbox.ru&sz=128","link":"https://mindbox.ru"}
+---

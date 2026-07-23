@@ -1,0 +1,11 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if data.title %}{{ data.title }} · {% end %}firedev.com</title>
+<meta name="description" content="{{ data.description || site.metadata.description }}">
+<meta name="author" content="Nikolay Ostrovsky">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{{ resource.absolute_url }}">
+<link rel="icon" href="/images/favicon.png">
+<link rel="stylesheet" href="{%= asset_path :css %}">
+<script src="{%= asset_path :js %}" type="module"></script>
+{% live_reload_dev_js %}

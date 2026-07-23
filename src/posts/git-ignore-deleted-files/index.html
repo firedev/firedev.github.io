@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Git: Ignore deleted files | firedev.com</title>
+  <meta name="description" content="Sometimes working with other people you with you didn’t have some of the filesin repository because they are getting in the way of your settings. .ruby-versi...">
+  <meta name="author" content="Nikolay Ostrovsky">
+  <meta name="robots" content="index, follow">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <style>.mt-0{margin-top:0 !important}.mb-0{margin-bottom:0 !important}</style>
+  <link rel="canonical" href="https://firedev.com/posts/git-ignore-deleted-files/">
+  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="https://firedev.com/feed.xml" />
+  <link rel="sitemap" type="application/xml" href="https://firedev.com/sitemap.xml" />
+
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="firedev.com" />
+  <meta property="og:url" content="https://firedev.com/posts/git-ignore-deleted-files/" />
+  <meta property="og:title" content="Git: Ignore deleted files" />
+  <meta property="og:description" content="Sometimes working with other people you with you didn’t have some of the filesin repository because they are getting in the way of your settings. .ruby-versionfor instance." />
+  <meta property="og:image" content="https://firedev.com/images/logos/git.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@firedev" />
+  <meta name="twitter:title" content="Git: Ignore deleted files" />
+  <meta name="twitter:description" content="Sometimes working with other people you with you didn’t have some of the filesin repository because they are getting in the way of your settings. .ruby-versionfor instance." />
+  <meta name="twitter:image" content="https://firedev.com/images/logos/git.png" />
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Git: Ignore deleted files",
+    "author": {
+      "@type": "Person",
+      "name": "Nikolay Ostrovsky",
+      "url": "https://firedev.com"
+    },
+    "datePublished": "2015-06-09T00:00:00+07:00",
+    "dateModified": "2015-06-09T00:00:00+07:00",
+    "description": "Sometimes working with other people you with you didn’t have some of the filesin repository because they are getting in the way of your settings. .ruby-versionfor instance.",
+    "image": "https://firedev.com/images/logos/git.png",
+    "url": "https://firedev.com/posts/git-ignore-deleted-files/",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://firedev.com/posts/git-ignore-deleted-files/"
+    }
+  }
+  </script>
+  
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "firedev.com",
+    "url": "https://firedev.com",
+    "author": {
+      "@type": "Person",
+      "name": "Nikolay Ostrovsky",
+      "url": "https://firedev.com",
+      "sameAs": [
+        "https://github.com/firedev",
+        "https://twitter.com/firedev",
+        "https://stackoverflow.com/users/166484/nick"
+      ]
+    }
+  }
+  </script>
+</head>
+
+
+<body class="m-auto prose prose-neutral lg:text-xl">
+  <div class="max-w-6xl px-4 mx-auto">
+    <header class="sm:grid grid-cols-4 gap-8 mb-4">
+  <a href="/" class="block leading-4 aspect-[3/1] overflow-hidden"
+     style="background: bottom left no-repeat url(/images/logos/firedev.svg);">
+    <h1 class="text-8xl leading-4 block invisible">
+      firedev.com
+    </h1>
+  </a>
+
+  <div class="mb-8 sm:hidden"></div>
+
+  <nav class="col-span-3 flex flex-wrap gap-8 items-end  leading-6 text-4xl sm:text-2xl">
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="font-normal text-gray-600" href="/posts/">
+      Posts
+    </a>
+    
+    
+    
+    
+    
+    <a class="font-normal text-gray-600" href="/projects/">
+      Projects
+    </a>
+    
+    
+    
+    
+    
+    <a class="font-normal text-gray-600" href="/about/">
+      About
+    </a>
+    
+    
+    
+
+    <div class="flex flex-auto"></div>
+
+    <a class="hidden sm:block font-normal opacity-50 text-sm text-gray-600"
+       href=" /feed.xml">
+    <i class="fas fa-rss"></i>
+    RSS
+
+    </a>
+  </nav>
+</header>
+
+  </div>
+  
+  <div class="my-8" style="
+    padding-top: 42%;
+    background-image: url(/images/logos/git.png);
+    background-size: contain;
+    background-color: ;
+    background-position: ;
+  "></div>
+
+
+  <div class="max-w-6xl px-4 mx-auto">
+    
+
+<header>
+  <h1 class="m0 mb-4 md:text-6xl">Git: Ignore deleted files</h1>
+</header>
+
+
+<div class="mb-6">
+  <article class="mb-6">
+    <p>Sometimes working with other people you with you didn’t have some of the files
+in repository because they are getting in the way of your settings. <code class="language-plaintext highlighter-rouge">.ruby-version</code>
+for instance.</p>
+
+<p>You check out the repository and what the…</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone ...
+...
+rbenv: version <span class="s1">'2.1.5'</span> is not installed
+</code></pre></div></div>
+
+<p>Okay you delete the pesky <code class="language-plaintext highlighter-rouge">.ruby-version</code> but now it is there for every commit:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">rm</span> .ruby-version
+<span class="nv">$ </span>git status
+On branch master
+Your branch is up-to-date with <span class="s1">'origin/master'</span><span class="nb">.</span>
+Changes not staged <span class="k">for </span>commit:
+  <span class="o">(</span>use <span class="s2">"git add/rm &lt;file&gt;..."</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="k">in </span>working directory<span class="o">)</span>
+
+        deleted:    .ruby-version
+</code></pre></div></div>
+
+<p>It’s impossible to ignore it by adding to <code class="language-plaintext highlighter-rouge">.gitignore</code> but fortunately in git
+there is an option for everything.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git update-index <span class="nt">--assume-unchanged</span> .ruby-version
+<span class="nv">$ </span>git status
+On branch master
+Your branch is up-to-date with <span class="s1">'origin/master'</span><span class="nb">.</span>
+nothing to commit, working directory clean
+</code></pre></div></div>
+
+<p>Done! Phew, at least this wasn’t too much typing, was it? Another option is to truncate the file:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> <span class="o">&gt;&gt;</span> ~/.gitignore
+.ruby-version
+^C
+rbenv: version <span class="s1">'2.1.5'</span> is not installed
+<span class="nv">$ </span><span class="nb">cat</span> <span class="o">&gt;</span> .ruby-version
+^C
+<span class="nv">$ </span>git status
+On branch master
+Your branch is up-to-date with <span class="s1">'origin/master'</span><span class="nb">.</span>
+nothing to commit, working directory clean
+</code></pre></div></div>
+
+<p>And as always be careful with git, don’t mess things up.</p>
+
+  </article>
+
+  <div class="my-8 leading-8 lg:leading-9 -ml-1">
+ 
+
+<a href="/git/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Git </a>
+
+</div>
+
+</div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'firedevcom';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+
+    <footer class="text-center">
+  <div class="py-8 my-8 text-gray-700">
+    <div class="flex justify-center gap-6 mb-4">
+      <a href="https://github.com/firedev" class="text-gray-600 hover:text-gray-700"><i class="fab fa-github fa-lg"></i></a>
+      <a href="https://twitter.com/firedev" class="text-gray-600 hover:text-gray-700"><i class="fab fa-twitter fa-lg"></i></a>
+      <a href="https://stackoverflow.com/users/166484/nick" class="text-gray-600 hover:text-gray-700"><i class="fab fa-stack-overflow fa-lg"></i></a>
+    </div>
+    <a href="/" class="font-normal" style="text-decoration:none;"><span class="font-black orange">fire</span><span class="font-normal text-gray-600">dev</span></a>
+  </div>
+</footer>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJRP3XNKH5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WJRP3XNKH5');
+</script>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Cashflow Monitor","description":"Real-time sales statistics on a headquarters-scale display.","order":11,"slug":"cashflow-monitor","name":"Cashflow Monitor","years":"2014","group":"systems","role":"Design · Engineering","summary":"Real-time sales statistics on a headquarters-scale display.","story":["A live cashflow display for the headquarters of a leading Russian pharmacy chain.","It turned sales events into an animated operational view designed for a giant screen, not a desktop dashboard."],"stack":"Ruby on Rails · Data visualization","cover":"/images/projects/cashflow.png"}
+---

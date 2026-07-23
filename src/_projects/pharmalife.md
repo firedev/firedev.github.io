@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Pharmalife","description":"Employee performance and motivation system for pharmacy chains.","order":10,"slug":"pharmalife","name":"Pharmalife","years":"2014","group":"systems","role":"Product · Design · Engineering","summary":"Employee performance and motivation system for pharmacy chains.","story":["An internal product that let pharmacy employees track performance across the stores where they worked.","The system connected daily work, sales results, and motivation in one lightweight interface."],"stack":"Ruby on Rails · Product design","cover":"/images/projects/pharmalife.png","logoMode":true}
+---

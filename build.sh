@@ -1,6 +1,4 @@
-yarn build
-cd _site
-git add .
-git commit -m "$(date)"
-git push
-cd ..
+#!/bin/zsh
+set -e
+
+BRIDGETOWN_ENV=production mise exec -- bin/bridgetown deploy

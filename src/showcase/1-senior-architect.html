@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — development on fire</title>
+    <meta
+      name="description"
+      content="Senior engineer, 20 years. AI-augmented development. Architecture, code review, shipping."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              fire: "#f63",
+              terminal: "#080808",
+            },
+            fontFamily: {
+              mono: [
+                "JetBrains Mono",
+                "ui-monospace",
+                "SFMono-Regular",
+                "monospace",
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        background: #080808;
+      }
+      body {
+        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+      .cursor {
+        display: inline-block;
+        width: 0.55em;
+        height: 1.1em;
+        background: #f63;
+        vertical-align: text-bottom;
+        animation: blink 1s step-end infinite;
+      }
+
+      .scanline {
+        position: relative;
+      }
+      .scanline::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(255, 102, 51, 0.04) 2px,
+          rgba(255, 102, 51, 0.04) 4px
+        );
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .scanline:hover::after {
+        opacity: 1;
+      }
+
+      a {
+        color: #f63;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      ::selection {
+        background: #f63;
+        color: #080808;
+      }
+
+      pre {
+        font-family: inherit;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-terminal text-[#999] antialiased text-[1.05rem] leading-[1.8]"
+  >
+    <!-- Terminal window chrome -->
+    <div
+      class="sticky top-0 z-50 bg-[#0e0e0e] border-b border-[#1a1a1a] px-4 py-2.5 flex items-center gap-2 select-none"
+    >
+      <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+      <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+      <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+      <span class="ml-4 text-[#444] text-sm tracking-wider"
+        >firedev &mdash; zsh &mdash; 80x24</span
+      >
+    </div>
+
+    <main class="max-w-[680px] mx-auto px-6 pt-16 pb-8">
+      <!-- HERO -->
+      <section class="mb-20">
+        <pre class="text-fire text-sm mb-1">$</pre>
+        <h1
+          class="text-fire text-[3.5rem] sm:text-[5rem] md:text-[7rem] font-bold leading-[1.05] mb-10 tracking-tight"
+        >
+          whoami
+        </h1>
+
+        <pre
+          class="text-[#bbb] text-base sm:text-lg mb-10"
+        ><span class="text-fire">></span> nick — senior engineer, 20 years</pre>
+
+        <pre class="text-fire text-sm mb-2">$ what_changed</pre>
+        <pre
+          class="text-[#999] whitespace-pre-wrap text-base mb-10"
+        ><span class="text-fire">></span> AI happened. Now I ship in days what used to take months.
+<span class="text-fire">></span> But I don't trust AI blindly. Nobody should.</pre>
+
+        <pre class="text-fire text-sm mb-2">$ cat philosophy.md</pre>
+        <pre
+          class="text-[#bbb] whitespace-pre-wrap text-base sm:text-lg"
+        ><span class="text-fire">></span> AI drafts. I architect. You ship.
+<span class="text-fire">></span> Every line reviewed. Every decision deliberate.<span class="cursor"></span></pre>
+      </section>
+
+      <!-- PIPELINE -->
+      <section class="mb-20 scanline">
+        <pre class="text-[#333]">
+═══════════════════════════════════════════════════════</pre
+        >
+        <pre class="text-fire font-bold text-sm tracking-[0.2em] my-3">
+PIPELINE: architecture &rarr; ai_build &rarr; review &rarr; ship</pre
+        >
+        <pre class="text-[#333] mb-10">
+═══════════════════════════════════════════════════════</pre
+        >
+
+        <pre
+          class="whitespace-pre-wrap text-sm mb-6"
+        ><span class="text-fire font-bold">[HUMAN]</span>       <span class="text-[#ccc]">architecture</span>
+<span class="text-[#555]">              System design, data modeling, API contracts.
+              Decisions that compound over years, not days.
+              This is where experience matters most.</span></pre>
+
+        <pre
+          class="whitespace-pre-wrap text-sm mb-6"
+        ><span class="text-[#888] font-bold">[AI+HUMAN]</span>   <span class="text-[#ccc]">build</span>
+<span class="text-[#555]">              AI generates code from precise specifications.
+              Tight feedback loops. Rapid iteration.
+              10x velocity with human judgment on every merge.</span></pre>
+
+        <pre
+          class="whitespace-pre-wrap text-sm mb-6"
+        ><span class="text-fire font-bold">[HUMAN]</span>       <span class="text-[#ccc]">review</span>
+<span class="text-[#555]">              Every PR read. Every edge case considered.
+              No hallucinated abstractions. No cargo-cult patterns.
+              20 years of pattern recognition applied.</span></pre>
+
+        <pre
+          class="whitespace-pre-wrap text-sm"
+        ><span class="text-[#555] font-bold">[AUTOMATED]</span>  <span class="text-[#ccc]">ship</span>
+<span class="text-[#555]">              CI/CD, test suites, staging environments.
+              Deployment is a non-event.</span></pre>
+      </section>
+
+      <!-- STACK -->
+      <section class="mb-20 scanline">
+        <pre class="text-fire text-sm mb-4">$ brew list --installed</pre>
+        <pre class="text-[#888] text-sm leading-[2.2]">
+rails@7          react@19        typescript@5
+postgresql@16    redis@7         vue@3
+rspec            jest            sidekiq
+claude-code      cursor          copilot</pre
+        >
+        <pre class="text-[#333] text-sm mt-4">
+12 packages installed. 0 outdated.</pre
+        >
+      </section>
+
+      <!-- TRACK RECORD -->
+      <section class="mb-20 scanline">
+        <pre class="text-fire text-sm mb-4">$ git log --oneline --graph</pre>
+        <pre
+          class="whitespace-pre-wrap text-sm leading-[2.2]"
+        ><span class="text-fire">*</span> <span class="text-[#444]">a3f2d1c</span> <span class="text-[#ccc]">Hubstaff</span> <span class="text-[#555]">— Rails+Vue workforce platform, SaaS</span>
+<span class="text-fire">*</span> <span class="text-[#444]">8b1e4f7</span> <span class="text-[#ccc]">eApteka (Sber)</span> <span class="text-[#555]">— Pharmacy POS, enterprise scale</span>
+<span class="text-fire">*</span> <span class="text-[#444]">c9d0a2b</span> <span class="text-[#ccc]">Heartland Retail</span> <span class="text-[#555]">— React analytics dashboard</span>
+<span class="text-fire">|</span>
+<span class="text-[#333]">... 20 years of commits</span></pre>
+      </section>
+
+      <!-- CTA -->
+      <section class="mb-12">
+        <pre class="text-[#333]">
+═══════════════════════════════════════════════════════</pre
+        >
+        <div class="my-10">
+          <pre class="text-fire text-sm mb-4">$ echo "Let's talk"</pre>
+          <pre
+            class="text-[#ccc] text-lg sm:text-xl mb-4"
+          ><span class="text-fire">></span> <a href="mailto:nick@firedev.com" class="scanline">nick@firedev.com</a></pre>
+          <pre
+            class="text-[#888] whitespace-pre-wrap text-sm"
+          ><span class="text-fire">></span> Architecture review. Project estimate.
+<span class="text-fire">></span> No strings attached.<span class="cursor"></span></pre>
+        </div>
+        <pre class="text-[#333]">
+═══════════════════════════════════════════════════════</pre
+        >
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[#1a1a1a] py-6 text-center">
+      <pre class="text-[#333] text-sm">
+firedev — development on fire | exit 0</pre
+      >
+    </footer>
+  </body>
+</html>

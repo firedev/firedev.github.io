@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Phuket Rent House","description":"Vacation rental marketplace that became a real-estate agency.","order":20,"slug":"phuket-rent-house","name":"Phuket Rent House","years":"2009 — 2015","group":"products","role":"Co-founder · Business · Engineering","summary":"Vacation rental marketplace that became a real-estate agency.","story":["We built a Phuket vacation-rental marketplace before Airbnb was established in the market.","It grew into a full real-estate business with custom customer, listing, and booking-management systems."],"stack":"Ruby on Rails · Marketplace · CRM · Booking operations","cover":"/images/projects/renthouse.png","logoMode":true,"link":"https://phuketbuyhouse.com"}
+---

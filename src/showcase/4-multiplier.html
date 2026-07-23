@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — The Force Multiplier</title>
+    <meta
+      name="description"
+      content="One AI-augmented architect = an entire engineering team. The economics have changed."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              fire: "#f63",
+              ink: "#1a1a1a",
+              cream: "#faf9f6",
+              warm: "#f0ebe3",
+              muted: "#888",
+            },
+            fontFamily: {
+              serif: ["Instrument Serif", "Georgia", "serif"],
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .headline-massive {
+        font-size: clamp(3rem, 8vw, 8rem);
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+      }
+
+      .section-title {
+        font-size: clamp(2.5rem, 6vw, 6rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+
+      .pull-quote {
+        position: relative;
+        padding-left: 2rem;
+      }
+      .pull-quote::before {
+        content: "\201C";
+        position: absolute;
+        left: -0.5rem;
+        top: -1.5rem;
+        font-size: 6rem;
+        line-height: 1;
+        color: #f63;
+        font-family: "Instrument Serif", Georgia, serif;
+        opacity: 0.8;
+      }
+
+      .link-underline {
+        position: relative;
+        text-decoration: none;
+      }
+      .link-underline::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s ease;
+      }
+      .link-underline:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .project-card {
+        transition: background-color 0.3s ease;
+      }
+      .project-card:hover {
+        background-color: rgba(255, 102, 51, 0.03);
+      }
+
+      .blog-entry {
+        transition: background-color 0.2s ease;
+      }
+      .blog-entry:hover {
+        background-color: rgba(26, 26, 26, 0.02);
+      }
+
+      /* Mobile menu */
+      .nav-menu {
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+      }
+      .nav-menu.hidden-mobile {
+        transform: translateY(-1rem);
+        opacity: 0;
+        pointer-events: none;
+      }
+      @media (min-width: 768px) {
+        .nav-menu.hidden-mobile {
+          transform: none;
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-cream text-ink antialiased font-sans">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 right-0 bg-cream/95 backdrop-blur-sm z-50 border-b border-ink/10"
+    >
+      <div class="max-w-6xl mx-auto px-6 md:px-8">
+        <div class="flex justify-between items-center h-16">
+          <a
+            href="#home"
+            class="font-serif text-2xl font-bold text-ink tracking-tight"
+            >firedev</a
+          >
+          <!-- Mobile menu button -->
+          <button
+            id="menu-toggle"
+            class="md:hidden text-ink p-2"
+            aria-label="Toggle menu"
+          >
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+          <!-- Desktop nav -->
+          <div
+            id="nav-links"
+            class="nav-menu hidden-mobile absolute md:relative top-16 md:top-0 left-0 right-0 bg-cream md:bg-transparent border-b md:border-0 border-ink/10 px-6 md:px-0 pb-4 md:pb-0 flex flex-col md:flex-row gap-4 md:gap-8 items-start md:items-center font-sans text-sm tracking-wide"
+          >
+            <a
+              href="#projects"
+              class="link-underline text-ink/70 hover:text-ink transition-colors"
+              >Projects</a
+            >
+            <a
+              href="#blog"
+              class="link-underline text-ink/70 hover:text-ink transition-colors"
+              >Blog</a
+            >
+            <a
+              href="#contact"
+              class="link-underline text-ink/70 hover:text-ink transition-colors"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Section 1: Home -->
+    <section id="home" class="pt-[30vh] pb-20 md:pb-32">
+      <div class="max-w-6xl mx-auto px-6 md:px-8">
+        <!-- Massive headline -->
+        <h1 class="headline-massive font-serif text-ink mb-8 md:mb-12">
+          One Person.<br />Full Stack.
+        </h1>
+
+        <!-- Subheadline -->
+        <p
+          class="text-lg md:text-xl lg:text-2xl text-ink/60 max-w-2xl leading-relaxed mb-16 md:mb-24 font-light"
+        >
+          The economics of software have changed. One AI-augmented architect
+          ships what used to take a team of ten.
+        </p>
+
+        <!-- Pull quote -->
+        <div class="max-w-xl mb-20 md:mb-28 ml-4 md:ml-12">
+          <blockquote class="pull-quote">
+            <p
+              class="font-serif text-2xl md:text-3xl lg:text-4xl italic text-ink/80 leading-snug"
+            >
+              20 years of architecture &times; AI = unlimited leverage
+            </p>
+          </blockquote>
+        </div>
+
+        <!-- Stat blocks -->
+        <div class="grid grid-cols-3 gap-6 md:gap-12 max-w-2xl mb-24 md:mb-32">
+          <div>
+            <div
+              class="text-fire font-serif text-5xl md:text-6xl lg:text-7xl leading-none mb-2"
+            >
+              20+
+            </div>
+            <div
+              class="text-muted text-sm md:text-sm uppercase tracking-widest font-medium"
+            >
+              Years of shipping
+            </div>
+          </div>
+          <div>
+            <div
+              class="text-fire font-serif text-5xl md:text-6xl lg:text-7xl leading-none mb-2"
+            >
+              8
+            </div>
+            <div
+              class="text-muted text-sm md:text-sm uppercase tracking-widest font-medium"
+            >
+              Companies built
+            </div>
+          </div>
+          <div>
+            <div
+              class="text-fire font-serif text-5xl md:text-6xl lg:text-7xl leading-none mb-2"
+            >
+              &infin;
+            </div>
+            <div
+              class="text-muted text-sm md:text-sm uppercase tracking-widest font-medium"
+            >
+              AI leverage
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio: photo + text -->
+        <div class="grid md:grid-cols-5 gap-10 md:gap-16 items-start max-w-4xl">
+          <div class="md:col-span-2">
+            <img
+              src="/images/me.jpg"
+              alt="Nikolay Ostrovsky"
+              class="w-full max-w-xs md:max-w-none aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            />
+          </div>
+          <div class="md:col-span-3 flex flex-col justify-center">
+            <h2 class="font-serif text-3xl md:text-4xl mb-4">
+              Nikolay Ostrovsky
+            </h2>
+            <p class="text-ink/60 text-base md:text-lg leading-relaxed mb-6">
+              Full-stack architect. Ruby, Rails, React, Vue, TypeScript,
+              PostgreSQL. Grew from web/graphics through UX/UI to Team Lead and
+              CTO.
+            </p>
+            <a
+              href="#projects"
+              class="link-underline text-ink font-medium inline-block"
+            >
+              See the work <span class="ml-1">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Projects -->
+    <section id="projects" class="py-20 md:py-32">
+      <div class="max-w-6xl mx-auto px-6 md:px-8">
+        <div class="mb-12 md:mb-20">
+          <h2 class="section-title font-serif text-ink mb-4">Work</h2>
+          <hr class="border-ink/20" />
+        </div>
+
+        <!-- Asymmetric project grid -->
+        <div class="grid md:grid-cols-3 gap-px bg-ink/10">
+          <!-- Furniture 3D Builder — spans 2 cols -->
+          <a
+            href="#"
+            class="project-card md:col-span-2 bg-cream p-8 md:p-12 block group"
+          >
+            <div class="mb-6">
+              <span
+                class="text-[10px] md:text-sm uppercase tracking-[0.2em] text-muted font-medium"
+                >Three.js &middot; React.js</span
+              >
+            </div>
+            <h3
+              class="font-serif text-2xl md:text-3xl lg:text-4xl mb-4 group-hover:text-fire transition-colors"
+            >
+              Furniture 3D Builder
+            </h3>
+            <p
+              class="text-ink/50 text-sm md:text-base max-w-lg leading-relaxed"
+            >
+              Furniture generator prototype letting customers preconfigure
+              furniture before ordering.
+            </p>
+          </a>
+
+          <!-- Darkanoid -->
+          <a href="#" class="project-card bg-cream p-8 md:p-12 block group">
+            <div class="mb-6">
+              <span
+                class="text-[10px] md:text-sm uppercase tracking-[0.2em] text-muted font-medium"
+                >Gamedev &middot; Lua</span
+              >
+            </div>
+            <h3
+              class="font-serif text-2xl md:text-3xl mb-4 group-hover:text-fire transition-colors"
+            >
+              Darkanoid
+            </h3>
+            <p class="text-ink/50 text-sm md:text-base leading-relaxed">
+              Play-in-browser arcade game demake for PICO-8 Fantasy Console.
+            </p>
+          </a>
+
+          <!-- Phuket Vegan -->
+          <a href="#" class="project-card bg-cream p-8 md:p-12 block group">
+            <div class="mb-6">
+              <span
+                class="text-[10px] md:text-sm uppercase tracking-[0.2em] text-muted font-medium"
+                >Design &middot; Branding</span
+              >
+            </div>
+            <h3
+              class="font-serif text-2xl md:text-3xl mb-4 group-hover:text-fire transition-colors"
+            >
+              Phuket Vegan
+            </h3>
+            <p class="text-ink/50 text-sm md:text-base leading-relaxed">
+              Mind and Body Cleansing Retreat. A holistic approach to health.
+            </p>
+          </a>
+
+          <!-- ASCII Art — spans 2 cols -->
+          <a
+            href="#"
+            class="project-card md:col-span-2 bg-cream p-8 md:p-12 block group"
+          >
+            <div class="mb-6">
+              <span
+                class="text-[10px] md:text-sm uppercase tracking-[0.2em] text-muted font-medium"
+                >ASCII</span
+              >
+            </div>
+            <h3
+              class="font-serif text-2xl md:text-3xl lg:text-4xl mb-4 group-hover:text-fire transition-colors"
+            >
+              ASCII Art
+            </h3>
+            <p
+              class="text-ink/50 text-sm md:text-base max-w-lg leading-relaxed"
+            >
+              Next level visual art salvaged from BBS Scene art-packs.
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Blog -->
+    <section id="blog" class="py-20 md:py-32">
+      <div class="max-w-6xl mx-auto px-6 md:px-8">
+        <div class="mb-12 md:mb-20">
+          <h2 class="section-title font-serif text-ink mb-4">Thinking</h2>
+          <hr class="border-ink/20" />
+        </div>
+
+        <!-- Two-column editorial layout -->
+        <div class="grid md:grid-cols-2 gap-x-16 gap-y-0">
+          <div>
+            <!-- Post 1 -->
+            <article class="blog-entry py-8 border-b border-ink/10">
+              <time
+                class="text-sm text-muted uppercase tracking-widest font-medium"
+                >Mar 2023</time
+              >
+              <h3 class="font-serif text-xl md:text-2xl mt-2 mb-2">
+                <a
+                  href="/develop-for-joy/"
+                  class="link-underline hover:text-fire transition-colors"
+                  >Develop for Joy</a
+                >
+              </h3>
+              <p class="text-ink/50 text-sm leading-relaxed">
+                Developer happiness as a team lead priority. How joy compounds
+                into velocity.
+              </p>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="blog-entry py-8 border-b border-ink/10">
+              <time
+                class="text-sm text-muted uppercase tracking-widest font-medium"
+                >Nov 2021</time
+              >
+              <h3 class="font-serif text-xl md:text-2xl mt-2 mb-2">
+                <a
+                  href="/boring-rails/"
+                  class="link-underline hover:text-fire transition-colors"
+                  >Boring Rails</a
+                >
+              </h3>
+              <p class="text-ink/50 text-sm leading-relaxed">
+                Handling complexity on Rails pragmatically. The power of
+                convention over invention.
+              </p>
+            </article>
+
+            <!-- Post 3 -->
+            <article
+              class="blog-entry py-8 border-b border-ink/10 md:border-b-0"
+            >
+              <time
+                class="text-sm text-muted uppercase tracking-widest font-medium"
+                >Feb 2016</time
+              >
+              <h3 class="font-serif text-xl md:text-2xl mt-2 mb-2">
+                <a
+                  href="/sane-breakpoints/"
+                  class="link-underline hover:text-fire transition-colors"
+                  >Sane Breakpoints</a
+                >
+              </h3>
+              <p class="text-ink/50 text-sm leading-relaxed">
+                Device breakpoints in touch with reality. No more arbitrary
+                numbers.
+              </p>
+            </article>
+          </div>
+
+          <div>
+            <!-- Post 4 -->
+            <article class="blog-entry py-8 border-b border-ink/10">
+              <time
+                class="text-sm text-muted uppercase tracking-widest font-medium"
+                >Jan 2016</time
+              >
+              <h3 class="font-serif text-xl md:text-2xl mt-2 mb-2">
+                <a
+                  href="/atomic-icons/"
+                  class="link-underline hover:text-fire transition-colors"
+                  >Atomic Icons</a
+                >
+              </h3>
+              <p class="text-ink/50 text-sm leading-relaxed">
+                Icons as independent components. Self-contained, portable,
+                predictable.
+              </p>
+            </article>
+
+            <!-- Post 5 -->
+            <article class="blog-entry py-8 border-b border-ink/10">
+              <time
+                class="text-sm text-muted uppercase tracking-widest font-medium"
+                >Dec 2015</time
+              >
+              <h3 class="font-serif text-xl md:text-2xl mt-2 mb-2">
+                <a
+                  href="/immutable-css/"
+                  class="link-underline hover:text-fire transition-colors"
+                  >Immutable CSS</a
+                >
+              </h3>
+              <p class="text-ink/50 text-sm leading-relaxed">
+                Immutable approach to CSS architecture. Write once, never
+                override.
+              </p>
+            </article>
+
+            <!-- Post 6 -->
+            <article class="blog-entry py-8">
+              <time
+                class="text-sm text-muted uppercase tracking-widest font-medium"
+                >Nov 2015</time
+              >
+              <h3 class="font-serif text-xl md:text-2xl mt-2 mb-2">
+                <a
+                  href="/mac-as-ide/"
+                  class="link-underline hover:text-fire transition-colors"
+                  >Mac as IDE</a
+                >
+              </h3>
+              <p class="text-ink/50 text-sm leading-relaxed">
+                Using Mac as a system where apps work together. The whole is
+                greater than the parts.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Contact -->
+    <section id="contact" class="bg-warm py-20 md:py-32">
+      <div class="max-w-6xl mx-auto px-6 md:px-8">
+        <h2
+          class="font-serif text-4xl md:text-5xl lg:text-6xl text-ink mb-12 md:mb-16 leading-tight"
+        >
+          Let's multiply<br />your output.
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-12 md:gap-16 max-w-3xl">
+          <div>
+            <p class="font-semibold text-lg mb-2">Nikolay Ostrovsky</p>
+            <a
+              href="mailto:nick@firedev.com"
+              class="text-2xl md:text-3xl font-serif text-fire link-underline inline-block mb-8 hover:text-ink transition-colors"
+              >nick@firedev.com</a
+            >
+
+            <div class="flex gap-6 text-ink/40">
+              <a
+                href="https://github.com/firedev"
+                class="hover:text-ink transition-colors"
+                aria-label="GitHub"
+              >
+                <i class="fa-brands fa-github text-xl"></i>
+              </a>
+              <a
+                href="https://twitter.com/firedev"
+                class="hover:text-ink transition-colors"
+                aria-label="Twitter"
+              >
+                <i class="fa-brands fa-x-twitter text-xl"></i>
+              </a>
+              <a
+                href="https://stackoverflow.com/users/firedev"
+                class="hover:text-ink transition-colors"
+                aria-label="StackOverflow"
+              >
+                <i class="fa-brands fa-stack-overflow text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-end">
+            <p class="text-ink/50 text-sm md:text-base leading-relaxed">
+              Available for AI-augmented architecture work.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cream">
+      <div class="max-w-6xl mx-auto px-6 md:px-8">
+        <hr class="border-ink/10" />
+        <p class="text-center text-muted text-sm py-8 tracking-wide">
+          &copy; 2026 firedev
+        </p>
+      </div>
+    </footer>
+
+    <!-- Mobile menu toggle -->
+    <script>
+      const toggle = document.getElementById("menu-toggle");
+      const nav = document.getElementById("nav-links");
+      const icon = toggle.querySelector("i");
+
+      toggle.addEventListener("click", () => {
+        nav.classList.toggle("hidden-mobile");
+        if (nav.classList.contains("hidden-mobile")) {
+          icon.className = "fa-solid fa-bars text-lg";
+        } else {
+          icon.className = "fa-solid fa-xmark text-lg";
+        }
+      });
+
+      // Close menu on link click (mobile)
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth < 768) {
+            nav.classList.add("hidden-mobile");
+            icon.className = "fa-solid fa-bars text-lg";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

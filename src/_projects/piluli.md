@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Piluli.ru","description":"From one pharmacy to a retailer later acquired by X5.","order":8,"slug":"piluli","name":"Piluli.ru","years":"2000s — 2015","group":"systems","role":"Designer · Developer","summary":"From one pharmacy to a retailer later acquired by X5.","story":["Piluli started with our own pharmacy and grew into a large Russian online pharmacy business.","The operational systems and constraints discovered here led to years of work on pharmacy ERP, POS, logistics, analytics, and automation."],"stack":"Commerce · Pharmacy operations · Product design · Engineering","cover":"/images/projects/screens/piluli-eapteka.png","logo":"https://www.google.com/s2/favicons?domain=piluli.ru&sz=128","link":"https://www.eapteka.ru"}
+---

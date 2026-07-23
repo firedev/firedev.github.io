@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — AI-Augmented Full-Stack Architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sora: ["Sora", "sans-serif"],
+            },
+            colors: {
+              fire: "#f63",
+              dark: "#050508",
+              darkcard: "#0a0a10",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Sora", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        background: #050508;
+        color: #e0e0e0;
+      }
+
+      /* Gravitational well backgrounds */
+      .grav-well {
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 102, 51, 0.08) 0%,
+          transparent 70%
+        );
+      }
+      .grav-well-top {
+        background: radial-gradient(
+          ellipse at 50% 30%,
+          rgba(255, 102, 51, 0.06) 0%,
+          transparent 60%
+        );
+      }
+      .grav-well-left {
+        background: radial-gradient(
+          ellipse at 20% 50%,
+          rgba(255, 102, 51, 0.05) 0%,
+          transparent 60%
+        );
+      }
+      .grav-well-right {
+        background: radial-gradient(
+          ellipse at 80% 50%,
+          rgba(255, 102, 51, 0.05) 0%,
+          transparent 60%
+        );
+      }
+
+      /* Concentric orbit rings */
+      .orbit-ring {
+        position: absolute;
+        border: 1px solid rgba(255, 102, 51, 0.08);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .orbit-ring-1 {
+        width: 300px;
+        height: 300px;
+        animation: orbit-spin 80s linear infinite;
+      }
+      .orbit-ring-2 {
+        width: 500px;
+        height: 500px;
+        border-color: rgba(255, 102, 51, 0.06);
+        animation: orbit-spin 100s linear infinite reverse;
+      }
+      .orbit-ring-3 {
+        width: 720px;
+        height: 720px;
+        border-color: rgba(255, 102, 51, 0.04);
+        animation: orbit-spin 120s linear infinite;
+      }
+      .orbit-ring-4 {
+        width: 960px;
+        height: 960px;
+        border-color: rgba(255, 102, 51, 0.03);
+        animation: orbit-spin 150s linear infinite reverse;
+      }
+
+      /* Orbit dot — small glowing point on a ring */
+      .orbit-ring::after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 102, 51, 0.4);
+        border-radius: 50%;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 8px rgba(255, 102, 51, 0.3);
+      }
+
+      @keyframes orbit-spin {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      /* Floating card animation */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .float-card {
+        animation: float 6s ease-in-out infinite;
+      }
+      .float-card:nth-child(2) {
+        animation-delay: -1.5s;
+      }
+      .float-card:nth-child(3) {
+        animation-delay: -3s;
+      }
+      .float-card:nth-child(4) {
+        animation-delay: -4.5s;
+      }
+
+      /* Card glow on hover */
+      .card-glow {
+        transition:
+          box-shadow 0.4s ease,
+          transform 0.4s ease;
+        box-shadow: 0 0 0 rgba(255, 102, 51, 0);
+      }
+      .card-glow:hover {
+        box-shadow:
+          0 0 30px rgba(255, 102, 51, 0.12),
+          0 0 60px rgba(255, 102, 51, 0.06);
+        transform: translateY(-4px) !important;
+      }
+
+      /* Blog row hover glow */
+      .blog-row {
+        transition:
+          background 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .blog-row:hover {
+        background: rgba(255, 102, 51, 0.04);
+        box-shadow: 0 0 20px rgba(255, 102, 51, 0.06);
+      }
+
+      /* Photo glow ring */
+      .photo-glow {
+        box-shadow:
+          0 0 0 3px rgba(255, 102, 51, 0.3),
+          0 0 40px rgba(255, 102, 51, 0.15),
+          0 0 80px rgba(255, 102, 51, 0.05);
+      }
+
+      /* Nav background */
+      .nav-bg {
+        background: rgba(5, 5, 8, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      /* Section divider */
+      .section-divide {
+        border-top: 1px solid rgba(255, 102, 51, 0.08);
+      }
+
+      /* Stat number glow */
+      .stat-num {
+        text-shadow: 0 0 30px rgba(255, 102, 51, 0.3);
+      }
+    </style>
+  </head>
+  <body class="font-sora">
+    <!-- Navigation -->
+    <nav class="nav-bg fixed top-0 left-0 right-0 z-50 border-b border-white/5">
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <a href="#home" class="text-fire font-bold text-lg tracking-tight"
+          >firedev</a
+        >
+        <div class="flex items-center gap-8 text-sm text-white/50">
+          <a
+            href="#launched"
+            class="hover:text-white transition-colors duration-300"
+            >Launched</a
+          >
+          <a
+            href="#signals"
+            class="hover:text-white transition-colors duration-300"
+            >Signals</a
+          >
+          <a
+            href="#about"
+            class="hover:text-white transition-colors duration-300"
+            >About</a
+          >
+          <a
+            href="#contact"
+            class="hover:text-white transition-colors duration-300"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Section 1: Home -->
+    <section
+      id="home"
+      class="relative min-h-screen flex items-center justify-center overflow-hidden grav-well"
+    >
+      <!-- Concentric orbit rings -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="orbit-ring orbit-ring-1"></div>
+        <div class="orbit-ring orbit-ring-2"></div>
+        <div class="orbit-ring orbit-ring-3"></div>
+        <div class="orbit-ring orbit-ring-4"></div>
+      </div>
+
+      <div class="relative z-10 text-center max-w-3xl mx-auto px-6">
+        <p
+          class="text-fire/60 text-sm font-semibold tracking-[0.3em] uppercase mb-8"
+        >
+          Full-Stack Architect &middot; AI-Augmented
+        </p>
+
+        <h1
+          class="text-5xl md:text-7xl font-bold text-white leading-tight mb-8 tracking-tight"
+        >
+          Everything orbits architecture.
+        </h1>
+
+        <p
+          class="text-lg md:text-xl text-white/50 leading-relaxed max-w-2xl mx-auto mb-10"
+        >
+          Complexity collapses into simplicity around the right center of
+          gravity. Two decades of deep experience create the mass. AI provides
+          the acceleration.
+        </p>
+
+        <p
+          class="text-fire/80 italic text-base md:text-lg mb-16 max-w-xl mx-auto"
+        >
+          "Enough mass bends the trajectory of every problem toward a solution."
+        </p>
+
+        <!-- Stats -->
+        <div class="flex justify-center gap-12 md:gap-20 mb-14">
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-bold text-white stat-num">
+              20+
+            </div>
+            <div class="text-sm text-white/30 mt-2 uppercase tracking-widest">
+              Years in orbit
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-bold text-white stat-num">
+              8
+            </div>
+            <div class="text-sm text-white/30 mt-2 uppercase tracking-widest">
+              Worlds built
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-bold text-fire stat-num">
+              &infin;
+            </div>
+            <div class="text-sm text-white/30 mt-2 uppercase tracking-widest">
+              Escape velocity
+            </div>
+          </div>
+        </div>
+
+        <p class="text-white/40 text-sm mb-6">Nikolay Ostrovsky</p>
+
+        <a
+          href="#launched"
+          class="inline-flex items-center gap-2 text-fire hover:text-white transition-colors duration-300 text-sm font-semibold tracking-wide"
+        >
+          Enter orbit <span class="text-lg">&rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 2: Shipped -->
+    <section id="launched" class="relative py-32 grav-well-left section-divide">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-white mb-4 tracking-tight">
+          Launched
+        </h2>
+        <p class="text-white/30 text-sm mb-16 max-w-md">
+          Objects that reached escape velocity and entered the world.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Card 1 -->
+          <div
+            class="float-card card-glow bg-darkcard border border-white/5 rounded-2xl p-8"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div
+                class="w-10 h-10 rounded-lg bg-fire/10 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-cube text-fire text-sm"></i>
+              </div>
+              <span class="text-white/20 text-sm uppercase tracking-widest"
+                >Prototype</span
+              >
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">
+              Furniture 3D Builder
+            </h3>
+            <p class="text-white/40 text-sm leading-relaxed">
+              Furniture configurator prototype
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="float-card card-glow bg-darkcard border border-white/5 rounded-2xl p-8"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div
+                class="w-10 h-10 rounded-lg bg-fire/10 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-gamepad text-fire text-sm"></i>
+              </div>
+              <span class="text-white/20 text-sm uppercase tracking-widest"
+                >Game</span
+              >
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">Darkanoid</h3>
+            <p class="text-white/40 text-sm leading-relaxed">
+              Browser arcade game demake, PICO-8
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="float-card card-glow bg-darkcard border border-white/5 rounded-2xl p-8"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div
+                class="w-10 h-10 rounded-lg bg-fire/10 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-leaf text-fire text-sm"></i>
+              </div>
+              <span class="text-white/20 text-sm uppercase tracking-widest"
+                >Brand</span
+              >
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">Phuket Vegan</h3>
+            <p class="text-white/40 text-sm leading-relaxed">
+              Health retreat brand
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="float-card card-glow bg-darkcard border border-white/5 rounded-2xl p-8"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div
+                class="w-10 h-10 rounded-lg bg-fire/10 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-terminal text-fire text-sm"></i>
+              </div>
+              <span class="text-white/20 text-sm uppercase tracking-widest"
+                >Archive</span
+              >
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">ASCII Art</h3>
+            <p class="text-white/40 text-sm leading-relaxed">
+              BBS Scene art collection
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Thinking -->
+    <section id="signals" class="relative py-32 grav-well-right section-divide">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-white mb-4 tracking-tight">
+          Signals
+        </h2>
+        <p class="text-white/30 text-sm mb-16 max-w-md">
+          Transmissions on craft, tools, and the underlying physics of good
+          software.
+        </p>
+
+        <div class="max-w-2xl">
+          <a
+            href="#"
+            class="blog-row flex items-baseline justify-between py-5 px-4 -mx-4 rounded-lg group"
+          >
+            <span
+              class="text-white/80 group-hover:text-white transition-colors duration-300"
+              >Develop for Joy</span
+            >
+            <span class="text-white/20 text-sm ml-4 shrink-0">Mar 2023</span>
+          </a>
+          <a
+            href="#"
+            class="blog-row flex items-baseline justify-between py-5 px-4 -mx-4 rounded-lg group"
+          >
+            <span
+              class="text-white/80 group-hover:text-white transition-colors duration-300"
+              >Boring Rails</span
+            >
+            <span class="text-white/20 text-sm ml-4 shrink-0">Nov 2021</span>
+          </a>
+          <a
+            href="#"
+            class="blog-row flex items-baseline justify-between py-5 px-4 -mx-4 rounded-lg group"
+          >
+            <span
+              class="text-white/80 group-hover:text-white transition-colors duration-300"
+              >Sane Breakpoints</span
+            >
+            <span class="text-white/20 text-sm ml-4 shrink-0">Feb 2016</span>
+          </a>
+          <a
+            href="#"
+            class="blog-row flex items-baseline justify-between py-5 px-4 -mx-4 rounded-lg group"
+          >
+            <span
+              class="text-white/80 group-hover:text-white transition-colors duration-300"
+              >Atomic Icons</span
+            >
+            <span class="text-white/20 text-sm ml-4 shrink-0">Jan 2016</span>
+          </a>
+          <a
+            href="#"
+            class="blog-row flex items-baseline justify-between py-5 px-4 -mx-4 rounded-lg group"
+          >
+            <span
+              class="text-white/80 group-hover:text-white transition-colors duration-300"
+              >Immutable CSS</span
+            >
+            <span class="text-white/20 text-sm ml-4 shrink-0">Dec 2015</span>
+          </a>
+          <a
+            href="#"
+            class="blog-row flex items-baseline justify-between py-5 px-4 -mx-4 rounded-lg group"
+          >
+            <span
+              class="text-white/80 group-hover:text-white transition-colors duration-300"
+              >Mac as IDE</span
+            >
+            <span class="text-white/20 text-sm ml-4 shrink-0">Nov 2015</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: About -->
+    <section id="about" class="relative py-32 grav-well section-divide">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">
+              The Observer at the Center
+            </h2>
+            <p class="text-fire/50 text-sm mb-10 uppercase tracking-widest">
+              INTJ &mdash; The Architect
+            </p>
+
+            <p class="text-white/50 leading-relaxed mb-8">
+              There is a stillness at the center of every complex system where
+              the pattern becomes visible. That is where I work. Engineer,
+              physicist, philosopher &mdash; I have spent two decades learning
+              to see the whole orbital map before committing a single force.
+              Freediving teaches the same lesson as architecture: go deep, stay
+              calm, trust the structure you built on the surface.
+            </p>
+
+            <p class="text-white/30 text-sm italic">
+              INTJ &mdash; 2% of the population. The kind of mind that maps the
+              entire gravitational field before placing the first object in
+              space.
+            </p>
+          </div>
+
+          <div class="flex justify-center">
+            <div class="relative">
+              <!-- Decorative orbit rings behind photo -->
+              <div
+                class="absolute -inset-8 border border-fire/5 rounded-full animate-spin"
+                style="animation-duration: 60s"
+              ></div>
+              <div
+                class="absolute -inset-16 border border-fire/[0.03] rounded-full animate-spin"
+                style="animation-duration: 90s; animation-direction: reverse"
+              ></div>
+              <img
+                src="/images/me.jpg"
+                alt="Nikolay Ostrovsky"
+                class="relative z-10 w-64 h-64 rounded-full object-cover photo-glow"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Contact -->
+    <section id="contact" class="relative py-32 grav-well-left section-divide">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2
+          class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight"
+        >
+          Establish contact.
+        </h2>
+        <p class="text-white/30 text-sm mb-16">
+          Some forces only activate at close range.
+        </p>
+
+        <div class="mb-12">
+          <p class="text-white/70 text-lg font-semibold mb-1">
+            Nikolay Ostrovsky
+          </p>
+          <p class="text-white/30 text-sm mb-6">
+            AI-Augmented Full-Stack Architect
+          </p>
+
+          <a
+            href="mailto:nick@firedev.com"
+            class="text-fire hover:text-white transition-colors duration-300"
+          >
+            nick@firedev.com
+          </a>
+        </div>
+
+        <div class="flex justify-center gap-8 text-white/30">
+          <a
+            href="https://github.com/firedev"
+            class="hover:text-fire transition-colors duration-300"
+            aria-label="GitHub"
+          >
+            <i class="fa-brands fa-github text-xl"></i>
+          </a>
+          <a
+            href="https://twitter.com/firedev"
+            class="hover:text-fire transition-colors duration-300"
+            aria-label="Twitter"
+          >
+            <i class="fa-brands fa-x-twitter text-xl"></i>
+          </a>
+          <a
+            href="https://stackoverflow.com/users/1004158"
+            class="hover:text-fire transition-colors duration-300"
+            aria-label="StackOverflow — top 2%"
+          >
+            <i class="fa-brands fa-stack-overflow text-xl"></i>
+            <span class="sr-only">Top 2%</span>
+          </a>
+        </div>
+        <p class="text-white/15 text-sm mt-4">StackOverflow — top 2%</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center section-divide">
+      <p class="text-white/15 text-sm tracking-widest">&copy; 2026 firedev</p>
+    </footer>
+  </body>
+</html>

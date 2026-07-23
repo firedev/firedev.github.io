@@ -1,0 +1,67 @@
+---
+layout: default
+title: Projects
+description: Products, platforms, brands, and experiments shipped by Nikolay Ostrovsky.
+page_class: projects-page
+---
+
+{% projects = collections.projects.resources.sort_by { |project| project.data.order } %}
+{% selected = projects.reject { |project| project.data.group == "archive" } %}
+{% archive = projects.select { |project| project.data.group == "archive" } %}
+{% clean_text = ->(value) { value.to_s.gsub(/[—–]/, "-") } %}
+
+<div class="mx-auto w-[min(1180px,calc(100%-2rem))]">
+  <section class="grid gap-10 py-16 md:grid-cols-[1.5fr_.5fr] md:items-end md:gap-20 md:py-32">
+    <h1 class="max-w-[12ch] text-[clamp(3.6rem,10vw,7.5rem)] font-black leading-[.88] tracking-[-.04em]">Things I’ve <strong class="text-fire">shipped.</strong></h1>
+    <div>
+      <p class="mb-3 text-sm font-black">{{ projects.size }} products, systems, brands, and experiments</p>
+      <p class="max-w-[34ch] text-lg leading-relaxed text-muted">Two decades across product, engineering, design, and the occasional business built from zero.</p>
+    </div>
+  </section>
+
+  <section class="pb-20">
+    <div class="mb-7 flex flex-wrap items-baseline gap-x-4 border-b border-line">
+      <h2 class="mb-3 text-3xl font-black tracking-[-.03em] md:text-5xl">Selected work</h2>
+      <span class="mb-3 w-full text-sm text-muted md:w-auto">Products · systems · brands · experiments</span>
+    </div>
+
+    <div class="grid grid-cols-1 gap-x-6 gap-y-3 md:grid-cols-12">
+      {% selected.each_with_index do |project, index| %}
+        <article class="project-card {{ index < 6 ? 'md:col-span-6' : 'md:col-span-4' }}">
+          <a href="{{ project.relative_url }}" class="block text-inherit">
+            <figure class="project-media {{ project.data.logoMode && !project.data.cover && 'project-logo' }} relative aspect-[4/3] overflow-hidden bg-white">
+              <img src="{{ project.data.cover || project.data.logo }}" alt="{{ project.data.name }} project visual" loading="{{ index < 4 ? 'eager' : 'lazy' }}" class="h-full w-full object-cover">
+              {% if project.data.logo and !project.data.logoMode %}
+                <img src="{{ project.data.logo }}" alt="" loading="lazy" class="absolute left-3 top-3 h-11 w-11 rounded-xl border border-white/70 bg-white p-1.5 object-contain shadow-lg">
+              {% end %}
+            </figure>
+            <div class="grid grid-cols-[1fr_auto] gap-x-4 gap-y-2 border-b border-line py-5">
+              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">{{ project.data.name }}</h3>
+              <span class="text-xs text-muted">{{ clean_text.call(project.data.years) }}</span>
+              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">{{ clean_text.call(project.data.summary) }}</p>
+            </div>
+          </a>
+        </article>
+      {% end %}
+    </div>
+  </section>
+
+  <section class="pb-16 md:pb-28">
+    <div class="mb-5 flex flex-wrap items-baseline gap-x-4 border-b border-line">
+      <h2 class="mb-3 text-3xl font-black tracking-[-.03em] md:text-5xl">Archive</h2>
+      <span class="mb-3 w-full text-sm text-muted md:w-auto">The sites may be gone. The work stays.</span>
+    </div>
+    <div class="grid gap-x-12 md:grid-cols-2">
+      {% archive.each do |project| %}
+        <a href="{{ project.relative_url }}" class="grid grid-cols-[4rem_1fr_auto] items-center gap-4 border-b border-line py-4 text-inherit">
+          <img src="{{ project.data.cover || project.data.logo }}" alt="" loading="lazy" class="h-16 w-16 bg-white object-cover {{ project.data.logoMode && !project.data.cover && 'p-2 object-contain' }}">
+          <span>
+            <strong class="block">{{ project.data.name }}</strong>
+            <small class="mt-1 block leading-snug text-muted">{{ clean_text.call(project.data.summary) }}</small>
+          </span>
+          <small class="text-muted">{{ clean_text.call(project.data.years) }}</small>
+        </a>
+      {% end %}
+    </div>
+  </section>
+</div>
