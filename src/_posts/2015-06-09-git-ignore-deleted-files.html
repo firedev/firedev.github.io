@@ -1,0 +1,56 @@
+---
+layout: "post"
+title: "Git: Ignore deleted files"
+description: "Sometimes working with other people you with you didn’t have some of the filesin repository because they are getting in the way of your settings. .ruby-versionfor instance."
+date: "2015-06-09"
+permalink: "/posts/git-ignore-deleted-files/"
+cover: "/images/logos/git.png"
+---
+
+<p>Sometimes working with other people you with you didn’t have some of the files
+in repository because they are getting in the way of your settings. <code class="language-plaintext highlighter-rouge">.ruby-version</code>
+for instance.</p>
+
+<p>You check out the repository and what the…</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone ...
+...
+rbenv: version <span class="s1">'2.1.5'</span> is not installed
+</code></pre></div></div>
+
+<p>Okay you delete the pesky <code class="language-plaintext highlighter-rouge">.ruby-version</code> but now it is there for every commit:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">rm</span> .ruby-version
+<span class="nv">$ </span>git status
+On branch master
+Your branch is up-to-date with <span class="s1">'origin/master'</span><span class="nb">.</span>
+Changes not staged <span class="k">for </span>commit:
+  <span class="o">(</span>use <span class="s2">"git add/rm &lt;file&gt;..."</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="k">in </span>working directory<span class="o">)</span>
+
+        deleted:    .ruby-version
+</code></pre></div></div>
+
+<p>It’s impossible to ignore it by adding to <code class="language-plaintext highlighter-rouge">.gitignore</code> but fortunately in git
+there is an option for everything.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git update-index <span class="nt">--assume-unchanged</span> .ruby-version
+<span class="nv">$ </span>git status
+On branch master
+Your branch is up-to-date with <span class="s1">'origin/master'</span><span class="nb">.</span>
+nothing to commit, working directory clean
+</code></pre></div></div>
+
+<p>Done! Phew, at least this wasn’t too much typing, was it? Another option is to truncate the file:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> <span class="o">&gt;&gt;</span> ~/.gitignore
+.ruby-version
+^C
+rbenv: version <span class="s1">'2.1.5'</span> is not installed
+<span class="nv">$ </span><span class="nb">cat</span> <span class="o">&gt;</span> .ruby-version
+^C
+<span class="nv">$ </span>git status
+On branch master
+Your branch is up-to-date with <span class="s1">'origin/master'</span><span class="nb">.</span>
+nothing to commit, working directory clean
+</code></pre></div></div>
+
+<p>And as always be careful with git, don’t mess things up.</p>

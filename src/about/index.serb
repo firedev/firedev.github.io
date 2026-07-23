@@ -1,0 +1,72 @@
+---
+layout: default
+title: About
+description: Nikolay Ostrovsky — full-stack architect, product operator, and builder.
+page_class: about-page
+---
+
+{% career = [
+  ["2022 — now", "Full Stack Developer · Hubstaff", "Proof-of-work platform for distributed organizations."],
+  ["2021 — 2022", "Team Lead · Sber EApteka", "Built the pharmacy POS and warehouse platform, assembled the team, and shipped it across a national network."],
+  ["2020 — 2021", "Full Stack Developer · Flash Chat", "Mobile PWA products with video and phone calling, shipped through rapid MVP cycles."],
+  ["2017 — 2019", "Co-founder · CTO · Learn21", "Led a cross-functional team and delivered an English-learning platform to 11 schools across three Thai provinces."],
+  ["2015 — 2018", "Full Stack Developer · Heartland Retail", "Built retail analytics dashboards and flexible reporting across sales data."],
+  ["2011 — 2015", "Team Lead · 7Pikes", "ERP and POS systems powering more than 1,300 pharmacies."],
+  ["2010 — 2012", "Co-founder · Jaconda IM", "Designed, built, and supported a chat platform for distributed companies with a two-person team."],
+  ["2009 — 2015", "Co-founder · Phuket Project", "Built a real-estate product that grew into one of Phuket’s leading agencies."]
+] %}
+
+<article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
+  <section class="grid gap-10 py-14 md:grid-cols-12 md:items-end md:gap-6 md:py-24">
+    <figure class="relative md:col-span-5">
+      <img src="/images/nick.jpg" alt="Nikolay Ostrovsky" class="aspect-[4/5] w-full object-cover object-top">
+      <figcaption class="absolute bottom-0 right-0 max-w-56 bg-fire p-5 text-base font-black leading-snug text-white">Phuket, Thailand.<br>Building worldwide.</figcaption>
+    </figure>
+
+    <div class="md:col-span-7 md:pl-[clamp(2rem,7vw,7rem)]">
+      <p class="mb-5 text-lg font-black text-fire">Full-stack architect · product operator</p>
+      <h1 class="max-w-[10ch] text-[clamp(3.4rem,9vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Nikolay Ostrovsky</h1>
+      <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">I see structure before noise. Two decades inside products where interface, architecture, operations, and business have to move together.</p>
+    </div>
+  </section>
+
+  <section class="grid gap-8 border-y border-line py-12 md:grid-cols-12 md:py-20">
+    <h2 class="max-w-[10ch] text-4xl font-black tracking-[-.03em] md:col-span-5 md:text-6xl">I work across the seams.</h2>
+    <div class="md:col-span-6 md:col-start-7">
+      <p class="max-w-[58ch] text-lg leading-relaxed text-[#3d3936]">Strategy by wiring, engineering by practice, design by necessity. I’m most useful when a product is tangled enough that changing one decision changes the screen, the system, and the company behind it.</p>
+      <p class="mt-6 max-w-[58ch] text-lg leading-relaxed text-[#3d3936]">Current work sits at both ends of the spectrum: <a href="https://houseviser.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire">Houseviser</a> for verified Phuket real estate and <a href="https://nofins.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire">nofins.com</a> around freediving, attention, and calm performance.</p>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-24">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-5">
+      <h2 class="text-4xl font-black tracking-[-.03em] md:text-6xl">Selected timeline</h2>
+      <a href="https://docs.google.com/document/d/1qnomVOrRcLFvJ3dISHwEGgQ_aEzKXytpmPF1eJyqAM0/edit?tab=t.0" class="min-h-11 border border-ink px-4 py-3 text-base font-black hover:border-fire hover:bg-fire hover:text-white">Open CV ↗</a>
+    </div>
+
+    <div class="border-t border-ink">
+      {% career.each do |item| %}
+        <section class="grid gap-3 border-b border-line py-6 md:grid-cols-12 md:gap-6 md:py-8">
+          <p class="font-black text-fire md:col-span-3">{{ item[0] }}</p>
+          <h3 class="text-xl font-black tracking-[-.02em] md:col-span-4 md:text-2xl">{{ item[1] }}</h3>
+          <p class="max-w-[54ch] text-base leading-relaxed text-muted md:col-span-5">{{ item[2] }}</p>
+        </section>
+      {% end %}
+    </div>
+  </section>
+
+  <section class="grid gap-8 bg-fire px-6 py-12 text-ink md:grid-cols-12 md:px-12 md:py-16">
+    <h2 class="max-w-[9ch] text-4xl font-black tracking-[-.03em] md:col-span-7 md:text-6xl">Have a complicated thing?</h2>
+    <div class="md:col-span-5 md:self-end">
+      <p class="mb-7 max-w-[36ch] text-lg leading-relaxed text-ink/80">Bring the knot. I’ll help find the product inside it and get it live.</p>
+      <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center border border-ink bg-ink px-5 py-3 text-base font-black text-white hover:bg-white hover:text-ink">nick@firedev.com ↗</a>
+    </div>
+  </section>
+
+  <nav class="flex flex-wrap gap-x-8 gap-y-3 border-b border-line py-7 text-base font-black" aria-label="Elsewhere">
+    <a href="https://github.com/firedev" class="min-h-11 py-2 hover:text-fire">GitHub ↗</a>
+    <a href="https://stackoverflow.com/users/166484/nick" class="min-h-11 py-2 hover:text-fire">Stack Overflow ↗</a>
+    <a href="https://git-wrapped.com/profiles/firedev" class="min-h-11 py-2 hover:text-fire">Git Wrapped ↗</a>
+    <a href="https://nofins.com" class="min-h-11 py-2 hover:text-fire">nofins.com ↗</a>
+  </nav>
+</article>

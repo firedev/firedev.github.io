@@ -21,6 +21,15 @@ mise exec -- ./build.sh
 The production build goes to `output/`. Check key pages with `curl` or by inspecting
 the generated HTML. If a real browser is required, use Brave only — never Chrome.
 
+## Content architecture
+
+- Posts live in `src/_posts/` and use `src/_layouts/post.serb`.
+- Projects live in `src/_projects/` and render at `/projects/:slug/`.
+- `About`, `Posts`, and every post/project page use the shared `default` layout.
+- Never copy generated project or post HTML back into `src/`; that freezes the old
+  header and causes the design to drift.
+- Do not add browser favicons or Google favicon-service images as project logos.
+
 ## Deploy
 
 1. On `source`, commit and push all intended source changes.
