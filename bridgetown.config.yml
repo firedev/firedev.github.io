@@ -6,7 +6,7 @@ permalink: simple
 collections:
   projects:
     output: true
-    permalink: "/projects/:slug/"
+    permalink: "/:slug/"
     sort_by: order
 
 html_inspector_parser: nokolexbor
