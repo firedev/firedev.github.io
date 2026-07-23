@@ -3,7 +3,7 @@
 @source "../javascript/**/*.js";
 
 @theme {
-  --color-fire: #c5421a;
+  --color-fire: #ff6633;
   --color-ink: #12100f;
   --color-muted: #68615c;
   --color-canvas: #f6f4f1;
@@ -42,6 +42,62 @@
   }
 }
 
+.site-header {
+  align-items: flex-start;
+}
+
+.site-nav {
+  line-height: 1;
+}
+
+.nav-link {
+  position: relative;
+  letter-spacing: -.03em;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: .45rem;
+  height: 2px;
+  background: var(--color-fire);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 180ms ease;
+}
+
+.nav-link:hover {
+  color: var(--color-ink);
+}
+
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+.nav-cta {
+  background: white;
+  letter-spacing: -.02em;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.nav-cta:hover {
+  border-color: var(--color-fire);
+  background: var(--color-fire);
+  color: white;
+  transform: translateY(-1px);
+}
+
+@media (min-width: 768px) {
+  .site-header {
+    align-items: center;
+  }
+}
+
 .project-media img {
   transition: transform 500ms cubic-bezier(.22, 1, .36, 1);
 }
@@ -63,7 +119,7 @@
 }
 
 .archive-shell {
-  color: #3d3936;
+  color: var(--color-ink);
 }
 
 .archive-shell a {
@@ -206,7 +262,7 @@
 
 .post-body {
   max-width: 72ch;
-  color: #3d3936;
+  color: var(--color-ink);
   font-size: clamp(1.0625rem, 1.3vw, 1.1875rem);
   line-height: 1.82;
 }
