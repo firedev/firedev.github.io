@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 160" role="img" aria-labelledby="title">
+  <title>nonduality.today</title>
+  <rect width="860" height="160" fill="#ffffff"/>
+  <circle cx="96" cy="80" r="34" fill="none" stroke="#12100f" stroke-width="10"/>
+  <circle cx="96" cy="80" r="14" fill="#ff6633"/>
+  <text x="450" y="102" fill="#12100f" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="800" text-anchor="middle">nonduality</text>
+  <text x="726" y="102" fill="#ff6633" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="800" text-anchor="middle">.today</text>
+</svg>
