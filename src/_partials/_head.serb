@@ -1,11 +1,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if data.title %}{{ data.title }} · {% end %}firedev.com</title>
-<meta name="description" content="{{ data.description || site.metadata.description }}">
+{% meta_title = data.title ? "#{data.title} · #{site.metadata.title}" : site.metadata.title %}
+{% meta_description = data.description || site.metadata.description %}
+{% meta_image = data.cover || data.logo || "/images/logos/firedev.svg" %}
+{% meta_image_absolute = meta_image.start_with?("http://", "https://") ? meta_image : "#{site.config.url}#{meta_image}" %}
+{% meta_type = data.layout == "project" ? "article" : "website" %}
+<title>{{ meta_title }}</title>
+<meta name="description" content="{{ meta_description }}">
 <meta name="author" content="Nikolay Ostrovsky">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="{{ resource.absolute_url }}">
 <link rel="icon" href="/images/favicon.png">
+<meta property="og:site_name" content="{{ site.metadata.title }}">
+<meta property="og:type" content="{{ meta_type }}">
+<meta property="og:title" content="{{ meta_title }}">
+<meta property="og:description" content="{{ meta_description }}">
+<meta property="og:url" content="{{ resource.absolute_url }}">
+<meta property="og:image" content="{{ meta_image_absolute }}">
+<meta name="twitter:card" content="{{ (data.cover || data.logo) ? 'summary_large_image' : 'summary' }}">
+<meta name="twitter:title" content="{{ meta_title }}">
+<meta name="twitter:description" content="{{ meta_description }}">
+<meta name="twitter:image" content="{{ meta_image_absolute }}">
 <link rel="stylesheet" href="{%= asset_path :css %}">
 <script src="{%= asset_path :js %}" type="module"></script>
 {% live_reload_dev_js %}

@@ -15,7 +15,7 @@ layout: default
 
   <section class="grid items-end gap-10 py-12 md:grid-cols-[.9fr_1.1fr] md:py-24">
     <div>
-      <p class="mb-4 text-sm font-bold text-muted">{{ format_years.call(resource.data.years) }} · {{ clean_text.call(resource.data.role) }}</p>
+      <p class="mb-4 text-sm font-bold text-muted">{{ clean_text.call(resource.data.role) }}</p>
       <h1 class="max-w-[10ch] text-[clamp(3.5rem,10vw,7rem)] font-black leading-[.88] tracking-[-.04em]">{{ resource.data.name }}</h1>
       <p class="mt-7 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">{{ clean_text.call(resource.data.summary) }}</p>
     </div>
@@ -29,7 +29,7 @@ layout: default
 
   <section class="grid gap-12 border-t border-line py-14 md:grid-cols-[1.25fr_.55fr] md:gap-24 md:py-24">
     <div>
-      <h2 class="mb-6 text-3xl font-black tracking-[-.03em] md:text-4xl">The work</h2>
+      <h2 class="mb-6 text-3xl font-black tracking-[-.03em] md:text-4xl">What shipped</h2>
       {% (resource.data.story || [resource.data.summary]).each do |paragraph| %}
         <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-[#3d3936]">{{ clean_text.call(paragraph) }}</p>
       {% end %}
@@ -136,7 +136,6 @@ layout: default
           <div class="border-b border-line py-4">
             <div class="flex items-baseline justify-between gap-4">
               <strong class="text-xl tracking-[-.02em]">{{ project.data.name }}</strong>
-              <small class="text-muted">{{ format_years.call(project.data.years) }}</small>
             </div>
             <p class="mt-2 leading-relaxed text-muted">{{ clean_text.call(project.data.summary) }}</p>
           </div>
