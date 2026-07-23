@@ -1,0 +1,62 @@
+---
+layout: "post"
+title: "Hello, Jekyll!"
+description: "After unsuccessful attempts at blogging relying on 3rd party platforms likePosterous, Tumblr, Droplr and whatnot here is my new stab at delivering ideasto the world. Fully autonomous this time. Sur..."
+date: "2015-06-06"
+permalink: "/posts/hello-jekyll/"
+cover: "/images/logos/jekyll2.png"
+---
+
+<p>After unsuccessful attempts at blogging relying on 3rd party platforms like
+Posterous, Tumblr, Droplr and whatnot here is my new stab at delivering ideas
+to the world. Fully autonomous this time. Surprisingly there are not that many
+options available for blogging…</p>
+
+<p>Why not Wordpress? I never really liked it, between these options and plugins
+there seem to be little left to the actual content creation.
+This weekend I have decided to finally get back to blogging.</p>
+
+<p>Having two kids and being a freelancer I don’t have much time to fight technology.
+I don’t want to mess with bloated Wordpress themes, plugins and exploits.
+Making my own blog on Ruby on Rails sounds tempting but I better concentrate
+on other things in life.</p>
+
+<p>Forcing markdown on users in projects lately I wanted to write in markdown.
+And the options that came to mind were Jekyll which I wanted to try for a long
+time and Middleman. Jekyll had less options and less of everything so it
+sounded like a nice fit for a weekend project. And here it is.</p>
+
+<h2 id="partials-in-jekyll">Partials in Jekyll</h2>
+<p>One of the tricky part was rendering of posts. In rails I would throw in a partial.
+Since there are no partials in Jekyll I had to use includes.</p>
+
+<p>This is what I have in my <code class="language-plaintext highlighter-rouge">posts</code> and <code class="language-plaintext highlighter-rouge">index</code> pages:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&#123;%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">posts</span><span class="w"> </span><span class="cp">%&#125;</span>
+  <span class="cp">&#123;%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>_post.html<span class="w"> </span><span class="na">post</span><span class="o">=</span><span class="nv">post</span><span class="w"> </span><span class="cp">%&#125;</span>
+<span class="cp">&#123;%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="cp">%&#125;</span>
+
+</code></pre></div></div>
+
+<p>And the actual <code class="language-plaintext highlighter-rouge">_post.html</code> include uses <code class="language-plaintext highlighter-rouge">include.post</code> variable:</p>
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+&lt;h2&gt;
+    &lt;a href="<span class="cp">&#123;&#123;</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">url</span><span class="w"> </span><span class="cp">&#125;&#125;</span>"&gt;<span class="cp">&#123;&#123;</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">title</span><span class="w"> </span><span class="cp">&#125;&#125;</span>&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;<span class="cp">&#123;&#123;</span><span class="w"> </span><span class="nv">include</span><span class="p">.</span><span class="nv">post</span><span class="p">.</span><span class="nv">excerpt</span><span class="w"> </span><span class="cp">&#125;&#125;</span>&lt;p&gt;
+
+</code></pre></div></div>
+
+<p>This is something I would do in Rails. Everything seems pretty sweet so far.
+The only issue is that I have to write HTML again which seems as a step back
+after Slim.</p>
+
+<p>Hosting the new static site at
+<a href="http://firedev.github.io">firedev.github.io</a>, courtesy of Github.
+Finally I can sleep at nights knowing that
+<a href="http://www.theverge.com/2013/4/30/4281780/posterous-is-shutting-down-tomorrow-here-are-the-best-alternatives">whatever</a>
+<a href="http://www.engadget.com/2014/01/03/droplr-rapid-file-sharing-service-goes-pay-only">crazy</a>
+<a href="http://www.businessinsider.com/medium-budget-cuts-and-restructuring-2015-6">idea</a>
+the companies
+I’ve trusted my content to are going to get it won’t affect me.</p>

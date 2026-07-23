@@ -1,0 +1,48 @@
+---
+layout: default
+title: Posts
+description: Notes on Ruby, product architecture, teams, design, and the tools around the work.
+page_class: posts-page
+---
+
+{% posts = collections.posts.resources.sort_by { |post| post.data.date }.reverse %}
+{% featured = posts.first %}
+
+<div class="mx-auto w-[min(1180px,calc(100%-2rem))]">
+  <section class="grid gap-10 py-16 md:grid-cols-12 md:items-end md:py-28">
+    <h1 class="max-w-[10ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em] md:col-span-8">Notes from <strong class="text-fire">the work.</strong></h1>
+    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-4">Ruby, products, teams, interfaces, and the small decisions that keep systems moving.</p>
+  </section>
+
+  {% if featured %}
+    <a href="{{ featured.relative_url }}" class="group grid border-y border-ink py-7 text-inherit md:grid-cols-12 md:gap-8 md:py-10">
+      <figure class="project-media mb-7 overflow-hidden bg-white md:col-span-7 md:mb-0">
+        <img src="{{ featured.data.cover }}" alt="" class="aspect-[16/9] h-full w-full object-cover">
+      </figure>
+      <div class="md:col-span-5 md:self-end">
+        <time datetime="{{ featured.data.date.strftime('%Y-%m-%d') }}" class="font-black text-fire">{{ featured.data.date.strftime("%d %b %Y") }}</time>
+        <h2 class="mt-4 text-4xl font-black leading-[.95] tracking-[-.03em] md:text-5xl">{{ featured.data.title }}</h2>
+        <p class="mt-5 max-w-[44ch] text-lg leading-relaxed text-muted">{{ featured.data.description }}</p>
+        <span class="mt-7 inline-block font-black group-hover:text-fire">Read the post →</span>
+      </div>
+    </a>
+  {% end %}
+
+  <section class="pb-16 pt-14 md:pb-28 md:pt-20">
+    <h2 class="mb-8 text-3xl font-black tracking-[-.03em] md:text-5xl">Archive</h2>
+    <div class="border-t border-ink">
+      {% posts.drop(1).each do |post| %}
+        <a href="{{ post.relative_url }}" class="group grid gap-4 border-b border-line py-6 text-inherit md:grid-cols-12 md:items-center md:gap-6 md:py-8">
+          <time datetime="{{ post.data.date.strftime('%Y-%m-%d') }}" class="font-black text-fire md:col-span-2">{{ post.data.date.strftime("%Y · %d %b") }}</time>
+          <div class="md:col-span-7">
+            <h3 class="text-2xl font-black tracking-[-.02em] group-hover:text-fire md:text-3xl">{{ post.data.title }}</h3>
+            <p class="mt-2 max-w-[64ch] leading-relaxed text-muted">{{ post.data.description }}</p>
+          </div>
+          {% if post.data.cover %}
+            <img src="{{ post.data.cover }}" alt="" loading="lazy" class="aspect-[16/9] w-full bg-white object-cover md:col-span-3">
+          {% end %}
+        </a>
+      {% end %}
+    </div>
+  </section>
+</div>

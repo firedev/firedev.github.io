@@ -1,16 +1,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{% meta_title = data.title ? "#{data.title} · #{site.metadata.title}" : site.metadata.title %}
+{% meta_title = resource.relative_url == "/" || !data.title ? site.metadata.title : "#{data.title} · #{site.metadata.title}" %}
 {% meta_description = data.description || site.metadata.description %}
 {% meta_image = data.cover || data.logo || "/images/logos/firedev.svg" %}
 {% meta_image_absolute = meta_image.start_with?("http://", "https://") ? meta_image : "#{site.config.url}#{meta_image}" %}
-{% meta_type = data.layout == "project" ? "article" : "website" %}
+{% meta_type = ["project", "post"].include?(data.layout) ? "article" : "website" %}
 <title>{{ meta_title }}</title>
 <meta name="description" content="{{ meta_description }}">
 <meta name="author" content="Nikolay Ostrovsky">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="{{ resource.absolute_url }}">
-<link rel="icon" href="/images/favicon.png">
 <meta property="og:site_name" content="{{ site.metadata.title }}">
 <meta property="og:type" content="{{ meta_type }}">
 <meta property="og:title" content="{{ meta_title }}">
