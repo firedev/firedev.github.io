@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-labelledby="title">
+  <title>nofins</title>
+  <rect width="640" height="160" fill="#ffffff"/>
+  <path d="M84 112c28-38 53-57 76-57 22 0 41 14 58 41 18-27 38-41 60-41 23 0 46 18 68 54" fill="none" stroke="#ff6633" stroke-linecap="round" stroke-linejoin="round" stroke-width="14"/>
+  <text x="320" y="108" fill="#12100f" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" text-anchor="middle">nofins</text>
+</svg>
