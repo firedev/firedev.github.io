@@ -9,6 +9,7 @@ page_class: projects-page
 {% selected = projects.reject { |project| project.data.group == "archive" } %}
 {% archive = projects.select { |project| project.data.group == "archive" } %}
 {% clean_text = ->(value) { value.to_s.gsub(/[—–]/, "-") } %}
+{% format_years = ->(value) { value.to_s.strip.gsub(/(\b\d{4}\b)\s*[—–-]\s*\1\b/, '\1').gsub(/[—–]/, "-") } %}
 
 <div class="mx-auto w-[min(1180px,calc(100%-2rem))]">
   <section class="grid gap-10 py-16 md:grid-cols-[1.5fr_.5fr] md:items-end md:gap-20 md:py-32">
@@ -34,7 +35,7 @@ page_class: projects-page
             </figure>
             <div class="grid grid-cols-[1fr_auto] gap-x-4 gap-y-2 border-b border-line py-5">
               <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">{{ project.data.name }}</h3>
-              <span class="text-xs text-muted">{{ clean_text.call(project.data.years) }}</span>
+              <span class="text-xs text-muted">{{ format_years.call(project.data.years) }}</span>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">{{ clean_text.call(project.data.summary) }}</p>
             </div>
           </a>
@@ -56,7 +57,7 @@ page_class: projects-page
             <strong class="block">{{ project.data.name }}</strong>
             <small class="mt-1 block leading-snug text-muted">{{ clean_text.call(project.data.summary) }}</small>
           </span>
-          <small class="text-muted">{{ clean_text.call(project.data.years) }}</small>
+          <small class="text-muted">{{ format_years.call(project.data.years) }}</small>
         </a>
       {% end %}
     </div>

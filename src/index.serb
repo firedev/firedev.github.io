@@ -5,6 +5,7 @@ page_class: homepage
 ---
 
 {% featured = collections.projects.resources.select { |project| project.data.group == "featured" }.sort_by { |project| project.data.order }.first(6) %}
+{% project_count = collections.projects.resources.size %}
 
 <div class="mx-auto w-[min(1180px,calc(100%-2rem))]">
   <section class="grid min-h-[72vh] items-center gap-12 py-20 md:grid-cols-[1.35fr_.65fr] md:py-28">
@@ -13,10 +14,10 @@ page_class: homepage
       <h1 class="max-w-[11ch] text-[clamp(3.7rem,10vw,8rem)] font-black leading-[.86] tracking-[-.04em]">Days, not months.</h1>
     </div>
     <div class="md:self-end md:pb-5">
-      <p class="max-w-[34ch] text-xl leading-relaxed text-muted">I build complex products end to end — architecture, interface, systems, and the business around them.</p>
+      <p class="max-w-[34ch] text-xl leading-relaxed text-muted">I build products, systems, and founder-led brands end to end — architecture, interface, operations, and the business around them.</p>
       <div class="mt-8 flex gap-8 border-t border-line pt-6">
         <p><strong class="block text-4xl font-black text-fire">20+</strong><span class="text-sm text-muted">years shipping</span></p>
-        <p><strong class="block text-4xl font-black text-fire">44</strong><span class="text-sm text-muted">projects archived</span></p>
+        <p><strong class="block text-4xl font-black text-fire">{{ project_count }}</strong><span class="text-sm text-muted">projects archived</span></p>
       </div>
     </div>
   </section>
@@ -47,7 +48,7 @@ page_class: homepage
   <section class="grid gap-10 border-t border-line py-16 md:grid-cols-2 md:py-24">
     <h2 class="max-w-[11ch] text-4xl font-black tracking-[-.03em] md:text-6xl">Architecture × product × design.</h2>
     <div>
-      <p class="mb-6 max-w-[55ch] text-lg leading-relaxed text-muted">From pharmacy ERP across 1,300+ stores to education platforms in 11 schools and a verified Phuket property marketplace. I work where product decisions and technical decisions are the same decision.</p>
+      <p class="mb-6 max-w-[55ch] text-lg leading-relaxed text-muted">From pharmacy ERP across 1,300+ stores to education platforms, creator platforms, and a verified Phuket property marketplace. I like products where one decision changes the screen, the system, and the business at once.</p>
       <div class="flex flex-wrap gap-3">
         <a href="https://git-wrapped.com/profiles/firedev" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire hover:bg-fire hover:text-white">Git Wrapped ↗</a>
         <a href="https://github.com/firedev" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire hover:bg-fire hover:text-white">GitHub ↗</a>

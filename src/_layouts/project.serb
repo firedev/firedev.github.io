@@ -8,19 +8,20 @@ layout: default
 {% next_project = current_index < projects.size - 1 ? projects[current_index + 1] : nil %}
 {% more_projects = projects.reject { |project| project.relative_url == resource.relative_url }.first(3) %}
 {% clean_text = ->(value) { value.to_s.gsub(/[—–]/, "-") } %}
+{% format_years = ->(value) { value.to_s.strip.gsub(/(\b\d{4}\b)\s*[—–-]\s*\1\b/, '\1').gsub(/[—–]/, "-") } %}
 
 <article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
   <a href="/projects/" class="mt-10 inline-block text-sm font-bold text-muted hover:text-fire">← All projects</a>
 
   <section class="grid items-end gap-10 py-12 md:grid-cols-[.9fr_1.1fr] md:py-24">
     <div>
-      <p class="mb-4 text-sm font-bold text-muted">{{ clean_text.call(resource.data.years) }} · {{ clean_text.call(resource.data.role) }}</p>
+      <p class="mb-4 text-sm font-bold text-muted">{{ format_years.call(resource.data.years) }} · {{ clean_text.call(resource.data.role) }}</p>
       <h1 class="max-w-[10ch] text-[clamp(3.5rem,10vw,7rem)] font-black leading-[.88] tracking-[-.04em]">{{ resource.data.name }}</h1>
       <p class="mt-7 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">{{ clean_text.call(resource.data.summary) }}</p>
     </div>
     <figure class="project-media {{ resource.data.logoMode && !resource.data.cover && 'project-logo' }} relative aspect-[4/3] overflow-hidden bg-white">
       <img src="{{ resource.data.cover || resource.data.logo }}" alt="{{ resource.data.name }} project visual" class="h-full w-full object-cover">
-      {% if resource.data.logo and resource.data.cover %}
+      {% if resource.data.logo and resource.data.cover and resource.data.pageLogo != false %}
         <img src="{{ resource.data.logo }}" alt="{{ resource.data.name }} logo" class="absolute left-4 top-4 h-12 w-auto max-w-32 rounded-lg border border-white/70 bg-white p-1.5 object-contain shadow-lg">
       {% end %}
     </figure>
@@ -39,7 +40,7 @@ layout: default
       <dl>
         <div class="border-b border-line py-4">
           <dt class="mb-1 text-xs font-black uppercase tracking-wider text-muted">Years</dt>
-          <dd>{{ clean_text.call(resource.data.years) }}</dd>
+          <dd>{{ format_years.call(resource.data.years) }}</dd>
         </div>
         <div class="border-b border-line py-4">
           <dt class="mb-1 text-xs font-black uppercase tracking-wider text-muted">Role</dt>
@@ -135,7 +136,7 @@ layout: default
           <div class="border-b border-line py-4">
             <div class="flex items-baseline justify-between gap-4">
               <strong class="text-xl tracking-[-.02em]">{{ project.data.name }}</strong>
-              <small class="text-muted">{{ clean_text.call(project.data.years) }}</small>
+              <small class="text-muted">{{ format_years.call(project.data.years) }}</small>
             </div>
             <p class="mt-2 leading-relaxed text-muted">{{ clean_text.call(project.data.summary) }}</p>
           </div>
