@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Phuket Buy House","description":"The property-sales side of the Phuket marketplace.","order":21,"slug":"phuket-buy-house","name":"Phuket Buy House","years":"2009 — 2015","group":"products","role":"Co-founder · Product · Engineering","summary":"The property-sales side of the Phuket marketplace.","story":["Phuket Buy House expanded the rental operation into property sales and full agency workflows.","The product connected marketing, listings, customer management, and the operational side of a Phuket real-estate team."],"stack":"Marketplace · CRM · Real estate operations","cover":"/images/projects/buyhouse.png","logoMode":true,"link":"https://phuketbuyhouse.com"}
+---

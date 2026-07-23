@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — AI Architecture Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              blueprint: "#0d1b2a",
+              "blueprint-mid": "#1b2838",
+              "blueprint-line": "rgba(100,180,255,0.1)",
+              "blueprint-text": "#c8d6e5",
+              "blueprint-light": "#e0f7fa",
+              "blueprint-cyan": "#b3e5fc",
+              fire: "#f63",
+            },
+            fontFamily: {
+              mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+              serif: ["Source Serif 4", "Georgia", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: #0d1b2a;
+        color: #c8d6e5;
+      }
+
+      /* Blueprint grid background */
+      .blueprint-grid {
+        background-image:
+          repeating-linear-gradient(
+            0deg,
+            rgba(100, 180, 255, 0.04) 0px,
+            rgba(100, 180, 255, 0.04) 1px,
+            transparent 1px,
+            transparent 20px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            rgba(100, 180, 255, 0.04) 0px,
+            rgba(100, 180, 255, 0.04) 1px,
+            transparent 1px,
+            transparent 20px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            rgba(100, 180, 255, 0.1) 0px,
+            rgba(100, 180, 255, 0.1) 1px,
+            transparent 1px,
+            transparent 100px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            rgba(100, 180, 255, 0.1) 0px,
+            rgba(100, 180, 255, 0.1) 1px,
+            transparent 1px,
+            transparent 100px
+          );
+      }
+
+      /* Dimension line decoration for project cards */
+      .dimension-card {
+        position: relative;
+      }
+      .dimension-card::before,
+      .dimension-card::after {
+        content: "";
+        position: absolute;
+        background: rgba(100, 180, 255, 0.2);
+      }
+      .dimension-card::before {
+        top: -8px;
+        left: 16px;
+        right: 16px;
+        height: 1px;
+      }
+      .dimension-card::after {
+        bottom: -8px;
+        left: 16px;
+        right: 16px;
+        height: 1px;
+      }
+      /* Dimension arrows */
+      .dimension-card .dim-top-left,
+      .dimension-card .dim-top-right,
+      .dimension-card .dim-bottom-left,
+      .dimension-card .dim-bottom-right {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-color: rgba(100, 180, 255, 0.3);
+      }
+      .dimension-card .dim-top-left {
+        top: -11px;
+        left: 13px;
+        border-left: 1px solid;
+        border-top: 1px solid;
+      }
+      .dimension-card .dim-top-right {
+        top: -11px;
+        right: 13px;
+        border-right: 1px solid;
+        border-top: 1px solid;
+      }
+      .dimension-card .dim-bottom-left {
+        bottom: -11px;
+        left: 13px;
+        border-left: 1px solid;
+        border-bottom: 1px solid;
+      }
+      .dimension-card .dim-bottom-right {
+        bottom: -11px;
+        right: 13px;
+        border-right: 1px solid;
+        border-bottom: 1px solid;
+      }
+
+      /* Leader dots for blog index */
+      .leader-dots {
+        flex: 1;
+        border-bottom: 1px dotted rgba(100, 180, 255, 0.2);
+        margin: 0 8px;
+        min-width: 20px;
+        position: relative;
+        top: -4px;
+      }
+
+      /* Section label style */
+      .section-label {
+        font-family: "JetBrains Mono", monospace;
+        color: rgba(100, 180, 255, 0.4);
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      /* Scroll animations */
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .anim-hidden {
+        opacity: 0;
+      }
+      .anim-fade-up {
+        animation: fade-up 0.7s ease-out forwards;
+      }
+
+      /* Mobile menu */
+      .mobile-menu {
+        display: none;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+
+      /* Callout number circles */
+      .callout-num {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid #f63;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        color: #f63;
+        flex-shrink: 0;
+      }
+
+      /* Spec sheet grid */
+      .spec-row {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 0;
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(100, 180, 255, 0.06);
+      }
+      .spec-row:last-child {
+        border-bottom: none;
+      }
+      .spec-key {
+        color: rgba(100, 180, 255, 0.4);
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+      }
+      .spec-value {
+        color: #e0f7fa;
+        font-size: 0.875rem;
+      }
+
+      /* Blog entry hover */
+      .blog-entry {
+        transition: color 0.2s ease;
+      }
+      .blog-entry:hover {
+        color: #f63;
+      }
+      .blog-entry:hover .leader-dots {
+        border-color: rgba(255, 102, 51, 0.3);
+      }
+      .blog-entry:hover .entry-num {
+        color: #f63;
+      }
+
+      /* Contact annotation line */
+      .annotation-line {
+        position: relative;
+      }
+      .annotation-line::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(100, 180, 255, 0.15);
+      }
+      .annotation-line::before {
+        left: -16px;
+      }
+
+      /* Project card hover */
+      .project-card {
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .project-card:hover {
+        border-color: rgba(255, 102, 51, 0.4);
+        box-shadow: 0 0 30px rgba(255, 102, 51, 0.05);
+      }
+
+      @media (max-width: 640px) {
+        .spec-row {
+          grid-template-columns: 110px 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body class="antialiased overflow-x-hidden font-mono">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 border-b border-fire/40 bg-blueprint/90 backdrop-blur-md"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 flex items-center justify-between h-14"
+      >
+        <a
+          href="#home"
+          class="font-mono text-blueprint-light text-lg tracking-tight"
+        >
+          <span class="text-fire">&lt;</span>firedev<span class="text-fire"
+            >/&gt;</span
+          >
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm">
+          <a
+            href="#projects"
+            class="text-blueprint-text hover:text-fire transition-colors"
+            >Projects</a
+          >
+          <a
+            href="#blog"
+            class="text-blueprint-text hover:text-fire transition-colors"
+            >Blog</a
+          >
+          <a
+            href="#contact"
+            class="text-blueprint-text hover:text-fire transition-colors"
+            >Contact</a
+          >
+        </div>
+        <button
+          id="menu-toggle"
+          class="md:hidden text-blueprint-text hover:text-fire transition-colors"
+        >
+          <i class="fas fa-bars text-lg"></i>
+        </button>
+      </div>
+      <div
+        id="mobile-menu"
+        class="mobile-menu flex-col md:hidden border-t border-fire/20 bg-blueprint/95 backdrop-blur-md"
+      >
+        <a
+          href="#projects"
+          class="block px-6 py-3 text-sm text-blueprint-text hover:text-fire transition-colors border-b border-blueprint-line"
+          >Projects</a
+        >
+        <a
+          href="#blog"
+          class="block px-6 py-3 text-sm text-blueprint-text hover:text-fire transition-colors border-b border-blueprint-line"
+          >Blog</a
+        >
+        <a
+          href="#contact"
+          class="block px-6 py-3 text-sm text-blueprint-text hover:text-fire transition-colors"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Section 1: Home -->
+    <section
+      id="home"
+      class="min-h-screen flex items-center blueprint-grid pt-14"
+    >
+      <div class="max-w-6xl mx-auto px-6 w-full py-20 md:py-28">
+        <div class="anim-hidden" data-anim="fade-up">
+          <p class="section-label mb-6">// SYSTEM OVERVIEW</p>
+          <h1
+            class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-900 text-blueprint-light leading-[1.1] mb-4"
+          >
+            Architecture-First<br />Development
+          </h1>
+          <p
+            class="text-blueprint-text/60 text-base md:text-lg max-w-xl mb-10 leading-relaxed"
+          >
+            Every great system starts with a blueprint. 20 years of
+            architecture, now AI-powered.
+          </p>
+        </div>
+
+        <!-- Spec Sheet -->
+        <div
+          class="anim-hidden max-w-lg border border-dashed border-blueprint-line rounded-none p-6 mb-12"
+          data-anim="fade-up"
+          data-delay="150"
+        >
+          <div class="spec-row">
+            <span class="spec-key font-mono">ARCHITECT</span>
+            <span class="spec-value font-mono">Nikolay Ostrovsky</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key font-mono">EXPERIENCE</span>
+            <span class="spec-value font-mono">20+ years</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key font-mono">STACK</span>
+            <span class="spec-value font-mono"
+              >Ruby &middot; Rails &middot; React &middot; Vue &middot;
+              TypeScript &middot; PostgreSQL</span
+            >
+          </div>
+          <div class="spec-row">
+            <span class="spec-key font-mono">ROLE</span>
+            <span class="spec-value font-mono"
+              >Full-Stack Architect / Team Lead / CTO</span
+            >
+          </div>
+          <div class="spec-row">
+            <span class="spec-key font-mono">MODE</span>
+            <span class="spec-value font-mono text-fire">AI-Augmented</span>
+          </div>
+        </div>
+
+        <div class="anim-hidden mb-16" data-anim="fade-up" data-delay="300">
+          <a
+            href="#projects"
+            class="inline-flex items-center gap-2 text-fire font-mono text-sm hover:gap-3 transition-all"
+          >
+            View Projects <span class="text-lg">&darr;</span>
+          </a>
+        </div>
+
+        <!-- Featured Projects (Blueprint Cards) -->
+        <div
+          class="grid md:grid-cols-3 gap-8 anim-hidden"
+          data-anim="fade-up"
+          data-delay="400"
+        >
+          <a
+            href="#projects"
+            class="project-card border border-dashed border-blueprint-line p-6 block hover:no-underline"
+          >
+            <div class="flex items-start gap-3 mb-3">
+              <div class="callout-num">1</div>
+              <div>
+                <div class="text-fire text-sm font-mono tracking-wider mb-1">
+                  THREE.JS / REACT
+                </div>
+                <h3 class="text-blueprint-light font-mono text-sm font-bold">
+                  Furniture 3D Builder
+                </h3>
+              </div>
+            </div>
+            <p class="text-blueprint-text/50 text-sm font-mono leading-relaxed">
+              Customer-facing configurator prototype
+            </p>
+          </a>
+          <a
+            href="#projects"
+            class="project-card border border-dashed border-blueprint-line p-6 block hover:no-underline"
+          >
+            <div class="flex items-start gap-3 mb-3">
+              <div class="callout-num">2</div>
+              <div>
+                <div class="text-fire text-sm font-mono tracking-wider mb-1">
+                  GAMEDEV / LUA
+                </div>
+                <h3 class="text-blueprint-light font-mono text-sm font-bold">
+                  Darkanoid
+                </h3>
+              </div>
+            </div>
+            <p class="text-blueprint-text/50 text-sm font-mono leading-relaxed">
+              Play-in-browser arcade game
+            </p>
+          </a>
+          <a
+            href="#projects"
+            class="project-card border border-dashed border-blueprint-line p-6 block hover:no-underline"
+          >
+            <div class="flex items-start gap-3 mb-3">
+              <div class="callout-num">3</div>
+              <div>
+                <div class="text-fire text-sm font-mono tracking-wider mb-1">
+                  DESIGN / BRANDING
+                </div>
+                <h3 class="text-blueprint-light font-mono text-sm font-bold">
+                  Phuket Vegan
+                </h3>
+              </div>
+            </div>
+            <p class="text-blueprint-text/50 text-sm font-mono leading-relaxed">
+              Holistic health brand identity
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Projects -->
+    <section
+      id="projects"
+      class="py-24 md:py-32 blueprint-grid border-t border-blueprint-line"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="anim-hidden mb-16" data-anim="fade-up">
+          <p class="section-label mb-3">// PROJECTS</p>
+          <h2
+            class="font-serif text-3xl md:text-4xl font-700 text-blueprint-light"
+          >
+            Technical Drawings
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10 md:gap-12">
+          <!-- Project 1 -->
+          <div
+            class="dimension-card project-card border border-dashed border-blueprint-line p-8 anim-hidden"
+            data-anim="fade-up"
+            data-delay="0"
+          >
+            <span class="dim-top-left"></span>
+            <span class="dim-top-right"></span>
+            <span class="dim-bottom-left"></span>
+            <span class="dim-bottom-right"></span>
+            <div class="flex items-start gap-4 mb-4">
+              <div class="callout-num">1</div>
+              <div>
+                <h3
+                  class="text-blueprint-light font-mono text-base font-bold mb-1"
+                >
+                  Furniture 3D Builder
+                </h3>
+                <div class="text-fire text-sm font-mono tracking-wider">
+                  Three.js &middot; React.js
+                </div>
+              </div>
+            </div>
+            <p
+              class="text-blueprint-text/60 text-sm font-mono leading-relaxed mb-4"
+            >
+              Furniture generator prototype. Customer-facing configurator with
+              real-time 3D preview, material selection, and dimension controls.
+            </p>
+            <div
+              class="flex items-center gap-3 text-sm text-blueprint-text/30 font-mono"
+            >
+              <i class="fas fa-cube"></i>
+              <span>Interactive 3D</span>
+              <span class="text-blueprint-line">|</span>
+              <i class="fas fa-palette"></i>
+              <span>Material System</span>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            class="dimension-card project-card border border-dashed border-blueprint-line p-8 anim-hidden"
+            data-anim="fade-up"
+            data-delay="100"
+          >
+            <span class="dim-top-left"></span>
+            <span class="dim-top-right"></span>
+            <span class="dim-bottom-left"></span>
+            <span class="dim-bottom-right"></span>
+            <div class="flex items-start gap-4 mb-4">
+              <div class="callout-num">2</div>
+              <div>
+                <h3
+                  class="text-blueprint-light font-mono text-base font-bold mb-1"
+                >
+                  Darkanoid
+                </h3>
+                <div class="text-fire text-sm font-mono tracking-wider">
+                  Gamedev &middot; Lua
+                </div>
+              </div>
+            </div>
+            <p
+              class="text-blueprint-text/60 text-sm font-mono leading-relaxed mb-4"
+            >
+              Play-in-browser arcade game. Built on PICO-8 Fantasy Console with
+              retro aesthetics and tight gameplay loop.
+            </p>
+            <div
+              class="flex items-center gap-3 text-sm text-blueprint-text/30 font-mono"
+            >
+              <i class="fas fa-gamepad"></i>
+              <span>PICO-8</span>
+              <span class="text-blueprint-line">|</span>
+              <i class="fas fa-play"></i>
+              <span>Browser Playable</span>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div
+            class="dimension-card project-card border border-dashed border-blueprint-line p-8 anim-hidden"
+            data-anim="fade-up"
+            data-delay="200"
+          >
+            <span class="dim-top-left"></span>
+            <span class="dim-top-right"></span>
+            <span class="dim-bottom-left"></span>
+            <span class="dim-bottom-right"></span>
+            <div class="flex items-start gap-4 mb-4">
+              <div class="callout-num">3</div>
+              <div>
+                <h3
+                  class="text-blueprint-light font-mono text-base font-bold mb-1"
+                >
+                  Phuket Vegan
+                </h3>
+                <div class="text-fire text-sm font-mono tracking-wider">
+                  Design &middot; Branding
+                </div>
+              </div>
+            </div>
+            <p
+              class="text-blueprint-text/60 text-sm font-mono leading-relaxed mb-4"
+            >
+              Mind and Body Cleansing Retreat. Holistic health brand identity,
+              visual design system, and marketing materials.
+            </p>
+            <div
+              class="flex items-center gap-3 text-sm text-blueprint-text/30 font-mono"
+            >
+              <i class="fas fa-leaf"></i>
+              <span>Brand Identity</span>
+              <span class="text-blueprint-line">|</span>
+              <i class="fas fa-pen-nib"></i>
+              <span>Visual Design</span>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div
+            class="dimension-card project-card border border-dashed border-blueprint-line p-8 anim-hidden"
+            data-anim="fade-up"
+            data-delay="300"
+          >
+            <span class="dim-top-left"></span>
+            <span class="dim-top-right"></span>
+            <span class="dim-bottom-left"></span>
+            <span class="dim-bottom-right"></span>
+            <div class="flex items-start gap-4 mb-4">
+              <div class="callout-num">4</div>
+              <div>
+                <h3
+                  class="text-blueprint-light font-mono text-base font-bold mb-1"
+                >
+                  ASCII Art
+                </h3>
+                <div class="text-fire text-sm font-mono tracking-wider">
+                  ASCII
+                </div>
+              </div>
+            </div>
+            <p
+              class="text-blueprint-text/60 text-sm font-mono leading-relaxed mb-4"
+            >
+              BBS Scene art-pack collection. Digital heritage preservation of
+              the bulletin board system era.
+            </p>
+            <div
+              class="flex items-center gap-3 text-sm text-blueprint-text/30 font-mono"
+            >
+              <i class="fas fa-terminal"></i>
+              <span>BBS Heritage</span>
+              <span class="text-blueprint-line">|</span>
+              <i class="fas fa-archive"></i>
+              <span>Digital Preservation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Blog / Documentation -->
+    <section id="blog" class="py-24 md:py-32 border-t border-blueprint-line">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="anim-hidden mb-16" data-anim="fade-up">
+          <p class="section-label mb-3">// DOCUMENTATION</p>
+          <h2
+            class="font-serif text-3xl md:text-4xl font-700 text-blueprint-light"
+          >
+            Technical Index
+          </h2>
+        </div>
+
+        <div class="max-w-2xl anim-hidden" data-anim="fade-up" data-delay="100">
+          <div class="border border-dashed border-blueprint-line p-6 md:p-8">
+            <a
+              href="/posts/2023-03-06-develop-for-joy/"
+              class="blog-entry flex items-baseline text-sm md:text-base py-2 text-blueprint-text/70 cursor-pointer no-underline"
+            >
+              <span
+                class="entry-num text-blueprint-text/30 font-mono text-sm mr-3 shrink-0"
+                >[001]</span
+              >
+              <span class="font-mono shrink-0">Develop for Joy</span>
+              <span class="leader-dots"></span>
+              <span class="font-mono text-sm text-blueprint-text/40 shrink-0"
+                >Mar 2023</span
+              >
+            </a>
+            <a
+              href="/posts/2021-11-01-boring-rails/"
+              class="blog-entry flex items-baseline text-sm md:text-base py-2 text-blueprint-text/70 cursor-pointer no-underline"
+            >
+              <span
+                class="entry-num text-blueprint-text/30 font-mono text-sm mr-3 shrink-0"
+                >[002]</span
+              >
+              <span class="font-mono shrink-0">Boring Rails</span>
+              <span class="leader-dots"></span>
+              <span class="font-mono text-sm text-blueprint-text/40 shrink-0"
+                >Nov 2021</span
+              >
+            </a>
+            <a
+              href="/posts/2016-02-18-sane-breakpoints/"
+              class="blog-entry flex items-baseline text-sm md:text-base py-2 text-blueprint-text/70 cursor-pointer no-underline"
+            >
+              <span
+                class="entry-num text-blueprint-text/30 font-mono text-sm mr-3 shrink-0"
+                >[003]</span
+              >
+              <span class="font-mono shrink-0">Sane Breakpoints</span>
+              <span class="leader-dots"></span>
+              <span class="font-mono text-sm text-blueprint-text/40 shrink-0"
+                >Feb 2016</span
+              >
+            </a>
+            <a
+              href="/posts/2016-01-15-atomic-icons/"
+              class="blog-entry flex items-baseline text-sm md:text-base py-2 text-blueprint-text/70 cursor-pointer no-underline"
+            >
+              <span
+                class="entry-num text-blueprint-text/30 font-mono text-sm mr-3 shrink-0"
+                >[004]</span
+              >
+              <span class="font-mono shrink-0">Atomic Icons</span>
+              <span class="leader-dots"></span>
+              <span class="font-mono text-sm text-blueprint-text/40 shrink-0"
+                >Jan 2016</span
+              >
+            </a>
+            <a
+              href="/posts/2015-12-20-immutable-css/"
+              class="blog-entry flex items-baseline text-sm md:text-base py-2 text-blueprint-text/70 cursor-pointer no-underline"
+            >
+              <span
+                class="entry-num text-blueprint-text/30 font-mono text-sm mr-3 shrink-0"
+                >[005]</span
+              >
+              <span class="font-mono shrink-0">Immutable CSS</span>
+              <span class="leader-dots"></span>
+              <span class="font-mono text-sm text-blueprint-text/40 shrink-0"
+                >Dec 2015</span
+              >
+            </a>
+            <a
+              href="/posts/2015-11-11-mac-as-ide/"
+              class="blog-entry flex items-baseline text-sm md:text-base py-2 text-blueprint-text/70 cursor-pointer no-underline"
+            >
+              <span
+                class="entry-num text-blueprint-text/30 font-mono text-sm mr-3 shrink-0"
+                >[006]</span
+              >
+              <span class="font-mono shrink-0">Mac as IDE</span>
+              <span class="leader-dots"></span>
+              <span class="font-mono text-sm text-blueprint-text/40 shrink-0"
+                >Nov 2015</span
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Contact -->
+    <section
+      id="contact"
+      class="py-24 md:py-32 blueprint-grid border-t border-blueprint-line"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="anim-hidden mb-16" data-anim="fade-up">
+          <p class="section-label mb-3">// CONTACT SPECIFICATIONS</p>
+          <h2
+            class="font-serif text-3xl md:text-4xl font-700 text-blueprint-light"
+          >
+            Get in Touch
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
+          <!-- Profile -->
+          <div
+            class="anim-hidden flex flex-col items-center md:items-start"
+            data-anim="fade-up"
+            data-delay="0"
+          >
+            <div
+              class="w-40 h-40 rounded-full border-2 border-dashed border-blueprint-line overflow-hidden mb-6 relative"
+            >
+              <img
+                src="/images/me.jpg"
+                alt="Nikolay Ostrovsky"
+                class="w-full h-full object-cover"
+              />
+              <!-- Corner annotations -->
+              <div
+                class="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-fire/40"
+              ></div>
+              <div
+                class="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-fire/40"
+              ></div>
+              <div
+                class="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-fire/40"
+              ></div>
+              <div
+                class="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-fire/40"
+              ></div>
+            </div>
+            <h3
+              class="font-serif text-2xl md:text-3xl font-700 text-blueprint-light mb-2"
+            >
+              Nikolay Ostrovsky
+            </h3>
+            <p class="text-blueprint-text/50 font-mono text-sm mb-6">
+              Full-Stack Architect &middot; AI-Augmented
+            </p>
+            <p class="font-serif text-lg text-fire/80 italic">
+              &ldquo;Let&rsquo;s architect something remarkable.&rdquo;
+            </p>
+          </div>
+
+          <!-- Contact Details -->
+          <div class="anim-hidden" data-anim="fade-up" data-delay="150">
+            <div class="border border-dashed border-blueprint-line p-6 md:p-8">
+              <div class="space-y-5">
+                <!-- Email -->
+                <div class="annotation-line pl-4">
+                  <div
+                    class="text-blueprint-text/30 font-mono text-sm tracking-wider mb-1"
+                  >
+                    EMAIL
+                  </div>
+                  <a
+                    href="mailto:nick@firedev.com"
+                    class="text-fire font-mono text-sm hover:text-fire/80 transition-colors"
+                  >
+                    <i class="fas fa-envelope mr-2 text-sm"></i>nick@firedev.com
+                  </a>
+                </div>
+
+                <!-- GitHub -->
+                <div class="annotation-line pl-4">
+                  <div
+                    class="text-blueprint-text/30 font-mono text-sm tracking-wider mb-1"
+                  >
+                    GITHUB
+                  </div>
+                  <a
+                    href="https://github.com/firedev"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-blueprint-light font-mono text-sm hover:text-fire transition-colors"
+                  >
+                    <i class="fab fa-github mr-2 text-sm"></i>github.com/firedev
+                  </a>
+                </div>
+
+                <!-- Twitter -->
+                <div class="annotation-line pl-4">
+                  <div
+                    class="text-blueprint-text/30 font-mono text-sm tracking-wider mb-1"
+                  >
+                    TWITTER
+                  </div>
+                  <a
+                    href="https://twitter.com/firedev"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-blueprint-light font-mono text-sm hover:text-fire transition-colors"
+                  >
+                    <i class="fab fa-x-twitter mr-2 text-sm"></i
+                    >twitter.com/firedev
+                  </a>
+                </div>
+
+                <!-- StackOverflow -->
+                <div class="annotation-line pl-4">
+                  <div
+                    class="text-blueprint-text/30 font-mono text-sm tracking-wider mb-1"
+                  >
+                    STACKOVERFLOW
+                  </div>
+                  <a
+                    href="https://stackoverflow.com/users/882636"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-blueprint-light font-mono text-sm hover:text-fire transition-colors"
+                  >
+                    <i class="fab fa-stack-overflow mr-2 text-sm"></i>Top 2%
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 text-center md:text-left">
+              <a
+                href="mailto:nick@firedev.com"
+                class="inline-block border border-fire text-fire font-mono text-sm px-8 py-3 hover:bg-fire hover:text-blueprint transition-all"
+              >
+                Start a Conversation
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-blueprint-line py-8">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <p class="font-mono text-sm text-blueprint-text/30">
+          &copy; 2026 firedev
+        </p>
+      </div>
+    </footer>
+
+    <!-- Minimal JS: mobile menu + scroll animations -->
+    <script>
+      // Mobile menu toggle
+      const toggle = document.getElementById("menu-toggle");
+      const menu = document.getElementById("mobile-menu");
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("open");
+        const icon = toggle.querySelector("i");
+        icon.classList.toggle("fa-bars");
+        icon.classList.toggle("fa-xmark");
+      });
+      // Close menu on link click
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.remove("open");
+          const icon = toggle.querySelector("i");
+          icon.classList.add("fa-bars");
+          icon.classList.remove("fa-xmark");
+        });
+      });
+
+      // Intersection Observer for scroll animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const delay = el.dataset.delay || 0;
+            setTimeout(() => {
+              el.classList.remove("anim-hidden");
+              el.classList.add("anim-fade-up");
+            }, +delay);
+            observer.unobserve(el);
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll("[data-anim]")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

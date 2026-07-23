@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"All Homes Phuket","description":"An independent Phuket real-estate agency built from scratch.","order":22,"slug":"all-homes-phuket","name":"All Homes Phuket","years":"2010s","group":"products","role":"Founder","summary":"An independent Phuket real-estate agency built from scratch.","story":["A second real-estate agency created from zero around Phuket property discovery and sales.","The work combined product, marketing, operations, and the software needed to run the business."],"stack":"Real estate · Product · Operations","cover":"/images/projects/screens/all-homes-phuket.png","logo":"https://www.google.com/s2/favicons?domain=allhomesphuket.com&sz=128","link":"https://allhomesphuket.com"}
+---

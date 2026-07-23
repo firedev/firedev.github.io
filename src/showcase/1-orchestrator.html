@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — I Orchestrate AI</title>
+    <meta
+      name="description"
+      content="Full-stack architect. 20+ years of shipping. AI-augmented. One person, full team output."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              fire: "#f63",
+              base: "#0a0a0f",
+              surface: "#12121a",
+              border: "#1e1e2a",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        background: #0a0a0f;
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        margin: 0;
+        color: #e4e4e7;
+      }
+
+      /* --- SVG Node Animation --- */
+      @keyframes float1 {
+        0%,
+        100% {
+          cx: 120;
+          cy: 180;
+        }
+        25% {
+          cx: 140;
+          cy: 160;
+        }
+        50% {
+          cx: 110;
+          cy: 200;
+        }
+        75% {
+          cx: 135;
+          cy: 170;
+        }
+      }
+      @keyframes float2 {
+        0%,
+        100% {
+          cx: 350;
+          cy: 120;
+        }
+        25% {
+          cx: 330;
+          cy: 140;
+        }
+        50% {
+          cx: 370;
+          cy: 100;
+        }
+        75% {
+          cx: 340;
+          cy: 130;
+        }
+      }
+      @keyframes float3 {
+        0%,
+        100% {
+          cx: 580;
+          cy: 200;
+        }
+        25% {
+          cx: 600;
+          cy: 180;
+        }
+        50% {
+          cx: 560;
+          cy: 220;
+        }
+        75% {
+          cx: 590;
+          cy: 190;
+        }
+      }
+      @keyframes float4 {
+        0%,
+        100% {
+          cx: 800;
+          cy: 140;
+        }
+        25% {
+          cx: 780;
+          cy: 160;
+        }
+        50% {
+          cx: 820;
+          cy: 120;
+        }
+        75% {
+          cx: 790;
+          cy: 150;
+        }
+      }
+      @keyframes float5 {
+        0%,
+        100% {
+          cx: 200;
+          cy: 350;
+        }
+        25% {
+          cx: 220;
+          cy: 330;
+        }
+        50% {
+          cx: 180;
+          cy: 370;
+        }
+        75% {
+          cx: 210;
+          cy: 340;
+        }
+      }
+      @keyframes float6 {
+        0%,
+        100% {
+          cx: 460;
+          cy: 320;
+        }
+        25% {
+          cx: 440;
+          cy: 340;
+        }
+        50% {
+          cx: 480;
+          cy: 300;
+        }
+        75% {
+          cx: 450;
+          cy: 330;
+        }
+      }
+      @keyframes float7 {
+        0%,
+        100% {
+          cx: 700;
+          cy: 360;
+        }
+        25% {
+          cx: 720;
+          cy: 340;
+        }
+        50% {
+          cx: 680;
+          cy: 380;
+        }
+        75% {
+          cx: 710;
+          cy: 350;
+        }
+      }
+      @keyframes float8 {
+        0%,
+        100% {
+          cx: 900;
+          cy: 280;
+        }
+        25% {
+          cx: 880;
+          cy: 300;
+        }
+        50% {
+          cx: 920;
+          cy: 260;
+        }
+        75% {
+          cx: 890;
+          cy: 290;
+        }
+      }
+      @keyframes float9 {
+        0%,
+        100% {
+          cx: 300;
+          cy: 450;
+        }
+        25% {
+          cx: 320;
+          cy: 430;
+        }
+        50% {
+          cx: 280;
+          cy: 470;
+        }
+        75% {
+          cx: 310;
+          cy: 440;
+        }
+      }
+      @keyframes float10 {
+        0%,
+        100% {
+          cx: 650;
+          cy: 480;
+        }
+        25% {
+          cx: 630;
+          cy: 460;
+        }
+        50% {
+          cx: 670;
+          cy: 500;
+        }
+        75% {
+          cx: 640;
+          cy: 470;
+        }
+      }
+      @keyframes float11 {
+        0%,
+        100% {
+          cx: 1000;
+          cy: 180;
+        }
+        25% {
+          cx: 980;
+          cy: 200;
+        }
+        50% {
+          cx: 1020;
+          cy: 160;
+        }
+        75% {
+          cx: 990;
+          cy: 190;
+        }
+      }
+      @keyframes float12 {
+        0%,
+        100% {
+          cx: 1100;
+          cy: 380;
+        }
+        25% {
+          cx: 1080;
+          cy: 360;
+        }
+        50% {
+          cx: 1120;
+          cy: 400;
+        }
+        75% {
+          cx: 1090;
+          cy: 370;
+        }
+      }
+
+      @keyframes pulse-line {
+        0%,
+        100% {
+          opacity: 0.08;
+        }
+        50% {
+          opacity: 0.2;
+        }
+      }
+
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 0.3;
+          r: 3;
+        }
+        50% {
+          opacity: 0.7;
+          r: 4;
+        }
+      }
+
+      @keyframes pulse-dot-bright {
+        0%,
+        100% {
+          opacity: 0.5;
+          r: 4;
+        }
+        50% {
+          opacity: 1;
+          r: 5;
+        }
+      }
+
+      .node {
+        animation-duration: 12s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+      }
+      .n1 {
+        animation-name: float1;
+      }
+      .n2 {
+        animation-name: float2;
+        animation-duration: 14s;
+      }
+      .n3 {
+        animation-name: float3;
+        animation-duration: 16s;
+      }
+      .n4 {
+        animation-name: float4;
+        animation-duration: 13s;
+      }
+      .n5 {
+        animation-name: float5;
+        animation-duration: 15s;
+      }
+      .n6 {
+        animation-name: float6;
+        animation-duration: 11s;
+      }
+      .n7 {
+        animation-name: float7;
+        animation-duration: 17s;
+      }
+      .n8 {
+        animation-name: float8;
+        animation-duration: 14s;
+      }
+      .n9 {
+        animation-name: float9;
+        animation-duration: 13s;
+      }
+      .n10 {
+        animation-name: float10;
+        animation-duration: 16s;
+      }
+      .n11 {
+        animation-name: float11;
+        animation-duration: 15s;
+      }
+      .n12 {
+        animation-name: float12;
+        animation-duration: 12s;
+      }
+
+      .conn-line {
+        animation: pulse-line 4s ease-in-out infinite;
+      }
+      .conn-line:nth-child(odd) {
+        animation-duration: 5s;
+      }
+      .conn-line:nth-child(3n) {
+        animation-duration: 6s;
+        animation-delay: 1s;
+      }
+
+      .dot-dim {
+        animation: pulse-dot 4s ease-in-out infinite;
+      }
+      .dot-bright {
+        animation: pulse-dot-bright 3s ease-in-out infinite;
+      }
+
+      /* --- Card hover glow --- */
+      .card-glow {
+        transition:
+          box-shadow 0.3s ease,
+          border-color 0.3s ease,
+          transform 0.3s ease;
+      }
+      .card-glow:hover {
+        box-shadow:
+          0 0 30px rgba(255, 102, 51, 0.15),
+          0 0 60px rgba(255, 102, 51, 0.05);
+        border-color: rgba(255, 102, 51, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* --- Blog row hover --- */
+      .blog-row {
+        transition:
+          background-color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .blog-row:hover {
+        background-color: rgba(255, 102, 51, 0.03);
+        border-color: rgba(255, 102, 51, 0.2);
+      }
+
+      /* --- Mobile menu --- */
+      .mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .mobile-menu.open {
+        max-height: 300px;
+      }
+
+      /* --- Tag pills --- */
+      .tag-pill {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 9999px;
+        background: rgba(255, 102, 51, 0.1);
+        color: #f63;
+        border: 1px solid rgba(255, 102, 51, 0.2);
+        white-space: nowrap;
+      }
+
+      /* --- Badge --- */
+      .stack-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        border: 1px solid #1e1e2a;
+        color: #a1a1aa;
+        background: rgba(18, 18, 26, 0.8);
+        transition: border-color 0.2s ease;
+      }
+      .stack-badge:hover {
+        border-color: rgba(255, 102, 51, 0.3);
+        color: #e4e4e7;
+      }
+    </style>
+  </head>
+  <body class="bg-base antialiased">
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-base/70 border-b border-border/50"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+          <a href="#home" class="text-xl font-bold text-fire tracking-tight"
+            >firedev</a
+          >
+          <!-- Desktop nav -->
+          <div class="hidden md:flex items-center gap-8">
+            <a
+              href="#projects"
+              class="text-sm text-zinc-400 hover:text-white transition-colors"
+              >Projects</a
+            >
+            <a
+              href="#blog"
+              class="text-sm text-zinc-400 hover:text-white transition-colors"
+              >Blog</a
+            >
+            <a
+              href="#contact"
+              class="text-sm text-zinc-400 hover:text-white transition-colors"
+              >Contact</a
+            >
+          </div>
+          <!-- Mobile hamburger -->
+          <button
+            id="menu-btn"
+            class="md:hidden text-zinc-400 hover:text-white transition-colors"
+            aria-label="Menu"
+          >
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+          <div class="flex flex-col gap-4 pb-6">
+            <a
+              href="#projects"
+              class="text-sm text-zinc-400 hover:text-white transition-colors"
+              onclick="closeMobileMenu()"
+              >Projects</a
+            >
+            <a
+              href="#blog"
+              class="text-sm text-zinc-400 hover:text-white transition-colors"
+              onclick="closeMobileMenu()"
+              >Blog</a
+            >
+            <a
+              href="#contact"
+              class="text-sm text-zinc-400 hover:text-white transition-colors"
+              onclick="closeMobileMenu()"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===================== SECTION 1: HERO ===================== -->
+    <section
+      id="home"
+      class="relative min-h-screen flex flex-col justify-center overflow-hidden"
+    >
+      <!-- Animated SVG Background -->
+      <svg
+        class="absolute inset-0 w-full h-full"
+        viewBox="0 0 1200 600"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!-- Connection lines -->
+        <line
+          class="conn-line"
+          x1="120"
+          y1="180"
+          x2="350"
+          y2="120"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.1"
+        />
+        <line
+          class="conn-line"
+          x1="350"
+          y1="120"
+          x2="580"
+          y2="200"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.1"
+        />
+        <line
+          class="conn-line"
+          x1="580"
+          y1="200"
+          x2="800"
+          y2="140"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.1"
+        />
+        <line
+          class="conn-line"
+          x1="800"
+          y1="140"
+          x2="1000"
+          y2="180"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.1"
+        />
+        <line
+          class="conn-line"
+          x1="120"
+          y1="180"
+          x2="200"
+          y2="350"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.08"
+        />
+        <line
+          class="conn-line"
+          x1="200"
+          y1="350"
+          x2="460"
+          y2="320"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.08"
+        />
+        <line
+          class="conn-line"
+          x1="460"
+          y1="320"
+          x2="700"
+          y2="360"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.08"
+        />
+        <line
+          class="conn-line"
+          x1="700"
+          y1="360"
+          x2="900"
+          y2="280"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.08"
+        />
+        <line
+          class="conn-line"
+          x1="350"
+          y1="120"
+          x2="460"
+          y2="320"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.06"
+        />
+        <line
+          class="conn-line"
+          x1="580"
+          y1="200"
+          x2="700"
+          y2="360"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.06"
+        />
+        <line
+          class="conn-line"
+          x1="800"
+          y1="140"
+          x2="900"
+          y2="280"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.06"
+        />
+        <line
+          class="conn-line"
+          x1="200"
+          y1="350"
+          x2="300"
+          y2="450"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.06"
+        />
+        <line
+          class="conn-line"
+          x1="460"
+          y1="320"
+          x2="650"
+          y2="480"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.06"
+        />
+        <line
+          class="conn-line"
+          x1="900"
+          y1="280"
+          x2="1100"
+          y2="380"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.06"
+        />
+        <line
+          class="conn-line"
+          x1="1000"
+          y1="180"
+          x2="1100"
+          y2="380"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.06"
+        />
+        <line
+          class="conn-line"
+          x1="300"
+          y1="450"
+          x2="650"
+          y2="480"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.05"
+        />
+        <line
+          class="conn-line"
+          x1="700"
+          y1="360"
+          x2="1100"
+          y2="380"
+          stroke="#f63"
+          stroke-width="0.5"
+          opacity="0.05"
+        />
+
+        <!-- Animated nodes -->
+        <circle
+          class="node n1 dot-bright"
+          cx="120"
+          cy="180"
+          r="4"
+          fill="#f63"
+        />
+        <circle class="node n2 dot-dim" cx="350" cy="120" r="3" fill="#f63" />
+        <circle
+          class="node n3 dot-bright"
+          cx="580"
+          cy="200"
+          r="4"
+          fill="#f63"
+        />
+        <circle class="node n4 dot-dim" cx="800" cy="140" r="3" fill="#f63" />
+        <circle class="node n5 dot-dim" cx="200" cy="350" r="3" fill="#f63" />
+        <circle
+          class="node n6 dot-bright"
+          cx="460"
+          cy="320"
+          r="4"
+          fill="#f63"
+        />
+        <circle class="node n7 dot-dim" cx="700" cy="360" r="3" fill="#f63" />
+        <circle
+          class="node n8 dot-bright"
+          cx="900"
+          cy="280"
+          r="4"
+          fill="#f63"
+        />
+        <circle class="node n9 dot-dim" cx="300" cy="450" r="3" fill="#f63" />
+        <circle class="node n10 dot-dim" cx="650" cy="480" r="3" fill="#f63" />
+        <circle
+          class="node n11 dot-bright"
+          cx="1000"
+          cy="180"
+          r="4"
+          fill="#f63"
+        />
+        <circle class="node n12 dot-dim" cx="1100" cy="380" r="3" fill="#f63" />
+      </svg>
+
+      <!-- Radial gradient overlay -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-base/60 via-base/40 to-base"
+      ></div>
+
+      <!-- Hero content -->
+      <div class="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-16">
+        <div class="max-w-3xl">
+          <h1
+            class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight mb-6"
+          >
+            I Orchestrate AI
+          </h1>
+          <p
+            class="text-lg sm:text-xl text-zinc-400 leading-relaxed max-w-2xl mb-4"
+          >
+            Full-stack architect. 20+ years of shipping. Now AI-augmented.<br
+              class="hidden sm:block"
+            />
+            One person, full team output.
+          </p>
+          <p class="text-base text-zinc-500 mb-6">Nikolay Ostrovsky</p>
+          <div class="flex flex-wrap gap-2 mb-10">
+            <span class="stack-badge">Ruby</span>
+            <span class="stack-badge">Rails</span>
+            <span class="stack-badge">React</span>
+            <span class="stack-badge">Vue</span>
+            <span class="stack-badge">TypeScript</span>
+            <span class="stack-badge">PostgreSQL</span>
+          </div>
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 px-8 py-3.5 bg-fire text-white font-semibold rounded-lg hover:bg-orange-500 transition-colors text-sm tracking-wide"
+          >
+            Let's Build <span class="ml-1">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Featured project cards -->
+      <div class="relative z-10 max-w-6xl mx-auto px-6 pb-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Furniture 3D -->
+          <div
+            class="card-glow bg-surface/80 backdrop-blur-sm border border-border rounded-xl p-6"
+          >
+            <div class="flex items-center gap-2 mb-3">
+              <span class="tag-pill">Three.js</span>
+              <span class="tag-pill">React.js</span>
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">
+              Furniture 3D Builder
+            </h3>
+            <p class="text-zinc-500 text-sm leading-relaxed">
+              Furniture generator prototype letting customers preconfigure
+              furniture before ordering.
+            </p>
+          </div>
+          <!-- Darkanoid -->
+          <div
+            class="card-glow bg-surface/80 backdrop-blur-sm border border-border rounded-xl p-6"
+          >
+            <div class="flex items-center gap-2 mb-3">
+              <span class="tag-pill">Gamedev</span>
+              <span class="tag-pill">Lua</span>
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">Darkanoid</h3>
+            <p class="text-zinc-500 text-sm leading-relaxed">
+              Play-in-browser arcade game demake for PICO-8 Fantasy Console.
+            </p>
+          </div>
+          <!-- ASCII Art -->
+          <div
+            class="card-glow bg-surface/80 backdrop-blur-sm border border-border rounded-xl p-6"
+          >
+            <div class="flex items-center gap-2 mb-3">
+              <span class="tag-pill">ASCII</span>
+            </div>
+            <h3 class="text-white font-semibold text-lg mb-2">ASCII Art</h3>
+            <p class="text-zinc-500 text-sm leading-relaxed">
+              Next level visual art salvaged from BBS Scene art-packs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 2: PROJECTS ===================== -->
+    <section id="projects" class="min-h-screen py-24 sm:py-32">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Projects</h2>
+        <div class="w-12 h-0.5 bg-fire mb-12"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Furniture 3D Builder -->
+          <div
+            class="card-glow bg-surface/60 border border-border rounded-xl p-7"
+          >
+            <div class="flex items-center gap-2 mb-4">
+              <span class="tag-pill">Three.js</span>
+              <span class="tag-pill">React.js</span>
+            </div>
+            <h3 class="text-white font-semibold text-xl mb-3">
+              Furniture 3D Builder
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              Furniture generator prototype letting customers preconfigure
+              furniture before ordering.
+            </p>
+          </div>
+
+          <!-- Darkanoid -->
+          <div
+            class="card-glow bg-surface/60 border border-border rounded-xl p-7"
+          >
+            <div class="flex items-center gap-2 mb-4">
+              <span class="tag-pill">Gamedev</span>
+              <span class="tag-pill">Lua</span>
+            </div>
+            <h3 class="text-white font-semibold text-xl mb-3">Darkanoid</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              Play-in-browser arcade game demake for PICO-8 Fantasy Console.
+            </p>
+          </div>
+
+          <!-- Phuket Vegan -->
+          <div
+            class="card-glow bg-surface/60 border border-border rounded-xl p-7"
+          >
+            <div class="flex items-center gap-2 mb-4">
+              <span class="tag-pill">Design</span>
+              <span class="tag-pill">Branding</span>
+            </div>
+            <h3 class="text-white font-semibold text-xl mb-3">Phuket Vegan</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              Mind and Body Cleansing Retreat. A holistic approach to health in
+              Phuket.
+            </p>
+          </div>
+
+          <!-- ASCII Art -->
+          <div
+            class="card-glow bg-surface/60 border border-border rounded-xl p-7"
+          >
+            <div class="flex items-center gap-2 mb-4">
+              <span class="tag-pill">ASCII</span>
+            </div>
+            <h3 class="text-white font-semibold text-xl mb-3">ASCII Art</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              Next level visual art salvaged from BBS Scene art-packs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 3: BLOG ===================== -->
+    <section id="blog" class="min-h-screen py-24 sm:py-32 bg-surface/30">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Writing</h2>
+        <div class="w-12 h-0.5 bg-fire mb-12"></div>
+
+        <div class="flex flex-col gap-0">
+          <!-- Post 1 -->
+          <a
+            href="#"
+            class="blog-row flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-5 px-4 -mx-4 rounded-lg border border-transparent"
+          >
+            <span
+              class="text-sm text-zinc-600 font-medium tracking-wide uppercase shrink-0 w-28"
+              >Mar 2023</span
+            >
+            <div>
+              <h3 class="text-white font-semibold mb-1">Develop for Joy</h3>
+              <p class="text-zinc-500 text-sm">
+                Developer happiness as a team lead priority.
+              </p>
+            </div>
+          </a>
+
+          <!-- Post 2 -->
+          <a
+            href="#"
+            class="blog-row flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-5 px-4 -mx-4 rounded-lg border border-transparent"
+          >
+            <span
+              class="text-sm text-zinc-600 font-medium tracking-wide uppercase shrink-0 w-28"
+              >Nov 2021</span
+            >
+            <div>
+              <h3 class="text-white font-semibold mb-1">Boring Rails</h3>
+              <p class="text-zinc-500 text-sm">
+                Handling complexity on Rails pragmatically.
+              </p>
+            </div>
+          </a>
+
+          <!-- Post 3 -->
+          <a
+            href="#"
+            class="blog-row flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-5 px-4 -mx-4 rounded-lg border border-transparent"
+          >
+            <span
+              class="text-sm text-zinc-600 font-medium tracking-wide uppercase shrink-0 w-28"
+              >Feb 2016</span
+            >
+            <div>
+              <h3 class="text-white font-semibold mb-1">Sane Breakpoints</h3>
+              <p class="text-zinc-500 text-sm">
+                Device breakpoints in touch with reality.
+              </p>
+            </div>
+          </a>
+
+          <!-- Post 4 -->
+          <a
+            href="#"
+            class="blog-row flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-5 px-4 -mx-4 rounded-lg border border-transparent"
+          >
+            <span
+              class="text-sm text-zinc-600 font-medium tracking-wide uppercase shrink-0 w-28"
+              >Jan 2016</span
+            >
+            <div>
+              <h3 class="text-white font-semibold mb-1">Atomic Icons</h3>
+              <p class="text-zinc-500 text-sm">
+                Icons as independent components.
+              </p>
+            </div>
+          </a>
+
+          <!-- Post 5 -->
+          <a
+            href="#"
+            class="blog-row flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-5 px-4 -mx-4 rounded-lg border border-transparent"
+          >
+            <span
+              class="text-sm text-zinc-600 font-medium tracking-wide uppercase shrink-0 w-28"
+              >Dec 2015</span
+            >
+            <div>
+              <h3 class="text-white font-semibold mb-1">Immutable CSS</h3>
+              <p class="text-zinc-500 text-sm">
+                Immutable approach to CSS architecture.
+              </p>
+            </div>
+          </a>
+
+          <!-- Post 6 -->
+          <a
+            href="#"
+            class="blog-row flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-5 px-4 -mx-4 rounded-lg border border-transparent"
+          >
+            <span
+              class="text-sm text-zinc-600 font-medium tracking-wide uppercase shrink-0 w-28"
+              >Nov 2015</span
+            >
+            <div>
+              <h3 class="text-white font-semibold mb-1">Mac as IDE</h3>
+              <p class="text-zinc-500 text-sm">
+                Using Mac as a system where apps work together.
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SECTION 4: CONTACT ===================== -->
+    <section id="contact" class="min-h-screen py-24 sm:py-32 flex items-center">
+      <div class="max-w-6xl mx-auto px-6 w-full">
+        <div class="max-w-2xl mx-auto text-center">
+          <img
+            src="/images/me.jpg"
+            alt="Nikolay Ostrovsky"
+            class="rounded-full w-32 h-32 mx-auto mb-8 border-2 border-border object-cover"
+          />
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mb-2">
+            Nikolay Ostrovsky
+          </h2>
+          <p class="text-fire font-medium text-lg mb-6">
+            AI-Augmented Full-Stack Architect
+          </p>
+          <p class="text-zinc-400 leading-relaxed mb-8 max-w-lg mx-auto">
+            20+ years building web products. Ruby, Rails, React, Vue,
+            TypeScript, PostgreSQL.
+          </p>
+
+          <!-- Email -->
+          <a
+            href="mailto:nick@firedev.com"
+            class="inline-flex items-center gap-3 text-zinc-300 hover:text-fire transition-colors mb-8 text-lg"
+          >
+            <i class="fa-solid fa-envelope text-fire"></i>
+            nick@firedev.com
+          </a>
+
+          <!-- Social links -->
+          <div class="flex items-center justify-center gap-6 mb-12">
+            <a
+              href="https://github.com/firedev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-zinc-500 hover:text-white transition-colors text-xl"
+              aria-label="GitHub"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a
+              href="https://twitter.com/firedev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-zinc-500 hover:text-white transition-colors text-xl"
+              aria-label="Twitter"
+            >
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a
+              href="https://stackoverflow.com/users/166484/nick"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-zinc-500 hover:text-white transition-colors text-xl"
+              aria-label="Stack Overflow"
+            >
+              <i class="fa-brands fa-stack-overflow"></i>
+            </a>
+          </div>
+
+          <p class="text-zinc-500 text-lg italic">
+            Let's build something together.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="py-8 border-t border-border/50">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <p class="text-zinc-600 text-sm">&copy; 2026 firedev</p>
+      </div>
+    </footer>
+
+    <!-- ===================== SCRIPTS ===================== -->
+    <script>
+      // Mobile menu toggle
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuIcon = menuBtn.querySelector("i");
+
+      menuBtn.addEventListener("click", function () {
+        const isOpen = mobileMenu.classList.toggle("open");
+        menuIcon.className = isOpen
+          ? "fa-solid fa-xmark text-lg"
+          : "fa-solid fa-bars text-lg";
+      });
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove("open");
+        menuIcon.className = "fa-solid fa-bars text-lg";
+      }
+    </script>
+  </body>
+</html>

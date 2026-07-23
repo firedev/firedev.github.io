@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@source "../../src/**/*.{html,md,serb,rb}";
+@source "../javascript/**/*.js";
+
+@theme {
+  --color-fire: #ff6633;
+  --color-ink: #12100f;
+  --color-muted: #68615c;
+  --color-canvas: #f6f4f1;
+  --color-line: #ddd7d1;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 bg-canvas font-sans text-ink antialiased;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-fire;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+.project-media img {
+  transition: transform 500ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.project-card:hover .project-media img {
+  transform: scale(1.025);
+}
+
+.project-logo > img:first-child {
+  object-fit: contain;
+  padding: 12%;
+}
+
+.case-deck {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #111;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .project-media img {
+    transition: none;
+  }
+}

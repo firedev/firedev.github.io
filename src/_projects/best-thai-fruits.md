@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Best Thai Fruits","description":"Frozen Thai fruit brought from growers to Russian retail.","order":5,"slug":"best-thai-fruits","name":"Best Thai Fruits","years":"2020 — now","group":"featured","role":"Partner · Brand · Packaging","summary":"Frozen Thai fruit brought from growers to Russian retail.","story":["A production and import business for frozen Thai fruit.","I joined as a partner and created the brand and packaging system that carried the product from Thailand into Russian stores."],"stack":"Brand strategy · Packaging · Import operations","cover":"/images/projects/screens/best-thai-fruits.png","logo":"https://www.google.com/s2/favicons?domain=bestthaifruits.com&sz=128","link":"https://bestthaifruits.com"}
+---

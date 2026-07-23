@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Imagevue","description":"A professional online gallery for photographers.","order":23,"slug":"imagevue","name":"Imagevue","years":"2007","group":"products","role":"Co-founder · Design · Engineering","summary":"A professional online gallery for photographers.","story":["Imagevue made it easy for photographers to publish visual portfolios with a polished, immersive gallery.","It became the earlier product foundation for what is now Photo Gallery."],"stack":"Flash · PHP · Product design","cover":"/images/projects/imagevue.png","logoMode":true,"link":"https://www.photo.gallery"}
+---

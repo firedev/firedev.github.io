@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"HeadStart Phuket","description":"School brand, website, content builder, and student gazette.","order":17,"slug":"headstart","name":"HeadStart Phuket","years":"2011","group":"work","role":"Team Lead · Brand · Design · Engineering","summary":"School brand, website, content builder, and student gazette.","story":["A full digital and brand system for one of Phuket’s leading international schools.","I led everything from identity and signage to the website, its built-in content builder, and a publishing system for the school gazette."],"stack":"Brand identity · Ruby on Rails · Backbone · Publishing","cover":"/images/projects/screens/headstart.png","logo":"/images/projects/headstart.png","link":"https://headstartphuket.com"}
+---

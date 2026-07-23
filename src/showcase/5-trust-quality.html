@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>firedev — development on fire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0d1117;
+      --bg-code: #161b22;
+      --text: #e6edf3;
+      --text-muted: #7d8590;
+      --fire: #f63;
+      --green: #3fb950;
+      --red: #f85149;
+      --border: #30363d;
+      --inline-bg: #343942;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .readme {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+    h1, h2, h3 { font-weight: 700; line-height: 1.3; }
+    h1 {
+      font-size: 2.5em;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    h1 .hash { color: var(--text-muted); margin-right: 8px; font-weight: 400; }
+    h2 {
+      font-size: 1.5em;
+      margin-top: 48px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--fire);
+      margin-bottom: 16px;
+    }
+    h2 .hash { color: var(--text-muted); margin-right: 6px; font-weight: 400; font-size: 0.85em; }
+    h3 {
+      font-size: 1.2em;
+      margin-top: 32px;
+      margin-bottom: 8px;
+    }
+    h3 .hash { color: var(--text-muted); margin-right: 6px; font-weight: 400; font-size: 0.85em; }
+    p { margin-bottom: 16px; }
+    a { color: var(--fire); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { font-weight: 700; }
+    blockquote {
+      border-left: 3px solid var(--fire);
+      padding: 4px 16px;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0 24px;
+    }
+    pre {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+      line-height: 1.6;
+    }
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875em;
+    }
+    :not(pre) > code {
+      background: var(--inline-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .diff-add { color: var(--green); }
+    .diff-del { color: var(--red); }
+    .diff-marker-add { color: var(--bg); background: var(--green); padding: 0 2px; border-radius: 2px; margin-right: 4px; font-weight: 700; }
+    .diff-marker-del { color: var(--bg); background: var(--red); padding: 0 2px; border-radius: 2px; margin-right: 4px; font-weight: 700; }
+    .yaml-key { color: var(--fire); }
+    .yaml-val { color: var(--green); }
+    .yaml-comment { color: var(--text-muted); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 0.95em;
+    }
+    th {
+      text-align: left;
+      padding: 10px 16px;
+      border-bottom: 2px solid var(--border);
+      font-weight: 600;
+    }
+    td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    tr:nth-child(even) td { background: var(--bg-code); }
+    tr:nth-child(odd) td { background: var(--bg); }
+    ul, ol { margin-bottom: 16px; padding-left: 24px; }
+    li { margin-bottom: 6px; }
+    li::marker { color: var(--text-muted); }
+    .tagline {
+      margin-top: 0;
+      margin-bottom: 32px;
+    }
+    .footer-sig {
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .contact-block { text-align: center; }
+    .contact-block pre {
+      display: inline-block;
+      text-align: left;
+    }
+    .contact-note {
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <article class="readme">
+
+    <h1><span class="hash">#</span> firedev</h1>
+
+    <blockquote class="tagline">
+      <p>AI-accelerated development with senior oversight. Rails. React. Ship.</p>
+    </blockquote>
+
+    <h2><span class="hash">##</span> The pitch</h2>
+
+    <p>I'm a senior engineer with 20 years of experience. I use AI to build
+    faster, but I design every system and review every line. You get agency
+    speed from one person who actually writes and understands the code.</p>
+
+    <p><strong>This is not an AI code mill.</strong> This is a senior developer who happens
+    to be 10x faster because of AI.</p>
+
+    <h2><span class="hash">##</span> How it works</h2>
+
+    <pre><code>1. You describe the problem
+2. I design the architecture
+3. AI builds within my guardrails
+4. I review every line (security, performance, maintainability)
+5. You get working software weekly</code></pre>
+
+    <h2><span class="hash">##</span> The stack</h2>
+
+    <table>
+      <thead>
+        <tr><th>Category</th><th>Tools</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Backend</td><td>Ruby on Rails, PostgreSQL, Redis, Sidekiq</td></tr>
+        <tr><td>Frontend</td><td>React, Vue.js, TypeScript, Hotwire</td></tr>
+        <tr><td>Testing</td><td>RSpec, Jest, Cypress</td></tr>
+        <tr><td>AI</td><td>Claude Code, Cursor, Copilot</td></tr>
+        <tr><td>DevOps</td><td>Docker, CI/CD, Heroku, AWS</td></tr>
+      </tbody>
+    </table>
+
+    <h2><span class="hash">##</span> What you get vs. what you don't</h2>
+
+    <pre><code><span class="diff-add"><span class="diff-marker-add">+</span> Senior architecture on every project</span>
+<span class="diff-add"><span class="diff-marker-add">+</span> Human code review on every commit</span>
+<span class="diff-add"><span class="diff-marker-add">+</span> Working demos every week</span>
+<span class="diff-add"><span class="diff-marker-add">+</span> Direct communication (no PMs, no middlemen)</span>
+<span class="diff-add"><span class="diff-marker-add">+</span> Fixed-scope pricing (no hourly surprises)</span>
+<span class="diff-del"><span class="diff-marker-del">-</span> No team of 8 billing you for standups</span>
+<span class="diff-del"><span class="diff-marker-del">-</span> No junior devs learning on your project</span>
+<span class="diff-del"><span class="diff-marker-del">-</span> No 6-month timelines for an MVP</span>
+<span class="diff-del"><span class="diff-marker-del">-</span> No "we'll get back to you" from account managers</span></code></pre>
+
+    <h2><span class="hash">##</span> Selected work</h2>
+
+    <h3><span class="hash">###</span> Hubstaff</h3>
+    <blockquote><p>SaaS workforce management platform</p></blockquote>
+    <ul>
+      <li>Rails + Vue.js + Sidekiq</li>
+      <li>Performance optimization, feature development, team scaling</li>
+      <li>Millions of users</li>
+    </ul>
+
+    <h3><span class="hash">###</span> eApteka (Sber)</h3>
+    <blockquote><p>Enterprise pharmacy POS and warehouse system</p></blockquote>
+    <ul>
+      <li>Rails + PostgreSQL + React</li>
+      <li>Complex domain modeling, high reliability requirements</li>
+      <li>Russia's largest bank</li>
+    </ul>
+
+    <h3><span class="hash">###</span> Heartland Retail</h3>
+    <blockquote><p>Cloud POS with analytics dashboard</p></blockquote>
+    <ul>
+      <li>React + Redux + D3.js</li>
+      <li>Real-time data visualization for retail chains</li>
+    </ul>
+
+    <h2><span class="hash">##</span> The process</h2>
+
+    <pre><code><span class="yaml-key">sprint:</span>
+  <span class="yaml-key">day_1:</span> <span class="yaml-val">architecture + specs</span>
+  <span class="yaml-key">day_2_3:</span> <span class="yaml-val">ai_accelerated_build</span>
+  <span class="yaml-key">day_4:</span> <span class="yaml-val">review + harden</span>
+  <span class="yaml-key">day_5:</span> <span class="yaml-val">ship + demo</span>
+  <span class="yaml-key">repeat:</span> <span class="yaml-val">weekly</span></code></pre>
+
+    <h2><span class="hash">##</span> FAQ</h2>
+
+    <p><strong>"Aren't you just one person?"</strong><br>
+    Yes. That's the point. One decision-maker. Zero coordination overhead.
+    Direct access to the person writing your code. AI gives me agency-level
+    output without agency-level complexity.</p>
+
+    <p><strong>"What if you get sick?"</strong><br>
+    Valid concern. I maintain documentation and clean code specifically so
+    any competent Rails developer can pick up where I left off. Your code
+    is never a hostage.</p>
+
+    <p><strong>"How is AI-written code reliable?"</strong><br>
+    It isn't -- on its own. That's why every line goes through human review.
+    I use AI like a very fast junior developer: it drafts, I architect and
+    approve. The judgment is mine, the speed is AI's.</p>
+
+    <h2><span class="hash">##</span> Contact</h2>
+
+    <div class="contact-block">
+      <pre><code><a href="mailto:nick@firedev.com">nick@firedev.com</a></code></pre>
+      <p class="contact-note">Architecture review. Project estimate. No strings attached.</p>
+    </div>
+
+    <hr>
+
+    <p class="footer-sig">firedev -- development on fire</p>
+
+  </article>
+</body>
+</html>

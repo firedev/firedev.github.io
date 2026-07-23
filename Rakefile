@@ -1,22 +1,49 @@
-require 'rubygems'
+require "bridgetown"
 
-desc 'Deploy to Github Pages'
-task :deploy do
-  puts '## Deploying to Github Pages'
+Bridgetown.load_tasks
 
-  puts '## Generating site'
-  system 'jekyll build'
+# Run rake without specifying any command to execute a deploy build by default.
+task default: :deploy
 
-  cd '_site' do
-    system 'git add -A'
+#
+# Standard set of tasks, which you can customize if you wish:
+#
+desc "Build the Bridgetown site for deployment"
+task :deploy => [:clean, "frontend:build"] do
+  Bridgetown::Commands::Build.start
+end
 
-    message = "Site updated at #{Time.now.utc}"
-    puts "## Commiting: #{message}"
-    system "git commit -m \"#{message}\""
+desc "Build the site in a test environment"
+task :test do
+  ENV["BRIDGETOWN_ENV"] = "test"
+  Bridgetown::Commands::Build.start
+end
 
-    puts '## Pushing generated site'
-    system 'git push'
+desc "Runs the clean command"
+task :clean do
+  Bridgetown::Commands::Clean.start
+end
 
-    puts '## Deploy Complete!'
+namespace :frontend do
+  desc "Build the frontend with esbuild for deployment"
+  task :build do
+    sh "npm run esbuild"
+  end
+
+  desc "Watch the frontend with esbuild during development"
+  task :dev do
+    sh "npm run esbuild-dev"
+  rescue Interrupt
   end
 end
+
+#
+# Add your own Rake tasks here! You can use `environment` as a prerequisite
+# in order to write automations or other commands requiring a loaded site.
+#
+# task :my_task => :environment do
+#   puts site.root_dir
+#   automation do
+#     say_status :rake, "I'm a Rake tast =) #{site.config.url}"
+#   end
+# end

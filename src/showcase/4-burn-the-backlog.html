@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — Burn the Backlog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              fire: "#f63",
+              ember: "#ff4400",
+              flame: "#ff8c42",
+              glow: "#ffb366",
+              coal: "#0d0805",
+              ash: "#1a0f08",
+              warmgray: "#f5e6d3",
+            },
+            fontFamily: {
+              mono: [
+                "ui-monospace",
+                "SFMono-Regular",
+                "Menlo",
+                "Consolas",
+                "monospace",
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background: #0d0805;
+      }
+      .fire-gradient-text {
+        background: linear-gradient(135deg, #ff4400, #f63, #ff8c42);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .fire-gradient-bg {
+        background: linear-gradient(135deg, #ff4400, #f63, #ff8c42);
+      }
+      .fire-line {
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #ff4400,
+          #f63,
+          #ff8c42,
+          transparent
+        );
+      }
+      .ember {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: #f63;
+        border-radius: 50%;
+        opacity: 0;
+        animation: rise var(--duration) var(--delay) infinite;
+      }
+      @keyframes rise {
+        0% {
+          opacity: 0;
+          transform: translateY(0) scale(1);
+        }
+        15% {
+          opacity: 0.9;
+        }
+        50% {
+          opacity: 0.4;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-400px) scale(0);
+        }
+      }
+      @keyframes glow-pulse {
+        0%,
+        100% {
+          opacity: 0.15;
+        }
+        50% {
+          opacity: 0.25;
+        }
+      }
+      .hero-glow {
+        background: radial-gradient(
+          ellipse at 50% 70%,
+          #ff440020 0%,
+          transparent 70%
+        );
+        animation: glow-pulse 6s ease-in-out infinite;
+      }
+      @keyframes gradient-shift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .cta-gradient {
+        background: linear-gradient(135deg, #ff4400, #f63, #ff8c42, #f63);
+        background-size: 300% 300%;
+        animation: gradient-shift 8s ease infinite;
+      }
+    </style>
+  </head>
+  <body class="text-warmgray antialiased">
+    <!-- HERO -->
+    <section
+      class="min-h-screen flex flex-col justify-center relative overflow-hidden"
+    >
+      <div class="absolute inset-0 hero-glow pointer-events-none"></div>
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div
+          class="ember"
+          style="
+            left: 8%;
+            bottom: 10%;
+            --duration: 5s;
+            --delay: 0s;
+            width: 2px;
+            height: 2px;
+            background: #ff8c42;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="left: 15%; bottom: 5%; --duration: 6.5s; --delay: 1.2s"
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 22%;
+            bottom: 15%;
+            --duration: 4s;
+            --delay: 0.5s;
+            width: 4px;
+            height: 4px;
+            background: #ff4400;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 30%;
+            bottom: 8%;
+            --duration: 7s;
+            --delay: 2s;
+            width: 2px;
+            height: 2px;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 35%;
+            bottom: 12%;
+            --duration: 5.5s;
+            --delay: 0.8s;
+            background: #ff8c42;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 42%;
+            bottom: 6%;
+            --duration: 4.5s;
+            --delay: 3s;
+            width: 4px;
+            height: 4px;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 48%;
+            bottom: 18%;
+            --duration: 6s;
+            --delay: 1.5s;
+            width: 2px;
+            height: 2px;
+            background: #ffb366;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="left: 55%; bottom: 3%; --duration: 7.5s; --delay: 0.3s"
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 60%;
+            bottom: 10%;
+            --duration: 5s;
+            --delay: 2.5s;
+            background: #ff4400;
+            width: 4px;
+            height: 4px;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 67%;
+            bottom: 7%;
+            --duration: 4.2s;
+            --delay: 4s;
+            width: 2px;
+            height: 2px;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 73%;
+            bottom: 14%;
+            --duration: 6.8s;
+            --delay: 1s;
+            background: #ff8c42;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 78%;
+            bottom: 5%;
+            --duration: 5.3s;
+            --delay: 3.5s;
+            width: 2px;
+            height: 2px;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 83%;
+            bottom: 11%;
+            --duration: 7.2s;
+            --delay: 0.7s;
+            background: #ffb366;
+            width: 4px;
+            height: 4px;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="left: 88%; bottom: 8%; --duration: 4.8s; --delay: 2.2s"
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 92%;
+            bottom: 16%;
+            --duration: 6.2s;
+            --delay: 4.5s;
+            width: 2px;
+            height: 2px;
+            background: #ff4400;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 18%;
+            bottom: 20%;
+            --duration: 8s;
+            --delay: 1.8s;
+            width: 2px;
+            height: 2px;
+            background: #ffb366;
+          "
+        ></div>
+        <div
+          class="ember"
+          style="left: 52%; bottom: 22%; --duration: 5.8s; --delay: 3.2s"
+        ></div>
+        <div
+          class="ember"
+          style="
+            left: 70%;
+            bottom: 2%;
+            --duration: 4.3s;
+            --delay: 0.2s;
+            width: 4px;
+            height: 4px;
+            background: #ff8c42;
+          "
+        ></div>
+      </div>
+      <div class="max-w-5xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+        <div
+          class="uppercase text-fire text-sm sm:text-sm font-bold tracking-[0.3em] mb-10"
+        >
+          Your backlog is on fire
+        </div>
+        <h1
+          class="text-[8rem] sm:text-[10rem] md:text-[12rem] font-bold leading-[0.85] tracking-tight mb-8"
+        >
+          <span class="fire-gradient-text">Good.</span>
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-warmgray/70 max-w-xl mb-12 leading-relaxed"
+        >
+          Send me your top 3 stalled tickets.<br />I'll send you a timeline in
+          24 hours.
+        </p>
+        <div class="flex flex-col sm:flex-row items-start gap-6">
+          <a
+            href="mailto:nick@firedev.com?subject=Burn%20the%20backlog"
+            class="fire-gradient-bg text-coal px-10 py-4 font-bold text-lg uppercase tracking-wider hover:brightness-110 transition-all"
+          >
+            Burn the backlog
+          </a>
+          <a
+            href="#pain"
+            class="text-fire font-bold text-lg hover:text-flame transition-colors group"
+          >
+            See what burns first
+            <span
+              class="inline-block group-hover:translate-x-1 transition-transform"
+              >&rarr;</span
+            >
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAIN POINTS -->
+    <section id="pain" class="py-20 md:py-32">
+      <div class="max-w-5xl mx-auto px-6 md:px-16 lg:px-24">
+        <div class="fire-line mb-16 md:mb-24"></div>
+        <div class="mb-16 md:mb-24">
+          <p
+            class="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight leading-tight"
+          >
+            Your backlog has 47 tickets older than 6 months.
+          </p>
+          <p class="text-warmgray/30 mt-4 text-lg">(sound familiar?)</p>
+        </div>
+        <div class="fire-line mb-16 md:mb-24"></div>
+        <div class="mb-16 md:mb-24">
+          <p
+            class="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight leading-tight"
+          >
+            Your team ships 2 features per sprint and creates 5 bugs.
+          </p>
+          <p class="text-warmgray/30 mt-4 text-lg">(sound familiar?)</p>
+        </div>
+        <div class="fire-line mb-16 md:mb-24"></div>
+        <div>
+          <p
+            class="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight leading-tight"
+          >
+            Your tech debt compounds faster than your runway shrinks.
+          </p>
+          <p class="text-warmgray/30 mt-4 text-lg">(sound familiar?)</p>
+        </div>
+        <div class="fire-line mt-16 md:mt-24"></div>
+      </div>
+    </section>
+
+    <!-- THE ACCELERANT -->
+    <section
+      class="py-20 md:py-32"
+      style="background: linear-gradient(180deg, #1a0f08, #0d0805)"
+    >
+      <div class="max-w-5xl mx-auto px-6 md:px-16 lg:px-24">
+        <h2
+          class="text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight mb-16 md:mb-24"
+        >
+          <span class="fire-gradient-text">The accelerant</span>
+        </h2>
+        <div class="grid md:grid-cols-3 gap-12 md:gap-8">
+          <div>
+            <div
+              class="text-5xl md:text-6xl lg:text-7xl font-bold fire-gradient-text mb-4"
+            >
+              20+
+            </div>
+            <div
+              class="uppercase text-sm tracking-[0.2em] text-fire font-bold mb-2"
+            >
+              Years
+            </div>
+            <p class="text-warmgray/60 text-lg">Of knowing where fires start</p>
+          </div>
+          <div>
+            <div
+              class="text-5xl md:text-6xl lg:text-7xl font-bold fire-gradient-text mb-4"
+            >
+              10x
+            </div>
+            <div
+              class="uppercase text-sm tracking-[0.2em] text-fire font-bold mb-2"
+            >
+              Speed
+            </div>
+            <p class="text-warmgray/60 text-lg">AI builds, human architects</p>
+          </div>
+          <div>
+            <div
+              class="text-5xl md:text-6xl lg:text-7xl font-bold fire-gradient-text mb-4"
+            >
+              5
+            </div>
+            <div
+              class="uppercase text-sm tracking-[0.2em] text-fire font-bold mb-2"
+            >
+              Days
+            </div>
+            <p class="text-warmgray/60 text-lg">From spec to shipping</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROCESS -->
+    <section class="py-20 md:py-32">
+      <div class="max-w-5xl mx-auto px-6 md:px-16 lg:px-24">
+        <h2
+          class="text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight mb-16 md:mb-24"
+        >
+          <span class="fire-gradient-text">How we burn</span>
+        </h2>
+        <div class="space-y-12 md:space-y-16">
+          <div class="border-l-2 border-fire/20 pl-8 md:pl-12 relative">
+            <div
+              class="absolute left-0 top-0 w-2 h-2 rounded-full bg-fire/40 -translate-x-[5px]"
+            ></div>
+            <div
+              class="uppercase text-sm tracking-[0.2em] text-fire/60 font-bold mb-3"
+            >
+              Step 01
+            </div>
+            <h3
+              class="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-3"
+            >
+              Spot the fire
+            </h3>
+            <p class="text-warmgray/60 text-lg max-w-2xl">
+              I identify what's blocking your team. Architecture review,
+              codebase audit, priority triage.
+            </p>
+          </div>
+          <div class="border-l-2 border-fire/40 pl-8 md:pl-12 relative">
+            <div
+              class="absolute left-0 top-0 w-2 h-2 rounded-full bg-fire/60 -translate-x-[5px]"
+            ></div>
+            <div
+              class="uppercase text-sm tracking-[0.2em] text-fire/80 font-bold mb-3"
+            >
+              Step 02
+            </div>
+            <h3
+              class="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-3"
+            >
+              Pour the fuel
+            </h3>
+            <p class="text-warmgray/60 text-lg max-w-2xl">
+              AI-accelerated development within my architectural guardrails. 10x
+              implementation speed.
+            </p>
+          </div>
+          <div class="border-l-2 border-fire/70 pl-8 md:pl-12 relative">
+            <div
+              class="absolute left-0 top-0 w-3 h-3 rounded-full bg-fire/80 -translate-x-[7px]"
+            ></div>
+            <div
+              class="uppercase text-sm tracking-[0.2em] text-fire font-bold mb-3"
+            >
+              Step 03
+            </div>
+            <h3
+              class="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-3"
+            >
+              Control the burn
+            </h3>
+            <p class="text-warmgray/60 text-lg max-w-2xl">
+              Every line reviewed. Tests written. Security checked. Fast does
+              not mean reckless.
+            </p>
+          </div>
+          <div class="border-l-4 border-fire pl-8 md:pl-12 relative">
+            <div
+              class="absolute left-0 top-0 w-4 h-4 rounded-full bg-fire -translate-x-[10px] shadow-[0_0_12px_#f63]"
+            ></div>
+            <div
+              class="uppercase text-sm tracking-[0.2em] text-flame font-bold mb-3"
+            >
+              Step 04
+            </div>
+            <h3
+              class="text-2xl md:text-3xl font-bold uppercase tracking-tight mb-3"
+            >
+              Clear the path
+            </h3>
+            <p class="text-warmgray/60 text-lg max-w-2xl">
+              Ship weekly. Demo. Iterate. Watch your backlog shrink.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section
+      class="py-20 md:py-32"
+      style="background: linear-gradient(180deg, #0d0805, #1a0f08 50%, #0d0805)"
+    >
+      <div class="max-w-5xl mx-auto px-6 md:px-16 lg:px-24">
+        <div
+          class="font-mono text-warmgray/30 text-sm uppercase tracking-widest mb-16 md:mb-24"
+        >
+          Previous fires
+        </div>
+        <div class="space-y-8">
+          <div
+            class="border border-warmgray/10 p-6 md:p-8 hover:border-fire/30 transition-colors"
+            style="background: #0d080599"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4"
+            >
+              <div class="font-mono text-sm">
+                <span class="text-warmgray/40">INCIDENT:</span>
+                <span class="font-bold">Hubstaff</span>
+              </div>
+              <div class="font-mono text-sm text-green-500 font-bold">
+                STATUS: RESOLVED
+              </div>
+            </div>
+            <p class="text-warmgray/60 mb-4">
+              Rails+Vue workforce platform. Performance optimization, feature
+              scaling.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="font-mono text-sm px-2 py-1 border border-fire/20 text-fire/60"
+                >Rails</span
+              >
+              <span
+                class="font-mono text-sm px-2 py-1 border border-fire/20 text-fire/60"
+                >Vue</span
+              >
+              <span
+                class="font-mono text-sm px-2 py-1 border border-fire/20 text-fire/60"
+                >Sidekiq</span
+              >
+            </div>
+          </div>
+          <div
+            class="border border-warmgray/10 p-6 md:p-8 hover:border-fire/30 transition-colors"
+            style="background: #0d080599"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4"
+            >
+              <div class="font-mono text-sm">
+                <span class="text-warmgray/40">INCIDENT:</span>
+                <span class="font-bold">Toptal</span>
+              </div>
+              <div class="font-mono text-sm text-green-500 font-bold">
+                STATUS: RESOLVED
+              </div>
+            </div>
+            <p class="text-warmgray/60 mb-4">
+              Global talent platform. Full-stack feature development, Angular
+              frontend architecture.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="font-mono text-sm px-2 py-1 border border-fire/20 text-fire/60"
+                >Rails</span
+              >
+              <span
+                class="font-mono text-sm px-2 py-1 border border-fire/20 text-fire/60"
+                >Angular</span
+              >
+              <span
+                class="font-mono text-sm px-2 py-1 border border-fire/20 text-fire/60"
+                >CoffeeScript</span
+              >
+            </div>
+          </div>
+          <div
+            class="border border-warmgray/10 p-6 md:p-8 hover:border-fire/30 transition-colors"
+            style="background: #0d080599"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4"
+            >
+              <div class="font-mono text-sm">
+                <span class="text-warmgray/40">INCIDENT:</span>
+                <span class="font-bold">TrackDuck</span>
+              </div>
+              <div class="font-mono text-sm text-green-500 font-bold">
+                STATUS: RESOLVED
+              </div>
+            </div>
+            <p class="text-warmgray/60 mb-4">
+              Visual feedback tool for web. Real-time collaboration, browser
+              extension, annotation engine.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="font-mono text-sm px-2 py-1 border border-fire/20 text-fire/60"
+                >Rails</span
+              >
+              <span
+                class="font-mono text-sm px-2 py-1 border border-fire/20 text-fire/60"
+                >React</span
+              >
+              <span
+                class="font-mono text-sm px-2 py-1 border border-fire/20 text-fire/60"
+                >WebSocket</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 md:py-32 relative overflow-hidden">
+      <div class="absolute inset-0 cta-gradient opacity-90"></div>
+      <div
+        class="max-w-4xl mx-auto px-6 md:px-16 lg:px-24 text-center relative z-10"
+      >
+        <h2
+          class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-coal leading-tight mb-6"
+        >
+          Stop firefighting.<br />Start fire-making.
+        </h2>
+        <p class="text-coal/70 text-lg md:text-xl mb-12">
+          Free backlog review. No strings. No overhead.
+        </p>
+        <a
+          href="mailto:nick@firedev.com?subject=Burn%20my%20backlog"
+          class="inline-block bg-coal text-fire px-12 py-5 font-bold text-xl uppercase tracking-wider hover:bg-coal/90 transition-colors"
+        >
+          nick@firedev.com
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 px-6 text-center" style="background: #0a0604">
+      <span class="text-warmgray/30 text-sm"
+        >firedev &#128293; development on fire</span
+      >
+    </footer>
+  </body>
+</html>

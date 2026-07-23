@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Behind the Wheel","description":"Digital work for Russia’s leading automotive magazine.","order":15,"slug":"zr","name":"Behind the Wheel","years":"2000s","group":"work","role":"Team Lead · Developer · Designer","summary":"Digital work for Russia’s leading automotive magazine.","story":["Team leadership, design, and development for Za Rulem — Russia’s long-running automotive publication.","The role joined editorial needs with the realities of a high-traffic web product."],"stack":"Team leadership · Publishing · Design · Development","cover":"/images/projects/screens/za-rulem.png","logo":"https://www.google.com/s2/favicons?domain=zr.ru&sz=128","link":"https://www.zr.ru"}
+---

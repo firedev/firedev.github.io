@@ -1,0 +1,146 @@
+---
+layout: default
+---
+
+{% projects = collections.projects.resources.sort_by { |project| project.data.order } %}
+{% current_index = projects.index { |project| project.relative_url == resource.relative_url } || 0 %}
+{% previous_project = current_index.positive? ? projects[current_index - 1] : nil %}
+{% next_project = current_index < projects.size - 1 ? projects[current_index + 1] : nil %}
+{% more_projects = projects.reject { |project| project.relative_url == resource.relative_url }.first(3) %}
+{% clean_text = ->(value) { value.to_s.gsub(/[—–]/, "-") } %}
+
+<article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
+  <a href="/projects/" class="mt-10 inline-block text-sm font-bold text-muted hover:text-fire">← All projects</a>
+
+  <section class="grid items-end gap-10 py-12 md:grid-cols-[.9fr_1.1fr] md:py-24">
+    <div>
+      <p class="mb-4 text-sm font-bold text-muted">{{ clean_text.call(resource.data.years) }} · {{ clean_text.call(resource.data.role) }}</p>
+      <h1 class="max-w-[10ch] text-[clamp(3.5rem,10vw,7rem)] font-black leading-[.88] tracking-[-.04em]">{{ resource.data.name }}</h1>
+      <p class="mt-7 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">{{ clean_text.call(resource.data.summary) }}</p>
+    </div>
+    <figure class="project-media {{ resource.data.logoMode && !resource.data.cover && 'project-logo' }} relative aspect-[4/3] overflow-hidden bg-white">
+      <img src="{{ resource.data.cover || resource.data.logo }}" alt="{{ resource.data.name }} project visual" class="h-full w-full object-cover">
+      {% if resource.data.logo and resource.data.cover %}
+        <img src="{{ resource.data.logo }}" alt="{{ resource.data.name }} logo" class="absolute left-4 top-4 h-16 w-auto max-w-40 rounded-xl border border-white/70 bg-white p-2 object-contain shadow-xl">
+      {% end %}
+    </figure>
+  </section>
+
+  <section class="grid gap-12 border-t border-line py-14 md:grid-cols-[1.25fr_.55fr] md:gap-24 md:py-24">
+    <div>
+      <h2 class="mb-6 text-3xl font-black tracking-[-.03em] md:text-4xl">The work</h2>
+      {% (resource.data.story || [resource.data.summary]).each do |paragraph| %}
+        <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-[#3d3936]">{{ clean_text.call(paragraph) }}</p>
+      {% end %}
+    </div>
+
+    <aside>
+      <h2 class="mb-6 text-2xl font-black tracking-[-.03em]">Details</h2>
+      <dl>
+        <div class="border-b border-line py-4">
+          <dt class="mb-1 text-xs font-black uppercase tracking-wider text-muted">Years</dt>
+          <dd>{{ clean_text.call(resource.data.years) }}</dd>
+        </div>
+        <div class="border-b border-line py-4">
+          <dt class="mb-1 text-xs font-black uppercase tracking-wider text-muted">Role</dt>
+          <dd>{{ clean_text.call(resource.data.role) }}</dd>
+        </div>
+        <div class="border-b border-line py-4">
+          <dt class="mb-1 text-xs font-black uppercase tracking-wider text-muted">Stack / scope</dt>
+          <dd class="leading-relaxed">{{ clean_text.call(resource.data.stack) }}</dd>
+        </div>
+      </dl>
+
+      {% links = [] %}
+      {% links << ["Visit project", resource.data.link] if resource.data.link %}
+      {% links.concat(resource.data.links || []) %}
+      {% if links.any? %}
+        <div class="mt-8 flex flex-wrap gap-3">
+          {% links.each do |link| %}
+            <a href="{{ link[1] }}" target="_blank" rel="noopener" class="border border-ink px-4 py-3 text-sm font-black text-ink hover:border-fire hover:bg-fire hover:text-white">{{ link[0] }} ↗</a>
+          {% end %}
+        </div>
+      {% end %}
+    </aside>
+  </section>
+
+  {% if resource.data.presentation %}
+    <section class="border-t border-line py-14 md:py-24">
+      <div class="mb-7 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h2 class="text-3xl font-black tracking-[-.03em] md:text-5xl">Presentation</h2>
+          <p class="mt-3 text-muted">The complete 23-slide platform and architecture deck.</p>
+        </div>
+        <a href="{{ resource.data.presentation }}" target="_blank" class="text-sm font-black text-ink hover:text-fire">Open fullscreen ↗</a>
+      </div>
+      <iframe class="case-deck shadow-2xl" src="{{ resource.data.presentation }}" title="{{ resource.data.name }} presentation" allowfullscreen></iframe>
+    </section>
+  {% end %}
+
+  {% if resource.data.gallery %}
+    <section class="border-t border-line py-14 md:py-24">
+      <h2 class="mb-7 text-3xl font-black tracking-[-.03em] md:text-5xl">Product archive</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        {% resource.data.gallery.each_with_index do |image, index| %}
+          <img src="{{ image }}" alt="{{ resource.data.name }} product screen {{ index + 1 }}" loading="lazy" class="aspect-[16/10] h-full w-full bg-white object-cover">
+        {% end %}
+      </div>
+    </section>
+  {% end %}
+
+  {% if resource.data.downloads %}
+    <section class="border-t border-line py-14 md:py-24">
+      <h2 class="mb-7 text-3xl font-black tracking-[-.03em] md:text-5xl">Downloads</h2>
+      <div class="grid gap-3 md:grid-cols-2">
+        {% resource.data.downloads.each do |download| %}
+          <a href="{{ download[2] }}" target="_blank" rel="noopener" class="flex min-h-20 items-center justify-between gap-4 border border-ink px-5 py-4 font-black text-ink hover:border-fire hover:bg-fire hover:text-white">
+            <span>{{ download[0] }}<small class="mt-1 block font-normal opacity-65">{{ download[1] }}</small></span>
+            <span aria-hidden="true">↓</span>
+          </a>
+        {% end %}
+      </div>
+    </section>
+  {% end %}
+
+  <section class="border-t border-line py-14 md:py-24">
+    <div class="grid gap-6 md:grid-cols-2">
+      {% if previous_project %}
+        <a href="{{ previous_project.relative_url }}" class="border border-line px-5 py-5 text-inherit transition-colors hover:border-fire hover:bg-white">
+          <small class="block text-xs font-black uppercase tracking-wider text-muted">Previous project</small>
+          <strong class="mt-3 block text-2xl tracking-[-.02em]">{{ previous_project.data.name }}</strong>
+          <span class="mt-2 block leading-relaxed text-muted">{{ clean_text.call(previous_project.data.summary) }}</span>
+        </a>
+      {% end %}
+      {% if next_project %}
+        <a href="{{ next_project.relative_url }}" class="border border-line px-5 py-5 text-inherit transition-colors hover:border-fire hover:bg-white">
+          <small class="block text-xs font-black uppercase tracking-wider text-muted">Next project</small>
+          <strong class="mt-3 block text-2xl tracking-[-.02em]">{{ next_project.data.name }}</strong>
+          <span class="mt-2 block leading-relaxed text-muted">{{ clean_text.call(next_project.data.summary) }}</span>
+        </a>
+      {% end %}
+    </div>
+  </section>
+
+  <section class="border-t border-line py-14 md:py-24">
+    <div class="mb-7 flex flex-wrap items-baseline gap-4 border-b border-line pb-4">
+      <h2 class="text-3xl font-black tracking-[-.03em] md:text-5xl">More from the collection</h2>
+      <a href="/projects/" class="text-sm font-black text-muted hover:text-fire">Open all projects</a>
+    </div>
+    <div class="grid gap-5 md:grid-cols-3">
+      {% more_projects.each do |project| %}
+        <a href="{{ project.relative_url }}" class="block text-inherit">
+          <figure class="project-media {{ project.data.logoMode && !project.data.cover && 'project-logo' }} aspect-[4/3] overflow-hidden bg-white">
+            <img src="{{ project.data.cover || project.data.logo }}" alt="{{ project.data.name }} project visual" loading="lazy" class="h-full w-full object-cover">
+          </figure>
+          <div class="border-b border-line py-4">
+            <div class="flex items-baseline justify-between gap-4">
+              <strong class="text-xl tracking-[-.02em]">{{ project.data.name }}</strong>
+              <small class="text-muted">{{ clean_text.call(project.data.years) }}</small>
+            </div>
+            <p class="mt-2 leading-relaxed text-muted">{{ clean_text.call(project.data.summary) }}</p>
+          </div>
+        </a>
+      {% end %}
+    </div>
+  </section>
+</article>

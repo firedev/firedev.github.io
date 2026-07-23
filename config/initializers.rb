@@ -1,0 +1,2 @@
+Bridgetown.configure do
+end

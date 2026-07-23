@@ -1,0 +1,15 @@
+url: "https://firedev.com"
+timezone: Asia/Bangkok
+template_engine: serbea
+permalink: simple
+
+collections:
+  projects:
+    output: true
+    permalink: "/projects/:slug/"
+    sort_by: order
+
+html_inspector_parser: nokolexbor
+
+development:
+  unpublished: true

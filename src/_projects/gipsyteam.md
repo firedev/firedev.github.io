@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"GipsyTeam","description":"Poker school and community built with a WSOP-winning team.","order":16,"slug":"gipsyteam","name":"GipsyTeam","years":"2009","group":"work","role":"Team Lead · Developer · Designer","summary":"Poker school and community built with a WSOP-winning team.","story":["I helped the team behind Russia’s leading poker site launch a poker school and community.","The job covered team leadership, product design, and development."],"stack":"Community · Education · Product design · Engineering","cover":"/images/projects/screens/gipsyteam.png","logo":"/images/projects/gipsyteam.png","link":"https://www.gipsyteam.ru"}
+---

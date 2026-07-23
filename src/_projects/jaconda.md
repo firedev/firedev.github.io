@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Jaconda IM","description":"Business chat for remote teams, before Slack.","order":18,"slug":"jaconda","name":"Jaconda IM","years":"2010 — 2012","group":"products","role":"Co-founder · Design · Engineering · Support","summary":"Business chat for remote teams, before Slack.","story":["Jaconda was a two-person business chat startup for remote companies, built before HipChat and Slack defined the category.","We designed it, developed it, ran the service, and supported customers ourselves. The product later pivoted into Masterbot."],"stack":"Ruby on Rails · XMPP · Product design · Customer support","cover":"/images/projects/jaconda.png","logoMode":true}
+---

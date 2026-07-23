@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firedev — 10x Velocity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { fire: "#f63", bg: "#09090b", card: "#111111" },
+            fontFamily: {
+              grotesk: ['"Space Grotesk"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: #09090b;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+      }
+
+      /* Speed lines */
+      .speed-line {
+        position: absolute;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 102, 51, 0.4) 40%,
+          rgba(255, 102, 51, 0.15) 70%,
+          transparent
+        );
+        transform: rotate(-35deg);
+        transform-origin: top right;
+        pointer-events: none;
+      }
+      @keyframes speed-move {
+        0% {
+          transform: rotate(-35deg) translate(100%, -100%);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: rotate(-35deg) translate(-150vw, 150vh);
+          opacity: 0;
+        }
+      }
+      .speed-line:nth-child(1) {
+        top: 5%;
+        right: 0;
+        width: 400px;
+        animation: speed-move 3.5s linear infinite;
+      }
+      .speed-line:nth-child(2) {
+        top: 15%;
+        right: 5%;
+        width: 250px;
+        animation: speed-move 4.2s linear infinite 0.6s;
+      }
+      .speed-line:nth-child(3) {
+        top: 25%;
+        right: 10%;
+        width: 350px;
+        animation: speed-move 3s linear infinite 1.2s;
+      }
+      .speed-line:nth-child(4) {
+        top: 40%;
+        right: 0;
+        width: 300px;
+        animation: speed-move 4.8s linear infinite 0.3s;
+      }
+      .speed-line:nth-child(5) {
+        top: 55%;
+        right: 8%;
+        width: 200px;
+        animation: speed-move 3.8s linear infinite 1.8s;
+      }
+      .speed-line:nth-child(6) {
+        top: 65%;
+        right: 3%;
+        width: 380px;
+        animation: speed-move 4.5s linear infinite 2.4s;
+      }
+      .speed-line:nth-child(7) {
+        top: 78%;
+        right: 12%;
+        width: 280px;
+        animation: speed-move 3.2s linear infinite 0.9s;
+      }
+      .speed-line:nth-child(8) {
+        top: 88%;
+        right: 0;
+        width: 320px;
+        animation: speed-move 5s linear infinite 1.5s;
+      }
+
+      /* Glass nav */
+      .glass-nav {
+        background: rgba(9, 9, 11, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 102, 51, 0.15);
+      }
+
+      /* Angled sections */
+      .hero-clip {
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 80px), 0 100%);
+      }
+      .projects-clip {
+        clip-path: polygon(0 80px, 100% 0, 100% calc(100% - 80px), 0 100%);
+        margin-top: -80px;
+      }
+      .blog-clip {
+        clip-path: polygon(0 80px, 100% 0, 100% 100%, 0 100%);
+        margin-top: -80px;
+      }
+
+      /* Project cards */
+      .project-card {
+        background: #111;
+        border-left: 3px solid transparent;
+        transition:
+          transform 0.4s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .project-card:hover {
+        border-left-color: #f63;
+        transform: perspective(800px) rotateY(-2deg) translateY(-4px);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.4),
+          0 0 30px rgba(255, 102, 51, 0.05);
+      }
+
+      /* Timeline */
+      .timeline-line {
+        position: absolute;
+        left: 16px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, #f63, rgba(255, 102, 51, 0.2));
+      }
+      .timeline-dot {
+        position: absolute;
+        left: 10px;
+        top: 24px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #09090b;
+        border: 2px solid #f63;
+        z-index: 2;
+      }
+
+      /* Stat animation */
+      @keyframes stat-appear {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .stat-block {
+        animation: stat-appear 0.6s ease-out forwards;
+        opacity: 0;
+      }
+      .stat-block:nth-child(1) {
+        animation-delay: 0.3s;
+      }
+      .stat-block:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      .stat-block:nth-child(3) {
+        animation-delay: 0.7s;
+      }
+
+      /* Fire text gradient */
+      .fire-text {
+        background: linear-gradient(135deg, #f63, #ff8c42);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Blog card hover */
+      .blog-card {
+        transition:
+          transform 0.3s ease,
+          background 0.3s ease;
+      }
+      .blog-card:hover {
+        transform: translateX(4px);
+        background: rgba(255, 102, 51, 0.05);
+      }
+
+      /* Speed line footer decoration */
+      .footer-line {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #f63 30%,
+          #f63 70%,
+          transparent
+        );
+      }
+
+      /* Mobile menu */
+      .mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .mobile-menu.open {
+        max-height: 300px;
+      }
+
+      /* Badge */
+      .tech-badge {
+        background: rgba(255, 102, 51, 0.1);
+        color: #f63;
+        border: 1px solid rgba(255, 102, 51, 0.2);
+      }
+
+      /* Smooth link underline */
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #f63;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body class="text-white antialiased overflow-x-hidden font-grotesk">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        <div class="flex items-center justify-between h-16">
+          <a href="#home" class="text-xl font-bold text-fire tracking-tight"
+            >firedev</a
+          >
+          <div class="hidden md:flex items-center gap-8">
+            <a
+              href="#projects"
+              class="nav-link text-sm text-zinc-400 hover:text-white transition-colors"
+              >Projects</a
+            >
+            <a
+              href="#blog"
+              class="nav-link text-sm text-zinc-400 hover:text-white transition-colors"
+              >Blog</a
+            >
+            <a
+              href="#contact"
+              class="nav-link text-sm text-zinc-400 hover:text-white transition-colors"
+              >Contact</a
+            >
+          </div>
+          <button
+            id="hamburger"
+            class="md:hidden text-zinc-400 hover:text-white transition-colors"
+            aria-label="Toggle menu"
+          >
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+          <div class="flex flex-col gap-4 pb-6">
+            <a
+              href="#projects"
+              class="text-sm text-zinc-400 hover:text-white transition-colors"
+              onclick="closeMobileMenu()"
+              >Projects</a
+            >
+            <a
+              href="#blog"
+              class="text-sm text-zinc-400 hover:text-white transition-colors"
+              onclick="closeMobileMenu()"
+              >Blog</a
+            >
+            <a
+              href="#contact"
+              class="text-sm text-zinc-400 hover:text-white transition-colors"
+              onclick="closeMobileMenu()"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Section 1: Hero -->
+    <section
+      id="home"
+      class="hero-clip min-h-screen flex items-center relative overflow-hidden pt-16 pb-32"
+    >
+      <!-- Speed lines -->
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+
+      <div
+        class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 w-full relative z-10"
+      >
+        <div class="max-w-4xl">
+          <h1
+            class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none mb-6"
+          >
+            Days,<br />Not Months<span class="fire-text">.</span>
+          </h1>
+          <p
+            class="text-lg md:text-xl text-zinc-400 max-w-xl mb-14 leading-relaxed"
+          >
+            One AI-augmented architect. Full-stack. 20+ years. Infinite
+            velocity.
+          </p>
+
+          <!-- Stats -->
+          <div class="flex flex-wrap gap-10 md:gap-16 mb-14">
+            <div class="stat-block">
+              <div class="text-5xl md:text-6xl font-bold fire-text">20+</div>
+              <div class="text-sm text-zinc-500 mt-2 uppercase tracking-wider">
+                Years
+              </div>
+            </div>
+            <div class="stat-block">
+              <div class="text-5xl md:text-6xl font-bold fire-text">50+</div>
+              <div class="text-sm text-zinc-500 mt-2 uppercase tracking-wider">
+                Projects Shipped
+              </div>
+            </div>
+            <div class="stat-block">
+              <div class="text-5xl md:text-6xl font-bold fire-text">10x</div>
+              <div class="text-sm text-zinc-500 mt-2 uppercase tracking-wider">
+                Faster with AI
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 bg-fire hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/20 text-lg"
+          >
+            Start Building
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Projects -->
+    <section
+      id="projects"
+      class="projects-clip relative py-32 md:py-40"
+      style="background: #0c0c0e"
+    >
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          Shipped<span class="fire-text">.</span>
+        </h2>
+        <p class="text-zinc-500 mb-14 text-lg">Products built and delivered</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Furniture 3D Builder -->
+          <div class="project-card rounded-lg p-8 group">
+            <div class="flex items-start justify-between mb-4">
+              <h3
+                class="text-xl font-semibold text-white group-hover:text-fire transition-colors"
+              >
+                Furniture 3D Builder
+              </h3>
+              <i
+                class="fa-solid fa-cube text-zinc-600 group-hover:text-fire transition-colors"
+              ></i>
+            </div>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              Furniture generator prototype letting customers preconfigure
+              furniture before ordering
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge text-sm px-3 py-1 rounded-full"
+                >Three.js</span
+              >
+              <span class="tech-badge text-sm px-3 py-1 rounded-full"
+                >React.js</span
+              >
+            </div>
+          </div>
+
+          <!-- Darkanoid -->
+          <div class="project-card rounded-lg p-8 group">
+            <div class="flex items-start justify-between mb-4">
+              <h3
+                class="text-xl font-semibold text-white group-hover:text-fire transition-colors"
+              >
+                Darkanoid
+              </h3>
+              <i
+                class="fa-solid fa-gamepad text-zinc-600 group-hover:text-fire transition-colors"
+              ></i>
+            </div>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              Play-in-browser arcade game demake for PICO-8 Fantasy Console
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge text-sm px-3 py-1 rounded-full"
+                >Gamedev</span
+              >
+              <span class="tech-badge text-sm px-3 py-1 rounded-full">Lua</span>
+            </div>
+          </div>
+
+          <!-- Phuket Vegan -->
+          <div class="project-card rounded-lg p-8 group">
+            <div class="flex items-start justify-between mb-4">
+              <h3
+                class="text-xl font-semibold text-white group-hover:text-fire transition-colors"
+              >
+                Phuket Vegan
+              </h3>
+              <i
+                class="fa-solid fa-leaf text-zinc-600 group-hover:text-fire transition-colors"
+              ></i>
+            </div>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              Mind and Body Cleansing Retreat. A holistic approach to health.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge text-sm px-3 py-1 rounded-full"
+                >Design</span
+              >
+              <span class="tech-badge text-sm px-3 py-1 rounded-full"
+                >Branding</span
+              >
+            </div>
+          </div>
+
+          <!-- ASCII Art -->
+          <div class="project-card rounded-lg p-8 group">
+            <div class="flex items-start justify-between mb-4">
+              <h3
+                class="text-xl font-semibold text-white group-hover:text-fire transition-colors"
+              >
+                ASCII Art
+              </h3>
+              <i
+                class="fa-solid fa-terminal text-zinc-600 group-hover:text-fire transition-colors"
+              ></i>
+            </div>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              Next level visual art salvaged from BBS Scene art-packs
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge text-sm px-3 py-1 rounded-full"
+                >ASCII</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Blog -->
+    <section
+      id="blog"
+      class="blog-clip relative py-32 md:py-40"
+      style="background: #09090b"
+    >
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          Thinking<span class="fire-text">.</span>
+        </h2>
+        <p class="text-zinc-500 mb-14 text-lg">Writings on craft and code</p>
+
+        <div class="relative pl-12 md:pl-16">
+          <div class="timeline-line"></div>
+
+          <!-- Post 1 -->
+          <div class="relative mb-10">
+            <div class="timeline-dot"></div>
+            <div class="blog-card rounded-lg p-6 border border-zinc-800/50">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2"
+              >
+                <h3 class="text-lg font-semibold text-white">
+                  Develop for Joy
+                </h3>
+                <span
+                  class="text-sm text-zinc-600 uppercase tracking-wider shrink-0"
+                  >Mar 2023</span
+                >
+              </div>
+              <p class="text-zinc-400 text-sm">
+                Developer happiness as a team lead priority
+              </p>
+            </div>
+          </div>
+
+          <!-- Post 2 -->
+          <div class="relative mb-10">
+            <div class="timeline-dot"></div>
+            <div class="blog-card rounded-lg p-6 border border-zinc-800/50">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2"
+              >
+                <h3 class="text-lg font-semibold text-white">Boring Rails</h3>
+                <span
+                  class="text-sm text-zinc-600 uppercase tracking-wider shrink-0"
+                  >Nov 2021</span
+                >
+              </div>
+              <p class="text-zinc-400 text-sm">
+                Handling complexity pragmatically
+              </p>
+            </div>
+          </div>
+
+          <!-- Post 3 -->
+          <div class="relative mb-10">
+            <div class="timeline-dot"></div>
+            <div class="blog-card rounded-lg p-6 border border-zinc-800/50">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2"
+              >
+                <h3 class="text-lg font-semibold text-white">
+                  Sane Breakpoints
+                </h3>
+                <span
+                  class="text-sm text-zinc-600 uppercase tracking-wider shrink-0"
+                  >Feb 2016</span
+                >
+              </div>
+              <p class="text-zinc-400 text-sm">
+                Device breakpoints in touch with reality
+              </p>
+            </div>
+          </div>
+
+          <!-- Post 4 -->
+          <div class="relative mb-10">
+            <div class="timeline-dot"></div>
+            <div class="blog-card rounded-lg p-6 border border-zinc-800/50">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2"
+              >
+                <h3 class="text-lg font-semibold text-white">Atomic Icons</h3>
+                <span
+                  class="text-sm text-zinc-600 uppercase tracking-wider shrink-0"
+                  >Jan 2016</span
+                >
+              </div>
+              <p class="text-zinc-400 text-sm">
+                Icons as independent components
+              </p>
+            </div>
+          </div>
+
+          <!-- Post 5 -->
+          <div class="relative mb-10">
+            <div class="timeline-dot"></div>
+            <div class="blog-card rounded-lg p-6 border border-zinc-800/50">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2"
+              >
+                <h3 class="text-lg font-semibold text-white">Immutable CSS</h3>
+                <span
+                  class="text-sm text-zinc-600 uppercase tracking-wider shrink-0"
+                  >Dec 2015</span
+                >
+              </div>
+              <p class="text-zinc-400 text-sm">Immutable CSS architecture</p>
+            </div>
+          </div>
+
+          <!-- Post 6 -->
+          <div class="relative">
+            <div class="timeline-dot"></div>
+            <div class="blog-card rounded-lg p-6 border border-zinc-800/50">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2"
+              >
+                <h3 class="text-lg font-semibold text-white">Mac as IDE</h3>
+                <span
+                  class="text-sm text-zinc-600 uppercase tracking-wider shrink-0"
+                  >Nov 2015</span
+                >
+              </div>
+              <p class="text-zinc-400 text-sm">
+                Using Mac as a system-level IDE
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Contact -->
+    <section
+      id="contact"
+      class="relative py-28 md:py-36"
+      style="background: #0c0c0e"
+    >
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        <div class="grid lg:grid-cols-5 gap-16 items-center">
+          <div class="lg:col-span-3">
+            <h2 class="text-4xl md:text-5xl font-bold mb-2 tracking-tight">
+              Nikolay Ostrovsky
+            </h2>
+            <p class="text-fire text-lg font-medium mb-8">
+              AI-Augmented Full-Stack Architect
+            </p>
+            <p class="text-zinc-400 leading-relaxed mb-10 max-w-xl text-lg">
+              20+ years building web products. Grew from web/graphics through
+              UX/UI, backend/frontend to Team Lead and CTO.
+            </p>
+
+            <div class="space-y-4 mb-10">
+              <a
+                href="mailto:nick@firedev.com"
+                class="flex items-center gap-3 text-zinc-300 hover:text-fire transition-colors group"
+              >
+                <i
+                  class="fa-solid fa-envelope text-zinc-600 group-hover:text-fire transition-colors w-5"
+                ></i>
+                <span>nick@firedev.com</span>
+              </a>
+            </div>
+
+            <div class="flex items-center gap-6 mb-14">
+              <a
+                href="https://github.com/firedev"
+                target="_blank"
+                rel="noopener"
+                class="text-zinc-500 hover:text-fire transition-colors"
+                aria-label="GitHub"
+              >
+                <i class="fa-brands fa-github text-2xl"></i>
+              </a>
+              <a
+                href="https://twitter.com/firedev"
+                target="_blank"
+                rel="noopener"
+                class="text-zinc-500 hover:text-fire transition-colors"
+                aria-label="Twitter"
+              >
+                <i class="fa-brands fa-twitter text-2xl"></i>
+              </a>
+              <a
+                href="https://stackoverflow.com/users/firedev"
+                target="_blank"
+                rel="noopener"
+                class="text-zinc-500 hover:text-fire transition-colors"
+                aria-label="StackOverflow"
+              >
+                <i class="fa-brands fa-stack-overflow text-2xl"></i>
+              </a>
+              <span class="text-sm text-zinc-600 uppercase tracking-wider ml-2"
+                >StackOverflow top 2%</span
+              >
+            </div>
+
+            <p class="text-3xl md:text-4xl font-bold tracking-tight">
+              Ready to ship<span class="fire-text">?</span>
+            </p>
+          </div>
+
+          <div class="lg:col-span-2 flex justify-center lg:justify-end">
+            <img
+              src="/images/me.jpg"
+              alt="Nikolay Ostrovsky"
+              class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-2 border-zinc-800 shadow-2xl shadow-black/50"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8" style="background: #09090b">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        <div class="footer-line mb-8"></div>
+        <p class="text-zinc-600 text-sm text-center">&copy; 2026 firedev</p>
+      </div>
+    </footer>
+
+    <!-- Mobile menu toggle -->
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const hamburgerIcon = hamburger.querySelector("i");
+
+      hamburger.addEventListener("click", function () {
+        mobileMenu.classList.toggle("open");
+        if (mobileMenu.classList.contains("open")) {
+          hamburgerIcon.classList.remove("fa-bars");
+          hamburgerIcon.classList.add("fa-xmark");
+        } else {
+          hamburgerIcon.classList.remove("fa-xmark");
+          hamburgerIcon.classList.add("fa-bars");
+        }
+      });
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove("open");
+        hamburgerIcon.classList.remove("fa-xmark");
+        hamburgerIcon.classList.add("fa-bars");
+      }
+    </script>
+  </body>
+</html>
