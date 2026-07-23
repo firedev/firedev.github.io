@@ -5,12 +5,13 @@
 </head>
 <body class="{{ data.page_class }} min-h-screen overflow-x-hidden">
   {% current_path = resource.relative_url %}
+  {% posts_active = current_path.start_with?("/posts") || data.page_class == "archive-page" %}
   <header class="mx-auto flex min-h-28 w-[min(1180px,calc(100%-2rem))] flex-col items-start gap-5 border-b border-line py-6 md:flex-row md:items-end md:gap-10 md:py-8">
     <a href="/" class="block w-48 shrink-0 md:w-56 lg:w-64" aria-label="firedev.com home">
       <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
     </a>
     <nav class="flex w-full flex-wrap items-center gap-x-5 gap-y-1 text-base font-black md:flex-1 md:gap-x-8 md:text-xl" aria-label="Primary">
-      <a href="/posts/" class="inline-flex min-h-11 items-center {{ current_path.start_with?('/posts') ? 'text-fire' : 'text-muted hover:text-fire' }}" {% if current_path.start_with?('/posts') %}aria-current="page"{% end %}>Posts</a>
+      <a href="/posts/" class="inline-flex min-h-11 items-center {{ posts_active ? 'text-fire' : 'text-muted hover:text-fire' }}" {% if posts_active %}aria-current="page"{% end %}>Posts</a>
       <a href="/projects/" class="inline-flex min-h-11 items-center {{ current_path.start_with?('/projects') ? 'text-fire' : 'text-muted hover:text-fire' }}" {% if current_path.start_with?('/projects') %}aria-current="page"{% end %}>Projects</a>
       <a href="/about/" class="inline-flex min-h-11 items-center {{ current_path.start_with?('/about') ? 'text-fire' : 'text-muted hover:text-fire' }}" {% if current_path.start_with?('/about') %}aria-current="page"{% end %}>About</a>
       <a href="mailto:nick@firedev.com" class="w-full border border-ink px-4 py-3 text-center text-ink hover:border-fire hover:bg-fire hover:text-white md:ml-auto md:w-auto">Let’s work together ↗</a>
