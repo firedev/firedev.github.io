@@ -29,8 +29,8 @@ page_class: homepage
     <div class="grid gap-6 md:grid-cols-2">
       {% featured.each do |project| %}
         <a href="{{ project.relative_url }}" class="project-card group block">
-          <figure class="project-media {{ project.data.logoMode && 'project-logo' }} aspect-[16/10] overflow-hidden bg-white">
-            <img src="{{ project.data.cover || project.data.logo }}" alt="{{ project.data.name }} project visual" class="h-full w-full object-cover">
+          <figure class="project-media {{ project.data.logo && 'project-logo' }} aspect-[16/10] overflow-hidden bg-white">
+            <img src="{{ project.data.logo || project.data.cover }}" alt="{{ project.data.name }} project visual" class="h-full w-full object-cover">
           </figure>
           <div class="flex items-baseline justify-between gap-5 border-b border-line py-5">
             <span>
