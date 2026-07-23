@@ -1,208 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bottomless Ruby Hash · firedev.com</title>
+<meta name="description" content="The other day somebody asked if there is a way to blindly assign nested valuesto Ruby Hash without creating each key. Turns out there is, and it has aninteresting side-effect. Welcome Bottomless Hash.">
+<meta name="author" content="Nikolay Ostrovsky">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://firedev.com/posts/bottomless-ruby-hash/">
+<meta property="og:site_name" content="firedev.com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bottomless Ruby Hash · firedev.com">
+<meta property="og:description" content="The other day somebody asked if there is a way to blindly assign nested valuesto Ruby Hash without creating each key. Turns out there is, and it has aninteresting side-effect. Welcome Bottomless Hash.">
+<meta property="og:url" content="https://firedev.com/posts/bottomless-ruby-hash/">
+<meta property="og:image" content="https://firedev.com/images/posts/bottomless_pit.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bottomless Ruby Hash · firedev.com">
+<meta name="twitter:description" content="The other day somebody asked if there is a way to blindly assign nested valuesto Ruby Hash without creating each key. Turns out there is, and it has aninteresting side-effect. Welcome Bottomless Hash.">
+<meta name="twitter:image" content="https://firedev.com/images/posts/bottomless_pit.jpg">
+<link rel="stylesheet" href="/_bridgetown/static/index.FCSGU5OE.css">
+<script src="/_bridgetown/static/index.P6KJZRZR.js" type="module"></script>
 
-  <title>Bottomless Ruby Hash | firedev.com</title>
-  <meta name="description" content="The other day somebody asked if there is a way to blindly assign nested valuesto Ruby Hash without creating each key. Turns out there is, and it has anintere...">
-  <meta name="author" content="Nikolay Ostrovsky">
-  <meta name="robots" content="index, follow">
-
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/legacy-overrides.css">
-  <style>.mt-0{margin-top:0 !important}.mb-0{margin-bottom:0 !important}</style>
-  <link rel="canonical" href="https://firedev.com/posts/bottomless-ruby-hash/">
-  <link rel="alternate" type="application/rss+xml" title="firedev.com" href="https://firedev.com/feed.xml" />
-  <link rel="sitemap" type="application/xml" href="https://firedev.com/sitemap.xml" />
-
-  <link href="/images/favicon.png" rel="icon" />
-  <link href="/images/favicon.png" rel="apple-touch-icon-precomposed" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="firedev.com" />
-  <meta property="og:url" content="https://firedev.com/posts/bottomless-ruby-hash/" />
-  <meta property="og:title" content="Bottomless Ruby Hash" />
-  <meta property="og:description" content="The other day somebody asked if there is a way to blindly assign nested valuesto Ruby Hash without creating each key. Turns out there is, and it has aninteresting side-effect. Welcome Bottomless Hash." />
-  <meta property="og:image" content="https://firedev.com/images/posts/bottomless_pit.jpg" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@firedev" />
-  <meta name="twitter:title" content="Bottomless Ruby Hash" />
-  <meta name="twitter:description" content="The other day somebody asked if there is a way to blindly assign nested valuesto Ruby Hash without creating each key. Turns out there is, and it has aninteresting side-effect. Welcome Bottomless Hash." />
-  <meta name="twitter:image" content="https://firedev.com/images/posts/bottomless_pit.jpg" />
-
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Bottomless Ruby Hash",
-    "author": {
-      "@type": "Person",
-      "name": "Nikolay Ostrovsky",
-      "url": "https://firedev.com"
-    },
-    "datePublished": "2015-10-07T00:00:00+07:00",
-    "dateModified": "2015-10-07T00:00:00+07:00",
-    "description": "The other day somebody asked if there is a way to blindly assign nested valuesto Ruby Hash without creating each key. Turns out there is, and it has aninteresting side-effect. Welcome Bottomless Hash.",
-    "image": "https://firedev.com/images/posts/bottomless_pit.jpg",
-    "url": "https://firedev.com/posts/bottomless-ruby-hash/",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://firedev.com/posts/bottomless-ruby-hash/"
-    }
-  }
-  </script>
-  
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "firedev.com",
-    "url": "https://firedev.com",
-    "author": {
-      "@type": "Person",
-      "name": "Nikolay Ostrovsky",
-      "url": "https://firedev.com",
-      "sameAs": [
-        "https://github.com/firedev",
-        "https://twitter.com/firedev",
-        "https://stackoverflow.com/users/166484/nick"
-      ]
-    }
-  }
-  </script>
 </head>
-
-
-<body class="m-auto prose prose-neutral lg:text-xl">
-  <div class="max-w-6xl px-4 mx-auto">
-    <header class="sm:grid grid-cols-4 gap-8 mb-4">
-  <a href="/" class="block leading-4 aspect-[3/1] overflow-hidden"
-     style="background: bottom left no-repeat url(/images/logos/firedev.svg);">
-    <h1 class="text-8xl leading-4 block invisible">
-      firedev.com
-    </h1>
-  </a>
-
-  <div class="mb-8 sm:hidden"></div>
-
-  <nav class="col-span-3 flex flex-wrap gap-8 items-end  leading-6 text-4xl sm:text-2xl">
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <a class="font-normal text-gray-600" href="/posts/">
-      Posts
+<body class=" min-h-screen overflow-x-hidden">
+  <header class="mx-auto flex min-h-28 w-[min(1180px,calc(100%-2rem))] flex-col items-start gap-5 border-b border-line py-6 md:flex-row md:items-end md:gap-10 md:py-8">
+    <a href="/" class="block w-48 shrink-0 md:w-56 lg:w-64" aria-label="firedev.com home">
+      <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
     </a>
-    
-    
-    
-    
-    
-    <a class="font-normal text-gray-600" href="/projects/">
-      Projects
-    </a>
-    
-    
-    
-    
-    
-    <a class="font-normal text-gray-600" href="/about/">
-      About
-    </a>
-    
-    
-    
+    <nav class="flex w-full flex-wrap items-center gap-x-5 gap-y-1 text-base font-black md:flex-1 md:gap-x-8 md:text-xl" aria-label="Primary">
+      <a href="/posts/" class="inline-flex min-h-11 items-center text-fire" aria-current="page">Posts</a>
+      <a href="/projects/" class="inline-flex min-h-11 items-center text-muted hover:text-fire" >Projects</a>
+      <a href="/about/" class="inline-flex min-h-11 items-center text-muted hover:text-fire" >About</a>
+      <a href="mailto:nick@firedev.com" class="w-full border border-ink px-4 py-3 text-center text-ink hover:border-fire hover:bg-fire hover:text-white md:ml-auto md:w-auto">Let’s work together ↗</a>
+    </nav>
+  </header>
 
-    <div class="flex flex-auto"></div>
+  <main>
+    <article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
+  <a href="/posts/" class="mt-10 inline-flex min-h-11 items-center text-base font-black text-muted hover:text-fire">← All posts</a>
 
-    <a class="hidden sm:block font-normal opacity-50 text-sm text-gray-600"
-       href=" /feed.xml">
-    <i class="fas fa-rss"></i>
-    RSS
+  <header class="grid gap-8 py-10 md:grid-cols-12 md:items-end md:py-20">
+    <div class="md:col-span-9">
+      <time datetime="2015-10-07" class="font-black text-fire">07 October 2015</time>
+      <h1 class="mt-5 max-w-[13ch] text-[clamp(3.2rem,8vw,6rem)] font-black leading-[.9] tracking-[-.04em]">Bottomless Ruby Hash</h1>
+    </div>
+    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">The other day somebody asked if there is a way to blindly assign nested valuesto Ruby Hash without creating each key. Turns out there is, and it has aninteresting side-effect. Welcome Bottomless Hash.</p>
+  </header>
 
-    </a>
-  </nav>
-</header>
+    <figure class="mb-12 overflow-hidden bg-white md:mb-20">
+      <img src="/images/posts/bottomless_pit.jpg" alt="" class="max-h-[72vh] w-full object-cover">
+    </figure>
 
-  </div>
-  
-  <div class="my-8" style="
-    padding-top: 42%;
-    background-image: url(/images/posts/bottomless_pit.jpg);
-    background-size: cover;
-    background-color: ;
-    background-position: ;
-  "></div>
-
-
-  <div class="max-w-6xl px-4 mx-auto">
-    
-
-<header>
-  <h1 class="m0 mb-4 md:text-6xl">Bottomless Ruby Hash</h1>
-</header>
-
-
-<div class="mb-6">
-  <article class="mb-6">
+  <div class="post-body mx-auto">
     <p>The other day somebody asked if there is a way to blindly assign nested values
 to Ruby Hash without creating each key. Turns out there is, and it has an
 interesting side-effect. Welcome Bottomless Hash.</p>
@@ -437,55 +286,24 @@ any hash in the system. Thanks Patrick!</p>
 nested structures from the outside world.</p>
 
 <h3 id="links">Links</h3>
-<p><i class="fa fa-file-o"></i> <a href="http://firedev.com/posts/bottomless-ruby-hash">Bottomless Ruby Hash</a><br />
-<i class="fa fa-file-o"></i> <a href="http://firedev.com/posts/making-bottomless-hash-ruby-gem/">Making Bottomless Hash Ruby Gem</a><br />
-<i class="fa fa-github"></i> Github <a href="https://github.com/firedev/bottomless_hash">firedev/bottomless_hash</a><br />
-<i class="fa fa-github"></i> Gist <a href="https://gist.github.com/firedev/9de91e245f70c2e963e4">bottomless_hash.rb</a><br /></p>
-
-  </article>
-
-  <div class="my-8 leading-8 lg:leading-9 -ml-1">
- 
-
-<a href="/ruby/" class="rounded bg-orange white font-normal py-1 px-1.5 ml-1"> Ruby </a>
-
-</div>
-
-</div>
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-var disqus_shortname = 'firedevcom';
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-
-    <footer class="text-center">
-  <div class="py-8 my-8 text-gray-700">
-    <div class="flex justify-center gap-6 mb-4">
-      <a href="https://github.com/firedev" class="text-gray-600 hover:text-gray-700"><i class="fab fa-github fa-lg"></i></a>
-      <a href="https://twitter.com/firedev" class="text-gray-600 hover:text-gray-700"><i class="fab fa-twitter fa-lg"></i></a>
-      <a href="https://stackoverflow.com/users/166484/nick" class="text-gray-600 hover:text-gray-700"><i class="fab fa-stack-overflow fa-lg"></i></a>
-    </div>
-    <a href="/" class="font-normal" style="text-decoration:none;"><span class="font-black orange">fire</span><span class="font-normal text-gray-600">dev</span></a>
-  </div>
-</footer>
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJRP3XNKH5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-WJRP3XNKH5');
-</script>
+<p><i class="fa fa-file-o"></i> <a href="http://firedev.com/posts/bottomless-ruby-hash">Bottomless Ruby Hash</a><br>
+<i class="fa fa-file-o"></i> <a href="http://firedev.com/posts/making-bottomless-hash-ruby-gem/">Making Bottomless Hash Ruby Gem</a><br>
+<i class="fa fa-github"></i> Github <a href="https://github.com/firedev/bottomless_hash">firedev/bottomless_hash</a><br>
+<i class="fa fa-github"></i> Gist <a href="https://gist.github.com/firedev/9de91e245f70c2e963e4">bottomless_hash.rb</a><br></p>
 
   </div>
+
+  <footer class="mx-auto mt-16 flex max-w-[72ch] flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
+    <a href="/posts/" class="inline-flex min-h-11 items-center font-black hover:text-fire">← Back to all posts</a>
+    <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-black hover:text-fire">Talk about the work ↗</a>
+  </footer>
+</article>
+
+  </main>
+
+  <footer class="mx-auto mt-20 flex w-[min(1180px,calc(100%-2rem))] justify-between gap-8 border-t border-line py-8 text-sm text-muted">
+    <span>© Nikolay Ostrovsky</span>
+    <span>Phuket · Thailand</span>
+  </footer>
 </body>
-
 </html>
