@@ -1,0 +1,3 @@
+- Replace project photos/screens where current visuals are weak, outdated, or inconsistent with the rest of the site.
+- Add promotion surfaces for Instagram and nofins.com.
+- Explore QR codes for nofins and Instagram: decide placement, style, and where they actually help (site, print, slides, cards).
