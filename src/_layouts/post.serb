@@ -23,7 +23,7 @@ layout: default
     {%= yield %}
   </div>
 
-  <footer class="mx-auto mt-16 flex max-w-[72ch] flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
+  <footer class="mt-16 flex flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
     <a href="/posts/" class="inline-flex min-h-11 items-center font-black hover:text-fire">← Back to all posts</a>
     <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-black hover:text-fire">Talk about the work ↗</a>
   </footer>

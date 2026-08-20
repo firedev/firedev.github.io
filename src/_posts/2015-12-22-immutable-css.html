@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "Immutable CSS"
-description: "This is extracted from the Github issue created to discuss the approach with myteam. Please bear with me if I refer to something that wasn’t mentioned in the text."
+description: "This is extracted from the Github issue created to discuss the approach with my team. Please bear with me if I refer to something that wasn’t mentioned in the text."
 date: "2015-12-22"
 permalink: "/posts/immutable-css/"
 cover: "/images/posts/monolith.jpg"
@@ -16,7 +16,7 @@ team. Please bear with me if I refer to something that wasn’t mentioned in the
 small classes that you reuse everywhere. They are mostly one-liners with clear
 semantics. And you don’t write new CSS until it’s absolutely needed.</p>
 
-<p>Lets pretend that we need to build a menu that changes background for each client.
+<p>Let’s pretend that we need to build a menu that changes background for each client.
 Consider the following example. The semantics is easy to remember: <code class="language-plaintext highlighter-rouge">m</code> —
 margin, <code class="language-plaintext highlighter-rouge">p</code> — padding.</p>
 
@@ -48,16 +48,16 @@ names that are explicitly readable when you open the code.</p>
 
 <h2 id="but-css-modules">But CSS Modules…?</h2>
 
-<p>Everybody seem to have high hopes for CSS modules. Let’s clear this up. I am
-not opposed to idea and they are great. However I would argue that CSS modules
+<p>Everybody seems to have high hopes for CSS modules. Let’s clear this up. I am
+not opposed to the idea and they are great. However I would argue that CSS modules
 is a file organization concept mostly. As everything is compiled into a big
 pile of CSS in the browser.</p>
 
 <p>You’re not defining colors and fonts in each module, so they are not <em>that</em>
 independent. You have some <em>base CSS</em> anyway.</p>
 
-<p>So in the case above the Menu CSS Module would contain a single line -
-<code class="language-plaintext highlighter-rouge">background-color</code>. Everything else is build using immutable css classes from
+<p>So in the case above the Menu CSS Module would contain a single line —
+<code class="language-plaintext highlighter-rouge">background-color</code>. Everything else is built using immutable css classes from
 the BASE.</p>
 
 <h2 id="show-me">Show me!</h2>
@@ -94,12 +94,12 @@ file format.</p>
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
 <p>Wait, what? No CSS? Yes. You see the basic HTML tags like <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> don’t need to
-carry any classes. You just pre-style them once. How many variation of
-<code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> or <code class="language-plaintext highlighter-rouge">&lt;input&gt;</code> you need anyway?</p>
+carry any classes. You just pre-style them once. How many variations of
+<code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> or <code class="language-plaintext highlighter-rouge">&lt;input&gt;</code> do you need anyway?</p>
 
-<p>For <code class="language-plaintext highlighter-rouge">.type</code> that seems to be a some form of container I just put <code class="language-plaintext highlighter-rouge">.container</code>
+<p>For <code class="language-plaintext highlighter-rouge">.type</code> that seems to be some form of container I just put <code class="language-plaintext highlighter-rouge">.container</code>
 in HTML. <code class="language-plaintext highlighter-rouge">width: 70%</code> is a magic number. It seems to me that it can be replaced
-with <code class="language-plaintext highlighter-rouge">.col-8</code> given 12-column grid.</p>
+with <code class="language-plaintext highlighter-rouge">.col-8</code> given a 12-column grid.</p>
 
 <p>So in HTML it will be something like:</p>
 
@@ -109,9 +109,9 @@ with <code class="language-plaintext highlighter-rouge">.col-8</code> given 12-c
 </code></pre></div></div>
 <p>And no CSS.</p>
 
-<h2 id="so-it-that-another-css-framework">So it that another CSS framework?</h2>
+<h2 id="so-it-that-another-css-framework">So is that another CSS framework?</h2>
 
-<p>Nope, just a library. As they say - you call the library, framework calls you.
+<p>Nope, just a library. As they say — you call the library, the framework calls you.
 In fact it’s a set of css modules: <code class="language-plaintext highlighter-rouge">whitespace</code>, <code class="language-plaintext highlighter-rouge">grid</code>, <code class="language-plaintext highlighter-rouge">forms</code>, etc. A dozen
 one-liners each that can be reused everywhere.</p>
 
@@ -119,21 +119,21 @@ one-liners each that can be reused everywhere.</p>
 with CSS, SCSS and now SASS while using Bootstrap, Foundation, various grid
 systems, Neat, Bourbon and what else there is.</p>
 
-<h2 id="but-how-can-we-use-it-we-already-using-whatever">But how can we use it, we already using Whatever?</h2>
+<h2 id="but-how-can-we-use-it-we-already-using-whatever">But how can we use it, we are already using Whatever?</h2>
 
-<p>The approach I preach to have a library of atomic, immutable small classes that
-can be combined for layout purposes. And top it off with smart reset for HTML
-elements. So all inputs, buttons and whatnot looks fine as is.</p>
+<p>The approach I preach is to have a library of atomic, immutable small classes that
+can be combined for layout purposes. And top it off with a smart reset for HTML
+elements. So all inputs, buttons and whatnot look fine as is.</p>
 
-<p>You only describe some specific behaviour in CSS you write. The basic styling
+<p>You only describe some specific behaviour in the CSS you write. The basic styling
 and positioning is done with the base classes.</p>
 
 <h2 id="do-we-have-to-change-something">Do we have to change something?</h2>
 
-<p>Start with adding small one-liners. Here are for example three one-line clases
+<p>Start with adding small one-liners. Here are for example three one-line classes
 for the menu. When you decide you need more you can continue.</p>
 
-<p>Here is what the HTML could look like (Slim/Jade)</p>
+<p>Here is what the HTML could look like (Slim/Jade):</p>
 
 <div class="language-slim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.menu</span><span class="w">                     </span>|<span class="w"> </span>Sets<span class="w"> </span>Colors,<span class="w"> </span>nothing<span class="w"> </span>else<span class="nc">.</span><span class="w"> </span>The<span class="w"> </span>only<span class="w"> </span>class<span class="w"> </span>that<span class="w"> </span>needs<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>defined<span class="w"> </span>in<span class="w"> </span>CSS
   <span class="nc">.container</span><span class="w">              </span>|<span class="w"> </span>Sets<span class="w"> </span>max-width<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>inner<span class="w"> </span>container
@@ -162,7 +162,7 @@ And that removes CSS completely.</p>
 hover color from text so it works with any kind of stuff.</p>
 
 <p><code class="language-plaintext highlighter-rouge">&lt;button&gt;</code> HTML tag or <code class="language-plaintext highlighter-rouge">.button</code> class on the other hand is pre-styled as a
-fully-blown button with colored background (it is actually inherited from
+full-blown button with colored background (it is actually inherited from
 <code class="language-plaintext highlighter-rouge">.btn.btn-primary</code>).</p>
 
 <h2 id="what-if-we-dont-like-it">What if we don’t like it?</h2>
@@ -179,16 +179,16 @@ Another side effect is when you open the view you can <em>read</em> what it is g
 to <em>look</em> like. Kind of like in the Matrix movie.</p>
 
 <p>For example the whole CSS for this <a href="http://molokophuket.com">agency website</a> is
-less then <strong>10Kb</strong> in size. And people think this is Bootstrap.</p>
+less than <strong>10Kb</strong> in size. And people think this is Bootstrap.</p>
 
 <p>I’d love to show more examples, production code or answer questions. Here are
 some links to digest meanwhile:</p>
 
 <ul>
   <li><a href="http://jxnblk.com/gravitons">Gravitons</a> — A base set of simple utilities to start with</li>
-  <li><a href="http://basscss.com">BASSCSS</a> — The actual library I am suggestion to use</li>
+  <li><a href="http://basscss.com">BASSCSS</a> — The actual library I am suggesting to use</li>
   <li><a href="http://github.com/firedev/basscss-fix">BASSCSS-FIX</a> — Some things I wasn’t content with</li>
-  <li><a href="http://jxnblk.com/rebass">ReBASS</a> — BASSCSS-based React componets (<code class="language-plaintext highlighter-rouge">Row</code>, <code class="language-plaintext highlighter-rouge">Column</code>, <code class="language-plaintext highlighter-rouge">Button</code> etc)</li>
+  <li><a href="http://jxnblk.com/rebass">ReBASS</a> — BASSCSS-based React components (<code class="language-plaintext highlighter-rouge">Row</code>, <code class="language-plaintext highlighter-rouge">Column</code>, <code class="language-plaintext highlighter-rouge">Button</code> etc)</li>
   <li><a href="http://tachyons.io">Tachyons</a> — Another tiny library with similar ideas</li>
   <li><a href="http://solid.buzzfeed.com">Solid</a> — Buzzfeed implementation</li>
   <li><a href="https://www.youtube.com/watch?v=0aBv8dsZs84">Styling React Components in JavaScript</a> — Embedding is disabled but the fun part starts in the second half of the video.</li>
@@ -197,7 +197,7 @@ some links to digest meanwhile:</p>
 <h2 id="boilerplate">Boilerplate</h2>
 
 <p>This approach really shines with templating engines that use terse indented syntax. So if
-you are still on the fence but willing to try it and like Slim I made
+you are still on the fence but willing to try it and like Slim I made a
 boilerplate to demo some of the ideas.</p>
 
 <ul>

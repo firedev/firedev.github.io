@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "Making Bottomless Hash Ruby Gem"
-description: "After creating Bottomless Hashlast time and writing tests the next logical step is to make a Gem out of it."
+description: "After creating Bottomless Hash last time and writing tests, the next logical step is to make a gem out of it."
 date: "2015-10-10"
 permalink: "/posts/making-bottomless-hash-ruby-gem/"
 cover: "/images/posts/bottomless_pit_gravity_falls.jpg"
@@ -68,9 +68,9 @@ MIT License enabled in config
 Initializing git repo in gems/bottomless_hash
 </code></pre></div></div>
 
-<p>I have included all this licences and codes of conduct as some people are
+<p>I have included all these licences and codes of conduct as some people are
 very sensitive to this and will email you asking if they can change your
-code if you won’t include any of these.</p>
+code if you don’t include any of these.</p>
 
 <p>Okay it is quite a handful so I’ll publish it on GitHub.</p>
 
@@ -86,7 +86,7 @@ To git@github.com:firedev/bottomless_hash.git
  Branch master <span class="nb">set </span>up to track remote branch master from origin.
 </code></pre></div></div>
 
-<p>Great now let’s get to business.</p>
+<p>Great, now let’s get to business.</p>
 
 <h2 id="filling-up-the-blanks">Filling up the blanks</h2>
 
@@ -130,13 +130,13 @@ To git@github.com:firedev/bottomless_hash.git
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>That’ll do it. I just commented out the part about not letting this gem to be
+<p>That’ll do it. I just commented out the part about not letting this gem be
 pushed to public repos. RSpec development dependency is already injected so I
 guess we are good to go.</p>
 
 <h2 id="add-the-meat-not-the-heat">Add the meat, not the heat</h2>
 
-<p>Now let us add the actual files. If you take a look Ruby gems are following the
+<p>Now let us add the actual files. If you take a look, Ruby gems follow a
 simple structure.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lib/gem_name.rb
@@ -148,10 +148,10 @@ lib/gem_name/version.rb
 everything else is up to you.</p>
 
 <p>The common way of structuring stuff is to put everything in the <code class="language-plaintext highlighter-rouge">lib/gem_name</code>
-and require from <code class="language-plaintext highlighter-rouge">lib/gem_name.rb</code> that makes everything a bit tidier. But we have
+and require from <code class="language-plaintext highlighter-rouge">lib/gem_name.rb</code>, which makes everything a bit tidier. But we have
 nothing to hide so let’s put everything from the
 <a href="https://gist.github.com/firedev/9de91e245f70c2e963e4">GitHub gist</a>
-into <code class="language-plaintext highlighter-rouge">lib/bottomless_hash.rb</code></p>
+into <code class="language-plaintext highlighter-rouge">lib/bottomless_hash.rb</code>.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># lib/bottomless_hash.rb</span>
 
@@ -230,10 +230,10 @@ into <code class="language-plaintext highlighter-rouge">lib/bottomless_hash.rb</
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>Now lets run it. You will see some errors, stemming from the fact that
+<p>Now let’s run it. You will see some errors, stemming from the fact that
 <code class="language-plaintext highlighter-rouge">version.rb</code> thinks <code class="language-plaintext highlighter-rouge">BottomlessHash</code> is a module. We could wrap everything up
-in the module, but I don’t have any good ideas for naming. So let’s just patch
-the things up quickly.</p>
+in a module, but I don’t have any good ideas for naming. So let’s just patch
+things up quickly.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># lib/bottomless_hash/version.rb</span>
 
@@ -263,12 +263,12 @@ Finished <span class="k">in </span>0.00668 seconds <span class="o">(</span>files
 </code></pre></div></div>
 
 <p>Okay that part went fine. Commit and push to Github. It might
-be a bit too verbose for the purpose of this post, but by
+be a bit too verbose for the purpose of this post, but I’m
 documenting everything so I can use it later.</p>
 
 <p>Let’s add another test to make sure Ruby <code class="language-plaintext highlighter-rouge">Hash</code> class gets patched as well.
 This time we would have to require <code class="language-plaintext highlighter-rouge">BottomlessHash</code> as <code class="language-plaintext highlighter-rouge">spec_helper</code> would
-not be able to infer it’s name from the spec file.</p>
+not be able to infer its name from the spec file.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># spec/hash_spec.rb</span>
 

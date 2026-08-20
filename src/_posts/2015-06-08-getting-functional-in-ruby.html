@@ -1,19 +1,19 @@
 ---
 layout: "post"
 title: "Getting functional in Ruby"
-description: "Lately I am working on an old code base and that means working with the old CSS.One of the techniques to use when refactoring CSS is to replace colors with variables.But first you need to find and ..."
+description: "Lately I have been working on an old code base, and that means working with old CSS. One technique to use when refactoring CSS is to replace colors with variables. But first you need to find and catalogue all the colors in the project."
 date: "2015-06-08"
 permalink: "/posts/getting-functional-in-ruby/"
 cover: "/images/posts/colors.png"
 ---
 
-<p>Lately I am working on an old code base and that means working with the old CSS.
+<p>Lately I have been working on an old code base and that means working with the old CSS.
 One of the techniques to use when refactoring CSS is to replace colors with variables.
 But first you need to find and catalogue all the colors in the project.</p>
 
 <h2 id="extracting-colors-from-a-project">Extracting colors from a project</h2>
 
-<p>Let’s find all colors used in a project. Regular expression I came up with finds
+<p>Let’s find all colors used in a project. The regular expression I came up with finds
 a pound sign <code class="language-plaintext highlighter-rouge">#</code> followed by 3 or 6 numbers or letters in the range from <code class="language-plaintext highlighter-rouge">a</code> to <code class="language-plaintext highlighter-rouge">f</code>
 and stops at the word boundary.</p>
 
@@ -39,7 +39,7 @@ The output is too human-readable so let’s throw in some options to dumb it dow
   No linebreaks between results <span class="k">in </span>different files
 </code></pre></div></div>
 
-<p>Thats a quite a list of options but I like <code class="language-plaintext highlighter-rouge">ag</code>. Now let’s pipe the output
+<p>That’s quite a list of options but I like <code class="language-plaintext highlighter-rouge">ag</code>. Now let’s pipe the output
 through <code class="language-plaintext highlighter-rouge">sort --uniq -f</code> to remove the duplicates ignoring the case and count the lines with <code class="language-plaintext highlighter-rouge">wc -l</code>:</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ag <span class="nt">-io</span> <span class="nt">--nonumber</span> <span class="nt">--nofilename</span> <span class="s2">"#([</span><span class="se">\d</span><span class="s2">a-f]{3}|[</span><span class="se">\d</span><span class="s2">a-f]{6})</span><span class="se">\b</span><span class="s2">"</span> | <span class="nb">sort</span> <span class="nt">--uniq</span> | <span class="nb">wc</span> <span class="nt">-l</span>
@@ -67,7 +67,7 @@ talk by Jessica Kerr I have decided to go all functional here.</p>
 
 <p><code class="language-plaintext highlighter-rouge">Enumerable#map</code> is the single most important method here. Just keep things mappable and you’re fine.
 If you are not sure about it, wrap your arguments in <code class="language-plaintext highlighter-rouge">Array()</code>, use asterisk <code class="language-plaintext highlighter-rouge">*</code> or <code class="language-plaintext highlighter-rouge">.to_a</code> method.
-Just make sure you have Enumerator on input.</p>
+Just make sure you have an Enumerator as input.</p>
 
 <p>Most Ruby developers know about the pretzel symbol-to-proc operator that converts a
 given symbol into a proc that calls the same method on the given object.</p>
@@ -76,14 +76,14 @@ given symbol into a proc that calls the same method on the given object.</p>
 <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">]</span>
 </code></pre></div></div>
 
-<p>Pretzel <code class="language-plaintext highlighter-rouge">&amp;</code> here converts <code class="language-plaintext highlighter-rouge">:upcase</code> to a Proc and serves as a syntax sugar.
+<p>Pretzel <code class="language-plaintext highlighter-rouge">&amp;</code> here converts <code class="language-plaintext highlighter-rouge">:upcase</code> to a Proc and serves as syntax sugar.
 The ‘unpacked’ version would look like this:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sx">%w(a b c)</span><span class="p">.</span><span class="nf">map</span><span class="p">{</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span> <span class="n">str</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}</span>
 </code></pre></div></div>
 
 <p>But I don’t want to chain my lambdas in the ugly way, too bad there is no short syntax
-for lambdas in Ruby. Or is it? Turns out there is. Given the <code class="language-plaintext highlighter-rouge">upper</code> lambda:</p>
+for lambdas in Ruby. Or is there? Turns out there is. Given the <code class="language-plaintext highlighter-rouge">upper</code> lambda:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">upper</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="n">a</span><span class="p">.</span><span class="nf">upcase</span> <span class="p">}</span>
 </code></pre></div></div>
@@ -100,19 +100,19 @@ for lambdas in Ruby. Or is it? Turns out there is. Given the <code class="langua
 </code></pre></div></div>
 
 <p>Now that’s better, and to me that was the only part missing.
-Let’s store filtered <code class="language-plaintext highlighter-rouge">ag</code> output to the ruby file and start messing around:</p>
+Let’s store filtered <code class="language-plaintext highlighter-rouge">ag</code> output to a ruby file and start messing around:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">ag</span> <span class="o">-</span><span class="n">io</span> <span class="o">--</span><span class="n">nonumber</span> <span class="o">--</span><span class="n">nofilename</span> <span class="s2">"#([</span><span class="se">\d</span><span class="s2">a-f]{3}|[</span><span class="se">\d</span><span class="s2">a-f]{6})</span><span class="se">\b</span><span class="s2">"</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">--</span><span class="n">uniq</span> <span class="o">-</span><span class="n">f</span> <span class="o">&gt;</span> <span class="n">colors</span><span class="p">.</span><span class="nf">rb</span>
 </code></pre></div></div>
 
-<p>Another less-known feature in Ruby is that you can treat the rest of file as data
+<p>Another less-known feature in Ruby is that you can treat the rest of the file as data
 if you add <code class="language-plaintext highlighter-rouge">__END__</code> to your program. Here is an excerpt from the Ruby Docs:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">DATA</span> <span class="n">is</span> <span class="n">a</span> <span class="no">File</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">data</span> <span class="n">section</span> <span class="n">of</span> <span class="n">the</span> <span class="n">executed</span> <span class="n">file</span><span class="o">.</span>
 <span class="no">To</span> <span class="n">create</span> <span class="n">a</span> <span class="n">data</span> <span class="n">section</span> <span class="n">use</span> <span class="cp">__END__
 </span></code></pre></div></div>
 
-<p>We can simply use the reset of the executable file as a <code class="language-plaintext highlighter-rouge">DATA</code> enumerator. Cool, eh?</p>
+<p>We can simply use the rest of the executable file as a <code class="language-plaintext highlighter-rouge">DATA</code> enumerator. Cool, eh?</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># colors.rb</span>
 <span class="nb">puts</span> <span class="no">DATA</span><span class="p">.</span><span class="nf">count</span>
 
@@ -122,14 +122,14 @@ if you add <code class="language-plaintext highlighter-rouge">__END__</code> to 
 #00A347
 </span></code></pre></div></div>
 
-<p>##Let’s get to business</p>
+<h2 id="lets-get-to-business">Let’s get to business</h2>
 
 <p>For this project I will use <a href="https://github.com/jordanstephens/paleta">Paleta</a> gem.
 We have the colors loaded into the <code class="language-plaintext highlighter-rouge">DATA</code> enumerator. The only thing that’s left is to
-create some lambdas accoding to the plan.</p>
+create some lambdas according to the plan.</p>
 
 <h3 id="1-convert-colors-to-full-hex">1. Convert colors to full hex</h3>
-<p>To do that we are going to feed the color to Paleta and get hex value back. The only thing we need to add
+<p>To do that we are going to feed the color to Paleta and get the hex value back. The only thing we need to add
 is <code class="language-plaintext highlighter-rouge">chomp</code> to get rid of the newlines in strings:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'paleta'</span>
@@ -193,7 +193,7 @@ Make some nice-looking colored <code class="language-plaintext highlighter-rouge
 </code></pre></div></div>
 
 <p>And pipe it to a new file, because at the moment of writing this Paleta generated some
-warning about Rmagic.</p>
+warning about RMagick.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s1">'colors.html'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
   <span class="n">file</span><span class="p">.</span><span class="nf">puts</span> <span class="no">DATA</span>
@@ -207,11 +207,11 @@ warning about Rmagic.</p>
 </code></pre></div></div>
 
 <h2 id="command-line-reader">Command-line reader</h2>
-<p>Okay that is nice but let’s improve it a bit. First of all lets get rid of the static DATA
-so we could use it right from the command line. That allows us to get right of <code class="language-plaintext highlighter-rouge">sort</code>.
+<p>Okay that is nice but let’s improve it a bit. First of all let’s get rid of the static DATA
+so we could use it right from the command line. That allows us to get rid of <code class="language-plaintext highlighter-rouge">sort</code>.
 Simply change <code class="language-plaintext highlighter-rouge">DATA</code> to <code class="language-plaintext highlighter-rouge">ARGF</code> and remove the <code class="language-plaintext highlighter-rouge">__END__</code> part.</p>
 
-<p>Then lets open the resulting file right away.</p>
+<p>Then let’s open the resulting file right away.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env ruby</span>
 
@@ -250,7 +250,7 @@ you can use for processing your files or projects:</p>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ag <span class="nt">-io</span> <span class="nt">--nonumber</span> <span class="nt">--nofilename</span> <span class="s2">"#([</span><span class="se">\d</span><span class="s2">a-f]{3}|[</span><span class="se">\d</span><span class="s2">a-f]{6})</span><span class="se">\b</span><span class="s2">"</span> <span class="o">[</span>path] | ./colors.rb
 </code></pre></div></div>
 
-<p>It makes sense to sort palettes by hue or lightness or saturation, this is simply
+<p>It makes sense to sort palettes by hue or lightness or saturation — this is simply
 a matter of changing a method name in <code class="language-plaintext highlighter-rouge">.map(&amp;:hue)</code>. Maybe some command-line switches
 would be appropriate here as well but this was enough for my needs and I just
 wanted to document the approach.</p>

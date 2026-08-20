@@ -11,7 +11,7 @@ layout: default
 {% format_years = ->(value) { value.to_s.strip.gsub(/(\b\d{4}\b)\s*[—–-]\s*\1\b/, '\1').gsub(/[—–]/, "-") } %}
 
 <article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
-  <a href="/projects/" class="mt-10 inline-block text-sm font-bold text-muted hover:text-fire">← All projects</a>
+  <a href="/projects/" class="mt-10 inline-flex min-h-11 items-center text-base font-black text-muted hover:text-fire">← All projects</a>
 
   <section class="grid items-end gap-10 py-12 md:grid-cols-[.9fr_1.1fr] md:py-24">
     <div>
@@ -32,7 +32,7 @@ layout: default
 
   <section class="grid gap-12 border-t border-line py-14 md:grid-cols-[1.25fr_.55fr] md:gap-24 md:py-24">
     <div>
-      <h2 class="mb-6 text-3xl font-black tracking-[-.03em] md:text-4xl">What shipped</h2>
+      <h2 class="mb-6 text-3xl font-black tracking-[-.03em] md:text-5xl">What shipped</h2>
       {% (resource.data.story || [resource.data.summary]).each do |paragraph| %}
         <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">{{ clean_text.call(paragraph) }}</p>
       {% end %}
@@ -73,7 +73,7 @@ layout: default
       <div class="mb-7 flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 class="text-3xl font-black tracking-[-.03em] md:text-5xl">Presentation</h2>
-          <p class="mt-3 text-muted">The complete 23-slide platform and architecture deck.</p>
+          {% if resource.data.presentationNote %}<p class="mt-3 text-muted">{{ resource.data.presentationNote }}</p>{% end %}
         </div>
         <a href="{{ resource.data.presentation }}" target="_blank" class="text-sm font-black text-ink hover:text-fire">Open fullscreen ↗</a>
       </div>

@@ -207,7 +207,7 @@ cover: "/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"
 <ul>
   <li>Callbacks replacement.</li>
   <li>Anything more complex than <code class="language-plaintext highlighter-rouge">create(params)</code> goes to mutators.</li>
-  <li>Nothing except working with entity</li>
+  <li>Nothing except working with the entity</li>
 </ul>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/mutators/resume/answer_mutator.rb</span>
@@ -321,7 +321,7 @@ cover: "/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"
 <h2 id="business-logic">Business Logic</h2>
 
 <ul>
-  <li>Business-logic kept isolated from implementation details - Services, Interfaces, DB</li>
+  <li>Business logic kept isolated from implementation details — Services, Interfaces, DB</li>
   <li>Inject everything</li>
 </ul>
 
@@ -396,9 +396,9 @@ cover: "/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"
 <h4 id="data-validation">Data Validation</h4>
 
 <ul>
-  <li>Validate user data not domain objects</li>
+  <li>Validate user data, not domain objects</li>
   <li>Always valid objects</li>
-  <li><code class="language-plaintext highlighter-rouge">dry-rb/dry-validation</code>[https://dry-rb.org/gems/dry-validation/]</li>
+  <li><a href="https://dry-rb.org/gems/dry-validation/"><code class="language-plaintext highlighter-rouge">dry-rb/dry-validation</code></a></li>
 </ul>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Profile</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
@@ -491,7 +491,7 @@ cover: "/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg"
 
 <ul>
   <li>Inject repository</li>
-  <li>Single Responsibility Principles</li>
+  <li>Single Responsibility Principle</li>
 </ul>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Confirmations</span>
