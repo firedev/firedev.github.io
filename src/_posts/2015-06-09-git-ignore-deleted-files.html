@@ -1,14 +1,14 @@
 ---
 layout: "post"
 title: "Git: Ignore deleted files"
-description: "Sometimes working with other people you with you didn’t have some of the filesin repository because they are getting in the way of your settings. .ruby-versionfor instance."
+description: "Sometimes working with other people you wish you didn’t have some of the files in the repository because they get in the way of your settings. .ruby-version for instance."
 date: "2015-06-09"
 permalink: "/posts/git-ignore-deleted-files/"
 cover: "/images/logos/git.png"
 ---
 
-<p>Sometimes working with other people you with you didn’t have some of the files
-in repository because they are getting in the way of your settings. <code class="language-plaintext highlighter-rouge">.ruby-version</code>
+<p>Sometimes working with other people you wish you didn’t have some of the files
+in the repository because they are getting in the way of your settings. <code class="language-plaintext highlighter-rouge">.ruby-version</code>
 for instance.</p>
 
 <p>You check out the repository and what the…</p>
@@ -29,7 +29,7 @@ Changes not staged <span class="k">for </span>commit:
         deleted:    .ruby-version
 </code></pre></div></div>
 
-<p>It’s impossible to ignore it by adding to <code class="language-plaintext highlighter-rouge">.gitignore</code> but fortunately in git
+<p>It’s impossible to ignore it by adding it to <code class="language-plaintext highlighter-rouge">.gitignore</code> but fortunately in git
 there is an option for everything.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git update-index <span class="nt">--assume-unchanged</span> .ruby-version
