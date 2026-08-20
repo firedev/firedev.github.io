@@ -4,21 +4,21 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atomic Icons · firedev.com</title>
-<meta name="description" content="Once in a while comes a moment when you decide to change an icon set you havebeen using. Just a bit of upfront planning goes a long way. Consider a systemthat turns icons into independent components.">
+<meta name="description" content="Once in a while comes a moment when you decide to change an icon set you have been using. Just a bit of upfront planning goes a long way. Consider a system that turns icons into independent components.">
 <meta name="author" content="Nikolay Ostrovsky">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://firedev.com/posts/atomic-icons/">
 <meta property="og:site_name" content="firedev.com">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Atomic Icons · firedev.com">
-<meta property="og:description" content="Once in a while comes a moment when you decide to change an icon set you havebeen using. Just a bit of upfront planning goes a long way. Consider a systemthat turns icons into independent components.">
+<meta property="og:description" content="Once in a while comes a moment when you decide to change an icon set you have been using. Just a bit of upfront planning goes a long way. Consider a system that turns icons into independent components.">
 <meta property="og:url" content="https://firedev.com/posts/atomic-icons/">
 <meta property="og:image" content="https://firedev.com/images/posts/atomic-icons.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Atomic Icons · firedev.com">
-<meta name="twitter:description" content="Once in a while comes a moment when you decide to change an icon set you havebeen using. Just a bit of upfront planning goes a long way. Consider a systemthat turns icons into independent components.">
+<meta name="twitter:description" content="Once in a while comes a moment when you decide to change an icon set you have been using. Just a bit of upfront planning goes a long way. Consider a system that turns icons into independent components.">
 <meta name="twitter:image" content="https://firedev.com/images/posts/atomic-icons.png">
-<link rel="stylesheet" href="/_bridgetown/static/index.4UTOA4OT.css">
+<link rel="stylesheet" href="/_bridgetown/static/index.7RAIV7HZ.css">
 <script src="/_bridgetown/static/index.P6KJZRZR.js" type="module"></script>
 
 </head>
@@ -44,7 +44,7 @@
       <time datetime="2016-01-24" class="font-black text-fire">24 January 2016</time>
       <h1 class="mt-5 max-w-[13ch] text-[clamp(3.2rem,8vw,6rem)] font-black leading-[.9] tracking-[-.04em]">Atomic Icons</h1>
     </div>
-    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">Once in a while comes a moment when you decide to change an icon set you havebeen using. Just a bit of upfront planning goes a long way. Consider a systemthat turns icons into independent components.</p>
+    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">Once in a while comes a moment when you decide to change an icon set you have been using. Just a bit of upfront planning goes a long way. Consider a system that turns icons into independent components.</p>
   </header>
 
     <figure class="mb-12 overflow-hidden bg-white md:mb-20">
@@ -71,7 +71,7 @@ particular. It was built with 14px font size in mind. These days I tend to
 not change browser defaults. And some sort of 16px base icon font would not
 hurt to get crisp icons.</p>
 
-<p>Having said that, it seems SVG is the way to go at the moment. But enough digression let’s get to
+<p>Having said that, it seems SVG is the way to go at the moment. But enough digression, let’s get to
 business.</p>
 
 <h2 id="can-we-have-icons-without-pain">Can we have icons without pain?</h2>
@@ -88,7 +88,7 @@ effective form.</p>
 <h2 id="atomic-icons">Atomic Icons</h2>
 
 <p>Atomic composable components that do only one thing allow us to abstract from
-the implementation and move forward without worrying about breaking things up.</p>
+the implementation and move forward without worrying about breaking things.</p>
 
 <p>We can switch implementation (read icon sets) on the fly without headache.</p>
 
@@ -104,7 +104,7 @@ implementation.</p>
 so let me reinforce it with some examples. I don’t know if you remember Font Awesome
 changing their class naming from <code class="language-plaintext highlighter-rouge">icon-*</code> to <code class="language-plaintext highlighter-rouge">fa fa-*</code>? Or had a chance to
 find all the places where you have used some <code class="language-plaintext highlighter-rouge">fa-circle</code> that became <code class="language-plaintext highlighter-rouge">fa-circle-o</code>?
-Or spend couple of days making sure there is no single reference of <code class="language-plaintext highlighter-rouge">png</code> or
+Or spent a couple of days making sure there is not a single reference to <code class="language-plaintext highlighter-rouge">png</code> or
 <code class="language-plaintext highlighter-rouge">gif</code> in the project? You need an implementation you can control.</p>
 
 <h2 id="history-lesson">History lesson</h2>
@@ -116,7 +116,7 @@ the system in the first place. Imagine an app with icon buttons:</p>
 
 <p>Years pass and it gets obsolete quickly. You start having dynamic buttons so
 as a simplest solution you’re changing <code class="language-plaintext highlighter-rouge">src</code> attributes. Then one day you’re
-deciding that this is enough mess and move stying to CSS:</p>
+deciding that this is enough mess and move styling to CSS:</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">button</span><span class="nc">.ok</span> <span class="p">{</span>
   <span class="nl">background-image</span><span class="p">:</span> <span class="nf">url</span><span class="p">(</span><span class="n">icons</span><span class="o">/</span><span class="n">ok</span><span class="p">.</span><span class="n">gif</span><span class="p">)</span>
@@ -147,12 +147,12 @@ deciding that this is enough mess and move stying to CSS:</p>
 </code></pre></div></div>
 
 <p>Yey, almost there. Plus now we can reuse the same class for links and stuff.
-But headers, icons looks comically tiny in headers? So you add bigger images
+But headers? Icons look comically tiny in headers. So you add bigger images
 and classes for bigger icons and more padding and positioning.</p>
 
 <p>Time flies and now you’re forced to do something with this, so you decide to
-change it to icon font.  With power of sass that sounds easy. Using Font
-Squirrel or IcoMoon your compile your own icon font implementation.</p>
+change it to an icon font.  With the power of sass that sounds easy. Using Font
+Squirrel or IcoMoon you compile your own icon font implementation.</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@mixin</span> <span class="nb">icon</span><span class="p">(</span><span class="err">$</span><span class="nb">icon</span><span class="p">)</span> <span class="p">{</span>
   <span class="o">&amp;</span><span class="nd">:before</span> <span class="p">{</span>
@@ -169,9 +169,9 @@ Squirrel or IcoMoon your compile your own icon font implementation.</p>
 <p>The team lead likes the effort and decides that we now need to have all icons done this way.</p>
 
 <p>But then your team moves to Slim or React and now you have to insert spaces everywhere icons
-starts sticking to text. The CSS grows with more and more intricacies.</p>
+start sticking to text. The CSS grows with more and more intricacies.</p>
 
-<p>You need to use icons separately too right? So let’s create another rule for <code class="language-plaintext highlighter-rouge">button.icon-ok</code> and
+<p>You need to use icons separately too, right? So let’s create another rule for <code class="language-plaintext highlighter-rouge">button.icon-ok</code> and
 <code class="language-plaintext highlighter-rouge">.icon-ok</code> standalone. And for other icons. And other tags, because links are inline.</p>
 
 <p>So what can we do?</p>
@@ -181,7 +181,7 @@ starts sticking to text. The CSS grows with more and more intricacies.</p>
 <p>To combat pains I have developed a system that works pretty well. Instead of
 multiplying icon classes we are introducing the Icon component.</p>
 
-<p>It does one thing - displays an icon. Font Awesome Rails gem has a <code class="language-plaintext highlighter-rouge">fa_icon</code> helper that does that.
+<p>It does one thing — displays an icon. Font Awesome Rails gem has a <code class="language-plaintext highlighter-rouge">fa_icon</code> helper that does that.
 But we wrap it in our own view helper, icon:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>= icon 'remove'
@@ -210,7 +210,7 @@ It can be anything as long as there is one way to call it.</p>
 </code></pre></div></div>
 <p><button><i class="fa fa-remove"></i> Remove</button></p>
 
-<p>Let’s see how can we use is in React component instead of <code class="language-plaintext highlighter-rouge">className: "remove"</code>:</p>
+<p>Let’s see how we can use it in a React component instead of <code class="language-plaintext highlighter-rouge">className: "remove"</code>:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;button&gt;
   &lt;Icon icon='remove' /&gt;
@@ -225,7 +225,7 @@ It can be anything as long as there is one way to call it.</p>
 &lt;/Button&gt;
 </code></pre></div></div>
 
-<p>Oh wait, but why they are stuck together:</p>
+<p>Oh wait, but why are they stuck together:</p>
 
 <p><button><i class="fa fa-remove"></i>Remove</button></p>
 
@@ -235,7 +235,7 @@ a simple solution that works. You get a set of three helpers.</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">&lt;Icon&gt;</code> — icon <em>atom</em>. The minimal representation. It can be <code class="language-plaintext highlighter-rouge">&lt;img&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;svg&gt;</code>, <code class="language-plaintext highlighter-rouge">i.fa</code></li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;IconBefore&gt;</code> — icon with right spacing for use in from of the text without spaces.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;IconBefore&gt;</code> — icon with right spacing for use in front of the text without spaces.</li>
   <li><code class="language-plaintext highlighter-rouge">&lt;IconAfter&gt;</code> — icon with left spacing to be used after text</li>
 </ul>
 
@@ -268,7 +268,7 @@ a simple solution that works. You get a set of three helpers.</p>
   <span class="p">=</span> <span class="n">icon_after</span> <span class="s1">'cloud'</span>
 </code></pre></div></div>
 
-<p>I don’t see a point for additional verbosity in React component so it can be something like this:</p>
+<p>I don’t see a point in additional verbosity in a React component so it can be something like this:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;Button</span> <span class="na">icon=</span><span class="s">"remove"</span> <span class="na">iconAfter=</span><span class="s">"cloud"</span><span class="nt">&gt;</span>
   Remove from
@@ -284,13 +284,13 @@ Because that produces an unclickable space if you are using an icon inside a lin
 
 <p><a href="http://github.com/firedev"><i class="fa fa-github pr1"></i>Github</a></p>
 
-<h2 id="or-app-is-too-old-for-this">Or app is too old for this</h2>
+<h2 id="or-app-is-too-old-for-this">Or the app is too old for this</h2>
 
 <p>If you are in a transitional phase, and have some HTML or Backbone where you
-can’t use helpers or components, replace current icons implementation with
+can’t use helpers or components, replace the current icon implementation with
 <code class="language-plaintext highlighter-rouge">&lt;i&gt;</code> tags that use your own naming scheme in css.</p>
 
-<p>This change alone will untie your hands and you can create icons inventor to
+<p>This change alone will untie your hands and you can create an icons inventory to
 see which ones you’re actually using.</p>
 
 <p>Replace whatever you’re using at the moment:</p>
@@ -307,7 +307,7 @@ see which ones you’re actually using.</p>
 
 <h2 id="whats-the-point">What’s the point?</h2>
 
-<p>This approach helps you to get rid of the obscure CSS. Buttons stay buttons and
+<p>This approach helps you to get rid of the obscure CSS. Buttons stay buttons,
 decoupled from the presentation. No margins or anything. Icons are reusable
 and aren’t tied to a particular implementation. So you can experiment with the
 overall look and feel. And the best part is – now you can compose:</p>
@@ -317,7 +317,7 @@ overall look and feel. And the best part is – now you can compose:</p>
 
   </div>
 
-  <footer class="mx-auto mt-16 flex max-w-[72ch] flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
+  <footer class="mt-16 flex flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
     <a href="/posts/" class="inline-flex min-h-11 items-center font-black hover:text-fire">← Back to all posts</a>
     <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-black hover:text-fire">Talk about the work ↗</a>
   </footer>

@@ -4,21 +4,21 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Refactoring with map, pluck and select in Ruby on Rails · firedev.com</title>
-<meta name="description" content="If you need to get something out of the database, consider using pluck to avoidcreating instances you don’t need.">
+<meta name="description" content="If you need to get something out of the database, consider using pluck to avoid creating instances you don’t need.">
 <meta name="author" content="Nikolay Ostrovsky">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://firedev.com/posts/refactoring-with-map-pluck-and-select-in-rails/">
 <meta property="og:site_name" content="firedev.com">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Refactoring with map, pluck and select in Ruby on Rails · firedev.com">
-<meta property="og:description" content="If you need to get something out of the database, consider using pluck to avoidcreating instances you don’t need.">
+<meta property="og:description" content="If you need to get something out of the database, consider using pluck to avoid creating instances you don’t need.">
 <meta property="og:url" content="https://firedev.com/posts/refactoring-with-map-pluck-and-select-in-rails/">
 <meta property="og:image" content="https://firedev.com/images/posts/plucking_prohibited.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Refactoring with map, pluck and select in Ruby on Rails · firedev.com">
-<meta name="twitter:description" content="If you need to get something out of the database, consider using pluck to avoidcreating instances you don’t need.">
+<meta name="twitter:description" content="If you need to get something out of the database, consider using pluck to avoid creating instances you don’t need.">
 <meta name="twitter:image" content="https://firedev.com/images/posts/plucking_prohibited.jpg">
-<link rel="stylesheet" href="/_bridgetown/static/index.4UTOA4OT.css">
+<link rel="stylesheet" href="/_bridgetown/static/index.7RAIV7HZ.css">
 <script src="/_bridgetown/static/index.P6KJZRZR.js" type="module"></script>
 
 </head>
@@ -44,7 +44,7 @@
       <time datetime="2015-06-16" class="font-black text-fire">16 June 2015</time>
       <h1 class="mt-5 max-w-[13ch] text-[clamp(3.2rem,8vw,6rem)] font-black leading-[.9] tracking-[-.04em]">Refactoring with map, pluck and select in Ruby on Rails</h1>
     </div>
-    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">If you need to get something out of the database, consider using pluck to avoidcreating instances you don’t need.</p>
+    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">If you need to get something out of the database, consider using pluck to avoid creating instances you don’t need.</p>
   </header>
 
     <figure class="mb-12 overflow-hidden bg-white md:mb-20">
@@ -99,7 +99,7 @@ Let’s check and see if we can improve anything.</p>
 
 <p>Now, we’re talking, but in fact we’re not.
 This code is used once in the controller, and it might be that there is no
-actual performance benefit especially when using small amount of data:</p>
+actual performance benefit especially when using a small amount of data:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m</span> <span class="p">{</span> <span class="vi">@stock_movement_positions</span><span class="p">.</span><span class="nf">pluck</span><span class="p">(</span><span class="ss">:product_id</span><span class="p">);</span> <span class="p">}</span>
 <span class="o">=&gt;</span> <span class="mf">2367.685</span>
@@ -107,47 +107,47 @@ actual performance benefit especially when using small amount of data:</p>
 <span class="o">=&gt;</span> <span class="mf">367.844</span>
 </code></pre></div></div>
 
-<p>You have to be especially careful inside of the loops. This is not a rule of the thumb
-but when dealing with database I would conside using <code class="language-plaintext highlighter-rouge">pluck</code>. Or <code class="language-plaintext highlighter-rouge">select</code>.</p>
+<p>You have to be especially careful inside of the loops. This is not a rule of thumb
+but when dealing with the database I would consider using <code class="language-plaintext highlighter-rouge">pluck</code>. Or <code class="language-plaintext highlighter-rouge">select</code>.</p>
 
 <p><code class="language-plaintext highlighter-rouge">select</code> is a different beast. Affected by Rails Magic it can act differently
-things depending on its position in <code class="language-plaintext highlighter-rouge">ActiveRecord</code> chain. Plus there are different
+depending on its position in <code class="language-plaintext highlighter-rouge">ActiveRecord</code> chain. Plus there are different
 flavors of <code class="language-plaintext highlighter-rouge">select</code> in <code class="language-plaintext highlighter-rouge">ActiveRecord::Association::CollectionProxy</code>, <code class="language-plaintext highlighter-rouge">ActiveRecord::QueryMethods</code> etc.</p>
 
-<p>What is important to rememeber is that <code class="language-plaintext highlighter-rouge">select</code> might return instanciated real-only objects
-with paritally filled attributes. It can also return a sub-query, but that’s another topic.
-Armed with this knowlegde, let’s find a better specimen for refactoring.</p>
+<p>What is important to remember is that <code class="language-plaintext highlighter-rouge">select</code> might return instantiated read-only objects
+with partially filled attributes. It can also return a sub-query, but that’s another topic.
+Armed with this knowledge, let’s find a better specimen for refactoring.</p>
 
 <h2 id="a-better-example">A better example</h2>
 
 <p>Here is a good candidate for improvement I stumbled upon in a few places.
-It returns an array of first letters in names in collection to build and alphabetic
-lister later.</p>
+It returns an array of first letters of names in a collection to build an alphabetic
+list later.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">StockProduct</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="s1">'LEFT(name, 1) as letter'</span><span class="p">).</span><span class="nf">group</span><span class="p">(</span><span class="ss">:name</span><span class="p">).</span><span class="nf">all</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:letter</span><span class="p">).</span><span class="nf">uniq</span><span class="p">.</span><span class="nf">sort</span>
 </code></pre></div></div>
 
-<p>What immediately grabs attention is how database output that ends at <code class="language-plaintext highlighter-rouge">.all</code> being treated in Ruby.
+<p>What immediately grabs attention is how database output that ends at <code class="language-plaintext highlighter-rouge">.all</code> is being treated in Ruby.
 Let’s look at <code class="language-plaintext highlighter-rouge">select</code> first:</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">StockProduct</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="s1">'LEFT(name, 1) as letter'</span><span class="p">).</span><span class="nf">to_sql</span>
 <span class="o">=&gt;</span> <span class="s2">"SELECT LEFT(name, 1) as letter FROM `stock_products` "</span>
 </code></pre></div></div>
 
-<p>The query does not look particulary mean or anything, again, especially if your
+<p>The query does not look particularly mean or anything, again, especially if your
 database is not that big. Unfortunately for us <code class="language-plaintext highlighter-rouge">select</code> instantiates a bunch of
 half-filled (or half-empty) objects:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">=&gt;</span> <span class="p">[</span><span class="c1">#&lt;StockProduct &gt;, #&lt;StockProduct &gt;, #&lt;StockProduct &gt;, ...</span>
 </code></pre></div></div>
 
-<p>This is unacceptable, lets rewrite this using <code class="language-plaintext highlighter-rouge">pluck</code> instead of <code class="language-plaintext highlighter-rouge">select</code>, <code class="language-plaintext highlighter-rouge">DISTINCT</code> instead of <code class="language-plaintext highlighter-rouge">uniq</code> and throw away the rest:</p>
+<p>This is unacceptable, let’s rewrite this using <code class="language-plaintext highlighter-rouge">pluck</code> instead of <code class="language-plaintext highlighter-rouge">select</code>, <code class="language-plaintext highlighter-rouge">DISTINCT</code> instead of <code class="language-plaintext highlighter-rouge">uniq</code> and throw away the rest:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">StockProduct</span><span class="p">.</span><span class="nf">pluck</span><span class="p">(</span><span class="s1">'DISTINCT LEFT(name, 1)'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Another thing to keep in mind when using <code class="language-plaintext highlighter-rouge">pluck</code> - it returns the array and
+<p>Another thing to keep in mind when using <code class="language-plaintext highlighter-rouge">pluck</code> — it returns an array and
 breaks the <code class="language-plaintext highlighter-rouge">ActiveRecord</code> query method chain. And if you need to use the values
-in a subsequent query you might be actually needing <code class="language-plaintext highlighter-rouge">select</code> as it would
+in a subsequent query you might actually need <code class="language-plaintext highlighter-rouge">select</code> as it would
 construct a subquery to use. But in our case we don’t need anything else so that’s fine.</p>
 
 <p>Let’s compare:</p>
@@ -157,7 +157,7 @@ construct a subquery to use. But in our case we don’t need anything else so th
 <span class="o">=&gt;</span> <span class="mf">28469.013</span>
 </code></pre></div></div>
 
-<p>Finally, something good comes out of this refactoring. Moving the code to concern:</p>
+<p>Finally, something good comes out of this refactoring. Moving the code to a concern:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/models/concerns/search/first_letter.rb</span>
 <span class="k">class</span> <span class="nc">Search</span>
@@ -178,8 +178,8 @@ construct a subquery to use. But in our case we don’t need anything else so th
 
 <h2 id="hey-what-about-sorting">Hey, what about sorting?</h2>
 <p>Okay, you got me. Yes that is a good question. But let’s think about it first.
-As I output the results in alphabetical order and numbers separated from letters
-that means I have a knowledge of that.</p>
+As I output the results in alphabetical order with numbers separated from letters,
+that means I have knowledge of that.</p>
 
 <p>And this knowledge is kept in the view layer. I am simply intersecting arrays like this:</p>
 
@@ -190,12 +190,12 @@ that means I have a knowledge of that.</p>
 
 <p>This construct gives me intersections ordered by alphabet and in numerical order if there are any.</p>
 
-<p>One thing less to worry about. That frees up some brain capacity what is in my
-book ultimately is the point of refactoring.</p>
+<p>One less thing to worry about. That frees up some brain capacity, which in my
+book is ultimately the point of refactoring.</p>
 
   </div>
 
-  <footer class="mx-auto mt-16 flex max-w-[72ch] flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
+  <footer class="mt-16 flex flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
     <a href="/posts/" class="inline-flex min-h-11 items-center font-black hover:text-fire">← Back to all posts</a>
     <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-black hover:text-fire">Talk about the work ↗</a>
   </footer>
