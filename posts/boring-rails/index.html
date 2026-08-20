@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="Boring Rails · firedev.com">
 <meta name="twitter:description" content="Nintendo is known for using boring technologies. Not the worst plan. Here are some tips on handling complexity on Rails in a boring pragmatic way.">
 <meta name="twitter:image" content="https://firedev.com/images/posts/kote-puerto-f4Jyy2OIZ54-unsplash.jpg">
-<link rel="stylesheet" href="/_bridgetown/static/index.4UTOA4OT.css">
+<link rel="stylesheet" href="/_bridgetown/static/index.7RAIV7HZ.css">
 <script src="/_bridgetown/static/index.P6KJZRZR.js" type="module"></script>
 
 </head>
@@ -252,7 +252,7 @@
 <ul>
   <li>Callbacks replacement.</li>
   <li>Anything more complex than <code class="language-plaintext highlighter-rouge">create(params)</code> goes to mutators.</li>
-  <li>Nothing except working with entity</li>
+  <li>Nothing except working with the entity</li>
 </ul>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/mutators/resume/answer_mutator.rb</span>
@@ -366,7 +366,7 @@
 <h2 id="business-logic">Business Logic</h2>
 
 <ul>
-  <li>Business-logic kept isolated from implementation details - Services, Interfaces, DB</li>
+  <li>Business logic kept isolated from implementation details — Services, Interfaces, DB</li>
   <li>Inject everything</li>
 </ul>
 
@@ -441,9 +441,9 @@
 <h4 id="data-validation">Data Validation</h4>
 
 <ul>
-  <li>Validate user data not domain objects</li>
+  <li>Validate user data, not domain objects</li>
   <li>Always valid objects</li>
-  <li><code class="language-plaintext highlighter-rouge">dry-rb/dry-validation</code>[https://dry-rb.org/gems/dry-validation/]</li>
+  <li><a href="https://dry-rb.org/gems/dry-validation/"><code class="language-plaintext highlighter-rouge">dry-rb/dry-validation</code></a></li>
 </ul>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Profile</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
@@ -536,7 +536,7 @@
 
 <ul>
   <li>Inject repository</li>
-  <li>Single Responsibility Principles</li>
+  <li>Single Responsibility Principle</li>
 </ul>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Confirmations</span>
@@ -571,7 +571,7 @@
 
   </div>
 
-  <footer class="mx-auto mt-16 flex max-w-[72ch] flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
+  <footer class="mt-16 flex flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
     <a href="/posts/" class="inline-flex min-h-11 items-center font-black hover:text-fire">← Back to all posts</a>
     <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-black hover:text-fire">Talk about the work ↗</a>
   </footer>

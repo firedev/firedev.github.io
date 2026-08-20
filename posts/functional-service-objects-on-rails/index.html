@@ -4,21 +4,21 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Functional Service Objects on Rails · firedev.com</title>
-<meta name="description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given byPiotr Solnica at Full Stack Fest 2015 made me think about improving currentpractices. I have tried different ways of organ...">
+<meta name="description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given by Piotr Solnica at Full Stack Fest 2015 made me think about improving current practices.">
 <meta name="author" content="Nikolay Ostrovsky">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://firedev.com/posts/functional-service-objects-on-rails/">
 <meta property="og:site_name" content="firedev.com">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Functional Service Objects on Rails · firedev.com">
-<meta property="og:description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given byPiotr Solnica at Full Stack Fest 2015 made me think about improving currentpractices. I have tried different ways of organ...">
+<meta property="og:description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given by Piotr Solnica at Full Stack Fest 2015 made me think about improving current practices.">
 <meta property="og:url" content="https://firedev.com/posts/functional-service-objects-on-rails/">
 <meta property="og:image" content="https://firedev.com/images/posts/electrical_plumbing_service.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Functional Service Objects on Rails · firedev.com">
-<meta name="twitter:description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given byPiotr Solnica at Full Stack Fest 2015 made me think about improving currentpractices. I have tried different ways of organ...">
+<meta name="twitter:description" content="An excellent talk “Blending Functional and OO Programming in Ruby” given by Piotr Solnica at Full Stack Fest 2015 made me think about improving current practices.">
 <meta name="twitter:image" content="https://firedev.com/images/posts/electrical_plumbing_service.jpg">
-<link rel="stylesheet" href="/_bridgetown/static/index.4UTOA4OT.css">
+<link rel="stylesheet" href="/_bridgetown/static/index.7RAIV7HZ.css">
 <script src="/_bridgetown/static/index.P6KJZRZR.js" type="module"></script>
 
 </head>
@@ -44,7 +44,7 @@
       <time datetime="2015-10-17" class="font-black text-fire">17 October 2015</time>
       <h1 class="mt-5 max-w-[13ch] text-[clamp(3.2rem,8vw,6rem)] font-black leading-[.9] tracking-[-.04em]">Functional Service Objects on Rails</h1>
     </div>
-    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">An excellent talk “Blending Functional and OO Programming in Ruby” given byPiotr Solnica at Full Stack Fest 2015 made me think about improving currentpractices. I have tried different ways of organ...</p>
+    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">An excellent talk “Blending Functional and OO Programming in Ruby” given by Piotr Solnica at Full Stack Fest 2015 made me think about improving current practices.</p>
   </header>
 
     <figure class="mb-12 overflow-hidden bg-white md:mb-20">
@@ -59,20 +59,20 @@ here is what I came up with.</p>
 
 <h2 id="background">Background</h2>
 
-<p>The idea is to switch from Object Oriented mentality and stateful objects to a more functional way of doing things when only data is passed through your
+<p>The idea is to switch from an Object Oriented mentality and stateful objects to a more functional way of doing things where only data is passed through your
 system.</p>
 
 <p>I am working on this motivational portal. Let’s use a concept from the project
 for the sake of the example. The models involved in this example are <code class="language-plaintext highlighter-rouge">User</code>,
   <code class="language-plaintext highlighter-rouge">Motivation</code>, <code class="language-plaintext highlighter-rouge">Shop</code> and <code class="language-plaintext highlighter-rouge">Role</code>.</p>
 
-<p><code class="language-plaintext highlighter-rouge">Motivation</code> is some data that connects <code class="language-plaintext highlighter-rouge">Shop</code> where <code class="language-plaintext highlighter-rouge">User</code> is working in a given month and his <code class="language-plaintext highlighter-rouge">Role</code>. Each month a <code class="language-plaintext highlighter-rouge">User</code> can be
+<p><code class="language-plaintext highlighter-rouge">Motivation</code> is some data that connects the <code class="language-plaintext highlighter-rouge">Shop</code> where a <code class="language-plaintext highlighter-rouge">User</code> is working in a given month and his <code class="language-plaintext highlighter-rouge">Role</code>. Each month a <code class="language-plaintext highlighter-rouge">User</code> can be
 assigned to different <code class="language-plaintext highlighter-rouge">Shops</code> and different <code class="language-plaintext highlighter-rouge">Roles</code>. Say, an employee this
-month and a shop manager the next month. I call such managers “chief” since the manager was already taken.</p>
+month and a shop manager the next month. I call such managers “chief” since “manager” was already taken.</p>
 
 <h2 id="stuff-everything-into-the-model">Stuff everything into the model</h2>
 <p>For the current month we need to get the list of shops the user can manage. And to do
-that we have to use multiple tables as certain roles carry <code class="language-plaintext highlighter-rouge">chief</code>
+that we have to use multiple tables as certain roles carry the <code class="language-plaintext highlighter-rouge">chief</code>
 ability. The most obvious solution is to stuff everything into the User model.
 So without further ado:</p>
 
@@ -132,8 +132,8 @@ and strive to keep the average complexity per method under <code class="language
 
 <p>But this is ridiculous. It adds a private method on <code class="language-plaintext highlighter-rouge">User</code> that is calling god
 knows what. Besides I don’t like the ‘Thin Controllers, Fat Models’ concept. As
-a one-man operation, there is simply not enough man-power to deal with ten feet
-long models. My motto is:</p>
+a one-man operation, there is simply not enough man-power to deal with ten-foot-long
+models. My motto is:</p>
 
 <blockquote>
   <p>Thin Everything!</p>
@@ -175,7 +175,7 @@ the query to what a typical service object would look like:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>What <code class="language-plaintext highlighter-rouge">flog</code> has to say about this?</p>
+<p>What does <code class="language-plaintext highlighter-rouge">flog</code> have to say about this?</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   18.5: flog total
      4.6: flog/method average
@@ -195,7 +195,7 @@ that got me thinking about a better way of doing things.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rMxurF4oqsc" frameborder="0" allowfullscreen=""></iframe>
 <p><br></p>
 
-<p>The gist of it: Don’t store state. Just pass everything to <code class="language-plaintext highlighter-rouge">call</code> method
+<p>The gist of it: Don’t store state. Just pass everything to the <code class="language-plaintext highlighter-rouge">call</code> method
 instead. That sounded interesting. Rolled up sleeves and here we go.</p>
 
 <h2 id="refactoring-service-object">Refactoring Service object</h2>
@@ -218,7 +218,7 @@ the mix:</p>
   <p>Don’t modify and request data in the same method call</p>
 </blockquote>
 
-<p>Or it can be put in another way, return <code class="language-plaintext highlighter-rouge">self</code> until the very last moment. That
+<p>Or, to put it another way, return <code class="language-plaintext highlighter-rouge">self</code> until the very last moment. That
 allows chaining and storing the intermediate results and other interesting
 things. The best examples in the wild I think are Rails scopes and JavaScript.
 ActiveRecord Scopes can be chained up to the last moment where you can load the
@@ -266,7 +266,7 @@ know the drill.</p>
 <code class="language-plaintext highlighter-rouge">Motivation</code> class directly I can make it more intention-revealing, even if it
 adds another dependency.</p>
 
-<p>The new structure gains certain tidiness in the upper part. Now <code class="language-plaintext highlighter-rouge">initialize</code> only
+<p>The new structure gains a certain tidiness in the upper part. Now <code class="language-plaintext highlighter-rouge">initialize</code> only
 does dependency injection for the whole object. Then <code class="language-plaintext highlighter-rouge">call</code> sets up the
 parameters and returns <code class="language-plaintext highlighter-rouge">self</code> for chaining. You don’t have to return <code class="language-plaintext highlighter-rouge">self</code>,
 but that gives you flexibility so I don’t see a reason not to add it. And
@@ -303,7 +303,7 @@ higher.</p>
 <p>well, something along these lines at least.</p>
 
 <p>So I claim that I don’t need to inject dependencies for other ActiveRecord
-classes since they are not going to change. And if they will, my
+classes since they are not going to change. And if they do, my
 service will be obsolete anyway. Thus I can get rid of <code class="language-plaintext highlighter-rouge">initialize</code>. Of course, in more complex scenarios this is not the best way to go, but this is a simple query
 object. So for the sake of the refactoring experiment, this will do.</p>
 
@@ -313,10 +313,10 @@ object. So for the sake of the refactoring experiment, this will do.</p>
   <p>Initialize with Service Objects you are depending on</p>
 </blockquote>
 
-<p>Since I am not changing anything here, apart from the inner state of the object
+<p>Since I am not changing anything here apart from the inner state of the object,
 and I am getting rid of the state, I don’t need a separate method that returns
 the result. That allows me to shrink the object’s API to a single <code class="language-plaintext highlighter-rouge">call</code> method.
-This is an improvement. Since now I don’t need to pass <code class="language-plaintext highlighter-rouge">user</code> and
+This is an improvement, since now I don’t need to pass <code class="language-plaintext highlighter-rouge">user</code> and
 <code class="language-plaintext highlighter-rouge">month</code> separately and they can go together as parameters in a single method
 call.</p>
 
@@ -346,7 +346,7 @@ could pass.</p>
 
 <p>The invocation is almost the same as in the previous example. The only
 difference is that we don’t have to query for shops as this is a Query Object
-so it only returns results straight away. And API is effectively shrunk to a
+so it only returns results straight away. And the API is effectively shrunk to a
 single method.</p>
 
 <p>Yes, you have to call <code class="language-plaintext highlighter-rouge">new</code>, but only to instantiate an object. Or you can still
@@ -375,7 +375,7 @@ controllers. Please let me know if something could be improved.</p>
 
   </div>
 
-  <footer class="mx-auto mt-16 flex max-w-[72ch] flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
+  <footer class="mt-16 flex flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
     <a href="/posts/" class="inline-flex min-h-11 items-center font-black hover:text-fire">← Back to all posts</a>
     <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-black hover:text-fire">Talk about the work ↗</a>
   </footer>

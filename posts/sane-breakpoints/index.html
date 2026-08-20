@@ -4,21 +4,21 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sane Breakpoints · firedev.com</title>
-<meta name="description" content="I see different approaches to breakpoints and responsive design.Most of the time they are over-complicated and only making things worse.So here’s mine suggestion for device breakpoints that are in ...">
+<meta name="description" content="I see different approaches to breakpoints and responsive design. Most of the time they are over-complicated and only make things worse. So here’s my suggestion for sane device breakpoints.">
 <meta name="author" content="Nikolay Ostrovsky">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://firedev.com/posts/sane-breakpoints/">
 <meta property="og:site_name" content="firedev.com">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sane Breakpoints · firedev.com">
-<meta property="og:description" content="I see different approaches to breakpoints and responsive design.Most of the time they are over-complicated and only making things worse.So here’s mine suggestion for device breakpoints that are in ...">
+<meta property="og:description" content="I see different approaches to breakpoints and responsive design. Most of the time they are over-complicated and only make things worse. So here’s my suggestion for sane device breakpoints.">
 <meta property="og:url" content="https://firedev.com/posts/sane-breakpoints/">
 <meta property="og:image" content="https://firedev.com/images/posts/break-point.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sane Breakpoints · firedev.com">
-<meta name="twitter:description" content="I see different approaches to breakpoints and responsive design.Most of the time they are over-complicated and only making things worse.So here’s mine suggestion for device breakpoints that are in ...">
+<meta name="twitter:description" content="I see different approaches to breakpoints and responsive design. Most of the time they are over-complicated and only make things worse. So here’s my suggestion for sane device breakpoints.">
 <meta name="twitter:image" content="https://firedev.com/images/posts/break-point.jpg">
-<link rel="stylesheet" href="/_bridgetown/static/index.4UTOA4OT.css">
+<link rel="stylesheet" href="/_bridgetown/static/index.7RAIV7HZ.css">
 <script src="/_bridgetown/static/index.P6KJZRZR.js" type="module"></script>
 
 </head>
@@ -44,7 +44,7 @@
       <time datetime="2016-02-16" class="font-black text-fire">16 February 2016</time>
       <h1 class="mt-5 max-w-[13ch] text-[clamp(3.2rem,8vw,6rem)] font-black leading-[.9] tracking-[-.04em]">Sane Breakpoints</h1>
     </div>
-    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">I see different approaches to breakpoints and responsive design.Most of the time they are over-complicated and only making things worse.So here’s mine suggestion for device breakpoints that are in ...</p>
+    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">I see different approaches to breakpoints and responsive design. Most of the time they are over-complicated and only make things worse. So here’s my suggestion for sane device breakpoints.</p>
   </header>
 
     <figure class="mb-12 overflow-hidden bg-white md:mb-20">
@@ -54,20 +54,20 @@
   <div class="post-body mx-auto">
     <p>I see different approaches to breakpoints and responsive design.
 Most of the time they are over-complicated and only making things worse.
-So here’s mine suggestion for device breakpoints that are in touch
+So here’s my suggestion for device breakpoints that are in touch
 with reality.</p>
 
 <p><em>And if my day keeps goin’ this way I just might… break somethin’ tonight</em></p>
 
 <h2 id="responsive-design">Responsive design</h2>
 
-<p>Let’s recap how to we design for different devices. You define some breakpoints -
+<p>Let’s recap how we design for different devices. You define some breakpoints —
 conditions where your site changes. Then you describe what changes once
 conditions are met. Conditions can be pretty broad, like for example <code class="language-plaintext highlighter-rouge">@media print</code>
 that allows you to apply additional styling for printing pages. Or <code class="language-plaintext highlighter-rouge">min-width: 1000px</code>
 that allows you to target only bigger screens.</p>
 
-<p>Sounds easy, right? However the problem with CSS is that it give one too much
+<p>Sounds easy, right? However the problem with CSS is that it gives one too much
 flexibility without enforcing any structure. That causes CSS bloat and leads to
 unmaintainable stylesheets down the line.</p>
 
@@ -83,18 +83,18 @@ unmaintainable stylesheets down the line.</p>
 
 <p>That is pretty much it. There are some tricky parts, though.</p>
 
-<p>Use 1:1 viewport, this is important if you don’t want to pulling your hair out later.
+<p>Use a 1:1 viewport, this is important if you don’t want to pull your hair out later.
 This way you will always work with something you’re looking at, not a scaled version of
 your website.</p>
 
-<p>I guess everybody is using SASS or PostCSS or something that allows you do define
-CSS variables, so I won’t be stopping on defining variables and go straight
+<p>I guess everybody is using SASS or PostCSS or something that allows you to define
+CSS variables, so I won’t dwell on defining variables and will go straight
 to the next point. Just don’t go overboard, you ain’t going to need it.</p>
 
 <p>CSS allows you to use <code class="language-plaintext highlighter-rouge">min-width</code>, <code class="language-plaintext highlighter-rouge">max-width</code> or both, plus some additional modifiers
 like <code class="language-plaintext highlighter-rouge">orientation: portrait</code> and god knows what else. However there are good parts and
 there are bad parts. Some things you don’t have to use if you don’t want to
-spend the rest of your live debugging the cascade.</p>
+spend the rest of your life debugging the cascade.</p>
 
 <p>All your styles should look like this:</p>
 
@@ -107,9 +107,9 @@ spend the rest of your live debugging the cascade.</p>
 </code></pre></div></div>
 <h2 id="devices">Devices</h2>
 
-<p>But we can’t use only <code class="language-plaintext highlighter-rouge">min-width</code>! We want out site to look best on mobile devices
-We have to use <code class="language-plaintext highlighter-rouge">orientation: portrait</code> and <code class="language-plaintext highlighter-rouge">landscape</code>! Maybe not. Think what
-is exactly you are trying to achieve?</p>
+<p>But we can’t use only <code class="language-plaintext highlighter-rouge">min-width</code>! We want our site to look best on mobile devices!
+We have to use <code class="language-plaintext highlighter-rouge">orientation: portrait</code> and <code class="language-plaintext highlighter-rouge">landscape</code>! Maybe not. Think about what
+exactly you are trying to achieve.</p>
 
 <p>Let’s ask our project manager for some specs. Some realistically formulated
 requirements could be:</p>
@@ -124,7 +124,7 @@ Just introducing a general idea of <strong>smaller</strong> and <strong>larger</
 
 <p>Let’s take a look at some common internet-consuming devices. And see where we can
 draw a line between <strong>smaller</strong> and <strong>larger</strong>.
-Don’t worry if looks a bit Apple-biased, the results are universally applicable.</p>
+Don’t worry if it looks a bit Apple-biased, the results are universally applicable.</p>
 
 <table>
   <thead>
@@ -213,17 +213,17 @@ Don’t worry if looks a bit Apple-biased, the results are universally applicabl
 
 <h2 id="middle-ground">Middle ground</h2>
 
-<p>When people think about breakpoints they often imagining them as some
+<p>When people think about breakpoints they often imagine them as some
 magical bullet that can detect if you are using an iPad.</p>
 
 <p><strong>I am referring only to <code class="language-plaintext highlighter-rouge">@media (min-width: $variable)</code> well-behaved
-breakpoints as this are the only ones you should use.</strong></p>
+breakpoints as these are the only ones you should use.</strong></p>
 
-<p>Think of a breakpoint as a fence. Like a fence it has two sides, everything
+<p>Think of a breakpoint as a fence. Like a fence, it has two sides: everything
 that is smaller than the specified width and everything that is equal or larger
 than the specified width.</p>
 
-<p>In other words you can think of it as a equals or larger than equation:</p>
+<p>In other words you can think of it as an equals or larger than equation:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.menu { folded }
 @media (screen width &gt;= x) {
@@ -245,7 +245,7 @@ breakpoint is only a fence.</p>
 
 <p>So I propose to claim a line between vertical and horizontal iPad orientation
 as a <code class="language-plaintext highlighter-rouge">$medium</code> breakpoint. A perfect place to start moving further. By default
-and until we are being viewed from the devices that is larger than <code class="language-plaintext highlighter-rouge">$medium</code>,
+and until we are being viewed from devices that are larger than <code class="language-plaintext highlighter-rouge">$medium</code>,
 and that includes: mobile phones, tablets in portrait, half of the screen – we
 display content, say, in a single column.</p>
 
@@ -259,14 +259,14 @@ TV – we display multiple columns or un-collapse the menu.</p>
 portrait and landscape modes separately. This way when somebody is looking at
 your website on his phone he sees the initial styling.</p>
 
-<p>Once he rotates the phone - he makes a first jump over the <code class="language-plaintext highlighter-rouge">$small</code> breakpoint
+<p>Once he rotates the phone, he makes a first jump over the <code class="language-plaintext highlighter-rouge">$small</code> breakpoint
 fence. Everything that is styled with <code class="language-plaintext highlighter-rouge">min-width: $small</code> kicks in.</p>
 
-<p>This is what one would see the on an iPad in portrait orientation. But our
+<p>This is what one would see on an iPad in portrait orientation. But our
 users want to see more. So they rotate the iPad (or get an iPad pro) and that
 moves them over the <code class="language-plaintext highlighter-rouge">$medium</code> breakpoint.</p>
 
-<p>The last one, <code class="language-plaintext highlighter-rouge">$large</code> covers everything bigger than an iPad in Landscape. That
+<p>The last one, <code class="language-plaintext highlighter-rouge">$large</code>, covers everything bigger than an iPad in Landscape. That
 is the computer screen and the iPad Pro.</p>
 
 <h2 id="final-results">Final results</h2>
@@ -313,8 +313,8 @@ room.</p>
 </table>
 
 <p>I have chosen these after some consideration, but nothing is written in stone,
-you can change them as you see fit for your project. Them menu might be not
-fitting in only this much or something breaks.</p>
+you can change them as you see fit for your project. The menu might not be
+fitting in this much, or something breaks.</p>
 
 <p>Anyway here are the breakpoints in SCSS format, I tried to round them up a little bit:</p>
 
@@ -333,7 +333,7 @@ found in CSS Frameworks everywhere. Start small, use an
 
   </div>
 
-  <footer class="mx-auto mt-16 flex max-w-[72ch] flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
+  <footer class="mt-16 flex flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
     <a href="/posts/" class="inline-flex min-h-11 items-center font-black hover:text-fire">← Back to all posts</a>
     <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-black hover:text-fire">Talk about the work ↗</a>
   </footer>

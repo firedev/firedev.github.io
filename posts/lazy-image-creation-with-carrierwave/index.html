@@ -4,21 +4,21 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lazy image creation with Carrierwave · firedev.com</title>
-<meta name="description" content="I don’t know about you but I kind of grown to like Carrierwave. Yes, there areother uploaders on the block but that’s not the point. Everybody I know are usingit wrong.">
+<meta name="description" content="I don’t know about you but I have kind of grown to like Carrierwave. Yes, there are other uploaders on the block but that’s not the point. Everybody I know is using it wrong.">
 <meta name="author" content="Nikolay Ostrovsky">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://firedev.com/posts/lazy-image-creation-with-carrierwave/">
 <meta property="og:site_name" content="firedev.com">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lazy image creation with Carrierwave · firedev.com">
-<meta property="og:description" content="I don’t know about you but I kind of grown to like Carrierwave. Yes, there areother uploaders on the block but that’s not the point. Everybody I know are usingit wrong.">
+<meta property="og:description" content="I don’t know about you but I have kind of grown to like Carrierwave. Yes, there are other uploaders on the block but that’s not the point. Everybody I know is using it wrong.">
 <meta property="og:url" content="https://firedev.com/posts/lazy-image-creation-with-carrierwave/">
 <meta property="og:image" content="https://firedev.com/images/posts/lazy-image-creation-with-carrierwave.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lazy image creation with Carrierwave · firedev.com">
-<meta name="twitter:description" content="I don’t know about you but I kind of grown to like Carrierwave. Yes, there areother uploaders on the block but that’s not the point. Everybody I know are usingit wrong.">
+<meta name="twitter:description" content="I don’t know about you but I have kind of grown to like Carrierwave. Yes, there are other uploaders on the block but that’s not the point. Everybody I know is using it wrong.">
 <meta name="twitter:image" content="https://firedev.com/images/posts/lazy-image-creation-with-carrierwave.jpg">
-<link rel="stylesheet" href="/_bridgetown/static/index.4UTOA4OT.css">
+<link rel="stylesheet" href="/_bridgetown/static/index.7RAIV7HZ.css">
 <script src="/_bridgetown/static/index.P6KJZRZR.js" type="module"></script>
 
 </head>
@@ -44,7 +44,7 @@
       <time datetime="2015-06-30" class="font-black text-fire">30 June 2015</time>
       <h1 class="mt-5 max-w-[13ch] text-[clamp(3.2rem,8vw,6rem)] font-black leading-[.9] tracking-[-.04em]">Lazy image creation with Carrierwave</h1>
     </div>
-    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">I don’t know about you but I kind of grown to like Carrierwave. Yes, there areother uploaders on the block but that’s not the point. Everybody I know are usingit wrong.</p>
+    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-3">I don’t know about you but I have kind of grown to like Carrierwave. Yes, there are other uploaders on the block but that’s not the point. Everybody I know is using it wrong.</p>
   </header>
 
     <figure class="mb-12 overflow-hidden bg-white md:mb-20">
@@ -52,8 +52,8 @@
     </figure>
 
   <div class="post-body mx-auto">
-    <p>I don’t know about you but I kind of grown to like Carrierwave. Yes, there are
-other uploaders on the block but that’s not the point. Everybody I know are using
+    <p>I don’t know about you but I have kind of grown to like Carrierwave. Yes, there are
+other uploaders on the block but that’s not the point. Everybody I know is using
 it wrong.</p>
 
 <p>If you are storing images on your own server I bet you are always concerned about
@@ -67,32 +67,32 @@ versions. Let’s say for an average web site you need at least three versions:<
 
 <p>These are just for the sake of the example but there could be more. And  for
 each image you need only a subset of versions. Only one image per article is
-displayed as a featured image, not every image goes to gallery etc.
+displayed as a featured image, not every image goes to the gallery, etc.
 But you create them all anyway, because that’s how it is.</p>
 
 <h2 id="stop">Stop</h2>
 
-<p>You’re doing it wrong. While versions creation is indeed the
+<p>You’re doing it wrong. While version creation is indeed
 Carrierwave’s responsibility, the decision on which version to create should
-not be made when image is uploaded. And certainly you don’t need to create all
+not be made when the image is uploaded. And certainly you don’t need to create all
 versions at the same time or check if the file exists.</p>
 
 <p>Come to think of it, you don’t know upfront what version you might need so you
 create all possible versions or create some inventive schemes with conditional
-versioning thanks to Carrierwave abilities.</p>
+versioning thanks to Carrierwave’s abilities.</p>
 
 <p>But in fact there is a better way. Lazily create only the versions that are
 actually being used just-in-time when the request comes.</p>
 
 <h2 id="hammer-time">Hammer time</h2>
 
-<p>Okay let’s roll our sleeves. The idea is to create the route matching
-the image path. If the asset is missing the request falls through to Rails and
+<p>Okay let’s roll up our sleeves. The idea is to create the route matching
+the image path. If the asset is missing the request falls through to Rails and the
 image is created. Next time the request comes to this url, nginx takes care of
 serving the static asset.</p>
 
 <p>To start off let’s delay the versions creation until the moment we actually need
-them. Let’s add the <code class="language-plaintext highlighter-rouge">now</code> modifier to uploader and make sure no versions are
+them. Let’s add the <code class="language-plaintext highlighter-rouge">now</code> modifier to the uploader and make sure no versions are
 created until we say so:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/uploaders/image_uploader.rb</span>
@@ -122,8 +122,8 @@ created until we say so:</p>
 </code></pre></div></div>
 
 <p>In the <code class="language-plaintext highlighter-rouge">Image</code> class we are going to add a method that actually creates a version.
-All it does - sets <code class="language-plaintext highlighter-rouge">@now</code> to <code class="language-plaintext highlighter-rouge">true</code> and then calls <code class="language-plaintext highlighter-rouge">recreate_versions!</code> for a
-given <code class="language-plaintext highlighter-rouge">version</code>. Lazy, not crazy, we don’t want to create anything
+All it does is set <code class="language-plaintext highlighter-rouge">@now</code> to <code class="language-plaintext highlighter-rouge">true</code> and then call <code class="language-plaintext highlighter-rouge">recreate_versions!</code> for a
+given <code class="language-plaintext highlighter-rouge">version</code>. Lazy, not crazy — we don’t want to create anything
 uncontrollably.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/models/image.rb</span>
@@ -133,7 +133,7 @@ uncontrollably.</p>
   <span class="k">end</span>
 </code></pre></div></div>
 
-<p>I am using almost the out of the box uploader with the small addition.
+<p>I am using an almost out-of-the-box uploader with a small addition.
 Here is an inflector that breaks long id strings so you don’t end up with too
 many images in one folder.</p>
 
@@ -223,7 +223,7 @@ with and without inflected paths just to be sure:</p>
 </code></pre></div></div>
 
 <p>Okay now it’s time to make a route. Fortunately we can use constraints to make
-matters easier for everybody. Rails doesn’t have to think how to parse it and
+matters easier for everybody. Rails doesn’t have to think about how to parse it and
 here is what I came up with:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/routes.rb</span>
@@ -262,13 +262,13 @@ here is what I came up with:</p>
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>All it does - creates a version according to <code class="language-plaintext highlighter-rouge">params</code> and once image is created
-the same url is being requested again. But this time the created image will be
+<p>All it does is create a version according to <code class="language-plaintext highlighter-rouge">params</code> and once the image is created
+the same url is requested again. But this time the created image will be
 served by nginx on top of the Rails app.</p>
 
 <h2 id="nginx">Nginx</h2>
 
-<p>If you have any special settings for static files in <code class="language-plaintext highlighter-rouge">uploads</code> folder you might
+<p>If you have any special settings for static files in the <code class="language-plaintext highlighter-rouge">uploads</code> folder you might
 want to amend your nginx config for the given site like so:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>; /etc/nginx/sites-available/site
@@ -285,13 +285,13 @@ location @backend {
 
 <h2 id="broken-images">Broken Images</h2>
 
-<p>Say you have some broken images that can’t be recreated and causing errors. Let’s
+<p>Say you have some broken images that can’t be recreated and are causing errors. Let’s
 get rid of them automatically. Via some augmentation of our <code class="language-plaintext highlighter-rouge">MissingController</code>
 we can do that now.</p>
 
-<p>I would suggest to add some default “broken” image to
+<p>I would suggest adding some default “broken” image to
 <code class="language-plaintext highlighter-rouge">/assets/images/layout/missing_image.png</code>
-so you can see any sign that the image is deleted. Then we are changing the <code class="language-plaintext highlighter-rouge">show</code> method:</p>
+so you can see some sign that the image is deleted. Then we change the <code class="language-plaintext highlighter-rouge">show</code> method:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app/controller/missing_controller.rb</span>
 
@@ -328,14 +328,14 @@ so you can see any sign that the image is deleted. Then we are changing the <cod
 <p>Now you have fast upload, delayed image creation and the nice part is that you
 can delete the whole <code class="language-plaintext highlighter-rouge">uploads</code> folder. Versions will be re-created.
 You can change formats on-the-fly when design changes. Broken files will be
-automatically deleted as well. In other words – you don’t need to worry about images.</p>
+automatically deleted as well. In other words, you don’t need to worry about images.</p>
 
 <p>This is pretty much the complete implementation taken out of one of the projects I
 am working on. Please let me know if that helped you. Thanks.</p>
 
   </div>
 
-  <footer class="mx-auto mt-16 flex max-w-[72ch] flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
+  <footer class="mt-16 flex flex-wrap items-center justify-between gap-5 border-t border-ink py-8">
     <a href="/posts/" class="inline-flex min-h-11 items-center font-black hover:text-fire">← Back to all posts</a>
     <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-black hover:text-fire">Talk about the work ↗</a>
   </footer>
