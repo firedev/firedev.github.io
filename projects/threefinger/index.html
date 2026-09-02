@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="threefinger · firedev.com">
 <meta name="twitter:description" content="Three-finger trackpad swipe to switch browser tabs on macOS.">
 <meta name="twitter:image" content="https://firedev.com/images/projects/threefinger.gif">
-<link rel="stylesheet" href="/_bridgetown/static/index.7RAIV7HZ.css">
+<link rel="stylesheet" href="/_bridgetown/static/index.POWQRA6A.css">
 <script src="/_bridgetown/static/index.P6KJZRZR.js" type="module"></script>
 
 </head>
@@ -56,7 +56,6 @@
       <h2 class="mb-6 text-3xl font-black tracking-[-.03em] md:text-5xl">What shipped</h2>
         <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">Swipe left or right with three fingers to jump to the previous or next tab. Default shortcut is Ctrl-Shift-Tab / Ctrl-Tab, so it works in Safari, Chrome, Firefox, and most tabbed apps.</p>
         <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">A tiny open-source Swift utility that replaces that one BetterTouchTool feature - one file, MultitouchSupport, Karabiner-style config in ~/.config/threefinger.json.</p>
-        <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">The installer checks Accessibility and Input Monitoring, then opens Trackpad → More Gestures so you can free the system swipe: set Swipe between pages to Off, and Swipe between full-screen applications to Swipe Left or Right with Four Fingers.</p>
     </div>
 
     <aside>
@@ -83,6 +82,46 @@
         </div>
     </aside>
   </section>
+
+    <section class="border-t border-line py-14 md:py-24">
+      <h2 class="mb-7 text-3xl font-black tracking-[-.03em] md:text-5xl">Install</h2>
+        <p class="mb-6 max-w-[65ch] text-lg leading-relaxed text-muted">Copy one of these into Terminal. Then free the system gesture in Trackpad settings, or run threefinger --check --open to open the right panes.</p>
+        <div class="grid gap-4">
+            <div class="border border-line bg-white px-5 py-4">
+              <p class="mb-2 text-xs font-black uppercase tracking-wider text-muted">Homebrew</p>
+              <pre class="overflow-x-auto text-sm leading-relaxed text-ink"><code>brew install firedev/tap/threefinger
+brew services start threefinger</code></pre>
+            </div>
+            <div class="border border-line bg-white px-5 py-4">
+              <p class="mb-2 text-xs font-black uppercase tracking-wider text-muted">Installer script</p>
+              <pre class="overflow-x-auto text-sm leading-relaxed text-ink"><code>curl -fsSL https://raw.githubusercontent.com/firedev/threefinger/master/install.sh | bash</code></pre>
+            </div>
+        </div>
+        <ol class="mt-8 max-w-[65ch] list-decimal space-y-3 pl-5 text-lg leading-relaxed text-muted">
+            <li>Grant Accessibility and Input Monitoring to the installed binary (not your terminal). After upgrades, remove (−) and re-add - toggling is not enough.</li>
+            <li>In Trackpad → More Gestures, change the rows below so macOS stops eating the three-finger swipe.</li>
+        </ol>
+        <div class="mt-8 overflow-x-auto">
+          <table class="w-full max-w-[65ch] border-collapse text-left text-base">
+            <thead>
+              <tr class="border-b border-ink">
+                <th class="py-3 pr-6 font-black">More Gestures</th>
+                <th class="py-3 font-black">Set to</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-line">
+                  <td class="py-3 pr-6 text-muted">Swipe between pages</td>
+                  <td class="py-3 font-medium text-ink">Off</td>
+                </tr>
+                <tr class="border-b border-line">
+                  <td class="py-3 pr-6 text-muted">Swipe between full-screen applications</td>
+                  <td class="py-3 font-medium text-ink">Swipe Left or Right with Four Fingers</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+    </section>
 
 
 
