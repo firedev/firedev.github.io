@@ -68,6 +68,52 @@ layout: default
     </aside>
   </section>
 
+  {% if resource.data.install %}
+    <section class="border-t border-line py-14 md:py-24">
+      <h2 class="mb-7 text-3xl font-black tracking-[-.03em] md:text-5xl">Install</h2>
+      {% if resource.data.installNote %}
+        <p class="mb-6 max-w-[65ch] text-lg leading-relaxed text-muted">{{ clean_text.call(resource.data.installNote) }}</p>
+      {% end %}
+      {% if resource.data.installCommands %}
+        <div class="grid gap-4">
+          {% resource.data.installCommands.each do |item| %}
+            <div class="border border-line bg-white px-5 py-4">
+              <p class="mb-2 text-xs font-black uppercase tracking-wider text-muted">{{ item[0] }}</p>
+              <pre class="overflow-x-auto text-sm leading-relaxed text-ink"><code>{{ item[1] }}</code></pre>
+            </div>
+          {% end %}
+        </div>
+      {% end %}
+      {% if resource.data.installSteps %}
+        <ol class="mt-8 max-w-[65ch] list-decimal space-y-3 pl-5 text-lg leading-relaxed text-muted">
+          {% resource.data.installSteps.each do |step| %}
+            <li>{{ clean_text.call(step) }}</li>
+          {% end %}
+        </ol>
+      {% end %}
+      {% if resource.data.installTable %}
+        <div class="mt-8 overflow-x-auto">
+          <table class="w-full max-w-[65ch] border-collapse text-left text-base">
+            <thead>
+              <tr class="border-b border-ink">
+                <th class="py-3 pr-6 font-black">{{ resource.data.installTable[0][0] }}</th>
+                <th class="py-3 font-black">{{ resource.data.installTable[0][1] }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% resource.data.installTable.drop(1).each do |row| %}
+                <tr class="border-b border-line">
+                  <td class="py-3 pr-6 text-muted">{{ row[0] }}</td>
+                  <td class="py-3 font-medium text-ink">{{ row[1] }}</td>
+                </tr>
+              {% end %}
+            </tbody>
+          </table>
+        </div>
+      {% end %}
+    </section>
+  {% end %}
+
   {% if resource.data.presentation %}
     <section class="border-t border-line py-14 md:py-24">
       <div class="mb-7 flex flex-wrap items-end justify-between gap-4">
