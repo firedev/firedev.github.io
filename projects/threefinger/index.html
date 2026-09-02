@@ -97,8 +97,29 @@ brew services start threefinger</code></pre>
               <pre class="overflow-x-auto text-sm leading-relaxed text-ink"><code>curl -fsSL https://raw.githubusercontent.com/firedev/threefinger/master/install.sh | bash</code></pre>
             </div>
         </div>
+        <div class="mt-10 overflow-x-auto">
+          <table class="w-full max-w-[65ch] border-collapse text-left text-base">
+            <thead>
+              <tr class="border-b border-ink">
+                <th class="py-3 pr-6 font-black">Permission</th>
+                <th class="py-3 font-black">Without it</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-line">
+                  <td class="py-3 pr-6 font-medium text-ink">Accessibility</td>
+                  <td class="py-3 text-muted">Swipes are detected, but keys never post</td>
+                </tr>
+                <tr class="border-b border-line">
+                  <td class="py-3 pr-6 font-medium text-ink">Input Monitoring</td>
+                  <td class="py-3 text-muted">No multitouch devices show up</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-6 max-w-[65ch] border-l-4 border-fire pl-4 text-base leading-relaxed text-ink">After every upgrade the binary changes - remove the old entry (−), then re-add. Toggling the switch is not enough.</p>
         <ol class="mt-8 max-w-[65ch] list-decimal space-y-3 pl-5 text-lg leading-relaxed text-muted">
-            <li>Grant Accessibility and Input Monitoring to the installed binary (not your terminal). After upgrades, remove (−) and re-add - toggling is not enough.</li>
+            <li>Grant Accessibility and Input Monitoring to the installed binary (not your terminal).</li>
             <li>In Trackpad → More Gestures, change the rows below so macOS stops eating the three-finger swipe.</li>
         </ol>
         <div class="mt-8 overflow-x-auto">
