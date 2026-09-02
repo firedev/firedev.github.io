@@ -102,6 +102,22 @@
   transition: transform 500ms cubic-bezier(.22, 1, .36, 1);
 }
 
+article code {
+  border: 1px solid var(--color-line);
+  background: white;
+  padding: .1em .35em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: .88em;
+  color: var(--color-ink);
+}
+
+article pre code {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font-size: inherit;
+}
+
 .project-card:hover .project-media img {
   transform: scale(1.025);
 }
