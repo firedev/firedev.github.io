@@ -28,8 +28,8 @@ page_class: projects-page
       {% selected.each_with_index do |project, index| %}
         <article class="project-card {{ index < 6 ? 'md:col-span-6' : 'md:col-span-4' }}">
           <a href="{{ project.relative_url }}" class="block text-inherit">
-            <figure class="project-media {{ project.data.logo && 'project-logo' }} relative aspect-[4/3] overflow-hidden bg-white">
-              <img src="{{ project.data.logo || project.data.cover }}" alt="{{ project.data.name }} project visual" loading="{{ index < 4 ? 'eager' : 'lazy' }}" class="h-full w-full object-cover">
+            <figure class="project-media {{ project.data.logo && !project.data.coverVideo && 'project-logo' }} relative aspect-[4/3] overflow-hidden bg-white">
+              {%@ "project_media", project: project, loading: (index < 4 ? "eager" : "lazy") %}
             </figure>
             <div class="grid grid-cols-1 gap-y-2 border-b border-line py-5">
               <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">{{ project.data.name }}</h3>

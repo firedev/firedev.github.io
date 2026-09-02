@@ -98,7 +98,9 @@
   }
 }
 
-.project-media img {
+.project-media img,
+.project-media video {
+  display: block;
   transition: transform 500ms cubic-bezier(.22, 1, .36, 1);
 }
 
@@ -118,7 +120,8 @@ article pre code {
   font-size: inherit;
 }
 
-.project-card:hover .project-media img {
+.project-card:hover .project-media img,
+.project-card:hover .project-media video {
   transform: scale(1.025);
 }
 
@@ -383,7 +386,8 @@ article pre code {
     scroll-behavior: auto;
   }
 
-  .project-media img {
+  .project-media img,
+  .project-media video {
     transition: none;
   }
 }

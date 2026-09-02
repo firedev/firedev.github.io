@@ -1,0 +1,10 @@
+{% cover = project.data.cover %}
+{% video = project.data.coverVideo %}
+{% img = project.data.logo || cover %}
+{% if video %}
+  <video class="h-full w-full object-cover" autoplay muted loop playsinline poster="{{ cover }}">
+    <source src="{{ video }}" type="video/mp4">
+  </video>
+{% else %}
+  <img src="{{ img }}" alt="{{ project.data.name }} project visual" class="h-full w-full object-cover">
+{% end %}
