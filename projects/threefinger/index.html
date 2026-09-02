@@ -84,7 +84,7 @@
 
     <section class="border-t border-line py-14 md:py-24">
       <h2 class="mb-7 text-3xl font-black tracking-[-.03em] md:text-5xl">Install</h2>
-        <p class="mb-6 max-w-[65ch] text-lg leading-relaxed text-muted">Install, allow threefinger in System Settings when asked, free the trackpad swipe, then three fingers left/right switches tabs.</p>
+        <p class="mb-6 max-w-[65ch] text-lg leading-relaxed text-muted">Install, allow threefinger when Settings asks, free the left/right swipe for tabs - keep three-finger up/down for windows.</p>
         <div class="grid gap-4">
             <div class="border border-line bg-white px-5 py-4">
               <p class="mb-2 text-xs font-black uppercase tracking-wider text-muted">Homebrew</p>
@@ -99,23 +99,32 @@ brew services start threefinger</code></pre>
         <ol class="mt-8 max-w-[65ch] list-decimal space-y-3 pl-5 text-lg leading-relaxed text-muted">
             <li>Run <code>threefinger --check --open</code> and turn on Accessibility and Input Monitoring for threefinger (not Terminal).</li>
             <li>In Trackpad → More Gestures, set Swipe between full-screen applications to Swipe Left or Right with Four Fingers. Swipe between pages → Off is optional but nicer.</li>
+            <li>Keep Mission Control and App Exposé on three fingers. Then: up = all windows, down = this app’s windows, left/right = previous/next tab.</li>
         </ol>
         <div class="mt-8 overflow-x-auto">
           <table class="w-full max-w-[65ch] border-collapse text-left text-base">
             <thead>
               <tr class="border-b border-ink">
-                <th class="py-3 pr-6 font-black">More Gestures</th>
-                <th class="py-3 font-black">Set to</th>
+                <th class="py-3 pr-6 font-black">Three fingers</th>
+                <th class="py-3 font-black">Does</th>
               </tr>
             </thead>
             <tbody>
                 <tr class="border-b border-line">
-                  <td class="py-3 pr-6 text-muted">Swipe between full-screen applications</td>
-                  <td class="py-3 font-medium text-ink">Swipe Left or Right with Four Fingers (required)</td>
+                  <td class="py-3 pr-6 text-muted">↑</td>
+                  <td class="py-3 font-medium text-ink">All windows (Mission Control)</td>
                 </tr>
                 <tr class="border-b border-line">
-                  <td class="py-3 pr-6 text-muted">Swipe between pages</td>
-                  <td class="py-3 font-medium text-ink">Off (optional, recommended)</td>
+                  <td class="py-3 pr-6 text-muted">↓</td>
+                  <td class="py-3 font-medium text-ink">Windows for this app (App Exposé)</td>
+                </tr>
+                <tr class="border-b border-line">
+                  <td class="py-3 pr-6 text-muted">←</td>
+                  <td class="py-3 font-medium text-ink">Previous tab</td>
+                </tr>
+                <tr class="border-b border-line">
+                  <td class="py-3 pr-6 text-muted">→</td>
+                  <td class="py-3 font-medium text-ink">Next tab</td>
                 </tr>
             </tbody>
           </table>
