@@ -9,6 +9,11 @@ layout: default
 {% more_projects = projects.reject { |project| project.relative_url == resource.relative_url }.first(3) %}
 {% clean_text = ->(value) { value.to_s.gsub(/[—–]/, "-") } %}
 {% format_years = ->(value) { value.to_s.strip.gsub(/(\b\d{4}\b)\s*[—–-]\s*\1\b/, '\1').gsub(/[—–]/, "-") } %}
+{% # Escape HTML, then turn `shortcuts` into <code> keys. %}
+{% format_text = ->(value) {
+  require "cgi"
+  CGI.escapeHTML(clean_text.call(value)).gsub(/`([^`]+)`/, '<code>\1</code>')
+} %}
 
 <article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
   <a href="/projects/" class="mt-10 inline-flex min-h-11 items-center text-base font-black text-muted hover:text-fire">← All projects</a>
@@ -34,7 +39,7 @@ layout: default
     <div>
       <h2 class="mb-6 text-3xl font-black tracking-[-.03em] md:text-5xl">What shipped</h2>
       {% (resource.data.story || [resource.data.summary]).each do |paragraph| %}
-        <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">{{ clean_text.call(paragraph) }}</p>
+        <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">{%= format_text.call(paragraph) %}</p>
       {% end %}
     </div>
 
@@ -72,7 +77,7 @@ layout: default
     <section class="border-t border-line py-14 md:py-24">
       <h2 class="mb-7 text-3xl font-black tracking-[-.03em] md:text-5xl">Install</h2>
       {% if resource.data.installNote %}
-        <p class="mb-6 max-w-[65ch] text-lg leading-relaxed text-muted">{{ clean_text.call(resource.data.installNote) }}</p>
+        <p class="mb-6 max-w-[65ch] text-lg leading-relaxed text-muted">{%= format_text.call(resource.data.installNote) %}</p>
       {% end %}
       {% if resource.data.installCommands %}
         <div class="grid gap-4">
@@ -110,7 +115,7 @@ layout: default
       {% if resource.data.installSteps %}
         <ol class="mt-8 max-w-[65ch] list-decimal space-y-3 pl-5 text-lg leading-relaxed text-muted">
           {% resource.data.installSteps.each do |step| %}
-            <li>{{ clean_text.call(step) }}</li>
+            <li>{%= format_text.call(step) %}</li>
           {% end %}
         </ol>
       {% end %}
