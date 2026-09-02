@@ -119,7 +119,8 @@ brew services start threefinger</code></pre>
         </div>
         <p class="mt-6 max-w-[65ch] border-l-4 border-fire pl-4 text-base leading-relaxed text-ink">After every upgrade the binary changes - remove the old entry (−), then re-add. Toggling the switch is not enough.</p>
         <ol class="mt-8 max-w-[65ch] list-decimal space-y-3 pl-5 text-lg leading-relaxed text-muted">
-            <li>Grant Accessibility and Input Monitoring to the installed binary (not your terminal).</li>
+            <li>Permissions go to the installed threefinger binary, not Terminal. Open System Settings → Privacy &amp; Security → Accessibility, click +, press Cmd-Shift-G, paste the path, Open, enable the checkbox. Repeat under Input Monitoring.</li>
+            <li>Homebrew path: /opt/homebrew/opt/threefinger/bin/threefinger - curl installer: ~/.local/bin/threefinger. Or run <code>threefinger --check --open</code> and it opens the panes when a grant is missing.</li>
             <li>In Trackpad → More Gestures, set Swipe between full-screen applications to Swipe Left or Right with Four Fingers (required). Swipe between pages → Off is optional but recommended.</li>
         </ol>
         <div class="mt-8 overflow-x-auto">
