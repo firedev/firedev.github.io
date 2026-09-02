@@ -84,6 +84,29 @@ layout: default
           {% end %}
         </div>
       {% end %}
+      {% if resource.data.installPermissions %}
+        <div class="mt-10 overflow-x-auto">
+          <table class="w-full max-w-[65ch] border-collapse text-left text-base">
+            <thead>
+              <tr class="border-b border-ink">
+                <th class="py-3 pr-6 font-black">{{ resource.data.installPermissions[0][0] }}</th>
+                <th class="py-3 font-black">{{ resource.data.installPermissions[0][1] }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% resource.data.installPermissions.drop(1).each do |row| %}
+                <tr class="border-b border-line">
+                  <td class="py-3 pr-6 font-medium text-ink">{{ row[0] }}</td>
+                  <td class="py-3 text-muted">{{ row[1] }}</td>
+                </tr>
+              {% end %}
+            </tbody>
+          </table>
+        </div>
+      {% end %}
+      {% if resource.data.installCallout %}
+        <p class="mt-6 max-w-[65ch] border-l-4 border-fire pl-4 text-base leading-relaxed text-ink">{{ clean_text.call(resource.data.installCallout) }}</p>
+      {% end %}
       {% if resource.data.installSteps %}
         <ol class="mt-8 max-w-[65ch] list-decimal space-y-3 pl-5 text-lg leading-relaxed text-muted">
           {% resource.data.installSteps.each do |step| %}
