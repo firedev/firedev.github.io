@@ -102,7 +102,7 @@ brew services start threefinger</code></pre>
             </div>
         </div>
         <ol class="mt-8 max-w-[65ch] list-decimal space-y-3 pl-5 text-lg leading-relaxed text-muted">
-            <li>Run <code>threefinger --check --open</code>. If Accessibility or Input Monitoring is missing, Settings opens those panes - turn them on for threefinger (not Terminal), then run the command again.</li>
+            <li>Run <code>threefinger --check --open</code>. If Accessibility or Input Monitoring is missing, Settings opens those panes - turn them on for threefinger (not Terminal), restart the service (<code>brew services restart threefinger</code>), then run the command again.</li>
             <li>When permissions are ok, <code>--check --open</code> opens Trackpad → More Gestures. Set Swipe between full-screen applications to Swipe Left or Right with Four Fingers. Swipe between pages → Off is optional but nicer. Then left/right changes tabs.</li>
             <li>Optional: keep Mission Control and App Exposé on three fingers - up all windows, down this app’s windows.</li>
         </ol>
@@ -151,7 +151,7 @@ brew services start threefinger</code></pre>
             </tbody>
           </table>
         </div>
-        <p class="mt-6 max-w-[65ch] border-l-4 border-fire pl-4 text-base leading-relaxed text-ink">After an upgrade, remove threefinger from Accessibility (−) and add it again - toggling is not enough. Homebrew path: /opt/homebrew/opt/threefinger/bin/threefinger. curl installer: ~/.local/bin/threefinger.</p>
+        <p class="mt-6 max-w-[65ch] border-l-4 border-fire pl-4 text-base leading-relaxed text-ink">After an upgrade, remove threefinger from Accessibility (−) and add it again, then restart the service - toggling is not enough, and a grant does not apply to a daemon that is already running. Homebrew path: /opt/homebrew/opt/threefinger/bin/threefinger. curl installer: ~/.local/bin/threefinger.</p>
     </section>
 
 
