@@ -380,19 +380,18 @@ article pre code {
   border-top: 1px solid var(--color-line);
 }
 
-.copy-wrap {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+.copy-host {
+  position: relative;
 }
 
-.copy-wrap > pre {
-  flex: 1;
-  min-width: 0;
+.copy-host pre {
+  padding-right: 6rem;
 }
 
 .copy-button {
-  flex: none;
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
   min-height: 2.75rem;
   border: 1px solid var(--color-ink);
   background: white;

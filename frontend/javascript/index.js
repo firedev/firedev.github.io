@@ -14,7 +14,7 @@ if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
   })
 }
 
-// Copy button next to every code block
+// Copy button in the top-right corner of every code block
 document.querySelectorAll("pre").forEach((pre) => {
   const wrap = document.createElement("div")
   wrap.className = "copy-wrap"
@@ -33,5 +33,7 @@ document.querySelectorAll("pre").forEach((pre) => {
     }
     setTimeout(() => { button.textContent = "Copy" }, 1500)
   })
-  wrap.append(button)
+  const host = pre.closest(".copy-card") || wrap
+  host.classList.add("copy-host")
+  host.append(button)
 })
