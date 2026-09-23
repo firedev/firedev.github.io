@@ -13,7 +13,7 @@ page_class: projects-page
   <section class="grid gap-10 py-16 md:grid-cols-[1.5fr_.5fr] md:items-end md:gap-20 md:py-32">
     <h1 class="max-w-[12ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Things I’ve <strong class="text-fire">shipped.</strong></h1>
     <div>
-      <p class="mb-3 text-sm font-black">{{ projects.size }} products, systems, brands, and experiments</p>
+      <p class="mb-3 text-sm font-black">Products, systems, brands, and experiments</p>
       <p class="max-w-[34ch] text-lg leading-relaxed text-muted">Two decades across product, engineering, design, and the occasional business built from zero.</p>
     </div>
   </section>

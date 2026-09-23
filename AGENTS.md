@@ -49,3 +49,6 @@ Card media is 16:10 with `object-cover`, so a taller shot loses its top (logo, n
 Brave headless ignores the height in `--window-size=1440,900` and returns 1440×1000
 (23.09.2026) — crop to 1440×900 from the top with PIL. Light mode:
 `--blink-settings=preferredColorScheme=1`.
+Brave headless can hang with no output (23.09.2026: the 3rd back-to-back run, and every
+run with a fresh `--user-data-dir`, after Brave GUI was opened on the same URL). macOS has
+no `timeout`; run shots one at a time and `pkill -f` a stuck run.
