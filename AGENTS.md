@@ -52,3 +52,10 @@ path (23.09.2026: that, not Brave, was why window sizes looked ignored). Brave h
 hangs while Brave GUI is open; use Playwright's
 `~/Library/Caches/ms-playwright/chromium_headless_shell-*/chrome-headless-shell-mac-arm64/chrome-headless-shell`
 with the same flags.
+
+## Copy
+
+Project text is Nick's words verbatim — lift it from the project's own site or vault note
+(`rg` the exact line), never paraphrase or translate his Russian into new English lines.
+23.09.2026: invented Tell Others lines ("What I want to leave behind…", "One card for each
+thing…") read wrong to Nick; the fix was his lines from tellothers.com unchanged.
