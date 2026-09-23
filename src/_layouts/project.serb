@@ -26,13 +26,10 @@ layout: default
     </div>
     {% hero_link = resource.data.link || resource.data.links&.first&.last %}
     {% if hero_link %}<a href="{{ hero_link }}" target="_blank" rel="noopener" class="project-card block" aria-label="Open {{ resource.data.name }}">{% end %}
-    <figure class="project-media block {{ resource.data.logoMode && !resource.data.cover && !resource.data.coverVideo && 'project-logo' }} relative aspect-[16/10] overflow-hidden bg-white">
+    <figure class="project-media block {{ !resource.data.cover && !resource.data.coverVideo && 'project-logo aspect-[16/10]' }} relative overflow-hidden bg-white">
       {%@ "project_media", project: resource %}
       {% if resource.data.slug == "nofins" %}
         <div class="pointer-events-none absolute inset-0" style="background: linear-gradient(180deg, rgba(8, 18, 38, 0) 0%, rgba(16, 48, 104, 0.14) 42%, rgba(33, 97, 214, 0.52) 100%);"></div>
-      {% end %}
-      {% if resource.data.logo and (resource.data.cover || resource.data.coverVideo) and resource.data.pageLogo != false %}
-        <img src="{{ resource.data.logo }}" alt="{{ resource.data.name }} logo" class="absolute left-4 top-4 h-12 w-auto max-w-32 rounded-lg border border-white/70 bg-white p-1.5 object-contain shadow-lg">
       {% end %}
     </figure>
     {% if hero_link %}</a>{% end %}
@@ -165,7 +162,7 @@ layout: default
       <h2 class="mb-7 text-3xl font-black tracking-[-.03em] md:text-5xl">Product archive</h2>
       <div class="grid gap-4 md:grid-cols-2">
         {% resource.data.gallery.each_with_index do |image, index| %}
-          <img src="{{ image }}" alt="{{ resource.data.name }} product screen {{ index + 1 }}" loading="lazy" class="aspect-[16/10] h-full w-full bg-white object-cover">
+          <img src="{{ image }}" alt="{{ resource.data.name }} product screen {{ index + 1 }}" loading="lazy" class="block h-auto w-full bg-white">
         {% end %}
       </div>
     </section>
@@ -212,7 +209,7 @@ layout: default
     <div class="grid gap-5 md:grid-cols-3">
       {% more_projects.each do |project| %}
         <a href="{{ project.relative_url }}" class="block text-inherit">
-          <figure class="project-media {{ !project.data.cover && !project.data.coverVideo && 'project-logo' }} aspect-[16/10] overflow-hidden bg-white">
+          <figure class="project-media {{ !project.data.cover && !project.data.coverVideo && 'project-logo aspect-[16/10]' }} overflow-hidden bg-white">
             {%@ "project_media", project: project, loading: "lazy" %}
           </figure>
           <div class="py-4">

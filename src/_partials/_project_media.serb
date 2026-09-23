@@ -1,10 +1,11 @@
 {% cover = project.data.cover %}
 {% video = project.data.coverVideo %}
 {% img = cover || project.data.logo %}
+{% fit = (cover || video) ? "block h-auto w-full" : "h-full w-full object-cover" %}
 {% if video %}
-  <video class="h-full w-full object-cover" autoplay muted loop playsinline poster="{{ cover }}">
+  <video class="{{ fit }}" autoplay muted loop playsinline poster="{{ cover }}">
     <source src="{{ video }}" type="video/mp4">
   </video>
 {% else %}
-  <img src="{{ img }}" alt="{{ project.data.name }} project visual" class="h-full w-full object-cover" loading="lazy" decoding="async">
+  <img src="{{ img }}" alt="{{ project.data.name }} project visual" class="{{ fit }}" loading="lazy" decoding="async">
 {% end %}
