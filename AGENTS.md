@@ -45,7 +45,9 @@ Do not force-push either branch. `src/CNAME` must remain `firedev.com`.
 
 ## Project screenshots
 
-Card media is 16:10 with `object-cover`, so a taller shot loses its top (logo, nav).
+Card and project-page media are 16:10 with `object-cover`. Shoot live sites at
+`--window-size=1024,640 --force-device-scale-factor=2` (→ 2048×1280, then `cwebp -q 82`):
+a narrower window fills the frame with content instead of whitespace (Nick, 23.09.2026).
 Light mode: `--blink-settings=preferredColorScheme=1`. zsh does not word-split
 `set -- $p` in a loop — use `set -- ${=p}`, or every shot silently goes to the wrong
 path (23.09.2026: that, not Brave, was why window sizes looked ignored). Brave headless
