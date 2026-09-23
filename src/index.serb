@@ -16,8 +16,8 @@ page_class: homepage
     <div class="md:self-end md:pb-5">
       <p class="max-w-[34ch] text-xl leading-relaxed text-muted">The kind of builder who can take a knotty product from first sketch to live system and keep the shape all the way through.</p>
       <div class="mt-8 flex gap-8 pt-6">
-        <p><strong class="block text-4xl font-black text-fire-ink">20+</strong><span class="text-sm text-muted">years shipping</span></p>
-        <p><strong class="block text-4xl font-black text-fire-ink">{{ project_count }}</strong><span class="text-sm text-muted">projects archived</span></p>
+        <p><strong class="block text-4xl font-black text-fire-ink">20+</strong><span class="text-base text-muted">years shipping</span></p>
+        <p><strong class="block text-4xl font-black text-fire-ink">{{ project_count }}</strong><span class="text-base text-muted">projects archived</span></p>
       </div>
     </div>
   </section>
@@ -36,7 +36,7 @@ page_class: homepage
           <div class="flex items-baseline justify-between gap-5 py-5">
             <span>
               <strong class="block text-2xl">{{ project.data.name }}</strong>
-              <small class="mt-1 block text-muted">{{ project.data.summary }}</small>
+              <span class="text-base mt-1 block text-muted">{{ project.data.summary }}</span>
             </span>
             <span class="text-fire-ink">↗</span>
           </div>
@@ -50,9 +50,9 @@ page_class: homepage
     <div>
       <p class="mb-6 max-w-[55ch] text-lg leading-relaxed text-muted">Pharmacy ERP for 1,300+ stores. School platforms. Media products. Phuket real estate. Different arenas, same move: tangled systems turned into something clear, usable, and alive.</p>
       <div class="flex flex-wrap gap-3">
-        <a href="https://git-wrapped.com/profiles/firedev" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">Git Wrapped ↗</a>
-        <a href="https://github.com/firedev" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">GitHub ↗</a>
-        <a href="/about/" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">About →</a>
+        <a href="https://git-wrapped.com/profiles/firedev" class="border border-ink px-4 py-3 text-base font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">Git Wrapped ↗</a>
+        <a href="https://github.com/firedev" class="border border-ink px-4 py-3 text-base font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">GitHub ↗</a>
+        <a href="/about/" class="border border-ink px-4 py-3 text-base font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">About →</a>
       </div>
     </div>
   </section>

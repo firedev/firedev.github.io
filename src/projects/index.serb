@@ -13,7 +13,7 @@ page_class: projects-page
   <section class="grid gap-10 py-16 md:grid-cols-[1.5fr_.5fr] md:items-end md:gap-20 md:py-32">
     <h1 class="max-w-[12ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Things I’ve <strong class="text-fire-ink">shipped.</strong></h1>
     <div>
-      <p class="mb-3 text-sm font-black">Products, systems, brands, and experiments</p>
+      <p class="mb-3 text-base font-black">Products, systems, brands, and experiments</p>
       <p class="max-w-[34ch] text-lg leading-relaxed text-muted">Two decades across product, engineering, design, and the occasional business built from zero.</p>
     </div>
   </section>
@@ -21,7 +21,7 @@ page_class: projects-page
   <section class="pb-20">
     <div class="mb-7 flex flex-wrap items-baseline gap-x-4">
       <h2 class="mb-3 text-3xl font-black tracking-[-.03em] md:text-5xl">Selected work</h2>
-      <span class="mb-3 w-full text-sm text-muted md:w-auto">Products · systems · brands · experiments</span>
+      <span class="mb-3 w-full text-base text-muted md:w-auto">Products · systems · brands · experiments</span>
     </div>
 
     <div class="grid grid-cols-1 gap-x-6 gap-y-3 md:grid-cols-12">
@@ -44,13 +44,13 @@ page_class: projects-page
   <section class="pb-16 md:pb-28">
     <div class="mb-5 flex flex-wrap items-baseline gap-x-4">
       <h2 class="mb-3 text-3xl font-black tracking-[-.03em] md:text-5xl">Archive</h2>
-      <span class="mb-3 w-full text-sm text-muted md:w-auto">The sites may be gone. The work stays.</span>
+      <span class="mb-3 w-full text-base text-muted md:w-auto">The sites may be gone. The work stays.</span>
     </div>
     <div class="grid gap-x-12 md:grid-cols-2">
       {% archive.each do |project| %}
         <a href="{{ project.relative_url }}" class="block py-4 text-inherit">
           <strong class="block">{{ project.data.name }}</strong>
-          <small class="mt-1 block leading-snug text-muted">{{ clean_text.call(project.data.summary) }}</small>
+          <span class="text-base mt-1 block leading-snug text-muted">{{ clean_text.call(project.data.summary) }}</span>
         </a>
       {% end %}
     </div>
