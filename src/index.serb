@@ -10,14 +10,14 @@ page_class: homepage
 <div class="mx-auto w-[min(1180px,calc(100%-2rem))]">
   <section class="grid min-h-[72vh] items-center gap-12 py-20 md:grid-cols-[1.35fr_.65fr] md:py-28">
     <div>
-      <p class="mb-5 font-black text-fire">Nikolay Ostrovsky · Builder, architect, operator</p>
+      <p class="mb-5 font-black text-fire-ink">Nikolay Ostrovsky · Builder, architect, operator</p>
       <h1 class="max-w-[11ch] text-[clamp(3.7rem,10vw,6rem)] font-black leading-[.86] tracking-[-.04em]">Days, not months.</h1>
     </div>
     <div class="md:self-end md:pb-5">
       <p class="max-w-[34ch] text-xl leading-relaxed text-muted">The kind of builder who can take a knotty product from first sketch to live system and keep the shape all the way through.</p>
       <div class="mt-8 flex gap-8 pt-6">
-        <p><strong class="block text-4xl font-black text-fire">20+</strong><span class="text-sm text-muted">years shipping</span></p>
-        <p><strong class="block text-4xl font-black text-fire">{{ project_count }}</strong><span class="text-sm text-muted">projects archived</span></p>
+        <p><strong class="block text-4xl font-black text-fire-ink">20+</strong><span class="text-sm text-muted">years shipping</span></p>
+        <p><strong class="block text-4xl font-black text-fire-ink">{{ project_count }}</strong><span class="text-sm text-muted">projects archived</span></p>
       </div>
     </div>
   </section>
@@ -25,12 +25,12 @@ page_class: homepage
   <section class="py-14 md:py-24">
     <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
       <h2 class="text-4xl font-black tracking-[-.03em] md:text-6xl">Recent & defining work</h2>
-      <a href="/projects/" class="font-black text-ink hover:text-fire">All projects →</a>
+      <a href="/projects/" class="font-black text-ink hover:text-fire-ink">All projects →</a>
     </div>
     <div class="grid gap-6 md:grid-cols-2">
       {% featured.each do |project| %}
         <a href="{{ project.relative_url }}" class="project-card group block">
-          <figure class="project-media {{ project.data.logo && !project.data.coverVideo && 'project-logo' }} aspect-[16/10] overflow-hidden bg-white">
+          <figure class="project-media {{ !project.data.cover && !project.data.coverVideo && 'project-logo' }} aspect-[16/10] overflow-hidden bg-white">
             {%@ "project_media", project: project %}
           </figure>
           <div class="flex items-baseline justify-between gap-5 py-5">
@@ -38,7 +38,7 @@ page_class: homepage
               <strong class="block text-2xl">{{ project.data.name }}</strong>
               <small class="mt-1 block text-muted">{{ project.data.summary }}</small>
             </span>
-            <span class="text-fire">↗</span>
+            <span class="text-fire-ink">↗</span>
           </div>
         </a>
       {% end %}
@@ -58,9 +58,9 @@ page_class: homepage
     <div>
       <p class="mb-6 max-w-[55ch] text-lg leading-relaxed text-muted">Pharmacy ERP for 1,300+ stores. School platforms. Media products. Phuket real estate. Different arenas, same move: tangled systems turned into something clear, usable, and alive.</p>
       <div class="flex flex-wrap gap-3">
-        <a href="https://git-wrapped.com/profiles/firedev" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire hover:bg-fire hover:text-white">Git Wrapped ↗</a>
-        <a href="https://github.com/firedev" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire hover:bg-fire hover:text-white">GitHub ↗</a>
-        <a href="/about/" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire hover:bg-fire hover:text-white">About →</a>
+        <a href="https://git-wrapped.com/profiles/firedev" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">Git Wrapped ↗</a>
+        <a href="https://github.com/firedev" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">GitHub ↗</a>
+        <a href="/about/" class="border border-ink px-4 py-3 text-sm font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">About →</a>
       </div>
     </div>
   </section>

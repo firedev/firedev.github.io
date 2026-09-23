@@ -4,6 +4,7 @@
 
 @theme {
   --color-fire: #ff6633;
+  --color-fire-ink: #c2410c;
   --color-ink: #12100f;
   --color-muted: #68615c;
   --color-canvas: #f6f4f1;
@@ -86,8 +87,8 @@
 }
 
 .nav-cta:hover {
-  border-color: var(--color-fire);
-  background: var(--color-fire);
+  border-color: var(--color-fire-ink);
+  background: var(--color-fire-ink);
   color: white;
   transform: translateY(-1px);
 }
@@ -167,7 +168,7 @@ article pre code {
 
 .archive-tag:hover {
   border-bottom-color: var(--color-fire);
-  color: var(--color-fire);
+  color: var(--color-fire-ink);
 }
 
 .archive-intro {
@@ -177,7 +178,7 @@ article pre code {
 
 .archive-intro p {
   margin-bottom: .8rem;
-  color: var(--color-fire);
+  color: var(--color-fire-ink);
   font-size: 1rem;
   font-weight: 900;
 }
@@ -208,7 +209,7 @@ article pre code {
 
 .archive-entry time {
   display: block;
-  color: var(--color-fire);
+  color: var(--color-fire-ink);
   font-size: 1rem;
   font-weight: 900;
 }
@@ -226,7 +227,7 @@ article pre code {
 }
 
 .archive-entry h2 a:hover {
-  color: var(--color-fire);
+  color: var(--color-fire-ink);
 }
 
 .archive-entry p {
@@ -320,7 +321,7 @@ article pre code {
 }
 
 .post-body a:hover {
-  color: var(--color-fire);
+  color: var(--color-fire-ink);
 }
 
 .post-body ul,

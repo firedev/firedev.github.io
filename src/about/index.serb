@@ -26,11 +26,11 @@ page_class: about-page
   <section class="grid gap-10 py-14 md:grid-cols-12 md:items-end md:gap-6 md:py-24">
     <figure class="relative md:col-span-5">
       <img src="/images/nick.jpg" alt="Nikolay Ostrovsky" class="aspect-[4/5] w-full object-cover object-top">
-      <figcaption class="absolute bottom-0 right-0 max-w-56 bg-fire p-5 text-base font-black leading-snug text-white">Phuket, Thailand.<br>Building worldwide.</figcaption>
+      <figcaption class="absolute bottom-0 right-0 max-w-56 bg-fire-ink p-5 text-base font-black leading-snug text-white">Phuket, Thailand.<br>Building worldwide.</figcaption>
     </figure>
 
     <div class="md:col-span-7 md:pl-[clamp(2rem,7vw,7rem)]">
-      <p class="mb-5 text-lg font-black text-fire">Full-stack architect · product operator</p>
+      <p class="mb-5 text-lg font-black text-fire-ink">Full-stack architect · product operator</p>
       <h1 class="max-w-[10ch] text-[clamp(3.4rem,9vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Nikolay Ostrovsky</h1>
       <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">Two decades inside products, finding the waste nobody meant to build and the leverage nobody bothered to name.</p>
     </div>
@@ -40,7 +40,7 @@ page_class: about-page
     <h2 class="max-w-[10ch] text-4xl font-black tracking-[-.03em] md:col-span-5 md:text-6xl">The best change removes more code than it adds.</h2>
     <div class="md:col-span-6 md:col-start-7">
       <p class="max-w-[58ch] text-lg leading-relaxed text-muted">Useful when a product has started dragging its own history around: old decisions, extra layers, fallback flows, code nobody wants to touch. The first move is usually not expansion. It is a precise cut.</p>
-      <p class="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">That instinct shaped pharmacy ERP across 1,300+ stores, education and creator platforms, <a href="https://houseviser.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire">Houseviser</a> in Phuket, and <a href="https://nofins.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire">nofins.com</a>, where freediving became a calmer, clearer digital product.</p>
+      <p class="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">That instinct shaped pharmacy ERP across 1,300+ stores, education and creator platforms, <a href="https://houseviser.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">Houseviser</a> in Phuket, and <a href="https://nofins.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">nofins.com</a>, where freediving became a calmer, clearer digital product.</p>
     </div>
   </section>
 
@@ -56,13 +56,13 @@ page_class: about-page
   <section class="py-14 md:py-24">
     <div class="mb-10 flex flex-wrap items-end justify-between gap-5">
       <h2 class="text-4xl font-black tracking-[-.03em] md:text-6xl">Selected timeline</h2>
-      <a href="https://docs.google.com/document/d/1qnomVOrRcLFvJ3dISHwEGgQ_aEzKXytpmPF1eJyqAM0/edit?tab=t.0" class="min-h-11 border border-ink px-4 py-3 text-base font-black hover:border-fire hover:bg-fire hover:text-white">Open CV ↗</a>
+      <a href="https://docs.google.com/document/d/1qnomVOrRcLFvJ3dISHwEGgQ_aEzKXytpmPF1eJyqAM0/edit?tab=t.0" class="min-h-11 border border-ink px-4 py-3 text-base font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">Open CV ↗</a>
     </div>
 
     <div>
       {% career.each do |item| %}
         <section class="grid gap-3 py-6 md:grid-cols-12 md:gap-6 md:py-8">
-          <p class="font-black text-fire md:col-span-3">{{ item[0] }}</p>
+          <p class="font-black text-fire-ink md:col-span-3">{{ item[0] }}</p>
           <h3 class="text-xl font-black tracking-[-.02em] md:col-span-4 md:text-2xl">{{ item[1] }}</h3>
           <p class="max-w-[54ch] text-base leading-relaxed text-muted md:col-span-5">{{ item[2] }}</p>
         </section>
@@ -79,9 +79,9 @@ page_class: about-page
   </section>
 
   <nav class="flex flex-wrap gap-x-8 gap-y-3 py-7 text-base font-black" aria-label="Elsewhere">
-    <a href="https://github.com/firedev" class="min-h-11 py-2 hover:text-fire">GitHub ↗</a>
-    <a href="https://stackoverflow.com/users/166484/nick" class="min-h-11 py-2 hover:text-fire">Stack Overflow ↗</a>
-    <a href="https://git-wrapped.com/profiles/firedev" class="min-h-11 py-2 hover:text-fire">Git Wrapped ↗</a>
-    <a href="https://nofins.com" class="min-h-11 py-2 hover:text-fire">nofins.com ↗</a>
+    <a href="https://github.com/firedev" class="min-h-11 py-2 hover:text-fire-ink">GitHub ↗</a>
+    <a href="https://stackoverflow.com/users/166484/nick" class="min-h-11 py-2 hover:text-fire-ink">Stack Overflow ↗</a>
+    <a href="https://git-wrapped.com/profiles/firedev" class="min-h-11 py-2 hover:text-fire-ink">Git Wrapped ↗</a>
+    <a href="https://nofins.com" class="min-h-11 py-2 hover:text-fire-ink">nofins.com ↗</a>
   </nav>
 </article>
