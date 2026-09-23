@@ -46,14 +46,6 @@ page_class: homepage
   </section>
 
   <section class="grid gap-10 py-16 md:grid-cols-2 md:py-24">
-    <h2 class="max-w-[11ch] text-4xl font-black tracking-[-.03em] md:text-6xl">Refactoring businesses with AI.</h2>
-    <div>
-      <p class="mb-6 max-w-[55ch] text-lg leading-relaxed text-muted">The same move I make in code, applied to how a company runs. Find the manual work that repeats, give it a clear shape, hand it to AI agents with a human checkpoint where judgment matters.</p>
-      <p class="max-w-[55ch] text-lg leading-relaxed text-muted">At Houseviser, developer price lists from Dropbox and Drive become reviewed listings in one command. Product tasks go into a queue; agents write the code, and a second agent reviews every pull request before merge.</p>
-    </div>
-  </section>
-
-  <section class="grid gap-10 py-16 md:grid-cols-2 md:py-24">
     <h2 class="max-w-[11ch] text-4xl font-black tracking-[-.03em] md:text-6xl">Architecture × product × design.</h2>
     <div>
       <p class="mb-6 max-w-[55ch] text-lg leading-relaxed text-muted">Pharmacy ERP for 1,300+ stores. School platforms. Media products. Phuket real estate. Different arenas, same move: tangled systems turned into something clear, usable, and alive.</p>
