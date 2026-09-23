@@ -15,14 +15,14 @@ page_class: homepage
     </div>
     <div class="md:self-end md:pb-5">
       <p class="max-w-[34ch] text-xl leading-relaxed text-muted">The kind of builder who can take a knotty product from first sketch to live system and keep the shape all the way through.</p>
-      <div class="mt-8 flex gap-8 border-t border-line pt-6">
+      <div class="mt-8 flex gap-8 pt-6">
         <p><strong class="block text-4xl font-black text-fire">20+</strong><span class="text-sm text-muted">years shipping</span></p>
         <p><strong class="block text-4xl font-black text-fire">{{ project_count }}</strong><span class="text-sm text-muted">projects archived</span></p>
       </div>
     </div>
   </section>
 
-  <section class="border-t border-line py-14 md:py-24">
+  <section class="py-14 md:py-24">
     <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
       <h2 class="text-4xl font-black tracking-[-.03em] md:text-6xl">Recent & defining work</h2>
       <a href="/projects/" class="font-black text-ink hover:text-fire">All projects →</a>
@@ -33,7 +33,7 @@ page_class: homepage
           <figure class="project-media {{ project.data.logo && !project.data.coverVideo && 'project-logo' }} aspect-[16/10] overflow-hidden bg-white">
             {%@ "project_media", project: project %}
           </figure>
-          <div class="flex items-baseline justify-between gap-5 border-b border-line py-5">
+          <div class="flex items-baseline justify-between gap-5 py-5">
             <span>
               <strong class="block text-2xl">{{ project.data.name }}</strong>
               <small class="mt-1 block text-muted">{{ project.data.summary }}</small>
@@ -45,7 +45,7 @@ page_class: homepage
     </div>
   </section>
 
-  <section class="grid gap-10 border-t border-line py-16 md:grid-cols-2 md:py-24">
+  <section class="grid gap-10 py-16 md:grid-cols-2 md:py-24">
     <h2 class="max-w-[11ch] text-4xl font-black tracking-[-.03em] md:text-6xl">Refactoring businesses with AI.</h2>
     <div>
       <p class="mb-6 max-w-[55ch] text-lg leading-relaxed text-muted">The same move I make in code, applied to how a company runs. Find the manual work that repeats, give it a clear shape, hand it to AI agents with a human checkpoint where judgment matters.</p>
@@ -53,7 +53,7 @@ page_class: homepage
     </div>
   </section>
 
-  <section class="grid gap-10 border-t border-line py-16 md:grid-cols-2 md:py-24">
+  <section class="grid gap-10 py-16 md:grid-cols-2 md:py-24">
     <h2 class="max-w-[11ch] text-4xl font-black tracking-[-.03em] md:text-6xl">Architecture × product × design.</h2>
     <div>
       <p class="mb-6 max-w-[55ch] text-lg leading-relaxed text-muted">Pharmacy ERP for 1,300+ stores. School platforms. Media products. Phuket real estate. Different arenas, same move: tangled systems turned into something clear, usable, and alive.</p>

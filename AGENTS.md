@@ -46,9 +46,9 @@ Do not force-push either branch. `src/CNAME` must remain `firedev.com`.
 ## Project screenshots
 
 Card media is 16:10 with `object-cover`, so a taller shot loses its top (logo, nav).
-Brave headless ignores the height in `--window-size=1440,900` and returns 1440×1000
-(23.09.2026) — crop to 1440×900 from the top with PIL. Light mode:
-`--blink-settings=preferredColorScheme=1`.
-Brave headless can hang with no output (23.09.2026: the 3rd back-to-back run, and every
-run with a fresh `--user-data-dir`, after Brave GUI was opened on the same URL). macOS has
-no `timeout`; run shots one at a time and `pkill -f` a stuck run.
+Light mode: `--blink-settings=preferredColorScheme=1`. zsh does not word-split
+`set -- $p` in a loop — use `set -- ${=p}`, or every shot silently goes to the wrong
+path (23.09.2026: that, not Brave, was why window sizes looked ignored). Brave headless
+hangs while Brave GUI is open; use Playwright's
+`~/Library/Caches/ms-playwright/chromium_headless_shell-*/chrome-headless-shell-mac-arm64/chrome-headless-shell`
+with the same flags.

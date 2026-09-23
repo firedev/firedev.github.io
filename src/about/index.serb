@@ -36,7 +36,7 @@ page_class: about-page
     </div>
   </section>
 
-  <section class="grid gap-8 border-t border-line py-12 md:grid-cols-12 md:py-20">
+  <section class="grid gap-8 py-12 md:grid-cols-12 md:py-20">
     <h2 class="max-w-[10ch] text-4xl font-black tracking-[-.03em] md:col-span-5 md:text-6xl">The best change removes more code than it adds.</h2>
     <div class="md:col-span-6 md:col-start-7">
       <p class="max-w-[58ch] text-lg leading-relaxed text-muted">Useful when a product has started dragging its own history around: old decisions, extra layers, fallback flows, code nobody wants to touch. The first move is usually not expansion. It is a precise cut.</p>
@@ -46,7 +46,7 @@ page_class: about-page
 
   <section class="grid gap-5 py-12 md:grid-cols-3 md:py-16">
     {% quotes.each do |quote| %}
-      <blockquote class="border-t border-ink pt-5">
+      <blockquote class="pt-5">
         <p class="max-w-[16ch] text-3xl font-black leading-[1] tracking-[-.03em]">{{ quote[0] }}</p>
         <p class="mt-4 max-w-[30ch] text-base leading-relaxed text-muted">{{ quote[1] }}</p>
       </blockquote>
@@ -59,9 +59,9 @@ page_class: about-page
       <a href="https://docs.google.com/document/d/1qnomVOrRcLFvJ3dISHwEGgQ_aEzKXytpmPF1eJyqAM0/edit?tab=t.0" class="min-h-11 border border-ink px-4 py-3 text-base font-black hover:border-fire hover:bg-fire hover:text-white">Open CV ↗</a>
     </div>
 
-    <div class="border-t border-ink">
+    <div>
       {% career.each do |item| %}
-        <section class="grid gap-3 border-b border-line py-6 md:grid-cols-12 md:gap-6 md:py-8">
+        <section class="grid gap-3 py-6 md:grid-cols-12 md:gap-6 md:py-8">
           <p class="font-black text-fire md:col-span-3">{{ item[0] }}</p>
           <h3 class="text-xl font-black tracking-[-.02em] md:col-span-4 md:text-2xl">{{ item[1] }}</h3>
           <p class="max-w-[54ch] text-base leading-relaxed text-muted md:col-span-5">{{ item[2] }}</p>
@@ -78,7 +78,7 @@ page_class: about-page
     </div>
   </section>
 
-  <nav class="flex flex-wrap gap-x-8 gap-y-3 border-b border-line py-7 text-base font-black" aria-label="Elsewhere">
+  <nav class="flex flex-wrap gap-x-8 gap-y-3 py-7 text-base font-black" aria-label="Elsewhere">
     <a href="https://github.com/firedev" class="min-h-11 py-2 hover:text-fire">GitHub ↗</a>
     <a href="https://stackoverflow.com/users/166484/nick" class="min-h-11 py-2 hover:text-fire">Stack Overflow ↗</a>
     <a href="https://git-wrapped.com/profiles/firedev" class="min-h-11 py-2 hover:text-fire">Git Wrapped ↗</a>
