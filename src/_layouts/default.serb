@@ -10,7 +10,7 @@
     <a href="/" class="block w-44 shrink-0 md:w-52 lg:w-56" aria-label="firedev.com home">
       <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
     </a>
-    <nav class="site-nav flex w-full flex-wrap items-center md:items-baseline gap-x-6 gap-y-2 text-lg font-black md:flex-1 md:flex-nowrap md:gap-x-8 md:text-[1.35rem]" aria-label="Primary">
+    <nav class="site-nav flex w-full flex-wrap items-center md:items-baseline gap-x-6 gap-y-2 text-xl font-black md:flex-1 md:flex-nowrap md:gap-x-10 md:text-[1.8rem]" aria-label="Primary">
       <a href="/posts/" class="nav-link inline-flex min-h-11 items-center {{ posts_active ? 'is-active text-fire-ink' : 'text-muted' }}" {% if posts_active %}aria-current="page"{% end %}>Posts</a>
       <a href="/projects/" class="nav-link inline-flex min-h-11 items-center {{ current_path.start_with?('/projects') ? 'is-active text-fire-ink' : 'text-muted' }}" {% if current_path.start_with?('/projects') %}aria-current="page"{% end %}>Projects</a>
       <a href="/about/" class="nav-link inline-flex min-h-11 items-center {{ current_path.start_with?('/about') ? 'is-active text-fire-ink' : 'text-muted' }}" {% if current_path.start_with?('/about') %}aria-current="page"{% end %}>About</a>

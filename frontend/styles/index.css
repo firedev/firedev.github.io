@@ -63,7 +63,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: .45rem;
+  bottom: -.1rem;
   height: 2px;
   background: var(--color-fire);
   transform: scaleX(0);
