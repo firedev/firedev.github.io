@@ -9,9 +9,9 @@ page_class: posts-page
 {% featured = posts.first %}
 
 <div class="mx-auto w-[min(1180px,calc(100%-2rem))]">
-  <section class="grid gap-10 py-16 md:grid-cols-12 md:items-end md:py-24">
-    <h1 class="max-w-[10ch] self-start text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em] md:col-span-8">Notes from <strong class="text-fire-ink">the work.</strong></h1>
-    <p class="max-w-[34ch] text-lg leading-relaxed text-muted md:col-span-4">Ruby, products, teams, interfaces, and the small decisions that keep systems moving.</p>
+  <section class="py-16 md:py-24">
+    <h1 class="max-w-[10ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Notes from <strong class="text-fire-ink">the work.</strong></h1>
+    <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">Ruby, products, teams, interfaces, and the small decisions that keep systems moving.</p>
   </section>
 
   {% if featured %}

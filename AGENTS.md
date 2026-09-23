@@ -66,3 +66,11 @@ Project text is Nick's words verbatim — lift it from the project's own site or
 (`rg` the exact line), never paraphrase or translate his Russian into new English lines.
 23.09.2026: invented Tell Others lines ("What I want to leave behind…", "One card for each
 thing…") read wrong to Nick; the fix was his lines from tellothers.com unchanged.
+
+## Page headers — one position
+
+Every page opens the same way (Nick, 23.09.2026: "ONE position"): `<section class="py-16 md:py-24">`,
+H1 `text-[clamp(3.6rem,10vw,6rem)] leading-[.88]` with the last words in `<strong class="text-fire-ink">`,
+then the orange role line (`mt-6 text-lg font-black text-fire-ink`), then the subtitle
+(`mt-8 max-w-[48ch] text-xl md:text-2xl text-muted`) — always under the headline, never in a side column.
+Headline top lands at 215px on desktop on home, posts, projects, about and project pages.
