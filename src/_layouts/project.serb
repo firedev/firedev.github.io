@@ -16,13 +16,13 @@ layout: default
 } %}
 
 <article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
-  <a href="/projects/" class="mt-10 inline-flex min-h-11 items-center text-base font-black text-muted hover:text-fire-ink">← All projects</a>
+  <a href="/projects/" class="mt-6 inline-flex min-h-11 items-center text-base font-black text-muted hover:text-fire-ink">← All projects</a>
 
-  <section class="grid items-end gap-10 pt-10 pb-10 md:grid-cols-[.9fr_1.1fr] md:pt-16 md:pb-14">
+  <section class="grid items-start gap-10 pt-6 pb-10 md:grid-cols-[.9fr_1.1fr] md:pt-6 md:pb-14">
     <div>
-      <p class="mb-4 text-base font-bold text-muted">{{ clean_text.call(resource.data.role) }}</p>
       <h1 class="max-w-[10ch] text-[clamp(3.5rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">{{ resource.data.name }}</h1>
-      <p class="mt-7 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">{{ clean_text.call(resource.data.summary) }}</p>
+      <p class="mt-6 text-lg font-black text-fire-ink">{{ clean_text.call(resource.data.role) }}</p>
+      <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">{{ clean_text.call(resource.data.summary) }}</p>
     </div>
     {% hero_link = resource.data.link || resource.data.links&.first&.last %}
     {% if hero_link %}<a href="{{ hero_link }}" target="_blank" rel="noopener" class="project-card block" aria-label="Open {{ resource.data.name }}">{% end %}
