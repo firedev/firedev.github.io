@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Tell Others","description":"Short lessons that worked, passed on as cards in English and Russian.","order":2.5,"slug":"tellothers","name":"Tell Others","years":"2026 — now","group":"featured","role":"Author · Design · Engineering","summary":"It worked? Tell others. Short lessons as cards, in English and Russian.","story":["Tell Others is a set of short lessons that worked in my own life, each one a card: people, work, practice.","85 cards, each in English and Russian. Written, designed, and built by me."],"stack":"Bridgetown · Tailwind CSS · Bilingual content","cover":"/images/projects/screens/tellothers.png","link":"https://tellothers.com"}
+---

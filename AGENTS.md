@@ -42,3 +42,10 @@ the generated HTML. If a real browser is required, use Brave only — never Chro
    `https://firedev.com/`, `/projects/`, and `/projects/unpos/`.
 
 Do not force-push either branch. `src/CNAME` must remain `firedev.com`.
+
+## Project screenshots
+
+Card media is 16:10 with `object-cover`, so a taller shot loses its top (logo, nav).
+Brave headless ignores the height in `--window-size=1440,900` and returns 1440×1000
+(23.09.2026) — crop to 1440×900 from the top with PIL. Light mode:
+`--blink-settings=preferredColorScheme=1`.
