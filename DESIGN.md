@@ -166,7 +166,7 @@ Square. Radius 0 on buttons, frames, tiles, code boxes and the CTA block. The on
 ### Project cards
 - **Media:** white frame, native ratio, slight 1.025 scale on hover (off under reduced motion).
 - **Caption:** name (1.5rem, 900), one-line summary (Muted), a Fire ↗.
-- **Grid:** two columns for featured work, three for the rest.
+- **Columns:** cards run vertically in CSS columns (`md:columns-2`, `lg:columns-3` on /projects/, two on home), `break-inside-avoid`, so mixed ratios stack without row gaps.
 
 ### Code boxes
 - White, 1px Line outline, 16px 20px padding, uppercase label on top, commands wrap (`pre-wrap`, `overflow-wrap:anywhere`) so nothing scrolls sideways.
