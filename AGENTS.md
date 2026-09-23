@@ -1,5 +1,7 @@
 # firedev.com
 
+Design language: `DESIGN.md` ("Drop the Weight") — read it before any visual change.
+
 Portfolio on Bridgetown 2.2 + Tailwind CSS 4.
 
 ## Branches

@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-23T07:04:48.581314+00:00",
+  "title": "Design System: firedev",
+  "extensions": {
+    "colorMeta": {
+      "fire": {
+        "role": "primary",
+        "displayName": "Fire"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink"
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted"
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Canvas"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line (tables only)"
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out-soft",
+        "value": "cubic-bezier(.22, 1, .36, 1)",
+        "purpose": "Card media scale on hover, 500ms."
+      },
+      {
+        "name": "ease-ui",
+        "value": "ease",
+        "purpose": "Colour and underline transitions, 180ms."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Every action: Email, Visit project, Open CV.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Visit project ↗</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;min-height:44px;padding:12px 16px;border:1px solid #12100f;color:#12100f;font-weight:900;text-decoration:none;font-family:ui-sans-serif,system-ui,sans-serif;transition:background .18s,color .18s,border-color .18s}.ds-btn:hover{background:#ff6633;border-color:#ff6633;color:#fff}.ds-btn:focus-visible{outline:2px solid #ff6633;outline-offset:4px}"
+    },
+    {
+      "name": "Page Header",
+      "kind": "custom",
+      "description": "Headline, orange role line, subtitle. One position on every page.",
+      "html": "<section class=\"ds-hero\"><h1>Things I’ve <strong>shipped.</strong></h1><p class=\"ds-role\">Products, systems, brands, and experiments</p><p class=\"ds-lede\">Two decades across product, engineering, design, and the occasional business built from zero.</p></section>",
+      "css": ".ds-hero{font-family:ui-sans-serif,system-ui,sans-serif;background:#f6f4f1;padding:24px}.ds-hero h1{margin:0;font-size:clamp(3.6rem,10vw,6rem);font-weight:900;line-height:.88;letter-spacing:-.04em;color:#12100f;max-width:12ch}.ds-hero h1 strong{color:#ff6633}.ds-role{margin:24px 0 0;font-size:1.125rem;font-weight:900;color:#ff6633}.ds-lede{margin:32px 0 0;max-width:48ch;font-size:1.5rem;line-height:1.625;color:#68615c}"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "description": "Media at its own ratio, name, one-line summary, orange arrow.",
+      "html": "<a class=\"ds-card\" href=\"#\"><div class=\"ds-media\"></div><div class=\"ds-cap\"><span><strong>Tell Others</strong><small>It worked? Tell others.</small></span><span class=\"ds-arrow\">↗</span></div></a>",
+      "css": ".ds-card{display:block;text-decoration:none;color:#12100f;font-family:ui-sans-serif,system-ui,sans-serif;max-width:420px}.ds-media{aspect-ratio:1.6;background:#fff}.ds-cap{display:flex;justify-content:space-between;gap:20px;padding:20px 0}.ds-cap strong{display:block;font-size:1.5rem;font-weight:900}.ds-cap small{display:block;margin-top:4px;font-size:1rem;color:#68615c}.ds-arrow{color:#ff6633}.ds-card:hover strong{color:#ff6633}"
+    },
+    {
+      "name": "Code Box with Copy",
+      "kind": "custom",
+      "refersTo": "code-box",
+      "description": "Install commands. Wraps, copy pinned top-right.",
+      "html": "<div class=\"ds-code\"><p>Homebrew</p><pre>brew install firedev/tap/threefinger</pre><button class=\"ds-copy\">Copy</button></div>",
+      "css": ".ds-code{position:relative;background:#fff;border:1px solid #ddd7d1;padding:16px 20px;font-family:ui-sans-serif,system-ui,sans-serif}.ds-code p{margin:0 0 8px;font-size:.875rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:#68615c}.ds-code pre{margin:0;padding-right:6rem;white-space:pre-wrap;overflow-wrap:anywhere;font:1rem/1.625 ui-monospace,Menlo,monospace;color:#12100f}.ds-copy{position:absolute;top:12px;right:12px;min-height:44px;padding:0 16px;background:#fff;border:1px solid #12100f;font-weight:900;cursor:pointer}.ds-copy:hover{background:#ff6633;border-color:#ff6633;color:#fff}"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "description": "Active item in Fire with underline below descenders.",
+      "html": "<nav class=\"ds-nav\"><a>Posts</a><a class=\"on\">Projects</a><a>About</a></nav>",
+      "css": ".ds-nav{display:flex;gap:40px;font:900 1.8rem/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:-.03em}.ds-nav a{position:relative;color:#68615c;padding-bottom:6px}.ds-nav a.on{color:#ff6633}.ds-nav a.on:after{content:\"\";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:#ff6633}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Drop the Weight",
+    "overview": "From Nick's line 'Remove weight. Keep the force.' Every rule is a subtraction; the force stays in heavy display type, one orange, and the work shown whole.",
+    "keyCharacteristics": [
+      "One sans, 900 for display, 400 for reading",
+      "One accent #ff6633, never darkened",
+      "No lines, no radius, no shadows",
+      "Media at native ratio",
+      "One header position on every page"
+    ],
+    "rules": [
+      {
+        "name": "The One Orange Rule",
+        "body": "One accent, one value, no tints or darker variant.",
+        "section": "colors"
+      },
+      {
+        "name": "The Last Word Burns Rule",
+        "body": "Headlines end on a Fire word.",
+        "section": "typography"
+      },
+      {
+        "name": "The 14px Floor",
+        "body": "No text below 14px.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Position Rule",
+        "body": "Headline, role line, subtitle stacked; headline top at 215px.",
+        "section": "layout"
+      },
+      {
+        "name": "The No Lines Rule",
+        "body": "Space separates; lines only on buttons and table rows.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Own Ratio Rule",
+        "body": "Images render whole at native ratio.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use Nick's words verbatim",
+      "Do end every headline on a Fire word",
+      "Do separate sections with space",
+      "Do show every image whole",
+      "Do link named work to its project page"
+    ],
+    "donts": [
+      "Don't add dividers, radius or shadows",
+      "Don't darken #ff6633",
+      "Don't crop with object-cover",
+      "Don't put a subtitle beside a headline",
+      "Don't set text below 14px",
+      "Don't write copy for Nick"
+    ]
+  }
+}
