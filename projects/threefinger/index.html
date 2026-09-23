@@ -18,8 +18,8 @@
 <meta name="twitter:title" content="threefinger · firedev.com">
 <meta name="twitter:description" content="Swipe with three fingers on the Mac trackpad to change tabs.">
 <meta name="twitter:image" content="https://firedev.com/images/projects/threefinger.jpg">
-<link rel="stylesheet" href="/_bridgetown/static/index.OHVUB7MV.css">
-<script src="/_bridgetown/static/index.P6KJZRZR.js" type="module"></script>
+<link rel="stylesheet" href="/_bridgetown/static/index.XYZCNEGU.css">
+<script src="/_bridgetown/static/index.STXZDQ5O.js" type="module"></script>
 
 </head>
 <body class=" min-h-screen overflow-x-hidden">
@@ -27,9 +27,9 @@
     <a href="/" class="block w-44 shrink-0 md:w-52 lg:w-56" aria-label="firedev.com home">
       <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
     </a>
-    <nav class="site-nav flex w-full flex-wrap items-center gap-x-6 gap-y-2 text-lg font-black md:flex-1 md:flex-nowrap md:gap-x-8 md:text-[1.35rem]" aria-label="Primary">
+    <nav class="site-nav flex w-full flex-wrap items-center gap-x-6 gap-y-2 text-xl font-black md:flex-1 md:flex-nowrap md:gap-x-10 md:text-[1.8rem]" aria-label="Primary">
       <a href="/posts/" class="nav-link inline-flex min-h-11 items-center text-muted" >Posts</a>
-      <a href="/projects/" class="nav-link inline-flex min-h-11 items-center is-active text-fire" aria-current="page">Projects</a>
+      <a href="/projects/" class="nav-link inline-flex min-h-11 items-center is-active text-fire-ink" aria-current="page">Projects</a>
       <a href="/about/" class="nav-link inline-flex min-h-11 items-center text-muted" >About</a>
       <a href="mailto:nick@firedev.com" class="nav-cta inline-flex min-h-11 items-center justify-center border border-ink px-4 py-3 text-base font-black text-ink md:ml-auto md:px-5">Email ↗</a>
     </nav>
@@ -38,67 +38,42 @@
   <main>
     
 <article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
-  <a href="/projects/" class="mt-10 inline-flex min-h-11 items-center text-base font-black text-muted hover:text-fire">← All projects</a>
+  <a href="/projects/" class="mt-6 inline-flex min-h-11 items-center text-base font-black text-muted hover:text-fire-ink">← All projects</a>
 
-  <section class="grid items-end gap-10 py-12 md:grid-cols-[.9fr_1.1fr] md:py-24">
+  <section class="grid items-start gap-10 pt-6 pb-10 md:grid-cols-[.9fr_1.1fr] md:pt-6 md:pb-14">
     <div>
-      <p class="mb-4 text-sm font-bold text-muted">Open source · macOS</p>
       <h1 class="max-w-[10ch] text-[clamp(3.5rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">threefinger</h1>
-      <p class="mt-7 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">Swipe with three fingers on the Mac trackpad to change tabs.</p>
+      <p class="mt-6 text-lg font-black text-fire-ink">Open source · macOS</p>
+      <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">Swipe with three fingers on the Mac trackpad to change tabs.</p>
     </div>
-    <figure class="project-media  relative aspect-[4/3] overflow-hidden bg-white">
-        <video class="h-full w-full object-cover" autoplay muted loop playsinline poster="/images/projects/threefinger.jpg">
+    <a href="https://github.com/firedev/threefinger" target="_blank" rel="noopener" class="project-card block" aria-label="Open threefinger">
+    <figure class="project-media block false relative overflow-hidden bg-white">
+        <video class="block h-auto w-full" autoplay muted loop playsinline poster="/images/projects/threefinger.jpg">
     <source src="/images/projects/threefinger.mp4" type="video/mp4">
   </video>
 
     </figure>
+    </a>
   </section>
 
-  <section class="grid gap-12 py-14 md:grid-cols-[1.25fr_.55fr] md:gap-24 md:py-24">
-    <div>
+  <section class="grid gap-12 pb-14 md:grid-cols-[1.25fr_.55fr] md:gap-24 md:pb-24">
+    <div class="min-w-0">
         <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">Swipe with three fingers on the Mac trackpad to change tabs.</p>
         <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">That’s the job. Left and right move to the previous or next tab in Safari, Chrome, Firefox, and most tabbed apps.</p>
         <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">Optional: map any other shortcut in the config, or keep Mission Control and App Exposé on three-finger up/down so up shows all windows and down shows this app’s windows.</p>
         <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">A tiny open-source Swift utility - one file on MultitouchSupport, Karabiner-style config in ~/.config/threefinger.json.</p>
-    </div>
-
-    <aside>
-      <h2 class="mb-6 text-2xl font-black tracking-[-.03em]">Details</h2>
-      <dl>
-        <div class="py-4">
-          <dt class="mb-1 text-xs font-black uppercase tracking-wider text-muted">Years</dt>
-          <dd>2026</dd>
-        </div>
-        <div class="py-4">
-          <dt class="mb-1 text-xs font-black uppercase tracking-wider text-muted">Role</dt>
-          <dd>Open source · macOS</dd>
-        </div>
-        <div class="py-4">
-          <dt class="mb-1 text-xs font-black uppercase tracking-wider text-muted">Stack / scope</dt>
-          <dd class="leading-relaxed">Swift · MultitouchSupport · launchd · Homebrew</dd>
-        </div>
-      </dl>
-
-        <div class="mt-8 flex flex-wrap gap-3">
-            <a href="https://github.com/firedev/threefinger" target="_blank" rel="noopener" class="border border-ink px-4 py-3 text-sm font-black text-ink hover:border-fire hover:bg-fire hover:text-white">Visit project ↗</a>
-            <a href="https://github.com/firedev/threefinger/releases/tag/v1.1.4" target="_blank" rel="noopener" class="border border-ink px-4 py-3 text-sm font-black text-ink hover:border-fire hover:bg-fire hover:text-white">Release v1.1.4 ↗</a>
-            <a href="https://github.com/firedev/homebrew-tap" target="_blank" rel="noopener" class="border border-ink px-4 py-3 text-sm font-black text-ink hover:border-fire hover:bg-fire hover:text-white">Homebrew tap ↗</a>
-        </div>
-    </aside>
-  </section>
-
-    <section class="py-14 md:py-24">
+      <div class="mt-16 min-w-0">
       <h2 class="mb-7 text-3xl font-black tracking-[-.03em] md:text-5xl">Install</h2>
         <p class="mb-6 max-w-[65ch] text-lg leading-relaxed text-muted">Install, allow threefinger when Settings asks, free the left/right swipe - tabs start changing. The rest is optional.</p>
-        <div class="grid gap-4">
-            <div class="border border-line bg-white px-5 py-4">
-              <p class="mb-2 text-xs font-black uppercase tracking-wider text-muted">Homebrew</p>
-              <pre class="overflow-x-auto text-sm leading-relaxed text-ink"><code>brew install firedev/tap/threefinger
+        <div class="grid grid-cols-1 gap-4">
+            <div class="copy-card min-w-0 border border-line bg-white px-5 py-4">
+              <p class="mb-2 text-sm font-black uppercase tracking-wider text-muted">Homebrew</p>
+              <pre class="whitespace-pre-wrap text-base leading-relaxed text-ink [overflow-wrap:anywhere]"><code>brew install firedev/tap/threefinger
 brew services start threefinger</code></pre>
             </div>
-            <div class="border border-line bg-white px-5 py-4">
-              <p class="mb-2 text-xs font-black uppercase tracking-wider text-muted">Installer script</p>
-              <pre class="overflow-x-auto text-sm leading-relaxed text-ink"><code>curl -fsSL https://raw.githubusercontent.com/firedev/threefinger/master/install.sh | bash</code></pre>
+            <div class="copy-card min-w-0 border border-line bg-white px-5 py-4">
+              <p class="mb-2 text-sm font-black uppercase tracking-wider text-muted">Installer script</p>
+              <pre class="whitespace-pre-wrap text-base leading-relaxed text-ink [overflow-wrap:anywhere]"><code>curl -fsSL https://raw.githubusercontent.com/firedev/threefinger/master/install.sh | bash</code></pre>
             </div>
         </div>
         <ol class="mt-8 max-w-[65ch] list-decimal space-y-3 pl-5 text-lg leading-relaxed text-muted">
@@ -151,18 +126,51 @@ brew services start threefinger</code></pre>
             </tbody>
           </table>
         </div>
-        <p class="mt-6 max-w-[65ch] border-l-4 border-fire pl-4 text-base leading-relaxed text-ink">After an upgrade, remove threefinger from Accessibility (−) and add it again, then restart the service - toggling is not enough, and a grant does not apply to a daemon that is already running. Homebrew path: /opt/homebrew/opt/threefinger/bin/threefinger. curl installer: ~/.local/bin/threefinger.</p>
-    </section>
+        <p class="mt-6 max-w-[65ch] border-l-4 border-fire-ink pl-4 text-base leading-relaxed text-ink">After an upgrade, remove threefinger from Accessibility (−) and add it again, then restart the service - toggling is not enough, and a grant does not apply to a daemon that is already running. Homebrew path: /opt/homebrew/opt/threefinger/bin/threefinger. curl installer: ~/.local/bin/threefinger.</p>
+      </div>
+    </div>
+
+    <aside>
+      <h2 class="mb-6 text-2xl font-black tracking-[-.03em]">Details</h2>
+      <dl>
+        <div class="py-4">
+          <dt class="mb-1 text-sm font-black uppercase tracking-wider text-muted">Years</dt>
+          <dd>2026</dd>
+        </div>
+        <div class="py-4">
+          <dt class="mb-1 text-sm font-black uppercase tracking-wider text-muted">Role</dt>
+          <dd>Open source · macOS</dd>
+        </div>
+        <div class="py-4">
+          <dt class="mb-1 text-sm font-black uppercase tracking-wider text-muted">Stack / scope</dt>
+          <dd class="leading-relaxed">Swift · MultitouchSupport · launchd · Homebrew</dd>
+        </div>
+      </dl>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+            <a href="https://github.com/firedev/threefinger" target="_blank" rel="noopener" class="border border-ink px-4 py-3 text-base font-black text-ink hover:border-fire-ink hover:bg-fire-ink hover:text-white">Visit project ↗</a>
+            <a href="https://github.com/firedev/threefinger/releases/tag/v1.1.8" target="_blank" rel="noopener" class="border border-ink px-4 py-3 text-base font-black text-ink hover:border-fire-ink hover:bg-fire-ink hover:text-white">Release v1.1.8 ↗</a>
+            <a href="https://github.com/firedev/homebrew-tap" target="_blank" rel="noopener" class="border border-ink px-4 py-3 text-base font-black text-ink hover:border-fire-ink hover:bg-fire-ink hover:text-white">Homebrew tap ↗</a>
+        </div>
+    </aside>
+  </section>
+
+
 
 
 
 
   <section class="py-14 md:py-24">
     <div class="grid gap-6 md:grid-cols-2">
-        <a href="/projects/houseviser/" class="bg-white px-5 py-5 text-inherit transition-colors hover:text-fire">
-          <small class="block text-xs font-black uppercase tracking-wider text-muted">Next project</small>
-          <strong class="mt-3 block text-2xl tracking-[-.02em]">Houseviser</strong>
-          <span class="mt-2 block leading-relaxed text-muted">Verified Phuket real estate, direct from agents and developers.</span>
+        <a href="/projects/tellothers/" class="bg-white px-5 py-5 text-inherit transition-colors hover:text-fire-ink">
+          <span class="block text-sm font-black uppercase tracking-wider text-muted">Previous project</span>
+          <strong class="mt-3 block text-2xl tracking-[-.02em]">Tell Others</strong>
+          <span class="mt-2 block leading-relaxed text-muted">It worked? Tell others.</span>
+        </a>
+        <a href="/projects/matrix/" class="bg-white px-5 py-5 text-inherit transition-colors hover:text-fire-ink">
+          <span class="block text-sm font-black uppercase tracking-wider text-muted">Next project</span>
+          <strong class="mt-3 block text-2xl tracking-[-.02em]">matrix</strong>
+          <span class="mt-2 block leading-relaxed text-muted">Matrix rain screensaver for the terminal. For recording livestreams.</span>
         </a>
     </div>
   </section>
@@ -170,12 +178,38 @@ brew services start threefinger</code></pre>
   <section class="py-14 md:py-24">
     <div class="mb-7 flex flex-wrap items-baseline gap-4 pb-4">
       <h2 class="text-3xl font-black tracking-[-.03em] md:text-5xl">More from the collection</h2>
-      <a href="/projects/" class="text-sm font-black text-muted hover:text-fire">Open all projects</a>
+      <a href="/projects/" class="text-base font-black text-muted hover:text-fire-ink">Open all projects</a>
     </div>
     <div class="grid gap-5 md:grid-cols-3">
+        <a href="/projects/tellothers/" class="block text-inherit">
+          <figure class="project-media false overflow-hidden bg-white">
+              <img src="/images/projects/screens/tellothers.webp" alt="Tell Others project visual" class="block h-auto w-full" loading="lazy" decoding="async">
+
+          </figure>
+          <div class="py-4">
+            <div class="flex items-baseline justify-between gap-4">
+              <strong class="text-xl tracking-[-.02em]">Tell Others</strong>
+            </div>
+            <p class="mt-2 leading-relaxed text-muted">It worked? Tell others.</p>
+          </div>
+        </a>
+        <a href="/projects/matrix/" class="block text-inherit">
+          <figure class="project-media false overflow-hidden bg-white">
+              <video class="block h-auto w-full" autoplay muted loop playsinline poster="/images/projects/screens/matrix.webp">
+    <source src="/images/projects/matrix.mp4" type="video/mp4">
+  </video>
+
+          </figure>
+          <div class="py-4">
+            <div class="flex items-baseline justify-between gap-4">
+              <strong class="text-xl tracking-[-.02em]">matrix</strong>
+            </div>
+            <p class="mt-2 leading-relaxed text-muted">Matrix rain screensaver for the terminal. For recording livestreams.</p>
+          </div>
+        </a>
         <a href="/projects/houseviser/" class="block text-inherit">
-          <figure class="project-media  aspect-[4/3] overflow-hidden bg-white">
-              <img src="/images/projects/screens/houseviser.png" alt="Houseviser project visual" class="h-full w-full object-cover">
+          <figure class="project-media false overflow-hidden bg-white">
+              <img src="/images/projects/screens/houseviser.webp" alt="Houseviser project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
           </figure>
           <div class="py-4">
@@ -185,38 +219,14 @@ brew services start threefinger</code></pre>
             <p class="mt-2 leading-relaxed text-muted">Verified Phuket real estate, direct from agents and developers.</p>
           </div>
         </a>
-        <a href="/projects/nofins/" class="block text-inherit">
-          <figure class="project-media project-logo aspect-[4/3] overflow-hidden bg-white">
-              <img src="/images/projects/nofins.svg" alt="nofins.com project visual" class="h-full w-full object-cover">
-
-          </figure>
-          <div class="py-4">
-            <div class="flex items-baseline justify-between gap-4">
-              <strong class="text-xl tracking-[-.02em]">nofins.com</strong>
-            </div>
-            <p class="mt-2 leading-relaxed text-muted">Freediving training brand built around attention, calm, and clear dives.</p>
-          </div>
-        </a>
-        <a href="/projects/tellothers/" class="block text-inherit">
-          <figure class="project-media  aspect-[4/3] overflow-hidden bg-white">
-              <img src="/images/projects/screens/tellothers.png" alt="Tell Others project visual" class="h-full w-full object-cover">
-
-          </figure>
-          <div class="py-4">
-            <div class="flex items-baseline justify-between gap-4">
-              <strong class="text-xl tracking-[-.02em]">Tell Others</strong>
-            </div>
-            <p class="mt-2 leading-relaxed text-muted">It worked? Tell others. Short lessons as cards, in English and Russian.</p>
-          </div>
-        </a>
     </div>
   </section>
 </article>
 
   </main>
 
-  <footer class="mx-auto mt-20 flex w-[min(1180px,calc(100%-2rem))] justify-between gap-8 py-8 text-sm text-muted">
-    <a href="https://nikolayx.com" class="hover:text-fire">nikolayx.com</a>
+  <footer class="mx-auto mt-20 flex w-[min(1180px,calc(100%-2rem))] justify-between gap-8 py-8 text-base text-muted">
+    <a href="https://nikolayx.com" class="hover:text-fire-ink">nikolayx.com</a>
     <span>Phuket · Thailand</span>
   </footer>
 </body>
