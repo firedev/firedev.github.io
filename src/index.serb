@@ -8,10 +8,10 @@ page_class: homepage
 {% project_count = collections.projects.resources.size %}
 
 <div class="mx-auto w-[min(1180px,calc(100%-2rem))]">
-  <section class="grid min-h-[72vh] items-center gap-12 py-20 md:grid-cols-[1.35fr_.65fr] md:py-28">
-    <div>
-      <p class="mb-5 font-black text-fire-ink">Nikolay Ostrovsky · Builder, architect, operator</p>
-      <h1 class="max-w-[11ch] text-[clamp(3.7rem,10vw,6rem)] font-black leading-[.86] tracking-[-.04em]">Days, not months.</h1>
+  <section class="grid items-end gap-10 py-16 md:grid-cols-[1.35fr_.65fr] md:py-24">
+    <div class="self-start">
+      <h1 class="max-w-[11ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Days, not months.</h1>
+      <p class="mt-6 text-lg font-black text-fire-ink">Nikolay Ostrovsky · Builder, architect, operator</p>
     </div>
     <div class="md:self-end md:pb-5">
       <p class="max-w-[34ch] text-xl leading-relaxed text-muted">The kind of builder who can take a knotty product from first sketch to live system and keep the shape all the way through.</p>
