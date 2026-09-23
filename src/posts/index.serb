@@ -17,7 +17,7 @@ page_class: posts-page
   {% if featured %}
     <a href="{{ featured.relative_url }}" class="group grid py-7 text-inherit md:grid-cols-12 md:gap-8 md:py-10">
       <figure class="project-media mb-7 overflow-hidden bg-white md:col-span-7 md:mb-0">
-        <img src="{{ featured.data.cover }}" alt="" class="aspect-[16/9] h-full w-full object-cover">
+        <img src="{{ featured.data.cover }}" alt="" class="block h-auto w-full">
       </figure>
       <div class="md:col-span-5 md:self-end">
         <time datetime="{{ featured.data.date.strftime('%Y-%m-%d') }}" class="font-black text-fire-ink">{{ featured.data.date.strftime("%d %b %Y") }}</time>
@@ -39,7 +39,7 @@ page_class: posts-page
             <p class="mt-2 max-w-[64ch] leading-relaxed text-muted">{{ post.data.description }}</p>
           </div>
           {% if post.data.cover %}
-            <img src="{{ post.data.cover }}" alt="" loading="lazy" class="aspect-[16/9] w-full bg-white object-cover md:col-span-3">
+            <img src="{{ post.data.cover }}" alt="" loading="lazy" class="block h-auto w-full self-start bg-white md:col-span-3">
           {% end %}
         </a>
       {% end %}
