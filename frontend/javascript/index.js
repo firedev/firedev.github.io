@@ -13,3 +13,25 @@ if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
     video.pause()
   })
 }
+
+// Copy button next to every code block
+document.querySelectorAll("pre").forEach((pre) => {
+  const wrap = document.createElement("div")
+  wrap.className = "copy-wrap"
+  pre.before(wrap)
+  wrap.append(pre)
+  const button = document.createElement("button")
+  button.type = "button"
+  button.className = "copy-button"
+  button.textContent = "Copy"
+  button.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(pre.innerText.trim())
+      button.textContent = "Copied"
+    } catch {
+      button.textContent = "Select and copy"
+    }
+    setTimeout(() => { button.textContent = "Copy" }, 1500)
+  })
+  wrap.append(button)
+})

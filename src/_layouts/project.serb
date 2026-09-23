@@ -36,54 +36,22 @@ layout: default
   </section>
 
   <section class="grid gap-12 pb-14 md:grid-cols-[1.25fr_.55fr] md:gap-24 md:pb-24">
-    <div>
+    <div class="min-w-0">
       {% (resource.data.story || [resource.data.summary]).each do |paragraph| %}
         <p class="mb-5 max-w-[65ch] text-lg leading-relaxed text-muted">{%= format_text.call(paragraph) %}</p>
       {% end %}
-    </div>
-
-    <aside>
-      <h2 class="mb-6 text-2xl font-black tracking-[-.03em]">Details</h2>
-      <dl>
-        <div class="py-4">
-          <dt class="mb-1 text-sm font-black uppercase tracking-wider text-muted">Years</dt>
-          <dd>{{ format_years.call(resource.data.years) }}</dd>
-        </div>
-        <div class="py-4">
-          <dt class="mb-1 text-sm font-black uppercase tracking-wider text-muted">Role</dt>
-          <dd>{{ clean_text.call(resource.data.role) }}</dd>
-        </div>
-        <div class="py-4">
-          <dt class="mb-1 text-sm font-black uppercase tracking-wider text-muted">Stack / scope</dt>
-          <dd class="leading-relaxed">{{ clean_text.call(resource.data.stack) }}</dd>
-        </div>
-      </dl>
-
-      {% links = [] %}
-      {% links << ["Visit project", resource.data.link] if resource.data.link %}
-      {% links.concat(resource.data.links || []) %}
-      {% if links.any? %}
-        <div class="mt-8 flex flex-wrap gap-3">
-          {% links.each do |link| %}
-            <a href="{{ link[1] }}" target="_blank" rel="noopener" class="border border-ink px-4 py-3 text-base font-black text-ink hover:border-fire-ink hover:bg-fire-ink hover:text-white">{{ link[0] }} ↗</a>
-          {% end %}
-        </div>
-      {% end %}
-    </aside>
-  </section>
-
   {% if resource.data.install %}
-    <section class="py-14 md:py-24">
+      <div class="mt-16 min-w-0">
       <h2 class="mb-7 text-3xl font-black tracking-[-.03em] md:text-5xl">Install</h2>
       {% if resource.data.installNote %}
         <p class="mb-6 max-w-[65ch] text-lg leading-relaxed text-muted">{%= format_text.call(resource.data.installNote) %}</p>
       {% end %}
       {% if resource.data.installCommands %}
-        <div class="grid gap-4">
+        <div class="grid grid-cols-1 gap-4">
           {% resource.data.installCommands.each do |item| %}
-            <div class="border border-line bg-white px-5 py-4">
+            <div class="min-w-0 border border-line bg-white px-5 py-4">
               <p class="mb-2 text-sm font-black uppercase tracking-wider text-muted">{{ item[0] }}</p>
-              <pre class="overflow-x-auto text-base leading-relaxed text-ink"><code>{{ item[1] }}</code></pre>
+              <pre class="whitespace-pre-wrap text-base leading-relaxed text-ink [overflow-wrap:anywhere]"><code>{{ item[1] }}</code></pre>
             </div>
           {% end %}
         </div>
@@ -141,8 +109,41 @@ layout: default
       {% if resource.data.installCallout %}
         <p class="mt-6 max-w-[65ch] border-l-4 border-fire-ink pl-4 text-base leading-relaxed text-ink">{%= format_text.call(resource.data.installCallout) %}</p>
       {% end %}
-    </section>
+      </div>
   {% end %}
+    </div>
+
+    <aside>
+      <h2 class="mb-6 text-2xl font-black tracking-[-.03em]">Details</h2>
+      <dl>
+        <div class="py-4">
+          <dt class="mb-1 text-sm font-black uppercase tracking-wider text-muted">Years</dt>
+          <dd>{{ format_years.call(resource.data.years) }}</dd>
+        </div>
+        <div class="py-4">
+          <dt class="mb-1 text-sm font-black uppercase tracking-wider text-muted">Role</dt>
+          <dd>{{ clean_text.call(resource.data.role) }}</dd>
+        </div>
+        <div class="py-4">
+          <dt class="mb-1 text-sm font-black uppercase tracking-wider text-muted">Stack / scope</dt>
+          <dd class="leading-relaxed">{{ clean_text.call(resource.data.stack) }}</dd>
+        </div>
+      </dl>
+
+      {% links = [] %}
+      {% links << ["Visit project", resource.data.link] if resource.data.link %}
+      {% links.concat(resource.data.links || []) %}
+      {% if links.any? %}
+        <div class="mt-8 flex flex-wrap gap-3">
+          {% links.each do |link| %}
+            <a href="{{ link[1] }}" target="_blank" rel="noopener" class="border border-ink px-4 py-3 text-base font-black text-ink hover:border-fire-ink hover:bg-fire-ink hover:text-white">{{ link[0] }} ↗</a>
+          {% end %}
+        </div>
+      {% end %}
+    </aside>
+  </section>
+
+
 
   {% if resource.data.presentation %}
     <section class="py-14 md:py-24">
