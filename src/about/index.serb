@@ -6,14 +6,14 @@ page_class: about-page
 ---
 
 {% career = [
-  ["2022 — now", "Full Stack Developer · Hubstaff", "Proof-of-work platform for distributed organizations."],
-  ["2021 — 2022", "Team Lead · Sber EApteka", "Built the pharmacy POS and warehouse platform, assembled the team, and shipped it across a national network."],
+  ["2022 — now", "Full Stack Developer · Hubstaff", "Proof-of-work platform for distributed organizations.", "https://hubstaff.com"],
+  ["2021 — 2022", "Team Lead · Sber EApteka", "Built the pharmacy POS and warehouse platform, assembled the team, and shipped it across a national network.", "/projects/unpos/"],
   ["2020 — 2021", "Full Stack Developer · Flash Chat", "Mobile PWA products with video and phone calling, shipped through rapid MVP cycles."],
-  ["2017 — 2019", "Co-founder · CTO · Learn21", "Led a cross-functional team and delivered an English-learning platform to 11 schools across three Thai provinces."],
-  ["2015 — 2018", "Full Stack Developer · Heartland Retail", "Built retail analytics dashboards and flexible reporting across sales data."],
-  ["2011 — 2015", "Team Lead · 7Pikes", "ERP and POS systems powering more than 1,300 pharmacies."],
-  ["2010 — 2012", "Co-founder · Jaconda IM", "Designed, built, and supported a chat platform for distributed companies with a two-person team."],
-  ["2009 — 2015", "Co-founder · Phuket Project", "Built a real-estate product that grew into one of Phuket’s leading agencies."]
+  ["2017 — 2019", "Co-founder · CTO · Learn21", "Led a cross-functional team and delivered an English-learning platform to 11 schools across three Thai provinces.", "/projects/learn21/"],
+  ["2015 — 2018", "Full Stack Developer · Heartland Retail", "Built retail analytics dashboards and flexible reporting across sales data.", "/projects/heartland-retail/"],
+  ["2011 — 2015", "Team Lead · 7Pikes", "ERP and POS systems powering more than 1,300 pharmacies.", "/projects/7pikes/"],
+  ["2010 — 2012", "Co-founder · Jaconda IM", "Designed, built, and supported a chat platform for distributed companies with a two-person team.", "/projects/jaconda/"],
+  ["2009 — 2015", "Co-founder · Phuket Project", "Built a real-estate product that grew into one of Phuket’s leading agencies.", "/projects/phuket-buy-house/"]
 ] %}
 
 {% quotes = [
@@ -40,7 +40,7 @@ page_class: about-page
     <h2 class="max-w-[10ch] text-4xl font-black tracking-[-.03em] md:col-span-5 md:text-6xl">The best change removes more than it adds.</h2>
     <div class="md:col-span-6 md:col-start-7">
       <p class="max-w-[58ch] text-lg leading-relaxed text-muted">Useful when a product has started dragging its own history around: old decisions, extra layers, fallback flows, code nobody wants to touch. The first move is usually not expansion. It is a precise cut.</p>
-      <p class="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">That instinct shaped pharmacy ERP across 1,300+ stores, education and creator platforms, <a href="https://houseviser.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">Houseviser</a> in Phuket, and <a href="https://nofins.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">nofins.com</a>, where freediving became a calmer, clearer digital product.</p>
+      <p class="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">That instinct shaped <a href="/projects/7pikes/" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">pharmacy ERP across 1,300+ stores</a>, <a href="/projects/learn21/" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">education</a> and creator platforms, <a href="https://houseviser.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">Houseviser</a> in Phuket, and <a href="https://nofins.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">nofins.com</a>, where freediving became a calmer, clearer digital product.</p>
     </div>
   </section>
 
@@ -63,7 +63,7 @@ page_class: about-page
       {% career.each do |item| %}
         <section class="grid gap-3 py-6 md:grid-cols-12 md:gap-6 md:py-8">
           <p class="font-black text-fire-ink md:col-span-3">{{ item[0] }}</p>
-          <h3 class="text-xl font-black tracking-[-.02em] md:col-span-4 md:text-2xl">{{ item[1] }}</h3>
+          <h3 class="text-xl font-black tracking-[-.02em] md:col-span-4 md:text-2xl">{% if item[3] %}<a href="{{ item[3] }}" class="underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink"{% if item[3].start_with?("http") %} target="_blank" rel="noopener"{% end %}>{{ item[1] }}</a>{% else %}{{ item[1] }}{% end %}</h3>
           <p class="max-w-[54ch] text-base leading-relaxed text-muted md:col-span-5">{{ item[2] }}</p>
         </section>
       {% end %}
