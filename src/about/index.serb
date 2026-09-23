@@ -32,7 +32,7 @@ page_class: about-page
     <div class="md:order-1 md:col-span-7 md:pr-[clamp(2rem,7vw,7rem)]">
       <h1 class="max-w-[10ch] text-[clamp(3.4rem,9vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Nikolay <strong class="text-fire-ink">Ostrovsky</strong></h1>
       <p class="mt-6 text-lg font-black text-fire-ink">Full-stack architect · Product operator</p>
-      <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">Two decades inside products, finding the waste nobody meant to build and the leverage nobody bothered to name.</p>
+      <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">From the desk to the depth. Twenty years shipping software, and a Molchanovs Wave 2 freediving instructor at <a href="https://nofins.com" class="font-black text-ink underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">nofins.com</a>.</p>
     </div>
   </section>
 
