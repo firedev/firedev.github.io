@@ -48,6 +48,8 @@ Do not force-push either branch. `src/CNAME` must remain `firedev.com`.
 Card and project-page media are 16:10 with `object-cover`. Shoot live sites at
 `--window-size=1024,640 --force-device-scale-factor=2` (→ 2048×1280, then `cwebp -q 82`):
 a narrower window fills the frame with content instead of whitespace (Nick, 23.09.2026).
+Check the shot: if the site's nav wraps or the headline is cut, go up to 1280×800 —
+thinkforward.academy needs 1280.
 Light mode: `--blink-settings=preferredColorScheme=1`. zsh does not word-split
 `set -- $p` in a loop — use `set -- ${=p}`, or every shot silently goes to the wrong
 path (23.09.2026: that, not Brave, was why window sizes looked ignored). Brave headless
