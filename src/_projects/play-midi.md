@@ -1,0 +1,3 @@
+---
+{"layout":"project","title":"Play MIDI","description":"Falling-notes MIDI tutor in the browser. Scroll at your speed. Keys light up.","order":27,"slug":"play-midi","name":"Play MIDI","years":"2026","group":"labs","role":"Design · Engineering","summary":"Falling-notes MIDI tutor. Scroll at your speed, the keys light up.","story":["I want to learn to play MIDI files, and I want to scroll the file up and down so I can go at my speed and the keys light up.","Space plays. Esc stops every sound. Drop a .mid on the page."],"stack":"HTML · Canvas · Web Audio · Web MIDI","cover":"/images/projects/screens/play-midi.webp","link":"https://firedev.com/midi/","links":[["Open Play MIDI","https://firedev.com/midi/"]]}
+---
