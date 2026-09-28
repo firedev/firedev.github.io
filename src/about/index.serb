@@ -37,6 +37,9 @@ page_class: about-page
         <a href="https://git-wrapped.com/profiles/firedev" class="text-lg font-black text-ink underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">See how I work ↗</a>
         <span class="mt-2 block max-w-[48ch] text-base text-muted">git-wrapped.com/profiles/firedev</span>
       </p>
+      <a href="https://git-wrapped.com/profiles/firedev" class="project-media mt-8 block max-w-[36rem] overflow-hidden">
+        <img src="/images/projects/screens/git-wrapped-firedev.webp" alt="Git Wrapped 2025 for @firedev" class="block h-auto w-full" width="1536" height="1302">
+      </a>
     </div>
   </section>
 
