@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Play MIDI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #07080b;
+      color: #e8eef7;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    .bar {
+      flex: 0 0 auto;
+      z-index: 3;
+      border-bottom: 1px solid #243040;
+      background: #10141c;
+    }
+    #scroller {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: scroll;
+      overscroll-behavior: contain;
+      scrollbar-color: #4a5568 #0c0e12;
+      scrollbar-width: thin;
+    }
+    #roll {
+      display: block;
+      width: 100%;
+    }
+    #dock {
+      flex: 0 0 auto;
+      background: #0a0c10;
+    }
+    #hit {
+      height: 3px;
+      background: #c43c3c;
+    }
+    #piano {
+      position: relative;
+      height: 160px;
+      background: #12141a;
+      touch-action: manipulation;
+      user-select: none;
+    }
+    .key {
+      position: absolute;
+      top: 0;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+    }
+    .key.white {
+      height: 100%;
+      background: linear-gradient(#f7f5ee, #e6e2d6 86%, #cfcabe);
+      border-right: 1px solid #1c1c1e;
+      border-radius: 0 0 7px 7px;
+      box-shadow: inset 0 -10px 0 #c4bfb2, 0 10px 14px rgba(0,0,0,.35);
+    }
+    .key.white .oct {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 14px;
+      text-align: center;
+      font: 11px "IBM Plex Mono", ui-monospace, monospace;
+      color: rgba(20,22,28,.45);
+      pointer-events: none;
+    }
+    .key.black {
+      height: 62%;
+      z-index: 3;
+      background: linear-gradient(#3d3d44, #141416 70%, #080808);
+      border-radius: 0 0 5px 5px;
+      box-shadow: inset 0 -8px 0 #000, 0 8px 10px rgba(0,0,0,.5);
+    }
+    .key.lit.white {
+      background: linear-gradient(var(--lit, #3dd6c6), color-mix(in srgb, var(--lit, #3dd6c6) 28%, #e6e2d6));
+    }
+    .key.lit.black {
+      background: linear-gradient(color-mix(in srgb, var(--lit, #3dd6c6) 85%, #fff), var(--lit, #3dd6c6));
+    }
+    .key.down.white,
+    .key.white:active {
+      transform: translateY(6px);
+      box-shadow: inset 0 -3px 0 #b7b2a6, 0 2px 4px rgba(0,0,0,.35);
+      filter: brightness(0.88);
+    }
+    .key.down.black,
+    .key.black:active {
+      transform: translateY(5px);
+      box-shadow: inset 0 -2px 0 #000, 0 2px 4px rgba(0,0,0,.5);
+      filter: brightness(1.25);
+    }
+    .key.wait::after {
+      content: "";
+      position: absolute;
+      left: 16%;
+      right: 16%;
+      top: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: #f4f1e8;
+    }
+    .key.wait.black::after {
+      background: #f4f1e8;
+    }
+    .bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 14px;
+    }
+    .title {
+      font-family: Syne, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-right: 4px;
+    }
+    select, button, input[type="range"] {
+      appearance: none;
+      background: #161a22;
+      color: #e8eef7;
+      border: 1px solid #2a3344;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font: inherit;
+      font-size: 12px;
+    }
+    #song { min-width: 12rem; }
+    #inst { min-width: 7rem; }
+    button:hover, select:hover { border-color: #3dd6c6; }
+    button[aria-pressed="true"] {
+      background: #3dd6c6;
+      color: #081014;
+      border-color: #3dd6c6;
+    }
+    .tempo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #8b9bb4;
+    }
+    #tempo {
+      width: 120px;
+      padding: 0;
+      height: 6px;
+      background: #2a3344;
+      accent-color: #3dd6c6;
+    }
+    #midi, #time {
+      font-size: 12px;
+      color: #8b9bb4;
+    }
+    #time { margin-left: auto; }
+    #midi[data-ok="1"] { color: #3dd6c6; }
+    #drop {
+      position: fixed;
+      inset: 12px;
+      z-index: 5;
+      border: 1.5px dashed #3dd6c6;
+      border-radius: 16px;
+      background: rgba(7,8,11,.72);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      color: #3dd6c6;
+    }
+    #drop[hidden] { display: none; }
+    a.back {
+      color: #8b9bb4;
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 1;
+    }
+    a.back:hover { color: #3dd6c6; }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <a class="back" href="/">home</a>
+    <div class="title">Play MIDI</div>
+    <select id="song" aria-label="File"></select>
+    <select id="inst" aria-label="Instrument"></select>
+    <button type="button" id="open">Open…</button>
+    <button type="button" id="play" aria-pressed="false">Play</button>
+    <button type="button" id="wait" aria-pressed="false" title="Play waits until you hit the notes on the line">wait</button>
+    <button type="button" id="loop" aria-pressed="false" title="Loop the current 8 bars">loop 8</button>
+    <button type="button" id="to-start" title="Home">start</button>
+    <button type="button" id="bar-back" title="↓ / bar back">−bar</button>
+    <button type="button" id="bar-fwd" title="↑ / bar forward">+bar</button>
+    <button type="button" id="to-end" title="End">end</button>
+    <label class="tempo">
+      <span id="tempo-label">123 BPM</span>
+      <input id="tempo" type="range" min="25" max="200" value="100" step="5" aria-label="Tempo" />
+    </label>
+    <button type="button" id="zoom-out" title="Smaller">−</button>
+    <span id="zoom-label">1.0×</span>
+    <button type="button" id="zoom-in" title="Larger">+</button>
+    <span id="time"></span>
+    <button type="button" id="midi-btn">MIDI</button>
+    <span id="midi">MIDI · …</span>
+  </div>
+  <div id="scroller">
+    <canvas id="roll"></canvas>
+  </div>
+  <div id="dock">
+    <div id="hit"></div>
+    <div id="piano" aria-label="Keyboard"></div>
+  </div>
+  <div id="drop" hidden>Drop a .mid here</div>
+  <input id="file" type="file" accept=".mid,.midi,audio/midi" hidden />
+  <script type="module" src="app.js?v=9"></script>
+</body>
+</html>
