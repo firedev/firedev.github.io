@@ -46,7 +46,6 @@ page_class: homepage
     <div>
       <p class="mb-6 max-w-[55ch] text-lg leading-relaxed text-muted">Pharmacy ERP for 1,300+ stores. School platforms. Media products. Phuket real estate. Different arenas, same move: tangled systems turned into something clear, usable, and alive.</p>
       <div class="flex flex-wrap gap-3">
-        <a href="https://git-wrapped.com/profiles/firedev" class="border border-ink px-4 py-3 text-base font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">Git Wrapped ↗</a>
         <a href="https://github.com/firedev" class="border border-ink px-4 py-3 text-base font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">GitHub ↗</a>
         <a href="/about/" class="border border-ink px-4 py-3 text-base font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">About →</a>
       </div>

@@ -33,6 +33,7 @@ page_class: about-page
       <h1 class="max-w-[10ch] text-[clamp(3.4rem,9vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Nikolay <strong class="text-fire-ink">Ostrovsky</strong></h1>
       <p class="mt-6 text-lg font-black text-fire-ink">Full-stack architect · Product operator</p>
       <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">From the desk to the depth. Control mind, control life and ship products. Molchanovs Wave 2 freediving instructor at <a href="https://nofins.com" class="font-black text-ink underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">nofins.com</a>.</p>
+      <p class="mt-8"><a href="https://git-wrapped.com/profiles/firedev" class="text-lg font-black text-ink underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">See how I work ↗</a></p>
     </div>
   </section>
 
@@ -81,7 +82,7 @@ page_class: about-page
   <nav class="flex flex-wrap gap-x-8 gap-y-3 py-7 text-base font-black" aria-label="Elsewhere">
     <a href="https://github.com/firedev" class="min-h-11 py-2 hover:text-fire-ink">GitHub ↗</a>
     <a href="https://stackoverflow.com/users/166484/nick" class="min-h-11 py-2 hover:text-fire-ink">Stack Overflow ↗</a>
-    <a href="https://git-wrapped.com/profiles/firedev" class="min-h-11 py-2 hover:text-fire-ink">Git Wrapped ↗</a>
+    <a href="https://git-wrapped.com/profiles/firedev" class="min-h-11 py-2 hover:text-fire-ink">See how I work ↗</a>
     <a href="https://nofins.com" class="min-h-11 py-2 hover:text-fire-ink">nofins.com ↗</a>
   </nav>
 </article>
