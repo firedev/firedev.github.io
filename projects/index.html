@@ -28,8 +28,8 @@
       <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
     </a>
     <nav class="site-nav flex w-full flex-wrap items-center gap-x-6 gap-y-2 text-xl font-black md:flex-1 md:flex-nowrap md:gap-x-10 md:text-[1.8rem]" aria-label="Primary">
-      <a href="/posts/" class="nav-link inline-flex min-h-11 items-center text-muted" >Posts</a>
       <a href="/projects/" class="nav-link inline-flex min-h-11 items-center is-active text-fire-ink" aria-current="page">Projects</a>
+      <a href="/posts/" class="nav-link inline-flex min-h-11 items-center text-muted" >Posts</a>
       <a href="/about/" class="nav-link inline-flex min-h-11 items-center text-muted" >About</a>
       <a href="mailto:nick@firedev.com" class="nav-cta inline-flex min-h-11 items-center justify-center border border-ink px-4 py-3 text-base font-black text-ink md:ml-auto md:px-5">Email ↗</a>
     </nav>
@@ -49,8 +49,20 @@
       <span class="mb-3 w-full text-base text-muted md:w-auto">Products · systems · brands · experiments</span>
     </div>
 
-    <div class="gap-6 md:columns-2 lg:columns-3">
-        <article class="project-card mb-4 break-inside-avoid">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <article class="project-card">
+          <a href="/projects/tellothers/" class="block text-inherit">
+            <figure class="project-media false relative overflow-hidden bg-white">
+                <img src="/images/projects/screens/tellothers.webp" alt="Tell Others project visual" class="block h-auto w-full" loading="lazy" decoding="async">
+
+            </figure>
+            <div class="grid grid-cols-1 gap-y-2 py-5">
+              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Tell Others</h3>
+              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">It worked? Tell others.</p>
+            </div>
+          </a>
+        </article>
+        <article class="project-card">
           <a href="/projects/play-midi/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/play-midi.webp" alt="Play MIDI project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -62,7 +74,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/threefinger/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <video class="block h-auto w-full" autoplay muted loop playsinline poster="/images/projects/threefinger.jpg">
@@ -76,7 +88,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/houseviser/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/houseviser.webp" alt="Houseviser project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -88,7 +100,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/nofins/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/nofins-home.webp" alt="nofins.com project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -100,7 +112,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/nonduality-today/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/nonduality-home.webp" alt="nonduality.today project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -112,19 +124,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
-          <a href="/projects/tellothers/" class="block text-inherit">
-            <figure class="project-media false relative overflow-hidden bg-white">
-                <img src="/images/projects/screens/tellothers.webp" alt="Tell Others project visual" class="block h-auto w-full" loading="lazy" decoding="async">
-
-            </figure>
-            <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Tell Others</h3>
-              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">It worked? Tell others.</p>
-            </div>
-          </a>
-        </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/git-wrapped/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/git-wrapped-firedev.webp" alt="Git Wrapped project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -136,7 +136,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/best-thai-fruits/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/best-thai-fruits.webp" alt="Best Thai Fruits project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -148,7 +148,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/thinkforward/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/thinkforward-home.webp" alt="think→forward project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -160,7 +160,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/photo-gallery/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/photo-gallery.webp" alt="Photo Gallery project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -172,7 +172,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/unpos/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/unpos-sale.webp" alt="UNPOS project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -184,7 +184,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/learn21/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/Learn21.key.png" alt="Learn21 project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -196,7 +196,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/heartland-retail/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/heartland-retail.webp" alt="Heartland Retail project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -208,7 +208,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/pharmalife/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/pharmalife.png" alt="Pharmalife project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -220,7 +220,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/cashflow-monitor/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/cashflow.webp" alt="Cashflow Monitor project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -232,7 +232,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/masterbot/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/masterbot.png" alt="Masterbot project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -244,7 +244,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/qa-cloud/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/qa.png" alt="QA Cloud project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -256,7 +256,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/inpos/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/inpos 2.png" alt="INPOS project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -268,7 +268,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/7pikes/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/7pikes.webp" alt="7Pikes project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -280,7 +280,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/headstart/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/headstart.webp" alt="HeadStart Phuket project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -292,7 +292,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/jaconda/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/jaconda.png" alt="Jaconda IM project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -304,7 +304,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/all-homes-phuket/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/all-homes-phuket.webp" alt="All Homes Phuket project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -316,7 +316,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/phuket-rent-house/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/renthouse.png" alt="Phuket Rent House project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -328,7 +328,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/phuket-buy-house/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/buyhouse.png" alt="Phuket Buy House project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -340,7 +340,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/gipsyteam/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/gipsyteam.webp" alt="GipsyTeam project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -352,7 +352,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/imagevue/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/imagevue.png" alt="Imagevue project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -364,7 +364,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/piluli/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/piluli-eapteka.webp" alt="Piluli.ru project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -376,7 +376,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/mindbox/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/mindbox.png" alt="Mindbox project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -388,7 +388,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/zr/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/za-rulem.webp" alt="Behind the Wheel project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -400,7 +400,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/finding-nama/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/finding-nama.webp" alt="Finding Nama project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -412,7 +412,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/matrix/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <video class="block h-auto w-full" autoplay muted loop playsinline poster="/images/projects/screens/matrix.webp">
@@ -426,7 +426,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/nikolayx/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/nikolayx-home.webp" alt="nikolayx.com project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -438,7 +438,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/furniture3d/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/furniture3d.jpg" alt="Furniture 3D project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -450,7 +450,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/darkanoid/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/darkanoid.png" alt="Darkanoid project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -462,7 +462,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/nanogrid/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/nanogrid.png" alt="Nanogrid project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -474,7 +474,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/jquery-keynav/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/jquery.png" alt="jQuery Keynav project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -486,7 +486,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/gridpapr/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/gridpapr.png" alt="GridPapr project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -498,7 +498,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/indexr/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/indexr.png" alt="Indexr project visual" class="block h-auto w-full" loading="lazy" decoding="async">
@@ -510,7 +510,7 @@
             </div>
           </a>
         </article>
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="/projects/ascii-art/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/ascii.png" alt="ASCII Art project visual" class="block h-auto w-full" loading="lazy" decoding="async">
