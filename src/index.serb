@@ -50,9 +50,6 @@ page_class: homepage
         <a href="https://git-wrapped.com/profiles/firedev" class="border border-ink px-4 py-3 text-base font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">See how I work ↗</a>
         <a href="/about/" class="border border-ink px-4 py-3 text-base font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">About →</a>
       </div>
-      <a href="https://git-wrapped.com/profiles/firedev" class="project-media mt-8 block overflow-hidden">
-        <img src="/images/projects/screens/git-wrapped-firedev.webp" alt="Git Wrapped 2025 for @firedev" class="block h-auto w-full" width="1536" height="1302">
-      </a>
     </div>
   </section>
 </div>
