@@ -111,7 +111,7 @@ Warm paper and near-black ink, with one hot orange that marks what matters.
 - **Muted** (#68615c): body copy, subtitles, inactive nav, labels. 5.5:1 on canvas.
 - **Canvas** (#f6f4f1): the page. Warm paper, never pure white.
 - **Paper** (#ffffff): media frames, code boxes, prev/next tiles. The only raised surface is a white one.
-- **Line** (#ddd7d1): data-table rows only. Nowhere else.
+- **Line** (#ddd7d1): data-table rows, and the 1px edge of a project media frame so a screenshot reads against canvas.
 
 ### Named Rules
 **The One Orange Rule.** One accent, one value. No tints, no darker "ink" variant, no second color. Orange lands on the last word of a headline, a role line, a number or an action. A few marks per screen.
@@ -153,7 +153,7 @@ Flat. No shadows anywhere. Depth comes from two surfaces: canvas and white paper
 Square. Radius 0 on buttons, frames, tiles, code boxes and the CTA block. The only borders are 1px outlines on buttons and code boxes, and 1px rows in data tables.
 
 ### Named Rules
-**The No Lines Rule.** No dividers between sections, list items, cards or header and page. If two things need separating, add space. Lines stay only where they carry meaning: button outlines and table rows.
+**The No Lines Rule.** No dividers between sections, list items, cards or header and page. If two things need separating, add space. Lines stay only where they carry meaning: button outlines, table rows, and the edge of a project screenshot so paper is visible on canvas.
 **The Own Ratio Rule.** Screenshots, video and photos render at their native aspect ratio (`h-auto w-full`). The only fixed frame (16:10, `object-contain`) is for projects that have a logo and no screenshot.
 
 ## Components
