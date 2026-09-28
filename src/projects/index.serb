@@ -22,9 +22,9 @@ page_class: projects-page
       <span class="mb-3 w-full text-base text-muted md:w-auto">Products · systems · brands · experiments</span>
     </div>
 
-    <div class="gap-6 md:columns-2 lg:columns-3">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {% selected.each_with_index do |project, index| %}
-        <article class="project-card mb-4 break-inside-avoid">
+        <article class="project-card">
           <a href="{{ project.relative_url }}" class="block text-inherit">
             <figure class="project-media {{ !project.data.cover && !project.data.coverVideo && 'project-logo aspect-[16/10]' }} relative overflow-hidden bg-white">
               {%@ "project_media", project: project, loading: (index < 4 ? "eager" : "lazy") %}
