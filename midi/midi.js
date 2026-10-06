@@ -93,10 +93,11 @@ export function parseMidi(buffer) {
       const on = stack.pop();
       const startTick = on.tick;
       if (endTick <= startTick) return;
+      if (channel === 9) return; // GM drums: hits, not pitches
       notes.push({
         pitch,
         velocity: on.velocity,
-        track: tr,
+        track: format === 0 ? channel : tr, // type 0 keeps every part in one track
         channel,
         startTick,
         endTick,
