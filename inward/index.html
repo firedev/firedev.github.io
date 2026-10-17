@@ -93,7 +93,7 @@ p{margin:0}
 .lab span{font-size:44px;font-weight:300}
 /* mot */
 canvas{width:100%;aspect-ratio:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);touch-action:none;display:block}
-.status{min-height:26px;font-size:18px;text-align:center}
+.status{height:26px;font-size:18px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* schulte */
 .grid{display:grid;gap:6px}
 .grid button{aspect-ratio:1;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:24px;font-weight:500;padding:0}
@@ -153,7 +153,9 @@ const PATTERNS = {
   '5-5-5-5': [['in',5,'Вдох'],['full',5,'Пауза'],['out',5,'Выдох'],['empty',5,'Пауза']],
   '4-7-8': [['in',4,'Вдох'],['full',7,'Задержка'],['out',8,'Выдох']],
 };
-const BW_PAT = {fast: [['in',1,'Вдох'],['out',1,'Выдох']], calm: [['in',5,'Вдох'],['out',7,'Выдох']]};
+const BW_PAT = {fast: [['in',1,'Вдох'],['out',1,'Выдох']], calm: [['in',5,'Вдох'],['out',7,'Выдох']], '5/7': [['in',5,'Вдох'],['out',7,'Выдох']], '6/8': [['in',6,'Вдох'],['out',8,'Выдох']],
+  res: [['in',5.5,'Вдох'],['out',5.5,'Выдох']], box4: [['in',4,'Вдох'],['full',4,'Пауза'],['out',4,'Выдох'],['empty',4,'Пауза']],
+  nadi: [['in',4,'Вдох левой'],['out',6,'Выдох правой'],['in',4,'Вдох правой'],['out',6,'Выдох левой']], kap: [['out',.4,'Выдох'],['in',.8,'']]};
 // Breathwork script (пост в канале 21.01.2024): psy = продышка до касания, выдох-держи, вдох-держи (+до-вдох), в конце сидим 20+ мин и ещё 5; wh = 30 вдохов, выдох-держи, вдох 15 с.
 function bwSteps(mode, rounds) {
   const out = [];
@@ -180,8 +182,8 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
 
 /* ---- Игры внимания: каталог (Projects/attention-school/игры.md) ---- */
 // guided: cues [[сек | доля 0..1 | −сек от конца, текст]] и/или alt по кругу каждые every с, ping — случайные сигналы 20–60 с; lo/max — границы минут.
-const GROUPS = ['Внимание', 'Awareness Games', 'Задержка как игра'];
-const MECHS = ['guided', 'counter', 'stopwatch', 'pacer', 'slider', 'periphery', 'holdpair', 'card', 'link'];
+const GROUPS = ['Внимание', 'Awareness Games', 'Задержка как игра', 'Дыхание', 'Днём'], GROUP_ORDER = [3, 2, 0, 1, 4];
+const MECHS = ['guided', 'counter', 'stopwatch', 'pacer', 'slider', 'periphery', 'holdpair', 'seq', 'card', 'link'];
 const TIMED = ['guided', 'counter', 'pacer', 'periphery'];
 const GAMES = [
   {id: 'apart', group: 0, title: 'Внимание отдельно от взгляда', min: 3, mech: 'guided', every: 10,
@@ -218,6 +220,35 @@ const GAMES = [
   {id: 'triangle', group: 0, title: 'Треугольник', min: 3, mech: 'guided',
     text: 'Пальцы треугольником в 30 см от лица. Минуту смотри на контур. Потом медленно разводи руки, а взгляд не меняй.',
     cues: [[0, 'Треугольник из пальцев. Взгляд на контуре'], [.34, 'Разводи руки медленно. Взгляд не меняй'], [.67, 'Руки разведены. Видишь всё поле сразу']]},
+
+  {id: 'will', group: 0, title: 'Волевая медитация', min: 5, mech: 'guided',
+    text: 'Спина прямая. Формула «Я есмь» в три фазы: проговариваешь про себя, потом она звучит без артикуляции, потом разворачивается молча. Отвлёкся, вернись. Спина ушла, значит медитация кончилась. В курикулуме 5 минут в начале тренировки.',
+    cues: [[0, 'Спина прямая. Про себя: Я есмь'], [.35, 'Пусть звучит без артикуляции'], [.65, 'Молча, без слов'], [-10, 'Выход. Открой глаза']]},
+  {id: 'dot', group: 0, title: 'Точка · концентрация', min: 1, mech: 'guided',
+    text: 'Для контраста с широким вниманием. Минуту держи взгляд и внимание на одной точке. В конце отпусти и возьми всё поле сразу.',
+    cues: [[0, 'Внимание на одной точке'], [-15, 'Отпусти. Всё поле сразу']]},
+  {id: 'soft', group: 0, title: 'Рассеянный взгляд', min: 5, mech: 'guided',
+    text: 'Точка в 2–3 метрах. Смотри на неё, но не фокусируйся, будто смотришь сквозь. Замечай, что слева, справа, сверху и снизу, не поворачивая голову. Под конец закрой глаза.',
+    cues: [[0, 'Точка в двух-трёх метрах. Смотри сквозь неё'], [.3, 'Что слева, справа, сверху, снизу? Голову не поворачивай'], [.75, 'Закрой глаза. Как чувствуются глаза и голова?']]},
+  {id: 'scan', group: 0, title: 'Сканирование тела', min: 8, lo: 4, mech: 'guided',
+    text: 'Сидя или лёжа, глаза закрыты. Три медленных вдоха. Потом внимание идёт снизу вверх: где напряжение, туда выдох, и отпускаешь. В конце всё тело целиком.',
+    cues: [[0, 'Три медленных вдоха. Выдох расслабляет'], ...['Стопы', 'Голени и колени', 'Бёдра', 'Таз', 'Живот', 'Грудь', 'Спина', 'Плечи', 'Шея', 'Лицо', 'Голова'].map((z, i) => [.06 + i * .075, z + '. На выдохе отпусти']), [.9, 'Всё тело целиком'], [-8, 'Пошевели пальцами. Открой глаза']]},
+  {id: 'count10', group: 0, title: 'Дыхание с подсчётом', min: 5, mech: 'counter', btns: ['Сбился'],
+    text: 'Дыши носом как обычно. На каждом выдохе считай про себя от 1 до 10, потом снова с 1. Сбился или ушёл в мысли, нажми и начни с 1.'},
+  {id: 'mot', group: 0, title: 'Бильярд', mech: 'link', to: 'mot', text: 'Запомни выделенные шары, следи, пока они движутся, отметь, когда остановятся. Шаров становится больше: 3 → 5 → 7 → 12.'},
+  {id: 'schulte', group: 0, title: 'Шульте', mech: 'link', to: 'schulte', text: 'Таблица чисел вперемешку. Взгляд в центре, числа по порядку находишь боковым зрением.'},
+  {id: 'cups', group: 0, title: 'Чашки', mech: 'card', tag: 'дома',
+    text: 'Поставь на стол три чашки. Смотри между ними и держи вниманием все три сразу, не переводя взгляд. Получилось, поставь четвёртую. Потом пусть кто-то медленно двигает чашки, а ты держишь все.'},
+  {id: 'stereo', group: 0, title: 'Объёмные картинки', mech: 'card', tag: 'стереограммы',
+    text: 'Смотри сквозь стереограмму, пока не проступит объём. От простых картинок к сложным.'},
+  {id: 'pcount', group: 0, title: 'Периферийный счёт', mech: 'card', tag: 'с напарником',
+    text: 'Смотри прямо перед собой. Напарник сбоку показывает пальцы, ты считаешь их, не поворачивая голову и не переводя взгляд. Сложнее: двое показывают с разных сторон сразу.'},
+  {id: 'ring', group: 0, title: 'Круг наблюдения', mech: 'card', tag: 'в группе',
+    text: 'Встаньте в круг и смотрите в центр, не на людей. Каждый делает простое движение. Замечай его боковым зрением и повторяй.'},
+  {id: 'instrument', group: 0, title: 'Какой инструмент ушёл', mech: 'card', tag: 'с музыкой',
+    text: 'Включи оркестровую или многослойную запись. Слушай все партии сразу. Когда одна замолкает, назови, какая ушла.'},
+  {id: 'twomel', group: 0, title: 'Две мелодии', mech: 'card', tag: 'с музыкой',
+    text: 'Две партии: сначала слушай одну 1–2 минуты, потом другую, потом обе сразу. Выключай по одной и замечай, что изменилось.'},
 
   {id: 'basic', group: 1, title: 'Три вопроса осознавания', min: 3, mech: 'guided', every: 40,
     text: 'Основа всех игр, Basic Awareness Questions. Вопросы не для ответа, а чтобы сдвинуть внимание: «What is in awareness? What is awareness? What is aware?»',
@@ -291,6 +322,49 @@ const GAMES = [
   {id: 'stops', group: 2, title: 'Пять остановок', mech: 'counter', daily: true, goal: 5, btns: ['Остановка'], tag: 'за день',
     safe: 'Не за рулём, не в воде. Стоя только на месте, не на ходу и не на проезжей части. Закружилась голова: дыши спокойно.',
     text: 'На остановках дня (чайник, лифт, светофор пешком) одна короткая задержка. После каждой нажми кнопку.'},
+  ...[['balloon', 'Воздушный шар', '5–6 мин', 'Живот как воздушный шар: растёт на вдохе, сдувается на выдохе. После выдоха шар мягко парит 5–10 секунд. Без напряжения.',
+      [['4/6', 60, 'Живот как воздушный шар: растёт на вдохе, сдувается на выдохе'], ['exh', 'Шар парит. Мягко, 5–10 секунд'], ['4/6', 30, 'Шар растёт и сдувается'], ['exh', 'Шар парит'], [0, 15, 'Три обычных вдоха']]],
+    ['candle', 'Свеча покоя', '6–8 мин', 'Выдох ртом, будто дуешь на пламя: оно дрожит, но не гаснет. После выдоха задержка, пламя становится ярче. Три раза.',
+      [1, 2, 3].flatMap(() => [['5/7', 48, 'Выдох ртом, будто дуешь на пламя. Оно дрожит, но не гаснет'], ['exh', 'Пламя ярче. 10–15 секунд или сколько комфортно']]).concat([[0, 15, 'Три глубоких вдоха']])],
+    ['lighthouse', 'Маяк спокойствия', '5–6 мин', 'Ты маяк на берегу. Дыхание как волны, потом свет маяка медленно вращается. После выдоха задержка, сколько комфортно.',
+      [['5/7', 60, 'Ты маяк на берегу. Дыхание как волны'], ['5/7', 60, 'Закрой глаза. Свет маяка медленно вращается'], ['exh', 'Свет маяка ярче. Сколько комфортно'], [0, 15, 'Три глубоких вдоха']]],
+    ['breathcircle', 'Дыхательный круг', '6–7 мин', 'Одно большое дыхание, как волна. Две задержки после выдоха; во второй побей своё время, но без напряжения.',
+      [['4/6', 90, 'Одно большое дыхание, как волна'], ['exh', 'Держим одну большую волну'], ['4/6', 90, 'Снова волна'], ['exh', 'Побей своё время без напряжения'], [0, 15, 'Три глубоких вдоха']]],
+    ['deep', 'Погружение в глубину', '6–8 мин', 'Берег океана, потом мягко ныряешь. На задержке плывёшь в глубину, вода держит. Минута обычного дыхания и вторая задержка, чуть глубже.',
+      [['6/8', 60, 'Ты на берегу океана. Волны успокаивают'], ['6/8', 60, 'Мягко ныряешь в воду'], ['exh', 'Плывёшь в глубину. Вода держит'], [0, 60, 'Обычное дыхание'], ['exh', 'Чуть глубже'], [0, 15, 'Три глубоких вдоха']]],
+    ['wavepulse', 'Пульс волны', '6–7 мин', 'Цикл каждые 2 минуты: минута дыхания 5/7, потом задержка после выдоха 10–20 секунд, будто волна замерла. Три цикла.',
+      [1, 2, 3].flatMap(() => [['5/7', 60, 'Ты волна, мягко накатываешь на берег'], ['exh', 'Волна замерла. 10–20 секунд']]).concat([[0, 15, 'Три глубоких вдоха']])],
+    ['timeflow', 'Течение времени', '7–8 мин', 'Цикл каждые 3 минуты: 2 минуты дыхания 6/8, потом задержка после выдоха 15–30 секунд. Два цикла, во втором река шире.',
+      [['6/8', 120, 'Плывёшь по реке, течение мягкое'], ['exh', 'Река замерла. 15–30 секунд или сколько комфортно'], ['6/8', 120, 'Река шире, ты спокойнее'], ['exh', 'Река замерла'], [0, 15, 'Три глубоких вдоха']]],
+    ['rhythm', 'Ритмичный вызов', '6–7 мин', 'Сравни два ритма: минута 5/7 и задержка, минута обычного дыхания, потом 2 минуты 6/8 и задержка. В конце сравни время.',
+      [['5/7', 60, 'Ты облако в небе'], ['exh', 'Задержка после выдоха'], [0, 60, 'Дыши как обычно'], ['6/8', 120, 'Облако плывёт спокойнее'], ['exh', 'Задержка после выдоха'], [0, 15, 'Три глубоких вдоха']]],
+  ].map(([id, title, tag, text, st]) => ({id, group: 2, title, tag, text, mech: 'seq', safe: true, steps: st.map(([a, b, c]) => a === 'exh' ? {hold: 'exh', say: b} : {p: a || null, s: b, say: c})})),
+
+  {id: 'pacer', group: 3, title: 'Дыхание по пейсеру', mech: 'link', to: 'breath', tag: '4 паттерна', text: 'Круг растёт на вдохе и сжимается на выдохе. Паттерн выбираешь сверху.'},
+  {id: 'tide', group: 3, title: 'Медленный прилив', min: 5, mech: 'pacer', pat: '6/8', lab: {},
+    text: 'Вдох носом на 6, выдох носом на 8, живот как прилив и отлив. Мысли пусть уплывают, как облака.'},
+  {id: 'res', group: 3, title: 'Резонанс 5,5 в минуту', min: 5, mech: 'pacer', pat: 'res', lab: {},
+    text: 'Вдох и выдох по 5,5 секунды, около пяти с половиной дыханий в минуту. Носом, без натуги. Тяжело, начни с 4/6 и замедляйся постепенно.'},
+  {id: 'box', group: 3, title: 'Квадрат 4-4-4-4', min: 4, mech: 'pacer', pat: 'box4', lab: {},
+    text: 'Вдох на 4, пауза на 4, выдох на 4, пауза на 4. Рисуешь квадрат в воздухе.'},
+  {id: '478', group: 3, title: '4-7-8 при стрессе', min: 1, lo: .5, mech: 'pacer', pat: '4-7-8', lab: {},
+    text: 'Вдох на 4, задержка на 7, выдох на 8. Три-четыре цикла, около минуты.'},
+  {id: 'nadi', group: 3, title: 'Нади шодхана', min: 6, mech: 'pacer', pat: 'nadi', lab: {},
+    text: 'Попеременное дыхание. Большим пальцем правой руки закрой правую ноздрю, вдох левой на 4. Закрой левую, выдох правой на 6. Вдох правой, закрой её, выдох левой. Это один цикл.'},
+  {id: 'kapal', group: 3, title: 'Капалабхати', mech: 'seq', tag: '3,5 мин', safe: 'bw', quiet: true,
+    text: 'Короткие резкие выдохи носом, живот втягивается, вдох сам. Три раунда: 30 секунд выдохов, 30 секунд обычного дыхания. Новичку хватит 15 выдохов за раунд.',
+    steps: [1, 2, 3].flatMap(() => [{p: 'kap', s: 30, say: 'Резкие выдохи носом'}, {p: null, s: 30, say: 'Дыши как обычно'}]).concat([{p: null, s: 30, say: 'Глаза закрыты. Заметь тепло и энергию'}])},
+  {id: 'psy', group: 3, title: 'Психоделическое дыхание', mech: 'link', to: 'breathwork', bw: 'psy', text: 'Продышка как у Вима Хофа, задержка на выдохе, вдох и до-вдох. В конце 20+ минут тишины.'},
+  {id: 'wh', group: 3, title: 'Вим Хоф', mech: 'link', to: 'breathwork', bw: 'wh', text: '30 вдохов, выдох и держишь, вдох на 15 секунд. Три раунда.'},
+  {id: 'holo', group: 3, title: 'Холотропное дыхание', mech: 'card', tag: 'с ведущим', safe: 'bw',
+    text: 'Длинная сессия с музыкой: глубокое быстрое дыхание без пауз, лёжа, с ситтером рядом. В первый раз только с ведущим.'},
+
+  {id: 'shower', group: 4, title: 'Душ в темноте', mech: 'card', tag: '5 мин', text: 'Пять минут душа без света. Только вода, кожа, звук.'},
+  {id: 'spoons', group: 4, title: 'Три ложки вслепую', mech: 'card', tag: 'за едой', text: 'Первые три ложки еды с закрытыми глазами. Вкус, температура, как жуёшь.'},
+  {id: 'door', group: 4, title: 'Три вдоха перед дверью', mech: 'card', tag: 'днём', text: 'Перед каждой дверью три спокойных вдоха, потом входишь.'},
+  {id: 'freeze', group: 4, title: 'Стоп-кадр', mech: 'counter', daily: true, goal: 3, btns: ['Стоп-кадр'], tag: 'за день',
+    text: 'Три раза в день на 30 секунд: что слышу, что вижу, что чувствую телом. После каждого нажми кнопку.'},
+  {id: 'noclock', group: 4, title: 'Час без часов', mech: 'card', tag: 'днём', text: 'Час не смотри на часы и телефон. Потом угадай, сколько времени.'},
 ];
 const gcues = (g, total) => {
   const at = t => t < 0 ? total + t : t > 0 && t < 1 ? t * total : t, out = (g.cues || []).map(([t, s]) => [at(t), s]);
@@ -326,6 +400,8 @@ const gcues = (g, total) => {
   A(GAMES.filter(g => g.mech === 'guided').every(g => g.cues || g.ping || (g.alt && g.every > 0)), 'games: guided has cues, alt or ping');
   A(GAMES.filter(g => g.mech === 'counter').every(g => g.btns && g.btns.length <= 3), 'games: counter has 1-3 buttons');
   A(GAMES.filter(g => g.mech === 'pacer').every(g => breathPhase(g.pat, 0) && g.lab), 'games: pacer pattern');
+  A(GAMES.filter(g => g.mech === 'seq').every(g => g.steps.length && g.steps.every(st => st.hold ? st.say : st.s > 0 && (!st.p || breathPhase(st.p, 0)))), 'games: seq steps');
+  A(GAMES.filter(g => g.mech === 'seq' && g.group === 2).every(g => g.safe && g.steps.some(st => st.hold)), 'games: hold games carry safety banner');
   A(GAMES.filter(g => g.mech === 'link').every(g => g.to) && GAMES.filter(g => g.mech === 'stopwatch').every(g => g.tap) && GAMES.filter(g => g.mech === 'slider').every(g => g.prompts.length > 1), 'games: params');
   A(gcues({cues: [[0, 'a'], [.5, 'b'], [-30, 'c']]}, 120).map(c => c[0]).join() === '0,60,90', 'gcues: seconds, fraction, from end');
   A(gcues({alt: ['x', 'y'], every: 10}, 35).map(c => c[1]).join() === 'x,y,x', 'gcues: alt cycles');
@@ -342,8 +418,22 @@ const BLOCKS = {
   sil: {type: 'silence', len: 180, step: 30, min: 30},
   silm:{type: 'silence', len: 120, step: 30, min: 30},
 };
-const PLAN = ['b1', 'h1', 'mot', 'h2', 'sil'], PLAN_MIN = ['b1', 'h1', 'silm'];
-// Only day 1 has a real plan; days 2-7 reuse it. TODO: per-day plans from программа-задержек.md
+const PLAN_MIN = ['b1', 'h1', 'silm'];
+// Путь тренировок по курикулуму (Projects/attention-school/курикулум.md). Номер тренировки, не календарь: прошёл — открыта следующая.
+// 'g:<id>' — практика из GAMES в тренировке.
+const STAGES = [{name: 'Вход', n: 7}, {name: 'Плоскость', n: 28}, {name: 'Звук и тело', n: 28}, {name: 'Движение', n: 28}];
+const ENTRY = [['b1', 'g:bridge', 'g:apart', 'sil'], ['b1', 'h1', 'g:apart', 'h2', 'g:basic'], ['b1', 'h1', 'mot', 'h2', 'sil'], ['b1', 'h1', 'g:dot', 'g:soft', 'h2', 'g:basic'],
+  ['b1', 'h1', 'mot', 'h2', 'g:count10'], ['b1', 'h1', 'g:apart', 'h2', 'sil'], ['b1', 'h1', 'mot', 'h2', 'g:basic']];
+const stageOf = n => { let k = n; for (let i = 0; i < STAGES.length; i++) { if (k <= STAGES[i].n) return {i, k}; k -= STAGES[i].n; } return {i: STAGES.length - 1, k: STAGES[STAGES.length - 1].n - 6 + (k - 1) % 7}; };
+function dayPlan(n) {
+  const {i, k} = stageOf(n), w = Math.floor((k - 1) / 7);
+  if (i === 0) return ENTRY[k - 1];
+  const att = [null, ['g:ad1', 'g:ad2', 'g:ad3', 'g:plane'], ['g:ad5', 'g:ad5', 'g:ad6', 'g:ad6'], ['g:pulse', 'g:ad4', 'g:pulse', 'g:ad4']][i][w];
+  const sil = [null, ['g:expand', 'g:zoom', 'g:basic'], ['g:wi-sound', 'g:wi-screen', 'g:wi-mind', 'g:wi-body', 'g:wi-i', 'g:wi-time', 'g:clutch'], ['g:trance', 'g:future', 'g:judge']][i];
+  return ['g:will', 'b1', 'h1', att, k % 2 ? 'mot' : 'h2', sil[k % sil.length]];
+}
+console.assert([...Array(120)].every((_, j) => dayPlan(j + 1).every(id => id.startsWith('g:') ? GAMES.some(g => g.id === id.slice(2) && TIMED.concat('holdpair', 'seq').includes(g.mech)) : BLOCKS[id])), 'self-check: path — every block of trainings 1-120 exists and is playable');
+console.assert(stageOf(7).i === 0 && stageOf(8).i === 1 && stageOf(8).k === 1 && stageOf(91).i === 3 && stageOf(92).i === 3 && stageOf(92).k >= 22, 'self-check: path — stages and loop after the last');
 const CARDS = ['Сиди молча', 'Не верь мыслям', 'Пройди сквозь', 'Попробуй фридайвинг', 'Самадхи', 'Никогда не ныряй один', 'Джханы'];
 // Opening lines of the Tell Others cards (~/Life/Sites/tellothers/src/_cards/*.ru.md)
 const EXCERPTS = [
@@ -364,9 +454,13 @@ let S;
 try { S = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { S = fresh(); }
 if (S.today.d !== today()) S.today = {d: today(), ratings: []};
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
-const blockLen = id => S.len[id] ?? BLOCKS[id].len;
-const titleOf = id => ({b1: 'Дыхание ' + S.pat, h1: 'Задержка', h2: 'Задержка', mot: 'Внимание «Бильярд»', sil: 'Тишина «Поймай дыхание»', silm: 'Тишина «Поймай дыхание»'})[id];
-const plan = () => S.minimal ? PLAN_MIN : PLAN;
+const gOf = id => GAMES.find(g => g.id === id.slice(2));
+// Games without a minutes setting (holdpair, seq) get an estimate: steps plus ~30 s per hold; Мост времени ~3 мин.
+const glen = g => g.min ? Math.round(gmin(g) * 60) : g.steps ? g.steps.reduce((a, st) => a + (st.s || 30), 0) : 180;
+const blockLen = id => id.startsWith('g:') ? glen(gOf(id)) : S.len[id] ?? BLOCKS[id].len;
+const titleOf = id => id.startsWith('g:') ? gOf(id).title : ({b1: 'Дыхание ' + S.pat, h1: 'Задержка', h2: 'Задержка', mot: 'Внимание «Бильярд»', sil: 'Тишина «Поймай дыхание»', silm: 'Тишина «Поймай дыхание»'})[id];
+const plan = () => S.minimal ? PLAN_MIN : dayPlan(S.day);
+const routeOf = id => id.startsWith('g:') ? 'game?id=' + id.slice(2) + '&auto' : BLOCKS[id].type + '?b=' + id;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
 // Breathwork holds live in S.bwLog only: they never touch S.len / S.log / S.today.ratings, so the hold progression ignores them.
 const bwRecord = e => { S.bwLog.push(e); };
@@ -413,9 +507,9 @@ const A = {};
 function next() {
   if (!run) return go('today');
   let i = run.i + 1;
-  while (i < run.ids.length && holdStop(S.today.ratings) && BLOCKS[run.ids[i]].type === 'hold') i++;
+  while (i < run.ids.length && holdStop(S.today.ratings) && BLOCKS[run.ids[i]]?.type === 'hold') i++;
   if (i >= run.ids.length) { run = null; return go('note?done=1'); }
-  run.i = i; go(BLOCKS[run.ids[i]].type + '?b=' + run.ids[i]);
+  run.i = i; go(routeOf(run.ids[i]));
 }
 function doneScreen(title, lines, cta = 'Дальше', again = next) {
   shell({back: !run, title: '', body: `<div class="center"><h1>${title}</h1>${lines.map(l => `<p class="${l.startsWith('!') ? 'warn' : 'muted'}">${esc(l.replace(/^!/, ''))}</p>`).join('')}</div>`,
@@ -467,28 +561,28 @@ SCREENS.welcome = p => {
 /* ---- Сегодня ---- */
 SCREENS.today = () => {
   const ids = plan(), total = ids.reduce((a, id) => a + blockLen(id), 0);
-  const dayN = Math.min(S.day, 7);
-  const segs = [...Array(7)].map((_, i) => `<i class="${i + 1 < S.day || S.entryDone ? 'done' : i + 1 === S.day ? 'now' : ''}"></i>`).join('');
-  const last = S.notes[S.notes.length - 1];
-  shell({back: false, title: S.entryDone ? 'Вход пройден' : '', body: `
-    <div><h2>Вход · день ${dayN} из 7</h2><div class="path" style="margin-top:10px">${segs}</div></div>
+  const {i: si, k} = stageOf(S.day), st = STAGES[si], wk = Math.floor((k - 1) / 7), ci = (S.day - 1) % CARDS.length;
+  const segs = [...Array(7)].map((_, j) => `<i class="${j + 1 < k - wk * 7 ? 'done' : j + 1 === k - wk * 7 ? 'now' : ''}"></i>`).join('');
+  const last = S.notes[S.notes.length - 1], doneToday = S.today.done || 0;
+  shell({back: false, title: doneToday ? `Сегодня пройдено: ${doneToday}` : '', body: `
+    <div><h2>${st.name} · ${si ? `неделя ${wk + 1} · тренировка ${k - wk * 7} из 7` : `тренировка ${k} из 7`}</h2><div class="path" style="margin-top:10px">${segs}</div></div>
     <div class="card">
       <h2>Карточка · 3 мин</h2>
-      <h1>${CARDS[dayN - 1]}</h1>
-      <p class="muted">${EXCERPTS[dayN - 1]}</p>
+      <h1>${CARDS[ci]}</h1>
+      <p class="muted">${EXCERPTS[ci]}</p>
     </div>
     <div class="row" style="align-items:baseline"><h2>Практика</h2><span class="muted small">${Math.round(total / 60)} мин</span></div>
     <div class="plan">${ids.map(id => `<div class="item"><span class="name">${titleOf(id)}</span>
-      <span class="step"><button data-act="step" data-v="${id}:-1" aria-label="меньше">−</button><b>${fmt(blockLen(id))}</b><button data-act="step" data-v="${id}:1" aria-label="больше">+</button></span></div>`).join('')}</div>
+      ${id.startsWith('g:') && !gOf(id).min ? `<span class="step"><b>≈ ${fmt(blockLen(id))}</b></span>` : `<span class="step"><button data-act="step" data-v="${id}:-1" aria-label="меньше">−</button><b>${fmt(blockLen(id))}</b><button data-act="step" data-v="${id}:1" aria-label="больше">+</button></span>`}</div>`).join('')}</div>
     <button class="sw ${S.minimal ? 'on' : ''}" data-act="minimal"><span>Плохой день · 5 мин</span><s></s></button>
     <h2>Отдельно</h2>
-    <div class="links"><a href="#games" class="wide">Игры внимания · ${GAMES.length}</a><a href="#breath">Дыхание</a><a href="#schulte">Шульте</a><a href="#silence">Тишина</a><a href="#wordless">Без слов</a><a href="#pool" class="${S.entryDone ? '' : 'lock'}">Вода${S.entryDone ? '' : ' · закрыто'}</a><a href="#hold">Задержка</a><a href="#breathwork" class="wide">Брезворк</a><a href="#welcome" class="wide">Как это устроено</a></div>
-    ${last ? `<p class="muted small">Заметка, день ${last.day}: «${esc(last.text)}»</p>` : ''}
+    <div class="links"><a href="#games" class="wide">Практики · ${GAMES.length}</a><a href="#breath">Дыхание</a><a href="#schulte">Шульте</a><a href="#silence">Тишина</a><a href="#wordless">Без слов</a><a href="#pool" class="${S.entryDone ? '' : 'lock'}">Вода${S.entryDone ? '' : ' · закрыто'}</a><a href="#hold">Задержка</a><a href="#breathwork" class="wide">Брезворк</a><a href="#welcome" class="wide">Как это устроено</a></div>
+    ${last ? `<p class="muted small">Заметка, тренировка ${last.day}: «${esc(last.text)}»</p>` : ''}
     <button class="btn quiet" data-act="reset">Сбросить прогресс (прототип)</button>`,
     foot: `<button class="btn primary" data-act="start">Начать</button>`});
-  A.step = v => { const [id, d] = v.split(':'), b = BLOCKS[id]; S.len[id] = Math.max(b.min, blockLen(id) + d * b.step); save(); SCREENS.today(); };
+  A.step = v => { const [id, d] = v.split(/:(?=-?1$)/); if (id.startsWith('g:')) { const g = gOf(id); S.gmin[g.id] = Math.min(g.max || 30, Math.max(g.lo || .5, gmin(g) + +d)); } else { const b = BLOCKS[id]; S.len[id] = Math.max(b.min, blockLen(id) + d * b.step); } save(); SCREENS.today(); };
   A.minimal = () => { S.minimal = !S.minimal; save(); SCREENS.today(); };
-  A.start = () => { run = {ids: plan(), i: 0}; go(BLOCKS[run.ids[0]].type + '?b=' + run.ids[0]); };
+  A.start = () => { run = {ids: plan(), i: 0}; go(routeOf(run.ids[0])); };
   A.reset = () => { if (confirm('Стереть весь прогресс на этом устройстве?')) { localStorage.removeItem(KEY); S = fresh(); SCREENS.today(); } };
 };
 
@@ -612,7 +706,7 @@ SCREENS.mot = p => {
     if (!cv.isConnected) return;
     if (ph !== 'idle') elapsed += dt; t += dt;
     if (ph === 'show' && t >= 3) { ph = 'move'; t = 0; st('Следи'); tone(440, .1, .4); }
-    else if (ph === 'move') { for (let r = dt; r > 0; r -= .03) move(Math.min(.03, r)); if (t >= 8) { ph = 'pick'; t = 0; st('Стоп. Коснись ' + (K === 1 ? 'шара' : K + ' шаров')); tone(523, .14, .6); buzz(); } }
+    else if (ph === 'move') { for (let r = dt; r > 0; r -= .03) move(Math.min(.03, r)); if (t >= 8) { ph = 'pick'; t = 0; st('Стоп'); tone(523, .14, .6); buzz(); } }
     else if (ph === 'reveal' && t >= 1.6) { if (elapsed >= total) return end(); round(); }
     if (ph !== 'idle') info();
     draw();
@@ -824,15 +918,15 @@ const gmin = g => S.gmin[g.id] ?? g.min;
 const dm = m => m < 1 ? Math.round(m * 60) + ' с' : String(m).replace('.', ',') + ' мин';
 const rnd = a => a[Math.random() * a.length | 0];
 const meta = g => g.tag || (g.min ? dm(gmin(g)) : g.mech === 'link' ? '›' : '');
-const banner = g => g.safe ? `<div class="warn">${g.safe === true ? SAFETY : g.safe}</div>` : '';
+const banner = g => g.safe ? `<div class="warn">${g.safe === true ? SAFETY : g.safe === 'bw' ? BW_SAFETY : g.safe}</div>` : '';
 const PACER = '<div class="center"><div class="pacer"><div class="circ" id="circ"></div></div><div class="lab"><b id="lab"></b><span id="cd"></span></div></div>';
 const pacerTick = (pat, t, lab = {}) => {
   const ph = breathPhase(pat, t), c = $('#circ'); if (!c) return '';
-  const l = lab[ph.label] || ph.label; c.style.transform = `scale(${ph.scale})`; $('#lab').textContent = l; $('#cd').textContent = Math.ceil(ph.left); return l;
+  const l = lab[ph.label] || ph.label; c.style.transform = `scale(${ph.scale})`; $('#lab').textContent = l; $('#cd').textContent = l && PAT_LEN(pat) >= 3 ? Math.round(ph.left) : ''; return l;
 };
 const fin = (g, res, lines = []) => {
   try { speechSynthesis.cancel(); } catch (e) {}
-  S.log.push({t: Date.now(), type: 'game', id: g.id, ...res}); save(); doneScreen(g.title, lines, 'Готово', () => go('games'));
+  S.log.push({t: Date.now(), type: 'game', id: g.id, ...res}); save(); doneScreen(g.title, lines, run ? 'Дальше' : 'Готово', run ? next : () => go('games'));
 };
 // One timed run: draws once, calls tick(t, total) every frame, finishes at the chosen length or on «Закончить».
 function session(g, {body, foot = '', cls = '', init, tick, result = () => ({}), lines = t => ['Сыграно ' + fmt(t)]}) {
@@ -850,7 +944,7 @@ function session(g, {body, foot = '', cls = '', init, tick, result = () => ({}),
   });
 }
 const MECH = {
-  link: g => go(g.to),
+  link: g => { if (g.bw) { S.bw.mode = g.bw; save(); } go(g.to); },
   guided(g) {
     const total = gmin(g) * 60, cues = gcues(g, total); let i = 0, pings = 0, nextP = g.ping ? 20 + Math.random() * 40 : Infinity, shown = 0;
     session(g, {cls: 'dark', body: `<div class="center"><p class="ping" id="ping"></p>${g.ping ? '<p class="muted small">Жди сигнала</p>' : ''}</div>`,
@@ -927,6 +1021,38 @@ const MECH = {
       },
       result: () => ({hits, miss, fa, zone: lvl}), lines: () => [`Верно ${hits} из ${hits + miss}`, `Лишних касаний: ${fa}`, `Дошёл до зоны: ${ZONES[lvl]}`]});
   },
+  // seq: steps {p: pattern|null, s, say} (pacer or free breathing for s seconds) and {hold: 'exh', say} (tap to end).
+  seq(g) {
+    const warn = banner(g), holds = []; let k = 0;
+    const reset = () => { cleanups.forEach(f => f()); cleanups = []; try { speechSynthesis.cancel(); } catch (e) {} };
+    const step = () => {
+      reset();
+      if (k >= g.steps.length) return fin(g, {holds: holds.map(Math.round)}, holds.length ? holds.map((h, i) => `Задержка ${i + 1}: ${fmt(h)}`) : ['Сделано ' + fmt((performance.now() - start) / 1000)]);
+      const s = g.steps[k++], t0 = performance.now(), head = `${warn}<h2>${esc(g.title)} · ${k} из ${g.steps.length}</h2>`;
+      shell({back: false, title: '', body: s.hold
+        ? `${head}<div class="center" id="tap"><h1>Выдох — держи</h1><div class="huge dim" id="big">0:00</div><p class="muted">${esc(s.say)}</p><p class="muted small">Коснись экрана, чтобы закончить</p></div>`
+        : `${head}<p class="muted">${esc(s.say || '')}</p>${s.p ? PACER : `<div class="center"><div class="huge dim" id="big">${fmt(s.s)}</div></div>`}`,
+        foot: `<button class="btn quiet" data-act="gend">Остановить</button>`});
+      A.gend = () => run ? next() : go('games');
+      if (s.hold) {
+        speak('выдох, держи'); tone(392, .12, .5);
+        every(() => { const b = $('#big'); b && (b.textContent = fmt((performance.now() - t0) / 1000)); }, 200);
+        $('#tap').addEventListener('pointerdown', () => { const sec = (performance.now() - t0) / 1000; if (sec < 1) return; holds.push(sec); later(step, 0); }, {once: false});
+        return;
+      }
+      if (s.say) speak(s.say);
+      let last = '', done = false;
+      loop(now => {
+        const t = (now - t0) / 1000;
+        if (t >= s.s) { if (!done) { done = true; later(step, 0); } return; }
+        if (!s.p) { $('#big').textContent = fmt(Math.ceil(s.s - t)); return; }
+        const l = pacerTick(s.p, t);
+        if (l !== last) { last = l; if (!g.quiet && t > 2) tone({'Вдох': 440, 'Выдох': 330}[l] || 392, .1, .5); }
+      });
+    };
+    const start = performance.now();
+    step();
+  },
   holdpair(g) {
     const warn = banner(g), times = [];
     const reset = () => { cleanups.forEach(f => f()); cleanups = []; try { speechSynthesis.cancel(); } catch (e) {} };
@@ -962,9 +1088,9 @@ function daily(g) {
   };
   draw();
 }
-SCREENS.games = () => shell({title: '', body: `<h1>Игры внимания</h1>
-  <p class="muted small">Играть можно недолго, но несколько раз в день. Время каждой игры меняется на её экране.</p>
-  ${GROUPS.map((n, i) => `<h2>${n}</h2><div class="plan">${GAMES.filter(g => g.group === i).map(g => `<a class="item" href="#game?id=${g.id}"><span class="name">${esc(g.title)}</span><small>${meta(g)}</small></a>`).join('')}</div>`).join('')}`});
+SCREENS.games = () => shell({title: '', body: `<h1>Практики</h1>
+  <p class="muted small">Играть можно недолго, но несколько раз в день. Время каждой практики меняется на её экране.</p>
+  ${GROUP_ORDER.map(i => [GROUPS[i], i]).map(([n, i]) => `<h2>${n}</h2><div class="plan">${GAMES.filter(g => g.group === i).map(g => `<a class="item" href="#game?id=${g.id}"><span class="name">${esc(g.title)}</span><small>${meta(g)}</small></a>`).join('')}</div>`).join('')}`});
 SCREENS.game = p => {
   const g = GAMES.find(x => x.id === p.get('id'));
   if (!g) return go('games');
@@ -987,9 +1113,14 @@ SCREENS.note = p => {
   shell({back: !done, title: 'Заметка', body: `<h1>Как прошло</h1><input type="text" id="nt" maxlength="140" placeholder="Одной строкой" autocomplete="off"><p class="muted small">Можно пустую. Заметка остаётся на этом устройстве.</p>`,
     foot: `<button class="btn primary" data-act="save">Сохранить</button>`});
   A.save = () => {
-    S.notes.push({day: Math.min(S.day, 7), date: today(), text: $('#nt').value.trim() || '—'});
-    if (done) { if (S.day >= 7) S.entryDone = true; else S.day++; }
-    save(); go('today');
+    S.notes.push({day: S.day, date: today(), text: $('#nt').value.trim() || '—'});
+    if (!done) { save(); return go('today'); }
+    const n = S.day; if (n >= 7) S.entryDone = true; S.day++; S.today.done = (S.today.done || 0) + 1; save();
+    const nx = stageOf(S.day), nst = STAGES[nx.i];
+    shell({back: false, title: '', body: `<div class="center"><h1>Тренировка ${n} пройдена</h1><p class="muted">Следующая: ${nst.name}, ${dayPlan(S.day).length} блоков, ${Math.round(dayPlan(S.day).reduce((a, id) => a + blockLen(id), 0) / 60)} мин.</p><p class="muted small">Можно сейчас, можно завтра.</p></div>`,
+      foot: `<button class="btn primary" data-act="nextday">Следующая тренировка</button><button class="btn quiet" data-act="enough">На сегодня всё</button>`});
+    A.nextday = () => { S.minimal = false; save(); run = {ids: plan(), i: 0}; go(routeOf(run.ids[0])); };
+    A.enough = () => go('today');
   };
 };
 
