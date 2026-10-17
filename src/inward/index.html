@@ -10,6 +10,17 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>inward</title>
+<meta name="description" content="Школа внимания. 15 минут в день: карточка на 3 минуты, потом практика — дыхание, задержка дыхания, игра на внимание, тишина.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="inward">
+<meta property="og:title" content="inward · школа внимания">
+<meta property="og:description" content="15 минут в день: карточка на 3 минуты, потом практика — дыхание, задержка дыхания, игра на внимание, тишина.">
+<meta property="og:url" content="https://firedev.com/inward/">
+<meta property="og:image" content="https://firedev.com/inward/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://firedev.com/inward/og.png">
 <style>
 /* Tokens: swap this block to change the visual world. */
 :root{
@@ -145,6 +156,8 @@ function bwSteps(mode, rounds) {
   if (mode !== 'wh') out.push({k: 'sit', r: rounds}, {k: 'more', r: rounds}, {k: 'note', r: rounds});
   return out;
 }
+const PAT_LEN = pat => (PATTERNS[pat] || BW_PAT[pat]).reduce((a, p) => a + p[1], 0);
+const PAT_AT = (pat, t) => { const ph = PATTERNS[pat] || BW_PAT[pat]; t = ((t % PAT_LEN(pat)) + PAT_LEN(pat)) % PAT_LEN(pat); let i = 0; for (const p of ph) { if (t < p[1]) return i; t -= p[1]; i++; } return 0; };
 const SMALL = .4, ease = x => (1 - Math.cos(Math.PI * x)) / 2;
 function breathPhase(pat, t) {
   const ph = PATTERNS[pat] || BW_PAT[pat], cyc = ph.reduce((a, p) => a + p[1], 0);
@@ -239,11 +252,13 @@ let cleanups = [];
 const onLeave = f => cleanups.push(f);
 const every = (f, ms) => { const t = setInterval(f, ms); onLeave(() => clearInterval(t)); };
 const later = (f, ms) => { const t = setTimeout(f, ms); onLeave(() => clearTimeout(t)); return t; };
-function loop(f) { let id, last = performance.now(); const tick = now => { f(now, Math.min(.05, (now - last) / 1000)); last = now; id = requestAnimationFrame(tick); }; id = requestAnimationFrame(tick); onLeave(() => cancelAnimationFrame(id)); }
+function loop(f) { let id, last = performance.now(); const tick = now => { id = requestAnimationFrame(tick); const dt = Math.min(.25, Math.max(0, (now - last) / 1000)); last = now; try { f(now, dt); } catch (e) { console.error(e); } }; id = requestAnimationFrame(tick); onLeave(() => cancelAnimationFrame(id)); }
 const go = h => { location.hash = h; };
 const $ = (s, r = document) => r.querySelector(s);
 const speak = t => { try { if (S.voice && window.speechSynthesis) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = 'ru-RU'; speechSynthesis.speak(u); } } catch (e) {} };
-let actx; const beep = () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); const o = actx.createOscillator(), g = actx.createGain(); o.frequency.value = 432; g.gain.setValueAtTime(0, actx.currentTime); g.gain.linearRampToValueAtTime(.18, actx.currentTime + .15); g.gain.linearRampToValueAtTime(0, actx.currentTime + 1.2); o.connect(g); g.connect(actx.destination); o.start(); o.stop(actx.currentTime + 1.3); } catch (e) {} };
+let actx; const ac = () => { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === 'suspended') actx.resume(); return actx; };
+const tone = (hz, vol = .12, dur = .5, force = false) => { try { if (S.sound === false && !force) return; const c = ac(), o = c.createOscillator(), g = c.createGain(); o.type = 'sine'; o.frequency.value = hz; g.gain.setValueAtTime(0, c.currentTime); g.gain.linearRampToValueAtTime(vol, c.currentTime + .05); g.gain.exponentialRampToValueAtTime(.0001, c.currentTime + dur); o.connect(g); g.connect(c.destination); o.start(); o.stop(c.currentTime + dur + .05); } catch (e) {} };
+const beep = () => tone(432, .18, 1.2, true);
 const buzz = () => { try { navigator.vibrate && navigator.vibrate([60, 80, 60]); } catch (e) {} };
 
 function shell({back = true, title = '', body = '', foot = '', cls = ''}) {
@@ -349,14 +364,16 @@ SCREENS.breath = p => {
   let pat = S.pat, t0 = 0, running = false;
   const draw = () => {
     shell({title: titleOf(id), body: `
-      <div class="chips">${Object.keys(PATTERNS).map(k => `<button class="chip ${k === pat ? 'on' : ''}" data-act="pat" data-v="${k}" ${running ? 'disabled' : ''}>${k}</button>`).join('')}</div>
+      <div class="chips">${Object.keys(PATTERNS).map(k => `<button class="chip ${k === pat ? 'on' : ''}" data-act="pat" data-v="${k}" ${running ? 'disabled' : ''}>${k}</button>`).join('')}<button class="chip ${S.sound === false ? '' : 'on'}" data-act="snd">звук</button></div>
       <div class="center"><div class="pacer"><div class="circ" id="circ"></div></div><div class="lab"><b id="lab">Готов</b><span id="cd">${fmt(total)}</span></div>
       <p class="muted small" id="hint">${running ? 'Глаза можно закрыть. Дыхание спокойное, без усилия.' : 'Живот, потом грудь. Спокойно: вдох не глубже комфортного.'}</p></div>`,
       foot: `<button class="btn primary" data-act="go">${running ? 'Закончить' : 'Начать'}</button>`});
     A.pat = v => { pat = v; S.pat = v; save(); draw(); };
+    A.snd = () => { S.sound = S.sound === false; save(); draw(); };
     A.go = () => running ? next() : start();
   };
-  const start = () => { running = true; t0 = performance.now(); draw(); };
+  const start = () => { running = true; t0 = performance.now(); lastCue = ''; draw(); try { ac(); } catch (e) {} };
+  let lastCue = '';
   draw();
   loop(now => {
     if (!running) return;
@@ -364,7 +381,9 @@ SCREENS.breath = p => {
     if (t >= total) { running = false; return next(); }
     const ph = breathPhase(pat, t);
     c.style.transform = `scale(${ph.scale})`;
-    $('#lab').textContent = ph.label; $('#cd').textContent = Math.ceil(ph.left);
+    const cue = ph.label + Math.floor(t / PAT_LEN(pat)) + PAT_AT(pat, t);
+    if (cue !== lastCue) { lastCue = cue; tone({'Вдох': 440, 'Выдох': 330}[ph.label] || 392, ph.label === 'Вдох' || ph.label === 'Выдох' ? .14 : .07, .6); }
+    $('#lab').textContent = ph.label; $('#cd').textContent = Math.round(ph.left);
     $('#hint').textContent = 'Осталось ' + fmt(total - t);
   });
   if (p.has('auto')) start();
@@ -455,10 +474,11 @@ SCREENS.mot = p => {
     });
   }
   loop((now, dt) => {
+    if (!cv.isConnected) return;
     if (ph !== 'idle') elapsed += dt; t += dt;
-    if (ph === 'show' && t >= 2) { ph = 'move'; t = 0; st('Следи'); }
-    else if (ph === 'move') { move(dt); if (t >= 8) { ph = 'pick'; t = 0; st('Отметь ' + (K === 1 ? 'шар' : K + ' шара')); } }
-    else if (ph === 'reveal' && t >= 1.6) { elapsed >= total ? end() : round(); }
+    if (ph === 'show' && t >= 2) { ph = 'move'; t = 0; st('Следи'); tone(440, .1, .4); }
+    else if (ph === 'move') { for (let r = dt; r > 0; r -= .03) move(Math.min(.03, r)); if (t >= 8) { ph = 'pick'; t = 0; st('Отметь ' + (K === 1 ? 'шар' : K + ' шара')); tone(523, .1, .4); } }
+    else if (ph === 'reveal' && t >= 1.6) { if (elapsed >= total) return end(); round(); }
     if (ph !== 'idle') info();
     draw();
   });
@@ -466,10 +486,12 @@ SCREENS.mot = p => {
     if (ph !== 'pick') return;
     const r = cv.getBoundingClientRect(), x = (e.clientX - r.left) * W / r.width, y = (e.clientY - r.top) * W / r.height;
     let bi = -1, bd = 34; balls.forEach((b, i) => { const d = Math.hypot(b.x - x, b.y - y); if (d < bd) { bd = d; bi = i; } });
-    if (bi < 0) return; picks.add(bi);
-    if (picks.size < K) return;
+    if (bi < 0) return;
+    if (picks.has(bi)) { picks.delete(bi); st('Отметь ' + (K === 1 ? 'шар' : K + ' шара')); return; }
+    picks.add(bi);
+    if (picks.size < K) return st('Отметь ещё ' + (K - picks.size) + ' · коснись отмеченного, чтобы снять');
     const ok = [...picks].every(i => targets.has(i)); rounds++; hits += ok; S.mot = motStep(S.mot, ok); save();
-    ph = 'reveal'; t = 0; st(ok ? 'Верно' : 'Мимо'); info();
+    ph = 'reveal'; t = 0; st(ok ? 'Верно' : 'Мимо'); info(); tone(ok ? 660 : 262, .12, .6);
   });
   const end = () => { S.log.push({t: Date.now(), type: 'mot', rounds, hits, lvl: S.mot.lvl}); save(); doneScreen('Бильярд', [`Раундов ${rounds}, верно ${hits}`, `Уровень теперь ${S.mot.lvl + 1} из ${MOT.length}`]); };
   A.go = () => { $('#go').style.display = 'none'; round(); };
