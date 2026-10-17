@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e0f11">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>inward</title>
+<style>
+/* Tokens: swap this block to change the visual world. */
+:root{
+  --font:-apple-system,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+  --bg:#0e0f11; --surface:#17181b; --raise:#202226; --line:#2b2d32;
+  --text:#ececed; --muted:#8f939a; --faint:#5b5f66;
+  --accent:#9fc2cf; --on-accent:#0b1317;
+  --ok:#8fcf9e; --bad:#e0897f; --warn:#e3c07a;
+  --ball:#b9bcc2;
+  --r:14px; --r-lg:20px; --gap:16px; --tap:56px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.4 var(--font);font-variant-numeric:tabular-nums}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+#app{max-width:430px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+.top{display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:calc(env(safe-area-inset-top) + 6px) var(--gap) 0}
+.brand{font-size:13px;letter-spacing:.14em;color:var(--muted)}
+.back{background:none;border:0;color:var(--muted);padding:10px 8px 10px 0;font-size:15px;min-height:44px}
+.ttl{font-size:15px;color:var(--muted)}
+.body>*{flex-shrink:0}
+.body{flex:1;overflow-y:auto;padding:8px var(--gap) var(--gap);display:flex;flex-direction:column;gap:var(--gap)}
+.foot{padding:12px var(--gap) calc(env(safe-area-inset-bottom) + 16px);display:flex;flex-direction:column;gap:10px;background:linear-gradient(transparent,var(--bg) 24%)}
+h1{font-size:26px;line-height:1.15;margin:0;font-weight:650}
+h2{font-size:13px;margin:0;font-weight:500;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+p{margin:0}
+.muted{color:var(--muted)}.small{font-size:14px}.faint{color:var(--faint)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--gap);display:flex;flex-direction:column;gap:8px}
+.btn{min-height:var(--tap);border-radius:var(--r);border:1px solid var(--line);background:var(--raise);padding:0 20px;font-size:17px;font-weight:550;width:100%}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:transparent;min-height:64px;font-size:19px}
+.btn.quiet{background:none;border-color:transparent;color:var(--muted);min-height:44px;font-size:15px;font-weight:450}
+.btn[disabled]{opacity:.4}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:44px;padding:0 16px;border-radius:99px;border:1px solid var(--line);background:none;color:var(--muted);font-size:15px}
+.chip.on{background:var(--raise);color:var(--text);border-color:var(--accent)}
+/* path */
+.path{display:flex;gap:4px}.path i{flex:1;height:4px;border-radius:2px;background:var(--line)}
+.path i.done{background:var(--accent)}.path i.now{background:var(--text)}
+/* plan */
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.plan .item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 16px;min-height:64px;border-top:1px solid var(--line)}
+.plan .item:first-child{border-top:0}
+.plan .name{font-size:16px;line-height:1.25}
+.step{display:flex;align-items:center}
+.step button{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--raise);font-size:22px;line-height:1}
+.step b{min-width:52px;text-align:center;font-weight:550}
+/* switch */
+.sw{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:0 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);width:100%;text-align:left}
+.sw s{width:46px;height:28px;border-radius:14px;background:var(--line);position:relative;flex:none;text-decoration:none}
+.sw s::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--muted)}
+.sw.on s{background:var(--accent)}.sw.on s::after{left:21px;background:var(--on-accent)}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.links a{display:flex;align-items:center;min-height:52px;padding:0 14px;border:1px solid var(--line);border-radius:var(--r);color:var(--text);text-decoration:none;font-size:15px}
+.links a.lock{color:var(--faint)}
+/* banner */
+.warn{border:1px solid var(--warn);border-radius:var(--r);padding:12px 14px;color:var(--warn);font-size:14px;line-height:1.35}
+/* big timer */
+.center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center}
+.huge{font-size:92px;font-weight:300;letter-spacing:-.02em;line-height:1}
+.huge.dim{color:var(--faint)}
+.rate{display:flex;flex-direction:column;gap:12px}
+.rate .btn{min-height:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:22px}
+.rate .btn small{font-size:13px;font-weight:400;color:var(--muted)}
+/* pacer */
+.pacer{position:relative;width:280px;height:280px}
+.pacer .circ{position:absolute;inset:0;border-radius:50%;background:var(--raise);border:2px solid var(--accent);transform:scale(.4)}
+.lab{text-align:center;display:flex;align-items:baseline;gap:14px;justify-content:center}
+.lab b{font-size:30px;font-weight:550}
+.lab span{font-size:44px;font-weight:300}
+/* mot */
+canvas{width:100%;aspect-ratio:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);touch-action:none;display:block}
+.status{min-height:26px;font-size:18px;text-align:center}
+/* schulte */
+.grid{display:grid;gap:6px}
+.grid button{aspect-ratio:1;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:24px;font-weight:500;padding:0}
+.grid.n7{gap:4px}.grid.n7 button{font-size:18px;border-radius:8px}
+.grid button.hit{color:var(--faint);background:none}
+.grid button.bad{background:var(--bad);color:#000}
+.grid button.mid{border-color:var(--accent)}
+/* silence */
+.dark{background:#000}.dark .foot{background:none}
+.ping{font-size:26px;font-weight:550;min-height:70px;color:var(--text)}
+/* text field */
+input[type=text]{width:100%;min-height:56px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface);padding:0 16px;font-size:17px;outline:0}
+input[type=text]:focus{border-color:var(--accent)}
+.check{display:flex;align-items:center;gap:14px;min-height:56px;padding:0 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);font-size:16px;width:100%;text-align:left}
+.check i{width:26px;height:26px;border-radius:8px;border:2px solid var(--faint);flex:none;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:16px;color:var(--on-accent)}
+.check.on i{background:var(--accent);border-color:var(--accent)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.seg button{min-height:44px;border:0;border-radius:11px;background:none;color:var(--muted);font-size:15px}
+.seg button.on{background:var(--raise);color:var(--text)}
+.links a.wide{grid-column:1/-1}
+.cue{min-height:30px;font-size:22px;font-weight:550;color:var(--accent)}
+.lock-ico{font-size:13px;letter-spacing:.1em;color:var(--warn)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+'use strict';
+/* ============ pure logic ============ */
+const HOLD_MIN = 20, HOLD_DELTA = {easy: 10, ok: 0, hard: -10};
+const fmt = s => { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+const nextHold = (cur, r) => Math.max(HOLD_MIN, cur + HOLD_DELTA[r]);
+const holdStop = ratings => ratings.length >= 2 && ratings.slice(-2).every(r => r === 'hard');
+const NUM = ['', 'одна', 'две', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять'];
+function cueText(sec) { // sec: multiple of 30
+  const m = Math.floor(sec / 60), half = sec % 60 === 30;
+  if (!m) return 'полминуты';
+  if (half) return m === 1 ? 'полторы минуты' : (NUM[m] || m) + ' с половиной ' + (m < 5 ? 'минуты' : 'минут');
+  return m === 1 ? 'минута' : (NUM[m] || m) + (m < 5 ? ' минуты' : ' минут');
+}
+// MOT staircase: 2 correct in a row -> up one level; 1 wrong -> down one level.
+const MOT = [{n:3,v:1},{n:3,v:1.5},{n:5,v:1},{n:5,v:1.5},{n:7,v:1},{n:7,v:1.5},{n:12,v:1}];
+const motK = n => n >= 5 ? 2 : 1;
+function motStep(s, correct) {
+  if (!correct) return {lvl: Math.max(0, s.lvl - 1), streak: 0};
+  return s.streak + 1 >= 2 ? {lvl: Math.min(MOT.length - 1, s.lvl + 1), streak: 0} : {lvl: s.lvl, streak: s.streak + 1};
+}
+// Breath pacer: phases [kind, seconds, label]; kind in/out/full/empty decides circle size.
+const PATTERNS = {
+  '4/4':  [['in',4,'Вдох'],['out',4,'Выдох']],
+  '4/6':  [['in',4,'Вдох'],['out',6,'Выдох']],
+  '5-5-5-5': [['in',5,'Вдох'],['full',5,'Пауза'],['out',5,'Выдох'],['empty',5,'Пауза']],
+  '4-7-8': [['in',4,'Вдох'],['full',7,'Задержка'],['out',8,'Выдох']],
+};
+const BW_PAT = {fast: [['in',1,'Вдох'],['out',1,'Выдох']]};
+// Breathwork script (пост в канале 21.01.2024): psy = продышка до касания, выдох-держи, вдох-держи (+до-вдох), в конце сидим 20+ мин и ещё 5; wh = 30 вдохов, выдох-держи, вдох 15 с.
+function bwSteps(mode, rounds) {
+  const out = [];
+  for (let r = 1; r <= rounds; r++) out.push(mode === 'wh' ? {k: 'breathe', r, n: 30} : {k: 'breathe', r, n: 0}, {k: 'exh', r}, mode === 'wh' ? {k: 'rec', r} : {k: 'inh', r});
+  if (mode !== 'wh') out.push({k: 'sit', r: rounds}, {k: 'more', r: rounds}, {k: 'note', r: rounds});
+  return out;
+}
+const SMALL = .4, ease = x => (1 - Math.cos(Math.PI * x)) / 2;
+function breathPhase(pat, t) {
+  const ph = PATTERNS[pat] || BW_PAT[pat], cyc = ph.reduce((a, p) => a + p[1], 0);
+  t = ((t % cyc) + cyc) % cyc;
+  for (const [kind, sec, label] of ph) {
+    if (t < sec) {
+      const x = t / sec;
+      const scale = kind === 'in' ? SMALL + (1 - SMALL) * ease(x) : kind === 'out' ? 1 - (1 - SMALL) * ease(x) : kind === 'full' ? 1 : SMALL;
+      return {label, left: sec - t, scale};
+    }
+    t -= sec;
+  }
+}
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+/* ---- self-check ---- */
+(function selfCheck() {
+  let bad = 0; const A = (c, m) => { if (!c) { bad++; console.assert(false, 'self-check: ' + m); } };
+  A(nextHold(60, 'easy') === 70, 'легко = +10');
+  A(nextHold(60, 'ok') === 60, 'нормально = same');
+  A(nextHold(60, 'hard') === 50, 'тяжело = -10');
+  A(nextHold(20, 'hard') === 20 && nextHold(25, 'hard') === 20, 'floor 0:20');
+  A(holdStop(['hard', 'hard']) && holdStop(['easy', 'hard', 'hard']), 'two hard stop');
+  A(!holdStop(['hard']) && !holdStop(['hard', 'ok', 'hard']) && !holdStop(['hard', 'ok']), 'no stop otherwise');
+  let s = {lvl: 2, streak: 0};
+  s = motStep(s, true); A(s.lvl === 2 && s.streak === 1, 'mot 1 correct holds');
+  s = motStep(s, true); A(s.lvl === 3 && s.streak === 0, 'mot 2 correct up');
+  s = motStep(s, false); A(s.lvl === 2, 'mot wrong down');
+  A(motStep({lvl: 0, streak: 0}, false).lvl === 0, 'mot floor');
+  A(motStep({lvl: MOT.length - 1, streak: 1}, true).lvl === MOT.length - 1, 'mot ceiling');
+  A(MOT.map(l => l.n).filter((n, i, a) => a.indexOf(n) === i).join() === '3,5,7,12', 'mot path 3-5-7-12');
+  A(cueText(30) === 'полминуты' && cueText(60) === 'минута' && cueText(90) === 'полторы минуты' && cueText(150) === 'две с половиной минуты' && cueText(300) === 'пять минут', 'cue text');
+  A(breathPhase('4/6', 4).label === 'Выдох' && Math.abs(breathPhase('4/6', 4).scale - 1) < .01 && breathPhase('4/6', 0).scale === SMALL, 'breath phases');
+  A(breathPhase('fast', 1).label === 'Выдох' && Math.abs(breathPhase('fast', 1).scale - 1) < .01, 'fast pacer 1 s / 1 s');
+  A(bwSteps('psy', 3).map(x => x.k).join() === 'breathe,exh,inh,breathe,exh,inh,breathe,exh,inh,sit,more,note', 'psy script');
+  A(bwSteps('wh', 3).map(x => x.k).join() === 'breathe,exh,rec,breathe,exh,rec,breathe,exh,rec', 'wim hof script');
+  A(shuffle([1, 2, 3, 4, 5]).slice().sort().join() === '1,2,3,4,5', 'shuffle keeps items');
+  if (!bad) console.log('self-check: ok');
+})();
+
+/* ============ state ============ */
+const KEY = 'inward.v1';
+const BLOCKS = {
+  b1:  {type: 'breath',  len: 120, step: 30, min: 30},
+  h1:  {type: 'hold',    len: 60,  step: 10, min: HOLD_MIN},
+  mot: {type: 'mot',     len: 180, step: 30, min: 30},
+  h2:  {type: 'hold',    len: 90,  step: 10, min: HOLD_MIN},
+  sil: {type: 'silence', len: 180, step: 30, min: 30},
+  silm:{type: 'silence', len: 120, step: 30, min: 30},
+};
+const PLAN = ['b1', 'h1', 'mot', 'h2', 'sil'], PLAN_MIN = ['b1', 'h1', 'silm'];
+// Only day 1 has a real plan; days 2-7 reuse it. TODO: per-day plans from программа-задержек.md
+const CARDS = ['Сиди молча', 'Не верь мыслям', 'Пройди сквозь', 'Попробуй фридайвинг', 'Самадхи', 'Никогда не ныряй один', 'Джханы'];
+// Opening lines of the Tell Others cards (~/Life/Sites/tellothers/src/_cards/*.ru.md)
+const EXCERPTS = [
+  'Сесть. Закрыть глаза. Дышать. Заметил что думаешь — вернись к дыханию. Это вся техника.',
+  'Ты не голос в голове. Ты тот, кто его слышит.',
+  'Ныряю. На 75 метрах держу в голове одну фразу: сейчас будет самое неприятное, но ничего не произойдёт.',
+  'Фридайвинг — тренировка способности оставаться спокойным. Не смог успокоиться — не нырнул. Медитируй или всплывай.',
+  'Самадхи — состояние собранности в медитации. Во фридайвинге его ловят, когда ныряешь не сопротивляясь воде.',
+  'Никогда не ныряй один. Под водой ты не чувствуешь, как отключаешься. Между тобой и концом одно — партнёр, который смотрит на тебя.',
+  'Джханы — восемь ступеней углубления в медитации. Практика одна и та же: сиди молча. Глубина приходит сама.',
+];
+const SAFETY = 'Только сидя или лёжа. Не в воде, не в ванне, не за рулём.';
+const BW_SAFETY = 'Только сидя или лёжа, на суше. Не в воде, не в ванне, не за рулём. Кружится голова — дыши спокойно.';
+const today = () => new Date().toISOString().slice(0, 10);
+const fresh = () => ({day: 1, entryDone: false, minimal: false, len: {}, pat: '4/6', hide: false, voice: true,
+  today: {d: today(), ratings: []}, mot: {lvl: 0, streak: 0}, best: {s5: null, s7: null, word: null}, notes: [], log: [], pool: [], bw: {mode: 'psy', rounds: 3}, bwLog: []});
+let S;
+try { S = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { S = fresh(); }
+if (S.today.d !== today()) S.today = {d: today(), ratings: []};
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
+const blockLen = id => S.len[id] ?? BLOCKS[id].len;
+const titleOf = id => ({b1: 'Дыхание ' + S.pat, h1: 'Задержка', h2: 'Задержка', mot: 'Внимание «Бильярд»', sil: 'Тишина «Поймай дыхание»', silm: 'Тишина «Поймай дыхание»'})[id];
+const plan = () => S.minimal ? PLAN_MIN : PLAN;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+// Breathwork holds live in S.bwLog only: they never touch S.len / S.log / S.today.ratings, so the hold progression ignores them.
+const bwRecord = e => { S.bwLog.push(e); };
+(function bwCheck() {
+  const snap = () => JSON.stringify([S.len, S.log, S.today.ratings, blockLen('h1'), blockLen('h2')]);
+  const before = snap(), n0 = S.bwLog.length;
+  bwRecord({t: 0, mode: 'psy', r: 1, n: 30, exh: 45, inh: 30});
+  const ok = snap() === before && S.bwLog.length === n0 + 1;
+  S.bwLog.pop();
+  console.assert(ok, 'self-check: breathwork round leaves the hold suggestion unchanged');
+})();
+let run = null; // {ids, i} while a day is in progress
+
+/* ============ plumbing ============ */
+const app = document.getElementById('app');
+let cleanups = [];
+const onLeave = f => cleanups.push(f);
+const every = (f, ms) => { const t = setInterval(f, ms); onLeave(() => clearInterval(t)); };
+const later = (f, ms) => { const t = setTimeout(f, ms); onLeave(() => clearTimeout(t)); return t; };
+function loop(f) { let id, last = performance.now(); const tick = now => { f(now, Math.min(.05, (now - last) / 1000)); last = now; id = requestAnimationFrame(tick); }; id = requestAnimationFrame(tick); onLeave(() => cancelAnimationFrame(id)); }
+const go = h => { location.hash = h; };
+const $ = (s, r = document) => r.querySelector(s);
+const speak = t => { try { if (S.voice && window.speechSynthesis) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = 'ru-RU'; speechSynthesis.speak(u); } } catch (e) {} };
+let actx; const beep = () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); const o = actx.createOscillator(), g = actx.createGain(); o.frequency.value = 432; g.gain.setValueAtTime(0, actx.currentTime); g.gain.linearRampToValueAtTime(.18, actx.currentTime + .15); g.gain.linearRampToValueAtTime(0, actx.currentTime + 1.2); o.connect(g); g.connect(actx.destination); o.start(); o.stop(actx.currentTime + 1.3); } catch (e) {} };
+const buzz = () => { try { navigator.vibrate && navigator.vibrate([60, 80, 60]); } catch (e) {} };
+
+function shell({back = true, title = '', body = '', foot = '', cls = ''}) {
+  app.className = cls;
+  app.innerHTML = `<div class="top">${back ? '<button class="back" data-act="back">‹ Сегодня</button>' : '<span class="brand">inward</span>'}<span class="ttl">${title}</span></div>
+  <div class="body">${body}</div>${foot ? `<div class="foot">${foot}</div>` : ''}`;
+}
+app.addEventListener('click', e => {
+  const t = e.target.closest('[data-act]'); if (!t) return;
+  const a = t.dataset.act, v = t.dataset.v;
+  if (a === 'back') { run = null; go('today'); }
+  else if (A[a]) A[a](v, t);
+});
+// Screen-level actions (set by the active screen via A.x = ...)
+const A = {};
+
+// A block finished: go to next block, or the note screen at the end of a run.
+function next() {
+  if (!run) return go('today');
+  let i = run.i + 1;
+  while (i < run.ids.length && holdStop(S.today.ratings) && BLOCKS[run.ids[i]].type === 'hold') i++;
+  if (i >= run.ids.length) { run = null; return go('note?done=1'); }
+  run.i = i; go(BLOCKS[run.ids[i]].type + '?b=' + run.ids[i]);
+}
+function doneScreen(title, lines, cta = 'Дальше', again = next) {
+  shell({back: !run, title: '', body: `<div class="center"><h1>${title}</h1>${lines.map(l => `<p class="${l.startsWith('!') ? 'warn' : 'muted'}">${esc(l.replace(/^!/, ''))}</p>`).join('')}</div>`,
+    foot: `<button class="btn primary" data-act="next">${cta}</button>`});
+  A.next = again;
+}
+
+/* ============ screens ============ */
+const SCREENS = {};
+const route = () => {
+  cleanups.forEach(f => f()); cleanups = [];
+  try { speechSynthesis.cancel(); } catch (e) {}
+  const [name, q = ''] = location.hash.slice(1).split('?');
+  (SCREENS[name] || SCREENS.today)(new URLSearchParams(q));
+  app.querySelector('.body') && (app.querySelector('.body').scrollTop = 0);
+};
+window.addEventListener('hashchange', route);
+
+/* ---- Сегодня ---- */
+SCREENS.today = () => {
+  const ids = plan(), total = ids.reduce((a, id) => a + blockLen(id), 0);
+  const dayN = Math.min(S.day, 7);
+  const segs = [...Array(7)].map((_, i) => `<i class="${i + 1 < S.day || S.entryDone ? 'done' : i + 1 === S.day ? 'now' : ''}"></i>`).join('');
+  const last = S.notes[S.notes.length - 1];
+  shell({back: false, title: S.entryDone ? 'Вход пройден' : '', body: `
+    <div><h2>Вход · день ${dayN} из 7</h2><div class="path" style="margin-top:10px">${segs}</div></div>
+    <div class="card">
+      <h2>Карточка · 3 мин</h2>
+      <h1>${CARDS[dayN - 1]}</h1>
+      <p class="muted">${EXCERPTS[dayN - 1]}</p>
+    </div>
+    <div class="row" style="align-items:baseline"><h2>Практика</h2><span class="muted small">${Math.round(total / 60)} мин</span></div>
+    <div class="plan">${ids.map(id => `<div class="item"><span class="name">${titleOf(id)}</span>
+      <span class="step"><button data-act="step" data-v="${id}:-1" aria-label="меньше">−</button><b>${fmt(blockLen(id))}</b><button data-act="step" data-v="${id}:1" aria-label="больше">+</button></span></div>`).join('')}</div>
+    <button class="sw ${S.minimal ? 'on' : ''}" data-act="minimal"><span>Плохой день · 5 мин</span><s></s></button>
+    <h2>Отдельно</h2>
+    <div class="links"><a href="#breath">Дыхание</a><a href="#schulte">Шульте</a><a href="#silence">Тишина</a><a href="#wordless">Без слов</a><a href="#pool" class="${S.entryDone ? '' : 'lock'}">Вода${S.entryDone ? '' : ' · закрыто'}</a><a href="#hold">Задержка</a><a href="#breathwork" class="wide">Брезворк</a></div>
+    ${last ? `<p class="muted small">Заметка, день ${last.day}: «${esc(last.text)}»</p>` : ''}
+    <button class="btn quiet" data-act="reset">Сбросить прогресс (прототип)</button>`,
+    foot: `<button class="btn primary" data-act="start">Начать</button>`});
+  A.step = v => { const [id, d] = v.split(':'), b = BLOCKS[id]; S.len[id] = Math.max(b.min, blockLen(id) + d * b.step); save(); SCREENS.today(); };
+  A.minimal = () => { S.minimal = !S.minimal; save(); SCREENS.today(); };
+  A.start = () => { run = {ids: plan(), i: 0}; go(BLOCKS[run.ids[0]].type + '?b=' + run.ids[0]); };
+  A.reset = () => { if (confirm('Стереть весь прогресс на этом устройстве?')) { localStorage.removeItem(KEY); S = fresh(); SCREENS.today(); } };
+};
+
+/* ---- Дыхание ---- */
+SCREENS.breath = p => {
+  const id = p.get('b') || 'b1', total = blockLen(id);
+  let pat = S.pat, t0 = 0, running = false;
+  const draw = () => {
+    shell({title: titleOf(id), body: `
+      <div class="chips">${Object.keys(PATTERNS).map(k => `<button class="chip ${k === pat ? 'on' : ''}" data-act="pat" data-v="${k}" ${running ? 'disabled' : ''}>${k}</button>`).join('')}</div>
+      <div class="center"><div class="pacer"><div class="circ" id="circ"></div></div><div class="lab"><b id="lab">Готов</b><span id="cd">${fmt(total)}</span></div>
+      <p class="muted small" id="hint">${running ? 'Глаза можно закрыть. Дыхание спокойное, без усилия.' : 'Живот, потом грудь. Спокойно: вдох не глубже комфортного.'}</p></div>`,
+      foot: `<button class="btn primary" data-act="go">${running ? 'Закончить' : 'Начать'}</button>`});
+    A.pat = v => { pat = v; S.pat = v; save(); draw(); };
+    A.go = () => running ? next() : start();
+  };
+  const start = () => { running = true; t0 = performance.now(); draw(); };
+  draw();
+  loop(now => {
+    if (!running) return;
+    const t = (now - t0) / 1000, c = $('#circ'); if (!c) return;
+    if (t >= total) { running = false; return next(); }
+    const ph = breathPhase(pat, t);
+    c.style.transform = `scale(${ph.scale})`;
+    $('#lab').textContent = ph.label; $('#cd').textContent = Math.ceil(ph.left);
+    $('#hint').textContent = 'Осталось ' + fmt(total - t);
+  });
+  if (p.has('auto')) start();
+};
+
+/* ---- Задержка ---- */
+SCREENS.hold = p => {
+  const id = p.get('b') || 'h1', target = blockLen(id);
+  const banner = `<div class="warn">${SAFETY}</div>`;
+  const toggles = () => `<div class="row" style="gap:8px"><button class="sw ${S.hide ? 'on' : ''}" data-act="hide"><span>скрыть таймер</span><s></s></button><button class="sw ${S.voice ? 'on' : ''}" data-act="voice"><span>голос</span><s></s></button></div>`;
+  const ready = () => {
+    if (holdStop(S.today.ratings)) return doneScreen('На сегодня задержек хватит', ['Две тяжёлые подряд. Остальное можно, без задержек.'], 'Дальше');
+    shell({title: 'Задержка', body: `${banner}
+      <div class="center"><div class="huge dim" id="big">${S.hide ? '· ·' : '0:00'}</div><p class="muted">Цель ${fmt(target)}. Не рекорд: выйди, когда захочешь.</p></div>${toggles()}`,
+      foot: `<button class="btn primary" data-act="go">Начать задержку</button>`});
+    A.go = begin; A.hide = () => { S.hide = !S.hide; save(); ready(); }; A.voice = () => { S.voice = !S.voice; save(); ready(); };
+  };
+  const begin = () => {
+    const t0 = performance.now(); let lastCue = 0, over = false;
+    shell({title: 'Задержка', cls: '', body: `${banner}
+      <div class="center" id="tap" style="cursor:pointer"><div class="huge ${S.hide ? 'dim' : ''}" id="big">${S.hide ? '· ·' : '0:00'}</div><p class="muted">Коснись экрана, чтобы закончить</p></div>`});
+    every(() => {
+      const sec = (performance.now() - t0) / 1000;
+      if (!S.hide) $('#big').textContent = fmt(Math.floor(sec));
+      const c = Math.floor(sec / 30);
+      if (c > lastCue) { lastCue = c; speak(cueText(c * 30)); }
+      if (!over && sec >= target) { over = true; if (!S.hide) $('#big').style.color = 'var(--ok)'; }
+    }, 100);
+    $('#tap').parentNode.addEventListener('pointerdown', () => stop((performance.now() - t0) / 1000), {once: true});
+  };
+  const stop = held => {
+    cleanups.forEach(f => f()); cleanups = [];
+    try { speechSynthesis.cancel(); } catch (e) {}
+    shell({back: false, title: 'Как было?', body: `<div class="center"><p class="muted">Держал</p><div class="huge" style="font-size:64px">${fmt(held)}</div></div>
+      <div class="rate">${[['easy', 'легко', '+10 с в следующий раз'], ['ok', 'нормально', 'столько же'], ['hard', 'тяжело', '−10 с в следующий раз']].map(([k, l, s]) => `<button class="btn" data-act="rate" data-v="${k}">${l}<small>${s}</small></button>`).join('')}</div>`});
+    A.rate = r => {
+      S.today.ratings.push(r); S.len[id] = nextHold(target, r);
+      S.log.push({t: Date.now(), type: 'hold', id, target, held: Math.round(held), r}); save();
+      if (holdStop(S.today.ratings)) return doneScreen('На сегодня задержек хватит', ['Две тяжёлые подряд. Остальные задержки сегодня пропущены.'], 'Дальше');
+      if (run) return next();
+      doneScreen('Записал', [`В следующий раз: ${fmt(S.len[id])}`], 'Готово');
+    };
+  };
+  ready();
+  if (p.has('auto')) begin();
+};
+
+/* ---- Внимание: Бильярд (MOT) ---- */
+SCREENS.mot = p => {
+  const id = p.get('b') || 'mot', total = blockLen(id), R = 14;
+  shell({title: 'Бильярд', body: `<div class="status" id="st">Следи за выделенными шарами</div>
+    <canvas id="cv"></canvas>
+    <p class="muted small" id="info"></p>`,
+    foot: `<button class="btn primary" data-act="go" id="go">Начать</button><button class="btn quiet" data-act="end">Закончить</button>`});
+  const cv = $('#cv'), W = cv.clientWidth || 358, dpr = 2; cv.width = W * dpr; cv.height = W * dpr;
+  const g = cv.getContext('2d'); g.scale(dpr, dpr);
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const C = {ball: css('--ball'), acc: css('--accent'), ok: css('--ok'), bad: css('--bad'), line: css('--line')};
+  let ph = 'idle', t = 0, elapsed = 0, balls = [], targets = new Set(), picks = new Set(), K = 1, rounds = 0, hits = 0;
+  const st = m => { $('#st').textContent = m; };
+  const info = () => { const L = MOT[S.mot.lvl]; $('#info').textContent = `Уровень ${S.mot.lvl + 1}/${MOT.length} · шаров ${L.n} · целей ${motK(L.n)} · ${ph === 'idle' ? '' : 'осталось ' + fmt(Math.max(0, total - elapsed))}`; };
+  function seed() {
+    const L = MOT[S.mot.lvl]; K = motK(L.n); balls = [];
+    for (let i = 0; i < L.n; i++) {
+      let x, y, k = 0;
+      do { x = R + Math.random() * (W - 2 * R); y = R + Math.random() * (W - 2 * R); k++; } while (k < 200 && balls.some(b => Math.hypot(b.x - x, b.y - y) < 2.4 * R));
+      const a = Math.random() * 6.283, v = 70 * L.v; balls.push({x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v});
+    }
+    targets = new Set(shuffle([...balls.keys()]).slice(0, K)); picks = new Set();
+  }
+  function round() { seed(); ph = 'show'; t = 0; st(K === 1 ? 'Запомни выделенный шар' : 'Запомни выделенные шары (' + K + ')'); info(); }
+  function move(dt) {
+    for (const b of balls) { b.x += b.vx * dt; b.y += b.vy * dt; if (b.x < R || b.x > W - R) { b.vx *= -1; b.x = Math.min(W - R, Math.max(R, b.x)); } if (b.y < R || b.y > W - R) { b.vy *= -1; b.y = Math.min(W - R, Math.max(R, b.y)); } }
+    for (let i = 0; i < balls.length; i++) for (let j = i + 1; j < balls.length; j++) {
+      const a = balls[i], c = balls[j], dx = c.x - a.x, dy = c.y - a.y, d = Math.hypot(dx, dy); if (!d || d >= 2 * R) continue;
+      const nx = dx / d, ny = dy / d, dvn = (a.vx - c.vx) * nx + (a.vy - c.vy) * ny;
+      if (dvn > 0) { a.vx -= dvn * nx; a.vy -= dvn * ny; c.vx += dvn * nx; c.vy += dvn * ny; }
+      const o = (2 * R - d) / 2; a.x -= nx * o; a.y -= ny * o; c.x += nx * o; c.y += ny * o;
+    }
+  }
+  function draw() {
+    g.clearRect(0, 0, W, W);
+    balls.forEach((b, i) => {
+      const isT = targets.has(i), pk = picks.has(i);
+      g.beginPath(); g.arc(b.x, b.y, R, 0, 6.283);
+      g.fillStyle = ph === 'show' && isT ? C.acc : ph === 'reveal' && isT ? C.ok : ph === 'reveal' && pk ? C.bad : C.ball; g.fill();
+      if (pk && ph === 'pick') { g.lineWidth = 3; g.strokeStyle = C.acc; g.beginPath(); g.arc(b.x, b.y, R + 4, 0, 6.283); g.stroke(); }
+    });
+  }
+  loop((now, dt) => {
+    if (ph !== 'idle') elapsed += dt; t += dt;
+    if (ph === 'show' && t >= 2) { ph = 'move'; t = 0; st('Следи'); }
+    else if (ph === 'move') { move(dt); if (t >= 8) { ph = 'pick'; t = 0; st('Отметь ' + (K === 1 ? 'шар' : K + ' шара')); } }
+    else if (ph === 'reveal' && t >= 1.6) { elapsed >= total ? end() : round(); }
+    if (ph !== 'idle') info();
+    draw();
+  });
+  cv.addEventListener('pointerdown', e => {
+    if (ph !== 'pick') return;
+    const r = cv.getBoundingClientRect(), x = (e.clientX - r.left) * W / r.width, y = (e.clientY - r.top) * W / r.height;
+    let bi = -1, bd = 34; balls.forEach((b, i) => { const d = Math.hypot(b.x - x, b.y - y); if (d < bd) { bd = d; bi = i; } });
+    if (bi < 0) return; picks.add(bi);
+    if (picks.size < K) return;
+    const ok = [...picks].every(i => targets.has(i)); rounds++; hits += ok; S.mot = motStep(S.mot, ok); save();
+    ph = 'reveal'; t = 0; st(ok ? 'Верно' : 'Мимо'); info();
+  });
+  const end = () => { S.log.push({t: Date.now(), type: 'mot', rounds, hits, lvl: S.mot.lvl}); save(); doneScreen('Бильярд', [`Раундов ${rounds}, верно ${hits}`, `Уровень теперь ${S.mot.lvl + 1} из ${MOT.length}`]); };
+  A.go = () => { $('#go').style.display = 'none'; round(); };
+  A.end = end;
+  seed(); targets = new Set(); info(); draw();
+  if (p.has('auto')) A.go();
+};
+
+/* ---- Шульте ---- */
+SCREENS.schulte = p => {
+  let n = +(p.get('n') || 5), order = [], cur = 1, t0 = 0, timer = null;
+  const best = () => S.best['s' + n];
+  const setup = () => { cur = 1; t0 = 0; order = shuffle([...Array(n * n)].map((_, i) => i + 1)); draw(); };
+  const draw = () => {
+    shell({title: 'Шульте', body: `
+      <div class="chips"><button class="chip ${n === 5 ? 'on' : ''}" data-act="size" data-v="5">5×5</button><button class="chip ${n === 7 ? 'on' : ''}" data-act="size" data-v="7">7×7</button></div>
+      <p class="muted small">Взгляд в центр, ищи боковым зрением. Касайся чисел по порядку от 1 до ${n * n}.</p>
+      <div class="row"><span>Дальше: <b id="nx">${cur}</b></span><b id="tm" style="font-size:22px">0.0</b></div>
+      <div class="grid n${n}" style="grid-template-columns:repeat(${n},1fr)">${order.map((v, i) => `<button data-act="cell" data-v="${v}" class="${i === (n * n - 1) / 2 ? 'mid' : ''}">${v}</button>`).join('')}</div>
+      <p class="muted small">${best() ? 'Лучшее: ' + best().toFixed(1) + ' с' : 'Лучшего времени ещё нет'}</p>`});
+    A.size = v => { n = +v; setup(); };
+    A.cell = (v, el) => {
+      if (+v !== cur) { el.classList.add('bad'); later(() => el.classList.remove('bad'), 250); return; }
+      if (cur === 1) { t0 = performance.now(); timer = setInterval(() => { const m = $('#tm'); m && (m.textContent = ((performance.now() - t0) / 1000).toFixed(1)); }, 100); onLeave(() => clearInterval(timer)); }
+      el.classList.add('hit'); cur++;
+      if (cur > n * n) {
+        clearInterval(timer); const sec = (performance.now() - t0) / 1000;
+        const key = 's' + n, nb = !S.best[key] || sec < S.best[key]; if (nb) S.best[key] = sec; save();
+        return doneScreen(sec.toFixed(1) + ' с', [nb ? 'Новое лучшее время' : 'Лучшее: ' + S.best[key].toFixed(1) + ' с'], 'Ещё раз', setup);
+      }
+      $('#nx').textContent = cur;
+    };
+  };
+  setup();
+  if (p.has('auto')) { A.cell('1', $('.grid button[data-v="1"]')); }
+};
+
+/* ---- Тишина ---- */
+SCREENS.silence = p => silence(p, p.get('tab') || 'catch');
+SCREENS.wordless = p => silence(p, 'word');
+function silence(p, tab) {
+  const id = p.get('b') || 'sil';
+  let total = blockLen(id);
+  const tabs = `<div class="chips"><button class="chip ${tab === 'catch' ? 'on' : ''}" data-act="tab" data-v="catch">Поймай дыхание</button><button class="chip ${tab === 'word' ? 'on' : ''}" data-act="tab" data-v="word">Без слов</button></div>`;
+  A.tab = v => { run = run && v === 'catch' ? run : null; go(v === 'catch' ? 'silence' : 'wordless'); };
+  if (tab === 'word') {
+    let t0 = 0, state = 'idle';
+    const draw = (res) => {
+      shell({title: 'Без слов', body: `${tabs}<div class="center">
+        <div class="huge ${state === 'run' ? 'dim' : ''}" style="font-size:${state === 'run' ? 40 : 64}px" id="big">${state === 'run' ? 'без слов…' : res ? res.toFixed(1) + ' с' : '·'}</div>
+        <p class="muted">${state === 'run' ? 'Нажми, когда в голове появится первое слово.' : 'Побудь без слов в голове. Когда появится первое слово, нажми. Не борись со словами: просто отметь.'}</p>
+        <p class="muted small">${S.best.word ? 'Лучшее: ' + S.best.word.toFixed(1) + ' с' : 'Лучшего времени ещё нет'}</p></div>`,
+        foot: `<button class="btn primary" data-act="go">${state === 'run' ? 'Слово!' : 'Начать'}</button>`});
+      A.go = () => { if (state === 'run') { const s = (performance.now() - t0) / 1000; if (!S.best.word || s > S.best.word) S.best.word = s; save(); state = 'idle'; draw(s); } else { state = 'run'; t0 = performance.now(); draw(); } };
+    };
+    draw();
+    if (p.has('auto')) A.go();
+    return;
+  }
+  let running = false, more = false, pings = 0, t0 = 0, pingAt = 0, shown = 0;
+  const nextPing = from => from + 20 + Math.random() * 40;
+  const draw = () => {
+    shell({title: running ? '' : 'Тишина', cls: running ? 'dark' : '', body: running
+      ? `<div class="center"><p class="ping" id="ping"></p>${more ? '<p class="muted">Посиди ещё пять минут</p>' : ''}</div><p class="faint small" style="text-align:center" id="rem">${fmt(Math.ceil(total - (performance.now() / 1000 - t0)))}</p>`
+      : `${tabs}<div class="center"><h1>Поймай дыхание</h1><p class="muted">Экран тёмный. В случайный момент, раз в 20–60 с, прозвучит мягкий сигнал. Заметь: дышишь ли ты, и как. Не меняй дыхание.</p><p class="muted small">${fmt(total)} · вибрация и звук</p></div>`,
+      foot: `<button class="btn ${running ? 'quiet' : 'primary'}" data-act="go">${!running ? 'Начать' : more ? 'Закончить' : 'Хочу встать'}</button>`});
+    // «Когда уже точно хочется встать — посиди ещё пять минут» (пост в канале 21.01.2024).
+    A.go = () => !running ? begin() : more ? finish() : (more = true, total = performance.now() / 1000 - t0 + 300, draw());
+  };
+  const finish = () => { running = false; S.log.push({t: Date.now(), type: 'silence', id, pings}); save(); doneScreen('Тишина', [`Сигналов: ${pings}`]); };
+  const begin = () => { running = true; t0 = performance.now() / 1000; pingAt = nextPing(0); draw(); beep(); };
+  draw();
+  loop(now => {
+    if (!running) return;
+    const t = now / 1000 - t0, ping = $('#ping'); if (!ping) return;
+    if (t >= total) return finish();
+    $('#rem').textContent = fmt(total - t);
+    if (t >= pingAt) { pingAt = nextPing(t); pings++; shown = t; ping.textContent = 'Поймал? Не меняй его.'; beep(); buzz(); }
+    else if (shown && t - shown > 6) { ping.textContent = ''; shown = 0; }
+  });
+  if (p.has('auto')) { begin(); later(() => { pingAt = 0; }, 800); }
+}
+
+/* ---- Брезворк ---- */
+SCREENS.breathwork = p => {
+  const LABEL = {breathe: 'Продышка', exh: 'Задержка на выдохе', inh: 'Задержка на вдохе', rec: 'Восстановление', sit: 'Тишина', more: 'Ещё пять минут'};
+  const DESC = {psy: 'Продышка как у Вима Хофа: секунда вдох, секунда выдох, чем больше, тем лучше. Потом полный выдох и держишь сколько можно, полный вдох и держишь, до-вдох. В конце сидишь с закрытыми глазами 20+ минут; захочется встать — ещё пять.',
+    wh: '30 вдохов, выдох и держишь, вдох на 15 секунд. Три раунда.'};
+  const banner = `<div class="warn">${BW_SAFETY}</div>`, B = S.bw;
+  let steps, i, t0, cueDone, cur, rows;
+  const dur = s => ({breathe: s.n ? 2 * s.n : Infinity, rec: 15, sit: Infinity, more: 300})[s.k];
+  const setup = () => {
+    const wh = B.mode === 'wh', row = (id, name, v) => `<div class="item"><span class="name">${name}</span><span class="step"><button data-act="bw" data-v="${id}:-1" aria-label="меньше">−</button><b>${v}</b><button data-act="bw" data-v="${id}:1" aria-label="больше">+</button></span></div>`;
+    shell({title: 'Брезворк', body: `${banner}
+      <div class="seg"><button class="${wh ? '' : 'on'}" data-act="mode" data-v="psy">Психоделическое</button><button class="${wh ? 'on' : ''}" data-act="mode" data-v="wh">Вим Хоф</button></div>
+      <p class="muted small">${DESC[B.mode]}</p>
+      ${wh ? '' : `<div class="plan">${row('rounds', 'Раундов', B.rounds)}</div>`}
+      <button class="sw ${S.voice ? 'on' : ''}" data-act="voice"><span>голос</span><s></s></button>`,
+      foot: `<button class="btn primary" data-act="go">Начать</button>`});
+    A.mode = v => { B.mode = v; save(); setup(); };
+    A.bw = v => { B.rounds = Math.min(6, Math.max(1, B.rounds + +v.split(':')[1])); save(); setup(); };
+    A.voice = () => { S.voice = !S.voice; save(); setup(); };
+    A.go = () => { const wh = B.mode === 'wh'; steps = bwSteps(B.mode, wh ? 3 : B.rounds); rows = []; cur = {}; enter(0); };
+  };
+  const advance = () => i + 1 < steps.length ? enter(i + 1) : (i = -1, doneScreen('Готово', rows.map(r => `Раунд ${r.r}: выдох ${fmt(r.exh)}`)));
+  // A hold step ended after sec seconds; the round's last hold is logged to bwLog (never to the hold progression).
+  const end = (s, sec) => {
+    if (s.k === 'exh') cur.exh = Math.round(sec);
+    else if (s.k === 'inh' || s.k === 'rec') { const e = {t: Date.now(), mode: B.mode, r: s.r, n: cur.n, exh: cur.exh, [s.k]: Math.round(sec)}; bwRecord(e); rows.push(e); save(); }
+    advance();
+  };
+  const enter = j => {
+    i = j; const s = steps[i], rounds = steps.filter(x => x.k === 'exh').length; t0 = performance.now(); cueDone = false;
+    if (s.k === 'note') {
+      shell({title: 'Брезворк', body: `${banner}<h1>Что видел?</h1><input type="text" id="nt" maxlength="140" placeholder="Одной строкой" autocomplete="off"><p class="muted small">Можно пустую.</p>`,
+        foot: `<button class="btn primary" data-act="save">Сохранить</button>`});
+      A.save = () => { const text = $('#nt').value.trim(); if (text) { S.bwLog.push({t: Date.now(), mode: B.mode, note: text}); save(); } go('today'); };
+      return;
+    }
+    const head = `${banner}<h2>${s.k === 'sit' ? '' : 'Раунд ' + s.r + ' из ' + rounds + ' · '}${LABEL[s.k]}</h2>`;
+    const stop = `<button class="btn quiet" data-act="stop">Остановить</button>`;
+    A.stop = () => location.hash === '#breathwork' ? route() : go('breathwork');
+    if (s.k === 'breathe') {
+      cur.n = s.n;
+      shell({title: 'Брезворк', body: `${head}<div class="center"><div class="pacer"><div class="circ" id="circ"></div></div><div class="lab"><b id="lab">Вдох</b><span id="cnt"></span></div>${s.n ? '' : '<p class="muted small">Чем больше, тем лучше</p>'}</div>`,
+        foot: (s.n ? '' : `<button class="btn primary" data-act="hold">Выдох — держу</button>`) + stop});
+      A.hold = () => { cur.n = Math.floor((performance.now() - t0) / 2000) + 1; advance(); };
+      speak('вдох');
+    } else if (s.k === 'sit' || s.k === 'more') {
+      const sit = s.k === 'sit';
+      shell({title: '', cls: 'dark', body: `${head}<div class="center"><p class="muted">${sit ? 'Сиди с закрытыми глазами, спина прямо, следи за дыханием' : 'Посиди ещё пять минут'}</p><div class="huge dim" id="big">${fmt(sit ? 0 : 300)}</div></div>`,
+        foot: (sit ? `<button class="btn" data-act="up">Хочу встать</button>` : '') + stop});
+      A.up = advance;
+    } else {
+      const prompt = {exh: 'Полный выдох — держи', inh: 'Полный вдох — держи', rec: 'Вдох — держи 15 с'}[s.k];
+      shell({title: 'Брезворк', body: `${head}<div class="center" id="tap"><h1>${prompt}</h1><div class="huge" id="big">${s.k === 'rec' ? 15 : '0:00'}</div><p class="cue" id="cue"></p><p class="muted small">${s.k === 'rec' ? '' : 'Коснись экрана, чтобы закончить'}</p></div>`, foot: stop});
+      speak(s.k === 'exh' ? 'выдох, держи' : 'вдох, держи');
+      if (s.k !== 'rec') $('#tap').addEventListener('pointerdown', () => { const sec = (performance.now() - t0) / 1000; if (sec >= 1) end(s, sec); });
+    }
+  };
+  setup();
+  loop(() => {
+    const s = steps && steps[i]; if (!s || s.k === 'note') return;
+    const t = (performance.now() - t0) / 1000, big = $('#big');
+    if (s.k === 'breathe') {
+      if (t >= dur(s)) return advance();
+      const ph = breathPhase('fast', t), c = $('#circ'); if (!c) return;
+      c.style.transform = `scale(${ph.scale})`; $('#lab').textContent = ph.label;
+      $('#cnt').textContent = s.n ? Math.min(s.n, Math.floor(t / 2) + 1) + ' / ' + s.n : Math.floor(t / 2) + 1;
+    } else if (s.k === 'sit') {
+      if (t >= 1200 && !cueDone) { cueDone = true; beep(); }
+      big.textContent = fmt(Math.floor(t));
+    } else if (s.k === 'more') {
+      if (t >= dur(s)) { beep(); return advance(); }
+      big.textContent = fmt(Math.ceil(dur(s) - t));
+    } else if (s.k === 'rec') {
+      if (t >= dur(s)) return end(s, dur(s));
+      big.textContent = Math.ceil(dur(s) - t);
+    } else {
+      big.textContent = fmt(Math.floor(t));
+      if (s.k === 'inh' && t >= 3 && !cueDone) { cueDone = true; $('#cue').textContent = 'до-вдох'; speak('до-вдох'); }
+    }
+  });
+  if (p.has('auto') || /[?&]auto/.test(location.search)) A.go();
+};
+
+/* ---- Вода ---- */
+SCREENS.pool = p => {
+  const unlocked = S.entryDone || p.has('demo');
+  if (!unlocked) return shell({title: 'Вода', body: `<div class="center"><div class="lock-ico">ЗАКРЫТО</div><h1>Вода откроется после ступени «Вход»</h1>
+    <p class="muted">Сейчас день ${Math.min(S.day, 7)} из 7. В воде — только с напарником; сначала сухая основа и правила безопасности.</p>
+    <div class="warn" style="text-align:left">Никогда не ныряй один. На суше сидя или лёжа можно одному, в воде — только со страховкой.</div></div>`});
+  const checks = ['Договорились о знаках', 'Без гипервентиляции', 'Напарник смотрит 30 с после всплытия'];
+  const ticked = new Set(p.has('demo') ? [0, 1, 2] : []);
+  let who = p.has('demo') ? 'Женя' : '', phase = 'check';
+  const draw = () => {
+    const ok = who.trim() && ticked.size === checks.length;
+    shell({title: 'Вода', body: phase === 'log'
+      ? `<h1>Как прошло</h1><input type="text" id="lg" maxlength="160" placeholder="Одной строкой"><p class="muted small">Таймера в воде нет. Запиши, как ощущалось.</p>`
+      : `<div class="warn">Только с напарником. Отметь всё, чтобы увидеть задание.</div>
+      <input type="text" id="who" placeholder="Кто страхует? (имя)" maxlength="40" value="${esc(who)}">
+      ${checks.map((c, i) => `<button class="check ${ticked.has(i) ? 'on' : ''}" data-act="tick" data-v="${i}"><i>${ticked.has(i) ? '✓' : ''}</i>${c}</button>`).join('')}
+      ${ok ? `<div class="card"><h2>Задание</h2><p style="font-size:18px">Повторный метод: 8 × 20–25 м, отдых до полного восстановления (~2:30)</p><p class="muted small">Без таймера. Страхует ${esc(who.trim())}.</p></div>` : ''}`,
+      foot: phase === 'log' ? `<button class="btn primary" data-act="save">Сохранить</button>` : ok ? `<button class="btn primary" data-act="after">Готово, записать</button>` : ''});
+    const w = $('#who'); if (w) w.oninput = () => { who = w.value; const ok2 = who.trim() && ticked.size === checks.length; if (!!ok2 !== !!ok) { const pos = w.selectionStart; draw(); const n = $('#who'); n.focus(); n.setSelectionRange(pos, pos); } };
+    A.tick = v => { ticked.has(+v) ? ticked.delete(+v) : ticked.add(+v); draw(); };
+    A.after = () => { phase = 'log'; draw(); $('#lg').focus(); };
+    A.save = () => { S.pool.push({t: Date.now(), who: who.trim(), text: $('#lg').value.trim()}); save(); go('today'); };
+  };
+  draw();
+};
+
+/* ---- Заметка ---- */
+SCREENS.note = p => {
+  const done = p.has('done');
+  shell({back: !done, title: 'Заметка', body: `<h1>Как прошло</h1><input type="text" id="nt" maxlength="140" placeholder="Одной строкой" autocomplete="off"><p class="muted small">Можно пустую. Заметка остаётся на этом устройстве.</p>`,
+    foot: `<button class="btn primary" data-act="save">Сохранить</button>`});
+  A.save = () => {
+    S.notes.push({day: Math.min(S.day, 7), date: today(), text: $('#nt').value.trim() || '—'});
+    if (done) { if (S.day >= 7) S.entryDone = true; else S.day++; }
+    save(); go('today');
+  };
+};
+
+route();
+</script>
+</body>
+</html>
