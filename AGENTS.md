@@ -47,7 +47,7 @@ Do not force-push either branch. `src/CNAME` must remain `firedev.com`.
 
 ## /inward/
 
-`src/inward/index.html` — копия `~/Sites/mental-app/index.html` (прототип приложения школы внимания), Bridgetown отдаёт её как есть. Не править здесь: правка в mental-app → `cp` сюда → Deploy (17.10.2026).
+`src/inward/` — копия `~/Sites/mental-app/` (`index.html`, `manifest.webmanifest`, иконки; прототип приложения школы внимания), Bridgetown отдаёт файлы как есть. Не править здесь: правка в mental-app → `cp` сюда → Deploy (17.10.2026).
 
 ## Project screenshots
 
