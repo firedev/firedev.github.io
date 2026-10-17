@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0e0f11">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="inward">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>inward</title>
 <style>
 /* Tokens: swap this block to change the visual world. */
@@ -207,7 +211,7 @@ const EXCERPTS = [
 const SAFETY = 'Только сидя или лёжа. Не в воде, не в ванне, не за рулём.';
 const BW_SAFETY = 'Только сидя или лёжа, на суше. Не в воде, не в ванне, не за рулём. Кружится голова — дыши спокойно.';
 const today = () => new Date().toISOString().slice(0, 10);
-const fresh = () => ({day: 1, entryDone: false, minimal: false, len: {}, pat: '4/6', hide: false, voice: true,
+const fresh = () => ({onboarded: false, day: 1, entryDone: false, minimal: false, len: {}, pat: '4/6', hide: false, voice: true,
   today: {d: today(), ratings: []}, mot: {lvl: 0, streak: 0}, best: {s5: null, s7: null, word: null}, notes: [], log: [], pool: [], bw: {mode: 'psy', rounds: 3}, bwLog: []});
 let S;
 try { S = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { S = fresh(); }
@@ -276,10 +280,40 @@ const route = () => {
   cleanups.forEach(f => f()); cleanups = [];
   try { speechSynthesis.cancel(); } catch (e) {}
   const [name, q = ''] = location.hash.slice(1).split('?');
+  // First visit lands on the welcome screens; deep links (#hold?auto etc.) skip them.
+  if (!S.onboarded && (!name || name === 'today')) return SCREENS.welcome(new URLSearchParams());
   (SCREENS[name] || SCREENS.today)(new URLSearchParams(q));
   app.querySelector('.body') && (app.querySelector('.body').scrollTop = 0);
 };
 window.addEventListener('hashchange', route);
+
+/* ---- Первый визит ---- */
+const standalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+let installEvt = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; });
+SCREENS.welcome = p => {
+  const steps = standalone() ? 2 : 3, n = Math.min(+p.get('s') || 1, steps);
+  const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const head = `<h2>${n} из ${steps}</h2>`;
+  const done = () => { S.onboarded = true; save(); location.hash === '#today' ? route() : go('today'); };
+  const body = {
+    1: `${head}<h1>Школа внимания. 15 минут в день</h1>
+      <p class="muted">Каждый день: карточка на 3 минуты, потом практика — дыхание, задержка дыхания, игра на внимание, тишина. В конце одна строка о том, что заметил.</p>
+      <p class="muted">Первые 7 дней — «Вход». Длину каждого блока можно менять кнопками − и +. Плохой день — 5 минут, серия не рвётся.</p>`,
+    2: `${head}<h1>Безопасность</h1>
+      <div class="warn">Задержки и брезворк — только сидя или лёжа, на суше. Не в воде, не в ванне, не за рулём.</div>
+      <p class="muted">В воде — только с напарником, который смотрит на тебя.</p>
+      <p class="muted">Сначала поговори с врачом, если есть: болезни сердца или высокое давление; эпилепсия, обмороки, инсульт; астма и болезни лёгких; психические расстройства; диабет; беременность.</p>`,
+    3: `${head}<h1>Добавь на экран «Домой»</h1>
+      <p>${ios ? 'В Safari: кнопка «Поделиться» внизу → «На экран „Домой“».' : 'В Chrome: меню ⋮ → «Добавить на главный экран» или «Установить приложение».'}</p>
+      <p class="muted">Приложение откроется с иконки, на весь экран. Добавь до первой практики: прогресс хранится отдельно в браузере и в приложении на экране.</p>
+      ${installEvt ? '<button class="btn" data-act="install">Установить</button>' : ''}`,
+  }[n];
+  shell({back: false, title: '', body,
+    foot: `<button class="btn primary" data-act="nx">${n < steps ? (n === 2 ? 'Понятно' : 'Дальше') : 'Начать'}</button>`});
+  A.nx = () => n < steps ? go('welcome?s=' + (n + 1)) : done();
+  A.install = () => { installEvt.prompt(); installEvt.userChoice.then(() => { installEvt = null; done(); }); };
+};
 
 /* ---- Сегодня ---- */
 SCREENS.today = () => {
@@ -299,7 +333,7 @@ SCREENS.today = () => {
       <span class="step"><button data-act="step" data-v="${id}:-1" aria-label="меньше">−</button><b>${fmt(blockLen(id))}</b><button data-act="step" data-v="${id}:1" aria-label="больше">+</button></span></div>`).join('')}</div>
     <button class="sw ${S.minimal ? 'on' : ''}" data-act="minimal"><span>Плохой день · 5 мин</span><s></s></button>
     <h2>Отдельно</h2>
-    <div class="links"><a href="#breath">Дыхание</a><a href="#schulte">Шульте</a><a href="#silence">Тишина</a><a href="#wordless">Без слов</a><a href="#pool" class="${S.entryDone ? '' : 'lock'}">Вода${S.entryDone ? '' : ' · закрыто'}</a><a href="#hold">Задержка</a><a href="#breathwork" class="wide">Брезворк</a></div>
+    <div class="links"><a href="#breath">Дыхание</a><a href="#schulte">Шульте</a><a href="#silence">Тишина</a><a href="#wordless">Без слов</a><a href="#pool" class="${S.entryDone ? '' : 'lock'}">Вода${S.entryDone ? '' : ' · закрыто'}</a><a href="#hold">Задержка</a><a href="#breathwork" class="wide">Брезворк</a><a href="#welcome" class="wide">Как это устроено</a></div>
     ${last ? `<p class="muted small">Заметка, день ${last.day}: «${esc(last.text)}»</p>` : ''}
     <button class="btn quiet" data-act="reset">Сбросить прогресс (прототип)</button>`,
     foot: `<button class="btn primary" data-act="start">Начать</button>`});
