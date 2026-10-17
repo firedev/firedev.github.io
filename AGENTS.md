@@ -45,6 +45,10 @@ the generated HTML. If a real browser is required, use Brave only — never Chro
 
 Do not force-push either branch. `src/CNAME` must remain `firedev.com`.
 
+## /inward/
+
+`src/inward/index.html` — копия `~/Sites/mental-app/index.html` (прототип приложения школы внимания), Bridgetown отдаёт её как есть. Не править здесь: правка в mental-app → `cp` сюда → Deploy (17.10.2026).
+
 ## Project screenshots
 
 Card and project-page media are 16:10 with `object-cover`. Shoot live sites at
