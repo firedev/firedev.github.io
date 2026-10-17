@@ -116,6 +116,11 @@ input[type=text]:focus{border-color:var(--accent)}
 .links a.wide{grid-column:1/-1}
 .cue{min-height:30px;font-size:22px;font-weight:550;color:var(--accent)}
 .lock-ico{font-size:13px;letter-spacing:.1em;color:var(--warn)}
+/* games */
+.plan a.item{color:var(--text);text-decoration:none}
+.plan .item small{color:var(--muted);font-size:14px;white-space:nowrap}
+.rate .btn b{font-size:30px;font-weight:300;line-height:1}
+input[type=range]{width:100%;height:44px;margin:0;accent-color:var(--accent)}
 </style>
 </head>
 <body>
@@ -148,7 +153,7 @@ const PATTERNS = {
   '5-5-5-5': [['in',5,'Вдох'],['full',5,'Пауза'],['out',5,'Выдох'],['empty',5,'Пауза']],
   '4-7-8': [['in',4,'Вдох'],['full',7,'Задержка'],['out',8,'Выдох']],
 };
-const BW_PAT = {fast: [['in',1,'Вдох'],['out',1,'Выдох']]};
+const BW_PAT = {fast: [['in',1,'Вдох'],['out',1,'Выдох']], calm: [['in',5,'Вдох'],['out',7,'Выдох']]};
 // Breathwork script (пост в канале 21.01.2024): psy = продышка до касания, выдох-держи, вдох-держи (+до-вдох), в конце сидим 20+ мин и ещё 5; wh = 30 вдохов, выдох-держи, вдох 15 с.
 function bwSteps(mode, rounds) {
   const out = [];
@@ -173,6 +178,126 @@ function breathPhase(pat, t) {
 }
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
 
+/* ---- Игры внимания: каталог (Projects/attention-school/игры.md) ---- */
+// guided: cues [[сек | доля 0..1 | −сек от конца, текст]] и/или alt по кругу каждые every с, ping — случайные сигналы 20–60 с; lo/max — границы минут.
+const GROUPS = ['Внимание', 'Awareness Games', 'Задержка как игра'];
+const MECHS = ['guided', 'counter', 'stopwatch', 'pacer', 'slider', 'periphery', 'holdpair', 'card', 'link'];
+const TIMED = ['guided', 'counter', 'pacer', 'periphery'];
+const GAMES = [
+  {id: 'apart', group: 0, title: 'Внимание отдельно от взгляда', min: 3, mech: 'guided', every: 10,
+    text: 'Глаза стоят на точке перед тобой и не двигаются. Внимание ходит отдельно: в одну сторону, в другую, вверх, вниз, по краю поля зрения.',
+    alt: ['Внимание влево. Глаза на точке', 'Вправо', 'Влево', 'Вправо', 'Вверх', 'Вниз', 'По краю поля по часовой', 'Против часовой']},
+  {id: 'ad1', group: 0, title: 'AD-1 · знакомство', min: 5, mech: 'guided',
+    text: 'Мягкий взгляд на точке. Держи в поле внимания левую зону, потом обе стороны, потом четыре, потом всю периферию. Растяни до 5–10 минут.',
+    cues: [[0, 'Левая зона поля зрения'], [.15, 'Левая и правая зоны вместе'], [.4, 'Четыре зоны: лево, право, верх, низ'], [.65, 'Вся периферия сразу']]},
+  {id: 'ad2', group: 0, title: 'AD-2 · вращение', min: 5, mech: 'guided',
+    text: 'Мягкий взгляд на точке. Проведи вниманием 3–5 кругов по краю поля зрения, потом расширяй поле, пока оно не заполнит всё.',
+    cues: [[0, 'Круг вниманием по краю поля зрения. Глаза на точке'], [.5, 'Расширяй: пусть поле заполнит всё']]},
+  {id: 'ad3', group: 0, title: 'AD-3 · плоскость', min: 5, max: 10, mech: 'guided',
+    text: 'Всё, что видишь, это плоская картинка без глубины. Можно помочь себе треугольником из рук. Не дольше 10 минут за раз.',
+    cues: [[0, 'Поле зрения как плоская картинка'], [.5, 'Без глубины. Только плоскость']]},
+  {id: 'ad4', group: 0, title: 'AD-4 · объём', min: 5, mech: 'guided',
+    text: 'Теперь поле объёмное: пространство вокруг, а не только перед глазами. Внимание на всём объёме сразу.',
+    cues: [[0, 'Объёмное поле: спереди, сбоку, сзади'], [.5, 'Всё пространство сразу']]},
+  {id: 'plane', group: 0, title: 'Абстрактная плоскость зрения', min: 3, mech: 'guided',
+    text: 'Смотри на всё как на пятна цвета и света, без названий предметов. Начни с 2–3 минут, потом 5, потом 10. Идёт после AD.',
+    cues: [[0, 'Только цвет и свет, без названий'], [.5, 'Пятна, границы, яркость']]},
+  {id: 'ad5', group: 0, title: 'AD-5 · слух', min: 8, lo: 5, mech: 'guided',
+    text: 'Сначала 3–5 минут плоского зрения с закрытыми глазами. Потом слушай все звуки сразу и склеивай их по времени прихода, не по источникам. Ищи паузы между звуками.',
+    cues: [[0, 'Глаза закрыты. Плоское поле зрения'], [.4, 'Теперь все звуки сразу, без источников'], [.6, 'Склей звуки, пришедшие почти вместе'], [.8, 'Найди паузы между звуками']]},
+  {id: 'ad6', group: 0, title: 'AD-6 · тело', min: 15, lo: 10, mech: 'guided',
+    text: 'Сначала 3–5 минут плоского зрения. Потом ощущения тела: поверхность, внутреннее тепло, всё тело одним фоном. Выход строго по порядку: кожа, звуки, глаза.',
+    cues: [[0, 'Глаза закрыты. Плоское поле зрения'], [.25, 'Ощущения поверхности тела: одежда, пол, стул'], [.4, 'Внутренние ощущения. Начни с тепла'], [.6, 'Всё тело одним фоном, без картинок'],
+      [-70, 'Выход: вернись к ощущениям кожи'], [-40, 'Теперь звуки вокруг'], [-15, 'Открой глаза']]},
+  {id: 'soundmap', group: 0, title: 'Звуковая карта', min: 6, mech: 'counter', btns: ['Новый звук'],
+    text: 'Закрой глаза. Слушай всё сразу, ничего не выбирая. На каждый новый звук нажимай кнопку.'},
+  {id: 'pulse', group: 0, title: 'Пульсирующий взгляд', min: 6, mech: 'pacer', pat: '4/6', lab: {'Вдох': 'шире', 'Выдох': 'уже'},
+    text: 'Взгляд на точке. На вдохе поле зрения шире, на выдохе чуть уже, но без фокуса на точку. Дыши носом.'},
+  {id: 'periph', group: 0, title: 'Периферия на экране', min: 3, mech: 'periphery',
+    text: 'Смотри на точку в центре. Когда на краю мелькнёт вспышка, коснись экрана, не двигая глаз. Зона растёт: слева, с обеих сторон, со всех краёв.'},
+  {id: 'triangle', group: 0, title: 'Треугольник', min: 3, mech: 'guided',
+    text: 'Пальцы треугольником в 30 см от лица. Минуту смотри на контур. Потом медленно разводи руки, а взгляд не меняй.',
+    cues: [[0, 'Треугольник из пальцев. Взгляд на контуре'], [.34, 'Разводи руки медленно. Взгляд не меняй'], [.67, 'Руки разведены. Видишь всё поле сразу']]},
+
+  {id: 'basic', group: 1, title: 'Три вопроса осознавания', min: 3, mech: 'guided', every: 40,
+    text: 'Основа всех игр, Basic Awareness Questions. Вопросы не для ответа, а чтобы сдвинуть внимание: «What is in awareness? What is awareness? What is aware?»',
+    alt: ['Что сейчас в осознавании? Звуки, свет, ощущения, мысли', 'Что такое осознавание? Найди его', 'Что осознаёт? Кто или что замечает?']},
+  {id: 'catch', group: 1, title: 'Поймай дыхание', mech: 'link', to: 'silence',
+    text: 'Тёмный экран и случайные сигналы. На сигнал заметь, дышишь ли ты и как. Дыхание не меняй.'},
+  {id: 'expand', group: 1, title: 'Расширяй и сужай', min: 3, mech: 'pacer', pat: '4/4', lab: {'Вдох': 'расширь', 'Выдох': 'сузь'},
+    text: 'Сожми внимание до одной вещи: палец ноги, одна мысль. Потом расширяй, пока не охватишь всё, что чувствуешь. Играй со скоростью.'},
+  {id: 'zoom', group: 1, title: 'Приблизь и отдали', min: 3, mech: 'guided', every: 30,
+    text: 'Узко: одно дело, одно слово, шевеление пальцев. Широко: все пять чувств и всё, что думаешь и чувствуешь. Переключайся, пока широкое не станет под рукой.',
+    alt: ['Узко: одно дело, один предмет', 'Широко: все пять чувств, мысли, чувства']},
+  {id: 'wordless', group: 1, title: 'Без слов', mech: 'link', to: 'wordless',
+    text: 'Секундомер: побудь без слов в голове, нажми, когда появится первое. Растёт лучшее время.'},
+  {id: 'wi-sound', group: 1, title: 'Где это происходит · звуки', min: 3, mech: 'guided', every: 35,
+    text: 'Каждый звук возникает в поле тишины. Слушай тишину до звука и после него.',
+    alt: ['Слушай тишину до звука и после него', 'Каждый звук появляется в тишине', 'Чуть сдвинь внимание со звука на тишину вокруг']},
+  {id: 'wi-screen', group: 1, title: 'Где это происходит · экран', min: 3, mech: 'guided', every: 35,
+    text: 'Всё, что видишь или представляешь, где-то появляется. Представь экран, холст или белый лист. А что, если ты и есть экран?',
+    alt: ['Что я вижу? Где оно появляется?', 'Представь белый экран, на котором всё идёт', 'Что, если я сам экран?']},
+  {id: 'wi-mind', group: 1, title: 'Где это происходит · пустой ум', min: 3, mech: 'guided', every: 35,
+    text: 'Пусть ум будет пустым сосудом, в который заглядывают мысли и чувства. Мысли приходят и уходят, а ум остаётся тем же.',
+    alt: ['Ум как пустой сосуд', 'Мысль пришла и ушла. Ум тот же', 'Чувство пришло и ушло. Ум не меняется']},
+  {id: 'wi-body', group: 1, title: 'Где это происходит · тело', min: 3, mech: 'guided', every: 35,
+    text: 'Где чувствуется тело? Поиграй: ощущение тела происходит в пространстве, которое чуть больше тела и выходит за его границы.',
+    alt: ['Где я чувствую тело?', 'Ощущение тела внутри пространства', 'Пространство чуть больше тела и вокруг него']},
+  {id: 'wi-i', group: 1, title: 'Где это происходит · «Я» и «я»', min: 3, mech: 'guided', every: 35,
+    text: 'Что, если твоё чувство себя это маленькое «я», которое возникает внутри большого «Я»? Не решай, правда ли это. Почувствуй.',
+    alt: ['Маленькое «я» возникает в большом «Я»', 'Что то большое, в чём появляется «я»?', 'Почувствуй, не думая']},
+  {id: 'wi-time', group: 1, title: 'Где это происходит · время', min: 3, mech: 'guided', every: 35,
+    text: 'Что, если «Сейчас» это пустой сосуд, в котором появляется время? Бескрайнее поле настоящего, где проходит каждый момент.',
+    alt: ['Время появляется в Сейчас', 'Сейчас не кончается', 'Каждый момент проходит через одно и то же Сейчас']},
+  {id: 'clutch', group: 1, title: 'Пожиратель зажимов', min: 3, mech: 'guided', ping: ['Где я зажимаюсь?', 'Зажимаюсь? Где? Отпусти'],
+    text: 'Представь маленького Пакмана, который ищет внутри напряжение и съедает его. На сигнал спроси себя: где я зажимаюсь? И отпусти, как сцепление.'},
+  {id: 'outin', group: 1, title: 'Снаружи внутрь', min: 3, mech: 'guided', every: 45,
+    text: 'Всё, что ты воспринимаешь снаружи, есть и внутри. Где ты на самом деле слышишь звук и видишь картинку? Не верь, а поиграй.',
+    alt: ['Слушай звуки вокруг. Что, если они внутри тебя?', 'Смотри на то, что видишь. Что, если картинка внутри?', 'Всё, что есть, происходит внутри']},
+  {id: 'trance', group: 1, title: 'Поймай следующий транс', min: 5, mech: 'guided', ping: ['Я в трансе или нет?'],
+    text: 'Признаки транса: ты потерялся в мыслях, воображаешь будущее, переживаешь прошлое или придумываешь, что исправить. На сигнал спроси себя. Заметил транс, значит уже вышел.'},
+  {id: 'future', group: 1, title: 'Будущее и прошлое', min: 3, mech: 'counter', btns: ['Будущее', 'Прошлое'],
+    text: 'Думай о чём хочешь, кроме будущего и прошлого. Поймал мысль о будущем или прошлом, нажми и отпусти её. Сколько мыслей остаётся?'},
+  {id: 'judge', group: 1, title: 'День суждений', min: 3, mech: 'counter', btns: ['Осудил'],
+    text: 'Замечай каждое своё осуждение: себя, человека, вещи. Ничего не делай с ним: не высказывай, не останавливай, не ругай себя. Нажми и скажи про себя «я сужу».'},
+  {id: 'badmood', group: 1, title: 'Игра с плохим настроением', mech: 'slider', tag: 'по ситуации',
+    text: 'Не гони настроение, а изучи его. Найди его в теле, усиль, ослабь, спроси, кто это замечает. Пять коротких шагов.',
+    prompts: ['Где в теле это чувствуется? Какая у него форма, цвет, размер?', 'Не гони. Попробуй сделать его больше, громче, темнее.', 'Верни как было. Теперь чуть слабее.', 'Какие мысли его кормят? Просто заметь.', 'Кто это замечает? Настроение или тот, кто его видит?']},
+  {id: 'noint', group: 1, title: 'Без намерения', mech: 'stopwatch', tag: 'секундомер', tap: 'Появилось намерение',
+    text: 'Сколько ты продержишься без единого намерения? Кроме одного: этого. Появилось новое, нажми.'},
+  {id: 'passenger', group: 1, title: 'Пассажир', min: 3, mech: 'guided', every: 40,
+    text: 'Ты не за рулём своего опыта, а пассажир. Ощущения, мысли и чувства это местность, по которой едет вездеход. Кто за рулём, неважно.',
+    alt: ['Ты пассажир. Смотри в окна глаз', 'Ощущения: местность, по которой едешь', 'Мысли и чувства тоже местность. Просто едешь']},
+  {id: 'mirror', group: 1, title: 'Будь зеркалом', min: 3, mech: 'guided', every: 40,
+    text: 'Зеркало не выбирает, что отразить. Что видишь, слышишь и чувствуешь, отражается само. Осознавание не надо искать: оно уже здесь.',
+    alt: ['Я выбираю, что отражать?', 'Отражение без выбора', 'Всё, что есть, уже в зеркале']},
+  {id: 'include', group: 1, title: 'Включай, включай, включай', min: 3, mech: 'guided', every: 30,
+    text: 'Для тяжёлого чувства. Не чини его и не гони. Поставь рядом звуки, картинки, ощущения, другие чувства и расширяй, пока оно не станет одним из многих.',
+    alt: ['Есть чувство, и есть осознавание его', 'Что ещё есть? Звуки', 'Что ещё? Свет и картинки', 'Что ещё? Ощущения тела', 'Включай больше. Всё сразу']},
+  {id: 'schwoom', group: 1, title: 'Швум', min: 3, mech: 'counter', btns: ['Швум'], ping: ['Швум'],
+    text: 'Три движения сразу: расслабь внутренние зажимы, пусти всё как есть, стань осознаванием, фоном. Говори про себя «швум» в плохой момент и в хороший.'},
+  {id: 'ultimate', group: 1, title: 'Главная игра', min: 3, mech: 'guided', every: 30,
+    text: '«Be ok with whatever is happening now. Be awareness.» Все игры это вариации этой одной.',
+    alt: ['Будь в порядке с тем, что происходит сейчас', 'Будь осознаванием']},
+  {id: 'twoperson', group: 1, title: 'Игра вдвоём', mech: 'card', tag: 'с напарником',
+    text: 'Напарник спрашивает: «Что ты?». На любой твой ответ он говорит: «Это не то, что ты». Не старайся угадать, просто называй, чем себя чувствуешь сейчас. Потом поменяйтесь.'},
+  {id: 'eyes', group: 1, title: 'Глазами других людей', mech: 'card', tag: 'на улице',
+    text: 'Иди по улице и смотри как обычно. Потом выбери прохожего и представь, что выглядываешь из его глаз. Представь, что то, что смотрит из его глаз, и то, что смотрит из твоих, одно и то же.'},
+
+  {id: 'bridge', group: 2, title: 'Мост времени', mech: 'holdpair', tag: '5–7 мин', safe: true,
+    text: 'Две задержки на вдохе. Первая с напряжёнными плечами, будто держишь тяжёлый мост. Потом 2 минуты спокойного дыхания 5/7. Вторая с мягкими плечами и лицом. Сравни время и ощущения.'},
+  {id: 'funny', group: 2, title: 'Смешное имя дискомфорту', mech: 'card', tag: 'сидя', safe: true,
+    text: 'Сухая статика сидя. Первому появившемуся дискомфорту дай смешное имя. Потом ищи в теле ощущение, которое было до него. В оригинале 20 подходов по 2 минуты.'},
+  {id: 'stops', group: 2, title: 'Пять остановок', mech: 'counter', daily: true, goal: 5, btns: ['Остановка'], tag: 'за день',
+    safe: 'Не за рулём, не в воде. Стоя только на месте, не на ходу и не на проезжей части. Закружилась голова: дыши спокойно.',
+    text: 'На остановках дня (чайник, лифт, светофор пешком) одна короткая задержка. После каждой нажми кнопку.'},
+];
+const gcues = (g, total) => {
+  const at = t => t < 0 ? total + t : t > 0 && t < 1 ? t * total : t, out = (g.cues || []).map(([t, s]) => [at(t), s]);
+  if (g.alt) for (let t = 0, i = 0; t < total - 5; t += g.every, i++) out.push([t, g.alt[i % g.alt.length]]);
+  return out.sort((a, b) => a[0] - b[0]);
+};
+
 /* ---- self-check ---- */
 (function selfCheck() {
   let bad = 0; const A = (c, m) => { if (!c) { bad++; console.assert(false, 'self-check: ' + m); } };
@@ -195,6 +320,15 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
   A(bwSteps('psy', 3).map(x => x.k).join() === 'breathe,exh,inh,breathe,exh,inh,breathe,exh,inh,sit,more,note', 'psy script');
   A(bwSteps('wh', 3).map(x => x.k).join() === 'breathe,exh,rec,breathe,exh,rec,breathe,exh,rec', 'wim hof script');
   A(shuffle([1, 2, 3, 4, 5]).slice().sort().join() === '1,2,3,4,5', 'shuffle keeps items');
+  A(GAMES.every(g => MECHS.includes(g.mech) && GROUPS[g.group] && g.title && g.text), 'games: known mechanic, group, title, text');
+  A(new Set(GAMES.map(g => g.id)).size === GAMES.length, 'games: unique ids');
+  A(GAMES.filter(g => TIMED.includes(g.mech) && !g.daily).every(g => g.min > 0 && g.min >= (g.lo || 0) && g.min <= (g.max || 99)), 'games: timed have minutes');
+  A(GAMES.filter(g => g.mech === 'guided').every(g => g.cues || g.ping || (g.alt && g.every > 0)), 'games: guided has cues, alt or ping');
+  A(GAMES.filter(g => g.mech === 'counter').every(g => g.btns && g.btns.length <= 3), 'games: counter has 1-3 buttons');
+  A(GAMES.filter(g => g.mech === 'pacer').every(g => breathPhase(g.pat, 0) && g.lab), 'games: pacer pattern');
+  A(GAMES.filter(g => g.mech === 'link').every(g => g.to) && GAMES.filter(g => g.mech === 'stopwatch').every(g => g.tap) && GAMES.filter(g => g.mech === 'slider').every(g => g.prompts.length > 1), 'games: params');
+  A(gcues({cues: [[0, 'a'], [.5, 'b'], [-30, 'c']]}, 120).map(c => c[0]).join() === '0,60,90', 'gcues: seconds, fraction, from end');
+  A(gcues({alt: ['x', 'y'], every: 10}, 35).map(c => c[1]).join() === 'x,y,x', 'gcues: alt cycles');
   if (!bad) console.log('self-check: ok');
 })();
 
@@ -225,7 +359,7 @@ const SAFETY = 'Только сидя или лёжа. Не в воде, не в
 const BW_SAFETY = 'Только сидя или лёжа, на суше. Не в воде, не в ванне, не за рулём. Кружится голова — дыши спокойно.';
 const today = () => new Date().toISOString().slice(0, 10);
 const fresh = () => ({onboarded: false, day: 1, entryDone: false, minimal: false, len: {}, pat: '4/6', hide: false, voice: true,
-  today: {d: today(), ratings: []}, mot: {lvl: 0, streak: 0}, best: {s5: null, s7: null, word: null}, notes: [], log: [], pool: [], bw: {mode: 'psy', rounds: 3}, bwLog: []});
+  today: {d: today(), ratings: []}, mot: {lvl: 0, streak: 0}, best: {s5: null, s7: null, word: null}, notes: [], log: [], pool: [], bw: {mode: 'psy', rounds: 3}, bwLog: [], gmin: {}, gd: {}});
 let S;
 try { S = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { S = fresh(); }
 if (S.today.d !== today()) S.today = {d: today(), ratings: []};
@@ -263,13 +397,13 @@ const buzz = () => { try { navigator.vibrate && navigator.vibrate([60, 80, 60]);
 
 function shell({back = true, title = '', body = '', foot = '', cls = ''}) {
   app.className = cls;
-  app.innerHTML = `<div class="top">${back ? '<button class="back" data-act="back">‹ Сегодня</button>' : '<span class="brand">inward</span>'}<span class="ttl">${title}</span></div>
+  app.innerHTML = `<div class="top">${back ? `<button class="back" data-act="back" data-v="${back === true ? '' : back}">‹ ${back === true ? 'Сегодня' : 'Игры'}</button>` : '<span class="brand">inward</span>'}<span class="ttl">${title}</span></div>
   <div class="body">${body}</div>${foot ? `<div class="foot">${foot}</div>` : ''}`;
 }
 app.addEventListener('click', e => {
   const t = e.target.closest('[data-act]'); if (!t) return;
   const a = t.dataset.act, v = t.dataset.v;
-  if (a === 'back') { run = null; go('today'); }
+  if (a === 'back') { run = null; go(v || 'today'); }
   else if (A[a]) A[a](v, t);
 });
 // Screen-level actions (set by the active screen via A.x = ...)
@@ -348,7 +482,7 @@ SCREENS.today = () => {
       <span class="step"><button data-act="step" data-v="${id}:-1" aria-label="меньше">−</button><b>${fmt(blockLen(id))}</b><button data-act="step" data-v="${id}:1" aria-label="больше">+</button></span></div>`).join('')}</div>
     <button class="sw ${S.minimal ? 'on' : ''}" data-act="minimal"><span>Плохой день · 5 мин</span><s></s></button>
     <h2>Отдельно</h2>
-    <div class="links"><a href="#breath">Дыхание</a><a href="#schulte">Шульте</a><a href="#silence">Тишина</a><a href="#wordless">Без слов</a><a href="#pool" class="${S.entryDone ? '' : 'lock'}">Вода${S.entryDone ? '' : ' · закрыто'}</a><a href="#hold">Задержка</a><a href="#breathwork" class="wide">Брезворк</a><a href="#welcome" class="wide">Как это устроено</a></div>
+    <div class="links"><a href="#games" class="wide">Игры внимания · ${GAMES.length}</a><a href="#breath">Дыхание</a><a href="#schulte">Шульте</a><a href="#silence">Тишина</a><a href="#wordless">Без слов</a><a href="#pool" class="${S.entryDone ? '' : 'lock'}">Вода${S.entryDone ? '' : ' · закрыто'}</a><a href="#hold">Задержка</a><a href="#breathwork" class="wide">Брезворк</a><a href="#welcome" class="wide">Как это устроено</a></div>
     ${last ? `<p class="muted small">Заметка, день ${last.day}: «${esc(last.text)}»</p>` : ''}
     <button class="btn quiet" data-act="reset">Сбросить прогресс (прототип)</button>`,
     foot: `<button class="btn primary" data-act="start">Начать</button>`});
@@ -441,7 +575,7 @@ SCREENS.mot = p => {
   const cv = $('#cv'), W = cv.clientWidth || 358, dpr = 2; cv.width = W * dpr; cv.height = W * dpr;
   const g = cv.getContext('2d'); g.scale(dpr, dpr);
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-  const C = {ball: css('--ball'), acc: css('--accent'), ok: css('--ok'), bad: css('--bad'), line: css('--line')};
+  const C = {ball: css('--ball'), acc: css('--accent'), ok: css('--ok'), bad: css('--bad'), line: css('--line'), hi: css('--warn')};
   let ph = 'idle', t = 0, elapsed = 0, balls = [], targets = new Set(), picks = new Set(), K = 1, rounds = 0, hits = 0;
   const st = m => { $('#st').textContent = m; };
   const info = () => { const L = MOT[S.mot.lvl]; $('#info').textContent = `Уровень ${S.mot.lvl + 1}/${MOT.length} · шаров ${L.n} · целей ${motK(L.n)} · ${ph === 'idle' ? '' : 'осталось ' + fmt(Math.max(0, total - elapsed))}`; };
@@ -469,15 +603,16 @@ SCREENS.mot = p => {
     balls.forEach((b, i) => {
       const isT = targets.has(i), pk = picks.has(i);
       g.beginPath(); g.arc(b.x, b.y, R, 0, 6.283);
-      g.fillStyle = ph === 'show' && isT ? C.acc : ph === 'reveal' && isT ? C.ok : ph === 'reveal' && pk ? C.bad : C.ball; g.fill();
+      g.fillStyle = ph === 'show' && isT ? C.hi : ph === 'reveal' && isT ? C.ok : ph === 'reveal' && pk ? C.bad : C.ball; g.fill();
+      if (ph === 'show' && isT) { g.lineWidth = 4; g.strokeStyle = C.hi; g.beginPath(); g.arc(b.x, b.y, R + 7, 0, 6.283); g.stroke(); }
       if (pk && ph === 'pick') { g.lineWidth = 3; g.strokeStyle = C.acc; g.beginPath(); g.arc(b.x, b.y, R + 4, 0, 6.283); g.stroke(); }
     });
   }
   loop((now, dt) => {
     if (!cv.isConnected) return;
     if (ph !== 'idle') elapsed += dt; t += dt;
-    if (ph === 'show' && t >= 2) { ph = 'move'; t = 0; st('Следи'); tone(440, .1, .4); }
-    else if (ph === 'move') { for (let r = dt; r > 0; r -= .03) move(Math.min(.03, r)); if (t >= 8) { ph = 'pick'; t = 0; st('Отметь ' + (K === 1 ? 'шар' : K + ' шара')); tone(523, .1, .4); } }
+    if (ph === 'show' && t >= 3) { ph = 'move'; t = 0; st('Следи'); tone(440, .1, .4); }
+    else if (ph === 'move') { for (let r = dt; r > 0; r -= .03) move(Math.min(.03, r)); if (t >= 8) { ph = 'pick'; t = 0; st('Стоп. Коснись ' + (K === 1 ? 'шара' : K + ' шаров')); tone(523, .14, .6); buzz(); } }
     else if (ph === 'reveal' && t >= 1.6) { if (elapsed >= total) return end(); round(); }
     if (ph !== 'idle') info();
     draw();
@@ -682,6 +817,168 @@ SCREENS.pool = p => {
     A.save = () => { S.pool.push({t: Date.now(), who: who.trim(), text: $('#lg').value.trim()}); save(); go('today'); };
   };
   draw();
+};
+
+/* ---- Игры внимания ---- */
+const gmin = g => S.gmin[g.id] ?? g.min;
+const dm = m => m < 1 ? Math.round(m * 60) + ' с' : String(m).replace('.', ',') + ' мин';
+const rnd = a => a[Math.random() * a.length | 0];
+const meta = g => g.tag || (g.min ? dm(gmin(g)) : g.mech === 'link' ? '›' : '');
+const banner = g => g.safe ? `<div class="warn">${g.safe === true ? SAFETY : g.safe}</div>` : '';
+const PACER = '<div class="center"><div class="pacer"><div class="circ" id="circ"></div></div><div class="lab"><b id="lab"></b><span id="cd"></span></div></div>';
+const pacerTick = (pat, t, lab = {}) => {
+  const ph = breathPhase(pat, t), c = $('#circ'); if (!c) return '';
+  const l = lab[ph.label] || ph.label; c.style.transform = `scale(${ph.scale})`; $('#lab').textContent = l; $('#cd').textContent = Math.ceil(ph.left); return l;
+};
+const fin = (g, res, lines = []) => {
+  try { speechSynthesis.cancel(); } catch (e) {}
+  S.log.push({t: Date.now(), type: 'game', id: g.id, ...res}); save(); doneScreen(g.title, lines, 'Готово', () => go('games'));
+};
+// One timed run: draws once, calls tick(t, total) every frame, finishes at the chosen length or on «Закончить».
+function session(g, {body, foot = '', cls = '', init, tick, result = () => ({}), lines = t => ['Сыграно ' + fmt(t)]}) {
+  const total = gmin(g) * 60; let over = false, last = 0;
+  shell({back: false, cls, body: `${body}<p class="faint small" style="text-align:center" id="rem">${fmt(total)}</p>`, foot: `${foot}<button class="btn quiet" data-act="gend">Закончить</button>`});
+  const end = t => { if (over) return; over = true; fin(g, {sec: Math.round(Math.min(t, total)), ...result(t)}, lines(t)); };
+  A.gend = () => end(last);
+  init && init();
+  const t0 = performance.now();
+  loop(now => {
+    if (over) return;
+    last = Math.max(0, (now - t0) / 1000);
+    if (last >= total) { beep(); return end(total); }
+    $('#rem').textContent = fmt(total - last); tick(last, total);
+  });
+}
+const MECH = {
+  link: g => go(g.to),
+  guided(g) {
+    const total = gmin(g) * 60, cues = gcues(g, total); let i = 0, pings = 0, nextP = g.ping ? 20 + Math.random() * 40 : Infinity, shown = 0;
+    session(g, {cls: 'dark', body: `<div class="center"><p class="ping" id="ping"></p>${g.ping ? '<p class="muted small">Жди сигнала</p>' : ''}</div>`,
+      init: beep,
+      tick(t) {
+        const e = $('#ping');
+        while (i < cues.length && t >= cues[i][0]) { e.textContent = cues[i][1]; speak(cues[i++][1]); }
+        if (t >= nextP) { nextP = t + 20 + Math.random() * 40; pings++; e.textContent = rnd(g.ping); shown = t; beep(); buzz(); }
+        else if (shown && t - shown > 6) { e.textContent = ''; shown = 0; }
+      },
+      result: () => g.ping ? {pings} : {}, lines: t => g.ping ? [`Сигналов: ${pings}`] : ['Сыграно ' + fmt(t)]});
+  },
+  counter(g) {
+    if (g.daily) return daily(g);
+    const n = g.btns.map(() => 0); let nextP = g.ping ? 20 + Math.random() * 40 : Infinity, shown = 0;
+    A.cnt = v => { $('#c' + v).textContent = ++n[v]; };
+    session(g, {body: `<div class="center"><p class="muted small">${esc(g.text)}</p><p class="cue" id="ping"></p></div>
+      <div class="rate">${g.btns.map((l, i) => `<button class="btn" data-act="cnt" data-v="${i}"><span>${l}</span><b id="c${i}">0</b></button>`).join('')}</div>`,
+      tick(t) {
+        if (t >= nextP) { nextP = t + 20 + Math.random() * 40; $('#ping').textContent = rnd(g.ping); shown = t; beep(); buzz(); }
+        else if (shown && t - shown > 6) { $('#ping').textContent = ''; shown = 0; }
+      },
+      result: () => ({n}), lines: () => g.btns.map((l, i) => `${l}: ${n[i]}`)});
+  },
+  stopwatch(g) {
+    const key = 'g_' + g.id, t0 = performance.now();
+    shell({back: 'games', title: g.title, body: `<div class="center"><div class="huge dim" id="big">0:00</div><p class="muted">${esc(g.text)}</p>
+      <p class="muted small">${S.best[key] ? 'Лучшее: ' + S.best[key].toFixed(1) + ' с' : 'Лучшего времени ещё нет'}</p></div>`,
+      foot: `<button class="btn primary" data-act="gtap">${g.tap}</button>`});
+    every(() => { const b = $('#big'); b && (b.textContent = fmt((performance.now() - t0) / 1000)); }, 200);
+    A.gtap = () => {
+      const s = (performance.now() - t0) / 1000, nb = !S.best[key] || s > S.best[key]; if (nb) S.best[key] = s;
+      fin(g, {sec: Math.round(s)}, [s.toFixed(1) + ' с', nb ? 'Новое лучшее время' : 'Лучшее: ' + S.best[key].toFixed(1) + ' с']);
+    };
+  },
+  pacer(g) {
+    let last = '';
+    session(g, {body: PACER, tick: t => { const l = pacerTick(g.pat, t, g.lab); if (l !== last) { last = l; speak(l); } }});
+  },
+  slider(g) {
+    let i = 0, lo = 50, hi = 50, v = 50;
+    const draw = () => {
+      shell({back: 'games', title: `${i + 1} из ${g.prompts.length}`, body: `<div class="center"><p style="font-size:22px;line-height:1.3">${esc(g.prompts[i])}</p></div>
+        <input type="range" id="sl" min="0" max="100" value="${v}"><div class="row muted small"><span>ослабить</span><span>усилить</span></div>`,
+        foot: `<button class="btn primary" data-act="gnext">${i + 1 < g.prompts.length ? 'Дальше' : 'Готово'}</button>`});
+      $('#sl').oninput = e => { v = +e.target.value; lo = Math.min(lo, v); hi = Math.max(hi, v); };
+    };
+    A.gnext = () => ++i < g.prompts.length ? draw() : fin(g, {lo, hi}, [`Двигал настроение от ${lo} до ${hi} из 100`]);
+    draw();
+  },
+  periphery(g) {
+    const ZONES = ['слева', 'слева и справа', 'все края'], css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    let cv, c2, W, fl = null, nextAt = 1.5, hits = 0, miss = 0, fa = 0, lvl = 0, lh = 0;
+    const st = m => { $('#st').textContent = m; }, info = () => { $('#info').textContent = `Зона: ${ZONES[lvl]} · верно ${hits} · пропущено ${miss}`; };
+    const spawn = () => {
+      const r = () => W * (.12 + .76 * Math.random()), e = W * .08, side = lvl === 0 ? 0 : lvl === 1 ? Math.random() < .5 ? 0 : 1 : Math.random() * 4 | 0;
+      return side === 0 ? {x: e, y: r()} : side === 1 ? {x: W - e, y: r()} : side === 2 ? {x: r(), y: e} : {x: r(), y: W - e};
+    };
+    session(g, {body: `<div class="status" id="st">Глаза на точке. Вспышка: коснись экрана</div><canvas id="cv"></canvas><p class="muted small" id="info"></p>`,
+      init() {
+        cv = $('#cv'); W = cv.clientWidth || 358; cv.width = cv.height = W * 2; c2 = cv.getContext('2d'); c2.scale(2, 2); info();
+        $('.body').addEventListener('pointerdown', () => {
+          if (fl && !fl.hit) { fl.hit = true; hits++; st('Верно'); if (++lh >= 4 && lvl < 2) { lvl++; lh = 0; } }
+          else { fa++; st('Мимо: вспышки не было'); }
+          info();
+        });
+      },
+      tick(t) {
+        if (!fl && t >= nextAt) fl = {...spawn(), t0: t, hit: false};
+        if (fl && t - fl.t0 > 1.2) { if (!fl.hit) { miss++; st('Пропуск'); info(); } fl = null; nextAt = t + 1.5 + Math.random() * 2; }
+        c2.clearRect(0, 0, W, W);
+        c2.fillStyle = css('--accent'); c2.beginPath(); c2.arc(W / 2, W / 2, 6, 0, 6.283); c2.fill();
+        if (fl && t - fl.t0 < .25) { c2.fillStyle = css('--text'); c2.beginPath(); c2.arc(fl.x, fl.y, 10, 0, 6.283); c2.fill(); }
+      },
+      result: () => ({hits, miss, fa, zone: lvl}), lines: () => [`Верно ${hits} из ${hits + miss}`, `Лишних касаний: ${fa}`, `Дошёл до зоны: ${ZONES[lvl]}`]});
+  },
+  holdpair(g) {
+    const warn = banner(g), times = [];
+    const reset = () => { cleanups.forEach(f => f()); cleanups = []; try { speechSynthesis.cancel(); } catch (e) {} };
+    const hold = i => {
+      reset(); const t0 = performance.now();
+      shell({back: false, title: g.title, body: `${warn}<div class="center"><h2>${i ? 'Вторая · расслабленная' : 'Первая · напряжённая'}</h2><div class="huge dim" id="big">0:00</div>
+        <p class="muted">${i ? 'Плечи, лицо и живот мягкие. Обычный вдох, без усилия.' : 'Обычный вдох, плечи подняты и напряжены.'}</p><p class="muted small">Коснись экрана, чтобы закончить</p></div>`});
+      every(() => { $('#big').textContent = fmt((performance.now() - t0) / 1000); }, 100);
+      speak(i ? 'вдох, расслабься и держи' : 'вдох, напряги плечи и держи');
+      $('.body').addEventListener('pointerdown', () => { times[i] = (performance.now() - t0) / 1000; i ? show() : calm(); }, {once: true});
+    };
+    const calm = () => {
+      reset(); const t0 = performance.now(); let nextHold = false;
+      shell({back: false, title: g.title, body: `${warn}<h2>Спокойное дыхание · вдох 5, выдох 7</h2>${PACER}`, foot: `<button class="btn quiet" data-act="gend">Остановить</button>`});
+      A.gend = () => go('games');
+      loop(now => { const t = (now - t0) / 1000; if (t < 120) return pacerTick('calm', t); if (!nextHold) { nextHold = true; later(() => hold(1), 0); } });
+    };
+    const show = () => {
+      reset(); const [a, b] = times, d = b - a;
+      fin(g, {h1: Math.round(a), h2: Math.round(b)}, [`Напряжённая: ${fmt(a)}`, `Расслабленная: ${fmt(b)}`, `Разница: ${d < 0 ? '−' : '+'}${fmt(Math.abs(d))}`, 'Это не рекорд. Сравни, как отличались ощущения.']);
+    };
+    hold(0);
+  },
+};
+// Daily counter (Пять остановок): taps accumulate per calendar day in S.gd, each tap is logged.
+function daily(g) {
+  if (S.gd.d !== today()) S.gd = {d: today(), n: {}};
+  const draw = () => {
+    const n = S.gd.n[g.id] || 0;
+    shell({back: 'games', title: g.title, body: `${banner(g)}<div class="center"><div class="huge">${n}</div><p class="muted">из ${g.goal} за сегодня</p><p class="muted small">${esc(g.text)}</p></div>`,
+      foot: `<button class="btn primary" data-act="gtap">${g.btns[0]}</button>`});
+    A.gtap = () => { S.gd.n[g.id] = n + 1; S.log.push({t: Date.now(), type: 'game', id: g.id, n: n + 1}); save(); draw(); };
+  };
+  draw();
+}
+SCREENS.games = () => shell({title: '', body: `<h1>Игры внимания</h1>
+  <p class="muted small">Играть можно недолго, но несколько раз в день. Время каждой игры меняется на её экране.</p>
+  ${GROUPS.map((n, i) => `<h2>${n}</h2><div class="plan">${GAMES.filter(g => g.group === i).map(g => `<a class="item" href="#game?id=${g.id}"><span class="name">${esc(g.title)}</span><small>${meta(g)}</small></a>`).join('')}</div>`).join('')}`});
+SCREENS.game = p => {
+  const g = GAMES.find(x => x.id === p.get('id'));
+  if (!g) return go('games');
+  const timed = TIMED.includes(g.mech) && !g.daily;
+  const draw = () => {
+    shell({back: 'games', title: GROUPS[g.group], body: `<h1>${esc(g.title)}</h1>${banner(g)}<p class="muted">${esc(g.text)}</p>
+      ${timed ? `<div class="plan"><div class="item"><span class="name">Время</span><span class="step"><button data-act="gstep" data-v="-1" aria-label="меньше">−</button><b>${dm(gmin(g))}</b><button data-act="gstep" data-v="1" aria-label="больше">+</button></span></div></div>` : ''}`,
+      foot: g.mech === 'card' ? `<button class="btn primary" data-act="gback">К списку</button>` : `<button class="btn primary" data-act="gstart">${g.mech === 'link' ? 'Открыть' : 'Начать'}</button>`});
+  };
+  A.gstep = v => { const m = gmin(g), s = (v > 0 ? m : m - .01) < 3 ? .5 : 1; S.gmin[g.id] = Math.min(g.max || 30, Math.max(g.lo || .5, m + v * s)); save(); draw(); };
+  A.gback = () => go('games');
+  A.gstart = () => MECH[g.mech](g);
+  draw();
+  if (p.has('auto')) A.gstart();
 };
 
 /* ---- Заметка ---- */
