@@ -390,7 +390,7 @@ function loop(f) { let id, last = performance.now(); const tick = now => { id = 
 const go = h => { location.hash = h; };
 const $ = (s, r = document) => r.querySelector(s);
 const speak = t => { try { if (S.voice && window.speechSynthesis) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = 'ru-RU'; speechSynthesis.speak(u); } } catch (e) {} };
-let actx; const ac = () => { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === 'suspended') actx.resume(); return actx; };
+let actx; const ac = () => { try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {} actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === 'suspended') actx.resume(); return actx; };
 const tone = (hz, vol = .12, dur = .5, force = false) => { try { if (S.sound === false && !force) return; const c = ac(), o = c.createOscillator(), g = c.createGain(); o.type = 'sine'; o.frequency.value = hz; g.gain.setValueAtTime(0, c.currentTime); g.gain.linearRampToValueAtTime(vol, c.currentTime + .05); g.gain.exponentialRampToValueAtTime(.0001, c.currentTime + dur); o.connect(g); g.connect(c.destination); o.start(); o.stop(c.currentTime + dur + .05); } catch (e) {} };
 const beep = () => tone(432, .18, 1.2, true);
 const buzz = () => { try { navigator.vibrate && navigator.vibrate([60, 80, 60]); } catch (e) {} };
@@ -588,7 +588,7 @@ SCREENS.mot = p => {
     }
     targets = new Set(shuffle([...balls.keys()]).slice(0, K)); picks = new Set();
   }
-  function round() { seed(); ph = 'show'; t = 0; st(K === 1 ? 'Запомни выделенный шар' : 'Запомни выделенные шары (' + K + ')'); info(); }
+  function round() { seed(); ph = 'show'; t = 0; st(K === 1 ? 'Запомни выделенный шар' : 'Запомни выделенные шары (' + K + ')'); tone(587, .14, .5); buzz(); info(); }
   function move(dt) {
     for (const b of balls) { b.x += b.vx * dt; b.y += b.vy * dt; if (b.x < R || b.x > W - R) { b.vx *= -1; b.x = Math.min(W - R, Math.max(R, b.x)); } if (b.y < R || b.y > W - R) { b.vy *= -1; b.y = Math.min(W - R, Math.max(R, b.y)); } }
     for (let i = 0; i < balls.length; i++) for (let j = i + 1; j < balls.length; j++) {
