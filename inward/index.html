@@ -148,7 +148,8 @@ function motStep(s, correct) {
   if (!correct) return {lvl: Math.max(0, s.lvl - 1), streak: 0};
   return s.streak + 1 >= 2 ? {lvl: Math.min(MOT.length - 1, s.lvl + 1), streak: 0} : {lvl: s.lvl, streak: s.streak + 1};
 }
-// Breath pacer: phases [kind, seconds, label]; kind in/out/full/empty decides circle size.
+const SMALL = .4, ease = x => (1 - Math.cos(Math.PI * x)) / 2;
+// Breath pacer: phases [kind, seconds, label, from?, to?]; kind in/out/full/empty decides circle size, from/to set the circle range of an «in» (double inhale).
 const PATTERNS = {
   '4/4':  [['in',4,'Вдох'],['out',4,'Выдох']],
   '4/6':  [['in',4,'Вдох'],['out',6,'Выдох']],
@@ -157,7 +158,8 @@ const PATTERNS = {
 };
 const BW_PAT = {fast: [['in',1,'Вдох'],['out',1,'Выдох']], calm: [['in',5,'Вдох'],['out',7,'Выдох']], '5/7': [['in',5,'Вдох'],['out',7,'Выдох']], '6/8': [['in',6,'Вдох'],['out',8,'Выдох']],
   res: [['in',5.5,'Вдох'],['out',5.5,'Выдох']], box4: [['in',4,'Вдох'],['full',4,'Пауза'],['out',4,'Выдох'],['empty',4,'Пауза']],
-  nadi: [['in',4,'Вдох левой'],['out',6,'Выдох правой'],['in',4,'Вдох правой'],['out',6,'Выдох левой']], kap: [['out',.4,'Выдох'],['in',.8,'']]};
+  nadi: [['in',4,'Вдох левой'],['out',6,'Выдох правой'],['in',4,'Вдох правой'],['out',6,'Выдох левой']], kap: [['out',.4,'Выдох'],['in',.8,'']],
+  sigh: [['in',2,'Вдох',SMALL,.8],['in',1,'Ещё вдох',.8,1],['out',6,'Выдох']]};
 // Breathwork script (пост в канале 21.01.2024): psy = продышка до касания, выдох-держи, вдох-держи (+до-вдох), в конце сидим 20+ мин и ещё 5; wh = 30 вдохов, выдох-держи, вдох 15 с.
 function bwSteps(mode, rounds) {
   const out = [];
@@ -167,14 +169,13 @@ function bwSteps(mode, rounds) {
 }
 const PAT_LEN = pat => (PATTERNS[pat] || BW_PAT[pat]).reduce((a, p) => a + p[1], 0);
 const PAT_AT = (pat, t) => { const ph = PATTERNS[pat] || BW_PAT[pat]; t = ((t % PAT_LEN(pat)) + PAT_LEN(pat)) % PAT_LEN(pat); let i = 0; for (const p of ph) { if (t < p[1]) return i; t -= p[1]; i++; } return 0; };
-const SMALL = .4, ease = x => (1 - Math.cos(Math.PI * x)) / 2;
 function breathPhase(pat, t) {
   const ph = PATTERNS[pat] || BW_PAT[pat], cyc = ph.reduce((a, p) => a + p[1], 0);
   t = ((t % cyc) + cyc) % cyc;
-  for (const [kind, sec, label] of ph) {
+  for (const [kind, sec, label, from = SMALL, to = 1] of ph) {
     if (t < sec) {
       const x = t / sec;
-      const scale = kind === 'in' ? SMALL + (1 - SMALL) * ease(x) : kind === 'out' ? 1 - (1 - SMALL) * ease(x) : kind === 'full' ? 1 : SMALL;
+      const scale = kind === 'in' ? from + (to - from) * ease(x) : kind === 'out' ? 1 - (1 - SMALL) * ease(x) : kind === 'full' ? 1 : SMALL;
       return {label, left: sec - t, scale};
     }
     t -= sec;
@@ -356,6 +357,8 @@ const GAMES = [
   {id: 'kapal', group: 3, title: 'Капалабхати', mech: 'seq', tag: '3,5 мин', safe: 'bw', quiet: true,
     text: 'Короткие резкие выдохи носом, живот втягивается, вдох сам. Три раунда: 30 секунд выдохов, 30 секунд обычного дыхания. Новичку хватит 15 выдохов за раунд.',
     steps: [1, 2, 3].flatMap(() => [{p: 'kap', s: 30, say: 'Резкие выдохи носом'}, {p: null, s: 30, say: 'Дыши как обычно'}]).concat([{p: null, s: 30, say: 'Глаза закрыты. Заметь тепло и энергию'}])},
+  {id: 'sigh', group: 3, title: 'Циклический вздох', min: 5, mech: 'pacer', pat: 'sigh', lab: {},
+    text: 'Два вдоха носом подряд и долгий выдох ртом. Второй вдох расправляет лёгкие, на выдохе сердце замедляется. Пять минут в день — в исследовании Стэнфорда (Cell Reports Medicine, 2023) это подняло настроение сильнее, чем пять минут медитации. Пульс на вдохах растёт — это нормально, сердце ускоряется на вдохе. Замедляется на длинном выдохе. Выдох делай заметно длиннее обоих вдохов, без усилия.'},
   {id: 'psy', group: 3, title: 'Психоделическое дыхание', mech: 'link', to: 'breathwork', bw: 'psy', text: 'Продышка как у Вима Хофа, задержка на выдохе, вдох и до-вдох. В конце 20+ минут тишины.'},
   {id: 'wh', group: 3, title: 'Вим Хоф', mech: 'link', to: 'breathwork', bw: 'wh', text: '30 вдохов, выдох и держишь, вдох на 15 секунд. Три раунда.'},
   {id: 'holo', group: 3, title: 'Холотропное дыхание', mech: 'card', tag: 'с ведущим', safe: 'bw',
@@ -392,6 +395,7 @@ const gcues = (g, total) => {
   A(MOT.map(l => l.n).filter((n, i, a) => a.indexOf(n) === i).join() === '3,5,7,12', 'mot path 3-5-7-12');
   A(cueText(30) === 'полминуты' && cueText(60) === 'минута' && cueText(90) === 'полторы минуты' && cueText(150) === 'две с половиной минуты' && cueText(300) === 'пять минут', 'cue text');
   A(breathPhase('4/6', 4).label === 'Выдох' && Math.abs(breathPhase('4/6', 4).scale - 1) < .01 && breathPhase('4/6', 0).scale === SMALL, 'breath phases');
+  A(breathPhase('sigh', 1).label === 'Вдох' && breathPhase('sigh', 2.5).label === 'Ещё вдох' && breathPhase('sigh', 3).label === 'Выдох' && Math.abs(breathPhase('sigh', 2.999).scale - 1) < .01 && PAT_LEN('sigh') === 9, 'sigh: 2/1/6 s, double inhale');
   A(breathPhase('fast', 1).label === 'Выдох' && Math.abs(breathPhase('fast', 1).scale - 1) < .01, 'fast pacer 1 s / 1 s');
   A(bwSteps('psy', 3).map(x => x.k).join() === 'breathe,exh,inh,breathe,exh,inh,breathe,exh,inh,sit,more,note', 'psy script');
   A(bwSteps('wh', 3).map(x => x.k).join() === 'breathe,exh,rec,breathe,exh,rec,breathe,exh,rec', 'wim hof script');
