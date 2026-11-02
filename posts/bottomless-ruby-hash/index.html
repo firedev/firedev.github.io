@@ -18,30 +18,34 @@
 <meta name="twitter:title" content="Bottomless Ruby Hash · firedev.com">
 <meta name="twitter:description" content="The other day somebody asked if there is a way to blindly assign nested values to a Ruby Hash without creating each key. Turns out there is, and it has an interesting side-effect. Welcome Bottomless Hash.">
 <meta name="twitter:image" content="https://firedev.com/images/posts/bottomless_pit.jpg">
-<link rel="stylesheet" href="/_bridgetown/static/index.KRV6GFQS.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap">
+<link rel="stylesheet" href="/_bridgetown/static/index.PPWT42YA.css">
 <script src="/_bridgetown/static/index.STXZDQ5O.js" type="module"></script>
 
 </head>
 <body class=" min-h-screen overflow-x-hidden">
-  <header class="site-header mx-auto flex w-[min(1180px,calc(100%-2rem))] flex-col gap-5 py-5 md:flex-row md:items-center md:gap-8 md:py-6">
-    <a href="/" class="block w-44 shrink-0 md:w-52 lg:w-56" aria-label="firedev.com home">
-      <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
-    </a>
-    <nav class="site-nav flex w-full flex-wrap items-center gap-x-6 gap-y-2 text-xl font-black md:flex-1 md:flex-nowrap md:gap-x-10 md:text-[1.8rem]" aria-label="Primary">
-      <a href="/projects/" class="nav-link inline-flex min-h-11 items-center text-muted" >Projects</a>
-      <a href="/posts/" class="nav-link inline-flex min-h-11 items-center is-active text-fire-ink" aria-current="page">Posts</a>
-      <a href="/about/" class="nav-link inline-flex min-h-11 items-center text-muted" >About</a>
-      <a href="mailto:nick@firedev.com" class="nav-cta inline-flex min-h-11 items-center justify-center border border-ink px-4 py-3 text-base font-black text-ink md:ml-auto md:px-5">Email ↗</a>
-    </nav>
+  <header class="site-header">
+    <div class="mx-auto flex w-[min(1080px,calc(100%-3rem))] items-baseline gap-6 py-5 md:gap-10">
+      <a href="/" class="block w-28 shrink-0 md:w-32" aria-label="firedev.com home">
+        <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
+      </a>
+      <nav class="site-nav flex flex-1 items-baseline gap-x-5 text-lg font-black tracking-[-.03em] sm:gap-x-6 md:gap-x-8 md:text-xl" aria-label="Primary">
+        <a href="/projects/" class="nav-link inline-flex min-h-11 items-center text-ink" >Projects</a>
+        <a href="/posts/" class="nav-link inline-flex min-h-11 items-center is-active text-fire" aria-current="page">Posts</a>
+        <a href="/about/" class="nav-link inline-flex min-h-11 items-center text-ink" >About</a>
+        <a href="mailto:nick@firedev.com" class="nav-cta ml-auto hidden sm:inline-flex min-h-11 items-center justify-center px-5 text-base font-black tracking-[-.02em]">Email ↗</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
-  <a href="/posts/" class="mt-6 inline-flex min-h-11 items-center text-base font-black text-muted hover:text-fire-ink">← All posts</a>
+    <article class="mx-auto w-[min(1080px,calc(100%-3rem))]">
+  <a href="/posts/" class="mt-6 inline-flex min-h-11 items-center text-base font-semibold text-muted hover:text-fire-ink">← All posts</a>
 
   <header class="pt-6 pb-10 md:pt-6 md:pb-14">
     <h1 class="max-w-[13ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Bottomless Ruby Hash</h1>
-    <p class="mt-6 text-lg font-black text-fire-ink"><time datetime="2015-10-07">07 October 2015</time></p>
+    <p class="mt-6 text-lg font-semibold text-fire-ink"><time datetime="2015-10-07">07 October 2015</time></p>
     <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">The other day somebody asked if there is a way to blindly assign nested values to a Ruby Hash without creating each key. Turns out there is, and it has an interesting side-effect. Welcome Bottomless Hash.</p>
   </header>
 
@@ -292,15 +296,16 @@ nested structures from the outside world.</p>
   </div>
 
   <footer class="mt-16 flex flex-wrap items-center justify-between gap-5 py-8">
-    <a href="/posts/" class="inline-flex min-h-11 items-center font-black hover:text-fire-ink">← Back to all posts</a>
-    <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-black hover:text-fire-ink">Talk about the work ↗</a>
+    <a href="/posts/" class="inline-flex min-h-11 items-center font-semibold hover:text-fire-ink">← Back to all posts</a>
+    <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-semibold hover:text-fire-ink">Talk about the work ↗</a>
   </footer>
 </article>
 
   </main>
 
-  <footer class="mx-auto mt-20 flex w-[min(1180px,calc(100%-2rem))] justify-between gap-8 py-8 text-base text-muted">
+  <footer class="mx-auto mt-20 flex w-[min(1080px,calc(100%-3rem))] justify-between gap-8 py-8 text-base text-muted">
     <a href="https://nikolayx.com" class="hover:text-fire-ink">nikolayx.com</a>
+    <a href="mailto:nick@firedev.com" class="hover:text-ink">nick@firedev.com</a>
     <span>Phuket · Thailand</span>
   </footer>
 </body>

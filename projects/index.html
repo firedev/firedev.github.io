@@ -18,63 +18,151 @@
 <meta name="twitter:title" content="Projects · firedev.com">
 <meta name="twitter:description" content="Products, platforms, brands, and experiments shipped by Nikolay Ostrovsky.">
 <meta name="twitter:image" content="https://firedev.com/images/logos/firedev.svg">
-<link rel="stylesheet" href="/_bridgetown/static/index.KRV6GFQS.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap">
+<link rel="stylesheet" href="/_bridgetown/static/index.PPWT42YA.css">
 <script src="/_bridgetown/static/index.STXZDQ5O.js" type="module"></script>
 
 </head>
 <body class="projects-page min-h-screen overflow-x-hidden">
-  <header class="site-header mx-auto flex w-[min(1180px,calc(100%-2rem))] flex-col gap-5 py-5 md:flex-row md:items-center md:gap-8 md:py-6">
-    <a href="/" class="block w-44 shrink-0 md:w-52 lg:w-56" aria-label="firedev.com home">
-      <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
-    </a>
-    <nav class="site-nav flex w-full flex-wrap items-center gap-x-6 gap-y-2 text-xl font-black md:flex-1 md:flex-nowrap md:gap-x-10 md:text-[1.8rem]" aria-label="Primary">
-      <a href="/projects/" class="nav-link inline-flex min-h-11 items-center is-active text-fire-ink" aria-current="page">Projects</a>
-      <a href="/posts/" class="nav-link inline-flex min-h-11 items-center text-muted" >Posts</a>
-      <a href="/about/" class="nav-link inline-flex min-h-11 items-center text-muted" >About</a>
-      <a href="mailto:nick@firedev.com" class="nav-cta inline-flex min-h-11 items-center justify-center border border-ink px-4 py-3 text-base font-black text-ink md:ml-auto md:px-5">Email ↗</a>
-    </nav>
+  <header class="site-header">
+    <div class="mx-auto flex w-[min(1080px,calc(100%-3rem))] items-baseline gap-6 py-5 md:gap-10">
+      <a href="/" class="block w-28 shrink-0 md:w-32" aria-label="firedev.com home">
+        <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
+      </a>
+      <nav class="site-nav flex flex-1 items-baseline gap-x-5 text-lg font-black tracking-[-.03em] sm:gap-x-6 md:gap-x-8 md:text-xl" aria-label="Primary">
+        <a href="/projects/" class="nav-link inline-flex min-h-11 items-center is-active text-fire" aria-current="page">Projects</a>
+        <a href="/posts/" class="nav-link inline-flex min-h-11 items-center text-ink" >Posts</a>
+        <a href="/about/" class="nav-link inline-flex min-h-11 items-center text-ink" >About</a>
+        <a href="mailto:nick@firedev.com" class="nav-cta ml-auto hidden sm:inline-flex min-h-11 items-center justify-center px-5 text-base font-black tracking-[-.02em]">Email ↗</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <div class="mx-auto w-[min(1180px,calc(100%-2rem))]">
+    <div class="mx-auto w-[min(1080px,calc(100%-3rem))]">
   <section class="py-16 md:py-24">
-    <h1 class="max-w-[12ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Things I’ve <strong class="text-fire-ink">shipped.</strong></h1>
-    <p class="mt-6 text-lg font-black text-fire-ink">Products, systems, brands, and experiments</p>
+    <h1 class="max-w-[12ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Things I’ve <strong class="text-fire">shipped.</strong></h1>
+    <p class="mt-6 text-lg font-semibold text-fire-ink">Products, systems, brands, and experiments</p>
     <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">Two decades across product, engineering, design, and the occasional business built from zero.</p>
   </section>
 
   <section class="pb-20">
     <div class="mb-7 flex flex-wrap items-baseline gap-x-4">
-      <h2 class="mb-3 text-3xl font-black tracking-[-.03em] md:text-5xl">Selected work</h2>
+      <h2 class="mb-3 text-3xl font-bold tracking-[-.03em] md:text-5xl">Selected work</h2>
       <span class="mb-3 w-full text-base text-muted md:w-auto">Products · systems · brands · experiments</span>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <article class="project-card">
+    <div class="gap-6 md:columns-2 lg:columns-3">
+        <article class="project-card mb-4 break-inside-avoid">
+          <a href="/projects/houseviser/" class="block text-inherit">
+            <figure class="project-media false relative overflow-hidden bg-white">
+                <img src="/images/projects/screens/houseviser.webp" alt="Houseviser project visual" class="block h-auto w-full" loading="lazy" decoding="async">
+
+            </figure>
+            <div class="grid grid-cols-1 gap-y-2 py-5">
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Houseviser</h3>
+              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Verified Phuket real estate, direct from agents and developers.</p>
+            </div>
+          </a>
+        </article>
+        <article class="project-card mb-4 break-inside-avoid">
+          <a href="/projects/unpos/" class="block text-inherit">
+            <figure class="project-media false relative overflow-hidden bg-white">
+                <img src="/images/projects/screens/unpos-sale.webp" alt="UNPOS project visual" class="block h-auto w-full" loading="lazy" decoding="async">
+
+            </figure>
+            <div class="grid grid-cols-1 gap-y-2 py-5">
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">UNPOS</h3>
+              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Cloud POS and warehouse platform built for a national pharmacy network.</p>
+            </div>
+          </a>
+        </article>
+        <article class="project-card mb-4 break-inside-avoid">
+          <a href="/projects/learn21/" class="block text-inherit">
+            <figure class="project-media false relative overflow-hidden bg-white">
+                <img src="/images/projects/screens/Learn21.key.png" alt="Learn21 project visual" class="block h-auto w-full" loading="lazy" decoding="async">
+
+            </figure>
+            <div class="grid grid-cols-1 gap-y-2 py-5">
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Learn21</h3>
+              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Gamified English learning delivered across 11 Thai primary schools.</p>
+            </div>
+          </a>
+        </article>
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/tellothers/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/tellothers.webp" alt="Tell Others project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Tell Others</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Tell Others</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">It worked? Tell others.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
+          <a href="/projects/nofins/" class="block text-inherit">
+            <figure class="project-media false relative overflow-hidden bg-white">
+                <img src="/images/projects/screens/nofins-home.webp" alt="nofins.com project visual" class="block h-auto w-full" loading="lazy" decoding="async">
+
+            </figure>
+            <div class="grid grid-cols-1 gap-y-2 py-5">
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">nofins.com</h3>
+              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Freediving training brand built around attention, calm, and clear dives.</p>
+            </div>
+          </a>
+        </article>
+        <article class="project-card mb-4 break-inside-avoid">
+          <a href="/projects/nonduality-today/" class="block text-inherit">
+            <figure class="project-media false relative overflow-hidden bg-white">
+                <img src="/images/projects/screens/nonduality-home.webp" alt="nonduality.today project visual" class="block h-auto w-full" loading="lazy" decoding="async">
+
+            </figure>
+            <div class="grid grid-cols-1 gap-y-2 py-5">
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">nonduality.today</h3>
+              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Freediving Meditation Retreat. The beauty of nature multiplied by the depths of consciousness.</p>
+            </div>
+          </a>
+        </article>
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/play-midi/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/play-midi.webp" alt="Play MIDI project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Play MIDI</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Play MIDI</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Falling-notes MIDI tutor. Scroll at your speed, the keys light up.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
+          <a href="/projects/best-thai-fruits/" class="block text-inherit">
+            <figure class="project-media false relative overflow-hidden bg-white">
+                <img src="/images/projects/screens/best-thai-fruits.webp" alt="Best Thai Fruits project visual" class="block h-auto w-full" loading="lazy" decoding="async">
+
+            </figure>
+            <div class="grid grid-cols-1 gap-y-2 py-5">
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Best Thai Fruits</h3>
+              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Frozen Thai fruit brought from growers to Russian retail.</p>
+            </div>
+          </a>
+        </article>
+        <article class="project-card mb-4 break-inside-avoid">
+          <a href="/projects/thinkforward/" class="block text-inherit">
+            <figure class="project-media false relative overflow-hidden bg-white">
+                <img src="/images/projects/screens/thinkforward-home.webp" alt="think→forward project visual" class="block h-auto w-full" loading="lazy" decoding="async">
+
+            </figure>
+            <div class="grid grid-cols-1 gap-y-2 py-5">
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">think→forward</h3>
+              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">A book platform and insight archive for skeptical inner work.</p>
+            </div>
+          </a>
+        </article>
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/threefinger/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <video class="block h-auto w-full" autoplay muted loop playsinline poster="/images/projects/threefinger.jpg">
@@ -83,324 +171,240 @@
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">threefinger</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">threefinger</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Swipe with three fingers on the Mac trackpad to change tabs.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
-          <a href="/projects/houseviser/" class="block text-inherit">
-            <figure class="project-media false relative overflow-hidden bg-white">
-                <img src="/images/projects/screens/houseviser.webp" alt="Houseviser project visual" class="block h-auto w-full" loading="lazy" decoding="async">
-
-            </figure>
-            <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Houseviser</h3>
-              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Verified Phuket real estate, direct from agents and developers.</p>
-            </div>
-          </a>
-        </article>
-        <article class="project-card">
-          <a href="/projects/nofins/" class="block text-inherit">
-            <figure class="project-media false relative overflow-hidden bg-white">
-                <img src="/images/projects/screens/nofins-home.webp" alt="nofins.com project visual" class="block h-auto w-full" loading="lazy" decoding="async">
-
-            </figure>
-            <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">nofins.com</h3>
-              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Freediving training brand built around attention, calm, and clear dives.</p>
-            </div>
-          </a>
-        </article>
-        <article class="project-card">
-          <a href="/projects/nonduality-today/" class="block text-inherit">
-            <figure class="project-media false relative overflow-hidden bg-white">
-                <img src="/images/projects/screens/nonduality-home.webp" alt="nonduality.today project visual" class="block h-auto w-full" loading="lazy" decoding="async">
-
-            </figure>
-            <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">nonduality.today</h3>
-              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Freediving Meditation Retreat. The beauty of nature multiplied by the depths of consciousness.</p>
-            </div>
-          </a>
-        </article>
-        <article class="project-card">
-          <a href="/projects/best-thai-fruits/" class="block text-inherit">
-            <figure class="project-media false relative overflow-hidden bg-white">
-                <img src="/images/projects/screens/best-thai-fruits.webp" alt="Best Thai Fruits project visual" class="block h-auto w-full" loading="lazy" decoding="async">
-
-            </figure>
-            <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Best Thai Fruits</h3>
-              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Frozen Thai fruit brought from growers to Russian retail.</p>
-            </div>
-          </a>
-        </article>
-        <article class="project-card">
-          <a href="/projects/thinkforward/" class="block text-inherit">
-            <figure class="project-media false relative overflow-hidden bg-white">
-                <img src="/images/projects/screens/thinkforward-home.webp" alt="think→forward project visual" class="block h-auto w-full" loading="lazy" decoding="async">
-
-            </figure>
-            <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">think→forward</h3>
-              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">A book platform and insight archive for skeptical inner work.</p>
-            </div>
-          </a>
-        </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/photo-gallery/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/photo-gallery.webp" alt="Photo Gallery project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Photo Gallery</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Photo Gallery</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Professional photography gallery and static website generator.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
-          <a href="/projects/unpos/" class="block text-inherit">
-            <figure class="project-media false relative overflow-hidden bg-white">
-                <img src="/images/projects/screens/unpos-sale.webp" alt="UNPOS project visual" class="block h-auto w-full" loading="lazy" decoding="async">
-
-            </figure>
-            <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">UNPOS</h3>
-              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Cloud POS and warehouse platform built for a national pharmacy network.</p>
-            </div>
-          </a>
-        </article>
-        <article class="project-card">
-          <a href="/projects/learn21/" class="block text-inherit">
-            <figure class="project-media false relative overflow-hidden bg-white">
-                <img src="/images/projects/screens/Learn21.key.png" alt="Learn21 project visual" class="block h-auto w-full" loading="lazy" decoding="async">
-
-            </figure>
-            <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Learn21</h3>
-              <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Gamified English learning delivered across 11 Thai primary schools.</p>
-            </div>
-          </a>
-        </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/heartland-retail/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/heartland-retail.webp" alt="Heartland Retail project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Heartland Retail</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Heartland Retail</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Cloud POS analytics and flexible reporting for retailers.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/pharmalife/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/pharmalife.png" alt="Pharmalife project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Pharmalife</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Pharmalife</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Employee performance and motivation system for pharmacy chains.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/cashflow-monitor/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/cashflow.webp" alt="Cashflow Monitor project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Cashflow Monitor</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Cashflow Monitor</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Real-time sales statistics on a headquarters-scale display.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/masterbot/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/masterbot.png" alt="Masterbot project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Masterbot</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Masterbot</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">One of the first chatbots built for Telegram.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/qa-cloud/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/qa.png" alt="QA Cloud project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">QA Cloud</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">QA Cloud</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Disposable environments for deploying and testing branches.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/inpos/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/inpos 2.png" alt="INPOS project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">INPOS</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">INPOS</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Distributed ERP and POS deployed across more than 1,300 pharmacies.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/7pikes/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/7pikes.webp" alt="7Pikes project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">7Pikes</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">7Pikes</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">ERP and POS software deployed across 1,300+ pharmacies.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/headstart/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/headstart.webp" alt="HeadStart Phuket project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">HeadStart Phuket</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">HeadStart Phuket</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">School brand, website, content builder, and student gazette.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/jaconda/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/jaconda.png" alt="Jaconda IM project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Jaconda IM</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Jaconda IM</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Business chat for remote teams, before Slack.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/all-homes-phuket/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/all-homes-phuket.webp" alt="All Homes Phuket project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">All Homes Phuket</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">All Homes Phuket</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">An independent Phuket real-estate agency built from scratch.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/phuket-rent-house/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/renthouse.png" alt="Phuket Rent House project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Phuket Rent House</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Phuket Rent House</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Vacation rental marketplace that became a real-estate agency.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/phuket-buy-house/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/buyhouse.png" alt="Phuket Buy House project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Phuket Buy House</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Phuket Buy House</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">The property-sales side of the Phuket marketplace.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/gipsyteam/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/gipsyteam.webp" alt="GipsyTeam project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">GipsyTeam</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">GipsyTeam</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Poker school and community built with a WSOP-winning team.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/imagevue/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/imagevue.png" alt="Imagevue project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Imagevue</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Imagevue</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">A professional online gallery for photographers.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/piluli/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/piluli-eapteka.webp" alt="Piluli.ru project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Piluli.ru</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Piluli.ru</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">From one pharmacy to a retailer later acquired by X5.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/mindbox/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/mindbox.png" alt="Mindbox project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Mindbox</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Mindbox</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Advertising systems and campaigns for major international brands.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/zr/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/za-rulem.webp" alt="Behind the Wheel project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Behind the Wheel</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Behind the Wheel</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Digital work for Russia’s leading automotive magazine.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/finding-nama/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/finding-nama.webp" alt="Finding Nama project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Finding Nama</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Finding Nama</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">A browser game of Phuket in Wind Waker style - real coastline, freediving quest, no engine.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/matrix/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <video class="block h-auto w-full" autoplay muted loop playsinline poster="/images/projects/screens/matrix.webp">
@@ -409,115 +413,115 @@
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">matrix</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">matrix</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Matrix rain screensaver for the terminal. For recording livestreams.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/git-wrapped/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/git-wrapped-firedev.webp" alt="Git Wrapped project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Git Wrapped</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Git Wrapped</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">A visual year-in-review for GitHub work.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/nikolayx/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/screens/nikolayx-home.webp" alt="nikolayx.com project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">nikolayx.com</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">nikolayx.com</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">A stripped-down personal hub linking freediving, writing, music, and attention tools.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/furniture3d/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/furniture3d.jpg" alt="Furniture 3D project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Furniture 3D</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Furniture 3D</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Browser-based configurable furniture prototype.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/darkanoid/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/darkanoid.png" alt="Darkanoid project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Darkanoid</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Darkanoid</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">A play-in-the-browser arcade demake.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/nanogrid/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/nanogrid.png" alt="Nanogrid project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Nanogrid</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Nanogrid</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">A tiny automatic CSS layout grid.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/jquery-keynav/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/jquery.png" alt="jQuery Keynav project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">jQuery Keynav</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">jQuery Keynav</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Keyboard navigation for spatial web interfaces.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/gridpapr/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/gridpapr.png" alt="GridPapr project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">GridPapr</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">GridPapr</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Online design collaboration on a shared grid.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/indexr/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/indexr.png" alt="Indexr project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">Indexr</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">Indexr</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">A small indexing tool from the early Rails years.</p>
             </div>
           </a>
         </article>
-        <article class="project-card">
+        <article class="project-card mb-4 break-inside-avoid">
           <a href="/projects/ascii-art/" class="block text-inherit">
             <figure class="project-media false relative overflow-hidden bg-white">
                 <img src="/images/projects/ascii.png" alt="ASCII Art project visual" class="block h-auto w-full" loading="lazy" decoding="async">
 
             </figure>
             <div class="grid grid-cols-1 gap-y-2 py-5">
-              <h3 class="text-xl font-black tracking-[-.02em] md:text-2xl">ASCII Art</h3>
+              <h3 class="text-xl font-bold tracking-[-.02em] md:text-2xl">ASCII Art</h3>
               <p class="col-span-2 max-w-[46ch] leading-relaxed text-muted">Recovered ANSI and ASCII work from BBS art packs.</p>
             </div>
           </a>
@@ -527,7 +531,7 @@
 
   <section class="pb-16 md:pb-28">
     <div class="mb-5 flex flex-wrap items-baseline gap-x-4">
-      <h2 class="mb-3 text-3xl font-black tracking-[-.03em] md:text-5xl">Archive</h2>
+      <h2 class="mb-3 text-3xl font-bold tracking-[-.03em] md:text-5xl">Archive</h2>
       <span class="mb-3 w-full text-base text-muted md:w-auto">The sites may be gone. The work stays.</span>
     </div>
     <div class="grid gap-x-12 md:grid-cols-2">
@@ -593,8 +597,9 @@
 
   </main>
 
-  <footer class="mx-auto mt-20 flex w-[min(1180px,calc(100%-2rem))] justify-between gap-8 py-8 text-base text-muted">
+  <footer class="mx-auto mt-20 flex w-[min(1080px,calc(100%-3rem))] justify-between gap-8 py-8 text-base text-muted">
     <a href="https://nikolayx.com" class="hover:text-fire-ink">nikolayx.com</a>
+    <a href="mailto:nick@firedev.com" class="hover:text-ink">nick@firedev.com</a>
     <span>Phuket · Thailand</span>
   </footer>
 </body>
