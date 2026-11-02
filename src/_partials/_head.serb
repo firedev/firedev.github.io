@@ -20,6 +20,8 @@
 <meta name="twitter:title" content="{{ meta_title }}">
 <meta name="twitter:description" content="{{ meta_description }}">
 <meta name="twitter:image" content="{{ meta_image_absolute }}">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap">
 <link rel="stylesheet" href="{%= asset_path :css %}">
 <script src="{%= asset_path :js %}" type="module"></script>
 {% live_reload_dev_js %}

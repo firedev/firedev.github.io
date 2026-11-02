@@ -22,25 +22,25 @@ page_class: about-page
   ["The right fix leaves less behind.", "Not more panels, more toggles, more process. A cleaner shape, with fewer things to maintain forever."]
 ] %}
 
-<article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
+<article class="mx-auto w-[min(1080px,calc(100%-3rem))]">
   <section class="grid gap-10 py-16 md:grid-cols-12 md:items-start md:gap-6 md:py-24">
     <figure class="relative md:order-2 md:col-span-5">
       <img src="/images/nick.jpg" alt="Nikolay Ostrovsky" class="block h-auto w-full">
-      <figcaption class="absolute bottom-0 right-0 max-w-56 bg-fire-ink p-5 text-base font-black leading-snug text-white">Phuket, Thailand.<br>Building worldwide.</figcaption>
+      <figcaption class="absolute bottom-0 right-0 max-w-56 bg-fire-ink p-5 text-base font-semibold leading-snug text-white">Phuket, Thailand.<br>Building worldwide.</figcaption>
     </figure>
 
     <div class="md:order-1 md:col-span-7 md:pr-[clamp(2rem,7vw,7rem)]">
-      <h1 class="max-w-[10ch] text-[clamp(3.4rem,9vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Nikolay <strong class="text-fire-ink">Ostrovsky</strong></h1>
-      <p class="mt-6 text-lg font-black text-fire-ink">Full-stack architect · Product operator</p>
-      <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">From the desk to the depth. Control mind, control life and ship products. Molchanovs Wave 2 freediving instructor at <a href="https://nofins.com" class="font-black text-ink underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">nofins.com</a>.</p>
+      <h1 class="max-w-[10ch] text-[clamp(3.4rem,9vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Nikolay <strong class="text-fire">Ostrovsky</strong></h1>
+      <p class="mt-6 text-lg font-semibold text-fire-ink">Full-stack architect · Product operator</p>
+      <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">From the desk to the depth. Control mind, control life and ship products. Molchanovs Wave 2 freediving instructor at <a href="https://nofins.com" class="font-semibold text-ink underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">nofins.com</a>.</p>
     </div>
   </section>
 
   <section class="grid gap-8 py-12 md:grid-cols-12 md:py-20">
-    <h2 class="max-w-[10ch] text-4xl font-black tracking-[-.03em] md:col-span-5 md:text-6xl">The best change removes more than it adds.</h2>
+    <h2 class="max-w-[10ch] text-4xl font-bold tracking-[-.03em] md:col-span-5 md:text-6xl">The best change removes more than it adds.</h2>
     <div class="md:col-span-6 md:col-start-7">
       <p class="max-w-[58ch] text-lg leading-relaxed text-muted">Useful when a product has started dragging its own history around: old decisions, extra layers, fallback flows, code nobody wants to touch. The first move is usually not expansion. It is a precise cut.</p>
-      <p class="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">That instinct shaped <a href="/projects/7pikes/" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">pharmacy ERP across 1,300+ stores</a>, <a href="/projects/learn21/" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">education</a> and creator platforms, <a href="https://houseviser.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">Houseviser</a> in Phuket, and <a href="https://nofins.com" class="font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">nofins.com</a>, where freediving became a calmer, clearer digital product.</p>
+      <p class="mt-6 max-w-[58ch] text-lg leading-relaxed text-muted">That instinct shaped <a href="/projects/7pikes/" class="font-semibold underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">pharmacy ERP across 1,300+ stores</a>, <a href="/projects/learn21/" class="font-semibold underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">education</a> and creator platforms, <a href="https://houseviser.com" class="font-semibold underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">Houseviser</a> in Phuket, and <a href="https://nofins.com" class="font-semibold underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">nofins.com</a>, where freediving became a calmer, clearer digital product.</p>
     </div>
   </section>
 
@@ -49,17 +49,17 @@ page_class: about-page
       <img src="/images/projects/screens/git-wrapped-firedev.webp" alt="Git Wrapped 2025 for @firedev" class="block h-auto w-full" width="1536" height="1302">
     </a>
     <div class="md:col-span-6 md:col-start-7 md:pt-2">
-      <h2 class="max-w-[8ch] text-4xl font-black tracking-[-.03em] md:text-6xl">How I <strong class="text-fire-ink">work.</strong></h2>
+      <h2 class="max-w-[8ch] text-4xl font-bold tracking-[-.03em] md:text-6xl">How I <strong class="text-fire">work.</strong></h2>
       <p class="mt-6 max-w-[42ch] text-lg leading-relaxed text-muted">Git Wrapped turns a year of GitHub activity into a compact, shareable personal report.</p>
       <p class="mt-4 max-w-[42ch] text-lg leading-relaxed text-muted">The product focuses on the story behind the activity rather than another dashboard of raw contribution counts.</p>
-      <a href="https://git-wrapped.com/profiles/firedev" class="mt-8 inline-flex min-h-11 items-center font-black underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">git-wrapped.com/profiles/firedev ↗</a>
+      <a href="https://git-wrapped.com/profiles/firedev" class="mt-8 inline-flex min-h-11 items-center font-semibold underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink">git-wrapped.com/profiles/firedev ↗</a>
     </div>
   </section>
 
   <section class="grid gap-5 py-12 md:grid-cols-3 md:py-16">
     {% quotes.each do |quote| %}
       <blockquote class="pt-5">
-        <p class="max-w-[16ch] text-3xl font-black leading-[1] tracking-[-.03em]">{{ quote[0] }}</p>
+        <p class="max-w-[16ch] text-3xl font-semibold leading-[1] tracking-[-.03em]">{{ quote[0] }}</p>
         <p class="mt-4 max-w-[30ch] text-base leading-relaxed text-muted">{{ quote[1] }}</p>
       </blockquote>
     {% end %}
@@ -67,15 +67,15 @@ page_class: about-page
 
   <section class="py-14 md:py-24">
     <div class="mb-10 flex flex-wrap items-end justify-between gap-5">
-      <h2 class="text-4xl font-black tracking-[-.03em] md:text-6xl">Selected timeline</h2>
-      <a href="https://docs.google.com/document/d/1qnomVOrRcLFvJ3dISHwEGgQ_aEzKXytpmPF1eJyqAM0/edit?tab=t.0" class="min-h-11 border border-ink px-4 py-3 text-base font-black hover:border-fire-ink hover:bg-fire-ink hover:text-white">Open CV ↗</a>
+      <h2 class="text-4xl font-bold tracking-[-.03em] md:text-6xl">Selected timeline</h2>
+      <a href="https://docs.google.com/document/d/1qnomVOrRcLFvJ3dISHwEGgQ_aEzKXytpmPF1eJyqAM0/edit?tab=t.0" class="min-h-11 border border-ink px-4 py-3 text-base font-semibold hover:border-fire hover:bg-fire hover:text-ink">Open CV ↗</a>
     </div>
 
     <div>
       {% career.each do |item| %}
         <section class="grid gap-3 py-6 md:grid-cols-12 md:gap-6 md:py-8">
-          <p class="font-black text-fire-ink md:col-span-3">{{ item[0] }}</p>
-          <h3 class="text-xl font-black tracking-[-.02em] md:col-span-4 md:text-2xl">{% if item[3] %}<a href="{{ item[3] }}" class="underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink"{% if item[3].start_with?("http") %} target="_blank" rel="noopener"{% end %}>{{ item[1] }}</a>{% else %}{{ item[1] }}{% end %}</h3>
+          <p class="font-semibold text-fire-ink md:col-span-3">{{ item[0] }}</p>
+          <h3 class="text-xl font-bold tracking-[-.02em] md:col-span-4 md:text-2xl">{% if item[3] %}<a href="{{ item[3] }}" class="underline decoration-fire decoration-2 underline-offset-4 hover:text-fire-ink"{% if item[3].start_with?("http") %} target="_blank" rel="noopener"{% end %}>{{ item[1] }}</a>{% else %}{{ item[1] }}{% end %}</h3>
           <p class="max-w-[54ch] text-base leading-relaxed text-muted md:col-span-5">{{ item[2] }}</p>
         </section>
       {% end %}
@@ -83,14 +83,14 @@ page_class: about-page
   </section>
 
   <section class="grid gap-8 bg-fire px-6 py-12 text-ink md:grid-cols-12 md:px-12 md:py-16">
-    <h2 class="max-w-[9ch] text-4xl font-black tracking-[-.03em] md:col-span-7 md:text-6xl">Have a complicated thing?</h2>
+    <h2 class="max-w-[9ch] text-4xl font-bold tracking-[-.03em] md:col-span-7 md:text-6xl">Have a complicated thing?</h2>
     <div class="md:col-span-5 md:self-end">
       <p class="mb-7 max-w-[36ch] text-lg leading-relaxed text-ink/80">Bring the tangled version. Strip the drag, keep the leverage, and leave with something that moves.</p>
-      <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center border border-ink bg-ink px-5 py-3 text-base font-black text-white hover:bg-white hover:text-ink">nick@firedev.com ↗</a>
+      <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center border border-ink bg-ink px-5 py-3 text-base font-semibold text-white hover:bg-white hover:text-ink">nick@firedev.com ↗</a>
     </div>
   </section>
 
-  <nav class="flex flex-wrap gap-x-8 gap-y-3 py-7 text-base font-black" aria-label="Elsewhere">
+  <nav class="flex flex-wrap gap-x-8 gap-y-3 py-7 text-base font-semibold" aria-label="Elsewhere">
     <a href="https://github.com/firedev" class="min-h-11 py-2 hover:text-fire-ink">GitHub ↗</a>
     <a href="https://stackoverflow.com/users/166484/nick" class="min-h-11 py-2 hover:text-fire-ink">Stack Overflow ↗</a>
     <a href="https://git-wrapped.com/profiles/firedev" class="min-h-11 py-2 hover:text-fire-ink">See how I work ↗</a>

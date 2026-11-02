@@ -2,12 +2,12 @@
 layout: default
 ---
 
-<article class="mx-auto w-[min(1180px,calc(100%-2rem))]">
-  <a href="/posts/" class="mt-6 inline-flex min-h-11 items-center text-base font-black text-muted hover:text-fire-ink">← All posts</a>
+<article class="mx-auto w-[min(1080px,calc(100%-3rem))]">
+  <a href="/posts/" class="mt-6 inline-flex min-h-11 items-center text-base font-semibold text-muted hover:text-fire-ink">← All posts</a>
 
   <header class="pt-6 pb-10 md:pt-6 md:pb-14">
     <h1 class="max-w-[13ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">{{ resource.data.title }}</h1>
-    <p class="mt-6 text-lg font-black text-fire-ink"><time datetime="{{ resource.data.date.strftime('%Y-%m-%d') }}">{{ resource.data.date.strftime("%d %B %Y") }}</time></p>
+    <p class="mt-6 text-lg font-semibold text-fire-ink"><time datetime="{{ resource.data.date.strftime('%Y-%m-%d') }}">{{ resource.data.date.strftime("%d %B %Y") }}</time></p>
     <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">{{ resource.data.description }}</p>
   </header>
 
@@ -22,7 +22,7 @@ layout: default
   </div>
 
   <footer class="mt-16 flex flex-wrap items-center justify-between gap-5 py-8">
-    <a href="/posts/" class="inline-flex min-h-11 items-center font-black hover:text-fire-ink">← Back to all posts</a>
-    <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-black hover:text-fire-ink">Talk about the work ↗</a>
+    <a href="/posts/" class="inline-flex min-h-11 items-center font-semibold hover:text-fire-ink">← Back to all posts</a>
+    <a href="mailto:nick@firedev.com" class="inline-flex min-h-11 items-center font-semibold hover:text-fire-ink">Talk about the work ↗</a>
   </footer>
 </article>

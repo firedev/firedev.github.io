@@ -8,9 +8,9 @@ page_class: posts-page
 {% posts = collections.posts.resources.sort_by { |post| post.data.date }.reverse %}
 {% featured = posts.first %}
 
-<div class="mx-auto w-[min(1180px,calc(100%-2rem))]">
+<div class="mx-auto w-[min(1080px,calc(100%-3rem))]">
   <section class="py-16 md:py-24">
-    <h1 class="max-w-[10ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Notes from <strong class="text-fire-ink">the work.</strong></h1>
+    <h1 class="max-w-[10ch] text-[clamp(3.6rem,10vw,6rem)] font-black leading-[.88] tracking-[-.04em]">Notes from <strong class="text-fire">the work.</strong></h1>
     <p class="mt-8 max-w-[48ch] text-xl leading-relaxed text-muted md:text-2xl">Ruby, products, teams, interfaces, and the small decisions that keep systems moving.</p>
   </section>
 
@@ -20,22 +20,22 @@ page_class: posts-page
         <img src="{{ featured.data.cover }}" alt="" class="block h-auto w-full">
       </figure>
       <div class="md:col-span-5 md:self-end">
-        <time datetime="{{ featured.data.date.strftime('%Y-%m-%d') }}" class="font-black text-fire-ink">{{ featured.data.date.strftime("%d %b %Y") }}</time>
-        <h2 class="mt-4 text-4xl font-black leading-[.95] tracking-[-.03em] md:text-5xl">{{ featured.data.title }}</h2>
+        <time datetime="{{ featured.data.date.strftime('%Y-%m-%d') }}" class="font-semibold text-fire-ink">{{ featured.data.date.strftime("%d %b %Y") }}</time>
+        <h2 class="mt-4 text-4xl font-bold leading-[.95] tracking-[-.03em] md:text-5xl">{{ featured.data.title }}</h2>
         <p class="mt-5 max-w-[44ch] text-lg leading-relaxed text-muted">{{ featured.data.description }}</p>
-        <span class="mt-7 inline-block font-black group-hover:text-fire-ink">Read the post →</span>
+        <span class="mt-7 inline-block font-semibold group-hover:text-fire-ink">Read the post →</span>
       </div>
     </a>
   {% end %}
 
   <section class="pb-16 pt-14 md:pb-28 md:pt-20">
-    <h2 class="mb-8 text-3xl font-black tracking-[-.03em] md:text-5xl">Archive</h2>
+    <h2 class="mb-8 text-3xl font-bold tracking-[-.03em] md:text-5xl">Archive</h2>
     <div>
       {% posts.drop(1).each do |post| %}
         <a href="{{ post.relative_url }}" class="group grid gap-4 py-6 text-inherit md:grid-cols-12 md:items-center md:gap-6 md:py-8">
-          <time datetime="{{ post.data.date.strftime('%Y-%m-%d') }}" class="font-black text-fire-ink md:col-span-2">{{ post.data.date.strftime("%Y · %d %b") }}</time>
+          <time datetime="{{ post.data.date.strftime('%Y-%m-%d') }}" class="font-semibold text-fire-ink md:col-span-2">{{ post.data.date.strftime("%Y · %d %b") }}</time>
           <div class="md:col-span-7">
-            <h3 class="text-2xl font-black tracking-[-.02em] group-hover:text-fire-ink md:text-3xl">{{ post.data.title }}</h3>
+            <h3 class="text-2xl font-bold tracking-[-.02em] group-hover:text-fire-ink md:text-3xl">{{ post.data.title }}</h3>
             <p class="mt-2 max-w-[64ch] leading-relaxed text-muted">{{ post.data.description }}</p>
           </div>
           {% if post.data.cover %}

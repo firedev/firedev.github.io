@@ -6,24 +6,27 @@
 <body class="{{ data.page_class }} min-h-screen overflow-x-hidden">
   {% current_path = resource.relative_url %}
   {% posts_active = current_path.start_with?("/posts") || data.page_class == "archive-page" %}
-  <header class="site-header mx-auto flex w-[min(1180px,calc(100%-2rem))] flex-col gap-5 py-5 md:flex-row md:items-center md:gap-8 md:py-6">
-    <a href="/" class="block w-44 shrink-0 md:w-52 lg:w-56" aria-label="firedev.com home">
-      <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
-    </a>
-    <nav class="site-nav flex w-full flex-wrap items-center gap-x-6 gap-y-2 text-xl font-black md:flex-1 md:flex-nowrap md:gap-x-10 md:text-[1.8rem]" aria-label="Primary">
-      <a href="/projects/" class="nav-link inline-flex min-h-11 items-center {{ current_path.start_with?('/projects') ? 'is-active text-fire-ink' : 'text-muted' }}" {% if current_path.start_with?('/projects') %}aria-current="page"{% end %}>Projects</a>
-      <a href="/posts/" class="nav-link inline-flex min-h-11 items-center {{ posts_active ? 'is-active text-fire-ink' : 'text-muted' }}" {% if posts_active %}aria-current="page"{% end %}>Posts</a>
-      <a href="/about/" class="nav-link inline-flex min-h-11 items-center {{ current_path.start_with?('/about') ? 'is-active text-fire-ink' : 'text-muted' }}" {% if current_path.start_with?('/about') %}aria-current="page"{% end %}>About</a>
-      <a href="mailto:nick@firedev.com" class="nav-cta inline-flex min-h-11 items-center justify-center border border-ink px-4 py-3 text-base font-black text-ink md:ml-auto md:px-5">Email ↗</a>
-    </nav>
+  <header class="site-header">
+    <div class="mx-auto flex w-[min(1080px,calc(100%-3rem))] items-baseline gap-6 py-5 md:gap-10">
+      <a href="/" class="block w-28 shrink-0 md:w-32" aria-label="firedev.com home">
+        <img src="/images/logos/firedev.svg" alt="firedev.com" class="h-auto w-full">
+      </a>
+      <nav class="site-nav flex flex-1 items-baseline gap-x-5 text-lg font-black tracking-[-.03em] sm:gap-x-6 md:gap-x-8 md:text-xl" aria-label="Primary">
+        <a href="/projects/" class="nav-link inline-flex min-h-11 items-center {{ current_path.start_with?('/projects') ? 'is-active text-fire' : 'text-ink' }}" {% if current_path.start_with?('/projects') %}aria-current="page"{% end %}>Projects</a>
+        <a href="/posts/" class="nav-link inline-flex min-h-11 items-center {{ posts_active ? 'is-active text-fire' : 'text-ink' }}" {% if posts_active %}aria-current="page"{% end %}>Posts</a>
+        <a href="/about/" class="nav-link inline-flex min-h-11 items-center {{ current_path.start_with?('/about') ? 'is-active text-fire' : 'text-ink' }}" {% if current_path.start_with?('/about') %}aria-current="page"{% end %}>About</a>
+        <a href="mailto:nick@firedev.com" class="nav-cta ml-auto hidden sm:inline-flex min-h-11 items-center justify-center px-5 text-base font-black tracking-[-.02em]">Email ↗</a>
+      </nav>
+    </div>
   </header>
 
   <main>
     {%= yield %}
   </main>
 
-  <footer class="mx-auto mt-20 flex w-[min(1180px,calc(100%-2rem))] justify-between gap-8 py-8 text-base text-muted">
+  <footer class="mx-auto mt-20 flex w-[min(1080px,calc(100%-3rem))] justify-between gap-8 py-8 text-base text-muted">
     <a href="https://nikolayx.com" class="hover:text-fire-ink">nikolayx.com</a>
+    <a href="mailto:nick@firedev.com" class="hover:text-ink">nick@firedev.com</a>
     <span>Phuket · Thailand</span>
   </footer>
 </body>
